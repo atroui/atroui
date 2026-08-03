@@ -14,25 +14,32 @@ interface PropsTableProps {
 
 export function PropsTable({ data, className }: PropsTableProps) {
   return (
-    <div className={cn("overflow-x-auto rounded-lg border", className)}>
+    <div
+      className={cn(
+        "overflow-x-auto rounded-2xl border border-neutral-200/80",
+        className
+      )}
+    >
       <table className="w-full text-left text-sm">
-        <thead className="border-b bg-muted/50">
+        <thead className="border-b border-neutral-200/80 bg-[#f7f8fa]">
           <tr>
-            <th className="px-4 py-3 font-medium">Prop</th>
-            <th className="px-4 py-3 font-medium">Type</th>
-            <th className="px-4 py-3 font-medium">Default</th>
-            <th className="px-4 py-3 font-medium">Description</th>
+            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Prop</th>
+            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Type</th>
+            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Default</th>
+            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Description</th>
           </tr>
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.name} className="border-b last:border-0">
-              <td className="px-4 py-3 font-mono text-xs text-primary">{row.name}</td>
-              <td className="px-4 py-3 font-mono text-xs text-muted-foreground">{row.type}</td>
-              <td className="px-4 py-3 font-mono text-xs text-muted-foreground">
+            <tr key={row.name} className="border-b border-neutral-100 last:border-0">
+              <td className="px-4 py-3 font-mono text-[12px] font-medium text-neutral-950">
+                {row.name}
+              </td>
+              <td className="px-4 py-3 font-mono text-[12px] text-neutral-500">{row.type}</td>
+              <td className="px-4 py-3 font-mono text-[12px] text-neutral-400">
                 {row.default ?? "—"}
               </td>
-              <td className="px-4 py-3 text-muted-foreground">{row.description}</td>
+              <td className="px-4 py-3 text-[13px] text-neutral-500">{row.description}</td>
             </tr>
           ))}
         </tbody>

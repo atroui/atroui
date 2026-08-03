@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
-import { Button, cn } from "@meridian/ui"
+import { cn } from "@meridian/ui"
 
 interface CodeBlockProps {
   code: string
@@ -20,20 +20,26 @@ export function CodeBlock({ code, language = "tsx", className }: CodeBlockProps)
   }
 
   return (
-    <div className={cn("group relative overflow-hidden rounded-lg border bg-zinc-950", className)}>
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
-        <span className="text-xs text-zinc-400">{language}</span>
-        <Button
-          variant="ghost"
-          size="sm"
+    <div
+      className={cn(
+        "group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950",
+        className
+      )}
+    >
+      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+        <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-neutral-500">
+          {language}
+        </span>
+        <button
+          type="button"
           onClick={copy}
-          className="h-7 text-zinc-400 hover:bg-white/10 hover:text-zinc-100"
+          className="inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[12px] font-medium text-neutral-400 transition-colors hover:bg-white/10 hover:text-white"
         >
           {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-          <span className="ml-1.5 text-xs">{copied ? "Copied" : "Copy"}</span>
-        </Button>
+          {copied ? "Copied" : "Copy"}
+        </button>
       </div>
-      <pre className="overflow-x-auto p-4 text-sm leading-relaxed text-zinc-100">
+      <pre className="overflow-x-auto p-4 text-[13px] leading-relaxed text-neutral-100">
         <code>{code}</code>
       </pre>
     </div>

@@ -24,12 +24,19 @@ export function ComponentDoc({
   return (
     <article className="mx-auto max-w-3xl space-y-10">
       <header>
-        <h1 className="font-display text-4xl tracking-tight">{title}</h1>
-        <p className="mt-3 text-lg text-muted-foreground">{description}</p>
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-neutral-400">
+          Component
+        </p>
+        <h1 className="text-[2rem] font-semibold tracking-tight text-neutral-950 sm:text-[2.35rem]">
+          {title}
+        </h1>
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-500 sm:text-base">
+          {description}
+        </p>
       </header>
 
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Preview</h2>
+        <h2 className="text-[15px] font-semibold text-neutral-950">Preview</h2>
         <ComponentPreview>{preview}</ComponentPreview>
         <CodeBlock code={code} />
       </section>
@@ -38,13 +45,13 @@ export function ComponentDoc({
 
       {usage ? (
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Usage guidelines</h2>
-          <p className="text-muted-foreground">{usage}</p>
+          <h2 className="text-[15px] font-semibold text-neutral-950">Usage guidelines</h2>
+          <p className="text-[15px] leading-relaxed text-neutral-500">{usage}</p>
         </section>
       ) : null}
 
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Props</h2>
+        <h2 className="text-[15px] font-semibold text-neutral-950">Props</h2>
         <PropsTable data={props} />
       </section>
     </article>

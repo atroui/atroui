@@ -23,7 +23,7 @@ export default function Page() {
       ]}
       extra={
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Sizes</h2>
+          <h2 className="text-[15px] font-semibold text-neutral-950">Sizes</h2>
           <ComponentPreview>
             <ButtonSizesDemo />
           </ComponentPreview>

@@ -11,15 +11,15 @@ interface ComponentPreviewProps {
 
 export function ComponentPreview({ title, children, className }: ComponentPreviewProps) {
   return (
-    <div className="overflow-hidden rounded-lg border">
+    <div className="overflow-hidden rounded-2xl border border-neutral-200/80 bg-[#f7f8fa]">
       {title ? (
-        <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium text-muted-foreground">
+        <div className="border-b border-neutral-200/80 px-4 py-2.5 text-[13px] font-medium text-neutral-500">
           {title}
         </div>
       ) : null}
       <div
         className={cn(
-          "flex min-h-[180px] items-center justify-center bg-[radial-gradient(circle_at_1px_1px,hsl(var(--border))_1px,transparent_0)] bg-[length:16px_16px] p-8",
+          "flex min-h-[200px] items-center justify-center p-8",
           className
         )}
       >
