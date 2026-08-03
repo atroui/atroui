@@ -1,0 +1,21 @@
+{
+  "name": "meridian",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev --filter=@meridian/docs",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "storybook": "pnpm --filter @meridian/ui storybook",
+    "build-storybook": "pnpm --filter @meridian/ui build-storybook",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=20"
+  }
+}

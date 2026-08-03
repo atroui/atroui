@@ -1,0 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: hsl(var(--primary) / 0.2);
+}
