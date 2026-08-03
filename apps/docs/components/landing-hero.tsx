@@ -13,41 +13,60 @@ const avatars = [
 
 export function LandingHero() {
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-[#f2f4f6] text-neutral-950">
-      {/* Full-bleed atmospheric hero plane */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, #f2f4f6 0%, rgba(242,244,246,0.92) 28%, rgba(242,244,246,0.55) 48%, rgba(242,244,246,0.15) 68%, transparent 82%), linear-gradient(0deg, rgba(255,255,255,0.35) 0%, transparent 35%)",
-        }}
-      />
+    <section className="relative min-h-[100svh] overflow-hidden bg-[#e9eef4] text-neutral-950">
+      {/*
+        Background model:
+        1. Full atmospheric photo (sky + mist + ridges)
+        2. Soft cool mist wash in the nav→headline band (not flat white)
+        3. Clearer mountains lower down; light fog at the bottom edge
+      */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        {/* Full-bleed photo — sky fills the upper band between nav and headline */}
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=2400&q=80)",
+            backgroundPosition: "center 28%",
+            filter: "saturate(0.8) brightness(1.18) contrast(0.9)",
+          }}
+        />
+
+        {/* Upper band: cool misty sky tint (fills the “blank” gap) */}
+        <div
+          className="absolute inset-x-0 top-0 h-[55%]"
+          style={{
+            background:
+              "linear-gradient(180deg, #eef3f7 0%, #e4ecf3 22%, #d5e2ec 48%, rgba(198,218,232,0.55) 72%, rgba(198,218,232,0) 100%)",
+          }}
+        />
+
+        {/* Soft veil for type readability without killing the sky colour */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(238,243,247,0.72) 0%, rgba(238,243,247,0.45) 28%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0) 62%)",
+          }}
+        />
+
+        {/* Bottom fog lift */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[20%]"
+          style={{
+            background:
+              "linear-gradient(0deg, rgba(236,241,246,0.7) 0%, rgba(236,241,246,0.2) 50%, transparent 100%)",
+          }}
+        />
+      </div>
 
       <LandingNav />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-3xl flex-col items-center px-5 pb-28 pt-28 text-center md:justify-center md:px-6 md:pb-36 md:pt-24">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-4 text-sm font-semibold tracking-[0.08em] text-neutral-500 uppercase md:mb-5"
-        >
-          Meridian
-        </motion.p>
-
         <motion.h1
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-[15ch] text-[2.35rem] font-semibold leading-[1.12] tracking-tight text-neutral-950 sm:text-5xl md:max-w-[18ch] md:text-[3.5rem] md:leading-[1.08]"
         >
           Make Better Decisions, With Ease
@@ -56,7 +75,7 @@ export function LandingHero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="mt-5 max-w-xl text-base leading-relaxed text-neutral-500 sm:text-[1.0625rem]"
         >
           Meridian&apos;s component library helps you cut through the noise, ship faster,
@@ -66,7 +85,7 @@ export function LandingHero() {
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 w-full sm:w-auto"
         >
           <Link
@@ -80,7 +99,7 @@ export function LandingHero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 flex flex-col items-center gap-2.5"
         >
           <div className="flex -space-x-2.5">
