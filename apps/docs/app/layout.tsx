@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
 import { Toaster } from "@meridian/ui"
 import { ThemeProvider } from "@/components/theme-provider"
-import { SiteHeader } from "@/components/site-header"
 import "@meridian/ui/globals.css"
 import "./globals.css"
 
@@ -37,11 +36,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} font-sans antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="relative min-h-screen">
-            <SiteHeader />
-            {children}
-          </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <div className="relative min-h-screen">{children}</div>
           <Toaster />
         </ThemeProvider>
       </body>
