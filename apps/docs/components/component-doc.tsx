@@ -22,7 +22,7 @@ export function ComponentDoc({
   usage,
   extra,
   fullBleed,
-  installation = 'import { … } from "@meridian/ui"',
+  installation = 'import { … } from "atroui"',
 }: ComponentDocProps) {
   return (
     <article

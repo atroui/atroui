@@ -3,7 +3,7 @@
 import { Suspense, useRef } from "react"
 import Link from "next/link"
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react"
-import { TimelineAnimation } from "@meridian/ui"
+import { TimelineAnimation } from "atroui"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import MotionDrawer from "@/components/ui/motion-drawer"
 import { LogoMark } from "@/components/logo-mark"
@@ -93,7 +93,7 @@ export function HeroDigitalSuccess() {
             <nav className="space-y-4">
               <div className="flex items-center gap-2 text-white">
                 <LogoMark className="h-8 w-8 text-white" />
-                <span className="font-medium">Meridian</span>
+                <span className="font-medium">AtroUI</span>
               </div>
               {navLinks.map((link) => (
                 <Link
@@ -127,7 +127,7 @@ export function HeroDigitalSuccess() {
             className="flex items-center gap-2.5"
           >
             <LogoMark className="h-8 w-8 text-white" />
-            <span className="text-lg font-medium tracking-tight">Meridian</span>
+            <span className="text-lg font-medium tracking-tight">AtroUI</span>
           </TimelineAnimation>
 
           <TimelineAnimation
@@ -170,7 +170,7 @@ export function HeroDigitalSuccess() {
           timelineRef={timelineRef}
           className="flex flex-col items-baseline gap-x-8 gap-y-2 pb-10 text-[12vw] font-medium leading-[100%] xl:flex-row xl:text-[6.5vw]"
         >
-          Meridian
+          AtroUI
           <span className="block bg-linear-to-r from-white via-sky-300 to-blue-400 bg-clip-text pb-8 text-transparent xl:inline-block">
             Component catalog
           </span>
@@ -207,7 +207,7 @@ export function HeroDigitalSuccess() {
             className="max-w-md text-xl font-light leading-relaxed text-neutral-100"
           >
             Production UI from real projects — primitives, sections, tools, and
-            headless modules. Meridian is the product; demos show where they
+            headless modules. AtroUI is the product; demos show where they
             shipped.
           </TimelineAnimation>
         </div>

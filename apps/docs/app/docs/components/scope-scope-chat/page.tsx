@@ -12,9 +12,9 @@ export default function Page() {
       title="Scope Chat"
       description="Interactive scoping chat. Calls the host /api/scope route for replies."
       preview={<DemoScopeChat />}
-      code={'import { ScopeChat } from "@meridian/ui"\n\n<ScopeChat />'}
+      code={'import { ScopeChat } from "atroui"\n\n<ScopeChat />'}
       fullBleed={true}
-      installation='import { ScopeChat } from "@meridian/ui"'
+      installation='import { ScopeChat } from "atroui"'
       usage="Needs host POST /api/scope (and typically Gemini / AI env). UI mounts without it; messages will error until the API exists."
     />
   )

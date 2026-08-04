@@ -12,9 +12,9 @@ export default function Page() {
       title='Lab'
       description='Lab / experiments section from the homepage.'
       preview={<DemoHomeLab />}
-      code={'import { HomeLab } from "@meridian/ui"\n\n<HomeLab />'}
+      code={'import { HomeLab } from "atroui"\n\n<HomeLab />'}
       fullBleed={true}
-      installation='import { HomeLab } from "@meridian/ui"'
+      installation='import { HomeLab } from "atroui"'
     />
   )
 }

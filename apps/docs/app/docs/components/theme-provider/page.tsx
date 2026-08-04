@@ -13,7 +13,7 @@ export default function Page() {
       description='App-level next-themes wrapper. No visible chrome of its own — mount once at the root so ThemeToggle and dark tokens work.'
       preview={<DemoThemeProviderNote />}
       code={
-        'import { ThemeProvider, ThemeToggle } from "@meridian/ui"\n\n' +
+        'import { ThemeProvider, ThemeToggle } from "atroui"\n\n' +
         "<ThemeProvider attribute=\"class\" defaultTheme=\"system\" enableSystem>\n" +
         "  {children}\n" +
         "</ThemeProvider>\n\n" +
@@ -21,7 +21,7 @@ export default function Page() {
         "<ThemeToggle />"
       }
       fullBleed={false}
-      installation='import { ThemeProvider } from "@meridian/ui"'
+      installation='import { ThemeProvider } from "atroui"'
       usage='Wrap the app root once with enableSystem so ThemeToggle’s System option follows prefers-color-scheme. Docs already mounts it this way.'
     />
   )

@@ -14,14 +14,14 @@ export default function ThemingPage() {
           Theming
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          Meridian&rsquo;s design system is dark-first: black canvas, brand blue
+          AtroUI&rsquo;s design system is dark-first: black canvas, brand blue
           from the hero shader (
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             #0b7bff
           </code>
           ), Outfit UI, glass panels, and pill CTAs. Tokens live in{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @meridian/ui/globals.css
+            atroui/globals.css
           </code>
           .
         </p>
@@ -77,7 +77,7 @@ export default function ThemingPage() {
         </p>
         <CodeBlock
           language="tsx"
-          code={`import { ThemeProvider, ThemeToggle } from "@meridian/ui"\n\n<ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n  <ThemeToggle />\n  {children}\n</ThemeProvider>`}
+          code={`import { ThemeProvider, ThemeToggle } from "atroui"\n\n<ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n  <ThemeToggle />\n  {children}\n</ThemeProvider>`}
         />
       </section>
     </article>

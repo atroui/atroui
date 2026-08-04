@@ -12,9 +12,9 @@ export default function Page() {
       title='Principle'
       description='Studio principles section.'
       preview={<DemoHomePrinciple />}
-      code={'import { HomePrinciple } from "@meridian/ui"\n\n<HomePrinciple />'}
+      code={'import { HomePrinciple } from "atroui"\n\n<HomePrinciple />'}
       fullBleed={true}
-      installation='import { HomePrinciple } from "@meridian/ui"'
+      installation='import { HomePrinciple } from "atroui"'
     />
   )
 }

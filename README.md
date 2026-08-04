@@ -1,17 +1,17 @@
-# Meridian
+# AtroUI
 
-Personal component catalog packaged as **`@meridian/ui`**. Dark-first design system: black canvas, electric blue brand (`#0b7bff`), glass surfaces, pill CTAs — based on the Digital Success hero.
+Personal component catalog packaged as **[`atroui`](https://www.npmjs.com/package/atroui)** · site: [atroui.com](https://atroui.com)
 
-Docs site: Next.js 15 · Package: `@meridian/ui` · Font: Outfit
+Dark-first design system: black canvas, electric blue brand (`#0b7bff`), glass surfaces, pill CTAs.
 
 ## Structure
 
 ```
 /
 ├── apps/
-│   └── docs/          # Landing + documentation
+│   └── docs/          # Landing + documentation (@atroui/docs)
 ├── packages/
-│   ├── ui/            # @meridian/ui — production components
+│   ├── ui/            # atroui — publishable component package
 │   └── typescript-config/
 ├── package.json
 ├── pnpm-workspace.yaml
@@ -25,11 +25,15 @@ pnpm install
 pnpm dev          # Docs → http://localhost:3000
 ```
 
-## Using components
+## Install (when published)
+
+```bash
+npm install atroui
+```
 
 ```tsx
-import { Button, ThemeProvider } from "@meridian/ui"
-import "@meridian/ui/globals.css"
+import { Button, ThemeProvider } from "atroui"
+import "atroui/globals.css"
 
 export function Example() {
   return (
@@ -55,4 +59,4 @@ Tokens live in `packages/ui/src/globals.css`:
 
 Some modules call host `/api/*` routes (OG, thumbnail, scope, contact). They render in the docs but need those APIs in a real app — marked **Host API** in the sidebar.
 
-Demo content may reference the studios/apps where components shipped. Meridian chrome is independent of that content.
+Demo content may reference the studios/apps where components shipped. AtroUI chrome is independent of that content.

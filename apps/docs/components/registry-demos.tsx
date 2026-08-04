@@ -58,8 +58,8 @@ import {
   SiteGraphJsonLd,
   TestimonialSchema,
   trackEvent,
-} from "@meridian/ui"
-import { TESTIMONIALS } from "@meridian/ui/content/testimonials"
+} from "atroui"
+import { TESTIMONIALS } from "atroui/content/testimonials"
 
 /** Live canvas demos — one per documented component where a useful preview exists. */
 
@@ -318,7 +318,7 @@ export function DemoOgLivePreview() {
     <div className="relative aspect-[1200/630] w-full max-w-xl overflow-hidden rounded-xl ring-1 ring-border-subtle">
       <OgLivePreview
         title={"Ship in days,\nnot quarters."}
-        subtitle="Meridian — your component catalog"
+        subtitle="AtroUI — your component catalog"
         styleKey="paperQuote"
       />
     </div>
@@ -481,7 +481,7 @@ export function DemoJsonLd() {
       {/* Live inject for this preview mount */}
       <SiteGraphJsonLd />
       <pre className="overflow-x-auto border border-border-subtle bg-muted/30 p-3 font-mono text-[11px] leading-relaxed text-foreground">
-        {`import { SiteGraphJsonLd, ArticleJsonLd } from "@meridian/ui"
+        {`import { SiteGraphJsonLd, ArticleJsonLd } from "atroui"
 
 // Homepage
 <SiteGraphJsonLd />

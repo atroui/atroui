@@ -12,9 +12,9 @@ export default function Page() {
       title="Founder Avatar"
       description="Circular founder portrait for signature rows and about bands."
       preview={<DemoFounderAvatar />}
-      code={'import { FounderAvatar } from "@meridian/ui"\n\n<FounderAvatar size="md" />'}
+      code={'import { FounderAvatar } from "atroui"\n\n<FounderAvatar size="md" />'}
       fullBleed={false}
-      installation='import { FounderAvatar } from "@meridian/ui"'
+      installation='import { FounderAvatar } from "atroui"'
       usage="Place the portrait at public /images/founder-portrait.png — the path is fixed in the component. Decorative only (aria-hidden); put the founder name in adjacent copy. Sizes: sm, md, lg."
       props={[
         {

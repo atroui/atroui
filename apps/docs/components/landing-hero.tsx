@@ -84,7 +84,7 @@ export function LandingHero() {
               <span className="ds-gradient-text">Koustav</span>
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-neutral-400">
-              Meridian is the product. Demo modules may show the apps they
+              AtroUI is the product. Demo modules may show the apps they
               shipped in — that&rsquo;s portfolio proof, not the chrome.
             </p>
           </div>
@@ -98,7 +98,7 @@ export function LandingHero() {
               iamk.xyz
             </a>
             <Link href="/docs/installation" className="ms-cta text-sm">
-              Install Meridian
+              Install AtroUI
             </Link>
           </div>
         </div>
@@ -107,7 +107,7 @@ export function LandingHero() {
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-8 py-6 md:px-16 lg:px-24">
           <p className="text-xs text-neutral-500">
-            © {new Date().getFullYear()} Meridian — component catalog
+            © {new Date().getFullYear()} AtroUI — component catalog
           </p>
         </div>
       </footer>

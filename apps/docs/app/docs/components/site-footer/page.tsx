@@ -12,9 +12,9 @@ export default function Page() {
       title='Site Footer'
       description='Marketing footer alias of BoldFooter.'
       preview={<DemoSiteFooter />}
-      code={'import { SiteFooter } from "@meridian/ui"\n\n<SiteFooter />'}
+      code={'import { SiteFooter } from "atroui"\n\n<SiteFooter />'}
       fullBleed={true}
-      installation='import { SiteFooter } from "@meridian/ui"'
+      installation='import { SiteFooter } from "atroui"'
     />
   )
 }

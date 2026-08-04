@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Github } from "lucide-react"
-import { ThemeToggle } from "@meridian/ui"
+import { ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
@@ -13,10 +13,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-3 px-4 sm:px-6">
         <MobileSidebar />
 
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Meridian home">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="AtroUI home">
           <LogoMark className="text-foreground" />
           <span className="text-[17px] font-medium tracking-tight text-foreground">
-            Meridian
+            AtroUI
           </span>
         </Link>
 

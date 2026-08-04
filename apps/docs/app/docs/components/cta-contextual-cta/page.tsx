@@ -12,9 +12,9 @@ export default function Page() {
       title='Contextual Cta'
       description='Scroll-triggered bottom CTA (shows after ~28% scroll on live pages). Preview below forces it open inline.'
       preview={<DemoContextualCta />}
-      code={'import { ContextualCTA } from "@meridian/ui"\n\n{/* Production: mounts fixed; appears on scroll */}\n<ContextualCTA />\n\n{/* Docs */}\n<ContextualCTA preview />'}
+      code={'import { ContextualCTA } from "atroui"\n\n{/* Production: mounts fixed; appears on scroll */}\n<ContextualCTA />\n\n{/* Docs */}\n<ContextualCTA preview />'}
       fullBleed={false}
-      installation='import { ContextualCTA } from "@meridian/ui"'
+      installation='import { ContextualCTA } from "atroui"'
     />
   )
 }

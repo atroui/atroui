@@ -12,9 +12,9 @@ export default function Page() {
       title='Button'
       description='Primary action control with variants and sizes.'
       preview={<DemoButton />}
-      code={'import { Button } from "@meridian/ui"\n\n<Button>Continue</Button>'}
+      code={'import { Button } from "atroui"\n\n<Button>Continue</Button>'}
       fullBleed={false}
-      installation='import { Button } from "@meridian/ui"'
+      installation='import { Button } from "atroui"'
       usage='Prefer one primary button per view.'
       props={[
     { name: 'variant', type: "'default' | 'outline' | 'secondary' | 'ghost' | 'destructive' | 'link'", default: "'default'", description: 'Visual style.' },

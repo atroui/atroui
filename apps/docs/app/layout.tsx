@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Geist_Mono, Outfit } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import "@meridian/ui/globals.css"
+import "atroui/globals.css"
 import "./globals.css"
 
 const outfit = Outfit({
@@ -18,11 +18,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Meridian — Component catalog",
-    template: "%s · Meridian",
+    default: "AtroUI — Component catalog",
+    template: "%s · AtroUI",
   },
   description:
-    "Meridian is a personal component catalog — production UI packaged as @meridian/ui, with a digital design system built for dark canvases and glass surfaces.",
+    "AtroUI — personal component catalog at atroui.com. Production UI packaged as atroui.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -12,9 +12,9 @@ export default function Page() {
       title='Journal Content'
       description='Journal listing / content.'
       preview={<DemoJournalContent />}
-      code={'import { JournalContent } from "@meridian/ui"\n\n<JournalContent />'}
+      code={'import { JournalContent } from "atroui"\n\n<JournalContent />'}
       fullBleed={true}
-      installation='import { JournalContent } from "@meridian/ui"'
+      installation='import { JournalContent } from "atroui"'
     />
   )
 }

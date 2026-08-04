@@ -15,9 +15,9 @@ export default function InstallationPage() {
           Installation
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Meridian is a pnpm monorepo. Run the docs locally, or import{" "}
+          AtroUI is a pnpm monorepo. Run the docs locally, or import{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @meridian/ui
+            atroui
           </code>{" "}
           from a Next.js app in the workspace.
         </p>
@@ -27,7 +27,7 @@ export default function InstallationPage() {
         <h2 className="ds-headline text-base text-foreground">Clone &amp; install</h2>
         <CodeBlock
           language="bash"
-          code={`git clone <your-repo-url> meridian\ncd meridian\npnpm install`}
+          code={`git clone <your-repo-url> atroui\ncd atroui\npnpm install`}
         />
       </section>
 
@@ -54,12 +54,12 @@ export default function InstallationPage() {
         </p>
         <CodeBlock
           language="tsx"
-          code={`import { Button, ThemeProvider } from "@meridian/ui"\nimport "@meridian/ui/globals.css"\n\nexport function Example({ children }: { children: React.ReactNode }) {\n  return (\n    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n      <Button>Click me</Button>\n      {children}\n    </ThemeProvider>\n  )\n}`}
+          code={`import { Button, ThemeProvider } from "atroui"\nimport "atroui/globals.css"\n\nexport function Example({ children }: { children: React.ReactNode }) {\n  return (\n    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n      <Button>Click me</Button>\n      {children}\n    </ThemeProvider>\n  )\n}`}
         />
         <p className="text-[13px] text-muted-foreground">
           Tailwind v4 is configured inside{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @meridian/ui/globals.css
+            atroui/globals.css
           </code>
           . Host apps only need to import that CSS and scan their own source
           files. See{" "}

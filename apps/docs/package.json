@@ -1,5 +1,5 @@
 {
-  "name": "@meridian/docs",
+  "name": "@atroui/docs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
-    "@meridian/ui": "workspace:*",
+    "atroui": "workspace:*",
     "@next/mdx": "^15.3.5",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.7.0",
@@ -34,7 +34,7 @@
     "three": "^0.185.1"
   },
   "devDependencies": {
-    "@meridian/typescript-config": "workspace:*",
+    "@atroui/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^22.16.0",
     "@types/react": "^19.1.8",

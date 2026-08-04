@@ -12,9 +12,9 @@ export default function Page() {
       title='Og Workspace'
       description='Full OG image generator workspace.'
       preview={<DemoOgWorkspace />}
-      code={'import { OgWorkspace } from "@meridian/ui"\n\n<OgWorkspace />'}
+      code={'import { OgWorkspace } from "atroui"\n\n<OgWorkspace />'}
       fullBleed={true}
-      installation='import { OgWorkspace } from "@meridian/ui"'
+      installation='import { OgWorkspace } from "atroui"'
       usage='Needs host API routes for generation.'
     />
   )

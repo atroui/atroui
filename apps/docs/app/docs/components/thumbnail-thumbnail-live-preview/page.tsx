@@ -12,9 +12,9 @@ export default function Page() {
       title='Thumbnail Live Preview'
       description='CSS preview of a video thumbnail.'
       preview={<DemoThumbnailLivePreview />}
-      code={'import { ThumbnailLivePreview } from "@meridian/ui"\n\n<ThumbnailLivePreview title="…" subtitle="…" styleKey="youtubePop" format="youtube" />'}
+      code={'import { ThumbnailLivePreview } from "atroui"\n\n<ThumbnailLivePreview title="…" subtitle="…" styleKey="youtubePop" format="youtube" />'}
       fullBleed={false}
-      installation='import { ThumbnailLivePreview } from "@meridian/ui"'
+      installation='import { ThumbnailLivePreview } from "atroui"'
       props={[
     { name: 'format', type: 'ThumbnailFormat', default: '—', description: 'Aspect format.' },
     { name: 'styleKey', type: 'ThumbnailStyleKey', default: '—', description: 'Preset.' },

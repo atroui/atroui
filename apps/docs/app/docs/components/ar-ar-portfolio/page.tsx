@@ -12,9 +12,9 @@ export default function Page() {
       title="AR Portfolio"
       description="model-viewer showcase with AR modes — demo GLBs until you swap the model list."
       preview={<DemoArPortfolio />}
-      code={'import { ArPortfolio } from "@meridian/ui"\n\n<ArPortfolio />'}
+      code={'import { ArPortfolio } from "atroui"\n\n<ArPortfolio />'}
       fullBleed={true}
-      installation='import { ArPortfolio } from "@meridian/ui"'
+      installation='import { ArPortfolio } from "atroui"'
       usage="Zero-prop mount. Loads model-viewer from Google’s CDN. Demo models are public Astronaut/NeilArmstrong GLBs — fork MODELS (and optional poster) for real work. “View in AR” needs WebXR, Scene Viewer, or Quick Look on a supported device."
     />
   )

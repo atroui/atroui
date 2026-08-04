@@ -12,9 +12,9 @@ export default function Page() {
       title='Before After Slider'
       description='Interactive before/after comparison.'
       preview={<DemoBeforeAfterSlider />}
-      code={'import { BeforeAfterSlider } from "@meridian/ui"\n\n<BeforeAfterSlider variant="saas" />'}
+      code={'import { BeforeAfterSlider } from "atroui"\n\n<BeforeAfterSlider variant="saas" />'}
       fullBleed={false}
-      installation='import { BeforeAfterSlider } from "@meridian/ui"'
+      installation='import { BeforeAfterSlider } from "atroui"'
       props={[
     { name: 'variant', type: 'MockupVariant', default: "'saas'", description: 'Mockup style.' },
     { name: 'beforeLabel', type: 'string', default: "'Before'", description: 'Left label.' },

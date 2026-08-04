@@ -12,9 +12,9 @@ export default function Page() {
       title='Card'
       description='Elevated surface for grouped content.'
       preview={<DemoCard />}
-      code={'import { Card, CardHeader, CardTitle, CardContent } from "@meridian/ui"\n\n<Card>\n  <CardHeader><CardTitle>Title</CardTitle></CardHeader>\n  <CardContent>Body</CardContent>\n</Card>'}
+      code={'import { Card, CardHeader, CardTitle, CardContent } from "atroui"\n\n<Card>\n  <CardHeader><CardTitle>Title</CardTitle></CardHeader>\n  <CardContent>Body</CardContent>\n</Card>'}
       fullBleed={false}
-      installation='import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@meridian/ui"'
+      installation='import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "atroui"'
       props={[
     { name: 'size', type: "'default' | 'sm'", default: "'default'", description: 'Density.' },
     { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },

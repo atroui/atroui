@@ -1,5 +1,5 @@
 {
-  "extends": "@meridian/typescript-config/react-library.json",
+  "extends": "@atroui/typescript-config/react-library.json",
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]

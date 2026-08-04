@@ -12,9 +12,9 @@ export default function Page() {
       title='Footer Bold'
       description='Bold marketing footer with links and brand mark.'
       preview={<DemoBoldFooter />}
-      code={'import { BoldFooter } from "@meridian/ui"\n\n<BoldFooter />'}
+      code={'import { BoldFooter } from "atroui"\n\n<BoldFooter />'}
       fullBleed={true}
-      installation='import { BoldFooter } from "@meridian/ui"'
+      installation='import { BoldFooter } from "atroui"'
     />
   )
 }

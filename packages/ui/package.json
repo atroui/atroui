@@ -1,7 +1,29 @@
 {
-  "name": "@meridian/ui",
+  "name": "atroui",
   "version": "0.1.0",
+  "description": "AtroUI — personal component catalog. Dark-first design system for production UI.",
+  "license": "MIT",
+  "homepage": "https://atroui.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KOUSTAV2409/componentlib"
+  },
+  "bugs": {
+    "url": "https://github.com/KOUSTAV2409/componentlib/issues"
+  },
+  "keywords": [
+    "atroui",
+    "react",
+    "nextjs",
+    "components",
+    "ui",
+    "design-system",
+    "tailwind"
+  ],
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": [
     "**/*.css"
   ],
@@ -12,6 +34,10 @@
     "./components/*": "./src/components/*",
     "./content/*": "./src/content/*"
   },
+  "files": [
+    "src",
+    "README.md"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist .turbo"
@@ -34,7 +60,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@meridian/typescript-config": "workspace:*",
+    "@atroui/typescript-config": "workspace:*",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "next": "^15.3.5",

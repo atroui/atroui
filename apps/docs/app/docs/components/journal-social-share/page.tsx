@@ -12,9 +12,9 @@ export default function Page() {
       title='Social Share'
       description='Share actions for articles.'
       preview={<DemoSocialShare />}
-      code={'import { SocialShare } from "@meridian/ui"\n\n<SocialShare url="…" title="…" />'}
+      code={'import { SocialShare } from "atroui"\n\n<SocialShare url="…" title="…" />'}
       fullBleed={false}
-      installation='import { SocialShare } from "@meridian/ui"'
+      installation='import { SocialShare } from "atroui"'
       props={[
     { name: 'url', type: 'string', default: '—', description: 'Share URL.' },
     { name: 'title', type: 'string', default: '—', description: 'Share title.' },

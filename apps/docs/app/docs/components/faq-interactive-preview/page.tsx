@@ -12,9 +12,9 @@ export default function Page() {
       title='Faq Interactive Preview'
       description='Interactive FAQ accordion preview.'
       preview={<DemoFaqInteractivePreview />}
-      code={'import { FaqInteractivePreview } from "@meridian/ui"\n\n<FaqInteractivePreview />'}
+      code={'import { FaqInteractivePreview } from "atroui"\n\n<FaqInteractivePreview />'}
       fullBleed={true}
-      installation='import { FaqInteractivePreview } from "@meridian/ui"'
+      installation='import { FaqInteractivePreview } from "atroui"'
     />
   )
 }

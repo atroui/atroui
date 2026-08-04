@@ -15,9 +15,9 @@ export default function DocsIntroPage() {
           Introduction
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          Meridian is a personal component catalog — production UI packaged as{" "}
+          AtroUI is a personal component catalog — production UI packaged as{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @meridian/ui
+            atroui
           </code>
           . The design system is dark-first: black canvas, electric blue brand,
           glass surfaces, and rounded CTAs.

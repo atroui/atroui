@@ -12,9 +12,9 @@ export default function Page() {
       title="Thumbnail Workspace"
       description="Thumbnail generator workspace. Generation posts to host /api/thumbnail."
       preview={<DemoThumbnailWorkspace />}
-      code={'import { ThumbnailWorkspace } from "@meridian/ui"\n\n<ThumbnailWorkspace />'}
+      code={'import { ThumbnailWorkspace } from "atroui"\n\n<ThumbnailWorkspace />'}
       fullBleed={true}
-      installation='import { ThumbnailWorkspace } from "@meridian/ui"'
+      installation='import { ThumbnailWorkspace } from "atroui"'
       usage="Requires host /api/thumbnail (and image generation env). Preview chrome works; generate actions need the API."
     />
   )

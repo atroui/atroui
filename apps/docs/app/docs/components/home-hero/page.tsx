@@ -12,9 +12,9 @@ export default function Page() {
       title='Hero'
       description='Primary homepage hero with interactive OG canvas, sprint timeline, and CTA.'
       preview={<DemoHomeHero />}
-      code={'import { HomeHero } from "@meridian/ui"\n\nexport function Example() {\n  return <HomeHero />\n}'}
+      code={'import { HomeHero } from "atroui"\n\nexport function Example() {\n  return <HomeHero />\n}'}
       fullBleed={true}
-      installation='import { HomeHero } from "@meridian/ui"'
+      installation='import { HomeHero } from "atroui"'
       usage='Use once at the top of a marketing homepage. Full-bleed section.'
     />
   )

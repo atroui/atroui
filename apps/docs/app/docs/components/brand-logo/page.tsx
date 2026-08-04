@@ -12,9 +12,9 @@ export default function Page() {
       title="Logo"
       description="Studio mark and wordmark — currently branded for Makershot."
       preview={<DemoLogo />}
-      code={'import { LogoMark, LogoWordmark } from "@meridian/ui"\n\n<LogoMark />\n<LogoWordmark />'}
+      code={'import { LogoMark, LogoWordmark } from "atroui"\n\n<LogoMark />\n<LogoWordmark />'}
       fullBleed={false}
-      installation='import { LogoMark, LogoWordmark } from "@meridian/ui"'
+      installation='import { LogoMark, LogoWordmark } from "atroui"'
       usage="LogoMark accepts an accessible title (default “Makershot”) and follows currentColor. LogoWordmark hardcodes the Makershot name — rebrand by forking the wordmark or replacing the span."
       props={[
         {

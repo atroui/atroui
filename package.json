@@ -1,8 +1,8 @@
 {
-  "name": "meridian",
+  "name": "atroui",
   "private": true,
   "scripts": {
-    "dev": "turbo run dev --filter=@meridian/docs",
+    "dev": "turbo run dev --filter=@atroui/docs",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",

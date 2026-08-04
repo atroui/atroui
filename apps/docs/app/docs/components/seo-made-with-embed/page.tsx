@@ -12,9 +12,9 @@ export default function Page() {
       title='Made With Embed'
       description='Credit badge + copyable HTML embed.'
       preview={<DemoMadeWithEmbed />}
-      code={'import { MadeWithEmbed } from "@meridian/ui"\n\n<MadeWithEmbed />'}
+      code={'import { MadeWithEmbed } from "atroui"\n\n<MadeWithEmbed />'}
       fullBleed={false}
-      installation='import { MadeWithEmbed } from "@meridian/ui"'
+      installation='import { MadeWithEmbed } from "atroui"'
       props={[
     { name: 'href', type: 'string', default: "'/og'", description: 'Badge link target.' },
   ]}

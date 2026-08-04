@@ -12,9 +12,9 @@ export default function Page() {
       title='Prose'
       description='Long-form typography wrapper.'
       preview={<DemoProse />}
-      code={'import { Prose } from "@meridian/ui"\n\n<Prose><p>…</p></Prose>'}
+      code={'import { Prose } from "atroui"\n\n<Prose><p>…</p></Prose>'}
       fullBleed={false}
-      installation='import { Prose } from "@meridian/ui"'
+      installation='import { Prose } from "atroui"'
       props={[
     { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },
   ]}

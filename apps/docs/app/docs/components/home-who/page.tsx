@@ -12,9 +12,9 @@ export default function Page() {
       title='Who'
       description='Founder / who-we-are section.'
       preview={<DemoHomeWho />}
-      code={'import { HomeWho } from "@meridian/ui"\n\n<HomeWho />'}
+      code={'import { HomeWho } from "atroui"\n\n<HomeWho />'}
       fullBleed={true}
-      installation='import { HomeWho } from "@meridian/ui"'
+      installation='import { HomeWho } from "atroui"'
     />
   )
 }

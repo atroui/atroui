@@ -4,14 +4,14 @@ import path from "path"
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
-  transpilePackages: ["@meridian/ui", "@shadergradient/react"],
+  transpilePackages: ["atroui", "@shadergradient/react"],
   experimental: {
-    optimizePackageImports: ["@meridian/ui", "lucide-react"],
+    optimizePackageImports: ["atroui", "lucide-react"],
   },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@meridian/ui": path.resolve(__dirname, "../../packages/ui/src"),
+      "atroui": path.resolve(__dirname, "../../packages/ui/src"),
     }
     return config
   },

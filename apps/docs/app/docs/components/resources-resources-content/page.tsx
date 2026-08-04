@@ -12,9 +12,9 @@ export default function Page() {
       title='Resources Content'
       description='Resources library content.'
       preview={<DemoResourcesContent />}
-      code={'import { ResourcesContent } from "@meridian/ui"\n\n<ResourcesContent />'}
+      code={'import { ResourcesContent } from "atroui"\n\n<ResourcesContent />'}
       fullBleed={true}
-      installation='import { ResourcesContent } from "@meridian/ui"'
+      installation='import { ResourcesContent } from "atroui"'
     />
   )
 }

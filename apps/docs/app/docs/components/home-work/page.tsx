@@ -12,9 +12,9 @@ export default function Page() {
       title='Work'
       description='Selected work section.'
       preview={<DemoHomeWork />}
-      code={'import { HomeWork } from "@meridian/ui"\n\n<HomeWork />'}
+      code={'import { HomeWork } from "atroui"\n\n<HomeWork />'}
       fullBleed={true}
-      installation='import { HomeWork } from "@meridian/ui"'
+      installation='import { HomeWork } from "atroui"'
     />
   )
 }

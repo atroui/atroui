@@ -12,9 +12,9 @@ export default function Page() {
       title="Project Planner"
       description="Client-side project planner. Routes into /contact with query params — no generation API."
       preview={<DemoProjectPlanner />}
-      code={'import { ProjectPlanner } from "@meridian/ui"\n\n<ProjectPlanner />'}
+      code={'import { ProjectPlanner } from "atroui"\n\n<ProjectPlanner />'}
       fullBleed={true}
-      installation='import { ProjectPlanner } from "@meridian/ui"'
+      installation='import { ProjectPlanner } from "atroui"'
       usage="Fully client-side. Expect host routes like /contact (and /planner) to exist when CTAs navigate."
     />
   )

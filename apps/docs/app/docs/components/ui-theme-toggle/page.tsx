@@ -12,9 +12,9 @@ export default function Page() {
       title='Theme Toggle'
       description='Light / dark theme switch.'
       preview={<DemoThemeToggle />}
-      code={'import { ThemeToggle } from "@meridian/ui"\n\n<ThemeToggle />'}
+      code={'import { ThemeToggle } from "atroui"\n\n<ThemeToggle />'}
       fullBleed={false}
-      installation='import { ThemeToggle } from "@meridian/ui"'
+      installation='import { ThemeToggle } from "atroui"'
       usage='Requires next-themes ThemeProvider.'
       props={[
     { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },

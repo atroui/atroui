@@ -107,7 +107,7 @@ export function MobileSidebar() {
                 onClick={() => setOpen(false)}
               >
                 <LogoMark />
-                <span className="text-[15px] font-medium text-foreground">Meridian</span>
+                <span className="text-[15px] font-medium text-foreground">AtroUI</span>
               </Link>
               <button
                 type="button"

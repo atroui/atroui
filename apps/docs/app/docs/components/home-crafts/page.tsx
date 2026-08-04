@@ -12,9 +12,9 @@ export default function Page() {
       title='Crafts'
       description='Pricing / crafts overview section from the homepage.'
       preview={<DemoHomeCrafts />}
-      code={'import { HomeCrafts } from "@meridian/ui"\n\n<HomeCrafts />'}
+      code={'import { HomeCrafts } from "atroui"\n\n<HomeCrafts />'}
       fullBleed={true}
-      installation='import { HomeCrafts } from "@meridian/ui"'
+      installation='import { HomeCrafts } from "atroui"'
       usage='Homepage section — place below the hero.'
     />
   )

@@ -12,9 +12,9 @@ export default function Page() {
       title='Form Select'
       description='Accessible select built on Base UI.'
       preview={<DemoFormSelect />}
-      code={'import { FormSelect } from "@meridian/ui"\n\n<FormSelect value={v} onValueChange={setV} options={[…]} />'}
+      code={'import { FormSelect } from "atroui"\n\n<FormSelect value={v} onValueChange={setV} options={[…]} />'}
       fullBleed={false}
-      installation='import { FormSelect } from "@meridian/ui"'
+      installation='import { FormSelect } from "atroui"'
       props={[
     { name: 'value', type: 'string', default: '—', description: 'Controlled value.' },
     { name: 'onValueChange', type: '(value: string) => void', default: '—', description: 'Change handler.' },

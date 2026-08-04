@@ -12,9 +12,9 @@ export default function Page() {
       title='Timeline Animation'
       description='Sequenced scroll-triggered timeline items.'
       preview={<DemoTimelineAnimation />}
-      code={'import { TimelineAnimation } from "@meridian/ui"\n\n<TimelineAnimation animationNum={0} timelineRef={ref}>…</TimelineAnimation>'}
+      code={'import { TimelineAnimation } from "atroui"\n\n<TimelineAnimation animationNum={0} timelineRef={ref}>…</TimelineAnimation>'}
       fullBleed={false}
-      installation='import { TimelineAnimation } from "@meridian/ui"'
+      installation='import { TimelineAnimation } from "atroui"'
     />
   )
 }

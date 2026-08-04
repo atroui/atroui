@@ -12,9 +12,9 @@ export default function Page() {
       title="Site Header"
       description="Sticky editorial header with logo, primary nav, theme toggle, and hire CTA."
       preview={<DemoSiteHeader />}
-      code={'import { SiteHeader } from "@meridian/ui"\n\n<SiteHeader />'}
+      code={'import { SiteHeader } from "atroui"\n\n<SiteHeader />'}
       fullBleed={true}
-      installation='import { SiteHeader } from "@meridian/ui"'
+      installation='import { SiteHeader } from "atroui"'
       usage="Mount once in the root layout. Nav, logo, and Hire CTA are hardwired to Makershot routes (/work, /tools, /services, /journal, /about, /contact) — fork or parameterize before reuse on another host."
     />
   )

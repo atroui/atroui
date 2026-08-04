@@ -12,9 +12,9 @@ export default function Page() {
       title='Newsletter Form'
       description='Email capture form.'
       preview={<DemoNewsletterForm />}
-      code={'import { NewsletterForm } from "@meridian/ui"\n\n<NewsletterForm />'}
+      code={'import { NewsletterForm } from "atroui"\n\n<NewsletterForm />'}
       fullBleed={false}
-      installation='import { NewsletterForm } from "@meridian/ui"'
+      installation='import { NewsletterForm } from "atroui"'
       usage='Posts to your /api/newsletter route.'
       props={[
     { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },

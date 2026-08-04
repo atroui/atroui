@@ -12,9 +12,9 @@ export default function Page() {
       title='Pricing Overview'
       description='Service pricing overview grid.'
       preview={<DemoPricingOverview />}
-      code={'import { PricingOverview } from "@meridian/ui"\n\n<PricingOverview />'}
+      code={'import { PricingOverview } from "atroui"\n\n<PricingOverview />'}
       fullBleed={true}
-      installation='import { PricingOverview } from "@meridian/ui"'
+      installation='import { PricingOverview } from "atroui"'
     />
   )
 }

@@ -22,11 +22,11 @@ export function LandingNav() {
           <Link
             href="/"
             className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
-            aria-label="Meridian home"
+            aria-label="AtroUI home"
           >
             <LogoMark />
             <span className="ds-display text-[19px] leading-none tracking-[-0.01em] text-foreground">
-              Meridian
+              AtroUI
             </span>
           </Link>
 

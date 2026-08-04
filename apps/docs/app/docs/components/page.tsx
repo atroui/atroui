@@ -18,7 +18,7 @@ export default function ComponentsIndexPage() {
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
           Production UI curated into primitives, sections, tools, and headless
-          modules — themed with Meridian&rsquo;s digital system.
+          modules — themed with AtroUI&rsquo;s digital system.
         </p>
       </header>
 

@@ -12,9 +12,9 @@ export default function Page() {
       title="Calendly Embed"
       description="Theme-aware Calendly embed with email fallback."
       preview={<DemoCalendlyEmbed />}
-      code={'import { CalendlyEmbed } from "@meridian/ui"\n\n<CalendlyEmbed url={process.env.NEXT_PUBLIC_CALENDLY_URL} />'}
+      code={'import { CalendlyEmbed } from "atroui"\n\n<CalendlyEmbed url={process.env.NEXT_PUBLIC_CALENDLY_URL} />'}
       fullBleed={false}
-      installation='import { CalendlyEmbed } from "@meridian/ui"'
+      installation='import { CalendlyEmbed } from "atroui"'
       usage="Pass url or set NEXT_PUBLIC_CALENDLY_URL. Without either, the preview shows the “Calendly isn’t connected” fallback with a hello@makershot.tech mailto — same as production when env is missing."
       props={[
         {
