@@ -50,7 +50,7 @@ export default function InstallationPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             ThemeProvider
           </code>{" "}
-          and load Outfit + Fraunces (see root layout in docs).
+          and load Outfit (see root layout in docs).
         </p>
         <CodeBlock
           language="tsx"

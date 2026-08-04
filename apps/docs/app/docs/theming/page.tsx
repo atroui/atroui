@@ -13,9 +13,13 @@ export default function ThemingPage() {
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
           Theming
         </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Meridian uses the Makershot stone OKLCH system — copper brand accent,
-          Outfit UI, Fraunces display. Tokens are CSS variables in{" "}
+        <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
+          Meridian&rsquo;s design system is dark-first: black canvas, brand blue
+          from the hero shader (
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            #0b7bff
+          </code>
+          ), Outfit UI, glass panels, and pill CTAs. Tokens live in{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @meridian/ui/globals.css
           </code>
@@ -25,7 +29,7 @@ export default function ThemingPage() {
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">CSS variables</h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Light and dark themes live under{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             :root
@@ -38,39 +42,32 @@ export default function ThemingPage() {
         </p>
         <CodeBlock
           language="css"
-          code={`:root {\n  --color-brand: oklch(0.72 0.12 55);\n  --color-brand-hover: oklch(0.78 0.12 55);\n  --font-sans: var(--font-outfit);\n  --font-display: var(--font-fraunces);\n}`}
+          code={`.dark {\n  --brand: oklch(0.62 0.2 255);\n  --background: oklch(0 0 0);\n  --primary: oklch(0.99 0 0);\n  --primary-foreground: oklch(0 0 0);\n  --font-sans: var(--font-outfit);\n}`}
         />
       </section>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Fonts</h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Load Outfit and Fraunces in the host layout and expose{" "}
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          Load Outfit in the host layout and expose{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             --font-outfit
-          </code>{" "}
-          /{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            --font-fraunces
-          </code>{" "}
-          (see the docs root layout). Display classes like{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            ds-display
-          </code>{" "}
-          depend on them.
+          </code>
+          . Display and UI share the same family at medium weight — matching
+          the hero typography.
         </p>
       </section>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Dark mode</h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Prefer the package{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             ThemeProvider
           </code>{" "}
-          (next-themes wrapper) with{" "}
+          with{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            attribute=&quot;class&quot;
+            enableSystem
           </code>
           . Pair with{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">

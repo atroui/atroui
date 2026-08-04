@@ -15,7 +15,7 @@ const OPTIONS = [
 type ThemeId = (typeof OPTIONS)[number]["id"];
 
 /**
- * Theme toggle — square editorial chrome (cycle on mobile, segmented sm+).
+ * Theme toggle — pill chrome (cycle on mobile, segmented sm+).
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme();
@@ -46,7 +46,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         title={`Theme: ${currentOption.label}`}
         onClick={cycle}
         className={cn(
-          "motion-safe-transition inline-flex size-9 items-center justify-center border border-border-subtle bg-background text-foreground sm:hidden active:scale-[0.97]",
+          "motion-safe-transition inline-flex size-9 items-center justify-center rounded-full border border-border-subtle bg-white/5 text-foreground sm:hidden active:scale-[0.97]",
           className,
         )}
       >
@@ -57,7 +57,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         role="radiogroup"
         aria-label="Theme"
         className={cn(
-          "touch-manipulation hidden items-stretch border border-border-subtle bg-background sm:inline-flex",
+          "touch-manipulation hidden items-stretch overflow-hidden rounded-full border border-border-subtle bg-white/5 sm:inline-flex",
           className,
         )}
       >
@@ -78,8 +78,8 @@ export function ThemeToggle({ className }: { className?: string }) {
               onClick={() => setTheme(id)}
               className={cn(
                 "motion-safe-transition inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
-                isActive && "bg-foreground text-background",
-                !isActive && "hover:bg-muted hover:text-foreground",
+                isActive && "bg-primary text-primary-foreground",
+                !isActive && "hover:bg-white/10 hover:text-foreground",
               )}
             >
               <Icon className="size-3.5" strokeWidth={2} />

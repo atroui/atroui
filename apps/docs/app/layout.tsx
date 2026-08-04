@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Fraunces, Geist_Mono, Outfit } from "next/font/google"
+import { Geist_Mono, Outfit } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import "@meridian/ui/globals.css"
 import "./globals.css"
@@ -7,12 +7,6 @@ import "./globals.css"
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  display: "swap",
-})
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
   display: "swap",
 })
 
@@ -24,19 +18,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Meridian — Personal component catalog",
+    default: "Meridian — Component catalog",
     template: "%s · Meridian",
   },
   description:
-    "Components Koustav ships across projects — starting with Makershot / ogsaas. Not a generic UI kit.",
+    "Meridian is a personal component catalog — production UI packaged as @meridian/ui, with a digital design system built for dark canvases and glass surfaces.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${outfit.variable} ${fraunces.variable} ${geistMono.variable} font-sans antialiased`}
-      >
+      <body className={`${outfit.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

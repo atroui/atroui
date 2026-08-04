@@ -1,8 +1,8 @@
 # Meridian
 
-Personal component catalog for components Koustav ships across projects — starting with **Makershot / ogsaas**. Not a generic UI kit.
+Personal component catalog packaged as **`@meridian/ui`**. Dark-first design system: black canvas, electric blue brand (`#0b7bff`), glass surfaces, pill CTAs — based on the Digital Success hero.
 
-Docs site: Next.js 15 · Package: `@meridian/ui` · Tokens: Makershot stone OKLCH + copper brand (Outfit + Fraunces)
+Docs site: Next.js 15 · Package: `@meridian/ui` · Font: Outfit
 
 ## Structure
 
@@ -28,56 +28,31 @@ pnpm dev          # Docs → http://localhost:3000
 ## Using components
 
 ```tsx
-import { Button, HomeWho, ThemeProvider } from "@meridian/ui"
+import { Button, ThemeProvider } from "@meridian/ui"
 import "@meridian/ui/globals.css"
 
 export function Example() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light">
-      <Button>Hire us</Button>
-      <HomeWho />
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <Button>Get started</Button>
     </ThemeProvider>
   )
 }
 ```
 
-### Tailwind v4
+Load Outfit in the host layout and expose `--font-outfit`.
 
-Import the package CSS (it already includes `@import "tailwindcss"` and `@source` paths for the UI package). Host apps should scan their own app files and load `@meridian/ui/globals.css` once at the root.
+## Design system
 
-Peer deps: **Next.js**, **React**, **next-themes**.
+Tokens live in `packages/ui/src/globals.css`:
 
-## Catalog
+- **Canvas** — black (`oklch(0 0 0)`) with cool undertones
+- **Brand** — hero blues (`#0b7bff` / `#92dbe0`)
+- **CTAs** — rounded-full primary (white on dark) + glass ghost
+- **Surfaces** — `ms-panel` / `md-glass` blur panels
 
-Curated in docs as:
+## Catalog notes
 
-| Group | Examples |
-|-------|----------|
-| **Primitives** | Button, Card, FormSelect, ThemeToggle, FadeIn… |
-| **Sections** | Home bands, SiteHeader, CTAs, Contact, Journal… |
-| **Tools** | OG workspace, Thumbnail, Planner, Scope (often need host `/api/*`) |
-| **Headless** | Analytics, JSON-LD |
+Some modules call host `/api/*` routes (OG, thumbnail, scope, contact). They render in the docs but need those APIs in a real app — marked **Host API** in the sidebar.
 
-Makershot / iamk links inside demos are intentional portfolio branding.
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start the docs site |
-| `pnpm build` | Build all packages/apps |
-| `pnpm typecheck` | Type-check the monorepo |
-
-The docs site is the playground — Preview / Code tabs on every component page.
-
-## Theming
-
-Colors and type live as CSS variables in `@meridian/ui/globals.css` (OKLCH). Override `:root` / `.dark`. Dark mode uses a `.dark` class via `next-themes`.
-
-## Source
-
-Components were copied into `packages/ui` from the ogsaas codebase. That source repo is not modified by this library.
-
-## License
-
-MIT
+Demo content may reference the studios/apps where components shipped. Meridian chrome is independent of that content.

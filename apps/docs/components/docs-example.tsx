@@ -21,11 +21,11 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
   return (
     <div
       className={cn(
-        "overflow-hidden border border-border-subtle bg-background text-foreground",
+        "overflow-hidden rounded-2xl border border-border-subtle bg-card/40 text-foreground backdrop-blur-md",
         className
       )}
     >
-      <div className="flex items-center border-b border-border-subtle bg-muted/40 px-1.5">
+      <div className="flex items-center border-b border-border-subtle bg-white/[0.03] px-1.5">
         <div className="flex gap-0.5 p-1.5">
           {(["preview", "code"] as const).map((key) => (
             <button
@@ -33,9 +33,9 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
               type="button"
               onClick={() => setTab(key)}
               className={cn(
-                "px-3 py-1.5 text-[13px] font-medium capitalize transition-colors",
+                "rounded-full px-3.5 py-1.5 text-[13px] font-medium capitalize transition-colors",
                 tab === key
-                  ? "bg-background text-foreground ring-1 ring-border-subtle"
+                  ? "bg-white/10 text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >

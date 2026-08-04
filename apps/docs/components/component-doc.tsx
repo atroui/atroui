@@ -44,7 +44,7 @@ export function ComponentDoc({
 
       <section className="space-y-3">
         <h2 className="ds-headline text-base text-foreground">Installation</h2>
-        <pre className="overflow-x-auto border border-border-subtle bg-muted/40 px-4 py-3 font-mono text-[13px] text-foreground">
+        <pre className="overflow-x-auto rounded-2xl border border-border-subtle bg-muted/40 px-4 py-3 font-mono text-[13px] text-foreground">
           <code>{installation}</code>
         </pre>
       </section>

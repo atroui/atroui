@@ -37,22 +37,22 @@ export function CommandMenu() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex h-9 w-full max-w-[220px] items-center gap-2 border border-border-subtle bg-background px-3 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className="inline-flex h-9 w-full max-w-[220px] items-center gap-2 rounded-full border border-border-subtle bg-white/5 px-3 text-[13px] text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
       >
         <Search className="size-3.5 shrink-0" aria-hidden />
         <span className="flex-1 text-left">Search…</span>
-        <kbd className="pointer-events-none hidden h-5 select-none items-center border border-border-subtle bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
+        <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-full border border-border-subtle bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
           ⌘K
         </kbd>
       </button>
 
       {open ? (
-        <div className="fixed inset-0 z-50 flex items-start justify-center bg-foreground/20 px-4 pt-[12vh] backdrop-blur-[2px]">
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 px-4 pt-[12vh] backdrop-blur-sm">
           <div
             role="dialog"
             aria-modal="true"
             aria-label="Search documentation"
-            className="w-full max-w-lg overflow-hidden border border-border-subtle bg-background shadow-[0_24px_64px_-28px_color-mix(in_oklch,var(--foreground)_40%,transparent)]"
+            className="w-full max-w-lg overflow-hidden rounded-2xl border border-border-subtle bg-card shadow-[0_24px_64px_-20px_color-mix(in_oklch,var(--color-brand)_35%,transparent)]"
           >
             <div className="flex items-center gap-2 border-b border-border-subtle px-3 py-2">
               <Search className="size-4 text-muted-foreground" aria-hidden />
@@ -66,7 +66,7 @@ export function CommandMenu() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="inline-flex size-8 items-center justify-center border border-border-subtle text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="inline-flex size-8 items-center justify-center rounded-full border border-border-subtle text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
                 aria-label="Close"
               >
                 <X className="size-4" />
@@ -83,7 +83,7 @@ export function CommandMenu() {
                     key={item.href}
                     type="button"
                     className={cn(
-                      "flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                      "flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-white/5"
                     )}
                     onClick={() => {
                       setOpen(false)

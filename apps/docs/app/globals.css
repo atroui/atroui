@@ -3,5 +3,14 @@ html {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--color-brand) 28%, transparent);
+  background: color-mix(in oklab, var(--color-brand) 32%, transparent);
+}
+
+/* Ambient brand wash behind docs chrome */
+.md-ambient {
+  background-image: radial-gradient(
+    ellipse 70% 40% at 50% -5%,
+    color-mix(in oklch, var(--color-brand) 18%, transparent),
+    transparent 70%
+  );
 }
