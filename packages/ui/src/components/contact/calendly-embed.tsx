@@ -19,7 +19,6 @@ export function CalendlyEmbed({ url }: Props) {
   const brand = getBrand();
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration-gated mount flag
     setMounted(true);
   }, []);
 

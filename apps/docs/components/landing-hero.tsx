@@ -84,19 +84,18 @@ export function LandingHero() {
               <span className="ds-gradient-text">Koustav</span>
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-neutral-400">
-              AtroUI is the product. Demo modules may show the apps they
-              shipped in — that&rsquo;s portfolio proof, not the chrome.
+              Install{" "}
+              <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
+                npm i atroui
+              </code>
+              . Chrome is AtroUI; section demos may still show studio portfolio
+              copy — override with props or your own content.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a
-              href="https://www.iamk.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ms-cta-ghost text-sm"
-            >
-              iamk.xyz
-            </a>
+            <Link href="/docs" className="ms-cta-ghost text-sm">
+              Read the docs
+            </Link>
             <Link href="/docs/installation" className="ms-cta text-sm">
               Install AtroUI
             </Link>

@@ -127,7 +127,6 @@ export function OgExamples({
               className="group relative aspect-1200/630 overflow-hidden ring-1 ring-border-subtle md:col-span-3"
               aria-label={`Remix Quick mode: ${ex.title}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element -- static public asset */}
               <img
                 src={`/examples/${ex.slug}.png`}
                 alt={`${ex.title} — sample 1200×630 OG image`}

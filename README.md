@@ -35,7 +35,7 @@ Copy [`.env.example`](.env.example) to `apps/docs/.env.local` (or your host app)
 | `pnpm build` | Build all packages / docs |
 | `pnpm typecheck` | `tsc --noEmit` across the workspace |
 | `pnpm test` | Vitest (package helpers) |
-| `pnpm lint` | Lint task (placeholder until ESLint is wired) |
+| `pnpm lint` | ESLint (`packages/ui` + `apps/docs`) |
 | `pnpm changeset` | Add a changeset (version bump note for `atroui`) |
 | `pnpm version-packages` | Apply changesets → bump version + CHANGELOG |
 | `pnpm release` | Publish `atroui` to npm (`changeset publish`) |
@@ -98,6 +98,10 @@ Tokens live in `packages/ui/src/globals.css`:
 Some modules call host `/api/*` routes (OG, thumbnail, scope, contact). They render in the docs but need those APIs **and your own keys** in a real app — marked **Host API** in the sidebar. The docs site does not provide shared LLM/image tokens (BYOK).
 
 For a live OG generator without wiring keys into this repo, use [makershot.tech/og](https://www.makershot.tech/og).
+
+## Package size / optional AI deps
+
+`atroui` currently includes UI plus heavier AI/image tooling (`ai`, Hugging Face, `sharp`, `satori`, …). Tree-shake by importing only what you use. A package split for tools is deferred until the catalog stabilizes.
 
 ## Deploy docs (Vercel)
 

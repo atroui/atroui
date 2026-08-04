@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="40" viewBox="0 0 160 40" role="img" aria-label="Made with AtroUI">
+  <title>Made with AtroUI</title>
+  <rect width="160" height="40" fill="#0a0a0a"/>
+  <rect x="0.5" y="0.5" width="159" height="39" fill="none" stroke="#525252" stroke-opacity="0.55"/>
+  <text x="12" y="16" fill="#a3a3a3" font-family="ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em">MADE WITH</text>
+  <text x="12" y="30" fill="#fafafa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.02em">AtroUI</text>
+  <rect x="148" y="8" width="4" height="24" fill="#0b7bff"/>
+</svg>

@@ -82,7 +82,10 @@ export default function DocsIntroPage() {
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Quick start</h2>
-        <CodeBlock language="bash" code={`pnpm install\npnpm dev`} />
+        <CodeBlock
+          language="bash"
+          code={`# Consumer app\nnpm install atroui\n\n# This monorepo (docs + development)\npnpm install\npnpm dev`}
+        />
       </section>
 
       <div className="flex flex-wrap gap-3 pt-1">
@@ -91,6 +94,9 @@ export default function DocsIntroPage() {
         </Link>
         <Link href="/docs/components" className="ms-cta-ghost">
           Browse components
+        </Link>
+        <Link href="/docs/changelog" className="ms-cta-ghost">
+          Changelog
         </Link>
       </div>
     </article>

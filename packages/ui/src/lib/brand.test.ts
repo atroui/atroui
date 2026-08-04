@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 
-import { DEFAULT_BRAND, getBrand } from "./brand";
+import { DEFAULT_BRAND, getBrand, getBrandMailto } from "./brand";
 import {
   buildPageMetadata,
   getDefaultDescription,
@@ -39,6 +39,18 @@ describe("getBrand", () => {
     expect(brand.domain).toBe("acme.test");
     expect(brand.email).toBe("hi@acme.test");
     expect(brand.siteUrl).toBe("https://acme.test");
+  });
+
+  it("builds mailto from brand email", () => {
+    expect(getBrandMailto()).toBe(`mailto:${DEFAULT_BRAND.email}`);
+    expect(getBrandMailto("Hello")).toBe(
+      `mailto:${DEFAULT_BRAND.email}?subject=Hello`
+    );
+
+    process.env.NEXT_PUBLIC_SITE_EMAIL = "hi@acme.test";
+    expect(getBrandMailto("Hi there")).toBe(
+      "mailto:hi@acme.test?subject=Hi%20there"
+    );
   });
 });
 

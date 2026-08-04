@@ -100,7 +100,9 @@ export async function fetchIamkProfile(): Promise<IamkProfile> {
   try {
     const res = await fetch("https://www.iamk.xyz", {
       next: { revalidate: 3600 },
-      headers: { "User-Agent": "MakershotStudio/1.0 (+https://makershot.tech)" },
+      headers: {
+        "User-Agent": `AtroUI/1.0 (+${process.env.NEXT_PUBLIC_SITE_URL || "https://atroui.com"})`,
+      },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const html = await res.text();
