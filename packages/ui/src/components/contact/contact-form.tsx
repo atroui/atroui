@@ -158,7 +158,6 @@ function ContactFormInner() {
     if (configParam && !form.config) {
       setForm((f) => ({ ...f, config: configParam }));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialProjectType, configParam]);
 
   const onFile = async (file: File | null) => {

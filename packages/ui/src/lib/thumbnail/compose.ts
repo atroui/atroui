@@ -15,6 +15,7 @@ import { Resvg } from "@resvg/resvg-js";
 import satori from "satori";
 import sharp from "sharp";
 
+import { getBrand } from "../brand";
 import {
   THUMBNAIL_INPUT_LIMITS,
   THUMBNAIL_STYLE_PRESETS,
@@ -545,7 +546,7 @@ function buildThumbnailNode(
         color: "rgba(255,255,255,0.35)",
         letterSpacing: "0.05em",
       },
-      children: "makershot.tech",
+      children: getBrand().domain,
     },
   });
 

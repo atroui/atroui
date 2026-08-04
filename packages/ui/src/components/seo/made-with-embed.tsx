@@ -3,12 +3,17 @@
 import { Check, Copy } from "lucide-react";
 import { useCallback, useState } from "react";
 
+import { getBrand } from "../../lib/brand";
 import { absoluteUrl } from "../../lib/seo";
 import { cn } from "../../lib/utils";
 
 type MadeWithEmbedProps = {
   /** Path the badge should link to */
   href?: string;
+  /** Public path to the badge SVG (host app asset). */
+  badgeSrc?: string;
+  /** Accessible / alt label brand name. Defaults to getBrand().name */
+  brandName?: string;
   className?: string;
 };
 
@@ -17,12 +22,18 @@ type MadeWithEmbedProps = {
  */
 export function MadeWithEmbed({
   href = "/og",
+  badgeSrc = "/badge/atroui.svg",
+  brandName,
   className,
 }: MadeWithEmbedProps) {
   const [copied, setCopied] = useState(false);
+  const name = brandName ?? getBrand().name;
   const target = absoluteUrl(href);
-  const badgeSrc = absoluteUrl("/badge/makershot.svg");
-  const snippet = `<a href="${target}" target="_blank" rel="noopener noreferrer"><img src="${badgeSrc}" alt="Made with Makershot" width="160" height="40" /></a>`;
+  const badgeUrl = badgeSrc.startsWith("http")
+    ? badgeSrc
+    : absoluteUrl(badgeSrc);
+  const alt = `Made with ${name}`;
+  const snippet = `<a href="${target}" target="_blank" rel="noopener noreferrer"><img src="${badgeUrl}" alt="${alt}" width="160" height="40" /></a>`;
 
   const copy = useCallback(async () => {
     try {
@@ -48,15 +59,9 @@ export function MadeWithEmbed({
         <a
           href={target}
           className="mt-6 inline-block ring-1 ring-border-subtle transition-opacity hover:opacity-90"
-          aria-label="Makershot badge preview"
+          aria-label={`${name} badge preview`}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element -- static SVG badge asset */}
-          <img
-            src="/badge/makershot.svg"
-            alt="Made with Makershot"
-            width={160}
-            height={40}
-          />
+          <img src={badgeSrc} alt={alt} width={160} height={40} />
         </a>
       </div>
       <div className="md:col-span-7">
@@ -64,11 +69,7 @@ export function MadeWithEmbed({
         <pre className="overflow-x-auto border border-border-subtle bg-muted/30 p-4 font-mono text-[11px] leading-relaxed text-foreground whitespace-pre-wrap break-all">
           {snippet}
         </pre>
-        <button
-          type="button"
-          onClick={copy}
-          className="ms-cta mt-4"
-        >
+        <button type="button" onClick={copy} className="ms-cta mt-4">
           {copied ? (
             <>
               <Check className="size-4" aria-hidden />

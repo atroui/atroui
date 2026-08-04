@@ -634,7 +634,6 @@ export function ThumbnailWorkspace() {
             ) : null}
 
             {status.kind === "success" ? (
-              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={status.imageUrl}
                 alt="Generated thumbnail preview"

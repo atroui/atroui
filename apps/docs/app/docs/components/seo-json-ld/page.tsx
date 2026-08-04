@@ -18,12 +18,12 @@ export default function Page() {
         "<ArticleJsonLd title={…} description={…} slug={…} date={…} />"
       }
       installation='import { SiteGraphJsonLd, ArticleJsonLd } from "atroui"'
-      usage="Render in the page (often the root layout or a template). Verify with View Source or Google’s Rich Results Test. Defaults brand to Makershot — override name where needed."
+      usage="Render in the page (often the root layout or a template). Verify with View Source or Google’s Rich Results Test. Organization name defaults to getBrand().name — pass name to override."
       props={[
         {
           name: "SiteGraphJsonLd.name",
           type: "string",
-          default: '"Makershot"',
+          default: "getBrand().name",
           description: "Organization / WebSite name.",
         },
         {

@@ -465,7 +465,6 @@ function OgWorkspaceInner() {
             ) : null}
 
             {status.kind === "success" ? (
-              // eslint-disable-next-line @next/next/no-img-element -- data URL from server
               <img
                 src={status.imageUrl}
                 alt="Generated OG image preview"

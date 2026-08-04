@@ -100,8 +100,8 @@ export function DemoSiteHeader() {
     <div className="w-full bg-background">
       <SiteHeader />
       <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 text-sm text-muted-foreground">
-        Sticky header — logo, Makershot nav routes, theme toggle, and Hire CTA.
-        Links point at host paths like{" "}
+        Sticky header — AtroUI logo via getBrand(), studio nav routes, theme
+        toggle, and Hire CTA. Links use host paths like{" "}
         <code className="font-mono text-xs text-foreground">/work</code> and{" "}
         <code className="font-mono text-xs text-foreground">/contact</code>.
       </div>
@@ -111,30 +111,58 @@ export function DemoSiteHeader() {
 
 export function DemoButton() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3">
-      <Button>Default</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="destructive">Destructive</Button>
+    <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <Button>Default</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="destructive">Destructive</Button>
+        <Button variant="link">Link</Button>
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <Button size="xs">XS</Button>
+        <Button size="sm">Small</Button>
+        <Button size="default">Default</Button>
+        <Button size="lg">Large</Button>
+        <Button disabled>Disabled</Button>
+      </div>
     </div>
   )
 }
 
 export function DemoCard() {
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>Project Alpha</CardTitle>
-        <CardDescription>Shipped this week</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="text-muted-foreground">A calm surface with clear hierarchy.</p>
-      </CardContent>
-      <CardFooter>
-        <Button size="sm">Open</Button>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-wrap items-start justify-center gap-4">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Project Alpha</CardTitle>
+          <CardDescription>Shipped this week</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            A calm surface with clear hierarchy.
+          </p>
+        </CardContent>
+        <CardFooter className="gap-2">
+          <Button size="sm">Open</Button>
+          <Button size="sm" variant="ghost">
+            Dismiss
+          </Button>
+        </CardFooter>
+      </Card>
+      <Card className="w-full max-w-sm border-brand/30">
+        <CardHeader>
+          <CardTitle>Accent edge</CardTitle>
+          <CardDescription>Optional brand border</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Same primitives — compose with tokens, not one-off styles.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
   )
 }
 
@@ -166,10 +194,12 @@ export function DemoThemeToggle() {
 export function DemoLogo() {
   return (
     <div className="flex flex-col items-center gap-6 text-center">
-      <LogoMark className="size-10" title="Makershot" />
+      <LogoMark className="size-10" />
       <LogoWordmark className="text-xl" />
       <p className="max-w-xs text-xs text-muted-foreground">
-        Mark title is overridable; wordmark text is hardcoded Makershot.
+        Defaults to getBrand().name (AtroUI). Pass{" "}
+        <code className="font-mono text-[11px]">title</code> /{" "}
+        <code className="font-mono text-[11px]">name</code> to override.
       </p>
     </div>
   )

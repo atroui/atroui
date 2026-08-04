@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+import { getBrand } from "../brand";
+
 export const OG_SIZE = { width: 1200, height: 630 };
 
 const BRAND_AMBER = "#f59e0b";
@@ -14,7 +16,13 @@ type SocialCardOptions = {
 
 /** Shared 1200×630 OG card — amber brand, dark studio aesthetic. */
 export function buildSocialCardImage(options: SocialCardOptions) {
-  const { eyebrow = "Makershot", title, subtitle, footer = "makershot.tech" } = options;
+  const brand = getBrand();
+  const {
+    eyebrow = brand.name,
+    title,
+    subtitle,
+    footer = brand.domain,
+  } = options;
 
   return new ImageResponse(
     (

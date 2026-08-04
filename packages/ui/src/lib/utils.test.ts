@@ -12,6 +12,7 @@ describe("cn", () => {
   });
 
   it("ignores falsy values", () => {
-    expect(cn("base", false && "hidden", undefined, "ok")).toBe("base ok");
+    const maybeHidden = false as boolean
+    expect(cn("base", maybeHidden && "hidden", undefined, "ok")).toBe("base ok");
   });
 });

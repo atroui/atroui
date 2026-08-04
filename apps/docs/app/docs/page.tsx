@@ -56,9 +56,36 @@ export default function DocsIntroPage() {
         </p>
       </section>
 
+      <section className="md-glass space-y-3 p-5">
+        <h2 className="ds-headline text-base text-foreground">
+          Host APIs &amp; AI tools
+        </h2>
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          Tools tagged Host API (OG workspace, thumbnails, scope chat, forms)
+          expect you to wire{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/*
+          </code>{" "}
+          and your own keys. This docs site does not burn shared LLM / image
+          API tokens. Want sample OG output without setup? Try the live tool at{" "}
+          <a
+            href="https://www.makershot.tech/og"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand underline underline-offset-2"
+          >
+            makershot.tech/og
+          </a>
+          .
+        </p>
+      </section>
+
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Quick start</h2>
-        <CodeBlock language="bash" code={`pnpm install\npnpm dev`} />
+        <CodeBlock
+          language="bash"
+          code={`# Consumer app\nnpm install atroui\n\n# This monorepo (docs + development)\npnpm install\npnpm dev`}
+        />
       </section>
 
       <div className="flex flex-wrap gap-3 pt-1">
@@ -67,6 +94,9 @@ export default function DocsIntroPage() {
         </Link>
         <Link href="/docs/components" className="ms-cta-ghost">
           Browse components
+        </Link>
+        <Link href="/docs/changelog" className="ms-cta-ghost">
+          Changelog
         </Link>
       </div>
     </article>

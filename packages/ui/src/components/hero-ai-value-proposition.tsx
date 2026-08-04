@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Lock } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
+import { getBrand } from "../lib/brand";
 import { TimelineAnimation } from "./ui/timeline-animation";
 import { FounderAvatar } from "./ui/founder-avatar";
 import { OgLivePreview } from "./og/og-live-preview";
@@ -21,41 +22,45 @@ const SPRINT_DAYS = [
   { day: "07", label: "Handoff", done: false },
 ] as const;
 
-const HERO_STYLES: {
+function getHeroStyles(): {
   key: StyleKey;
   label: string;
   title: string;
   subtitle: string;
-}[] = [
-  {
-    key: "paperQuote",
-    label: "Paper",
-    title: "Ship in days,\nnot quarters.",
-    subtitle: "Makershot — studio + free AI tools",
-  },
-  {
-    key: "techMinimal",
-    label: "Tech",
-    title: "Ship in days,\nnot quarters.",
-    subtitle: "Makershot — studio + free AI tools",
-  },
-  {
-    key: "darkDev",
-    label: "Dark",
-    title: "v1.0 is live.",
-    subtitle: "Changelog · shipped this week",
-  },
-  {
-    key: "editorial",
-    label: "Editorial",
-    title: "Build what\nmatters.",
-    subtitle: "Notes from a one-person studio",
-  },
-];
+}[] {
+  const studioLine = `${getBrand().name} — studio + free AI tools`;
+  return [
+    {
+      key: "paperQuote",
+      label: "Paper",
+      title: "Ship in days,\nnot quarters.",
+      subtitle: studioLine,
+    },
+    {
+      key: "techMinimal",
+      label: "Tech",
+      title: "Ship in days,\nnot quarters.",
+      subtitle: studioLine,
+    },
+    {
+      key: "darkDev",
+      label: "Dark",
+      title: "v1.0 is live.",
+      subtitle: "Changelog · shipped this week",
+    },
+    {
+      key: "editorial",
+      label: "Editorial",
+      title: "Build what\nmatters.",
+      subtitle: "Notes from a one-person studio",
+    },
+  ];
+}
 
 function HeroOgCanvas() {
   const [styleKey, setStyleKey] = useState<StyleKey>("paperQuote");
-  const active = HERO_STYLES.find((s) => s.key === styleKey) ?? HERO_STYLES[0]!;
+  const heroStyles = getHeroStyles();
+  const active = heroStyles.find((s) => s.key === styleKey) ?? heroStyles[0]!;
   const preset = STYLE_PRESETS[styleKey];
   const isLight = styleKey === "paperQuote";
 
@@ -121,7 +126,7 @@ function HeroOgCanvas() {
           role="tablist"
           aria-label="OG style presets"
         >
-          {HERO_STYLES.map((chip) => {
+          {heroStyles.map((chip) => {
             const selected = chip.key === styleKey;
             return (
               <button
@@ -259,7 +264,7 @@ export function HeroAiValueProposition() {
               <div className="flex min-w-0 flex-1 items-center justify-center">
                 <div className="flex max-w-md items-center gap-2 truncate rounded-md border border-border-subtle bg-background px-3 py-1 text-[11px] text-muted-foreground sm:text-xs">
                   <Lock className="size-3 shrink-0 opacity-60" aria-hidden />
-                  <span className="truncate">makershot.tech/og</span>
+                  <span className="truncate">{`${getBrand().domain}/og`}</span>
                 </div>
               </div>
               <Link

@@ -7,7 +7,7 @@ interface ComponentDocProps {
   preview: React.ReactNode
   code: string
   props?: PropRow[]
-  usage?: string
+  usage?: React.ReactNode
   extra?: React.ReactNode
   fullBleed?: boolean
   installation?: string

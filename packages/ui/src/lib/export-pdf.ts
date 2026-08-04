@@ -1,3 +1,5 @@
+import { getBrand } from "./brand";
+
 type ComparisonRow = {
   service: string;
   serviceId: string;
@@ -8,10 +10,11 @@ type ComparisonRow = {
 
 /** Open a print-friendly window — user saves as PDF via browser print dialog. */
 export function exportComparisonAsPdf(rows: ComparisonRow[]): void {
+  const { name, domain, email } = getBrand();
   const html = `<!DOCTYPE html>
 <html><head>
 <meta charset="utf-8"/>
-<title>Makershot Service Comparison</title>
+<title>${escapeHtml(name)} Service Comparison</title>
 <style>
   body { font-family: system-ui, sans-serif; padding: 40px; color: #111; }
   h1 { font-size: 24px; margin-bottom: 8px; }
@@ -23,8 +26,8 @@ export function exportComparisonAsPdf(rows: ComparisonRow[]): void {
   .footer { margin-top: 32px; font-size: 11px; color: #888; }
 </style>
 </head><body>
-<h1>Makershot — Service Comparison</h1>
-<p class="meta">Generated ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} · makershot.tech</p>
+<h1>${escapeHtml(name)} — Service Comparison</h1>
+<p class="meta">Generated ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} · ${escapeHtml(domain)}</p>
 <table>
 <thead><tr><th>Service</th><th>Timeline</th><th>Starting Price</th><th>Key Deliverables</th></tr></thead>
 <tbody>
@@ -36,7 +39,7 @@ ${rows
   .join("\n")}
 </tbody>
 </table>
-<p class="footer">Fixed-price packages for indie makers and SaaS founders. Contact: hello@makershot.tech</p>
+<p class="footer">Fixed-price packages for indie makers and SaaS founders. Contact: ${escapeHtml(email)}</p>
 <script>window.onload = () => { window.print(); }</script>
 </body></html>`;
 
