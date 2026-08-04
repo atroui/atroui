@@ -20,7 +20,7 @@ function isBrowser(): boolean {
 
 /** Assign and persist a variant for an experiment (sticky per user). */
 export function getExperimentVariant(experiment: Experiment): string {
-  if (!isBrowser()) return experiment.variants[0];
+  if (!isBrowser()) return experiment.variants[0] ?? "";
 
   const key = `${EXPERIMENT_PREFIX}${experiment.id}`;
   const stored = localStorage.getItem(key);
@@ -29,11 +29,11 @@ export function getExperimentVariant(experiment: Experiment): string {
   const weights = experiment.weights ?? experiment.variants.map(() => 1);
   const total = weights.reduce((a, b) => a + b, 0);
   let roll = Math.random() * total;
-  let variant = experiment.variants[0];
+  let variant = experiment.variants[0] ?? "";
   for (let i = 0; i < experiment.variants.length; i++) {
-    roll -= weights[i];
+    roll -= weights[i] ?? 0;
     if (roll <= 0) {
-      variant = experiment.variants[i];
+      variant = experiment.variants[i] ?? variant;
       break;
     }
   }

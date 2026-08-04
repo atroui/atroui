@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle2, Loader2, Mail } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { useState, type FormEvent } from "react";
 
 import { trackEvent } from "../../lib/analytics";
 import { cn } from "../../lib/utils";

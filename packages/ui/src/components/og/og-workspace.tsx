@@ -15,13 +15,14 @@ import {
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
-  FormEvent,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
+  Suspense,
 } from "react";
+import type { FormEvent } from "react";
 
 import { FadeIn } from "../motion/fade-in";
 import { OgLivePreview } from "./og-live-preview";
@@ -108,7 +109,7 @@ function slugify(input: string, fallback = "card"): string {
   return slug || fallback;
 }
 
-export function OgWorkspace() {
+function OgWorkspaceInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -552,6 +553,20 @@ export function OgWorkspace() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function OgWorkspace() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-[320px] items-center justify-center text-sm text-muted-foreground">
+          Loading workspace…
+        </div>
+      }
+    >
+      <OgWorkspaceInner />
+    </Suspense>
   );
 }
 

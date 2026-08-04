@@ -129,7 +129,7 @@ function parsePreviewGradient(gradient: string): ParsedGradient {
   const stops: ParsedGradient["stops"] = [];
   let m: RegExpExecArray | null;
   while ((m = stopRegex.exec(gradient))) {
-    stops.push({ color: m[1], offsetPct: Number(m[2]) });
+    stops.push({ color: m[1]!, offsetPct: Number(m[2]) });
   }
 
   if (stops.length === 0) {
@@ -239,7 +239,7 @@ async function polishBackground(input: Buffer, format: ThumbnailFormat): Promise
       position: "centre",
       kernel: sharp.kernel.lanczos3,
     })
-    .sharpen(0.6, 0.8, 0.2)
+    .sharpen({ sigma: 0.6 })
     .modulate({ saturation: 1.04 })
     .linear(1.02, -4)
     .png()

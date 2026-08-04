@@ -2,7 +2,7 @@
 
 import { Bot, Loader2, Send, User } from "lucide-react";
 import Link from "next/link";
-import { FormEvent, useRef, useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import { trackEvent } from "../../lib/analytics";
 import type { ScopeMessage } from "../../lib/scope-chat";
@@ -19,7 +19,8 @@ function renderContent(text: string) {
   return parts.map((part, i) => {
     const linkMatch = part.match(/\[([^\]]+)\]\(([^)]+)\)/);
     if (linkMatch) {
-      const [, label, href] = linkMatch;
+      const label = linkMatch[1]!;
+      const href = linkMatch[2]!;
       return (
         <Link key={i} href={href} className="text-brand underline underline-offset-2">
           {label}

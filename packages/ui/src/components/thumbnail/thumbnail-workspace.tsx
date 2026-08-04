@@ -12,12 +12,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import {
-  FormEvent,
   useCallback,
   useMemo,
   useRef,
   useState,
 } from "react";
+import type { FormEvent } from "react";
 
 import { FadeIn } from "../motion/fade-in";
 import { ThumbnailLivePreview } from "./thumbnail-live-preview";
