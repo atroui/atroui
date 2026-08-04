@@ -10,10 +10,10 @@ export default function Page() {
   return (
     <ComponentDoc
       title='Site Header'
-      description='Sticky site header with nav and theme toggle.'
+      description='Sticky editorial header with logo, primary nav, theme toggle, and hire CTA.'
       preview={<DemoSiteHeader />}
       code={'import { SiteHeader } from "@meridian/ui"\n\n<SiteHeader />'}
-      fullBleed={false}
+      fullBleed={true}
       installation='import { SiteHeader } from "@meridian/ui"'
       usage='Mount once in the root layout.'
     />

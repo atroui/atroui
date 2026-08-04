@@ -97,8 +97,11 @@ export function DemoBoldFooter() {
 
 export function DemoSiteHeader() {
   return (
-    <div className="relative min-h-[72px] w-full overflow-hidden rounded-xl border border-border-subtle bg-background">
+    <div className="w-full bg-background">
       <SiteHeader />
+      <div className="border-x border-border-subtle mx-auto max-w-7xl px-6 py-10 text-sm text-muted-foreground">
+        Sticky editorial header — logo, primary nav, theme toggle, and hire CTA.
+      </div>
     </div>
   )
 }
@@ -424,12 +427,37 @@ export function DemoTimelineAnimation() {
 
 export function DemoThemeProviderNote() {
   return (
-    <div className="max-w-md rounded-xl border border-border-subtle bg-card px-5 py-4 text-left text-sm text-muted-foreground">
-      <p className="font-medium text-foreground">ThemeProvider</p>
-      <p className="mt-1">
-        Wrap your app root once. Enables ThemeToggle and dark-mode tokens via{" "}
-        <code className="font-mono text-xs">next-themes</code>.
-      </p>
+    <div className="w-full max-w-lg overflow-hidden rounded-xl border border-border-subtle bg-background text-left shadow-sm">
+      <div className="flex items-center justify-between gap-3 border-b border-border-subtle bg-muted/40 px-4 py-3">
+        <div>
+          <p className="ms-stamp">Provider</p>
+          <p className="mt-1 text-sm font-medium text-foreground">
+            ThemeProvider is active
+          </p>
+        </div>
+        <ThemeToggle />
+      </div>
+      <div className="grid gap-3 p-4 sm:grid-cols-2">
+        <div className="rounded-lg border border-border-subtle bg-card p-4 text-card-foreground">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            Card
+          </p>
+          <p className="mt-2 text-sm text-foreground">
+            Surfaces use design tokens that flip with light / dark.
+          </p>
+        </div>
+        <div className="rounded-lg border border-border-subtle bg-muted p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            Muted
+          </p>
+          <p className="mt-2 text-sm text-foreground">
+            Try Light / System / Dark with the toggle.
+          </p>
+          <span className="mt-3 inline-flex h-8 items-center bg-brand px-2.5 text-xs font-medium text-[oklch(0.22_0.02_55)]">
+            Brand
+          </span>
+        </div>
+      </div>
     </div>
   )
 }
