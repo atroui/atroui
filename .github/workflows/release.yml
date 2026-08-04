@@ -25,8 +25,6 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
-          # PAT required when org policy blocks Actions from creating PRs.
-          token: ${{ secrets.GH_PAT }}
 
       - name: Setup pnpm
         # pnpm/action-setup@v4
@@ -45,8 +43,11 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      # GITHUB_TOKEN can push the version branch, but org policy often blocks it from
+      # creating PRs. continue-on-error + PAT fallback handles that case.
       - name: Create Version Packages PR or publish to npm
         id: changesets
+        continue-on-error: true
         # changesets/action@v1.9.0
         uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d
         with:
@@ -55,8 +56,34 @@ jobs:
           publish: pnpm release
           version: pnpm version-packages
         env:
-          # Use a Personal Access Token (secret GH_PAT). Default GITHUB_TOKEN cannot
-          # create PRs when "Allow GitHub Actions to create and approve pull requests"
-          # is disabled by org policy.
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Open version PR with PAT
+        if: >-
+          steps.changesets.outputs.hasChangesets == 'true' &&
+          steps.changesets.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          set -euo pipefail
+          existing="$(gh pr list --repo "$GITHUB_REPOSITORY" \
+            --head changeset-release/master --base master \
+            --json number --jq 'length')"
+          if [ "$existing" != "0" ]; then
+            echo "Version PR already open."
+            exit 0
+          fi
+          gh pr create --repo "$GITHUB_REPOSITORY" \
+            --base master \
+            --head changeset-release/master \
+            --title "chore: version packages" \
+            --body "Automated Changesets version bump. Merging this PR publishes \`atroui\` to npm."
+
+      - name: Fail if release step failed unexpectedly
+        if: >-
+          steps.changesets.outcome != 'success' &&
+          steps.changesets.outputs.hasChangesets != 'true'
+        run: |
+          echo "::error::Release step failed (not a Version PR permissions issue)."
+          exit 1
