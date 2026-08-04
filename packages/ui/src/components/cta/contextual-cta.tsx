@@ -51,14 +51,24 @@ const HIDE_AT_PCT = 94;
 
 const DISMISS_KEY = "ms_cta_dismissed";
 
-export function ContextualCTA() {
+type ContextualCTAProps = {
+  /**
+   * Docs / Storybook only: skip scroll + session dismiss gating and render
+   * inline so the chrome is visible inside a preview canvas.
+   */
+  preview?: boolean;
+};
+
+export function ContextualCTA({ preview = false }: ContextualCTAProps) {
   const pathname = usePathname();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(preview);
   const [dismissed, setDismissed] = useState(false);
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(preview);
   const [activeCTA, setActiveCTA] = useState<CTAConfig>(SCROLL_CTAS.book_call!);
 
   useEffect(() => {
+    if (preview) return;
+
     const variant = getExperimentVariant(CTA_EXPERIMENT);
     setActiveCTA(SCROLL_CTAS[variant] ?? SCROLL_CTAS.book_call!);
 
@@ -69,10 +79,10 @@ export function ContextualCTA() {
       /* ignore */
     }
     setReady(true);
-  }, []);
+  }, [preview]);
 
   useEffect(() => {
-    if (!ready || dismissed) return;
+    if (preview || !ready || dismissed) return;
 
     const onScroll = () => {
       const denom =
@@ -88,15 +98,21 @@ export function ContextualCTA() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [dismissed, ready, pathname]);
+  }, [dismissed, ready, pathname, preview]);
 
-  const onHiddenPath = activeCTA.hideOn.some(
-    (p) => pathname === p || pathname.startsWith(`${p}/`),
-  );
+  const onHiddenPath =
+    !preview &&
+    activeCTA.hideOn.some(
+      (p) => pathname === p || pathname.startsWith(`${p}/`),
+    );
 
   if (!ready || dismissed || !visible || onHiddenPath) return null;
 
   const dismiss = () => {
+    if (preview) {
+      setDismissed(true);
+      return;
+    }
     setDismissed(true);
     try {
       sessionStorage.setItem(DISMISS_KEY, "1");
@@ -108,7 +124,9 @@ export function ContextualCTA() {
   return (
     <div
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40",
+        preview
+          ? "relative w-full"
+          : "fixed inset-x-0 bottom-0 z-40",
         "pb-[max(0.75rem,env(safe-area-inset-bottom))]",
         "animate-in fade-in slide-in-from-bottom-3 duration-300",
       )}

@@ -298,7 +298,11 @@ export function DemoFaqInteractivePreview() {
 }
 
 export function DemoContextualCta() {
-  return <ContextualCTA />
+  return (
+    <div className="w-full max-w-xl">
+      <ContextualCTA preview />
+    </div>
+  )
 }
 
 export function DemoExitIntentPopup() {

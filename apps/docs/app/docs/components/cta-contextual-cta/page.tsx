@@ -10,9 +10,9 @@ export default function Page() {
   return (
     <ComponentDoc
       title='Contextual Cta'
-      description='Context-aware call to action.'
+      description='Scroll-triggered bottom CTA (shows after ~28% scroll on live pages). Preview below forces it open inline.'
       preview={<DemoContextualCta />}
-      code={'import { ContextualCTA } from "@meridian/ui"\n\n<ContextualCTA />'}
+      code={'import { ContextualCTA } from "@meridian/ui"\n\n{/* Production: mounts fixed; appears on scroll */}\n<ContextualCTA />\n\n{/* Docs / Storybook */}\n<ContextualCTA preview />'}
       fullBleed={false}
       installation='import { ContextualCTA } from "@meridian/ui"'
     />
