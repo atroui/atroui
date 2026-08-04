@@ -18,6 +18,10 @@ jobs:
     name: Version or publish
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      # setup-node + npm/pnpm publish must share the real token (not a placeholder).
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - name: Checkout
@@ -43,6 +47,15 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Verify npm auth
+        run: |
+          if [ -z "${NPM_TOKEN:-}" ]; then
+            echo "::error::NPM_TOKEN secret is empty. Add/update it in repo Settings → Secrets."
+            exit 1
+          fi
+          # Prove which npm user the token belongs to (must be package owner koustav24).
+          npm whoami --registry=https://registry.npmjs.org/
+
       # GITHUB_TOKEN can push changeset-release/master. Creating PRs is often
       # blocked by org policy (and PATs may also be blocked). continue-on-error
       # so we can fall back to a manual PR link.
@@ -58,6 +71,7 @@ jobs:
           version: pnpm version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Try opening version PR with PAT
@@ -101,5 +115,5 @@ jobs:
           steps.changesets.outcome != 'success' &&
           steps.changesets.outputs.hasChangesets != 'true'
         run: |
-          echo "::error::Release/publish failed (not a Version PR permissions issue)."
+          echo "::error::Release/publish failed. Check 'Verify npm auth' (must be koustav24) and NPM_TOKEN publish rights."
           exit 1
