@@ -6,10 +6,10 @@
   "homepage": "https://atroui.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KOUSTAV2409/componentlib"
+    "url": "git+https://github.com/atroui/atroui.git"
   },
   "bugs": {
-    "url": "https://github.com/KOUSTAV2409/componentlib/issues"
+    "url": "https://github.com/atroui/atroui/issues"
   },
   "keywords": [
     "atroui",
