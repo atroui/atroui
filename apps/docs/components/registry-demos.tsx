@@ -256,10 +256,34 @@ export function DemoStagger() {
 }
 
 export function DemoScrollProgress() {
+  const containerRef = React.useRef<HTMLDivElement>(null)
+
   return (
-    <div className="relative h-24 w-full max-w-md overflow-hidden rounded-xl border border-border-subtle bg-card">
-      <ScrollProgress className="absolute inset-x-0 top-0" />
-      <p className="p-4 text-sm text-muted-foreground">Scroll progress bar (page scroll).</p>
+    <div className="w-full max-w-md overflow-hidden rounded-xl border border-border-subtle bg-background shadow-sm">
+      <div className="relative border-b border-border-subtle bg-muted/40 px-4 py-2.5">
+        <p className="ms-stamp">ScrollProgress</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Scroll the panel — the brand bar tracks local progress.
+        </p>
+        <ScrollProgress
+          containerRef={containerRef}
+          className="absolute inset-x-0 bottom-0 h-0.5 bg-brand"
+        />
+      </div>
+      <div
+        ref={containerRef}
+        className="h-48 overflow-y-auto overscroll-contain px-4 py-3 text-sm leading-relaxed text-muted-foreground"
+      >
+        <p className="font-medium text-foreground">Reading pane</p>
+        {Array.from({ length: 12 }, (_, i) => (
+          <p key={i} className="mt-3">
+            Section {i + 1}. In production this mounts fixed at the top of the
+            viewport and tracks document scroll. Here it uses{" "}
+            <code className="font-mono text-xs text-foreground">containerRef</code>{" "}
+            so the preview is self-contained.
+          </p>
+        ))}
+      </div>
     </div>
   )
 }
