@@ -7,12 +7,15 @@ type StaggerProps = HTMLMotionProps<"div"> & {
   delay?: number;
   stagger?: number;
   once?: boolean;
+  /** Docs / Storybook: play on mount instead of waiting for scroll. */
+  preview?: boolean;
 };
 
 export function Stagger({
   delay = 0,
   stagger = 0.08,
   once = true,
+  preview = false,
   children,
   ...props
 }: StaggerProps) {
@@ -26,19 +29,20 @@ export function Stagger({
     );
   }
 
+  const transition = {
+    delayChildren: delay,
+    staggerChildren: stagger,
+  };
+
   return (
     <motion.div
       initial="hidden"
-      whileInView="show"
-      viewport={{ once, margin: "0px" }}
+      {...(preview
+        ? { animate: "show" as const }
+        : { whileInView: "show" as const, viewport: { once, margin: "0px", amount: 0.15 } })}
       variants={{
         hidden: {},
-        show: {
-          transition: {
-            delayChildren: delay,
-            staggerChildren: stagger,
-          },
-        },
+        show: { transition },
       }}
       {...props}
     >

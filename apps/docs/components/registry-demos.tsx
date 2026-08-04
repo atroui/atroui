@@ -204,24 +204,54 @@ export function DemoProse() {
 }
 
 export function DemoFadeIn() {
+  const [key, setKey] = React.useState(0)
+
   return (
-    <FadeIn className="rounded-xl border border-border-subtle bg-card px-6 py-4 text-sm">
-      Scroll-reveal motion — fades in as it enters view.
-    </FadeIn>
+    <div className="flex w-full max-w-md flex-col items-stretch gap-4">
+      <FadeIn
+        key={key}
+        preview
+        className="rounded-xl border border-border-subtle bg-card px-6 py-5 text-sm text-foreground shadow-sm"
+      >
+        <p className="ms-stamp mb-2">FadeIn</p>
+        <p className="font-medium">Scroll-reveal motion</p>
+        <p className="mt-1 text-muted-foreground">
+          Fades and rises as it enters view. Replay to see it again.
+        </p>
+      </FadeIn>
+      <button
+        type="button"
+        onClick={() => setKey((k) => k + 1)}
+        className="ms-cta-ghost self-center border border-border-subtle px-3 py-1.5 text-sm"
+      >
+        Replay
+      </button>
+    </div>
   )
 }
 
 export function DemoStagger() {
+  const [key, setKey] = React.useState(0)
+
   return (
-    <Stagger className="flex flex-col gap-2 text-left">
-      {["First", "Second", "Third"].map((item) => (
-        <StaggerChild key={item}>
-          <div className="rounded-lg border border-border-subtle bg-card px-4 py-2 text-sm">
-            {item}
-          </div>
-        </StaggerChild>
-      ))}
-    </Stagger>
+    <div className="flex w-full max-w-md flex-col items-stretch gap-4">
+      <Stagger key={key} preview className="flex flex-col gap-2 text-left">
+        {["First", "Second", "Third"].map((item) => (
+          <StaggerChild key={item}>
+            <div className="rounded-lg border border-border-subtle bg-card px-4 py-2.5 text-sm text-foreground">
+              {item}
+            </div>
+          </StaggerChild>
+        ))}
+      </Stagger>
+      <button
+        type="button"
+        onClick={() => setKey((k) => k + 1)}
+        className="ms-cta-ghost self-center border border-border-subtle px-3 py-1.5 text-sm"
+      >
+        Replay
+      </button>
+    </div>
   )
 }
 

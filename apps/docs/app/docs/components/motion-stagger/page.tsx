@@ -10,9 +10,9 @@ export default function Page() {
   return (
     <ComponentDoc
       title='Stagger'
-      description='Staggered children reveal.'
+      description='Staggered children reveal. Preview plays on mount — use Replay to watch again.'
       preview={<DemoStagger />}
-      code={'import { Stagger, StaggerChild } from "@meridian/ui"\n\n<Stagger>\n  <StaggerChild>One</StaggerChild>\n</Stagger>'}
+      code={'import { Stagger, StaggerChild } from "@meridian/ui"\n\n<Stagger>\n  <StaggerChild>One</StaggerChild>\n</Stagger>\n\n{/* Docs / Storybook */}\n<Stagger preview>\n  <StaggerChild>One</StaggerChild>\n</Stagger>'}
       fullBleed={false}
       installation='import { Stagger, StaggerChild } from "@meridian/ui"'
     />

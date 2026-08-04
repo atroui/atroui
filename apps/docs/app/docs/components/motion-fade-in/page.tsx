@@ -10,9 +10,9 @@ export default function Page() {
   return (
     <ComponentDoc
       title='Fade In'
-      description='Scroll-triggered fade + rise.'
+      description='Scroll-triggered fade + rise. Preview animates on mount — use Replay to watch again.'
       preview={<DemoFadeIn />}
-      code={'import { FadeIn } from "@meridian/ui"\n\n<FadeIn>Content</FadeIn>'}
+      code={'import { FadeIn } from "@meridian/ui"\n\n<FadeIn>Content</FadeIn>\n\n{/* Docs / Storybook */}\n<FadeIn preview>Content</FadeIn>'}
       fullBleed={false}
       installation='import { FadeIn } from "@meridian/ui"'
       props={[

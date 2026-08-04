@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { MotionConfig } from "motion/react"
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "@/components/code-block"
 
@@ -56,12 +55,9 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
               : "flex min-h-[280px] items-center justify-center p-8 sm:p-10"
           )}
         >
-          {/* Force motion reduced so FadeIn/whileInView doesn't leave previews at opacity:0 */}
-          <MotionConfig reducedMotion="always">
-            <div className={cn("w-full", !fullBleed && "flex justify-center")}>
-              {preview}
-            </div>
-          </MotionConfig>
+          <div className={cn("w-full", !fullBleed && "flex justify-center")}>
+            {preview}
+          </div>
         </div>
       ) : (
         <CodeBlock code={code} className="rounded-none border-0" />
