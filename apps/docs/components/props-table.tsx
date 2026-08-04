@@ -16,30 +16,41 @@ export function PropsTable({ data, className }: PropsTableProps) {
   return (
     <div
       className={cn(
-        "overflow-x-auto rounded-2xl border border-neutral-200/80",
+        "overflow-x-auto border border-border-subtle bg-background",
         className
       )}
     >
-      <table className="w-full text-left text-sm">
-        <thead className="border-b border-neutral-200/80 bg-[#f7f8fa]">
+      <table className="w-full min-w-[36rem] text-left text-sm">
+        <thead className="border-b border-border-subtle bg-muted/40">
           <tr>
-            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Prop</th>
-            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Type</th>
-            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Default</th>
-            <th className="px-4 py-3 text-[12px] font-semibold text-neutral-500">Description</th>
+            {["Prop", "Type", "Default", "Description"].map((label) => (
+              <th
+                key={label}
+                className="px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground"
+              >
+                {label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.name} className="border-b border-neutral-100 last:border-0">
-              <td className="px-4 py-3 font-mono text-[12px] font-medium text-neutral-950">
+            <tr
+              key={row.name}
+              className="border-b border-border-subtle last:border-0"
+            >
+              <td className="px-4 py-3 align-top font-mono text-[12px] font-medium text-foreground">
                 {row.name}
               </td>
-              <td className="px-4 py-3 font-mono text-[12px] text-neutral-500">{row.type}</td>
-              <td className="px-4 py-3 font-mono text-[12px] text-neutral-400">
+              <td className="px-4 py-3 align-top font-mono text-[12px] text-muted-foreground">
+                {row.type}
+              </td>
+              <td className="px-4 py-3 align-top font-mono text-[12px] text-muted-foreground">
                 {row.default ?? "—"}
               </td>
-              <td className="px-4 py-3 text-[13px] text-neutral-500">{row.description}</td>
+              <td className="px-4 py-3 align-top text-[13px] leading-relaxed text-muted-foreground">
+                {row.description}
+              </td>
             </tr>
           ))}
         </tbody>

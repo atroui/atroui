@@ -1,19 +1,38 @@
 import type { Metadata } from "next"
 import { ComponentDoc } from "@/components/component-doc"
-import { DemoSchemaNote } from "@/components/registry-demos"
+import { DemoJsonLd } from "@/components/registry-demos"
 
 export const metadata: Metadata = {
-  title: 'Json Ld',
+  title: "JSON-LD",
 }
 
 export default function Page() {
   return (
     <ComponentDoc
-      title='Json Ld'
-      description='JSON-LD helpers (org, article, FAQ, breadcrumbs, offers).'
-      preview={<DemoSchemaNote name='Json Ld' />}
-      code={`import { /* see source */ } from "@meridian/ui"`}
-      usage="Headless / schema component — no visual UI. Import in a page or layout to emit structured data or analytics context."
+      title="JSON-LD"
+      description="schema.org helpers for Organization/WebSite, articles, FAQ, breadcrumbs, offers, and tool pages. Headless — emits JSON-LD scripts only."
+      preview={<DemoJsonLd />}
+      code={
+        'import {\n  SiteGraphJsonLd,\n  ArticleJsonLd,\n  FaqJsonLd,\n  BreadcrumbJsonLd,\n} from "@meridian/ui"\n\n' +
+        "<SiteGraphJsonLd />\n" +
+        "<ArticleJsonLd title={…} description={…} slug={…} date={…} />"
+      }
+      installation='import { SiteGraphJsonLd, ArticleJsonLd } from "@meridian/ui"'
+      usage="Render in the page (often the root layout or a template). Verify with View Source or Google’s Rich Results Test. Defaults brand to Makershot — override name where needed."
+      props={[
+        {
+          name: "SiteGraphJsonLd.name",
+          type: "string",
+          default: '"Makershot"',
+          description: "Organization / WebSite name.",
+        },
+        {
+          name: "ArticleJsonLd",
+          type: "title, description, slug, date…",
+          default: "—",
+          description: "Blog/journal article graph.",
+        },
+      ]}
     />
   )
 }

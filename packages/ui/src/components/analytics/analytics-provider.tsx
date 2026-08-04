@@ -5,6 +5,8 @@ import Script from "next/script";
 
 import { getExperimentVariant, trackEvent } from "../../lib/analytics";
 
+export { trackEvent, getExperimentVariant };
+
 type AnalyticsProviderProps = {
   children?: React.ReactNode;
 };

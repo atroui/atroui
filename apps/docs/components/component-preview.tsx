@@ -11,9 +11,9 @@ interface ComponentPreviewProps {
 
 export function ComponentPreview({ title, children, className }: ComponentPreviewProps) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-neutral-200/80 bg-[#f7f8fa]">
+    <div className="overflow-hidden border border-border-subtle bg-background">
       {title ? (
-        <div className="border-b border-neutral-200/80 px-4 py-2.5 text-[13px] font-medium text-neutral-500">
+        <div className="border-b border-border-subtle bg-muted/40 px-4 py-2.5 text-[13px] font-medium text-muted-foreground">
           {title}
         </div>
       ) : null}

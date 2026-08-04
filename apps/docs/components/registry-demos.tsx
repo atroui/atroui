@@ -55,7 +55,11 @@ import {
   ArPortfolio,
   JournalContent,
   LiveDashboard,
+  SiteGraphJsonLd,
+  TestimonialSchema,
+  trackEvent,
 } from "@meridian/ui"
+import { TESTIMONIALS } from "@meridian/ui/content/testimonials"
 
 /** Live canvas demos — one per documented component where a useful preview exists. */
 
@@ -378,14 +382,156 @@ export function DemoMadeWithEmbed() {
   return <MadeWithEmbed />
 }
 
-export function DemoSchemaNote({ name }: { name: string }) {
+function HeadlessShell({
+  stamp,
+  title,
+  children,
+}: {
+  stamp: string
+  title: string
+  children: React.ReactNode
+}) {
   return (
-    <div className="max-w-md rounded-xl border border-border-subtle bg-card px-5 py-4 text-left text-sm text-muted-foreground">
-      <p className="font-medium text-foreground">{name}</p>
-      <p className="mt-1">
-        Injects JSON-LD into the document head. No visible UI — verify in View Source or Rich Results.
-      </p>
+    <div className="w-full max-w-2xl overflow-hidden border border-border-subtle bg-background text-left">
+      <div className="border-b border-border-subtle bg-muted/40 px-4 py-3">
+        <p className="ms-stamp">{stamp}</p>
+        <p className="mt-2 text-sm font-medium text-foreground">{title}</p>
+      </div>
+      <div className="space-y-4 p-4 text-sm text-muted-foreground">{children}</div>
     </div>
+  )
+}
+
+export function DemoAnalyticsProvider() {
+  const plausible = Boolean(process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN)
+  const ga = Boolean(process.env.NEXT_PUBLIC_GA_ID)
+
+  return (
+    <HeadlessShell
+      stamp="Headless"
+      title="AnalyticsProvider — scripts + experiments, no chrome"
+    >
+      <p>
+        Mount once near the root. Loads Plausible / GA when env is set, fires{" "}
+        <code className="font-mono text-xs text-foreground">page_view</code>, and
+        exposes sticky A/B variants via{" "}
+        <code className="font-mono text-xs text-foreground">useExperiment</code>.
+      </p>
+      <ul className="divide-y divide-border-subtle border border-border-subtle">
+        <li className="flex items-center justify-between gap-3 px-3 py-2.5">
+          <span>NEXT_PUBLIC_PLAUSIBLE_DOMAIN</span>
+          <span className={plausible ? "text-brand" : "text-muted-foreground"}>
+            {plausible ? "configured" : "not set"}
+          </span>
+        </li>
+        <li className="flex items-center justify-between gap-3 px-3 py-2.5">
+          <span>NEXT_PUBLIC_GA_ID</span>
+          <span className={ga ? "text-brand" : "text-muted-foreground"}>
+            {ga ? "configured" : "not set"}
+          </span>
+        </li>
+      </ul>
+      <button
+        type="button"
+        className="ms-cta-ghost border border-border-subtle px-3 py-1.5 text-sm"
+        onClick={() =>
+          trackEvent("docs_demo_click", { source: "analytics-provider-docs" })
+        }
+      >
+        Fire demo trackEvent
+      </button>
+      <p className="text-xs">
+        In development, events log to the browser console as{" "}
+        <code className="font-mono text-foreground">[analytics]</code>.
+      </p>
+    </HeadlessShell>
+  )
+}
+
+export function DemoJsonLd() {
+  return (
+    <HeadlessShell
+      stamp="Headless"
+      title="JSON-LD helpers — emit schema.org in the document"
+    >
+      <p>
+        Helpers like{" "}
+        <code className="font-mono text-xs text-foreground">SiteGraphJsonLd</code>,{" "}
+        <code className="font-mono text-xs text-foreground">ArticleJsonLd</code>,{" "}
+        <code className="font-mono text-xs text-foreground">FaqJsonLd</code>, and
+        more inject{" "}
+        <code className="font-mono text-xs text-foreground">
+          &lt;script type=&quot;application/ld+json&quot;&gt;
+        </code>
+        . No visible UI — check View Source or Rich Results Test.
+      </p>
+      {/* Live inject for this preview mount */}
+      <SiteGraphJsonLd />
+      <pre className="overflow-x-auto border border-border-subtle bg-muted/30 p-3 font-mono text-[11px] leading-relaxed text-foreground">
+        {`import { SiteGraphJsonLd, ArticleJsonLd } from "@meridian/ui"
+
+// Homepage
+<SiteGraphJsonLd />
+
+// Journal post
+<ArticleJsonLd
+  title="…"
+  description="…"
+  slug="shipping-mvps"
+  date="2026-01-01"
+/>`}
+      </pre>
+      <p className="text-xs">
+        This preview mounts <span className="text-foreground">SiteGraphJsonLd</span>{" "}
+        once — inspect the page source for the graph.
+      </p>
+    </HeadlessShell>
+  )
+}
+
+export function DemoTestimonialSchema() {
+  const sample = {
+    "@context": "https://schema.org",
+    "@graph": TESTIMONIALS.slice(0, 2).map((t) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: t.name,
+        jobTitle: t.title,
+        worksFor: { "@type": "Organization", name: t.company },
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(t.rating),
+        bestRating: "5",
+      },
+      reviewBody: t.quote.slice(0, 96) + (t.quote.length > 96 ? "…" : ""),
+      itemReviewed: {
+        "@type": "ProfessionalService",
+        name: "Makershot",
+      },
+    })),
+  }
+
+  return (
+    <HeadlessShell
+      stamp="Headless"
+      title="TestimonialSchema — Review JSON-LD (no AggregateRating)"
+    >
+      <p>
+        Emits individual{" "}
+        <code className="font-mono text-xs text-foreground">Review</code> nodes
+        from studio testimonials. Intentionally skips AggregateRating (spam risk
+        for self-published stars).
+      </p>
+      <TestimonialSchema />
+      <pre className="max-h-56 overflow-auto border border-border-subtle bg-muted/30 p-3 font-mono text-[11px] leading-relaxed text-foreground">
+        {JSON.stringify(sample, null, 2)}
+      </pre>
+      <p className="text-xs">
+        Full graph is injected on this page — sample above shows the shape.
+      </p>
+    </HeadlessShell>
   )
 }
 

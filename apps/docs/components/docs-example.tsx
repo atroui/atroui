@@ -13,8 +13,7 @@ type DocsExampleProps = {
 }
 
 /**
- * shadcn-style example chrome: Preview / Code tabs with a live canvas
- * that preserves the source design system (background tokens, borders, type).
+ * Preview / Code tabs with a live canvas that preserves design tokens.
  */
 export function DocsExample({ preview, code, className, fullBleed }: DocsExampleProps) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
@@ -22,7 +21,7 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border-subtle bg-card text-card-foreground shadow-sm",
+        "overflow-hidden border border-border-subtle bg-background text-foreground",
         className
       )}
     >
@@ -34,9 +33,9 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
               type="button"
               onClick={() => setTab(key)}
               className={cn(
-                "rounded-md px-3 py-1.5 text-[13px] font-medium capitalize transition-colors",
+                "px-3 py-1.5 text-[13px] font-medium capitalize transition-colors",
                 tab === key
-                  ? "bg-background text-foreground shadow-sm ring-1 ring-foreground/10"
+                  ? "bg-background text-foreground ring-1 ring-border-subtle"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
@@ -60,7 +59,7 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
           </div>
         </div>
       ) : (
-        <CodeBlock code={code} className="rounded-none border-0" />
+        <CodeBlock code={code} embedded className="border-0" />
       )}
     </div>
   )

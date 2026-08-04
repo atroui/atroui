@@ -1,19 +1,32 @@
 import type { Metadata } from "next"
 import { ComponentDoc } from "@/components/component-doc"
-import { DemoSchemaNote } from "@/components/registry-demos"
+import { DemoTestimonialSchema } from "@/components/registry-demos"
 
 export const metadata: Metadata = {
-  title: 'Testimonial Schema',
+  title: "Testimonial Schema",
 }
 
 export default function Page() {
   return (
     <ComponentDoc
-      title='Testimonial Schema'
-      description='Testimonial schema.org JSON-LD.'
-      preview={<DemoSchemaNote name='Testimonial Schema' />}
-      code={`import { /* see source */ } from "@meridian/ui"`}
-      usage="Headless / schema component — no visual UI. Import in a page or layout to emit structured data or analytics context."
+      title="Testimonial Schema"
+      description="Emits individual schema.org Review nodes from studio testimonials. Headless — no AggregateRating by design."
+      preview={<DemoTestimonialSchema />}
+      code={
+        'import { TestimonialSchema } from "@meridian/ui"\n\n' +
+        "<TestimonialSchema />\n" +
+        '<TestimonialSchema pageUrl="https://www.makershot.tech/about" />'
+      }
+      installation='import { TestimonialSchema } from "@meridian/ui"'
+      usage="Place on pages where reviews should be eligible for rich results. Skips AggregateRating to avoid self-published star spam signals."
+      props={[
+        {
+          name: "pageUrl",
+          type: "string",
+          default: "site URL",
+          description: "Canonical URL for itemReviewed.",
+        },
+      ]}
     />
   )
 }
