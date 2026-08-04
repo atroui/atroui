@@ -49,14 +49,18 @@ changeset publish → npm (atroui@x.y.z)
 1. **NPM token:** Automation token on npmjs.com → repo **Settings → Secrets → Actions** → `NPM_TOKEN`.
 2. **Trusted Publishing (OIDC):** on the `atroui` package on npmjs.com, trust workflow `release.yml`.
 
-**Version Packages PRs — required if the org disables “Allow GitHub Actions to create and approve pull requests”:**
+**Version Packages PRs:** many orgs block both `GITHUB_TOKEN` and PATs from creating PRs.
 
-1. Create a GitHub **Personal Access Token** as a user who can open PRs on this repo:
-   - **Fine-grained (preferred):** resource `atroui/atroui` → **Pull requests: Read and write** (Contents not required for the PR-only fallback).
-   - **Classic:** `repo` scope.
-2. If the org uses SAML SSO: on [token settings](https://github.com/settings/tokens) click **Configure SSO** → **Authorize** for the `atroui` org.
-3. Add it as repo secret **`GH_PAT`**.
-4. Release workflow: `GITHUB_TOKEN` pushes the version branch; `GH_PAT` opens the PR if Actions can’t.
+What still works automatically: the Release workflow pushes branch `changeset-release/master` with the version bump + CHANGELOG.
+
+**Your step after each release run that has pending changesets:**
+
+1. Open:  
+   `https://github.com/atroui/atroui/compare/master...changeset-release/master?expand=1`
+2. Create the PR → merge it.
+3. That merge triggers publish (`changeset publish` + `NPM_TOKEN`).
+
+Optional: if your org allows it later, enable “Allow GitHub Actions to create and approve pull requests”, or add a working `GH_PAT` with Pull requests write + SSO authorize — then PRs can open automatically again.
 
 ## Package layout
 
