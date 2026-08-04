@@ -15,7 +15,17 @@ export default function Page() {
       code={'import { ScopeChat } from "atroui"\n\n<ScopeChat />'}
       fullBleed={true}
       installation='import { ScopeChat } from "atroui"'
-      usage="Needs host POST /api/scope (and typically Gemini / AI env). UI mounts without it; messages will error until the API exists."
+      usage={
+        <>
+          Bring your own{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            POST /api/scope
+          </code>{" "}
+          (and AI keys if you want model replies). The docs app does not burn
+          shared LLM tokens — without a host route, the UI still mounts and
+          rule-based fallbacks may apply depending on your wiring.
+        </>
+      }
     />
   )
 }

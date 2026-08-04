@@ -78,10 +78,21 @@ export default function InstallationPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             /api/*
           </code>{" "}
-          routes. They render in the catalog but need those APIs (and env) in a
-          real app. Marked{" "}
+          routes. The AtroUI docs site does{" "}
+          <span className="font-medium text-foreground">not</span> provide those
+          backends or shared AI keys — bring your own API in the host app
+          (BYOK). Marked{" "}
           <span className="font-medium text-foreground">Host API</span> in the
-          sidebar.
+          sidebar. To see a live OG generator without wiring keys here, use{" "}
+          <a
+            href="https://www.makershot.tech/og"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand underline underline-offset-2"
+          >
+            makershot.tech/og
+          </a>
+          .
         </p>
       </section>
     </article>

@@ -95,7 +95,9 @@ Tokens live in `packages/ui/src/globals.css`:
 
 ## Catalog notes
 
-Some modules call host `/api/*` routes (OG, thumbnail, scope, contact). They render in the docs but need those APIs in a real app — marked **Host API** in the sidebar.
+Some modules call host `/api/*` routes (OG, thumbnail, scope, contact). They render in the docs but need those APIs **and your own keys** in a real app — marked **Host API** in the sidebar. The docs site does not provide shared LLM/image tokens (BYOK).
+
+For a live OG generator without wiring keys into this repo, use [makershot.tech/og](https://www.makershot.tech/og).
 
 ## Deploy docs (Vercel)
 
