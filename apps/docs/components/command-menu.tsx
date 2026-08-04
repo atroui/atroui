@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { Search } from "lucide-react"
-import { Dialog, DialogContent, DialogTitle, Input } from "@meridian/ui"
+import { Search, X } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { allNavItems } from "@/lib/navigation"
 
 export function CommandMenu() {
@@ -18,6 +18,7 @@ export function CommandMenu() {
         e.preventDefault()
         setOpen((prev) => !prev)
       }
+      if (e.key === "Escape") setOpen(false)
     }
     document.addEventListener("keydown", onKeyDown)
     return () => document.removeEventListener("keydown", onKeyDown)
@@ -45,39 +46,56 @@ export function CommandMenu() {
         </kbd>
       </button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="gap-0 overflow-hidden rounded-2xl border-neutral-200 p-0 shadow-[0_20px_60px_rgb(0,0,0,0.12)] sm:max-w-lg">
-          <DialogTitle className="sr-only">Search documentation</DialogTitle>
-          <div className="border-b border-neutral-100 px-3 py-2">
-            <Input
-              autoFocus
-              placeholder="Search components…"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="border-0 shadow-none focus-visible:ring-0"
-            />
+      {open ? (
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-neutral-950/20 px-4 pt-[12vh] backdrop-blur-[2px]">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search documentation"
+            className="w-full max-w-lg overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_20px_60px_rgb(0,0,0,0.12)]"
+          >
+            <div className="flex items-center gap-2 border-b border-neutral-100 px-3 py-2">
+              <Search className="h-4 w-4 text-neutral-400" />
+              <input
+                autoFocus
+                placeholder="Search components…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="h-10 flex-1 bg-transparent text-sm outline-none placeholder:text-neutral-400"
+              />
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100"
+                aria-label="Close"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="max-h-72 overflow-y-auto p-2">
+              {results.length === 0 ? (
+                <p className="px-2 py-8 text-center text-sm text-neutral-400">No results.</p>
+              ) : (
+                results.map((item) => (
+                  <button
+                    key={item.href}
+                    type="button"
+                    className={cn(
+                      "flex w-full items-center rounded-xl px-3 py-2.5 text-left text-sm font-medium text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950"
+                    )}
+                    onClick={() => {
+                      setOpen(false)
+                      router.push(item.href)
+                    }}
+                  >
+                    {item.title}
+                  </button>
+                ))
+              )}
+            </div>
           </div>
-          <div className="max-h-72 overflow-y-auto p-2">
-            {results.length === 0 ? (
-              <p className="px-2 py-8 text-center text-sm text-neutral-400">No results.</p>
-            ) : (
-              results.map((item) => (
-                <button
-                  key={item.href}
-                  type="button"
-                  className="flex w-full items-center rounded-xl px-3 py-2.5 text-left text-sm font-medium text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950"
-                  onClick={() => {
-                    setOpen(false)
-                    router.push(item.href)
-                  }}
-                >
-                  {item.title}
-                </button>
-              ))
-            )}
-          </div>
-        </DialogContent>
-      </Dialog>
+        </div>
+      ) : null}
     </>
   )
 }

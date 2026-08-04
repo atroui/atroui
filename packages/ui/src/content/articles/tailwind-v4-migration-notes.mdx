@@ -1,0 +1,19 @@
+We moved Makershot to Tailwind v4's CSS-first config. Notes from the migration.
+
+## What changed
+
+- `tailwind.config.js` → `@theme inline` in `globals.css`
+- Plugins configured differently in PostCSS
+- `@import "tailwindcss"` replaces `@tailwind` directives
+
+## What we'd do again
+
+Define semantic tokens in `:root` and `.dark` before building components. Migrating colors after the fact is painful.
+
+## What surprised us
+
+Custom utilities (`ds-display`, etc.) are easier in v4 — just add classes in CSS with `@layer utilities`.
+
+## Tooling
+
+shadcn v4 works well with the new setup. Run their CLI against the CSS variable mode.

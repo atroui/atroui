@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Avatar, AvatarFallback, AvatarImage } from "@meridian/ui"
 import { LandingNav } from "@/components/landing-nav"
 
 const avatars = [
@@ -14,14 +13,7 @@ const avatars = [
 export function LandingHero() {
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-[#e9eef4] text-neutral-950">
-      {/*
-        Background model:
-        1. Full atmospheric photo (sky + mist + ridges)
-        2. Soft cool mist wash in the nav→headline band (not flat white)
-        3. Clearer mountains lower down; light fog at the bottom edge
-      */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        {/* Full-bleed photo — sky fills the upper band between nav and headline */}
         <div
           className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
@@ -31,8 +23,6 @@ export function LandingHero() {
             filter: "saturate(0.8) brightness(1.18) contrast(0.9)",
           }}
         />
-
-        {/* Upper band: cool misty sky tint (fills the “blank” gap) */}
         <div
           className="absolute inset-x-0 top-0 h-[55%]"
           style={{
@@ -40,8 +30,6 @@ export function LandingHero() {
               "linear-gradient(180deg, #eef3f7 0%, #e4ecf3 22%, #d5e2ec 48%, rgba(198,218,232,0.55) 72%, rgba(198,218,232,0) 100%)",
           }}
         />
-
-        {/* Soft veil for type readability without killing the sky colour */}
         <div
           className="absolute inset-0"
           style={{
@@ -49,8 +37,6 @@ export function LandingHero() {
               "linear-gradient(180deg, rgba(238,243,247,0.72) 0%, rgba(238,243,247,0.45) 28%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0) 62%)",
           }}
         />
-
-        {/* Bottom fog lift */}
         <div
           className="absolute inset-x-0 bottom-0 h-[20%]"
           style={{
@@ -78,8 +64,8 @@ export function LandingHero() {
           transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="mt-5 max-w-xl text-base leading-relaxed text-neutral-500 sm:text-[1.0625rem]"
         >
-          Meridian&apos;s component library helps you cut through the noise, ship faster,
-          and stay focused without switching contexts.
+          Meridian catalogues your real components — shared across projects without
+          rewriting them.
         </motion.p>
 
         <motion.div
@@ -104,15 +90,13 @@ export function LandingHero() {
         >
           <div className="flex -space-x-2.5">
             {avatars.map((avatar) => (
-              <Avatar
+              <span
                 key={avatar.fallback}
-                className="h-8 w-8 border-2 border-white shadow-sm"
+                className="inline-flex h-8 w-8 overflow-hidden rounded-full border-2 border-white bg-neutral-200 shadow-sm"
               >
-                <AvatarImage src={avatar.src} alt="" />
-                <AvatarFallback className="bg-neutral-200 text-[10px] text-neutral-700">
-                  {avatar.fallback}
-                </AvatarFallback>
-              </Avatar>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={avatar.src} alt="" className="h-full w-full object-cover" />
+              </span>
             ))}
           </div>
           <p className="text-xs text-neutral-400">Loved by 4200+ professionals</p>

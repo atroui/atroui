@@ -1,0 +1,72 @@
+A 7-day MVP isn't a hackathon. It's a disciplined sprint that produces a real, deployed product a real customer can use — with auth, payments, data, and at least one genuinely useful AI feature.
+
+Here's exactly how we run one.
+
+## Before day 1: the scope call
+
+A 30-minute call, a one-page written scope, and a fixed price. We agree on:
+
+- The single primary user journey.
+- Three features: the core flow, one "delight" feature, one monetization hook.
+- The cutoff list — everything we are **not** shipping in week one.
+
+Without a cutoff list, every sprint balloons. With one, we always ship.
+
+## Day 1 — Foundation
+
+Morning: repo bootstrapped with our house stack. Next.js 16, TypeScript strict, Tailwind + shadcn, the motion library, and a `/design-system` route where we wire our tokens, primitives, and page shell. No real features yet — just the chassis.
+
+Afternoon: auth. We use Clerk or Supabase auth depending on the shape of the data model. Protected routes, sign-in, sign-up, and a stubbed `/dashboard` that says `hello, {name}`.
+
+## Day 2 — The core flow
+
+One screen, one action, end-to-end. If the app is a doc summarizer, today you can paste a doc, get a summary, and see it in a list. It's ugly, but it works.
+
+Keeping day 2 ruthlessly simple is the single most important decision. Everything else builds on this loop.
+
+## Day 3 — Data + durability
+
+Supabase schema (or Postgres on Neon, depending on the project). Today we turn the in-memory state from yesterday into real persistence, with row-level security, types generated, and a small admin view for inspecting rows.
+
+We also wire observability now: Vercel logs, Sentry for errors, and PostHog for events. It's way easier to add these before the UI is complex.
+
+## Day 4 — The AI feature
+
+A single AI capability, streaming, cost-aware, with a clean loading + empty + error state. Vercel AI SDK by default. Prompt lives in a versioned file, not inline. Rate-limited per user. This is usually the day we spend the most time prompt-engineering.
+
+## Day 5 — Polish the golden path
+
+Not new features — *polishing what exists*. Loading states, empty states, error recovery, copy, accessibility, keyboard shortcuts, and the motion details that make it feel considered. The difference between an MVP that ships and one that launches is usually this day.
+
+## Day 6 — Payments + onboarding
+
+Stripe checkout (test mode first, then live), a pricing page, and the simplest possible onboarding — ideally three screens or fewer. Plus the one thing founders usually forget: a clear way to contact support.
+
+## Day 7 — Ship
+
+Morning: staging deploy, a short handoff doc, a recorded walkthrough, and a bug bash. Afternoon: production deploy to Vercel, DNS pointed, monitoring verified.
+
+End of day 7: you have a real product at a real URL, with real users capable of paying you real money.
+
+## What we skip
+
+In week one, we deliberately don't ship:
+
+- Admin dashboards (one SQL query beats a week of UI).
+- Fancy email sequences (transactional only; marketing later).
+- A11y perfection beyond WCAG AA on the core flow.
+- Every edge case (we log them, then handle the top three post-launch).
+- Anything not in the scope doc.
+
+## What we never skip
+
+- Auth, done properly.
+- Error tracking from day 3.
+- The accessible core flow (keyboard + screen reader).
+- Written handoff so you can run the product without us.
+
+## What comes after
+
+Week 2 is whatever you want it to be. Most founders extend the engagement by another two weeks for iteration. Some take the codebase and run. Either way, you leave with a deployed product and a clean codebase — not a prototype.
+
+If this sounds like the right shape for your idea, [book an intro call](/contact) and we'll scope it together.

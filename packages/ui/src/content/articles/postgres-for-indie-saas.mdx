@@ -1,0 +1,20 @@
+Postgres is the default for indie SaaS. Supabase is how we usually host it.
+
+## When Supabase wins
+
+You want auth, Postgres, storage, and edge functions in one dashboard. MVPs and early-stage products.
+
+## When raw Postgres wins
+
+Existing infra, complex migrations, or team already on RDS/Neon with custom tooling.
+
+## Schema patterns we copy
+
+- `users` table mapped to auth provider id
+- `created_at` / `updated_at` on every table
+- Soft deletes only when you actually need audit trails
+- JSONB for flexible metadata, not as a substitute for relations
+
+## Migrations
+
+We use Supabase migrations or Prisma depending on client preference. Both work — pick one and stick with it.

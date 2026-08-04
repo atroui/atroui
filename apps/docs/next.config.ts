@@ -1,7 +1,9 @@
+import createMDX from "@next/mdx"
 import type { NextConfig } from "next"
 import path from "path"
 
 const nextConfig: NextConfig = {
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   transpilePackages: ["@meridian/ui"],
   experimental: {
     optimizePackageImports: ["@meridian/ui", "lucide-react"],
@@ -23,4 +25,18 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: ["remark-gfm"],
+    rehypePlugins: [
+      "rehype-slug",
+      [
+        "rehype-autolink-headings",
+        { behavior: "wrap", properties: { className: ["heading-anchor"] } },
+      ],
+    ],
+  },
+})
+
+export default withMDX(nextConfig)

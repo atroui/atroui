@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
-import { cn } from "@meridian/ui"
+import { cn } from "@/lib/utils"
 
 interface CodeBlockProps {
   code: string

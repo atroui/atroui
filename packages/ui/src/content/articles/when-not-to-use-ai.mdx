@@ -1,0 +1,21 @@
+Not every problem needs an LLM. Here are five situations where we'd push back on an "AI feature" request.
+
+## 1. Deterministic lookups
+
+If the answer is in your database, query the database. Don't embed documents and hope RAG finds the right row.
+
+## 2. Simple classification with clear rules
+
+"If subject contains X, route to team Y" doesn't need a model. Regex and rules are faster, cheaper, and debuggable.
+
+## 3. Format conversion
+
+JSON → CSV, markdown → HTML — use a library, not GPT.
+
+## 4. Features users don't want
+
+A chat sidebar nobody asked for isn't fixed by a better model. Kill the feature.
+
+## 5. When latency budget is under 200ms
+
+LLM calls are seconds. If the UX requires instant feedback, AI isn't the tool.

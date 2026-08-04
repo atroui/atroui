@@ -2,10 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  background: #f2f4f6;
-}
-
 ::selection {
-  background: rgba(23, 23, 23, 0.12);
+  background: color-mix(in oklab, var(--brand) 28%, transparent);
 }

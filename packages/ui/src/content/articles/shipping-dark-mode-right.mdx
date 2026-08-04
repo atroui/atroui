@@ -1,0 +1,20 @@
+Dark mode isn't a color inversion — it's a second design pass. Three mistakes we see constantly.
+
+## Mistake 1: Inverting hex values
+
+`#ffffff` → `#000000` breaks contrast and kills brand color. Use semantic tokens per mode.
+
+## Mistake 2: Forgetting images and shadows
+
+Photos, gradients, and box shadows need dark-mode variants. A hero glow that works in light often looks muddy in dark.
+
+## Mistake 3: Shipping dark mode last
+
+If you bolt it on after launch, you'll refactor every component. Build both modes from day one.
+
+## Our checklist
+
+- Semantic `--background`, `--foreground`, `--border` per mode
+- Brand color rebalanced for dark (usually lighter/more saturated)
+- Test contrast at WCAG AA minimum
+- Respect `prefers-color-scheme` and manual toggle

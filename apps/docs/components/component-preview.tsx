@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@meridian/ui"
+import { cn } from "@/lib/utils"
 
 interface ComponentPreviewProps {
   title?: string

@@ -1,0 +1,20 @@
+Design tokens are the contract between design and engineering. Here's how we structure them for Tailwind v4 projects.
+
+## The four layers
+
+1. **Primitive tokens** — raw values (color scales, spacing scale)
+2. **Semantic tokens** — `--background`, `--foreground`, `--primary`
+3. **Component tokens** — button radius, card padding (rarely needed)
+4. **Utility classes** — `ds-display`, `ds-headline` for one-off patterns
+
+## Color
+
+We use OKLCH for perceptual uniformity. Each mode (light/dark) gets its own semantic mapping — never copy-paste hex values between modes.
+
+## Typography
+
+Three roles: display (Instrument Serif), body (Geist Sans), mono (Geist Mono). Size scale stays tight — 5–6 sizes cover 95% of UI.
+
+## Motion
+
+Define duration and easing tokens once. Respect `prefers-reduced-motion` everywhere.

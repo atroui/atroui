@@ -1,5 +1,4 @@
-import { CodeBlock } from "@/components/code-block"
-import { ComponentPreview } from "@/components/component-preview"
+import { DocsExample } from "@/components/docs-example"
 import { PropsTable, type PropRow } from "@/components/props-table"
 
 interface ComponentDocProps {
@@ -7,9 +6,11 @@ interface ComponentDocProps {
   description: string
   preview: React.ReactNode
   code: string
-  props: PropRow[]
+  props?: PropRow[]
   usage?: string
   extra?: React.ReactNode
+  fullBleed?: boolean
+  installation?: string
 }
 
 export function ComponentDoc({
@@ -20,40 +21,49 @@ export function ComponentDoc({
   props,
   usage,
   extra,
+  fullBleed,
+  installation = 'import { … } from "@meridian/ui"',
 }: ComponentDocProps) {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-neutral-400">
-          Component
-        </p>
-        <h1 className="text-[2rem] font-semibold tracking-tight text-neutral-950 sm:text-[2.35rem]">
-          {title}
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-500 sm:text-base">
+    <article
+      className={
+        fullBleed
+          ? "mx-auto max-w-6xl space-y-8"
+          : "mx-auto max-w-3xl space-y-8"
+      }
+    >
+      <header className="space-y-3">
+        <p className="ms-stamp">Component</p>
+        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">{title}</h1>
+        <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           {description}
         </p>
       </header>
 
-      <section className="space-y-4">
-        <h2 className="text-[15px] font-semibold text-neutral-950">Preview</h2>
-        <ComponentPreview>{preview}</ComponentPreview>
-        <CodeBlock code={code} />
+      <DocsExample preview={preview} code={code} fullBleed={fullBleed} />
+
+      <section className="space-y-3">
+        <h2 className="ds-headline text-base text-foreground">Installation</h2>
+        <pre className="overflow-x-auto rounded-xl border border-border-subtle bg-muted/40 px-4 py-3 font-mono text-[13px] text-foreground">
+          <code>{installation}</code>
+        </pre>
       </section>
 
       {extra}
 
       {usage ? (
         <section className="space-y-3">
-          <h2 className="text-[15px] font-semibold text-neutral-950">Usage guidelines</h2>
-          <p className="text-[15px] leading-relaxed text-neutral-500">{usage}</p>
+          <h2 className="ds-headline text-base text-foreground">Usage</h2>
+          <p className="text-[15px] leading-relaxed text-muted-foreground">{usage}</p>
         </section>
       ) : null}
 
-      <section className="space-y-4">
-        <h2 className="text-[15px] font-semibold text-neutral-950">Props</h2>
-        <PropsTable data={props} />
-      </section>
+      {props && props.length > 0 ? (
+        <section className="space-y-4">
+          <h2 className="ds-headline text-base text-foreground">API Reference</h2>
+          <PropsTable data={props} />
+        </section>
+      ) : null}
     </article>
   )
 }

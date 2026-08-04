@@ -1,0 +1,20 @@
+import type { Metadata } from "next"
+import { ComponentDoc } from "@/components/component-doc"
+import { DemoPricingOverview } from "@/components/registry-demos"
+
+export const metadata: Metadata = {
+  title: 'Pricing Overview',
+}
+
+export default function Page() {
+  return (
+    <ComponentDoc
+      title='Pricing Overview'
+      description='Service pricing overview grid.'
+      preview={<DemoPricingOverview />}
+      code={'import { PricingOverview } from "@meridian/ui"\n\n<PricingOverview />'}
+      fullBleed={true}
+      installation='import { PricingOverview } from "@meridian/ui"'
+    />
+  )
+}

@@ -1,0 +1,25 @@
+import type { Metadata } from "next"
+import { ComponentDoc } from "@/components/component-doc"
+import { DemoSocialShare } from "@/components/registry-demos"
+
+export const metadata: Metadata = {
+  title: 'Social Share',
+}
+
+export default function Page() {
+  return (
+    <ComponentDoc
+      title='Social Share'
+      description='Share actions for articles.'
+      preview={<DemoSocialShare />}
+      code={'import { SocialShare } from "@meridian/ui"\n\n<SocialShare url="…" title="…" />'}
+      fullBleed={false}
+      installation='import { SocialShare } from "@meridian/ui"'
+      props={[
+    { name: 'url', type: 'string', default: '—', description: 'Share URL.' },
+    { name: 'title', type: 'string', default: '—', description: 'Share title.' },
+    { name: 'label', type: 'string', default: "'Share'", description: 'Visible label.' },
+  ]}
+    />
+  )
+}

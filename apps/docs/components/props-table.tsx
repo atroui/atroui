@@ -1,4 +1,4 @@
-import { cn } from "@meridian/ui"
+import { cn } from "@/lib/utils"
 
 export type PropRow = {
   name: string

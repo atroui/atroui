@@ -1,22 +1,21 @@
 "use client"
 
-import * as React from "react"
 import Link from "next/link"
-import { Github, Search } from "lucide-react"
-import { cn } from "@meridian/ui"
+import { Github } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#f2f4f6]/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-[4.25rem] max-w-[1400px] items-center gap-3 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/85 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-3 px-4 sm:px-6">
         <MobileSidebar />
 
         <Link href="/" className="flex items-center gap-2.5" aria-label="Meridian home">
           <LogoMark />
-          <span className="text-[15px] font-semibold tracking-tight text-neutral-950">
+          <span className="text-[15px] font-semibold tracking-tight text-foreground">
             Meridian
           </span>
         </Link>
@@ -30,7 +29,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-1.5 text-[13px] font-medium text-neutral-600 transition-colors hover:bg-white hover:text-neutral-950"
+              className="rounded-md px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
             </Link>
@@ -46,14 +45,14 @@ export function SiteHeader() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-[0_1px_2px_rgb(0,0,0,0.04)] transition-colors hover:bg-neutral-50"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border-subtle bg-background text-foreground transition-colors hover:bg-muted"
           >
             <Github className="h-4 w-4" />
           </a>
           <Link
             href="/docs/installation"
             className={cn(
-              "hidden h-9 items-center rounded-full bg-neutral-950 px-4 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 sm:inline-flex"
+              "hidden h-9 items-center rounded-md bg-foreground px-3.5 text-[13px] font-medium text-background transition-colors hover:bg-foreground/90 sm:inline-flex"
             )}
           >
             Get started
@@ -61,15 +60,5 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
-  )
-}
-
-/** Slimmer search trigger used if CommandMenu is restyled externally */
-export function DocsSearchHint() {
-  return (
-    <span className="inline-flex items-center gap-2 text-neutral-400">
-      <Search className="h-3.5 w-3.5" />
-      Search
-    </span>
   )
 }
