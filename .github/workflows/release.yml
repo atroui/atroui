@@ -21,19 +21,22 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        # actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
           # PAT required when org policy blocks Actions from creating PRs.
           token: ${{ secrets.GH_PAT }}
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        # pnpm/action-setup@v4
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1
         with:
           version: 10.28.2
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        # actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 22
           cache: pnpm
@@ -44,7 +47,8 @@ jobs:
 
       - name: Create Version Packages PR or publish to npm
         id: changesets
-        uses: changesets/action@v1
+        # changesets/action@v1.9.0
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d
         with:
           title: "chore: version packages"
           commit: "chore: version packages"
