@@ -1,29 +1,31 @@
 import * as React from "react";
 
+import { getBrand } from "../../lib/brand";
 import { cn } from "../../lib/utils";
 
 /**
- * Makershot studio mark.
+ * Brand mark.
  * - Uses `currentColor` for the main glyph so it adapts to light/dark.
- * - Indigo accent stays constant via brand token.
+ * - Brand accent stays constant via CSS token.
  */
 export function LogoMark({
   className,
-  title = "Makershot",
+  title,
 }: {
   className?: string;
   title?: string;
 }) {
+  const label = title ?? getBrand().name;
   return (
     <svg
       viewBox="0 0 48 48"
       width="24"
       height="24"
       role="img"
-      aria-label={title}
+      aria-label={label}
       className={cn("text-foreground", className)}
     >
-      <title>{title}</title>
+      <title>{label}</title>
       <rect
         x="4"
         y="4"
@@ -35,7 +37,6 @@ export function LogoMark({
         strokeOpacity="0.16"
         strokeWidth="1.25"
       />
-      {/* Aperture-style M — two intersecting arcs forming the stroke */}
       <path
         d="M14 30 L14 18 L24 28 L34 18 L34 30"
         fill="none"
@@ -44,7 +45,7 @@ export function LogoMark({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="34" cy="30" r="2.2" fill="var(--color-brand, #f59e0b)" />
+      <circle cx="34" cy="30" r="2.2" fill="var(--color-brand, #0b7bff)" />
     </svg>
   );
 }
@@ -52,15 +53,22 @@ export function LogoMark({
 export function LogoWordmark({
   className,
   markClassName,
+  name,
 }: {
   className?: string;
   markClassName?: string;
+  /** Override brand name (defaults to getBrand().name). */
+  name?: string;
 }) {
+  const label = name ?? getBrand().name;
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <LogoMark className={cn("h-7 w-7 shrink-0", markClassName)} />
+      <LogoMark
+        className={cn("h-7 w-7 shrink-0", markClassName)}
+        title={label}
+      />
       <span className="ds-display text-[19px] leading-none tracking-[-0.01em] text-foreground">
-        Makershot
+        {label}
       </span>
     </span>
   );

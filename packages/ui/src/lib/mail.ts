@@ -1,5 +1,7 @@
 import type nodemailer from "nodemailer";
 
+import { getBrand } from "./brand";
+
 export type MailAttachment = {
   filename: string;
   content: Buffer;
@@ -52,7 +54,7 @@ async function getTransport(): Promise<nodemailer.Transporter> {
   return cachedTransport;
 }
 
-/** Send via Gmail / SMTP (hello@makershot.tech). */
+/** Send via Gmail / SMTP. */
 export async function sendMail(options: SendMailOptions): Promise<void> {
   const transport = await getTransport();
   await transport.sendMail({
@@ -71,9 +73,10 @@ export async function sendMail(options: SendMailOptions): Promise<void> {
 }
 
 export function getDefaultFromAddress(): string {
+  const brand = getBrand();
   return (
     process.env.CONTACT_EMAIL_FROM?.trim() ||
     process.env.SMTP_USER?.trim() ||
-    "Makershot <hello@makershot.tech>"
+    `${brand.name} <${brand.email}>`
   );
 }

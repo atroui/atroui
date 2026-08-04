@@ -1,7 +1,7 @@
 import { generateObject } from 'ai';
 import { xai } from '@ai-sdk/xai';
 import { z } from 'zod';
-import { AnalyzerResult } from './analyzer';
+import type { AnalyzerResult } from './analyzer';
 
 export interface DirectorResult {
   lighting: string;

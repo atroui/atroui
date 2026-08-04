@@ -6,8 +6,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "../../lib/utils";
 
-const STORAGE_KEY = "makershot_exit_intent_v1";
-const SESSION_KEY = "makershot_exit_intent_session";
+const STORAGE_KEY = "atroui_exit_intent_v1";
+const SESSION_KEY = "atroui_exit_intent_session";
 
 function shouldShowPopup(): boolean {
   if (typeof window === "undefined") return false;

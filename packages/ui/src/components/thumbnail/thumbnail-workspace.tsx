@@ -230,7 +230,7 @@ export function ThumbnailWorkspace() {
         usePro,
       };
 
-      const filename = `makershot-${format}-${slugify(t)}.jpg`;
+      const filename = `atroui-${format}-${slugify(t)}.jpg`;
 
       const resp = await fetch("/api/thumbnail", {
         method: "POST",

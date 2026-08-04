@@ -1,26 +1,20 @@
 {
-  "name": "atroui",
+  "name": "@atroui/monorepo",
   "private": true,
   "scripts": {
     "dev": "turbo run dev --filter=@atroui/docs",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "@types/sharp": "^0.32.0",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },
   "packageManager": "pnpm@10.28.2",
   "engines": {
     "node": ">=20"
-  },
-  "dependencies": {
-    "@huggingface/inference": "^4.13.24",
-    "@resvg/resvg-js": "^2.6.2",
-    "satori": "^0.29.0",
-    "sharp": "^0.35.3"
   }
 }

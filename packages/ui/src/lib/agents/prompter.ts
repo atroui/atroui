@@ -1,7 +1,7 @@
 import { generateText } from 'ai';
 import { xai } from '@ai-sdk/xai';
-import { AnalyzerResult } from './analyzer';
-import { DirectorResult } from './director';
+import type { AnalyzerResult } from './analyzer';
+import type { DirectorResult } from './director';
 
 export class PromptEngineerAgent {
   async generateFinalPrompt(

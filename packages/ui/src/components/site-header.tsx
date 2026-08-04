@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 import { LogoWordmark } from "./brand/logo";
 import { ThemeToggle } from "./ui/theme-toggle";
+import { getBrand } from "../lib/brand";
 import { cn } from "../lib/utils";
 
 const nav = [
@@ -30,6 +31,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const reduce = useReducedMotion();
+  const brandName = getBrand().name;
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -69,7 +71,7 @@ export function SiteHeader() {
         <div className="flex h-14 items-center justify-between gap-4 ms-shell-pad">
           <Link
             href="/"
-            aria-label="Makershot home"
+            aria-label={`${brandName} home`}
             className="shrink-0 transition-opacity hover:opacity-80"
           >
             <LogoWordmark />

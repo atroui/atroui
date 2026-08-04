@@ -182,7 +182,7 @@ function OgWorkspaceInner() {
           style,
         };
         label = t;
-        filename = `makershot-og-${slugify(t)}.jpg`;
+        filename = `atroui-og-${slugify(t)}.jpg`;
       } else {
         const p = prompt.trim();
         if (!p) {
@@ -194,7 +194,7 @@ function OgWorkspaceInner() {
         }
         payload = { prompt: p };
         label = p;
-        filename = `makershot-og-${slugify(p, "prompt")}.jpg`;
+        filename = `atroui-og-${slugify(p, "prompt")}.jpg`;
       }
 
       const resp = await fetch("/api/generate", {

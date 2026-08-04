@@ -1,5 +1,5 @@
-import { ContentAnalyzerAgent, AnalyzerResult } from './analyzer';
-import { ArtDirectorAgent, DirectorResult } from './director';
+import { ContentAnalyzerAgent, type AnalyzerResult } from './analyzer';
+import { ArtDirectorAgent, type DirectorResult } from './director';
 import { PromptEngineerAgent } from './prompter';
 
 export class ThumbnailPipeline {
