@@ -4,9 +4,12 @@ import { getBrand } from "../../lib/brand";
 import { cn } from "../../lib/utils";
 
 /**
- * Brand mark.
- * - Uses `currentColor` for the main glyph so it adapts to light/dark.
- * - Brand accent stays constant via CSS token.
+ * AtroUI mark — “interrupted A”
+ *
+ * Open letterform for Atro; the classic crossbar is a floating brand capsule
+ * (active UI bar). currentColor for the glyph; --color-brand for the accent.
+ *
+ * Designed to stay legible from 16px favicons to large wordmarks.
  */
 export function LogoMark({
   className,
@@ -21,31 +24,29 @@ export function LogoMark({
       viewBox="0 0 48 48"
       width="24"
       height="24"
+      fill="none"
       role="img"
       aria-label={label}
       className={cn("text-foreground", className)}
     >
       <title>{label}</title>
-      <rect
-        x="4"
-        y="4"
-        width="40"
-        height="40"
-        rx="12"
-        fill="none"
-        stroke="currentColor"
-        strokeOpacity="0.16"
-        strokeWidth="1.25"
-      />
+      {/* Open A — two legs meet at the apex; base stays open for air */}
       <path
-        d="M14 30 L14 18 L24 28 L34 18 L34 30"
-        fill="none"
+        d="M14 36 L24 10 L34 36"
         stroke="currentColor"
-        strokeWidth="2.2"
+        strokeWidth="4"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="34" cy="30" r="2.2" fill="var(--color-brand, #0b7bff)" />
+      {/* Floating brand bar — the recall cue (does not touch the legs) */}
+      <rect
+        x="17.5"
+        y="24.3"
+        width="13"
+        height="3.6"
+        rx="1.8"
+        fill="var(--color-brand, #0b7bff)"
+      />
     </svg>
   );
 }

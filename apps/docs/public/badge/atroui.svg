@@ -2,7 +2,11 @@
   <title>Made with AtroUI</title>
   <rect width="160" height="40" fill="#0a0a0a"/>
   <rect x="0.5" y="0.5" width="159" height="39" fill="none" stroke="#525252" stroke-opacity="0.55"/>
-  <text x="12" y="16" fill="#a3a3a3" font-family="ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em">MADE WITH</text>
-  <text x="12" y="30" fill="#fafafa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.02em">AtroUI</text>
+  <g transform="translate(10, 7)">
+    <path d="M4 22 L12 3 L20 22" stroke="#fafafa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect x="7.2" y="13" width="9.6" height="2.5" rx="1.25" fill="#0b7bff"/>
+  </g>
+  <text x="38" y="16" fill="#a3a3a3" font-family="ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em">MADE WITH</text>
+  <text x="38" y="30" fill="#fafafa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.02em">AtroUI</text>
   <rect x="148" y="8" width="4" height="24" fill="#0b7bff"/>
 </svg>

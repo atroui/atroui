@@ -206,9 +206,9 @@ export function HeroDigitalSuccess() {
             timelineRef={timelineRef}
             className="max-w-md text-xl font-light leading-relaxed text-neutral-100"
           >
-            Production UI from real projects — primitives, sections, tools, and
-            headless modules. AtroUI is the product; demos show where they
-            shipped.
+            AtroUI is a React component library and dark-first design system for
+            Next.js — primitives, sections, tools, and SEO modules. Home:{" "}
+            atroui.com.
           </TimelineAnimation>
         </div>
       </div>

@@ -10,12 +10,12 @@ export default function Page() {
   return (
     <ComponentDoc
       title="Logo"
-      description="Studio mark and wordmark — defaults to getBrand().name (AtroUI)."
+      description="Interrupted-A mark + wordmark. Open letterform for Atro; floating brand bar is the recall cue. Defaults to getBrand().name."
       preview={<DemoLogo />}
       code={'import { LogoMark, LogoWordmark } from "atroui"\n\n<LogoMark />\n<LogoWordmark />\n<LogoWordmark name="Acme" />'}
       fullBleed={false}
       installation='import { LogoMark, LogoWordmark } from "atroui"'
-      usage="LogoMark and LogoWordmark resolve their label from getBrand() (NEXT_PUBLIC_SITE_NAME / AtroUI). Pass title or name to override. Mark uses currentColor; accent uses --color-brand."
+      usage="Mark uses currentColor for the A; the crossbar uses --color-brand (#0b7bff). Static assets: /brand/atroui-mark.svg and /brand/atroui-mark-app.svg. Pass title or name to override the label."
       props={[
         {
           name: "title",

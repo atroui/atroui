@@ -16,13 +16,63 @@ const geistMono = Geist_Mono({
   display: "swap",
 })
 
+const siteUrl = "https://atroui.com"
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "AtroUI — Component catalog",
+    default: "AtroUI — React Component Library & Dark Design System",
     template: "%s · AtroUI",
   },
   description:
-    "AtroUI — personal component catalog at atroui.com. Production UI packaged as atroui.",
+    "AtroUI (atroui.com) is a dark-first React and Next.js component library — production UI primitives, page sections, OG tools, and SEO helpers. Install with npm i atroui.",
+  applicationName: "AtroUI",
+  authors: [{ name: "AtroUI", url: siteUrl }],
+  creator: "AtroUI",
+  publisher: "AtroUI",
+  keywords: [
+    "AtroUI",
+    "atroui",
+    "atroui.com",
+    "React component library",
+    "Next.js components",
+    "design system",
+    "dark UI",
+    "Tailwind components",
+    "UI kit",
+    "npm atroui",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "AtroUI",
+    title: "AtroUI — React Component Library & Dark Design System",
+    description:
+      "Dark-first React / Next.js component catalog at atroui.com. Primitives, sections, tools, and headless SEO modules. npm i atroui.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AtroUI — React Component Library",
+    description:
+      "Dark-first React / Next.js components at atroui.com. Install with npm i atroui.",
+    creator: "@iamk",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "technology",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

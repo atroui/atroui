@@ -44,12 +44,12 @@ export function LandingNav() {
 
           <div className="flex items-center gap-2">
             <a
-              href="https://www.iamk.xyz"
+              href="https://www.npmjs.com/package/atroui"
               target="_blank"
               rel="noopener noreferrer"
               className="bam-link hidden text-sm sm:inline"
             >
-              iamk.xyz
+              npm
             </a>
             <Link href="/docs/components" className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex">
               Browse
