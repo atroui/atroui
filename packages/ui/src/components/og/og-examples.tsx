@@ -111,66 +111,68 @@ export function OgExamples({
         const promptHref = `/og?prompt=${encodeURIComponent(ex.prompt)}#og-workspace`;
         const styleLabel = STYLE_PRESETS[ex.preset]?.label ?? ex.preset;
 
+        const row = (
+          <div
+            className={cn(
+              "grid grid-cols-1 gap-4 px-6 py-5 transition-colors md:grid-cols-12 md:items-center md:gap-4 md:px-8 md:py-6",
+            )}
+          >
+            <span className="font-mono text-[11px] tabular-nums text-muted-foreground md:col-span-1">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+
+            <Link
+              href={quickHref}
+              scroll
+              className="group relative aspect-1200/630 overflow-hidden ring-1 ring-border-subtle md:col-span-3"
+              aria-label={`Remix Quick mode: ${ex.title}`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- static public asset */}
+              <img
+                src={`/examples/${ex.slug}.png`}
+                alt={`${ex.title} — sample 1200×630 OG image`}
+                width={1200}
+                height={630}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </Link>
+
+            <div className="min-w-0 md:col-span-4">
+              <p className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
+                {ex.category}
+              </p>
+              <p className="ds-headline mt-1 text-base text-foreground sm:text-lg">
+                {ex.title}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {styleLabel} preset
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 md:col-span-4 md:justify-end">
+              <Link
+                href={quickHref}
+                scroll
+                className="inline-flex min-h-10 items-center gap-1.5 text-sm font-medium text-foreground hover:text-brand"
+              >
+                Remix style
+                <ArrowUpRight className="size-3.5" aria-hidden />
+              </Link>
+              <Link
+                href={promptHref}
+                scroll
+                className="inline-flex min-h-10 items-center text-sm text-muted-foreground hover:text-foreground"
+              >
+                Use prompt
+              </Link>
+            </div>
+          </div>
+        );
+
         return (
           <li key={ex.slug}>
-            <FadeIn delay={preview ? 0 : 0.02 * i} preview={preview}>
-              <div
-                className={cn(
-                  "grid grid-cols-1 gap-4 px-6 py-5 transition-colors md:grid-cols-12 md:items-center md:gap-4 md:px-8 md:py-6",
-                )}
-              >
-                <span className="font-mono text-[11px] tabular-nums text-muted-foreground md:col-span-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                <Link
-                  href={quickHref}
-                  scroll
-                  className="group relative aspect-1200/630 overflow-hidden ring-1 ring-border-subtle md:col-span-3"
-                  aria-label={`Remix Quick mode: ${ex.title}`}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element -- static public asset */}
-                  <img
-                    src={`/examples/${ex.slug}.png`}
-                    alt={`${ex.title} — sample 1200×630 OG image`}
-                    width={1200}
-                    height={630}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
-                </Link>
-
-                <div className="min-w-0 md:col-span-4">
-                  <p className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
-                    {ex.category}
-                  </p>
-                  <p className="ds-headline mt-1 text-base text-foreground sm:text-lg">
-                    {ex.title}
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {styleLabel} preset
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 md:col-span-4 md:justify-end">
-                  <Link
-                    href={quickHref}
-                    scroll
-                    className="inline-flex min-h-10 items-center gap-1.5 text-sm font-medium text-foreground hover:text-brand"
-                  >
-                    Remix style
-                    <ArrowUpRight className="size-3.5" aria-hidden />
-                  </Link>
-                  <Link
-                    href={promptHref}
-                    scroll
-                    className="inline-flex min-h-10 items-center text-sm text-muted-foreground hover:text-foreground"
-                  >
-                    Use prompt
-                  </Link>
-                </div>
-              </div>
-            </FadeIn>
+            {preview ? row : <FadeIn delay={0.02 * i}>{row}</FadeIn>}
           </li>
         );
       })}
