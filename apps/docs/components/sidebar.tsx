@@ -6,7 +6,20 @@ import { usePathname } from "next/navigation"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LogoMark } from "@/components/logo-mark"
-import { navigation } from "@/lib/navigation"
+import { badgeLabel, navigation, type NavItem } from "@/lib/navigation"
+
+function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
+  return (
+    <span
+      className={cn(
+        "shrink-0 text-[9px] font-semibold uppercase tracking-[0.06em]",
+        badge === "host-api" ? "text-brand" : "text-muted-foreground"
+      )}
+    >
+      {badgeLabel[badge]}
+    </span>
+  )
+}
 
 export function DocsSidebar({ className }: { className?: string }) {
   const pathname = usePathname()
@@ -45,13 +58,14 @@ export function DocsSidebar({ className }: { className?: string }) {
                       <Link
                         href={item.href}
                         className={cn(
-                          "block rounded-md px-2.5 py-1.5 text-[13px] font-medium transition-colors",
+                          "flex items-center justify-between gap-2 rounded-md px-2.5 py-1.5 text-[13px] font-medium transition-colors",
                           active
                             ? "bg-muted text-foreground"
                             : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                         )}
                       >
-                        {item.title}
+                        <span className="truncate">{item.title}</span>
+                        {item.badge ? <NavBadge badge={item.badge} /> : null}
                       </Link>
                     </li>
                   )

@@ -1,15 +1,17 @@
 # Meridian
 
-A polished, accessible React component library built with **Radix UI**, **Tailwind CSS**, and shadcn/ui patterns — plus a Next.js documentation site and Storybook.
+Personal component catalog for components Koustav ships across projects — starting with **Makershot / ogsaas**. Not a generic UI kit.
+
+Docs site: Next.js 15 · Package: `@meridian/ui` · Tokens: Makershot stone OKLCH + copper brand (Outfit + Fraunces)
 
 ## Structure
 
 ```
 /
 ├── apps/
-│   └── docs/          # Next.js 15 documentation & playground
+│   └── docs/          # Landing + documentation
 ├── packages/
-│   ├── ui/            # @meridian/ui component library + Storybook
+│   ├── ui/            # @meridian/ui — production components
 │   └── typescript-config/
 ├── package.json
 ├── pnpm-workspace.yaml
@@ -20,37 +22,43 @@ A polished, accessible React component library built with **Radix UI**, **Tailwi
 
 ```bash
 pnpm install
-pnpm dev          # Docs site → http://localhost:3000
-pnpm storybook    # Storybook → http://localhost:6006
+pnpm dev          # Docs → http://localhost:3000
 ```
 
 ## Using components
 
 ```tsx
-import { Button, Card, CardHeader, CardTitle } from "@meridian/ui"
+import { Button, HomeWho, ThemeProvider } from "@meridian/ui"
 import "@meridian/ui/globals.css"
 
 export function Example() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Hello Meridian</CardTitle>
-      </CardHeader>
-      <Button>Get started</Button>
-    </Card>
+    <ThemeProvider attribute="class" defaultTheme="light">
+      <Button>Hire us</Button>
+      <HomeWho />
+    </ThemeProvider>
   )
 }
 ```
 
-Ensure your Tailwind config:
+### Tailwind v4
 
-1. Scans `packages/ui/src/**/*.{ts,tsx}`
-2. Extends Meridian color / radius tokens (see `apps/docs/tailwind.config.ts`)
-3. Uses `darkMode: ["class"]` with `tailwindcss-animate`
+Import the package CSS (it already includes `@import "tailwindcss"` and `@source` paths for the UI package). Host apps should scan their own app files and load `@meridian/ui/globals.css` once at the root.
 
-## Components
+Peer deps: **Next.js**, **React**, **next-themes**.
 
-Accordion · Avatar · Badge · Button · Card · Checkbox · Dialog · Dropdown Menu · Input · Label · Popover · Radio Group · Select · Separator · Skeleton · Switch · Tabs · Textarea · Toast · Tooltip
+## Catalog
+
+Curated in docs as:
+
+| Group | Examples |
+|-------|----------|
+| **Primitives** | Button, Card, FormSelect, ThemeToggle, FadeIn… |
+| **Sections** | Home bands, SiteHeader, CTAs, Contact, Journal… |
+| **Tools** | OG workspace, Thumbnail, Planner, Scope (often need host `/api/*`) |
+| **Headless** | Analytics, JSON-LD |
+
+Makershot / iamk links inside demos are intentional portfolio branding.
 
 ## Scripts
 
@@ -58,12 +66,17 @@ Accordion · Avatar · Badge · Button · Card · Checkbox · Dialog · Dropdown
 |---------|-------------|
 | `pnpm dev` | Start the docs site |
 | `pnpm build` | Build all packages/apps |
-| `pnpm storybook` | Start Storybook |
 | `pnpm typecheck` | Type-check the monorepo |
+
+Storybook scaffolding exists under `packages/ui` but has no stories yet — use the docs site as the playground.
 
 ## Theming
 
-Colors and radius live as CSS variables in `@meridian/ui/globals.css`. Override `:root` / `.dark` to brand the system. Dark mode is driven by a `.dark` class (compatible with `next-themes`).
+Colors and type live as CSS variables in `@meridian/ui/globals.css` (OKLCH). Override `:root` / `.dark`. Dark mode uses a `.dark` class via `next-themes`.
+
+## Source
+
+Components were copied into `packages/ui` from the ogsaas codebase. That source repo is not modified by this library.
 
 ## License
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { navigation } from "@/lib/navigation"
+import { badgeLabel, navigation } from "@/lib/navigation"
 
 export const metadata: Metadata = {
   title: "Components",
@@ -12,31 +12,37 @@ export default function ComponentsIndexPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
       <header>
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-neutral-400">
-          Library
-        </p>
-        <h1 className="text-[2rem] font-semibold tracking-tight text-neutral-950 sm:text-[2.35rem]">
+        <p className="ms-stamp mb-3">Library</p>
+        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
           Components
         </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-neutral-500 sm:text-base">
-          Your production components from ogsaas — each with a live preview, copyable code, and API notes.
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+          Production UI from Makershot / ogsaas — curated into primitives,
+          sections, tools, and headless modules.
         </p>
       </header>
 
       {sections.map((section) => (
         <section key={section.title} className="space-y-3">
-          <h2 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-neutral-400">
-            {section.title}
-          </h2>
-          <ul className="grid gap-2 sm:grid-cols-2">
+          <h2 className="ds-headline text-base text-foreground">{section.title}</h2>
+          <ul className="divide-y divide-border-subtle border border-border-subtle">
             {section.items.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex items-center justify-between rounded-2xl border border-neutral-200/80 bg-[#f7f8fa] px-4 py-3.5 text-[14px] font-medium text-neutral-800 transition-colors hover:border-neutral-300 hover:bg-white hover:text-neutral-950"
+                  className="flex items-center justify-between gap-3 px-4 py-3.5 text-[14px] font-medium text-foreground transition-colors hover:bg-muted/40"
                 >
-                  {item.title}
-                  <span className="text-neutral-300">→</span>
+                  <span>{item.title}</span>
+                  <span className="flex items-center gap-3">
+                    {item.badge ? (
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+                        {badgeLabel[item.badge]}
+                      </span>
+                    ) : null}
+                    <span className="text-muted-foreground" aria-hidden>
+                      →
+                    </span>
+                  </span>
                 </Link>
               </li>
             ))}

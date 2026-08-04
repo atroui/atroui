@@ -24,11 +24,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Meridian — Your Component Catalog",
+    default: "Meridian — Personal component catalog",
     template: "%s · Meridian",
   },
   description:
-    "Shared catalog of your production components — sourced from projects like ogsaas.",
+    "Components Koustav ships across projects — starting with Makershot / ogsaas. Not a generic UI kit.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

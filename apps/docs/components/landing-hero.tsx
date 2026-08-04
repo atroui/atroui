@@ -1,107 +1,224 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
+import { motion } from "motion/react"
 import { LandingNav } from "@/components/landing-nav"
 
-const avatars = [
-  { src: "https://i.pravatar.cc/80?img=12", fallback: "A" },
-  { src: "https://i.pravatar.cc/80?img=32", fallback: "B" },
-  { src: "https://i.pravatar.cc/80?img=47", fallback: "C" },
-]
+const showcase = [
+  {
+    src: "/examples/blog-post-cover.png",
+    alt: "Editorial blog OG example",
+  },
+  {
+    src: "/examples/product-launch.png",
+    alt: "Product launch OG example",
+  },
+  {
+    src: "/examples/indie-revenue-update.png",
+    alt: "Indie revenue OG example",
+  },
+  {
+    src: "/examples/open-source-banner.png",
+    alt: "Open source OG example",
+  },
+] as const
+
+const ease = [0.23, 1, 0.32, 1] as const
 
 export function LandingHero() {
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-[#e9eef4] text-neutral-950">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=2400&q=80)",
-            backgroundPosition: "center 28%",
-            filter: "saturate(0.8) brightness(1.18) contrast(0.9)",
-          }}
-        />
-        <div
-          className="absolute inset-x-0 top-0 h-[55%]"
-          style={{
-            background:
-              "linear-gradient(180deg, #eef3f7 0%, #e4ecf3 22%, #d5e2ec 48%, rgba(198,218,232,0.55) 72%, rgba(198,218,232,0) 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(238,243,247,0.72) 0%, rgba(238,243,247,0.45) 28%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0) 62%)",
-          }}
-        />
-        <div
-          className="absolute inset-x-0 bottom-0 h-[20%]"
-          style={{
-            background:
-              "linear-gradient(0deg, rgba(236,241,246,0.7) 0%, rgba(236,241,246,0.2) 50%, transparent 100%)",
-          }}
-        />
-      </div>
-
+    <div className="min-h-[100svh] bg-background text-foreground">
       <LandingNav />
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-3xl flex-col items-center px-5 pb-28 pt-28 text-center md:justify-center md:px-6 md:pb-36 md:pt-24">
-        <motion.h1
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[15ch] text-[2.35rem] font-semibold leading-[1.12] tracking-tight text-neutral-950 sm:text-5xl md:max-w-[18ch] md:text-[3.5rem] md:leading-[1.08]"
-        >
-          Make Better Decisions, With Ease
-        </motion.h1>
+      {/* Hero — one composition: brand, line, CTA, dominant visual */}
+      <section className="relative overflow-hidden border-b border-border-subtle">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.55]"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in oklch, var(--color-brand) 18%, transparent), transparent 70%)",
+          }}
+        />
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 max-w-xl text-base leading-relaxed text-neutral-500 sm:text-[1.0625rem]"
-        >
-          Meridian catalogues your real components — shared across projects without
-          rewriting them.
-        </motion.p>
+        <div className="relative mx-auto max-w-7xl border-x border-border-subtle">
+          <div className="ms-shell-pad flex flex-col items-start py-16 sm:py-20 lg:py-24">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease }}
+              className="ms-stamp ms-stamp-brush"
+            >
+              Personal catalog
+            </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 w-full sm:w-auto"
-        >
-          <Link
-            href="/docs"
-            className="inline-flex h-12 w-full items-center justify-center rounded-full bg-neutral-950 px-8 text-[15px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98] sm:w-auto"
-          >
-            Get started
-          </Link>
-        </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05, ease }}
+              className="ds-display mt-6 max-w-[12ch] text-5xl text-foreground sm:text-6xl lg:text-7xl"
+            >
+              Meridian
+            </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 flex flex-col items-center gap-2.5"
-        >
-          <div className="flex -space-x-2.5">
-            {avatars.map((avatar) => (
-              <span
-                key={avatar.fallback}
-                className="inline-flex h-8 w-8 overflow-hidden rounded-full border-2 border-white bg-neutral-200 shadow-sm"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={avatar.src} alt="" className="h-full w-full object-cover" />
-              </span>
-            ))}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.12, ease }}
+              className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base"
+            >
+              Components I ship across my projects — starting with Makershot /
+              ogsaas. Not a generic UI kit.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18, ease }}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <Link href="/docs/components" className="ms-cta">
+                Browse catalog
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+              <Link href="/docs" className="ms-cta-ghost text-sm">
+                Read the docs
+              </Link>
+            </motion.div>
           </div>
-          <p className="text-xs text-neutral-400">Loved by 4200+ professionals</p>
-        </motion.div>
-      </div>
-    </section>
+
+          {/* Dominant visual — real OG assets from the catalog */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.22, ease }}
+            className="border-t border-border-subtle"
+          >
+            <div className="grid grid-cols-2 lg:grid-cols-4">
+              {showcase.map((item, i) => (
+                <div
+                  key={item.src}
+                  className={
+                    i % 2 === 0
+                      ? "border-border-subtle border-b lg:border-b-0 lg:border-r"
+                      : "border-border-subtle border-b lg:border-b-0 lg:border-r lg:last:border-r-0"
+                  }
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    width={1200}
+                    height={630}
+                    className="aspect-[1200/630] h-full w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* One job: what lives in the catalog */}
+      <section className="border-b border-border-subtle">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle">
+          <div className="ms-shell-pad grid gap-10 py-14 sm:py-16 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-5">
+              <p className="ms-stamp">Inside</p>
+              <h2 className="ds-headline mt-4 text-2xl text-foreground sm:text-3xl">
+                What you&rsquo;ll find
+              </h2>
+              <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                Production UI extracted from real apps — primitives, marketing
+                sections, and host-bound tools.
+              </p>
+            </div>
+
+            <ul className="divide-y divide-border-subtle border border-border-subtle lg:col-span-7">
+              {[
+                {
+                  title: "Primitives",
+                  body: "Button, Card, forms, theme — the small reusable pieces.",
+                  href: "/docs/components/ui-button",
+                },
+                {
+                  title: "Sections",
+                  body: "Home bands, site chrome, CTAs — editorial page modules.",
+                  href: "/docs/components/home-who",
+                },
+                {
+                  title: "Tools",
+                  body: "OG workspace, planner, scope — need host APIs to run live.",
+                  href: "/docs/components/og-og-examples",
+                },
+              ].map((item) => (
+                <li key={item.title}>
+                  <Link
+                    href={item.href}
+                    className="group flex flex-col gap-1 px-5 py-5 transition-colors hover:bg-muted/40 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                  >
+                    <span className="ds-headline text-lg text-foreground group-hover:text-brand">
+                      {item.title}
+                    </span>
+                    <span className="max-w-sm text-sm text-muted-foreground sm:text-right">
+                      {item.body}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing band — personal + studio */}
+      <section>
+        <div className="mx-auto max-w-7xl border-x border-border-subtle">
+          <div className="ms-shell-pad flex flex-col gap-6 py-14 sm:flex-row sm:items-end sm:justify-between sm:py-16">
+            <div className="max-w-md">
+              <p className="ms-stamp">Studio</p>
+              <h2 className="ds-display mt-4 text-3xl text-foreground sm:text-4xl">
+                Built by{" "}
+                <span className="ds-display-italic text-brand">Koustav</span>
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Sourced from Makershot. Links in the demos point back to the
+                studio — that&rsquo;s intentional.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4 text-sm">
+              <a
+                href="https://makershot.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bam-link"
+              >
+                makershot.tech
+              </a>
+              <a
+                href="https://www.iamk.xyz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bam-link"
+              >
+                iamk.xyz
+              </a>
+              <Link href="/docs/installation" className="bam-link">
+                Install Meridian
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-border-subtle">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle">
+          <p className="ms-shell-pad py-6 text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Meridian — personal component catalog
+          </p>
+        </div>
+      </footer>
+    </div>
   )
 }

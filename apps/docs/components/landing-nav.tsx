@@ -2,104 +2,109 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { ChevronDown, Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
 import { LogoMark } from "@/components/logo-mark"
 
-const navLinks = [
-  { label: "Products", href: "/docs/components", hasMenu: true },
-  { label: "Solutions", href: "/docs", hasMenu: true },
-  { label: "Pricing", href: "/docs/installation" },
-  { label: "Company", href: "/docs" },
-]
+const links = [
+  { label: "Catalog", href: "/docs/components" },
+  { label: "Docs", href: "/docs" },
+  { label: "Install", href: "/docs/installation" },
+] as const
 
 export function LandingNav() {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <>
-      {/* Desktop floating pill */}
-      <motion.header
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-none absolute inset-x-0 top-0 z-50 hidden pt-5 md:block"
-      >
-        <div className="pointer-events-auto mx-auto flex h-14 max-w-3xl items-center justify-between rounded-full border border-black/5 bg-white px-3 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
-          <Link href="/" className="flex items-center pl-1.5" aria-label="Meridian home">
+    <header className="sticky top-0 z-50 border-b border-border-subtle bg-background/85 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl border-x border-border-subtle">
+        <div className="flex h-14 items-center justify-between gap-4 ms-shell-pad">
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
+            aria-label="Meridian home"
+          >
             <LogoMark />
+            <span className="ds-display text-[19px] leading-none tracking-[-0.01em] text-foreground">
+              Meridian
+            </span>
           </Link>
 
-          <nav className="flex items-center gap-1">
-            {navLinks.map((link) => (
+          <nav aria-label="Primary" className="hidden items-center gap-0.5 md:flex">
+            {links.map((link) => (
               <Link
-                key={link.label}
+                key={link.href}
                 href={link.href}
-                className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[13px] font-medium text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
+                className="inline-flex h-14 items-center px-3.5 text-[13px] font-medium tracking-tight text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
-                {link.hasMenu ? <ChevronDown className="h-3.5 w-3.5 text-neutral-400" /> : null}
               </Link>
             ))}
           </nav>
 
-          <Link
-            href="/docs"
-            className="inline-flex h-9 items-center rounded-full border border-neutral-200 bg-white px-4 text-[13px] font-medium text-neutral-800 transition-colors hover:bg-neutral-50"
-          >
-            Login
-          </Link>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://www.iamk.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bam-link hidden text-sm sm:inline"
+            >
+              iamk.xyz
+            </a>
+            <Link href="/docs/components" className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex">
+              Browse
+            </Link>
+            <button
+              type="button"
+              className="inline-flex size-9 items-center justify-center border border-border-subtle text-foreground transition-colors hover:bg-muted md:hidden"
+              aria-expanded={open}
+              aria-controls="landing-mobile-nav"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X className="size-4" aria-hidden /> : <Menu className="size-4" aria-hidden />}
+            </button>
+          </div>
         </div>
-      </motion.header>
-
-      {/* Mobile top bar */}
-      <motion.header
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-4 py-4 md:hidden"
-      >
-        <Link href="/" aria-label="Meridian home">
-          <LogoMark />
-        </Link>
-        <div className="flex items-center gap-3">
-          <Link href="/docs" className="text-sm font-medium text-neutral-800">
-            Login
-          </Link>
-          <button
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md text-neutral-800"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </motion.header>
+      </div>
 
       <AnimatePresence>
         {open ? (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="absolute inset-x-4 top-16 z-50 rounded-2xl border border-black/5 bg-white p-3 shadow-lg md:hidden"
+            id="landing-mobile-nav"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation"
+            className="border-t border-border-subtle bg-background md:hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
           >
-            <nav className="flex flex-col">
-              {navLinks.map((link) => (
+            <nav className="mx-auto flex max-w-7xl flex-col divide-y divide-border-subtle border-x border-border-subtle">
+              {links.map((link) => (
                 <Link
-                  key={link.label}
+                  key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-2.5 text-sm font-medium text-neutral-800 hover:bg-neutral-50"
+                  className="ms-shell-pad flex min-h-12 items-center py-3 text-base text-foreground"
                 >
                   {link.label}
                 </Link>
               ))}
+              <div className="ms-shell-pad py-4">
+                <Link
+                  href="/docs/components"
+                  onClick={() => setOpen(false)}
+                  className="ms-cta w-full justify-center"
+                >
+                  Browse catalog
+                </Link>
+              </div>
             </nav>
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </>
+    </header>
   )
 }

@@ -4,7 +4,7 @@ import * as React from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { Search, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { allNavItems } from "@/lib/navigation"
+import { badgeLabel, allNavItems } from "@/lib/navigation"
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false)
@@ -37,58 +37,65 @@ export function CommandMenu() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex h-9 w-full max-w-[220px] items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 text-[13px] text-neutral-400 shadow-[0_1px_2px_rgb(0,0,0,0.04)] transition-colors hover:border-neutral-300 hover:text-neutral-600"
+        className="inline-flex h-9 w-full max-w-[220px] items-center gap-2 border border-border-subtle bg-background px-3 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
-        <Search className="h-3.5 w-3.5" />
+        <Search className="size-3.5 shrink-0" aria-hidden />
         <span className="flex-1 text-left">Search…</span>
-        <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-md border border-neutral-200 bg-neutral-50 px-1.5 font-mono text-[10px] font-medium text-neutral-500 sm:flex">
+        <kbd className="pointer-events-none hidden h-5 select-none items-center border border-border-subtle bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
           ⌘K
         </kbd>
       </button>
 
       {open ? (
-        <div className="fixed inset-0 z-50 flex items-start justify-center bg-neutral-950/20 px-4 pt-[12vh] backdrop-blur-[2px]">
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-foreground/20 px-4 pt-[12vh] backdrop-blur-[2px]">
           <div
             role="dialog"
             aria-modal="true"
             aria-label="Search documentation"
-            className="w-full max-w-lg overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_20px_60px_rgb(0,0,0,0.12)]"
+            className="w-full max-w-lg overflow-hidden border border-border-subtle bg-background shadow-[0_24px_64px_-28px_color-mix(in_oklch,var(--foreground)_40%,transparent)]"
           >
-            <div className="flex items-center gap-2 border-b border-neutral-100 px-3 py-2">
-              <Search className="h-4 w-4 text-neutral-400" />
+            <div className="flex items-center gap-2 border-b border-border-subtle px-3 py-2">
+              <Search className="size-4 text-muted-foreground" aria-hidden />
               <input
                 autoFocus
                 placeholder="Search components…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="h-10 flex-1 bg-transparent text-sm outline-none placeholder:text-neutral-400"
+                className="h-10 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
               />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100"
+                className="inline-flex size-8 items-center justify-center border border-border-subtle text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 aria-label="Close"
               >
-                <X className="h-4 w-4" />
+                <X className="size-4" />
               </button>
             </div>
-            <div className="max-h-72 overflow-y-auto p-2">
+            <div className="max-h-72 overflow-y-auto p-1.5">
               {results.length === 0 ? (
-                <p className="px-2 py-8 text-center text-sm text-neutral-400">No results.</p>
+                <p className="px-2 py-8 text-center text-sm text-muted-foreground">
+                  No results.
+                </p>
               ) : (
                 results.map((item) => (
                   <button
                     key={item.href}
                     type="button"
                     className={cn(
-                      "flex w-full items-center rounded-xl px-3 py-2.5 text-left text-sm font-medium text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950"
+                      "flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-muted"
                     )}
                     onClick={() => {
                       setOpen(false)
                       router.push(item.href)
                     }}
                   >
-                    {item.title}
+                    <span>{item.title}</span>
+                    {item.badge ? (
+                      <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+                        {badgeLabel[item.badge]}
+                      </span>
+                    ) : null}
                   </button>
                 ))
               )}
