@@ -4,7 +4,7 @@ import path from "path"
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
-  transpilePackages: ["@meridian/ui"],
+  transpilePackages: ["@meridian/ui", "@shadergradient/react"],
   experimental: {
     optimizePackageImports: ["@meridian/ui", "lucide-react"],
   },
