@@ -194,12 +194,17 @@ export function DemoThemeToggle() {
 export function DemoLogo() {
   return (
     <div className="flex flex-col items-center gap-6 text-center">
-      <LogoMark className="size-10" />
+      <div className="flex items-end gap-5">
+        <LogoMark className="size-8" />
+        <LogoMark className="size-12" />
+        <LogoMark className="size-16" />
+      </div>
       <LogoWordmark className="text-xl" />
       <p className="max-w-xs text-xs text-muted-foreground">
-        Defaults to getBrand().name (AtroUI). Pass{" "}
+        Interrupted A — open letterform + floating brand bar. Label from{" "}
+        getBrand(); override with{" "}
         <code className="font-mono text-[11px]">title</code> /{" "}
-        <code className="font-mono text-[11px]">name</code> to override.
+        <code className="font-mono text-[11px]">name</code>.
       </p>
     </div>
   )
