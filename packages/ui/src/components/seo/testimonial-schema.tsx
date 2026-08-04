@@ -1,5 +1,5 @@
 import { TESTIMONIALS } from "../../content/testimonials";
-import { SITE_BRAND } from "../../lib/seo";
+import { getBrand } from "../../lib/brand";
 import { getSiteUrl } from "../../lib/site-url";
 
 type TestimonialSchemaProps = {
@@ -35,7 +35,7 @@ export function TestimonialSchema({ pageUrl }: TestimonialSchemaProps = {}) {
       reviewBody: t.quote,
       itemReviewed: {
         "@type": "ProfessionalService",
-        name: SITE_BRAND,
+        name: getBrand().name,
         url,
       },
     })),

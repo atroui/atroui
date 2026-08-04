@@ -41,7 +41,7 @@ const KEYWORDS: { pattern: RegExp; response: string }[] = [
 export function getRuleBasedScopeReply(messages: ScopeMessage[]): string {
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
   if (!lastUser) {
-    return "Hi! I'm the Makershot scoping assistant. Tell me what you're building — MVP, AI feature, design system, or full product — and I'll recommend the right package.";
+    return "Hi! I'm the scoping assistant. Tell me what you're building — MVP, AI feature, design system, or full product — and I'll recommend the right package.";
   }
 
   for (const { pattern, response } of KEYWORDS) {

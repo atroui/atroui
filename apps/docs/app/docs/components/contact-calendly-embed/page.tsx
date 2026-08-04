@@ -15,7 +15,7 @@ export default function Page() {
       code={'import { CalendlyEmbed } from "atroui"\n\n<CalendlyEmbed url={process.env.NEXT_PUBLIC_CALENDLY_URL} />'}
       fullBleed={false}
       installation='import { CalendlyEmbed } from "atroui"'
-      usage="Pass url or set NEXT_PUBLIC_CALENDLY_URL. Without either, the preview shows the “Calendly isn’t connected” fallback with a hello@makershot.tech mailto — same as production when env is missing."
+      usage="Pass url or set NEXT_PUBLIC_CALENDLY_URL. Without either, the preview shows the “Calendly isn’t connected” fallback with a mailto to getBrand().email (hello@atroui.com by default)."
       props={[
         {
           name: "url",

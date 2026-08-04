@@ -34,6 +34,28 @@ export default function DocsIntroPage() {
         </p>
       </section>
 
+      <section className="md-glass space-y-3 p-5">
+        <h2 className="ds-headline text-base text-foreground">
+          Chrome vs demo content
+        </h2>
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          Logo, headers, footers, SEO helpers, and mail defaults resolve through{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            getBrand()
+          </code>{" "}
+          (AtroUI by default; override with{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            NEXT_PUBLIC_SITE_*
+          </code>
+          ). Studio copy under{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/content/*
+          </code>{" "}
+          may still reference Makershot — import your own content or pass props
+          when you rebrand a section.
+        </p>
+      </section>
+
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Quick start</h2>
         <CodeBlock language="bash" code={`pnpm install\npnpm dev`} />

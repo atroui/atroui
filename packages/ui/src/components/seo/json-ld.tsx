@@ -1,5 +1,6 @@
 import type { FaqItem } from "../../content/faq";
-import { SITE_DOMAIN } from "../../lib/seo";
+import { getBrand } from "../../lib/brand";
+import { getSiteDomain } from "../../lib/seo";
 import { getSiteUrl } from "../../lib/site-url";
 
 type OrgJsonLdProps = {
@@ -11,8 +12,11 @@ type OrgJsonLdProps = {
  * Combined Organization + WebSite graph. Prefer this on the homepage so
  * Google gets a single linked entity graph (brand + domain disambiguation).
  */
-export function SiteGraphJsonLd({ name = "Makershot" }: OrgJsonLdProps = {}) {
+export function SiteGraphJsonLd({ name }: OrgJsonLdProps = {}) {
+  const brand = getBrand();
+  const orgName = name ?? brand.name;
   const siteUrl = getSiteUrl();
+  const domain = getSiteDomain();
   const orgId = `${siteUrl}#organization`;
   const webId = `${siteUrl}#website`;
 
@@ -22,8 +26,8 @@ export function SiteGraphJsonLd({ name = "Makershot" }: OrgJsonLdProps = {}) {
       {
         "@type": "Organization",
         "@id": orgId,
-        name,
-        alternateName: [SITE_DOMAIN, "Makershot.tech"],
+        name: orgName,
+        alternateName: [domain],
         url: siteUrl,
         logo: {
           "@type": "ImageObject",
@@ -39,14 +43,13 @@ export function SiteGraphJsonLd({ name = "Makershot" }: OrgJsonLdProps = {}) {
           name: "Koustav",
           url: "https://www.iamk.xyz",
         },
-        description:
-          "A tech studio for indie makers and SaaS founders. Quick AI tools, fast MVPs, and custom full-stack builds.",
+        description: brand.tagline,
       },
       {
         "@type": "WebSite",
         "@id": webId,
-        name,
-        alternateName: [SITE_DOMAIN],
+        name: orgName,
+        alternateName: [domain],
         url: siteUrl,
         inLanguage: "en-US",
         publisher: { "@id": orgId },
@@ -80,6 +83,7 @@ export function ArticleJsonLd({
   image?: string;
 }) {
   const siteUrl = getSiteUrl();
+  const brandName = getBrand().name;
   const pageUrl = `${siteUrl}/journal/${slug}`;
   const imageUrl =
     image?.startsWith("http")
@@ -107,7 +111,7 @@ export function ArticleJsonLd({
     },
     publisher: {
       "@type": "Organization",
-      name: "Makershot",
+      name: brandName,
       logo: { "@type": "ImageObject", url: `${siteUrl}/icon` },
     },
   };
@@ -194,6 +198,7 @@ export function ServiceOfferJsonLd({
   priceCurrency?: string;
 }) {
   const siteUrl = getSiteUrl();
+  const brandName = getBrand().name;
   const url = `${siteUrl}${path.startsWith("/") ? path : `/${path}`}`;
 
   const data = {
@@ -204,7 +209,7 @@ export function ServiceOfferJsonLd({
     url,
     provider: {
       "@type": "Organization",
-      name: "Makershot",
+      name: brandName,
       url: siteUrl,
     },
     areaServed: "Worldwide",
@@ -230,10 +235,11 @@ export function ServiceOfferJsonLd({
  */
 export function OgGeneratorJsonLd() {
   const siteUrl = getSiteUrl();
+  const brandName = getBrand().name;
   const data = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Makershot OG Image Generator",
+    name: `${brandName} OG Image Generator`,
     applicationCategory: "DesignApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript",
@@ -243,11 +249,10 @@ export function OgGeneratorJsonLd() {
       priceCurrency: "USD",
     },
     url: `${siteUrl}/og`,
-    description:
-      "Generate 1200×630 Open Graph images. Quick mode with title and style plus crisp typography, or a free-form prompt. Built by Makershot.",
+    description: `Generate 1200×630 Open Graph images. Quick mode with title and style plus crisp typography, or a free-form prompt. Built by ${brandName}.`,
     provider: {
       "@type": "Organization",
-      name: "Makershot",
+      name: brandName,
       url: siteUrl,
     },
   };
@@ -264,10 +269,11 @@ export function OgGeneratorJsonLd() {
  */
 export function ThumbnailGeneratorJsonLd() {
   const siteUrl = getSiteUrl();
+  const brandName = getBrand().name;
   const data = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Makershot Thumbnail Generator",
+    name: `${brandName} Thumbnail Generator`,
     applicationCategory: "DesignApplication",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript",
@@ -277,11 +283,10 @@ export function ThumbnailGeneratorJsonLd() {
       priceCurrency: "USD",
     },
     url: `${siteUrl}/thumbnail`,
-    description:
-      "Create free YouTube (1280×720) and LinkedIn thumbnails with AI backgrounds and sharp typography. Built by Makershot.",
+    description: `Create free YouTube (1280×720) and LinkedIn thumbnails with AI backgrounds and sharp typography. Built by ${brandName}.`,
     provider: {
       "@type": "Organization",
-      name: "Makershot",
+      name: brandName,
       url: siteUrl,
     },
   };
@@ -296,16 +301,17 @@ export function ThumbnailGeneratorJsonLd() {
 /** CollectionPage hint for /journal index. */
 export function BlogJsonLd() {
   const siteUrl = getSiteUrl();
+  const brandName = getBrand().name;
   const data = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Makershot Journal",
+    name: `${brandName} Journal`,
     description:
       "Practical essays on shipping AI MVPs, Next.js, design systems, and OG images that convert.",
     url: `${siteUrl}/journal`,
     publisher: {
       "@type": "Organization",
-      name: "Makershot",
+      name: brandName,
       url: siteUrl,
     },
   };

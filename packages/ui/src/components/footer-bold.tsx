@@ -1,10 +1,13 @@
 import Link from "next/link";
 
+import { getBrand } from "../lib/brand";
+
 /**
- * Site-wide bold footer — adapted from Footer Bold for Makershot.
+ * Site-wide bold footer — brand name/email from getBrand().
  */
 export function BoldFooter() {
   const year = new Date().getFullYear();
+  const { name, email } = getBrand();
 
   return (
     <footer className="w-full overflow-hidden border-t border-border-subtle bg-background text-foreground pb-[env(safe-area-inset-bottom)]">
@@ -16,10 +19,10 @@ export function BoldFooter() {
                 Have a project in mind? Let&apos;s ship something this week.
               </h2>
               <a
-                href="mailto:hello@makershot.tech"
+                href={`mailto:${email}`}
                 className="border-b-2 border-foreground pb-1 text-lg font-medium transition-colors hover:border-brand hover:text-brand"
               >
-                hello@makershot.tech
+                {email}
               </a>
             </div>
 
@@ -114,11 +117,11 @@ export function BoldFooter() {
               aria-hidden
               className="pointer-events-none -mb-[2vw] select-none text-[12vw] leading-none font-black tracking-tighter text-foreground opacity-5"
             >
-              Makershot
+              {name}
             </p>
             <div className="relative z-10 flex flex-col gap-4 border-t border-border-subtle pt-8 pb-2 backdrop-blur-sm sm:flex-row sm:items-end sm:justify-between">
               <span className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                © {year} Makershot
+                © {year} {name}
               </span>
               <div className="flex items-center gap-6 sm:gap-8">
                 <span className="hidden text-xs text-muted-foreground sm:inline">

@@ -16,6 +16,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState, type FormEvent } from "react";
 
 import { trackEvent } from "../../lib/analytics";
+import { getBrand } from "../../lib/brand";
 import { cn } from "../../lib/utils";
 
 const PROJECT_TYPES = [
@@ -250,10 +251,10 @@ function ContactFormInner() {
           </p>
         </div>
         <a
-          href="mailto:hello@makershot.tech"
+          href={`mailto:${getBrand().email}`}
           className="ms-cta-ghost w-fit text-sm"
         >
-          Or email hello@makershot.tech
+          Or email {getBrand().email}
         </a>
       </div>
     );
@@ -625,7 +626,7 @@ function ContactFormInner() {
             <p className="font-medium">Couldn&rsquo;t send</p>
             <p className="mt-0.5 opacity-90">{status.message}</p>
             <a
-              href="mailto:hello@makershot.tech"
+              href={`mailto:${getBrand().email}`}
               className="mt-2 inline-block underline underline-offset-2"
             >
               Email us instead

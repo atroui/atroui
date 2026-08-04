@@ -1,17 +1,23 @@
 /**
  * Canonical public site URL for metadata, sitemap, and JSON-LD.
  */
+
+import { getBrand } from "./brand";
+
 export function getSiteUrl(): string {
+  const brand = getBrand();
   const raw =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : brand.siteUrl);
 
-  // Normalize production canonical host. Social crawlers are often picky about
-  // redirects for `og:image` / `twitter:image`, so prefer the `www` hostname.
+  // Prefer www for apex hosts when crawlers are picky about og:image redirects.
   try {
     const url = new URL(raw);
-    if (url.hostname === "makershot.tech") {
-      url.hostname = "www.makershot.tech";
+    const apex = brand.domain.replace(/^www\./, "");
+    if (url.hostname === apex) {
+      url.hostname = `www.${apex}`;
       return url.toString().replace(/\/$/, "");
     }
   } catch {

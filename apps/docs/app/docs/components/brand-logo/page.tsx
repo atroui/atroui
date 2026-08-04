@@ -10,18 +10,24 @@ export default function Page() {
   return (
     <ComponentDoc
       title="Logo"
-      description="Studio mark and wordmark — currently branded for Makershot."
+      description="Studio mark and wordmark — defaults to getBrand().name (AtroUI)."
       preview={<DemoLogo />}
-      code={'import { LogoMark, LogoWordmark } from "atroui"\n\n<LogoMark />\n<LogoWordmark />'}
+      code={'import { LogoMark, LogoWordmark } from "atroui"\n\n<LogoMark />\n<LogoWordmark />\n<LogoWordmark name="Acme" />'}
       fullBleed={false}
       installation='import { LogoMark, LogoWordmark } from "atroui"'
-      usage="LogoMark accepts an accessible title (default “Makershot”) and follows currentColor. LogoWordmark hardcodes the Makershot name — rebrand by forking the wordmark or replacing the span."
+      usage="LogoMark and LogoWordmark resolve their label from getBrand() (NEXT_PUBLIC_SITE_NAME / AtroUI). Pass title or name to override. Mark uses currentColor; accent uses --color-brand."
       props={[
         {
           name: "title",
           type: "string",
-          default: "'Makershot'",
+          default: "getBrand().name",
           description: "Accessible label for LogoMark.",
+        },
+        {
+          name: "name",
+          type: "string",
+          default: "getBrand().name",
+          description: "Wordmark text for LogoWordmark.",
         },
         {
           name: "className",

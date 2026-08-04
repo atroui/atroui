@@ -4,6 +4,8 @@ import { ExternalLink } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useState } from "react";
 
+import { getBrand, getBrandMailto } from "../../lib/brand";
+
 type Props = { url?: string };
 
 /**
@@ -14,6 +16,7 @@ export function CalendlyEmbed({ url }: Props) {
   const calendlyUrl = url || process.env.NEXT_PUBLIC_CALENDLY_URL || "";
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const brand = getBrand();
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration-gated mount flag
@@ -29,7 +32,6 @@ export function CalendlyEmbed({ url }: Props) {
       hide_gdpr_banner: "1",
       hide_landing_page_details: "1",
       hide_event_type_details: "0",
-      // Copper brand + stone surfaces
       primary_color: "d4894c",
       background_color: isDark ? "1c1917" : "ffffff",
       text_color: isDark ? "faf7f2" : "1c1917",
@@ -51,11 +53,8 @@ export function CalendlyEmbed({ url }: Props) {
           Send a message above and we&rsquo;ll reply with times — or email
           directly and we&rsquo;ll find a slot the same day.
         </p>
-        <a
-          href="mailto:hello@makershot.tech?subject=Intro%20call"
-          className="ms-cta w-fit"
-        >
-          hello@makershot.tech
+        <a href={getBrandMailto("Intro call")} className="ms-cta w-fit">
+          {brand.email}
           <ExternalLink className="size-3.5" aria-hidden />
         </a>
       </div>
@@ -74,7 +73,7 @@ export function CalendlyEmbed({ url }: Props) {
       ) : (
         <iframe
           src={src}
-          title="Book a 15-minute intro call with Makershot"
+          title={`Book a 15-minute intro call with ${brand.name}`}
           loading="lazy"
           className="block h-[min(720px,75dvh)] min-h-[420px] w-full border-0"
         />

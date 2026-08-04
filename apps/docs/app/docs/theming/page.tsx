@@ -59,6 +59,33 @@ export default function ThemingPage() {
       </section>
 
       <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">Site brand</h2>
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          Chrome strings (name, domain, email, site URL) come from{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            getBrand()
+          </code>{" "}
+          in{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/lib/brand
+          </code>
+          . Defaults are AtroUI; override with env:
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`NEXT_PUBLIC_SITE_NAME=AtroUI\nNEXT_PUBLIC_SITE_DOMAIN=atroui.com\nNEXT_PUBLIC_SITE_EMAIL=hello@atroui.com\nNEXT_PUBLIC_SITE_URL=https://atroui.com`}
+        />
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          Demo modules under{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/content/*
+          </code>{" "}
+          may still show Makershot studio copy — swap those imports when
+          shipping your own site.
+        </p>
+      </section>
+
+      <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Dark mode</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Prefer the package{" "}
