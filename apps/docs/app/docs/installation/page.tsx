@@ -54,7 +54,7 @@ export default function InstallationPage() {
         </p>
         <CodeBlock
           language="tsx"
-          code={`import { Button, ThemeProvider } from "@meridian/ui"\nimport "@meridian/ui/globals.css"\n\nexport function Example({ children }: { children: React.ReactNode }) {\n  return (\n    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>\n      <Button>Click me</Button>\n      {children}\n    </ThemeProvider>\n  )\n}`}
+          code={`import { Button, ThemeProvider } from "@meridian/ui"\nimport "@meridian/ui/globals.css"\n\nexport function Example({ children }: { children: React.ReactNode }) {\n  return (\n    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n      <Button>Click me</Button>\n      {children}\n    </ThemeProvider>\n  )\n}`}
         />
         <p className="text-[13px] text-muted-foreground">
           Tailwind v4 is configured inside{" "}

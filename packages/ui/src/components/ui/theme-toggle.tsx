@@ -63,14 +63,18 @@ export function ThemeToggle({ className }: { className?: string }) {
       >
         {OPTIONS.map(({ id, label, Icon }) => {
           const isActive = current === id;
+          const title =
+            id === "system" && mounted && theme === "system" && resolvedTheme
+              ? `System (${resolvedTheme})`
+              : label;
           return (
             <button
               key={id}
               type="button"
               role="radio"
               aria-checked={isActive}
-              aria-label={label}
-              title={label}
+              aria-label={title}
+              title={title}
               onClick={() => setTheme(id)}
               className={cn(
                 "motion-safe-transition inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",

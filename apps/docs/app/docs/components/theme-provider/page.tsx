@@ -22,7 +22,7 @@ export default function Page() {
       }
       fullBleed={false}
       installation='import { ThemeProvider } from "@meridian/ui"'
-      usage='Wrap the app root once. Docs already mounts it — the preview toggle flips the live site theme.'
+      usage='Wrap the app root once with enableSystem so ThemeToggle’s System option follows prefers-color-scheme. Docs already mounts it this way.'
     />
   )
 }
