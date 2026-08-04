@@ -36,6 +36,19 @@ Copy [`.env.example`](.env.example) to `apps/docs/.env.local` (or your host app)
 | `pnpm typecheck` | `tsc --noEmit` across the workspace |
 | `pnpm test` | Vitest (package helpers) |
 | `pnpm lint` | Lint task (placeholder until ESLint is wired) |
+| `pnpm changeset` | Add a changeset (version bump note for `atroui`) |
+| `pnpm version-packages` | Apply changesets → bump version + CHANGELOG |
+| `pnpm release` | Publish `atroui` to npm (`changeset publish`) |
+
+## Releases (Changesets)
+
+Versioning and changelog for **`atroui`** are automated:
+
+1. Contributors run `pnpm changeset` on PRs that change `packages/ui`.
+2. After merge to `master`, [`.github/workflows/release.yml`](.github/workflows/release.yml) opens a **Version Packages** PR.
+3. Merging that PR publishes to npm and updates [`packages/ui/CHANGELOG.md`](packages/ui/CHANGELOG.md) (shown at `/docs/changelog`).
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Add GitHub secret `NPM_TOKEN` (or configure npm Trusted Publishing for `release.yml`) before the first publish.
 
 ## Install (when published)
 
