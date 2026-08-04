@@ -7,7 +7,7 @@ type StaggerProps = HTMLMotionProps<"div"> & {
   delay?: number;
   stagger?: number;
   once?: boolean;
-  /** Docs / Storybook: play on mount instead of waiting for scroll. */
+  /** Docs: play on mount instead of waiting for scroll. */
   preview?: boolean;
 };
 

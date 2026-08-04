@@ -5,8 +5,6 @@
     "dev": "turbo run dev --filter=@meridian/docs",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "storybook": "pnpm --filter @meridian/ui storybook",
-    "build-storybook": "pnpm --filter @meridian/ui build-storybook",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules"
   },

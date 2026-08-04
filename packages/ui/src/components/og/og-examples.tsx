@@ -101,7 +101,7 @@ export function OgExamples({
   preview = false,
 }: {
   className?: string;
-  /** Docs / Storybook: skip scroll-reveal so rows stay visible in a canvas. */
+  /** Docs: skip scroll-reveal so rows stay visible in a canvas. */
   preview?: boolean;
 }) {
   return (

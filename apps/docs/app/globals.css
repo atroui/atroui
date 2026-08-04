@@ -3,5 +3,5 @@ html {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--brand) 28%, transparent);
+  background: color-mix(in oklab, var(--color-brand) 28%, transparent);
 }

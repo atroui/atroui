@@ -53,7 +53,7 @@ const DISMISS_KEY = "ms_cta_dismissed";
 
 type ContextualCTAProps = {
   /**
-   * Docs / Storybook only: skip scroll + session dismiss gating and render
+   * Docs only: skip scroll + session dismiss gating and render
    * inline so the chrome is visible inside a preview canvas.
    */
   preview?: boolean;

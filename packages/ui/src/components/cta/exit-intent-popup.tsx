@@ -27,7 +27,7 @@ function markDismissed() {
 
 type ExitIntentPopupProps = {
   /**
-   * Docs / Storybook only: open immediately and render inline so the
+   * Docs only: open immediately and render inline so the
    * dialog is visible inside a preview canvas (no exit-intent trigger).
    */
   preview?: boolean;

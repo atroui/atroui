@@ -8,14 +8,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["@meridian/ui", "lucide-react"],
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "i.pravatar.cc",
-      },
-    ],
-  },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,

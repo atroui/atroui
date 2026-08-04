@@ -130,8 +130,8 @@ export function LandingHero() {
                 What you&rsquo;ll find
               </h2>
               <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                Production UI extracted from real apps — primitives, marketing
-                sections, and host-bound tools.
+                Production UI extracted from real apps — primitives, sections,
+                tools, and headless modules.
               </p>
             </div>
 
@@ -149,8 +149,13 @@ export function LandingHero() {
                 },
                 {
                   title: "Tools",
-                  body: "OG workspace, planner, scope — need host APIs to run live.",
+                  body: "OG workspace, thumbnail, scope — often need host APIs.",
                   href: "/docs/components/og-og-examples",
+                },
+                {
+                  title: "Headless",
+                  body: "Analytics, JSON-LD, reviews — no visible UI.",
+                  href: "/docs/components/seo-json-ld",
                 },
               ].map((item) => (
                 <li key={item.title}>

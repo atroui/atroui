@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Github } from "lucide-react"
+import { ThemeToggle } from "@meridian/ui"
 import { cn } from "@/lib/utils"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
@@ -15,7 +16,7 @@ export function SiteHeader() {
 
         <Link href="/" className="flex items-center gap-2.5" aria-label="Meridian home">
           <LogoMark />
-          <span className="text-[15px] font-semibold tracking-tight text-foreground">
+          <span className="ds-display text-[19px] leading-none tracking-[-0.01em] text-foreground">
             Meridian
           </span>
         </Link>
@@ -29,7 +30,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
             </Link>
@@ -40,19 +41,20 @@ export function SiteHeader() {
           <div className="hidden sm:block">
             <CommandMenu />
           </div>
+          <ThemeToggle />
           <a
-            href="https://github.com"
+            href="https://github.com/KOUSTAV2409"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border-subtle bg-background text-foreground transition-colors hover:bg-muted"
+            className="inline-flex size-9 items-center justify-center border border-border-subtle bg-background text-foreground transition-colors hover:bg-muted"
           >
-            <Github className="h-4 w-4" />
+            <Github className="size-4" />
           </a>
           <Link
             href="/docs/installation"
             className={cn(
-              "hidden h-9 items-center rounded-md bg-foreground px-3.5 text-[13px] font-medium text-background transition-colors hover:bg-foreground/90 sm:inline-flex"
+              "ms-cta hidden h-9 px-3.5 text-sm sm:inline-flex"
             )}
           >
             Get started

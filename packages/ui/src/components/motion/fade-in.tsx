@@ -9,7 +9,7 @@ type FadeInProps = HTMLMotionProps<"div"> & {
   duration?: number;
   once?: boolean;
   /**
-   * Docs / Storybook: animate on mount instead of scroll-reveal so the
+   * Docs: animate on mount instead of scroll-reveal so the
    * content is never stuck at opacity 0 inside a preview canvas.
    */
   preview?: boolean;

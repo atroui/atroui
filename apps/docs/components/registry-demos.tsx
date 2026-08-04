@@ -87,10 +87,6 @@ export function DemoHomeWork() {
   return <HomeWork />
 }
 
-export function DemoHeroAiValueProposition() {
-  return <HeroAiValueProposition />
-}
-
 export function DemoPricingOverview() {
   return <PricingOverview />
 }

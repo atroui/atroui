@@ -92,7 +92,14 @@ export function CommandMenu() {
                   >
                     <span>{item.title}</span>
                     {item.badge ? (
-                      <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+                      <span
+                        className={cn(
+                          "shrink-0 text-[10px] font-semibold uppercase tracking-[0.06em]",
+                          item.badge === "host-api"
+                            ? "text-brand"
+                            : "text-muted-foreground"
+                        )}
+                      >
                         {badgeLabel[item.badge]}
                       </span>
                     ) : null}

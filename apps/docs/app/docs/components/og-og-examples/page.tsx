@@ -12,7 +12,7 @@ export default function Page() {
       title='Og Examples'
       description='Gallery of OG style examples with sample 1200×630 thumbnails and remix links.'
       preview={<DemoOgExamples />}
-      code={'import { OgExamples } from "@meridian/ui"\n\n<OgExamples />\n\n{/* Docs / Storybook */}\n<OgExamples preview />'}
+      code={'import { OgExamples } from "@meridian/ui"\n\n<OgExamples />\n\n{/* Docs */}\n<OgExamples preview />'}
       fullBleed={true}
       installation='import { OgExamples } from "@meridian/ui"'
       props={[

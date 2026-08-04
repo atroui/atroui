@@ -98,7 +98,6 @@ export const navigation: NavSection[] = [
       {
         title: "Project Planner",
         href: "/docs/components/planner-project-planner",
-        badge: "host-api",
       },
       {
         title: "Scope Chat",
@@ -108,7 +107,6 @@ export const navigation: NavSection[] = [
       {
         title: "Live Dashboard",
         href: "/docs/components/studio-live-dashboard",
-        badge: "host-api",
       },
     ],
   },

@@ -68,7 +68,7 @@ Makershot / iamk links inside demos are intentional portfolio branding.
 | `pnpm build` | Build all packages/apps |
 | `pnpm typecheck` | Type-check the monorepo |
 
-Storybook scaffolding exists under `packages/ui` but has no stories yet — use the docs site as the playground.
+The docs site is the playground — Preview / Code tabs on every component page.
 
 ## Theming
 
