@@ -219,7 +219,7 @@ export function DemoFounderAvatar() {
         <FounderAvatar size="lg" />
       </div>
       <div className="text-left">
-        <p className="text-sm font-medium text-foreground">Koustav</p>
+        <p className="text-sm font-medium text-foreground">Founder avatar</p>
         <p className="text-xs text-muted-foreground">
           Needs{" "}
           <code className="font-mono text-[11px] text-foreground">

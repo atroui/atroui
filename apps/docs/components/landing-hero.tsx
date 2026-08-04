@@ -49,8 +49,8 @@ export function LandingHero() {
                 <span className="ds-gradient-text">find</span>
               </h2>
               <p className="mt-4 max-w-sm text-base font-light leading-relaxed text-neutral-300">
-                Production UI packaged as a catalog — primitives, sections,
-                tools, and headless modules.
+                A React / Next.js component library and dark-first design
+                system — primitives, sections, tools, and headless SEO modules.
               </p>
             </div>
 
@@ -77,19 +77,38 @@ export function LandingHero() {
 
       <section className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-8 py-16 sm:flex-row sm:items-end sm:justify-between md:px-16 lg:px-24 lg:py-20">
-          <div className="max-w-md">
-            <p className="ms-stamp">Studio</p>
+          <div className="max-w-lg">
+            <p className="ms-stamp">atroui.com</p>
             <h2 className="ds-display mt-5 text-3xl sm:text-4xl">
-              Built by{" "}
-              <span className="ds-gradient-text">Koustav</span>
+              The home of{" "}
+              <span className="ds-gradient-text">AtroUI</span>
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-neutral-400">
-              Install{" "}
+              AtroUI is the React component catalog at{" "}
+              <span className="text-neutral-200">atroui.com</span> — install via{" "}
               <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
                 npm i atroui
               </code>
-              . Chrome is AtroUI; section demos may still show studio portfolio
-              copy — override with props or your own content.
+              . Dark-first tokens, production sections, and docs for Next.js
+              apps. Related work lives on{" "}
+              <a
+                href="https://www.iamk.xyz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+              >
+                iamk.xyz
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://www.makershot.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+              >
+                makershot.tech
+              </a>
+              .
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -104,10 +123,45 @@ export function LandingHero() {
       </section>
 
       <footer className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-8 py-6 md:px-16 lg:px-24">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-8 py-6 sm:flex-row sm:items-center sm:justify-between md:px-16 lg:px-24">
           <p className="text-xs text-neutral-500">
-            © {new Date().getFullYear()} AtroUI — component catalog
+            © {new Date().getFullYear()} AtroUI · atroui.com — React component
+            library
           </p>
+          <div className="flex flex-wrap gap-4 text-xs text-neutral-500">
+            <a
+              href="https://www.npmjs.com/package/atroui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-neutral-300"
+            >
+              npm
+            </a>
+            <a
+              href="https://github.com/atroui/atroui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-neutral-300"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.iamk.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-neutral-300"
+            >
+              iamk.xyz
+            </a>
+            <a
+              href="https://www.makershot.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-neutral-300"
+            >
+              makershot.tech
+            </a>
+          </div>
         </div>
       </footer>
     </div>

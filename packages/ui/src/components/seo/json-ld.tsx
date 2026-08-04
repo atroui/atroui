@@ -35,14 +35,11 @@ export function SiteGraphJsonLd({ name }: OrgJsonLdProps = {}) {
         },
         sameAs: [
           "https://www.iamk.xyz",
+          "https://www.makershot.tech",
           "https://x.com/iamk",
-          "https://github.com/KOUSTAV2409",
+          "https://github.com/atroui/atroui",
+          "https://www.npmjs.com/package/atroui",
         ],
-        founder: {
-          "@type": "Person",
-          name: "Koustav",
-          url: "https://www.iamk.xyz",
-        },
         description: brand.tagline,
       },
       {
@@ -71,7 +68,7 @@ export function ArticleJsonLd({
   slug,
   date,
   dateModified,
-  author = "Koustav",
+  author,
   image,
 }: {
   title: string;
@@ -79,11 +76,13 @@ export function ArticleJsonLd({
   slug: string;
   date: string;
   dateModified?: string;
+  /** Defaults to brand organization name (not a personal byline). */
   author?: string;
   image?: string;
 }) {
   const siteUrl = getSiteUrl();
   const brandName = getBrand().name;
+  const authorName = author ?? brandName;
   const pageUrl = `${siteUrl}/journal/${slug}`;
   const imageUrl =
     image?.startsWith("http")
@@ -105,9 +104,9 @@ export function ArticleJsonLd({
       "@id": pageUrl,
     },
     author: {
-      "@type": "Person",
-      name: author,
-      url: "https://www.iamk.xyz",
+      "@type": "Organization",
+      name: authorName,
+      url: siteUrl,
     },
     publisher: {
       "@type": "Organization",
@@ -287,6 +286,46 @@ export function ThumbnailGeneratorJsonLd() {
     provider: {
       "@type": "Organization",
       name: brandName,
+      url: siteUrl,
+    },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+/**
+ * SoftwareApplication + download link for the published `atroui` npm package.
+ * Mount on the AtroUI marketing homepage for entity clarity.
+ */
+export function SoftwareAppJsonLd() {
+  const siteUrl = getSiteUrl();
+  const brand = getBrand();
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: brand.name,
+    alternateName: ["atroui", brand.domain],
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    url: siteUrl,
+    downloadUrl: "https://www.npmjs.com/package/atroui",
+    codeRepository: "https://github.com/atroui/atroui",
+    description: brand.tagline,
+    keywords:
+      "AtroUI, React component library, Next.js design system, dark UI, Tailwind",
+    provider: {
+      "@type": "Organization",
+      name: brand.name,
       url: siteUrl,
     },
   };

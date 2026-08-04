@@ -15,12 +15,14 @@ export default function DocsIntroPage() {
           Introduction
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          AtroUI is a personal component catalog — production UI packaged as{" "}
+          AtroUI is the React / Next.js component library at{" "}
+          <strong className="font-medium text-foreground">atroui.com</strong> —
+          production UI packaged as{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui
           </code>
-          . The design system is dark-first: black canvas, electric blue brand,
-          glass surfaces, and rounded CTAs.
+          . Dark-first design system: black canvas, electric blue brand, glass
+          surfaces, and rounded CTAs.
         </p>
       </header>
 

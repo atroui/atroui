@@ -20,7 +20,8 @@ export const DEFAULT_BRAND: Brand = {
   domain: "atroui.com",
   email: "hello@atroui.com",
   siteUrl: "https://atroui.com",
-  tagline: "Dark-first component catalog for production UI",
+  tagline:
+    "Dark-first React and Next.js component library for production UI",
 };
 
 function readEnv(key: string): string | undefined {
