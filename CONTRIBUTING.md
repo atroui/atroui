@@ -42,14 +42,18 @@ Release Action opens/updates “Version Packages” PR
 changeset publish → npm (atroui@x.y.z)
 ```
 
-### One-time npm setup
+### One-time secrets setup
 
-Pick one:
+**npm publish — pick one:**
 
-1. **NPM token (simple):** create an Automation token on npmjs.com → GitHub repo **Settings → Secrets → Actions** → `NPM_TOKEN`.
-2. **Trusted Publishing (OIDC):** on the `atroui` package settings on npmjs.com, trust workflow `release.yml` for this repo. Then the token secret is optional.
+1. **NPM token:** Automation token on npmjs.com → repo **Settings → Secrets → Actions** → `NPM_TOKEN`.
+2. **Trusted Publishing (OIDC):** on the `atroui` package on npmjs.com, trust workflow `release.yml`.
 
-Also enable: **Settings → Actions → General → Allow GitHub Actions to create and approve pull requests**.
+**Version Packages PRs — required if the org disables “Allow GitHub Actions to create and approve pull requests”:**
+
+1. Create a GitHub **Personal Access Token** (classic: `repo` scope, or fine-grained: Contents + Pull requests on this repo).
+2. Add it as repo secret **`GH_PAT`**.
+3. The Release workflow uses `GH_PAT` instead of the default `GITHUB_TOKEN` to open the version PR.
 
 ## Package layout
 
