@@ -29,8 +29,8 @@ const chipIdle =
   "border-border-subtle text-muted-foreground hover:border-border hover:text-foreground";
 
 export function ArPortfolio() {
-  const [active, setActive] = useState(MODELS[0].id);
-  const model = MODELS.find((m) => m.id === active)!;
+  const [active, setActive] = useState(MODELS[0]!.id);
+  const model = MODELS.find((m) => m.id === active) ?? MODELS[0]!;
   const [scriptReady, setScriptReady] = useState(false);
 
   return (
@@ -46,7 +46,9 @@ export function ArPortfolio() {
         <p className="ms-stamp">AR portfolio preview</p>
         <p className="mt-3 max-w-lg text-sm text-muted-foreground">
           On supported devices, tap &ldquo;View in AR&rdquo; to place a project preview in your
-          space. Demo models — real client work available on request.
+          space. Demo models are placeholders — replace the hardcoded{" "}
+          <code className="font-mono text-[11px] text-foreground">MODELS</code>{" "}
+          list for real client work.
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
@@ -57,6 +59,7 @@ export function ArPortfolio() {
               onClick={() => setActive(m.id)}
               className={cn(
                 chipBase,
+                "rounded-full",
                 active === m.id ? chipActive : chipIdle
               )}
             >
@@ -65,7 +68,7 @@ export function ArPortfolio() {
           ))}
         </div>
 
-        <div className="mt-6 overflow-hidden border border-border-subtle bg-background">
+        <div className="mt-6 overflow-hidden rounded-2xl border border-border-subtle bg-card/40">
           {scriptReady ? (
             createElement("model-viewer", {
               src: model.src,

@@ -99,8 +99,11 @@ export function DemoSiteHeader() {
   return (
     <div className="w-full bg-background">
       <SiteHeader />
-      <div className="border-x border-border-subtle mx-auto max-w-7xl px-6 py-10 text-sm text-muted-foreground">
-        Sticky editorial header — logo, primary nav, theme toggle, and hire CTA.
+      <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 text-sm text-muted-foreground">
+        Sticky header — logo, Makershot nav routes, theme toggle, and Hire CTA.
+        Links point at host paths like{" "}
+        <code className="font-mono text-xs text-foreground">/work</code> and{" "}
+        <code className="font-mono text-xs text-foreground">/contact</code>.
       </div>
     </div>
   )
@@ -162,19 +165,33 @@ export function DemoThemeToggle() {
 
 export function DemoLogo() {
   return (
-    <div className="flex flex-col items-center gap-6">
-      <LogoMark className="size-10" />
+    <div className="flex flex-col items-center gap-6 text-center">
+      <LogoMark className="size-10" title="Makershot" />
       <LogoWordmark className="text-xl" />
+      <p className="max-w-xs text-xs text-muted-foreground">
+        Mark title is overridable; wordmark text is hardcoded Makershot.
+      </p>
     </div>
   )
 }
 
 export function DemoFounderAvatar() {
   return (
-    <div className="flex items-center gap-4">
-      <FounderAvatar size="sm" />
-      <FounderAvatar size="md" />
-      <FounderAvatar size="lg" />
+    <div className="flex items-center gap-5">
+      <div className="flex items-center gap-3">
+        <FounderAvatar size="sm" />
+        <FounderAvatar size="md" />
+        <FounderAvatar size="lg" />
+      </div>
+      <div className="text-left">
+        <p className="text-sm font-medium text-foreground">Koustav</p>
+        <p className="text-xs text-muted-foreground">
+          Needs{" "}
+          <code className="font-mono text-[11px] text-foreground">
+            /images/founder-portrait.png
+          </code>
+        </p>
+      </div>
     </div>
   )
 }
@@ -544,11 +561,19 @@ export function DemoContactForm() {
 }
 
 export function DemoCalendlyEmbed() {
-  return <CalendlyEmbed />
+  return (
+    <div className="w-full max-w-lg overflow-hidden rounded-2xl border border-border-subtle bg-card/40">
+      <CalendlyEmbed />
+    </div>
+  )
 }
 
 export function DemoArPortfolio() {
-  return <ArPortfolio />
+  return (
+    <div className="w-full max-h-[640px] overflow-auto rounded-2xl border border-border-subtle bg-background p-5 sm:p-8">
+      <ArPortfolio />
+    </div>
+  )
 }
 
 export function DemoScopeChat() {
@@ -588,23 +613,46 @@ export function DemoThumbnailWorkspace() {
 }
 
 export function DemoVisualCaseStudy() {
-  // Inline minimal study so we don't depend on content module resolution in docs
   const study = {
     id: "demo",
-    title: "Demo case study",
-    client: { name: "Acme", industry: "SaaS" },
-    projectType: "MVP",
-    challenge: "Ship a polished v1 without a design team.",
-    solution: "Component-driven UI with shared tokens and reusable sections.",
-    results: [{ metric: "Time", value: "7 days" }],
-    technologies: ["Next.js", "TypeScript"],
-    timeline: "1 week",
+    title: "B2B SaaS MVP shipped in 7 days",
+    client: { name: "Stealth SaaS founder", industry: "Developer tools" },
+    projectType: "MVP Sprint",
+    challenge:
+      "A solo founder had validated demand through waitlist signups but needed a working product — auth, billing, and core workflow — before a deadline.",
+    solution:
+      "A 7-day MVP sprint: one core workflow, auth, checkout, and a Postgres-backed dashboard with daily async updates and a live preview.",
+    results: [
+      {
+        metric: "Time to launch",
+        value: "7 days",
+        description: "From kickoff to production deploy",
+      },
+      {
+        metric: "Waitlist conversion",
+        value: "34%",
+        description: "Signups who activated in week one",
+      },
+      {
+        metric: "Lighthouse",
+        value: "96",
+        description: "Performance on launch day",
+      },
+    ],
+    technologies: ["Next.js", "TypeScript", "Clerk", "Stripe", "Supabase"],
+    timeline: "7 days",
     budget: "Sprint",
+    testimonial: "We went from waitlist to paying users in a week.",
+    testimonialAuthor: "Founder",
     image: "/og",
     mockupVariant: "saas" as const,
     relatedServices: [],
   }
-  return <VisualCaseStudy study={study as never} />
+  return (
+    <div className="w-full max-h-[720px] overflow-auto rounded-2xl border border-border-subtle">
+      <VisualCaseStudy study={study as never} />
+    </div>
+  )
 }
 
 export function DemoTimelineAnimation() {

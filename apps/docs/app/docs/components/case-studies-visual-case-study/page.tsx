@@ -3,18 +3,19 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoVisualCaseStudy } from "@/components/registry-demos"
 
 export const metadata: Metadata = {
-  title: 'Visual Case Study',
+  title: "Visual Case Study",
 }
 
 export default function Page() {
   return (
     <ComponentDoc
-      title='Visual Case Study'
-      description='Case study layout with metrics and mockup.'
+      title="Visual Case Study"
+      description="Self-contained case-study band — meta, before/after mockup, challenge/solution, metrics, and stack."
       preview={<DemoVisualCaseStudy />}
       code={'import { VisualCaseStudy } from "@meridian/ui"\n\n<VisualCaseStudy study={study} />'}
       fullBleed={true}
       installation='import { VisualCaseStudy } from "@meridian/ui"'
+      usage="Pass a CaseStudy object (see packages/ui content). mockupVariant drives the BeforeAfterSlider; challenge, solution, results, and technologies render in the narrative + metrics columns."
     />
   )
 }
