@@ -309,7 +309,11 @@ export function DemoOgLivePreview() {
 }
 
 export function DemoOgExamples() {
-  return <OgExamples className="w-full" />
+  return (
+    <div className="w-full border-y border-border-subtle bg-background">
+      <OgExamples preview className="w-full" />
+    </div>
+  )
 }
 
 export function DemoOgWorkspace() {

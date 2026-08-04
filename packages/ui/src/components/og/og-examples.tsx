@@ -96,7 +96,14 @@ export const EXAMPLES: OgExample[] = [
 /**
  * Editorial example index — thumbnail + remixed links, no card grid.
  */
-export function OgExamples({ className }: { className?: string }) {
+export function OgExamples({
+  className,
+  preview = false,
+}: {
+  className?: string;
+  /** Docs / Storybook: skip scroll-reveal so rows stay visible in a canvas. */
+  preview?: boolean;
+}) {
   return (
     <ul className={cn("divide-y divide-border-subtle", className)}>
       {EXAMPLES.map((ex, i) => {
@@ -106,7 +113,7 @@ export function OgExamples({ className }: { className?: string }) {
 
         return (
           <li key={ex.slug}>
-            <FadeIn delay={0.02 * i}>
+            <FadeIn delay={preview ? 0 : 0.02 * i} preview={preview}>
               <div
                 className={cn(
                   "grid grid-cols-1 gap-4 px-6 py-5 transition-colors md:grid-cols-12 md:items-center md:gap-4 md:px-8 md:py-6",
