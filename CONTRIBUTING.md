@@ -51,9 +51,12 @@ changeset publish → npm (atroui@x.y.z)
 
 **Version Packages PRs — required if the org disables “Allow GitHub Actions to create and approve pull requests”:**
 
-1. Create a GitHub **Personal Access Token** (classic: `repo` scope, or fine-grained: Contents + Pull requests on this repo).
-2. Add it as repo secret **`GH_PAT`**.
-3. The Release workflow uses `GH_PAT` instead of the default `GITHUB_TOKEN` to open the version PR.
+1. Create a GitHub **Personal Access Token** as a user who can open PRs on this repo:
+   - **Fine-grained (preferred):** resource `atroui/atroui` → **Pull requests: Read and write** (Contents not required for the PR-only fallback).
+   - **Classic:** `repo` scope.
+2. If the org uses SAML SSO: on [token settings](https://github.com/settings/tokens) click **Configure SSO** → **Authorize** for the `atroui` org.
+3. Add it as repo secret **`GH_PAT`**.
+4. Release workflow: `GITHUB_TOKEN` pushes the version branch; `GH_PAT` opens the PR if Actions can’t.
 
 ## Package layout
 
