@@ -25,17 +25,26 @@ function markDismissed() {
   sessionStorage.setItem(SESSION_KEY, "1");
 }
 
-export function ExitIntentPopup() {
-  const [open, setOpen] = useState(false);
+type ExitIntentPopupProps = {
+  /**
+   * Docs / Storybook only: open immediately and render inline so the
+   * dialog is visible inside a preview canvas (no exit-intent trigger).
+   */
+  preview?: boolean;
+};
+
+export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
+  const [open, setOpen] = useState(preview);
   const dialogRef = useRef<HTMLDivElement>(null);
   const triggered = useRef(false);
 
   const close = useCallback(() => {
     setOpen(false);
-    markDismissed();
-  }, []);
+    if (!preview) markDismissed();
+  }, [preview]);
 
   useEffect(() => {
+    if (preview) return;
     if (!shouldShowPopup()) return;
 
     const onMouseLeave = (e: MouseEvent) => {
@@ -50,10 +59,10 @@ export function ExitIntentPopup() {
     document.documentElement.addEventListener("mouseleave", onMouseLeave);
     return () =>
       document.documentElement.removeEventListener("mouseleave", onMouseLeave);
-  }, []);
+  }, [preview]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open || preview) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
@@ -84,25 +93,36 @@ export function ExitIntentPopup() {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("keydown", trapFocus);
     };
-  }, [open, close]);
+  }, [open, close, preview]);
 
   if (!open) return null;
 
   return (
     <div
-      className="fixed inset-0 z-90 flex items-center justify-center p-4"
+      className={cn(
+        preview
+          ? "relative flex w-full items-center justify-center p-2"
+          : "fixed inset-0 z-90 flex items-center justify-center p-4",
+      )}
       role="presentation"
     >
-      <button
-        type="button"
-        aria-label="Close dialog"
-        className="absolute inset-0 bg-background/70 backdrop-blur-sm"
-        onClick={close}
-      />
+      {!preview ? (
+        <button
+          type="button"
+          aria-label="Close dialog"
+          className="absolute inset-0 bg-background/70 backdrop-blur-sm"
+          onClick={close}
+        />
+      ) : (
+        <div
+          aria-hidden
+          className="absolute inset-0 rounded-lg bg-muted/40"
+        />
+      )}
       <div
         ref={dialogRef}
         role="dialog"
-        aria-modal="true"
+        aria-modal={!preview}
         aria-labelledby="exit-intent-title"
         tabIndex={-1}
         className={cn(
@@ -133,6 +153,7 @@ export function ExitIntentPopup() {
           <Link
             href="/scope"
             onClick={() => {
+              if (preview) return;
               localStorage.setItem(STORAGE_KEY, "converted");
               sessionStorage.setItem(SESSION_KEY, "1");
             }}

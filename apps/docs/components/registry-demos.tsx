@@ -307,11 +307,8 @@ export function DemoContextualCta() {
 
 export function DemoExitIntentPopup() {
   return (
-    <div className="relative min-h-[200px] w-full">
-      <p className="mb-4 text-center text-sm text-muted-foreground">
-        Exit-intent popup mounts globally — move the cursor out of the viewport to trigger it.
-      </p>
-      <ExitIntentPopup />
+    <div className="w-full max-w-lg">
+      <ExitIntentPopup preview />
     </div>
   )
 }

@@ -10,12 +10,12 @@ export default function Page() {
   return (
     <ComponentDoc
       title='Exit Intent Popup'
-      description='Popup triggered on exit intent.'
+      description='Exit-intent dialog (opens when the cursor leaves the top of the viewport). Preview below forces it open inline.'
       preview={<DemoExitIntentPopup />}
-      code={'import { ExitIntentPopup } from "@meridian/ui"\n\n<ExitIntentPopup />'}
+      code={'import { ExitIntentPopup } from "@meridian/ui"\n\n{/* Production: mount near root; triggers on exit intent */}\n<ExitIntentPopup />\n\n{/* Docs / Storybook */}\n<ExitIntentPopup preview />'}
       fullBleed={false}
       installation='import { ExitIntentPopup } from "@meridian/ui"'
-      usage='Mount once near the root.'
+      usage='Mount once near the root on live pages. Use preview in docs/Storybook.'
     />
   )
 }
