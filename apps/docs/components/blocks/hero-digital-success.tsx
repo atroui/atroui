@@ -21,7 +21,7 @@ const HeroShaderBackground = dynamic(
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 70% 40%, rgba(11,123,255,0.35), transparent 55%), #000",
+            "radial-gradient(ellipse 65% 55% at 72% 38%, rgba(11,123,255,0.22), transparent 58%), #000",
         }}
       />
     ),
