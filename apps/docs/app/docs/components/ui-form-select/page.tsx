@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoFormSelect />}
       code={'import { FormSelect } from "atroui"\n\n<FormSelect value={v} onValueChange={setV} options={[…]} />'}
       fullBleed={false}
-      installation='import { FormSelect } from "atroui"'
       props={[
     { name: 'value', type: 'string', default: '-', description: 'Controlled value.' },
     { name: 'onValueChange', type: '(value: string) => void', default: '-', description: 'Change handler.' },

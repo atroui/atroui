@@ -44,16 +44,14 @@ export function LandingNav() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a
-              href="https://www.npmjs.com/package/atroui"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/docs/registry"
               className="bam-link hidden text-sm sm:inline"
             >
-              npm
-            </a>
-            <Link href="/docs/components" className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex">
-              Browse
+              Registry
+            </Link>
+            <Link href="/docs/registry" className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex">
+              Own the UI
             </Link>
             <button
               type="button"
@@ -95,11 +93,11 @@ export function LandingNav() {
               ))}
               <div className="ms-shell-pad py-4">
                 <Link
-                  href="/docs/components"
+                  href="/docs/registry"
                   onClick={() => setOpen(false)}
                   className="ms-cta w-full justify-center"
                 >
-                  Browse catalog
+                  Own the UI
                 </Link>
               </div>
             </nav>

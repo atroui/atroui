@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoTimelineAnimation />}
       code={'import { TimelineAnimation } from "atroui"\n\n<TimelineAnimation animationNum={0} timelineRef={ref}>…</TimelineAnimation>'}
       fullBleed={false}
-      installation='import { TimelineAnimation } from "atroui"'
     />
   )
 }

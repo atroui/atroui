@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoOgLivePreview />}
       code={'import { OgLivePreview } from "atroui"\n\n<OgLivePreview title="…" subtitle="…" styleKey="paperQuote" />'}
       fullBleed={false}
-      installation='import { OgLivePreview } from "atroui"'
       props={[
     { name: 'title', type: 'string', default: '-', description: 'Card title.' },
     { name: 'subtitle', type: 'string', default: '-', description: 'Card subtitle.' },

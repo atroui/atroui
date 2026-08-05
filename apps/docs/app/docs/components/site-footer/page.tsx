@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoSiteFooter />}
       code={'import { SiteFooter } from "atroui"\n\n<SiteFooter />'}
       fullBleed={true}
-      installation='import { SiteFooter } from "atroui"'
     />
   )
 }

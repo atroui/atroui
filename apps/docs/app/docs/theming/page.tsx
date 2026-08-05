@@ -92,23 +92,29 @@ export default function ThemingPage() {
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Dark mode</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Prefer the package{" "}
+          Use{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            ThemeProvider
+            next-themes
           </code>{" "}
           with{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            enableSystem
+            attribute=&quot;class&quot;
           </code>
-          . Pair with{" "}
+          . Add the toggle from the registry:{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            ThemeToggle
+            npx shadcn add @atroui/theme-toggle
           </code>
           .
         </p>
         <CodeBlock
           language="tsx"
-          code={`import { ThemeProvider, ThemeToggle } from "atroui"\n\n<ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n  <ThemeToggle />\n  {children}\n</ThemeProvider>`}
+          code={`import { ThemeProvider } from "next-themes"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
+
+<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  <ThemeToggle />
+  {children}
+</ThemeProvider>`}
         />
       </section>
     </article>

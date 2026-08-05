@@ -208,24 +208,16 @@ npx shadcn@latest add @atroui/contact-form`}
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          npm package vs registry
+          Next steps
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            npm i atroui
-          </code>{" "}
-          is still useful for tokens (
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/globals.css
-          </code>
-          ), ThemeProvider, and tools you do not need to fork. Prefer the
-          registry when you want to own and edit a section&apos;s source. See{" "}
-          <Link href="/docs/compare" className="bam-link">
-            Compare
-          </Link>{" "}
-          and{" "}
+          Step-by-step setup lives on{" "}
           <Link href="/docs/installation" className="bam-link">
             Installation
+          </Link>
+          . How AtroUI sits next to other kits:{" "}
+          <Link href="/docs/compare" className="bam-link">
+            Compare
           </Link>
           .
         </p>

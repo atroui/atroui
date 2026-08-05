@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Blog",
   description:
-    "AtroUI blog: install guides, dark-first tokens, and Next.js component library essays that take you from search to npm i atroui.",
+    "AtroUI blog: shadcn registry guides, dark-first tokens, and Next.js component essays that take you from search to owning the UI.",
   path: "/blog",
 })
 
@@ -20,12 +20,12 @@ export default function BlogIndexPage() {
         </h1>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
           Guides that take you from search to install: App Router setup,
-          tokens, branding, and how AtroUI compares to copy-paste kits. Then
-          open the{" "}
-          <Link href="/docs/installation" className="bam-link">
-            docs
+          tokens, branding, and how AtroUI compares to other kits. Then open
+          the{" "}
+          <Link href="/docs/registry" className="bam-link">
+            registry
           </Link>{" "}
-          and run npm i atroui.
+          and add components with the shadcn CLI.
         </p>
 
         <ul className="mt-12 divide-y divide-border-subtle border-y border-border-subtle">
@@ -60,8 +60,8 @@ export default function BlogIndexPage() {
             Read the docs
           </Link>{" "}
           or{" "}
-          <Link href="/docs/installation" className="bam-link">
-            install AtroUI
+          <Link href="/docs/registry" className="bam-link">
+            own the UI
           </Link>
           .
         </p>

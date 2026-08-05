@@ -11,12 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="home-work"
       title='Work'
       description='Selected work section.'
       preview={<DemoHomeWork />}
       code={'import { HomeWork } from "atroui"\n\n<HomeWork />'}
       fullBleed={true}
-      installation='import { HomeWork } from "atroui"'
     />
   )
 }

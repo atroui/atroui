@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoBreadcrumbs />}
       code={'import { Breadcrumbs } from "atroui"\n\n<Breadcrumbs items={[…]} />'}
       fullBleed={false}
-      installation='import { Breadcrumbs } from "atroui"'
       props={[
     { name: 'items', type: 'BreadcrumbItem[]', default: '-', description: 'Trail items with optional href.' },
   ]}

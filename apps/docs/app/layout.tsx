@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s · AtroUI",
   },
   description:
-    "AtroUI (atroui.com) is a dark-first React and Next.js component library - production UI primitives, page sections, OG tools, and SEO helpers. Install with npm i atroui.",
+    "AtroUI (atroui.com) is a dark-first React and Next.js component catalog - production sections via the shadcn registry. Own the source in your repo.",
   applicationName: "AtroUI",
   authors: [{ name: "AtroUI", url: siteUrl }],
   creator: "AtroUI",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     "dark UI",
     "Tailwind components",
     "UI kit",
-    "npm atroui",
+    "shadcn registry",
   ],
   alternates: {
     canonical: "/",
@@ -63,13 +63,13 @@ export const metadata: Metadata = {
     siteName: "AtroUI",
     title: "AtroUI - React Component Library & Dark Design System",
     description:
-      "Dark-first React / Next.js component catalog at atroui.com. Primitives, sections, tools, and headless SEO modules. npm i atroui.",
+      "Dark-first React / Next.js component catalog at atroui.com. Add with the shadcn CLI - own the source.",
   },
   twitter: {
     card: "summary_large_image",
     title: "AtroUI - React Component Library",
     description:
-      "Dark-first React / Next.js components at atroui.com. Install with npm i atroui.",
+      "Dark-first React / Next.js components at atroui.com. Add with the shadcn CLI.",
     creator: "@iamk",
   },
   robots: {

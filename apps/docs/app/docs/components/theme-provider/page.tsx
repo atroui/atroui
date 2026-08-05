@@ -23,7 +23,6 @@ export default function Page() {
         "<ThemeToggle />"
       }
       fullBleed={false}
-      installation='import { ThemeProvider } from "atroui"'
       usage='Wrap the app root once with enableSystem so ThemeToggle’s System option follows prefers-color-scheme. Docs already mounts it this way.'
     />
   )

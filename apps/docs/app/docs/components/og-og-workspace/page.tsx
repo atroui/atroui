@@ -17,7 +17,6 @@ export default function Page() {
       preview={<DemoOgWorkspace />}
       code={'import { OgWorkspace } from "atroui"\n\n<OgWorkspace />'}
       fullBleed={true}
-      installation='import { OgWorkspace } from "atroui"'
       usage={
         <>
           AtroUI docs do not ship generation backends - bring your own{" "}

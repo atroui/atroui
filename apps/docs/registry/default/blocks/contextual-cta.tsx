@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 
 /**
  * Edit CONTENT to change the sticky scroll CTA copy and thresholds.
- * Simplified vs the npm package (no analytics experiment wiring).
+ * Simplified vs the docs package demo (no analytics experiment wiring).
  */
 const CONTENT = {
   stamp: "Free intro",

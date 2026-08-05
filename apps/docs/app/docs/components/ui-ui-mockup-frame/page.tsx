@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoUiMockupFrame />}
       code={'import { UiMockupFrame } from "atroui"\n\n<UiMockupFrame variant="saas" />'}
       fullBleed={false}
-      installation='import { UiMockupFrame } from "atroui"'
       props={[
     { name: 'variant', type: 'MockupVariant', default: "'saas'", description: 'Mockup style.' },
   ]}

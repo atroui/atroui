@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoFaqInteractivePreview />}
       code={'import { FaqInteractivePreview } from "atroui"\n\n<FaqInteractivePreview />'}
       fullBleed={true}
-      installation='import { FaqInteractivePreview } from "atroui"'
     />
   )
 }

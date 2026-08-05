@@ -11,12 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="contact-form"
       title="Contact Form"
       description="Full contact / briefing form. Posts to the host /api/contact route."
       preview={<DemoContactForm />}
       code={'import { ContactForm } from "atroui"\n\n<ContactForm />'}
       fullBleed={true}
-      installation='import { ContactForm } from "atroui"'
       usage="Requires a host POST /api/contact handler (and usually mail env). Without it, submit will fail in the docs preview."
     />
   )

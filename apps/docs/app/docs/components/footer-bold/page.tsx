@@ -11,12 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="footer-bold"
       title='Footer Bold'
       description='Bold marketing footer with links and brand mark.'
       preview={<DemoBoldFooter />}
       code={'import { BoldFooter } from "atroui"\n\n<BoldFooter />'}
       fullBleed={true}
-      installation='import { BoldFooter } from "atroui"'
     />
   )
 }

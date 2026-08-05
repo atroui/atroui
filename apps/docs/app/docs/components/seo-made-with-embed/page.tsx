@@ -18,7 +18,6 @@ export default function Page() {
         'import { MadeWithEmbed } from "atroui"\n\n<MadeWithEmbed />\n\n<MadeWithEmbed\n  brandName="Acme"\n  badgeSrc="/badge/acme.svg"\n  href="/tools"\n/>'
       }
       fullBleed={false}
-      installation='import { MadeWithEmbed } from "atroui"'
       usage="Host the badge SVG in your public folder (docs ship /badge/atroui.svg). Override brandName and badgeSrc when rebranding."
       props={[
         {

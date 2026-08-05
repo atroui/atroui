@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoProjectPlanner />}
       code={'import { ProjectPlanner } from "atroui"\n\n<ProjectPlanner />'}
       fullBleed={true}
-      installation='import { ProjectPlanner } from "atroui"'
       usage="Fully client-side. Expect host routes like /contact (and /planner) to exist when CTAs navigate."
     />
   )

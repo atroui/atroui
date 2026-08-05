@@ -18,7 +18,6 @@ export default function Page() {
         'import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n  Button,\n} from "atroui"\n\n<Card>\n  <CardHeader>\n    <CardTitle>Project Alpha</CardTitle>\n    <CardDescription>Shipped this week</CardDescription>\n  </CardHeader>\n  <CardContent>Body copy</CardContent>\n  <CardFooter>\n    <Button size="sm">Open</Button>\n  </CardFooter>\n</Card>'
       }
       fullBleed={false}
-      installation='import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "atroui"'
       usage="Use Card when the surface itself is the interaction container. Prefer plain sections for static marketing layout."
       props={[
         {

@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoProse />}
       code={'import { Prose } from "atroui"\n\n<Prose><p>…</p></Prose>'}
       fullBleed={false}
-      installation='import { Prose } from "atroui"'
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}

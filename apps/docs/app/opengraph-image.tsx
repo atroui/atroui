@@ -104,7 +104,7 @@ export default function OpenGraphImage() {
             fontSize: 22,
           }}
         >
-          <span>npm i atroui</span>
+          <span>npx shadcn add @atroui</span>
           <span style={{ color: "#0b7bff" }}>atroui.com</span>
         </div>
       </div>

@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoThumbnailWorkspace />}
       code={'import { ThumbnailWorkspace } from "atroui"\n\n<ThumbnailWorkspace />'}
       fullBleed={true}
-      installation='import { ThumbnailWorkspace } from "atroui"'
       usage={
         <>
           Bring your own{" "}

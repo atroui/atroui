@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoBeforeAfterSlider />}
       code={'import { BeforeAfterSlider } from "atroui"\n\n<BeforeAfterSlider variant="saas" />'}
       fullBleed={false}
-      installation='import { BeforeAfterSlider } from "atroui"'
       props={[
     { name: 'variant', type: 'MockupVariant', default: "'saas'", description: 'Mockup style.' },
     { name: 'beforeLabel', type: 'string', default: "'Before'", description: 'Left label.' },

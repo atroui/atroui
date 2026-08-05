@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Introduction",
   description:
-    "AtroUI is the React / Next.js component library at atroui.com - dark-first design system, production sections, and docs. Install with npm i atroui.",
+    "AtroUI is a dark-first React / Next.js component catalog at atroui.com. Add components with the shadcn CLI and own the source in your repo.",
   path: "/docs",
 })
 
@@ -19,14 +19,11 @@ export default function DocsIntroPage() {
           Introduction
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          AtroUI is the React / Next.js component library at{" "}
-          <strong className="font-medium text-foreground">atroui.com</strong> -
-          production UI packaged as{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui
-          </code>
-          . Dark-first design system: black canvas, electric blue brand, glass
-          surfaces, and rounded CTAs.
+          AtroUI is the React / Next.js component catalog at{" "}
+          <strong className="font-medium text-foreground">atroui.com</strong>.
+          Dark-first design system: black canvas, electric blue brand, glass
+          surfaces, and rounded CTAs. You install it like shadcn/ui - the CLI
+          copies source into your project.
         </p>
       </header>
 
@@ -41,28 +38,29 @@ export default function DocsIntroPage() {
       </section>
 
       <section className="md-glass space-y-3 p-5">
-        <h2 className="ds-headline text-base text-foreground">
-          Chrome vs demo content
-        </h2>
+        <h2 className="ds-headline text-base text-foreground">Own the files</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Logo, headers, footers, SEO helpers, and mail defaults resolve through{" "}
+          Add sections from the{" "}
+          <Link href="/docs/registry" className="bam-link">
+            Registry
+          </Link>
+          . Edit{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            getBrand()
+            CONTENT
           </code>{" "}
-          (AtroUI by default; override with{" "}
+          /{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            DEFAULT_BRAND
+          </code>{" "}
+          in the installed files, or set{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             NEXT_PUBLIC_SITE_*
           </code>
-          ). Studio copy under{" "}
+          . Logo, headers, footers, and mail defaults stay coherent through{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/content/*
-          </code>{" "}
-          may still reference Makershot. For full ownership of a section&apos;s
-          code and content, install from the{" "}
-          <Link href="/docs/registry" className="bam-link">
-            Registry
-          </Link>{" "}
-          so the source lives in your repo.
+            getBrand()
+          </code>
+          .
         </p>
       </section>
 
@@ -94,27 +92,28 @@ export default function DocsIntroPage() {
         <h2 className="ds-headline text-base text-foreground">Quick start</h2>
         <CodeBlock
           language="bash"
-          code={`# Consumer app\nnpm install atroui next-themes\n\n# Then add transpilePackages: ["atroui"] in next.config.ts\n# Full steps: /docs/installation\n\n# This monorepo (docs + development)\npnpm install\npnpm dev`}
+          code={`npx shadcn@latest init
+npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
+npx shadcn@latest add @atroui/home-hero`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          See{" "}
+          Full steps:{" "}
           <Link href="/docs/installation" className="bam-link">
             Installation
-          </Link>{" "}
-          for{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            transpilePackages
-          </code>
-          ,{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            ThemeProvider
-          </code>
-          , and Outfit setup.
+          </Link>
+          . Catalog:{" "}
+          <Link href="/docs/registry" className="bam-link">
+            Registry
+          </Link>
+          .
         </p>
       </section>
 
       <div className="flex flex-wrap gap-3 pt-1">
-        <Link href="/docs/installation" className="ms-cta">
+        <Link href="/docs/registry" className="ms-cta">
+          Own the UI
+        </Link>
+        <Link href="/docs/installation" className="ms-cta-ghost">
           Installation
         </Link>
         <Link href="/docs/components" className="ms-cta-ghost">
@@ -122,9 +121,6 @@ export default function DocsIntroPage() {
         </Link>
         <Link href="/blog" className="ms-cta-ghost">
           Blog
-        </Link>
-        <Link href="/docs/brand" className="ms-cta-ghost">
-          Brand kit
         </Link>
       </div>
     </article>

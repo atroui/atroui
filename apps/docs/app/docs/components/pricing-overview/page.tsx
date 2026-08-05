@@ -11,12 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="pricing-overview"
       title='Pricing Overview'
       description='Service pricing overview grid.'
       preview={<DemoPricingOverview />}
       code={'import { PricingOverview } from "atroui"\n\n<PricingOverview />'}
       fullBleed={true}
-      installation='import { PricingOverview } from "atroui"'
     />
   )
 }

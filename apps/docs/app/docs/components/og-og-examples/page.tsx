@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoOgExamples />}
       code={'import { OgExamples } from "atroui"\n\n<OgExamples />\n\n{/* Docs */}\n<OgExamples preview />'}
       fullBleed={true}
-      installation='import { OgExamples } from "atroui"'
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}

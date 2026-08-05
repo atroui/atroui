@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Installation",
   description:
-    "Install AtroUI in a Next.js app: npm i atroui next-themes, transpilePackages, ThemeProvider, and atroui/globals.css.",
+    "Add AtroUI with the shadcn CLI. Components copy into your repo so you own the source - same model as shadcn/ui.",
   path: "/docs/installation",
 })
 
@@ -19,150 +19,90 @@ export default function InstallationPage() {
           Installation
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Two ways to use AtroUI: install the{" "}
+          AtroUI ships as a{" "}
+          <strong className="font-medium text-foreground">
+            shadcn-compatible registry
+          </strong>
+          . Run the CLI, components land in your project, and you edit{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui
+            CONTENT
           </code>{" "}
-          npm package for tokens and shared utilities, or copy components into
-          your repo via the{" "}
-          <Link href="/docs/registry" className="bam-link">
-            Registry
-          </Link>{" "}
-          (shadcn CLI) when you want full ownership of code and content. npm
-          path below targets Next.js 15+, React 18+,{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            next-themes
-          </code>
-          , and Tailwind CSS v4.
+          at the top of each file. Works best with Next.js, Tailwind CSS v4, and
+          a dark-friendly token sheet.
         </p>
       </header>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          1. Install packages
+          1. Init shadcn (if needed)
+        </h2>
+        <CodeBlock language="bash" code={`npx shadcn@latest init`} />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          You need a{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            components.json
+          </code>{" "}
+          in the app. See the{" "}
+          <Link href="/docs/theming" className="bam-link">
+            Theming
+          </Link>{" "}
+          guide for dark-first tokens that match the catalog.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          2. Add the AtroUI registry
         </h2>
         <CodeBlock
           language="bash"
-          code={`npm install atroui next-themes`}
+          code={`npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Or add this to{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            next-themes
-          </code>{" "}
-          is a peer dependency used by{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            ThemeProvider
-          </code>
-          .
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          2. Transpile AtroUI
-        </h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          AtroUI ships TypeScript source. Add it to{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            transpilePackages
-          </code>{" "}
-          in{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            next.config.ts
-          </code>{" "}
-          (required for Next.js / Turbopack):
-        </p>
-        <CodeBlock
-          language="ts"
-          code={`import type { NextConfig } from "next"\n\nconst nextConfig: NextConfig = {\n  transpilePackages: ["atroui"],\n}\n\nexport default nextConfig`}
-        />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          3. Wire layout
-        </h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Import{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/globals.css
-          </code>
-          , load Outfit as{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            --font-outfit
-          </code>
-          , and wrap the tree with{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            ThemeProvider
+            components.json
           </code>
           :
         </p>
         <CodeBlock
-          language="tsx"
-          code={`import type { Metadata } from "next"\nimport { Outfit, Geist_Mono } from "next/font/google"\nimport { ThemeProvider } from "atroui"\nimport "atroui/globals.css"\n\nconst outfit = Outfit({\n  variable: "--font-outfit",\n  subsets: ["latin"],\n})\n\nconst geistMono = Geist_Mono({\n  variable: "--font-geist-mono",\n  subsets: ["latin"],\n})\n\nexport const metadata: Metadata = {\n  title: "My app",\n}\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html\n      lang="en"\n      className={\`\${outfit.variable} \${geistMono.variable} dark\`}\n      suppressHydrationWarning\n    >\n      <body className="min-h-screen bg-background text-foreground antialiased">\n        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>\n          {children}\n        </ThemeProvider>\n      </body>\n    </html>\n  )\n}`}
+          language="json"
+          code={`{
+  "registries": {
+    "@atroui": "https://www.atroui.com/r/{name}.json"
+  }
+}`}
         />
       </section>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          4. Use a component
-        </h2>
-        <CodeBlock
-          language="tsx"
-          code={`import { Button } from "atroui"\n\nexport default function Page() {\n  return (\n    <main className="p-10">\n      <Button>Get started</Button>\n    </main>\n  )\n}`}
-        />
-        <p className="text-[13px] text-muted-foreground">
-          Tokens and utilities live in{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/globals.css
-          </code>
-          . See{" "}
-          <Link href="/docs/theming" className="bam-link">
-            Theming
-          </Link>
-          .
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          Bundled media
-        </h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Component images (founder portrait, OG examples, Made-with badge) ship
-          inside the npm package. You do{" "}
-          <span className="font-medium text-foreground">not</span> need to copy
-          files into{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /public
-          </code>{" "}
-          for those components to render. Optional raw files are also exported
-          from{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/assets/*
-          </code>{" "}
-          if you want them on a public CDN path (for example embed snippets).
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          Clone the monorepo
+          3. Add a component
         </h2>
         <CodeBlock
           language="bash"
-          code={`git clone https://github.com/atroui/atroui.git\ncd atroui\npnpm install`}
+          code={`npx shadcn@latest add @atroui/home-hero
+npx shadcn@latest add @atroui/site-header
+npx shadcn@latest add @atroui/button`}
         />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Run the docs</h2>
-        <CodeBlock language="bash" code={`pnpm dev`} />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Landing + catalog at{" "}
+          Source files land under your aliases (for example{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            http://localhost:3000
+            components/blocks/home-hero.tsx
           </code>
+          ). Open the file and edit the constants at the top. Dependencies
+          resolve as{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/brand
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/utils
+          </code>
+          , and so on. Full catalog:{" "}
+          <Link href="/docs/registry" className="bam-link">
+            Registry
+          </Link>
           .
         </p>
       </section>
@@ -170,41 +110,38 @@ export default function InstallationPage() {
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Brand overrides</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Chrome defaults to AtroUI. Set{" "}
+          After adding{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/brand
+          </code>
+          , edit{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            DEFAULT_BRAND
+          </code>{" "}
+          or set{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             NEXT_PUBLIC_SITE_*
           </code>{" "}
-          in the host, or pass props on sections like{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            HomeWho
-          </code>{" "}
-          /{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            MadeWithEmbed
-          </code>
-          . Studio sample data under{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/content/*
-          </code>{" "}
-          is optional portfolio copy - skip it when rebranding.
+          in the host:
         </p>
         <CodeBlock
           language="bash"
-          code={`NEXT_PUBLIC_SITE_NAME=Acme\nNEXT_PUBLIC_SITE_DOMAIN=acme.test\nNEXT_PUBLIC_SITE_EMAIL=hello@acme.test\nNEXT_PUBLIC_SITE_URL=https://acme.test`}
+          code={`NEXT_PUBLIC_SITE_NAME=Acme
+NEXT_PUBLIC_SITE_DOMAIN=acme.test
+NEXT_PUBLIC_SITE_EMAIL=hello@acme.test
+NEXT_PUBLIC_SITE_URL=https://acme.test`}
         />
       </section>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Host-bound tools</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          OG workspace, thumbnail generator, scope chat, contact, and similar
-          tools call host{" "}
+          Some catalog items (OG workspace, contact form, scope chat) expect
+          your own{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             /api/*
           </code>{" "}
-          routes. The AtroUI docs site does{" "}
-          <span className="font-medium text-foreground">not</span> provide those
-          backends or shared AI keys - bring your own API (BYOK). Marked{" "}
+          routes and keys. Marked{" "}
           <span className="font-medium text-foreground">Host API</span> in the
           sidebar. Live OG sample without wiring keys here:{" "}
           <a
@@ -217,6 +154,22 @@ export default function InstallationPage() {
           </a>
           .
         </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          Clone the monorepo
+        </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Contributing to AtroUI itself:
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`git clone https://github.com/atroui/atroui.git
+cd atroui
+pnpm install
+pnpm dev`}
+        />
       </section>
     </article>
   )

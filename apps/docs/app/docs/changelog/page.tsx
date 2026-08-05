@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Changelog",
   description:
-    "AtroUI release notes - version history for the atroui npm package on atroui.com.",
+    "AtroUI release notes - version history for the catalog and docs at atroui.com.",
   path: "/docs/changelog",
 })
 

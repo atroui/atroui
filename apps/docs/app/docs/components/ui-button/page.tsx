@@ -11,14 +11,14 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="button"
       title="Button"
       description="Primary action control with variants and sizes."
       preview={<DemoButton />}
       code={
-        'import { Button } from "atroui"\n\n<Button>Continue</Button>\n<Button variant="outline" size="sm">Cancel</Button>\n<Button variant="ghost" disabled>Soon</Button>'
+        'import { Button } from "@/components/ui/button"\n\n<Button>Continue</Button>\n<Button variant="outline" size="sm">Cancel</Button>\n<Button variant="ghost" disabled>Soon</Button>'
       }
       fullBleed={false}
-      installation='import { Button } from "atroui"'
       usage="Prefer one primary button per view. Use outline/ghost for secondary actions; destructive sparingly."
       props={[
         {
