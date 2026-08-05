@@ -21,7 +21,7 @@ const navLinks = [
 const catalogBands = [
   { title: "Registry", body: "Own the UI in your repo" },
   { title: "Sections", body: "Home bands, chrome, CTAs" },
-  { title: "npm", body: "Tokens, ThemeProvider, tools" },
+  { title: "Primitives", body: "Button, logo, theme toggle" },
   { title: "Headless", body: "Analytics, JSON-LD, reviews" },
 ] as const
 
@@ -244,12 +244,12 @@ export function HeroDigitalSuccess() {
             <TimelineAnimation
               once
               as="a"
-              href="/docs/installation"
+              href="/docs/components"
               animationNum={6}
               timelineRef={timelineRef}
               className="cursor-pointer rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-medium backdrop-blur-md"
             >
-              npm tokens
+              Browse catalog
             </TimelineAnimation>
           </div>
           <TimelineAnimation
@@ -259,8 +259,8 @@ export function HeroDigitalSuccess() {
             timelineRef={timelineRef}
             className="max-w-md text-xl font-light leading-relaxed text-neutral-100"
           >
-            Customize via the registry - source lands in your repo. Use npm for
-            tokens, ThemeProvider, and Host API tools. Home: atroui.com.
+            Add AtroUI with the shadcn CLI. Source lands in your repo - edit
+            CONTENT, keep the craft. Home: atroui.com.
           </TimelineAnimation>
         </div>
       </div>

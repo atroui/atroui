@@ -5,7 +5,7 @@ import { LandingHero } from "@/components/landing-hero"
 export const metadata: Metadata = {
   title: "AtroUI - React Component Library & Dark Design System",
   description:
-    "AtroUI is the React and Next.js component catalog at atroui.com. Own UI via the shadcn registry; use npm for tokens and tools. Dark-first design system.",
+    "AtroUI is the React and Next.js component catalog at atroui.com. Add with the shadcn registry - own the UI in your repo. Dark-first design system.",
   alternates: { canonical: "/" },
 }
 

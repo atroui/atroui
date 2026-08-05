@@ -22,7 +22,6 @@ export default function Page() {
         '<ScrollProgress containerRef={ref} className="absolute inset-x-0 top-0 h-0.5 bg-brand" />'
       }
       fullBleed={false}
-      installation='import { ScrollProgress } from "atroui"'
       usage='Usually fixed to the top of the viewport with bg-brand.'
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Positioning + color classes (e.g. fixed, bg-brand).' },

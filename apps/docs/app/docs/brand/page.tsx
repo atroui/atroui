@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Brand kit",
   description:
-    "AtroUI brand kit - logo mark, Made with badge, colors, and voice guidelines for atroui.com and the npm package.",
+    "AtroUI brand kit - logo mark, Made with badge, colors, and voice guidelines for atroui.com.",
   path: "/docs/brand",
 })
 
@@ -123,13 +123,13 @@ export default function BrandKitPage() {
             Say <strong className="text-foreground">AtroUI</strong>,{" "}
             <strong className="text-foreground">atroui.com</strong>, and{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-              npm i atroui
+              npx shadcn add @atroui/…
             </code>
             .
           </li>
           <li>
-            Position as a production React / Next.js component catalog - not a
-            generic shadcn clone.
+            Position as a production React / Next.js catalog on the shadcn
+            registry - not a generic clone.
           </li>
           <li>Precise, calm, product-first. Avoid hype and personal bylines on product pages.</li>
         </ul>

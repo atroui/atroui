@@ -1,28 +1,23 @@
 # AtroUI
 
-**Production React / Next.js component library** and dark-first design system.
+**Production React / Next.js component catalog** and dark-first design system.
 
-Published as [`atroui`](https://www.npmjs.com/package/atroui) · Docs: [atroui.com](https://www.atroui.com)
+Docs: [atroui.com](https://www.atroui.com) · Registry: [atroui.com/docs/registry](https://www.atroui.com/docs/registry)
 
-Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill CTAs. Primitives, page sections, and host-bound tools extracted from real products.
+Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill CTAs. Primitives, page sections, and host-bound tools extracted from real products - delivered via the **shadcn CLI**.
 
-[![npm](https://img.shields.io/npm/v/atroui)](https://www.npmjs.com/package/atroui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![CI](https://github.com/atroui/atroui/actions/workflows/ci.yml/badge.svg)](https://github.com/atroui/atroui/actions/workflows/ci.yml)
 
 ## Features
 
 - **Registry (own the files)** - `npx shadcn add @atroui/home-hero` copies source into your repo
-- **Dark-first design tokens** in `atroui/globals.css`
-- **Primitives** - Button, Card, forms, theme toggle
-- **Sections** - landing bands, chrome, CTAs
+- **Dark-first sections** - heroes, chrome, CTAs with editable `CONTENT`
+- **Primitives** - Button, logo, theme toggle
 - **Tools** - OG workspace, thumbnail, scope (host APIs)
 - **Headless** - analytics, JSON-LD, reviews helpers
-- **ThemeProvider** via `next-themes`
 
-## Install (registry)
-
-Own the component source in your project:
+## Install
 
 ```bash
 npx shadcn@latest init
@@ -30,52 +25,18 @@ npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
 npx shadcn@latest add @atroui/home-hero
 ```
 
-Docs: [atroui.com/docs/registry](https://www.atroui.com/docs/registry)
+Full guide: [atroui.com/docs/installation](https://www.atroui.com/docs/installation) · Catalog: [atroui.com/docs/registry](https://www.atroui.com/docs/registry)
 
-## Install (npm package)
-
-```bash
-npm install atroui next-themes
-```
-
-In `next.config.ts`:
-
-```ts
-import type { NextConfig } from "next"
-
-const nextConfig: NextConfig = {
-  transpilePackages: ["atroui"],
-}
-
-export default nextConfig
-```
-
-```tsx
-import { Button, ThemeProvider } from "atroui"
-import "atroui/globals.css"
-
-export function Example({ children }: { children: React.ReactNode }) {
-  return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <Button>Get started</Button>
-      {children}
-    </ThemeProvider>
-  )
-}
-```
-
-Full layout setup (Outfit + `--font-outfit`): [atroui.com/docs/installation](https://www.atroui.com/docs/installation)
-
-Load **Outfit** in the host layout and expose `--font-outfit`. Full guide: [Installation](https://www.atroui.com/docs/installation).
+Open the installed file and edit `CONTENT` / `DEFAULT_BRAND` at the top - that is the point.
 
 ## Monorepo structure
 
 ```
 /
 ├── apps/
-│   └── docs/                 # Landing + docs (@atroui/docs)
+│   └── docs/                 # Landing + docs + registry (@atroui/docs)
 ├── packages/
-│   ├── ui/                   # Publishable `atroui` package
+│   ├── ui/                   # Package used by the docs site
 │   └── typescript-config/
 ├── package.json
 ├── pnpm-workspace.yaml

@@ -9,7 +9,7 @@ const GITHUB_REPO = "https://github.com/atroui/atroui"
 const inside = [
   {
     title: "Registry",
-    body: "Own the UI - shadcn CLI copies source into your repo.",
+    body: "shadcn CLI copies source into your repo.",
     href: "/docs/registry",
   },
   {
@@ -18,9 +18,9 @@ const inside = [
     href: "/docs/components/home-who",
   },
   {
-    title: "npm",
-    body: "Tokens, ThemeProvider, and Host API tools you do not fork.",
-    href: "/docs/installation",
+    title: "Primitives",
+    body: "Button, logo, theme toggle - same ownership model.",
+    href: "/docs/components/ui-button",
   },
   {
     title: "Headless",
@@ -55,8 +55,8 @@ export function LandingHero() {
                 <span className="ds-gradient-text">find</span>
               </h2>
               <p className="mt-3 max-w-sm text-[15px] font-light leading-relaxed text-neutral-300 sm:mt-4 sm:text-base">
-                Customize via the registry when you want the files. Use npm for
-                tokens and tools. Same dark-first catalog either way.
+                One path: the shadcn registry. Components copy into your project
+                so you own every line.
               </p>
             </div>
 
@@ -93,18 +93,19 @@ export function LandingHero() {
             </h2>
             <p className="mt-3 text-sm font-light leading-relaxed text-neutral-400 sm:mt-4">
               AtroUI is the React component catalog at{" "}
-              <span className="text-neutral-200">atroui.com</span>. Primary path:{" "}
+              <span className="text-neutral-200">atroui.com</span>. Add it with
+              the{" "}
               <Link
                 href="/docs/registry"
                 className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
               >
-                registry
+                shadcn registry
               </Link>{" "}
-              (own the UI). npm (
+              - source in your repo, editable{" "}
               <code className="break-all rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
-                npm i atroui
+                CONTENT
               </code>
-              ) for tokens and tools. Related work:{" "}
+              . Related work:{" "}
               <a
                 href="https://www.iamk.xyz"
                 target="_blank"
@@ -138,10 +139,10 @@ export function LandingHero() {
               <Star className="size-3.5 fill-current opacity-80" aria-hidden />
             </a>
             <Link
-              href="/docs/installation"
+              href="/docs/components"
               className="ms-cta-ghost w-full justify-center text-sm sm:w-auto"
             >
-              npm tokens
+              Browse catalog
             </Link>
             <Link
               href="/docs/registry"
@@ -171,14 +172,6 @@ export function LandingHero() {
               Star
             </a>
             <a
-              href="https://www.npmjs.com/package/atroui"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-neutral-300"
-            >
-              npm
-            </a>
-            <a
               href={GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
@@ -186,6 +179,12 @@ export function LandingHero() {
             >
               GitHub
             </a>
+            <Link
+              href="/docs/registry"
+              className="transition-colors hover:text-neutral-300"
+            >
+              Registry
+            </Link>
             <a
               href="https://www.iamk.xyz"
               target="_blank"

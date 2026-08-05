@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { DocsExample } from "@/components/docs-example"
 import { PropsTable, type PropRow } from "@/components/props-table"
 
@@ -10,6 +11,9 @@ interface ComponentDocProps {
   usage?: React.ReactNode
   extra?: React.ReactNode
   fullBleed?: boolean
+  /** Registry item name, e.g. "home-hero" → npx shadcn add @atroui/home-hero */
+  registryName?: string
+  /** Override the install command block entirely */
   installation?: string
 }
 
@@ -22,8 +26,15 @@ export function ComponentDoc({
   usage,
   extra,
   fullBleed,
-  installation = 'import { … } from "atroui"',
+  registryName,
+  installation,
 }: ComponentDocProps) {
+  const installCmd =
+    installation ??
+    (registryName
+      ? `npx shadcn@latest add @atroui/${registryName}`
+      : `npx shadcn@latest add @atroui/…`)
+
   return (
     <article
       className={
@@ -47,8 +58,19 @@ export function ComponentDoc({
       <section className="space-y-3">
         <h2 className="ds-headline text-base text-foreground">Installation</h2>
         <pre className="overflow-x-auto rounded-2xl border border-border-subtle bg-muted/40 px-4 py-3 font-mono text-[13px] text-foreground">
-          <code>{installation}</code>
+          <code>{installCmd}</code>
         </pre>
+        <p className="text-[13px] text-muted-foreground">
+          Source lands in your repo. Setup:{" "}
+          <Link href="/docs/installation" className="bam-link">
+            Installation
+          </Link>
+          {" · "}
+          <Link href="/docs/registry" className="bam-link">
+            Registry catalog
+          </Link>
+          .
+        </p>
       </section>
 
       {extra}

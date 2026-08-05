@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoNewsletterForm />}
       code={'import { NewsletterForm } from "atroui"\n\n<NewsletterForm />'}
       fullBleed={false}
-      installation='import { NewsletterForm } from "atroui"'
       usage='Posts to your /api/newsletter route.'
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },

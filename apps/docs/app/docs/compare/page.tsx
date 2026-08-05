@@ -5,7 +5,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "AtroUI vs copy-paste kits",
   description:
-    "How AtroUI differs from primitives-only copy-paste UI kits - production sections, brand chrome, dark-first tokens, and Host API tools.",
+    "How AtroUI differs from primitives-only kits - production sections via the shadcn registry, brand chrome, and dark-first tokens.",
   path: "/docs/compare",
 })
 
@@ -32,9 +32,9 @@ export default function ComparePage() {
           <strong className="font-medium text-foreground">
             production component catalog
           </strong>{" "}
-          for React / Next.js: dark-first tokens, site chrome, marketing
-          sections, headless SEO helpers, and optional Host API tools (OG,
-          thumbnails, scope) that expect your own backends.
+          for React / Next.js, delivered the shadcn way: dark-first sections,
+          site chrome, and optional Host API tools that expect your own
+          backends. You add components with the CLI; source lives in your repo.
         </p>
       </section>
 
@@ -55,6 +55,21 @@ export default function ComparePage() {
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Where AtroUI differs</h2>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
+          <li>
+            <strong className="text-foreground">Same ownership model</strong> -{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+              npx shadcn add @atroui/…
+            </code>{" "}
+            copies source into your project. Edit{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+              CONTENT
+            </code>{" "}
+            at the top of each file. See the{" "}
+            <Link href="/docs/registry" className="bam-link">
+              Registry
+            </Link>{" "}
+            guide.
+          </li>
           <li>
             <strong className="text-foreground">Sections, not only atoms</strong>{" "}
             - heroes, who bands, footers, CTAs shaped by shipped products.
@@ -78,50 +93,19 @@ export default function ComparePage() {
             </code>{" "}
             with BYOK; docs do not burn shared LLM keys.
           </li>
-          <li>
-            <strong className="text-foreground">Registry (own the UI)</strong>{" "}
-            - primary customize path.{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-              npx shadcn add @atroui/…
-            </code>{" "}
-            copies source into your repo so you can edit code, content, and
-            design. See the{" "}
-            <Link href="/docs/registry" className="bam-link">
-              Registry
-            </Link>{" "}
-            guide.
-          </li>
-          <li>
-            <strong className="text-foreground">npm package</strong> - consume{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-              atroui
-            </code>{" "}
-            for tokens, ThemeProvider, and Host API tools you do not need to
-            fork.
-          </li>
         </ul>
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          Customize: registry first
-        </h2>
+        <h2 className="ds-headline text-base text-foreground">When to pick which</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Want to edit heroes, footers, and CTAs like a copy-paste kit? Use the{" "}
+          Prefer a blank-slate kit if you want every primitive from scratch.
+          Prefer AtroUI when you want a ready dark catalog with the same
+          copy-into-repo workflow. Start at the{" "}
           <Link href="/docs/registry" className="bam-link">
-            AtroUI registry
+            registry
           </Link>
-          . Source lands in your repo; change{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-            CONTENT
-          </code>{" "}
-          at the top of each file. Reach for{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-            npm i atroui
-          </code>{" "}
-          when you need tokens, ThemeProvider, or Host API tools without
-          forking. Prefer a blank-slate kit only if you want every primitive
-          from scratch. Home:{" "}
+          . Home:{" "}
           <a href="https://www.atroui.com" className="bam-link">
             www.atroui.com
           </a>
@@ -134,7 +118,7 @@ export default function ComparePage() {
           Own the UI
         </Link>
         <Link href="/docs/installation" className="ms-cta-ghost">
-          npm tokens
+          Installation
         </Link>
         <Link href="/blog/atroui-vs-shadcn" className="ms-cta-ghost">
           AtroUI vs shadcn/ui

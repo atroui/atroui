@@ -19,7 +19,6 @@ export default function Page() {
         "<TestimonialSchema />\n" +
         '<TestimonialSchema pageUrl="https://www.makershot.tech/about" />'
       }
-      installation='import { TestimonialSchema } from "atroui"'
       usage="Place on pages where reviews should be eligible for rich results. Skips AggregateRating to avoid self-published star spam signals."
       props={[
         {

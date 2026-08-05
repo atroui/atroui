@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoLiveDashboard />}
       code={'import { LiveDashboard } from "atroui"\n\n<LiveDashboard />'}
       fullBleed={true}
-      installation='import { LiveDashboard } from "atroui"'
       usage="Reads from atroui content (studio projects, etc.). No /api/* required for the default demo."
     />
   )

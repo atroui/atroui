@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoSocialShare />}
       code={'import { SocialShare } from "atroui"\n\n<SocialShare url="…" title="…" />'}
       fullBleed={false}
-      installation='import { SocialShare } from "atroui"'
       props={[
     { name: 'url', type: 'string', default: '-', description: 'Share URL.' },
     { name: 'title', type: 'string', default: '-', description: 'Share title.' },

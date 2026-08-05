@@ -19,53 +19,52 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     slug: "what-is-atroui",
-    title: "What is AtroUI? A Next.js component library that ships as a package",
+    title: "What is AtroUI? A Next.js component catalog on the shadcn registry",
     description:
-      "AtroUI is a dark-first React / Next.js component library on npm. Production sections, brand chrome, and tokens, not another copy-paste kit. Install with npm i atroui.",
+      "AtroUI is a dark-first React / Next.js component catalog. Add it with the shadcn CLI - source lands in your repo. Production sections, brand chrome, editable CONTENT.",
     date: "2026-08-05",
     sections: [
       {
         body: [
-          "AtroUI is a production React and Next.js component library. You install it like any other dependency (npm i atroui) and get a dark-first design system: tokens, site chrome, marketing sections, SEO helpers, and optional host-bound tools that call your own APIs.",
-          "The canonical home is [atroui.com](https://www.atroui.com). The package on npm is atroui. Docs, compare notes, and this blog all live under that brand so search results point somewhere real.",
+          "AtroUI is a production React and Next.js component catalog. You add it with the shadcn CLI the same way you add any registry item. Components copy into your project so you own the source: dark-first sections, brand chrome, and optional host-bound tools that call your own APIs.",
+          "The canonical home is [atroui.com](https://www.atroui.com). Docs, compare notes, and this blog all live under that brand so search results point somewhere real.",
         ],
       },
       {
         heading: "The job it is hired for",
         body: [
-          "Most teams do not want to rebuild a hero, footer, theme provider, and OG workspace from scratch for every product. They want a coherent dark UI that already looks like a shipped app, then they customize brand and content.",
+          "Most teams do not want to rebuild a hero, footer, and OG workspace from scratch for every product. They want a coherent dark UI that already looks like a shipped app, then they customize brand and content.",
           "That is the job AtroUI is built for. You hire it to get from empty App Router project to a branded dark surface without assembling fifty primitives into a design system yourself.",
         ],
       },
       {
-        heading: "Not a fork of a copy-paste kit",
+        heading: "Same ownership model as shadcn",
         body: [
-          "Copy-paste kits optimize for owning every file in your repo. That is a strong workflow when you are building a greenfield design system you will maintain forever.",
-          "AtroUI optimizes for a different path: a versioned npm package with a catalog shaped by products that already use it. Sections (heroes, who bands, CTAs, footers), brand chrome via getBrand(), and Host API tools (OG, thumbnails, scope) that expect your own /api routes and BYOK keys.",
-          "You can still fork or copy when you need full ownership. Day one, you consume a dependency. See [AtroUI vs copy-paste kits](/docs/compare) and the deeper [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn) post.",
+          "Copy-paste kits optimize for owning every file in your repo. AtroUI uses that same model: `npx shadcn add @atroui/…` copies source in. The difference is altitude - production sections (heroes, who bands, CTAs, footers), brand chrome via getBrand(), and Host API tools that expect your own /api routes.",
+          "Edit CONTENT at the top of each installed file. Day one, you own the UI. See [AtroUI vs copy-paste kits](/docs/compare) and [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn).",
         ],
       },
       {
         heading: "Who it is for",
         body: [
-          "Indie makers and small teams shipping Next.js products who want a dark-first system (black canvas, brand blue, glass surfaces) without spending a sprint on chrome.",
-          "Agencies and studios rebranding a catalog for client work via NEXT_PUBLIC_SITE_* and getBrand(), while skipping optional portfolio demo content under atroui/content/*.",
+          "Indie makers and small teams shipping Next.js products who want a dark-first system without spending a sprint on chrome.",
+          "Agencies and studios rebranding via DEFAULT_BRAND or NEXT_PUBLIC_SITE_*.",
           "Builders who want SEO helpers and AI-adjacent workspaces that do not burn shared LLM keys on the docs host.",
         ],
       },
       {
         heading: "What you get in the box",
         body: [
-          "Design tokens and utilities in atroui/globals.css, dark-first by default.",
-          "ThemeProvider (peer: next-themes), Button and other primitives, page sections, JSON-LD helpers, and brandable logo/chrome.",
-          "Bundled media for components that need images (founder portrait, OG examples, Made-with badge) so consumers are not left with 404s on /public paths.",
+          "Registry items for utils, brand, button, logo, site header, home bands, pricing, CTAs, and contact.",
+          "Editable CONTENT / DEFAULT_BRAND constants in every block file.",
+          "Host API tools (OG, thumbnails, scope) that you wire to your own backends.",
         ],
       },
       {
         heading: "Get started in one path",
         body: [
-          "Install atroui and next-themes, add transpilePackages: [\"atroui\"], import globals, wrap with ThemeProvider, load Outfit as --font-outfit, then import a component.",
-          "Full steps live on the [Installation guide](/docs/installation). For a walkthrough with copy-paste snippets, read [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
+          "Init shadcn, add the @atroui registry, then add a component. Open the file and edit CONTENT.",
+          "Full steps: [Installation](/docs/installation). Catalog: [Registry](/docs/registry). Walkthrough: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
         ],
       },
     ],
@@ -74,126 +73,66 @@ export const blogPosts: BlogPost[] = [
     slug: "install-atroui-nextjs-app-router",
     title: "Install AtroUI in a Next.js App Router project (step-by-step)",
     description:
-      "Add atroui to Next.js 15+: npm i atroui next-themes, transpilePackages, ThemeProvider, Outfit, and atroui/globals.css. Copy-paste snippets included.",
+      "Add AtroUI with the shadcn CLI: init, register @atroui, add home-hero. Components land in your repo with editable CONTENT.",
     date: "2026-08-05",
     sections: [
       {
         body: [
-          "This guide gets AtroUI running in a Next.js App Router app with the least friction. Target: Next.js 15+, React 18/19, Tailwind CSS v4. Peer dependency: next-themes.",
-          "When you finish the four steps below, you should see a themed page with an AtroUI Button. Deeper detail always lives on the [Installation docs](/docs/installation).",
+          "This guide gets AtroUI into a Next.js App Router app the shadcn way. Target: Next.js 15+, React 18/19, Tailwind CSS v4.",
+          "When you finish, you should have a hero (or button) file in your project that you can edit. Deeper detail always lives on the [Installation docs](/docs/installation).",
         ],
       },
       {
-        heading: "1. Install packages",
+        heading: "1. Init shadcn",
         body: [
-          "Install the published package and its theme peer. Use npm, pnpm, or yarn. Same package name.",
+          "You need a components.json in the app. If you already have one, skip this step.",
         ],
         codeBlocks: [
           {
             language: "bash",
-            code: "npm install atroui next-themes",
+            code: "npx shadcn@latest init",
           },
         ],
       },
       {
-        heading: "2. Transpile AtroUI",
+        heading: "2. Add the AtroUI registry",
         body: [
-          "AtroUI ships TypeScript source. Next.js (and Turbopack) need it listed in transpilePackages. Skip this and you get module-type or transpile errors in a fresh app.",
+          "Point the CLI at the AtroUI registry on atroui.com.",
         ],
         codeBlocks: [
           {
-            language: "ts",
-            code: `import type { NextConfig } from "next"
-
-const nextConfig: NextConfig = {
-  transpilePackages: ["atroui"],
-}
-
-export default nextConfig`,
+            language: "bash",
+            code: "npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json",
           },
-        ],
-      },
-      {
-        heading: "3. Wire the root layout",
-        body: [
-          "Import atroui/globals.css once. Load Outfit and expose --font-outfit so display type matches the catalog. Wrap the tree with ThemeProvider from atroui (attribute=\"class\", enableSystem).",
-        ],
-        codeBlocks: [
           {
-            language: "tsx",
-            code: `import type { Metadata } from "next"
-import { Outfit, Geist_Mono } from "next/font/google"
-import { ThemeProvider } from "atroui"
-import "atroui/globals.css"
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
-
-export const metadata: Metadata = {
-  title: "My app",
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html
-      lang="en"
-      className={\`\${outfit.variable} \${geistMono.variable} dark\`}
-      suppressHydrationWarning
-    >
-      <body className="min-h-screen bg-background text-foreground antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+            language: "json",
+            code: `{
+  "registries": {
+    "@atroui": "https://www.atroui.com/r/{name}.json"
+  }
 }`,
           },
         ],
       },
       {
-        heading: "4. Render a first component",
+        heading: "3. Add a component",
         body: [
-          "Import from the package root and drop a Button on a page. Default App Router pages need a default export.",
+          "Dependencies resolve as @atroui/brand, @atroui/utils, and so on - not bare names on the default shadcn registry.",
         ],
         codeBlocks: [
           {
-            language: "tsx",
-            code: `import { Button } from "atroui"
-
-export default function Page() {
-  return (
-    <main className="p-10">
-      <Button>Get started</Button>
-    </main>
-  )
-}`,
+            language: "bash",
+            code: `npx shadcn@latest add @atroui/home-hero
+npx shadcn@latest add @atroui/site-header
+npx shadcn@latest add @atroui/button`,
           },
         ],
       },
       {
-        heading: "What you do not need to copy",
+        heading: "4. Edit CONTENT",
         body: [
-          "Component images (founder portrait, OG examples, Made-with badge) ship inside the npm package. You do not need to mirror those files into /public for those components to render. Optional raw assets are also exported from atroui/assets/* if you want them on a CDN path.",
-          "Studio sample data under atroui/content/* is optional portfolio copy. Skip it when you are shipping your own product.",
-        ],
-      },
-      {
-        heading: "Next steps",
-        body: [
-          "Customize tokens on the [Theming](/docs/theming) page. Override logo and SEO chrome with [getBrand()](/blog/rebrand-with-getbrand). Browse the full [component catalog](/docs).",
-          "Stuck on transpile or Turbopack? Read [transpilePackages and Turbopack gotchas](/blog/transpile-packages-turbopack-ui-libraries).",
+          "Open the installed file (for example components/blocks/home-hero.tsx). Change the CONTENT constants at the top - stamp, headline, CTAs. That is the point of the registry.",
+          "Full catalog: [Registry](/docs/registry). Theming tokens: [Theming](/docs/theming).",
         ],
       },
     ],
@@ -319,38 +258,38 @@ NEXT_PUBLIC_SITE_TAGLINE=Ship faster with Acme`,
   },
   {
     slug: "atroui-vs-shadcn",
-    title: "AtroUI vs shadcn/ui: package catalog vs copy-paste primitives",
+    title: "AtroUI vs shadcn/ui: production sections on the same ownership model",
     description:
-      "When to use AtroUI as an npm component library versus shadcn/ui-style copy-paste kits: ownership, sections, brand chrome, and dark-first tokens.",
+      "Both use the shadcn CLI. AtroUI ships production sections and brand chrome; shadcn/ui-style kits optimize for blank-slate primitives.",
     date: "2026-08-05",
     sections: [
       {
         body: [
-          "shadcn/ui and similar kits are excellent at one job: generate accessible primitives into your repo so you own every line. AtroUI is excellent at a different job: consume a versioned dark-first catalog with production sections and brand chrome.",
-          "This is not a replacement pitch. It is a hiring decision: which tool matches how you ship.",
+          "shadcn/ui and similar kits are excellent at one job: generate accessible primitives into your repo so you own every line. AtroUI uses the same CLI and ownership model, aimed at a different altitude: production sections and brand chrome that already look like a shipped product.",
+          "This is not a replacement pitch. It is a hiring decision: which catalog matches how you ship.",
         ],
       },
       {
-        heading: "Copy-paste kits: own the files",
+        heading: "Same CLI, different catalog",
         body: [
-          "You run a CLI, components land in your monorepo, and you customize freely. Updates are merges you control. The visual slate is often neutral so your design system can grow on top.",
-          "Choose this when every file must live in-tree, when you are building a long-term internal design system, or when your brand language is nothing like a dark glass catalog.",
+          "You run the shadcn CLI either way. Components land in your monorepo. You customize freely. Updates are merges you control.",
+          "Choose a blank-slate kit when you are building a long-term internal design system from atoms. Choose AtroUI when you want heroes, who bands, footers, and CTAs with editable CONTENT on day one.",
         ],
       },
       {
-        heading: "AtroUI: install the catalog",
+        heading: "AtroUI: sections that ship",
         body: [
-          "You npm install atroui, transpile it, import globals, and compose sections that already look like a shipped product. Brand defaults resolve through getBrand(). Tokens are dark-first.",
+          "Add @atroui/home-hero, open the file, edit CONTENT. Brand defaults resolve through getBrand(). Tokens are dark-first.",
           "Choose this when you want speed to a coherent dark UI, marketing + app chrome that share one system, and optional Host API tools that call your backends with BYOK.",
         ],
       },
       {
         heading: "Side-by-side differences",
         body: [
-          "Distribution: kit files in your repo vs atroui on npm.",
+          "Distribution: both copy files into your repo via the CLI.",
           "Altitude: atoms and patterns you assemble vs sections and chrome already composed.",
           "Brand: you build chrome from scratch vs getBrand() + NEXT_PUBLIC_SITE_*.",
-          "Theme: often light-first or neutral vs dark-first tokens in atroui/globals.css.",
+          "Theme: often light-first or neutral vs dark-first catalog defaults.",
           "AI / media tools: usually out of scope vs optional workspaces that expect your /api/*.",
         ],
       },
@@ -363,8 +302,8 @@ NEXT_PUBLIC_SITE_TAGLINE=Ship faster with Acme`,
       {
         heading: "Pick and install",
         body: [
-          "Prefer a kit if you want full file ownership and a blank visual slate. Prefer AtroUI if you want a ready dark catalog and brandable chrome at [atroui.com](https://www.atroui.com).",
-          "Docs compare page: [AtroUI vs copy-paste kits](/docs/compare). Install: [Installation](/docs/installation). Positioning: [What is AtroUI?](/blog/what-is-atroui).",
+          "Prefer a blank-slate kit if you want every primitive from scratch. Prefer AtroUI if you want a ready dark catalog at [atroui.com](https://www.atroui.com).",
+          "Docs: [Compare](/docs/compare). Install: [Installation](/docs/installation). Registry: [Registry](/docs/registry). Positioning: [What is AtroUI?](/blog/what-is-atroui).",
         ],
       },
     ],
@@ -411,23 +350,21 @@ export default nextConfig`,
       {
         heading: "Barrel imports and heavy side paths",
         body: [
-          "Prefer documented public exports. If a library accidentally pulls MDX loaders or Node-only code into the main barrel, Turbopack will complain even with transpilePackages set. AtroUI keeps article loaders off the default consumer path for that reason.",
-          "If you hit a module-type error on a specific subpath, check whether you imported a docs-only entry. Stick to the root package export and paths listed in the [Installation](/docs/installation) guide.",
+          "Prefer documented public exports from registry items you installed. Stick to paths listed in the [Installation](/docs/installation) and [Registry](/docs/registry) guides.",
         ],
       },
       {
         heading: "CSS and peer dependencies",
         body: [
-          "transpilePackages does not replace importing atroui/globals.css or installing next-themes. Theme and token failures after a clean transpile fix usually mean the layout is incomplete. See [ThemeProvider and dark mode](/blog/theme-provider-dark-mode-atroui).",
+          "If a block needs next-themes or other peers, the CLI installs them. Theme failures usually mean the layout is incomplete. See [ThemeProvider and dark mode](/blog/theme-provider-dark-mode-atroui).",
         ],
       },
       {
         heading: "Checklist",
         body: [
-          "npm i atroui next-themes",
-          "transpilePackages includes atroui",
-          "Root layout imports globals and ThemeProvider",
-          "Page has a default export",
+          "components.json includes the @atroui registry",
+          "npx shadcn add @atroui/… succeeded",
+          "CONTENT / DEFAULT_BRAND edited for your brand",
           "Restart the Next dev server after config changes",
         ],
       },
@@ -437,24 +374,24 @@ export default nextConfig`,
     slug: "theme-provider-dark-mode-atroui",
     title: "ThemeProvider and dark mode with AtroUI and next-themes",
     description:
-      "Wire AtroUI’s ThemeProvider with next-themes: class strategy, default dark, Outfit, and globals.css so dark-first tokens actually apply.",
+      "Wire dark mode for AtroUI registry components: class strategy, default dark, and tokens so dark-first styles actually apply.",
     date: "2026-08-05",
     sections: [
       {
         body: [
-          "AtroUI’s tokens assume a class-based dark theme. ThemeProvider from atroui wraps next-themes so .dark lands on the html element and CSS variables resolve correctly.",
+          "AtroUI’s tokens assume a class-based dark theme. Whether you use next-themes or your own provider, .dark on the html element is what makes CSS variables resolve correctly.",
           "Skip the provider, or use the wrong attribute, and you get a half-themed app: components render, but backgrounds and brand colors miss the dark sheet.",
         ],
       },
       {
-        heading: "Install the peer",
+        heading: "Install the peer if needed",
         body: [
-          "next-themes is a peer dependency. Install it next to atroui.",
+          "If you add @atroui/theme-toggle or similar, the CLI may pull next-themes. Install it if your layout does not already have it.",
         ],
         codeBlocks: [
           {
             language: "bash",
-            code: "npm install atroui next-themes",
+            code: "npm install next-themes",
           },
         ],
       },
@@ -466,8 +403,7 @@ export default nextConfig`,
         codeBlocks: [
           {
             language: "tsx",
-            code: `import { ThemeProvider } from "atroui"
-import "atroui/globals.css"
+            code: `import { ThemeProvider } from "next-themes"
 
 export default function RootLayout({
   children,
@@ -555,39 +491,39 @@ export default function RootLayout({
   },
   {
     slug: "shipping-component-library-npm",
-    title: "Shipping a React component library as an npm package (lessons from AtroUI)",
+    title: "Lessons from shipping AtroUI (registry + package internals)",
     description:
-      "Practical lessons from publishing AtroUI: transpilePackages, peer deps, CSS entrypoints, bundled media, and keeping demo content off the consumer path.",
+      "Practical lessons from shipping AtroUI: shadcn registry for consumers, peers, CSS entrypoints, and keeping demo content off the public path.",
     date: "2026-08-05",
     sections: [
       {
         body: [
-          "Publishing a component library is not the same as having a docs site that imports local source. Consumers run a different Next config, a clean node_modules tree, and zero knowledge of your monorepo conventions.",
-          "AtroUI’s publish path taught a few lessons the hard way. Here are the ones worth stealing.",
+          "Consumers add AtroUI through the shadcn registry. Behind that, the docs site and catalog still need a clean package boundary, peers, and assets that do not 404 in the wild.",
+          "Here are the lessons worth stealing if you are building a similar catalog.",
         ],
       },
       {
-        heading: "Document transpilePackages if you ship TS source",
+        heading: "Lead with the registry for consumers",
         body: [
-          "If the package is TypeScript/TSX source, Next consumers need transpilePackages. Put it in the README and the first install step, not in a troubleshooting footnote. See [transpilePackages gotchas](/blog/transpile-packages-turbopack-ui-libraries).",
+          "The happy path is `npx shadcn add @atroui/…`. Document that first. Package internals matter for the docs host and for maintainers - not as the primary install story. See [Installation](/docs/installation).",
         ],
       },
       {
         heading: "Peers must be real peers",
         body: [
-          "Theme bridges like next-themes belong in peerDependencies with install instructions. Soft-assuming the docs app’s dependencies exist in the consumer is how you get “works on my machine” libraries.",
+          "Theme bridges like next-themes belong in peerDependencies (or CLI-installed deps) with install instructions. Soft-assuming the docs app’s dependencies exist in the consumer is how you get “works on my machine” libraries.",
         ],
       },
       {
-        heading: "One CSS entrypoint",
+        heading: "One CSS entrypoint for tokens",
         body: [
-          "Ship a single globals stylesheet consumers import once. Do not rely on monorepo-only @source paths that resolve in the docs app and 404 in the wild. Tokens and utilities should travel with the package.",
+          "Whether tokens ship via a stylesheet you copy or a shared theme file, consumers should import once. Do not rely on monorepo-only @source paths that resolve in the docs app and break outside it.",
         ],
       },
       {
-        heading: "Media used by components must ship with the package",
+        heading: "Media used by components must travel with them",
         body: [
-          "If a component references /images/founder-portrait.png and that file only exists in the docs public/ folder, every consumer gets a 404. Bundle assets in the package and resolve URLs for consumers, or do not ship the component as public API.",
+          "If a component references /images/founder-portrait.png and that file only exists in the docs public/ folder, every consumer gets a 404. Bundle assets with registry items or the package, or do not ship the component as public API.",
         ],
       },
       {
@@ -606,7 +542,7 @@ export default function RootLayout({
       {
         heading: "Install docs are part of the product",
         body: [
-          "A four-step quickstart with copy-paste config beats a beautiful catalog that nobody can mount. Keep [Installation](/docs/installation) and the [install blog post](/blog/install-atroui-nextjs-app-router) aligned with what npm actually publishes.",
+          "A four-step quickstart with copy-paste CLI commands beats a beautiful catalog that nobody can mount. Keep [Installation](/docs/installation) and the [install blog post](/blog/install-atroui-nextjs-app-router) aligned with the live registry.",
         ],
       },
     ],

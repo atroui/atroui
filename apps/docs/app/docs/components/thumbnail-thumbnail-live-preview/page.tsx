@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoThumbnailLivePreview />}
       code={'import { ThumbnailLivePreview } from "atroui"\n\n<ThumbnailLivePreview title="…" subtitle="…" styleKey="youtubePop" format="youtube" />'}
       fullBleed={false}
-      installation='import { ThumbnailLivePreview } from "atroui"'
       props={[
     { name: 'format', type: 'ThumbnailFormat', default: '-', description: 'Aspect format.' },
     { name: 'styleKey', type: 'ThumbnailStyleKey', default: '-', description: 'Preset.' },

@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoJournalContent />}
       code={'import { JournalContent } from "atroui"\n\n<JournalContent />'}
       fullBleed={true}
-      installation='import { JournalContent } from "atroui"'
     />
   )
 }

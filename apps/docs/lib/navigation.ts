@@ -23,11 +23,15 @@ export const navigation: NavSection[] = [
     title: "Getting Started",
     items: [
       { title: "Introduction", href: "/docs", description: "Overview" },
-      { title: "Installation", href: "/docs/installation", description: "Setup" },
       {
         title: "Registry",
         href: "/docs/registry",
-        description: "Copy components into your repo",
+        description: "Own components in your repo",
+      },
+      {
+        title: "Installation",
+        href: "/docs/installation",
+        description: "shadcn CLI setup",
       },
       { title: "Theming", href: "/docs/theming", description: "Tokens" },
       { title: "Brand kit", href: "/docs/brand", description: "Logo & voice" },

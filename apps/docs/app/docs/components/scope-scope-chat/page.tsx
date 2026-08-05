@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoScopeChat />}
       code={'import { ScopeChat } from "atroui"\n\n<ScopeChat />'}
       fullBleed={true}
-      installation='import { ScopeChat } from "atroui"'
       usage={
         <>
           Bring your own{" "}

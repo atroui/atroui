@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoWaitlistForm />}
       code={'import { WaitlistForm } from "atroui"\n\n<WaitlistForm />'}
       fullBleed={false}
-      installation='import { WaitlistForm } from "atroui"'
       usage='Posts to your /api/waitlist route.'
     />
   )

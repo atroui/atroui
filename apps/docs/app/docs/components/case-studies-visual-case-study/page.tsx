@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoVisualCaseStudy />}
       code={'import { VisualCaseStudy } from "atroui"\n\n<VisualCaseStudy study={study} />'}
       fullBleed={true}
-      installation='import { VisualCaseStudy } from "atroui"'
       usage="Pass a CaseStudy object (see packages/ui content). mockupVariant drives the BeforeAfterSlider; challenge, solution, results, and technologies render in the narrative + metrics columns."
     />
   )

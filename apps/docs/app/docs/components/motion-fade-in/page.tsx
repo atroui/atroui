@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoFadeIn />}
       code={'import { FadeIn } from "atroui"\n\n<FadeIn>Content</FadeIn>\n\n{/* Docs */}\n<FadeIn preview>Content</FadeIn>'}
       fullBleed={false}
-      installation='import { FadeIn } from "atroui"'
       props={[
     { name: 'y', type: 'number', default: '14', description: 'Initial translateY.' },
     { name: 'delay', type: 'number', default: '0', description: 'Delay in seconds.' },

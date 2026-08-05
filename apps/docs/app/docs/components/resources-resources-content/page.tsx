@@ -16,7 +16,6 @@ export default function Page() {
       preview={<DemoResourcesContent />}
       code={'import { ResourcesContent } from "atroui"\n\n<ResourcesContent />'}
       fullBleed={true}
-      installation='import { ResourcesContent } from "atroui"'
     />
   )
 }

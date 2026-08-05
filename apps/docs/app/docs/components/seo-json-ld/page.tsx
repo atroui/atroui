@@ -19,7 +19,6 @@ export default function Page() {
         "<SiteGraphJsonLd />\n" +
         "<ArticleJsonLd title={…} description={…} slug={…} date={…} />"
       }
-      installation='import { SiteGraphJsonLd, ArticleJsonLd } from "atroui"'
       usage="Render in the page (often the root layout or a template). Verify with View Source or Google’s Rich Results Test. Organization name defaults to getBrand().name - pass name to override."
       props={[
         {
