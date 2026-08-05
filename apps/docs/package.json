@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
+    "prebuild": "pnpm registry:build",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "echo \"No tests in docs\"",
-    "clean": "rm -rf .next .turbo"
+    "clean": "rm -rf .next .turbo",
+    "registry:build": "pnpm exec shadcn build ./registry.json -o ./public/r"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

@@ -24,6 +24,11 @@ export const navigation: NavSection[] = [
     items: [
       { title: "Introduction", href: "/docs", description: "Overview" },
       { title: "Installation", href: "/docs/installation", description: "Setup" },
+      {
+        title: "Registry",
+        href: "/docs/registry",
+        description: "Copy components into your repo",
+      },
       { title: "Theming", href: "/docs/theming", description: "Tokens" },
       { title: "Brand kit", href: "/docs/brand", description: "Logo & voice" },
       {

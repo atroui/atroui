@@ -57,8 +57,12 @@ export default function DocsIntroPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui/content/*
           </code>{" "}
-          may still reference Makershot - import your own content or pass props
-          when you rebrand a section.
+          may still reference Makershot. For full ownership of a section&apos;s
+          code and content, install from the{" "}
+          <Link href="/docs/registry" className="bam-link">
+            Registry
+          </Link>{" "}
+          so the source lives in your repo.
         </p>
       </section>
 

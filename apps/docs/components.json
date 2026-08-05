@@ -18,6 +18,7 @@
     "hooks": "@/hooks"
   },
   "registries": {
-    "@ui-layouts": "https://ui-layouts.com/r/{name}.json"
+    "@ui-layouts": "https://ui-layouts.com/r/{name}.json",
+    "@atroui": "https://www.atroui.com/r/{name}.json"
   }
 }

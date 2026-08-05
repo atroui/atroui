@@ -12,6 +12,7 @@ Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill 
 
 ## Features
 
+- **Registry (own the files)** - `npx shadcn add @atroui/home-hero` copies source into your repo
 - **Dark-first design tokens** in `atroui/globals.css`
 - **Primitives** - Button, Card, forms, theme toggle
 - **Sections** - landing bands, chrome, CTAs
@@ -19,7 +20,19 @@ Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill 
 - **Headless** - analytics, JSON-LD, reviews helpers
 - **ThemeProvider** via `next-themes`
 
-## Install
+## Install (registry)
+
+Own the component source in your project:
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
+npx shadcn@latest add @atroui/home-hero
+```
+
+Docs: [atroui.com/docs/registry](https://www.atroui.com/docs/registry)
+
+## Install (npm package)
 
 ```bash
 npm install atroui next-themes

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "brand",
+  "title": "Brand",
+  "description": "getBrand() and DEFAULT_BRAND - edit or override with NEXT_PUBLIC_SITE_*.",
+  "files": [
+    {
+      "path": "registry/default/lib/brand.ts",
+      "content": "/**\n * Brand chrome for copied AtroUI components.\n * Edit DEFAULT_BRAND or set NEXT_PUBLIC_SITE_* in your app.\n */\n\nexport type Brand = {\n  name: string\n  domain: string\n  email: string\n  siteUrl: string\n  tagline: string\n}\n\nexport const DEFAULT_BRAND: Brand = {\n  name: \"Acme\",\n  domain: \"acme.test\",\n  email: \"hello@acme.test\",\n  siteUrl: \"https://acme.test\",\n  tagline: \"Your product tagline\",\n}\n\nfunction readEnv(key: string): string | undefined {\n  if (typeof process === \"undefined\" || !process.env) return undefined\n  const value = process.env[key]?.trim()\n  return value || undefined\n}\n\nexport function getBrand(): Brand {\n  return {\n    name: readEnv(\"NEXT_PUBLIC_SITE_NAME\") ?? DEFAULT_BRAND.name,\n    domain: readEnv(\"NEXT_PUBLIC_SITE_DOMAIN\") ?? DEFAULT_BRAND.domain,\n    email: readEnv(\"NEXT_PUBLIC_SITE_EMAIL\") ?? DEFAULT_BRAND.email,\n    siteUrl: (\n      readEnv(\"NEXT_PUBLIC_SITE_URL\") ?? DEFAULT_BRAND.siteUrl\n    ).replace(/\\/$/, \"\"),\n    tagline: readEnv(\"NEXT_PUBLIC_SITE_TAGLINE\") ?? DEFAULT_BRAND.tagline,\n  }\n}\n\nexport function getBrandMailto(subject?: string): string {\n  const { email } = getBrand()\n  if (!subject) return `mailto:${email}`\n  return `mailto:${email}?subject=${encodeURIComponent(subject)}`\n}\n",
+      "type": "registry:lib",
+      "target": "lib/brand.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

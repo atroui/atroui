@@ -83,7 +83,20 @@ export default function ComparePage() {
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
               atroui
             </code>{" "}
-            as a dependency; fork or copy when you need full ownership.
+            for tokens, ThemeProvider, and tools.
+          </li>
+          <li>
+            <strong className="text-foreground">Registry (own the files)</strong>{" "}
+            -{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+              npx shadcn add @atroui/…
+            </code>{" "}
+            copies source into your repo so you can edit code, content, and
+            design. See the{" "}
+            <Link href="/docs/registry" className="bam-link">
+              Registry
+            </Link>{" "}
+            guide.
           </li>
         </ul>
       </section>
@@ -92,8 +105,13 @@ export default function ComparePage() {
         <h2 className="ds-headline text-base text-foreground">When to pick which</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Prefer a kit if you want every file in your monorepo and a blank visual
-          slate. Prefer AtroUI if you want a ready dark catalog, production
-          sections, and brandable chrome with a clear home at{" "}
+          slate. Prefer AtroUI when you want a ready dark catalog - install from
+          the{" "}
+          <Link href="/docs/registry" className="bam-link">
+            registry
+          </Link>{" "}
+          to own section source, or use the npm package for tokens and tools.
+          Home:{" "}
           <a href="https://www.atroui.com" className="bam-link">
             www.atroui.com
           </a>

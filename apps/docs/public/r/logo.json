@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo",
+  "title": "Logo",
+  "description": "Interrupted-A mark and wordmark. Edit the SVG in your repo.",
+  "registryDependencies": [
+    "utils",
+    "brand"
+  ],
+  "files": [
+    {
+      "path": "registry/default/brand/logo.tsx",
+      "content": "import * as React from \"react\"\n\nimport { getBrand } from \"@/lib/brand\"\nimport { cn } from \"@/lib/utils\"\n\n/** Interrupted-A mark. Edit the SVG paths to change the logo. */\nexport function LogoMark({\n  className,\n  title,\n}: {\n  className?: string\n  title?: string\n}) {\n  const label = title ?? getBrand().name\n  return (\n    <svg\n      viewBox=\"0 0 48 48\"\n      width=\"24\"\n      height=\"24\"\n      fill=\"none\"\n      role=\"img\"\n      aria-label={label}\n      className={cn(\"text-foreground\", className)}\n    >\n      <title>{label}</title>\n      <path\n        d=\"M14 36 L24 10 L34 36\"\n        stroke=\"currentColor\"\n        strokeWidth=\"4\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      />\n      <rect\n        x=\"17.5\"\n        y=\"24.3\"\n        width=\"13\"\n        height=\"3.6\"\n        rx=\"1.8\"\n        fill=\"var(--color-brand, #0b7bff)\"\n      />\n    </svg>\n  )\n}\n\nexport function LogoWordmark({\n  className,\n  markClassName,\n  name,\n}: {\n  className?: string\n  markClassName?: string\n  name?: string\n}) {\n  const label = name ?? getBrand().name\n  return (\n    <span className={cn(\"inline-flex items-center gap-2.5\", className)}>\n      <LogoMark\n        className={cn(\"h-7 w-7 shrink-0\", markClassName)}\n        title={label}\n      />\n      <span className=\"text-[19px] leading-none font-medium tracking-[-0.01em] text-foreground\">\n        {label}\n      </span>\n    </span>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/brand/logo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
