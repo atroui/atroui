@@ -14,10 +14,10 @@ export default function Page() {
       title="Founder Avatar"
       description="Circular founder portrait for signature rows and about bands."
       preview={<DemoFounderAvatar />}
-      code={'import { FounderAvatar } from "atroui"\n\n<FounderAvatar size="md" />\n<FounderAvatar size="md" src="/images/founder-portrait.png" />'}
+      code={'import { FounderAvatar } from "atroui"\n\n<FounderAvatar size="md" />'}
       fullBleed={false}
       installation='import { FounderAvatar } from "atroui"'
-      usage="Optional src (or NEXT_PUBLIC_FOUNDER_AVATAR). When omitted, shows brand initials — no hardcoded /images path, so consumer apps do not 404. Decorative only (aria-hidden); put the name in adjacent copy. Sizes: sm, md, lg."
+      usage="Portrait ships inside the atroui package (no /public copy needed). Override with src or NEXT_PUBLIC_FOUNDER_AVATAR. Decorative only (aria-hidden); put the name in adjacent copy. Sizes: sm, md, lg."
       props={[
         {
           name: "size",
@@ -27,14 +27,14 @@ export default function Page() {
         },
         {
           name: "src",
-          type: "string",
+          type: "string | StaticImageData",
           description:
-            "Portrait URL. Falls back to NEXT_PUBLIC_FOUNDER_AVATAR, then initials.",
+            "Optional override. Defaults to the bundled founder portrait.",
         },
         {
           name: "initials",
           type: "string",
-          description: "Override initials when no image is set.",
+          description: "Initials used only if no image can be resolved.",
         },
       ]}
     />

@@ -4,13 +4,17 @@ import { Check, Copy } from "lucide-react";
 import { useCallback, useState } from "react";
 
 import { getBrand } from "../../lib/brand";
+import { MEDIA, mediaSrc } from "../../lib/media";
 import { absoluteUrl } from "../../lib/seo";
 import { cn } from "../../lib/utils";
 
 type MadeWithEmbedProps = {
   /** Path the badge should link to */
   href?: string;
-  /** Public path to the badge SVG (host app asset). */
+  /**
+   * Badge image. Defaults to the SVG bundled in the `atroui` package.
+   * Pass a public URL when the HTML snippet must work on other origins.
+   */
   badgeSrc?: string;
   /** Accessible / alt label brand name. Defaults to getBrand().name */
   brandName?: string;
@@ -22,18 +26,22 @@ type MadeWithEmbedProps = {
  */
 export function MadeWithEmbed({
   href = "/og",
-  badgeSrc = "/badge/atroui.svg",
+  badgeSrc,
   brandName,
   className,
 }: MadeWithEmbedProps) {
   const [copied, setCopied] = useState(false);
   const name = brandName ?? getBrand().name;
   const target = absoluteUrl(href);
-  const badgeUrl = badgeSrc.startsWith("http")
-    ? badgeSrc
-    : absoluteUrl(badgeSrc);
+  const previewSrc = badgeSrc ?? mediaSrc(MEDIA.badge.atroui);
+  // Snippet prefers an absolute public URL so paste targets can load the badge.
+  const snippetBadgeSrc = badgeSrc
+    ? badgeSrc.startsWith("http")
+      ? badgeSrc
+      : absoluteUrl(badgeSrc)
+    : absoluteUrl("/badge/atroui.svg");
   const alt = `Made with ${name}`;
-  const snippet = `<a href="${target}" target="_blank" rel="noopener noreferrer"><img src="${badgeUrl}" alt="${alt}" width="160" height="40" /></a>`;
+  const snippet = `<a href="${target}" target="_blank" rel="noopener noreferrer"><img src="${snippetBadgeSrc}" alt="${alt}" width="160" height="40" /></a>`;
 
   const copy = useCallback(async () => {
     try {
@@ -61,7 +69,7 @@ export function MadeWithEmbed({
           className="mt-6 inline-block ring-1 ring-border-subtle transition-opacity hover:opacity-90"
           aria-label={`${name} badge preview`}
         >
-          <img src={badgeSrc} alt={alt} width={160} height={40} />
+          <img src={previewSrc} alt={alt} width={160} height={40} />
         </a>
       </div>
       <div className="md:col-span-7">

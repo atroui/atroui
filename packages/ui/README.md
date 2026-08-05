@@ -33,6 +33,8 @@ export function App({ children }: { children: React.ReactNode }) {
 ```
 
 Also load Outfit with `--font-outfit` on `<html>`. Full steps: [atroui.com/docs/installation](https://atroui.com/docs/installation).
+
+Component media (portraits, OG examples, badges) ships inside the package — no `/public` copies required for those components.
 ## Docs
 
 - Site: [atroui.com](https://atroui.com)

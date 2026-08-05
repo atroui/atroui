@@ -214,19 +214,16 @@ export function DemoFounderAvatar() {
   return (
     <div className="flex items-center gap-5">
       <div className="flex items-center gap-3">
-        <FounderAvatar size="sm" src="/images/founder-portrait.png" />
-        <FounderAvatar size="md" src="/images/founder-portrait.png" />
-        <FounderAvatar size="lg" src="/images/founder-portrait.png" />
+        <FounderAvatar size="sm" />
+        <FounderAvatar size="md" />
+        <FounderAvatar size="lg" />
       </div>
       <div className="text-left">
         <p className="text-sm font-medium text-foreground">Founder avatar</p>
         <p className="text-xs text-muted-foreground">
-          Optional{" "}
-          <code className="font-mono text-[11px] text-foreground">src</code> or{" "}
-          <code className="font-mono text-[11px] text-foreground">
-            NEXT_PUBLIC_FOUNDER_AVATAR
-          </code>
-          ; otherwise brand initials.
+          Bundled with the package — no{" "}
+          <code className="font-mono text-[11px] text-foreground">/public</code>{" "}
+          copy required.
         </p>
       </div>
     </div>
