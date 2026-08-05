@@ -10,7 +10,7 @@ import { MobileSidebar } from "@/components/sidebar"
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-14 max-w-350 items-center gap-3 px-4 sm:px-6">
         <MobileSidebar />
 
         <Link href="/" className="flex items-center gap-2.5" aria-label="AtroUI home">
