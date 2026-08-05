@@ -105,6 +105,9 @@ export default function ComparePage() {
         <Link href="/docs/installation" className="ms-cta">
           Install AtroUI
         </Link>
+        <Link href="/blog/atroui-vs-shadcn" className="ms-cta-ghost">
+          AtroUI vs shadcn/ui
+        </Link>
         <Link href="/blog/what-is-atroui" className="ms-cta-ghost">
           What is AtroUI?
         </Link>

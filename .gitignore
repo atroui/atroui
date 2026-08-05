@@ -9,3 +9,9 @@ dist
 storybook-static
 coverage
 *.tsbuildinfo
+
+# Local agent skills / product marketing context (not for contributors)
+.agents/
+skills-lock.json
+.claude/product-marketing.md
+product-marketing-context.md

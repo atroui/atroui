@@ -1,10 +1,57 @@
 import type { Metadata } from "next"
+import type { ReactNode } from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { CodeBlock } from "@/components/code-block"
 import { blogPosts, getPost } from "@/lib/blog"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 type Props = { params: Promise<{ slug: string }> }
+
+/** Render paragraphs that may include simple [label](/path) or [label](https://…) links. */
+function RichParagraph({ text }: { text: string }) {
+  const parts: ReactNode[] = []
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g
+  let last = 0
+  let match: RegExpExecArray | null
+  let key = 0
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) {
+      parts.push(text.slice(last, match.index))
+    }
+    const label = match[1] ?? ""
+    const href = match[2] ?? "#"
+    const external = href.startsWith("http")
+    if (external) {
+      parts.push(
+        <a
+          key={key++}
+          href={href}
+          className="bam-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {label}
+        </a>
+      )
+    } else {
+      parts.push(
+        <Link key={key++} href={href} className="bam-link">
+          {label}
+        </Link>
+      )
+    }
+    last = match.index + match[0].length
+  }
+  if (last < text.length) {
+    parts.push(text.slice(last))
+  }
+  return (
+    <p className="text-[15px] leading-relaxed text-muted-foreground">
+      {parts}
+    </p>
+  )
+}
 
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }))
@@ -58,12 +105,15 @@ export default async function BlogPostPage({ params }: Props) {
                 </h2>
               ) : null}
               {section.body.map((para, j) => (
-                <p
-                  key={j}
-                  className="text-[15px] leading-relaxed text-muted-foreground"
-                >
-                  {para}
-                </p>
+                <RichParagraph key={j} text={para} />
+              ))}
+              {section.codeBlocks?.map((block, k) => (
+                <CodeBlock
+                  key={k}
+                  language={block.language}
+                  code={block.code}
+                  className="mt-2"
+                />
               ))}
             </section>
           ))}
