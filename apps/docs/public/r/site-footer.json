@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "site-footer",
+  "title": "Site Footer",
+  "description": "Lighter footer with editable CONTENT and link columns.",
+  "dependencies": [
+    "next"
+  ],
+  "registryDependencies": [
+    "@atroui/brand"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/site-footer.tsx",
+      "content": "import Link from \"next/link\"\n\nimport { getBrand } from \"@/lib/brand\"\n\n/**\n * Lighter site footer. Edit CONTENT / LINKS after install.\n * For a louder CTA footer, use @atroui/footer-bold instead.\n */\nconst CONTENT = {\n  blurb: \"Dark-first UI you own in your repo.\",\n  copyrightSuffix: \"All rights reserved.\",\n}\n\nconst LINKS = [\n  { label: \"Work\", href: \"/work\" },\n  { label: \"Services\", href: \"/services\" },\n  { label: \"Journal\", href: \"/journal\" },\n  { label: \"Contact\", href: \"/contact\" },\n]\n\nconst LEGAL = [\n  { label: \"Privacy\", href: \"/privacy\" },\n  { label: \"Terms\", href: \"/terms\" },\n]\n\nexport function SiteFooter() {\n  const year = new Date().getFullYear()\n  const { name, email } = getBrand()\n\n  return (\n    <footer className=\"border-t border-border-subtle pb-[env(safe-area-inset-bottom)]\">\n      <div className=\"mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-14\">\n        <div className=\"flex flex-col gap-10 md:flex-row md:items-start md:justify-between\">\n          <div className=\"max-w-sm\">\n            <p className=\"text-lg font-medium tracking-tight text-foreground\">\n              {name}\n            </p>\n            <p className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">\n              {CONTENT.blurb}\n            </p>\n            <a\n              href={`mailto:${email}`}\n              className=\"mt-4 inline-flex text-sm font-medium text-foreground underline-offset-4 hover:underline\"\n            >\n              {email}\n            </a>\n          </div>\n\n          <div className=\"flex flex-wrap gap-12 sm:gap-16\">\n            <nav aria-label=\"Site\" className=\"flex flex-col gap-2\">\n              <p className=\"text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase\">\n                Site\n              </p>\n              {LINKS.map((item) => (\n                <Link\n                  key={item.href}\n                  href={item.href}\n                  className=\"text-sm text-muted-foreground hover:text-foreground\"\n                >\n                  {item.label}\n                </Link>\n              ))}\n            </nav>\n            <nav aria-label=\"Legal\" className=\"flex flex-col gap-2\">\n              <p className=\"text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase\">\n                Legal\n              </p>\n              {LEGAL.map((item) => (\n                <Link\n                  key={item.href}\n                  href={item.href}\n                  className=\"text-sm text-muted-foreground hover:text-foreground\"\n                >\n                  {item.label}\n                </Link>\n              ))}\n            </nav>\n          </div>\n        </div>\n\n        <p className=\"mt-12 border-t border-border-subtle pt-6 font-mono text-[11px] text-muted-foreground\">\n          © {year} {name}. {CONTENT.copyrightSuffix}\n        </p>\n      </div>\n    </footer>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/site-footer.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

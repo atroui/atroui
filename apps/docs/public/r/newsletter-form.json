@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "newsletter-form",
+  "title": "Newsletter Form",
+  "description": "Email newsletter form with editable CONTENT; posts to your API.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/newsletter-form.tsx",
+      "content": "\"use client\"\n\nimport { CheckCircle2, Loader2, Mail } from \"lucide-react\"\nimport { useState, type FormEvent } from \"react\"\n\n/**\n * Edit CONTENT to change copy and API endpoint.\n * Wire CONTENT.endpoint to your own route (Host API).\n */\nconst CONTENT = {\n  placeholder: \"you@company.com\",\n  submitLabel: \"Subscribe\",\n  successMessage: \"You're on the list - thanks!\",\n  endpoint: \"/api/newsletter\",\n}\n\nexport type NewsletterFormProps = {\n  className?: string\n}\n\nexport function NewsletterForm({ className }: NewsletterFormProps) {\n  const [email, setEmail] = useState(\"\")\n  const [status, setStatus] = useState<\"idle\" | \"loading\" | \"success\" | \"error\">(\n    \"idle\",\n  )\n  const [error, setError] = useState(\"\")\n\n  const onSubmit = async (e: FormEvent) => {\n    e.preventDefault()\n    setStatus(\"loading\")\n    setError(\"\")\n    try {\n      const res = await fetch(CONTENT.endpoint, {\n        method: \"POST\",\n        headers: { \"Content-Type\": \"application/json\" },\n        body: JSON.stringify({ email }),\n      })\n      const data = (await res.json().catch(() => ({}))) as { error?: string }\n      if (!res.ok) throw new Error(data.error ?? \"Failed to subscribe\")\n      setStatus(\"success\")\n      setEmail(\"\")\n    } catch (err) {\n      setStatus(\"error\")\n      setError(err instanceof Error ? err.message : \"Something went wrong\")\n    }\n  }\n\n  if (status === \"success\") {\n    return (\n      <div\n        className={`flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 ${className ?? \"\"}`}\n      >\n        <CheckCircle2 className=\"size-4\" aria-hidden />\n        <span>{CONTENT.successMessage}</span>\n      </div>\n    )\n  }\n\n  return (\n    <form\n      onSubmit={onSubmit}\n      className={`flex flex-col gap-2 sm:flex-row ${className ?? \"\"}`}\n    >\n      <div className=\"relative min-w-0 flex-1\">\n        <Mail\n          className=\"pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground\"\n          aria-hidden\n        />\n        <input\n          type=\"email\"\n          required\n          value={email}\n          onChange={(e) => setEmail(e.target.value)}\n          placeholder={CONTENT.placeholder}\n          disabled={status === \"loading\"}\n          className=\"w-full border border-border-subtle bg-background py-2.5 pr-4 pl-9 text-sm text-foreground outline-none focus:border-foreground disabled:opacity-60\"\n          aria-label=\"Email for newsletter\"\n        />\n      </div>\n      <button\n        type=\"submit\"\n        disabled={status === \"loading\"}\n        className=\"inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background disabled:opacity-60\"\n      >\n        {status === \"loading\" ? (\n          <Loader2 className=\"size-4 animate-spin\" aria-hidden />\n        ) : null}\n        {CONTENT.submitLabel}\n      </button>\n      {status === \"error\" ? (\n        <p className=\"text-xs text-red-600 sm:basis-full dark:text-red-400\">\n          {error}\n        </p>\n      ) : null}\n    </form>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/newsletter-form.tsx"
+    }
+  ],
+  "type": "registry:block"
+}
