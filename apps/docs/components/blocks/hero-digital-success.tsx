@@ -41,8 +41,11 @@ const catalogBands = [
   { title: "Headless", body: "Analytics, JSON-LD, reviews" },
 ] as const
 
-export function HeroDigitalSuccess() {
-  const timelineRef = useRef<HTMLDivElement>(null)
+/**
+ * Owns mobile menu state so toggling the drawer does not re-render the
+ * WebGL shader sibling (R3F Provider crashes on null event targets).
+ */
+function HeroMobileMenu() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -53,6 +56,92 @@ export function HeroDigitalSuccess() {
       document.body.style.overflow = prev
     }
   }, [menuOpen])
+
+  return (
+    <>
+      <button
+        type="button"
+        className="inline-flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white md:hidden"
+        aria-expanded={menuOpen}
+        aria-controls="hero-mobile-nav"
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        onClick={() => setMenuOpen(true)}
+      >
+        <Menu className="size-4" aria-hidden />
+      </button>
+
+      <div
+        className={`fixed inset-0 z-50 md:hidden ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        aria-hidden={!menuOpen}
+      >
+        <button
+          type="button"
+          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-250 ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+          aria-label="Close menu"
+          tabIndex={menuOpen ? 0 : -1}
+          onClick={() => setMenuOpen(false)}
+        />
+        <nav
+          id="hero-mobile-nav"
+          aria-label="Mobile"
+          className={`absolute inset-y-0 right-0 flex w-[min(18rem,calc(100vw-2.5rem))] flex-col border-l border-white/10 bg-black/40 p-4 pt-[max(1.25rem,env(safe-area-inset-top))] text-white shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_25%,transparent)] backdrop-blur-2xl transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] sm:p-5 ${
+            menuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_45%_at_100%_0%,color-mix(in_oklch,var(--color-brand)_22%,transparent),transparent_60%)]"
+          />
+
+          <div className="relative z-10 mb-6 flex items-center justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-2.5">
+              <LogoMark className="h-7 w-7 shrink-0 text-white" />
+              <span className="truncate text-base font-medium tracking-tight">
+                AtroUI
+              </span>
+            </div>
+            <button
+              type="button"
+              className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white"
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+            >
+              <X className="size-4" aria-hidden />
+            </button>
+          </div>
+
+          <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain pb-[max(1rem,env(safe-area-inset-bottom))]">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-full px-3 py-2.5 text-sm font-medium text-white/85 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="mt-auto pt-5">
+              <Link
+                href="/docs/components"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.35)]"
+              >
+                <span className="h-2 w-2 rounded-full bg-sky-400" />
+                Browse catalog
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </>
+  )
+}
+
+export function HeroDigitalSuccess() {
+  const timelineRef = useRef<HTMLDivElement>(null)
 
   return (
     <section
@@ -108,81 +197,10 @@ export function HeroDigitalSuccess() {
               <span className="lg:hidden">Browse</span>
             </TimelineAnimation>
 
-            <button
-              type="button"
-              className="inline-flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white md:hidden"
-              aria-expanded={menuOpen}
-              aria-controls="hero-mobile-nav"
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              onClick={() => setMenuOpen(true)}
-            >
-              <Menu className="size-4" aria-hidden />
-            </button>
+            <HeroMobileMenu />
           </div>
         </div>
       </header>
-
-      {/* Side drawer - mobile only; design-system surfaces */}
-      <div
-        className={`fixed inset-0 z-50 md:hidden ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
-        aria-hidden={!menuOpen}
-      >
-        <button
-          type="button"
-          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-250 ${
-            menuOpen ? "opacity-100" : "opacity-0"
-          }`}
-          aria-label="Close menu"
-          tabIndex={menuOpen ? 0 : -1}
-          onClick={() => setMenuOpen(false)}
-        />
-        <nav
-          id="hero-mobile-nav"
-          aria-label="Mobile"
-          className={`dark absolute inset-y-0 right-0 flex w-[min(18rem,calc(100vw-2.5rem))] flex-col border-l border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] text-foreground shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] sm:p-5 ${
-            menuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="mb-5 flex items-center justify-between gap-3">
-            <div className="flex min-w-0 items-center gap-2">
-              <LogoMark className="shrink-0 text-foreground" />
-              <span className="truncate text-[15px] font-medium text-foreground">
-                AtroUI
-              </span>
-            </div>
-            <button
-              type="button"
-              className="inline-flex size-9 shrink-0 items-center justify-center rounded-full text-foreground"
-              aria-label="Close menu"
-              onClick={() => setMenuOpen(false)}
-            >
-              <X className="size-4" aria-hidden />
-            </button>
-          </div>
-
-          <div className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-contain pb-[max(1rem,env(safe-area-inset-bottom))]">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="mt-auto pt-4">
-              <Link
-                href="/docs/components"
-                onClick={() => setMenuOpen(false)}
-                className="ms-cta w-full justify-center text-sm"
-              >
-                Browse catalog
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </div>
 
       <div className="relative z-10 flex grow flex-col justify-center px-4 py-10 sm:px-8 md:px-16 md:py-14 lg:px-24">
         <TimelineAnimation
