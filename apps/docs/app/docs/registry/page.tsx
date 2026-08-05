@@ -93,7 +93,15 @@ npx shadcn@latest add @atroui/button`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             NAV
           </code>{" "}
-          constants at the top - that is the point.
+          constants at the top - that is the point. Dependencies resolve as{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/brand
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/utils
+          </code>
+          , etc. (not bare names on the default shadcn registry).
         </p>
       </section>
 

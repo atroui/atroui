@@ -8,7 +8,7 @@
     "next"
   ],
   "registryDependencies": [
-    "brand"
+    "@atroui/brand"
   ],
   "files": [
     {

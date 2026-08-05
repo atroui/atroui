@@ -36,7 +36,7 @@
       "title": "Button",
       "description": "AtroUI button with CVA variants. Source lands in your project.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@atroui/utils"],
       "files": [
         {
           "path": "registry/default/ui/button.tsx",
@@ -51,7 +51,7 @@
       "title": "Theme Toggle",
       "description": "Light / system / dark toggle using next-themes.",
       "dependencies": ["lucide-react", "next-themes"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@atroui/utils"],
       "files": [
         {
           "path": "registry/default/ui/theme-toggle.tsx",
@@ -65,7 +65,7 @@
       "type": "registry:component",
       "title": "Logo",
       "description": "Interrupted-A mark and wordmark. Edit the SVG in your repo.",
-      "registryDependencies": ["utils", "brand"],
+      "registryDependencies": ["@atroui/utils", "@atroui/brand"],
       "files": [
         {
           "path": "registry/default/brand/logo.tsx",
@@ -80,7 +80,7 @@
       "title": "Home Hero",
       "description": "Editable dark-first hero band. Change CONTENT at the top of the file.",
       "dependencies": ["next"],
-      "registryDependencies": ["brand"],
+      "registryDependencies": ["@atroui/brand"],
       "files": [
         {
           "path": "registry/default/blocks/home-hero.tsx",
@@ -95,7 +95,7 @@
       "title": "Home Who",
       "description": "Founder / who band with editable CONTENT constants.",
       "dependencies": ["lucide-react", "next"],
-      "registryDependencies": ["brand"],
+      "registryDependencies": ["@atroui/brand"],
       "files": [
         {
           "path": "registry/default/blocks/home-who.tsx",
@@ -110,7 +110,12 @@
       "title": "Site Header",
       "description": "Sticky site header with editable NAV and CTA.",
       "dependencies": ["lucide-react", "motion", "next"],
-      "registryDependencies": ["utils", "brand", "logo", "theme-toggle"],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/brand",
+        "@atroui/logo",
+        "@atroui/theme-toggle"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/site-header.tsx",
@@ -125,7 +130,7 @@
       "title": "Bold Footer",
       "description": "Bold footer with editable headline, studio links, and socials.",
       "dependencies": ["next"],
-      "registryDependencies": ["brand"],
+      "registryDependencies": ["@atroui/brand"],
       "files": [
         {
           "path": "registry/default/blocks/footer-bold.tsx",
