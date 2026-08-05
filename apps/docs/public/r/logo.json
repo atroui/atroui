@@ -4,8 +4,8 @@
   "title": "Logo",
   "description": "Interrupted-A mark and wordmark. Edit the SVG in your repo.",
   "registryDependencies": [
-    "utils",
-    "brand"
+    "@atroui/utils",
+    "@atroui/brand"
   ],
   "files": [
     {

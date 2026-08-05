@@ -9,10 +9,10 @@
     "next"
   ],
   "registryDependencies": [
-    "utils",
-    "brand",
-    "logo",
-    "theme-toggle"
+    "@atroui/utils",
+    "@atroui/brand",
+    "@atroui/logo",
+    "@atroui/theme-toggle"
   ],
   "files": [
     {
