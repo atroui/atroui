@@ -1,7 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import { Github, Star } from "lucide-react"
 import { HeroDigitalSuccess } from "@/components/blocks/hero-digital-success"
+
+const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 const inside = [
   {
@@ -117,6 +120,17 @@ export function LandingHero() {
             </p>
           </div>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ms-cta-ghost inline-flex w-full items-center justify-center gap-2 text-sm sm:w-auto"
+              aria-label="Star AtroUI on GitHub"
+            >
+              <Github className="size-4" aria-hidden />
+              <span>Star on GitHub</span>
+              <Star className="size-3.5 fill-current opacity-80" aria-hidden />
+            </a>
             <Link
               href="/docs"
               className="ms-cta-ghost w-full justify-center text-sm sm:w-auto"
@@ -139,7 +153,17 @@ export function LandingHero() {
             © {new Date().getFullYear()} AtroUI · atroui.com - React component
             library
           </p>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-neutral-500">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-500">
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 font-medium text-neutral-200 transition-colors hover:border-white/25 hover:bg-white/10 hover:text-white"
+              aria-label="Star AtroUI on GitHub"
+            >
+              <Star className="size-3.5" aria-hidden />
+              Star
+            </a>
             <a
               href="https://www.npmjs.com/package/atroui"
               target="_blank"
@@ -149,7 +173,7 @@ export function LandingHero() {
               npm
             </a>
             <a
-              href="https://github.com/atroui/atroui"
+              href={GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-neutral-300"
