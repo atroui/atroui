@@ -2,11 +2,14 @@
 
 import { Suspense, useRef } from "react"
 import Link from "next/link"
+import { Github, Star } from "lucide-react"
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react"
 import { TimelineAnimation } from "@/components/ui/timeline-animation"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import MotionDrawer from "@/components/ui/motion-drawer"
 import { LogoMark } from "@/components/logo-mark"
+
+const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
@@ -109,19 +112,43 @@ export function HeroDigitalSuccess() {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href={GITHUB_REPO}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 flex items-center gap-2 rounded-sm p-2 hover:bg-neutral-100 hover:text-black"
+                aria-label="Star AtroUI on GitHub"
+              >
+                <Star className="size-4" aria-hidden />
+                Star on GitHub
+              </a>
             </nav>
           </MotionDrawer>
-          <TimelineAnimation
-            once
-            as="a"
-            href="/docs/components"
-            animationNum={3}
-            timelineRef={timelineRef}
-            className="flex w-fit items-center gap-2 rounded-full bg-neutral-800 px-5 py-3 text-sm font-medium text-white"
-          >
-            <span className="h-2 w-2 rounded-full bg-sky-400" />
-            Browse
-          </TimelineAnimation>
+          <div className="flex items-center gap-2">
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Star AtroUI on GitHub"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md transition hover:bg-white/10"
+            >
+              <Star className="size-4" aria-hidden />
+            </a>
+            <TimelineAnimation
+              once
+              as="a"
+              href="/docs/components"
+              animationNum={3}
+              timelineRef={timelineRef}
+              className="group inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black shadow-[0_0_14px_rgba(11,123,255,0.3)] transition hover:bg-white/90"
+            >
+              <span
+                className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)]"
+                aria-hidden
+              />
+              Browse
+            </TimelineAnimation>
+          </div>
         </div>
       ) : null}
 
@@ -158,14 +185,31 @@ export function HeroDigitalSuccess() {
 
           <TimelineAnimation
             once
-            as="a"
-            href="/docs/components"
             animationNum={3}
             timelineRef={timelineRef}
-            className="flex w-fit items-center gap-2 rounded-full bg-neutral-800 px-8 py-4 text-sm font-medium text-white"
+            className="flex items-center gap-2.5"
           >
-            <span className="h-2 w-2 rounded-full bg-sky-400" />
-            Browse catalog
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Star AtroUI on GitHub"
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/10"
+            >
+              <Github className="size-3.5" aria-hidden />
+              Star
+              <Star className="size-3.5 opacity-80" aria-hidden />
+            </a>
+            <a
+              href="/docs/components"
+              className="group inline-flex h-11 items-center gap-2.5 rounded-full bg-white px-5 text-sm font-medium text-black shadow-[0_0_18px_rgba(11,123,255,0.35)] transition hover:bg-white/90"
+            >
+              <span
+                className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)] transition group-hover:scale-110"
+                aria-hidden
+              />
+              Browse catalog
+            </a>
           </TimelineAnimation>
         </header>
       ) : null}
