@@ -21,19 +21,19 @@ export const blogPosts: BlogPost[] = [
     slug: "what-is-atroui",
     title: "What is AtroUI? A Next.js component library that ships as a package",
     description:
-      "AtroUI is a dark-first React / Next.js component library on npm. Production sections, brand chrome, and tokens — not another copy-paste kit. Install with npm i atroui.",
+      "AtroUI is a dark-first React / Next.js component library on npm. Production sections, brand chrome, and tokens, not another copy-paste kit. Install with npm i atroui.",
     date: "2026-08-05",
     sections: [
       {
         body: [
-          "AtroUI is a production React and Next.js component library. You install it like any other dependency — npm i atroui — and get a dark-first design system: tokens, site chrome, marketing sections, SEO helpers, and optional host-bound tools that call your own APIs.",
+          "AtroUI is a production React and Next.js component library. You install it like any other dependency (npm i atroui) and get a dark-first design system: tokens, site chrome, marketing sections, SEO helpers, and optional host-bound tools that call your own APIs.",
           "The canonical home is [atroui.com](https://www.atroui.com). The package on npm is atroui. Docs, compare notes, and this blog all live under that brand so search results point somewhere real.",
         ],
       },
       {
         heading: "The job it is hired for",
         body: [
-          "Most teams do not want to rebuild a hero, footer, theme provider, and OG workspace from scratch for every product. They want a coherent dark UI that already looks like a shipped app — then they customize brand and content.",
+          "Most teams do not want to rebuild a hero, footer, theme provider, and OG workspace from scratch for every product. They want a coherent dark UI that already looks like a shipped app, then they customize brand and content.",
           "That is the job AtroUI is built for. You hire it to get from empty App Router project to a branded dark surface without assembling fifty primitives into a design system yourself.",
         ],
       },
@@ -48,7 +48,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Who it is for",
         body: [
-          "Indie makers and small teams shipping Next.js products who want a dark-first system — black canvas, brand blue, glass surfaces — without spending a sprint on chrome.",
+          "Indie makers and small teams shipping Next.js products who want a dark-first system (black canvas, brand blue, glass surfaces) without spending a sprint on chrome.",
           "Agencies and studios rebranding a catalog for client work via NEXT_PUBLIC_SITE_* and getBrand(), while skipping optional portfolio demo content under atroui/content/*.",
           "Builders who want SEO helpers and AI-adjacent workspaces that do not burn shared LLM keys on the docs host.",
         ],
@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "What you get in the box",
         body: [
-          "Design tokens and utilities in atroui/globals.css — dark-first by default.",
+          "Design tokens and utilities in atroui/globals.css, dark-first by default.",
           "ThemeProvider (peer: next-themes), Button and other primitives, page sections, JSON-LD helpers, and brandable logo/chrome.",
           "Bundled media for components that need images (founder portrait, OG examples, Made-with badge) so consumers are not left with 404s on /public paths.",
         ],
@@ -86,7 +86,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "1. Install packages",
         body: [
-          "Install the published package and its theme peer. Use npm, pnpm, or yarn — same package name.",
+          "Install the published package and its theme peer. Use npm, pnpm, or yarn. Same package name.",
         ],
         codeBlocks: [
           {
@@ -202,12 +202,12 @@ export default function Page() {
     slug: "dark-first-design-tokens",
     title: "Dark-first design tokens in AtroUI",
     description:
-      "How AtroUI’s dark-first tokens work: black canvas, brand blue #0b7bff, glass surfaces, Outfit — and how to override them in atroui/globals.css.",
+      "How AtroUI’s dark-first tokens work: black canvas, brand blue #0b7bff, glass surfaces, Outfit, and how to override them in atroui/globals.css.",
     date: "2026-08-05",
     sections: [
       {
         body: [
-          "Most “dark mode” systems are light themes with an invert toggle. AtroUI is dark-first: the default canvas is near black, type and surfaces are designed for that canvas, and light is the exception — not the starting point.",
+          "Most “dark mode” systems are light themes with an invert toggle. AtroUI is dark-first: the default canvas is near black, type and surfaces are designed for that canvas, and light is the exception, not the starting point.",
           "That framing matters for product UIs that stay dark for hours (dashboards, creator tools, AI workspaces). You are not fighting a light-first token map every time you ship a panel.",
         ],
       },
@@ -221,7 +221,7 @@ export default function Page() {
       {
         heading: "Where tokens live",
         body: [
-          "Tokens live in atroui/globals.css — CSS variables under :root and .dark. Host apps import that stylesheet once in the root layout. You do not need a separate Tailwind theme file just to use the catalog tokens.",
+          "Tokens live in atroui/globals.css: CSS variables under :root and .dark. Host apps import that stylesheet once in the root layout. You do not need a separate Tailwind theme file just to use the catalog tokens.",
           "Components consume those variables. Override the variables and the catalog restyles without rewriting every section.",
         ],
       },
@@ -253,7 +253,7 @@ export default function Page() {
       {
         heading: "Why this helps shipping",
         body: [
-          "A dark-first token sheet reduces decision fatigue. New sections inherit the same black canvas, brand accent, and glass language — so marketing and app surfaces feel like one product instead of a collage of kit defaults.",
+          "A dark-first token sheet reduces decision fatigue. New sections inherit the same black canvas, brand accent, and glass language, so marketing and app surfaces feel like one product instead of a collage of kit defaults.",
           "For the longer argument, see [Why dark-first design systems age better](/blog/why-dark-first-design-systems).",
         ],
       },
@@ -263,7 +263,7 @@ export default function Page() {
     slug: "rebrand-with-getbrand",
     title: "Rebrand AtroUI chrome with getBrand() and NEXT_PUBLIC_SITE_*",
     description:
-      "Override AtroUI logo text, SEO defaults, and mail chrome with getBrand() or NEXT_PUBLIC_SITE_* — keep demo content under content/ separate.",
+      "Override AtroUI logo text, SEO defaults, and mail chrome with getBrand() or NEXT_PUBLIC_SITE_*. Keep demo content under content/ separate.",
     date: "2026-08-05",
     sections: [
       {
@@ -275,7 +275,7 @@ export default function Page() {
       {
         heading: "Environment overrides",
         body: [
-          "Set these in the host app (.env.local or your deploy env). They are public by design — they appear in the client bundle.",
+          "Set these in the host app (.env.local or your deploy env). They are public by design: they appear in the client bundle.",
         ],
         codeBlocks: [
           {
@@ -298,7 +298,7 @@ NEXT_PUBLIC_SITE_TAGLINE=Ship faster with Acme`,
       {
         heading: "What not to rebrand by accident",
         body: [
-          "Modules under atroui/content/* are optional portfolio / studio sample data. They may still mention demo brands on purpose. Skip those modules when you ship your own product — do not treat them as the source of truth for chrome.",
+          "Modules under atroui/content/* are optional portfolio / studio sample data. They may still mention demo brands on purpose. Skip those modules when you ship your own product. Do not treat them as the source of truth for chrome.",
           "Visual tokens (colors, glass, type) are separate from getBrand(). Override CSS variables for look; override getBrand() for name and domain. See [dark-first tokens](/blog/dark-first-design-tokens).",
         ],
       },
@@ -321,13 +321,13 @@ NEXT_PUBLIC_SITE_TAGLINE=Ship faster with Acme`,
     slug: "atroui-vs-shadcn",
     title: "AtroUI vs shadcn/ui: package catalog vs copy-paste primitives",
     description:
-      "When to use AtroUI as an npm component library versus shadcn/ui-style copy-paste kits — ownership, sections, brand chrome, and dark-first tokens.",
+      "When to use AtroUI as an npm component library versus shadcn/ui-style copy-paste kits: ownership, sections, brand chrome, and dark-first tokens.",
     date: "2026-08-05",
     sections: [
       {
         body: [
           "shadcn/ui and similar kits are excellent at one job: generate accessible primitives into your repo so you own every line. AtroUI is excellent at a different job: consume a versioned dark-first catalog with production sections and brand chrome.",
-          "This is not a replacement pitch. It is a hiring decision — which tool matches how you ship.",
+          "This is not a replacement pitch. It is a hiring decision: which tool matches how you ship.",
         ],
       },
       {
@@ -418,7 +418,7 @@ export default nextConfig`,
       {
         heading: "CSS and peer dependencies",
         body: [
-          "transpilePackages does not replace importing atroui/globals.css or installing next-themes. Theme and token failures after a clean transpile fix usually mean the layout is incomplete — see [ThemeProvider and dark mode](/blog/theme-provider-dark-mode-atroui).",
+          "transpilePackages does not replace importing atroui/globals.css or installing next-themes. Theme and token failures after a clean transpile fix usually mean the layout is incomplete. See [ThemeProvider and dark mode](/blog/theme-provider-dark-mode-atroui).",
         ],
       },
       {
@@ -443,7 +443,7 @@ export default nextConfig`,
       {
         body: [
           "AtroUI’s tokens assume a class-based dark theme. ThemeProvider from atroui wraps next-themes so .dark lands on the html element and CSS variables resolve correctly.",
-          "Skip the provider — or use the wrong attribute — and you get a half-themed app: components render, but backgrounds and brand colors miss the dark sheet.",
+          "Skip the provider, or use the wrong attribute, and you get a half-themed app: components render, but backgrounds and brand colors miss the dark sheet.",
         ],
       },
       {
@@ -497,7 +497,7 @@ export default function RootLayout({
       {
         heading: "Tokens still come from globals",
         body: [
-          "ThemeProvider toggles the class. atroui/globals.css defines what .dark means. Import globals once. Override --brand and neutrals in your CSS when you re-skin — see [dark-first tokens](/blog/dark-first-design-tokens) and [Theming](/docs/theming).",
+          "ThemeProvider toggles the class. atroui/globals.css defines what .dark means. Import globals once. Override --brand and neutrals in your CSS when you re-skin. See [dark-first tokens](/blog/dark-first-design-tokens) and [Theming](/docs/theming).",
         ],
       },
       {
@@ -506,7 +506,7 @@ export default function RootLayout({
           "Forgetting next-themes in package.json.",
           "Using data-theme when tokens expect .dark.",
           "Importing globals in a leaf component instead of the root layout.",
-          "Expecting light-first defaults — AtroUI is dark-first; light is the alternate.",
+          "Expecting light-first defaults. AtroUI is dark-first; light is the alternate.",
         ],
       },
     ],
@@ -515,13 +515,13 @@ export default function RootLayout({
     slug: "why-dark-first-design-systems",
     title: "Why dark-first design systems age better for product UIs",
     description:
-      "Light-first dark mode is a retrofit. Dark-first tokens, surfaces, and type — like AtroUI — stay coherent as product UIs grow.",
+      "Light-first dark mode is a retrofit. Dark-first tokens, surfaces, and type (like AtroUI) stay coherent as product UIs grow.",
     date: "2026-08-05",
     sections: [
       {
         body: [
           "Many design systems start in light mode, ship a product, then bolt on dark mode under deadline. The result is inverted grays, glowing borders that never existed in light, and components that look correct in only one theme.",
-          "Dark-first systems invert that sequence. They design for the canvas users stare at for hours — then add light if needed. AtroUI follows that path for Next.js product UIs.",
+          "Dark-first systems invert that sequence. They design for the canvas users stare at for hours, then add light if needed. AtroUI follows that path for Next.js product UIs.",
         ],
       },
       {
@@ -541,7 +541,7 @@ export default function RootLayout({
       {
         heading: "Fewer second-order theme bugs",
         body: [
-          "Retrofitted dark mode creates second-order bugs: charts that assume white, emails that assume black text, screenshots that look “broken” in the other theme. Starting dark does not eliminate theme bugs — it reduces the class of bugs where dark is the neglected child.",
+          "Retrofitted dark mode creates second-order bugs: charts that assume white, emails that assume black text, screenshots that look “broken” in the other theme. Starting dark does not eliminate theme bugs. It reduces the class of bugs where dark is the neglected child.",
         ],
       },
       {
@@ -569,7 +569,7 @@ export default function RootLayout({
       {
         heading: "Document transpilePackages if you ship TS source",
         body: [
-          "If the package is TypeScript/TSX source, Next consumers need transpilePackages. Put it in the README and the first install step — not in a troubleshooting footnote. See [transpilePackages gotchas](/blog/transpile-packages-turbopack-ui-libraries).",
+          "If the package is TypeScript/TSX source, Next consumers need transpilePackages. Put it in the README and the first install step, not in a troubleshooting footnote. See [transpilePackages gotchas](/blog/transpile-packages-turbopack-ui-libraries).",
         ],
       },
       {
@@ -587,7 +587,7 @@ export default function RootLayout({
       {
         heading: "Media used by components must ship with the package",
         body: [
-          "If a component references /images/founder-portrait.png and that file only exists in the docs public/ folder, every consumer gets a 404. Bundle assets in the package and resolve URLs for consumers — or do not ship the component as public API.",
+          "If a component references /images/founder-portrait.png and that file only exists in the docs public/ folder, every consumer gets a 404. Bundle assets in the package and resolve URLs for consumers, or do not ship the component as public API.",
         ],
       },
       {

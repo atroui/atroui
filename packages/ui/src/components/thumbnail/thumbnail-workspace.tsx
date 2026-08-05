@@ -674,8 +674,8 @@ export function ThumbnailWorkspace() {
           {status.kind === "idle" ? (
             <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
               {usePro
-                ? "Pro Mode uses Google Imagen 3 for a full cinematic scene (~5–10s)."
-                : "Live layout above. Generate drops AI imagery behind your text (~3–6s)."}
+                ? "Pro Mode uses Google Imagen 3 for a full cinematic scene (~5-10s)."
+                : "Live layout above. Generate drops AI imagery behind your text (~3-6s)."}
             </p>
           ) : null}
 

@@ -14,17 +14,17 @@ const KEYWORDS: { pattern: RegExp; response: string }[] = [
   {
     pattern: /\b(ai|ml|gpt|llm|chatbot|document|extract)\b/i,
     response:
-      "For AI features, our **AI Integration** package ($2,400+) is the right fit. We wire streaming UI, guardrails, and cost caps - not a bolted-on chatbot. Timeline is typically 1–2 weeks.",
+      "For AI features, our **AI Integration** package ($2,400+) is the right fit. We wire streaming UI, guardrails, and cost caps - not a bolted-on chatbot. Timeline is typically 1-2 weeks.",
   },
   {
     pattern: /\b(design system|tokens|components|figma|storybook)\b/i,
     response:
-      "A **Custom Design System** ($3,600+, 2–3 weeks) gives you tokens, a component library, light/dark mode, and a living docs site. Great when your team is scaling past 2 engineers.",
+      "A **Custom Design System** ($3,600+, 2-3 weeks) gives you tokens, a component library, light/dark mode, and a living docs site. Great when your team is scaling past 2 engineers.",
   },
   {
     pattern: /\b(marketplace|full.?stack|complete|platform|payments)\b/i,
     response:
-      "That's a **Full-Stack Build** ($8,000+, 4–8 weeks) - end-to-end product with auth, payments, admin, and observability. We do weekly strategy calls and ship in one loop.",
+      "That's a **Full-Stack Build** ($8,000+, 4-8 weeks) - end-to-end product with auth, payments, admin, and observability. We do weekly strategy calls and ship in one loop.",
   },
   {
     pattern: /\b(budget|price|cost|how much)\b/i,
@@ -34,7 +34,7 @@ const KEYWORDS: { pattern: RegExp; response: string }[] = [
   {
     pattern: /\b(timeline|how long|when|deadline)\b/i,
     response:
-      "Timelines: MVP Sprint = 7 days · AI Integration = 1–2 weeks · Design System = 2–3 weeks · Full-Stack = 4–8 weeks. We keep 1–2 client slots open at a time for fast starts.",
+      "Timelines: MVP Sprint = 7 days · AI Integration = 1-2 weeks · Design System = 2-3 weeks · Full-Stack = 4-8 weeks. We keep 1-2 client slots open at a time for fast starts.",
   },
 ];
 

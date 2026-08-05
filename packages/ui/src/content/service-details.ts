@@ -37,7 +37,7 @@ const SERVICE_DETAILS: Record<string, Omit<ServiceDetail, keyof Service>> = {
     technologies: ["Next.js 16", "TypeScript", "Tailwind", "shadcn/ui", "Clerk", "Supabase", "Vercel"],
     processSteps: [
       { title: "Kickoff & scope", duration: "Day 1", description: "30-min call, written scope doc, repo setup, and design direction locked." },
-      { title: "Core build", duration: "Days 2–5", description: "Auth, database, main workflow, and daily async updates with live preview links." },
+      { title: "Core build", duration: "Days 2-5", description: "Auth, database, main workflow, and daily async updates with live preview links." },
       { title: "AI feature + polish", duration: "Day 6", description: "One AI integration, error states, loading UX, and responsive pass." },
       { title: "Ship & handoff", duration: "Day 7", description: "Production deploy, docs, handoff call, and two revision rounds included." },
     ],
@@ -70,9 +70,9 @@ const SERVICE_DETAILS: Record<string, Omit<ServiceDetail, keyof Service>> = {
     ],
     technologies: ["Vercel AI SDK", "OpenAI / Anthropic", "Next.js", "Zod", "Postgres"],
     processSteps: [
-      { title: "Discovery", duration: "Days 1–2", description: "Map the job-to-be-done, define success metrics, and audit your existing stack." },
-      { title: "Prototype", duration: "Days 3–5", description: "Working integration in a branch with streaming, guardrails, and cost caps." },
-      { title: "Polish & ship", duration: "Days 6–10", description: "Error states, monitoring, team docs, and production deploy." },
+      { title: "Discovery", duration: "Days 1-2", description: "Map the job-to-be-done, define success metrics, and audit your existing stack." },
+      { title: "Prototype", duration: "Days 3-5", description: "Working integration in a branch with streaming, guardrails, and cost caps." },
+      { title: "Polish & ship", duration: "Days 6-10", description: "Error states, monitoring, team docs, and production deploy." },
     ],
     faqs: [
       { q: "Which AI providers do you support?", a: "OpenAI, Anthropic, Google, and open models via Hugging Face or Replicate. We pick based on your use case and budget." },
@@ -137,12 +137,12 @@ const SERVICE_DETAILS: Record<string, Omit<ServiceDetail, keyof Service>> = {
     technologies: ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Resend"],
     processSteps: [
       { title: "Strategy & architecture", duration: "Week 1", description: "Product scope, data model, and technical architecture locked with weekly review cadence." },
-      { title: "Core product", duration: "Weeks 2–4", description: "Frontend, backend, auth, payments - daily async updates and shared repo access." },
-      { title: "Polish & launch", duration: "Weeks 5–6", description: "Admin tools, observability, performance pass, docs, and production launch." },
-      { title: "Iterate", duration: "Week 7–8", description: "Post-launch fixes, two revision rounds, and optional retainer for ongoing work." },
+      { title: "Core product", duration: "Weeks 2-4", description: "Frontend, backend, auth, payments - daily async updates and shared repo access." },
+      { title: "Polish & launch", duration: "Weeks 5-6", description: "Admin tools, observability, performance pass, docs, and production launch." },
+      { title: "Iterate", duration: "Week 7-8", description: "Post-launch fixes, two revision rounds, and optional retainer for ongoing work." },
     ],
     faqs: [
-      { q: "How is this different from the MVP Sprint?", a: "More scope, more features, and a longer timeline. MVP Sprint is one workflow in 7 days; Full-Stack Build is a complete product in 4–8 weeks." },
+      { q: "How is this different from the MVP Sprint?", a: "More scope, more features, and a longer timeline. MVP Sprint is one workflow in 7 days; Full-Stack Build is a complete product in 4-8 weeks." },
       { q: "Do you do product strategy?", a: "Yes - weekly calls cover product decisions, not just engineering. We push back on scope creep together." },
       { q: "What happens after launch?", a: "Two revision rounds included. Optional monthly retainer for ongoing features and maintenance." },
     ],

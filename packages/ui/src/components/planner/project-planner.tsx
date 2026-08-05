@@ -47,8 +47,8 @@ const AI_TYPES = [
 
 const BUDGETS = [
   { id: "<2k", label: "Under $2k" },
-  { id: "2k-5k", label: "$2k – $5k" },
-  { id: "5k-10k", label: "$5k – $10k" },
+  { id: "2k-5k", label: "$2k - $5k" },
+  { id: "5k-10k", label: "$5k - $10k" },
   { id: "10k+", label: "$10k+" },
 ];
 
@@ -77,8 +77,8 @@ function estimateProject(state: PlannerState): {
     return {
       service: "AI Feature Integration",
       serviceId: "ai-integration",
-      priceRange: "$2,400 – $4,000",
-      timeline: "1–2 weeks",
+      priceRange: "$2,400 - $4,000",
+      timeline: "1-2 weeks",
       summary:
         "Add a well-designed AI feature to your existing or new product.",
     };
@@ -88,8 +88,8 @@ function estimateProject(state: PlannerState): {
     return {
       service: "Full-Stack Product Build",
       serviceId: "full-stack-build",
-      priceRange: "$8,000 – $15,000",
-      timeline: "4–8 weeks",
+      priceRange: "$8,000 - $15,000",
+      timeline: "4-8 weeks",
       summary: "End-to-end product development with multiple features.",
     };
   }
@@ -98,8 +98,8 @@ function estimateProject(state: PlannerState): {
     return {
       service: "7-Day MVP Sprint",
       serviceId: "mvp-sprint",
-      priceRange: "$4,800 – $6,000",
-      timeline: "7–10 days",
+      priceRange: "$4,800 - $6,000",
+      timeline: "7-10 days",
       summary:
         "MVP sprint with scoped features - we'll narrow scope on the intro call.",
     };
@@ -109,7 +109,7 @@ function estimateProject(state: PlannerState): {
     service: "Full-Stack Product Build",
     serviceId: "full-stack-build",
     priceRange: "$8,000+",
-    timeline: "4–8 weeks",
+    timeline: "4-8 weeks",
     summary: "A complete product build tailored to your requirements.",
   };
 }
@@ -279,12 +279,12 @@ export function ProjectPlanner() {
                     {
                       id: "mvp" as const,
                       label: "MVP Sprint",
-                      desc: "Validate in 7–14 days",
+                      desc: "Validate in 7-14 days",
                     },
                     {
                       id: "full" as const,
                       label: "Full Build",
-                      desc: "Complete product in 4–8 weeks",
+                      desc: "Complete product in 4-8 weeks",
                     },
                   ] as const
                 ).map((opt) => (

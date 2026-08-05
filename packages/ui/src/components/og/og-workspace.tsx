@@ -506,7 +506,7 @@ function OgWorkspaceInner() {
             <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
               Live layout above.{" "}
               <span className="text-foreground">Generate</span> drops AI imagery
-              behind your text (~3–6s). Text preview downloads without burning
+              behind your text (~3-6s). Text preview downloads without burning
               AI capacity.
             </p>
           ) : null}

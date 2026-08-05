@@ -49,14 +49,14 @@ const PROJECT_TYPES = [
 
 const BUDGETS = [
   { id: "<2k", label: "Under $2k" },
-  { id: "2k-5k", label: "$2k – $5k" },
-  { id: "5k-10k", label: "$5k – $10k" },
+  { id: "2k-5k", label: "$2k - $5k" },
+  { id: "5k-10k", label: "$5k - $10k" },
   { id: "10k+", label: "$10k+" },
   { id: "unsure", label: "Not sure yet" },
 ] as const;
 
 const TIMELINES = [
-  { id: "asap", label: "ASAP · 1–2 weeks" },
+  { id: "asap", label: "ASAP · 1-2 weeks" },
   { id: "1-month", label: "Within a month" },
   { id: "flexible", label: "Flexible" },
   { id: "unsure", label: "Not sure yet" },
