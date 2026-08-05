@@ -11,12 +11,13 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="waitlist-form"
       title='Waitlist Form'
       description='Brand waitlist signup.'
       preview={<DemoWaitlistForm />}
-      code={'import { WaitlistForm } from "atroui"\n\n<WaitlistForm />'}
+      code={'import { WaitlistForm } from "@/components/blocks/waitlist-form"\n\n<WaitlistForm />'}
       fullBleed={false}
-      usage='Posts to your /api/waitlist route.'
+      usage='Posts to CONTENT.endpoint (default /api/waitlist). Host API.'
     />
   )
 }

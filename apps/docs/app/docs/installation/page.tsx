@@ -83,7 +83,8 @@ export default function InstallationPage() {
           language="bash"
           code={`npx shadcn@latest add @atroui/home-hero
 npx shadcn@latest add @atroui/site-header
-npx shadcn@latest add @atroui/button`}
+npx shadcn@latest add @atroui/faq
+npx shadcn@latest add @atroui/site-footer`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Source files land under your aliases (for example{" "}

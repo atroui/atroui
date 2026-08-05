@@ -11,10 +11,11 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="faq"
       title='Faq Interactive Preview'
-      description='Interactive FAQ accordion preview.'
+      description='Interactive FAQ accordion. Install @atroui/faq for editable CONTENT / ITEMS in your repo.'
       preview={<DemoFaqInteractivePreview />}
-      code={'import { FaqInteractivePreview } from "atroui"\n\n<FaqInteractivePreview />'}
+      code={'import { Faq } from "@/components/blocks/faq"\n\n<Faq />'}
       fullBleed={true}
     />
   )

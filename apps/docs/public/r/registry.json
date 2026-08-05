@@ -235,6 +235,93 @@
           "target": "components/blocks/contact-form.tsx"
         }
       ]
+    },
+    {
+      "name": "site-footer",
+      "type": "registry:block",
+      "title": "Site Footer",
+      "description": "Lighter footer with editable CONTENT and link columns.",
+      "dependencies": ["next"],
+      "registryDependencies": ["@atroui/brand"],
+      "files": [
+        {
+          "path": "registry/default/blocks/site-footer.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/site-footer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "faq",
+      "type": "registry:block",
+      "title": "FAQ",
+      "description": "Accordion FAQ with editable CONTENT and ITEMS.",
+      "dependencies": ["lucide-react", "next"],
+      "files": [
+        {
+          "path": "registry/default/blocks/faq.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/faq.tsx"
+        }
+      ]
+    },
+    {
+      "name": "waitlist-form",
+      "type": "registry:block",
+      "title": "Waitlist Form",
+      "description": "Email waitlist form with editable CONTENT; posts to your API.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/default/blocks/waitlist-form.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/waitlist-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "newsletter-form",
+      "type": "registry:block",
+      "title": "Newsletter Form",
+      "description": "Email newsletter form with editable CONTENT; posts to your API.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/default/blocks/newsletter-form.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/newsletter-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendly-embed",
+      "type": "registry:block",
+      "title": "Calendly Embed",
+      "description": "Theme-aware Calendly iframe with editable CONTENT and email fallback.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@atroui/brand"],
+      "files": [
+        {
+          "path": "registry/default/blocks/calendly-embed.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/calendly-embed.tsx"
+        }
+      ]
+    },
+    {
+      "name": "made-with-embed",
+      "type": "registry:block",
+      "title": "Made With Embed",
+      "description": "Credit badge + copyable HTML snippet with editable CONTENT.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@atroui/brand"],
+      "files": [
+        {
+          "path": "registry/default/blocks/made-with-embed.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/made-with-embed.tsx"
+        }
+      ]
     }
   ]
 }

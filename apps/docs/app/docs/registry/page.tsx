@@ -85,9 +85,9 @@ export default function RegistryPage() {
           language="bash"
           code={`npx shadcn@latest add @atroui/home-hero
 npx shadcn@latest add @atroui/site-header
-npx shadcn@latest add @atroui/home-principle
-npx shadcn@latest add @atroui/pricing-overview
-npx shadcn@latest add @atroui/contact-form`}
+npx shadcn@latest add @atroui/faq
+npx shadcn@latest add @atroui/waitlist-form
+npx shadcn@latest add @atroui/site-footer`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Source files land under your aliases (for example{" "}
@@ -148,6 +148,10 @@ npx shadcn@latest add @atroui/contact-form`}
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
+              @atroui/site-footer
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
               @atroui/footer-bold
             </code>
           </li>
@@ -180,6 +184,10 @@ npx shadcn@latest add @atroui/contact-form`}
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
+              @atroui/faq
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
               @atroui/contextual-cta
             </code>
             ,{" "}
@@ -189,6 +197,24 @@ npx shadcn@latest add @atroui/contact-form`}
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/contact-form
+            </code>
+          </li>
+          <li>
+            Capture:{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/waitlist-form
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/newsletter-form
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/calendly-embed
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/made-with-embed
             </code>
           </li>
         </ul>
