@@ -221,7 +221,7 @@ export function DemoFounderAvatar() {
       <div className="text-left">
         <p className="text-sm font-medium text-foreground">Founder avatar</p>
         <p className="text-xs text-muted-foreground">
-          Bundled with the package — no{" "}
+          Bundled with the package. No{" "}
           <code className="font-mono text-[11px] text-foreground">/public</code>{" "}
           copy required.
         </p>

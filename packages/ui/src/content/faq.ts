@@ -50,6 +50,6 @@ export const SERVICES_FAQ: FaqItem[] = [
     category: "Timing",
     question: "How fast can you start?",
     answer:
-      "Typically within 1–2 weeks of a signed proposal. If you're on a deadline, say so - we keep one slot open for urgent sprints.",
+      "Typically within 1-2 weeks of a signed proposal. If you're on a deadline, say so - we keep one slot open for urgent sprints.",
   },
 ];

@@ -49,7 +49,7 @@ export const SERVICES: Service[] = [
       "Add a well-designed AI feature to your existing app - streaming, cost-aware, safe, and actually useful.",
     price: "$2,400",
     priceSuffix: "from",
-    timeline: "1–2 weeks",
+    timeline: "1-2 weeks",
     features: [
       "Scoping + success metrics up front",
       "Vercel AI SDK or direct provider integration",
@@ -68,7 +68,7 @@ export const SERVICES: Service[] = [
       "A production-ready design system - tokens, components, and docs - that matches your brand and stays consistent as you scale.",
     price: "$3,600",
     priceSuffix: "from",
-    timeline: "2–3 weeks",
+    timeline: "2-3 weeks",
     features: [
       "Design tokens (color, type, spacing, radii, motion)",
       "Tailwind + shadcn component library",
@@ -87,7 +87,7 @@ export const SERVICES: Service[] = [
       "End-to-end product development for startups that need a senior studio partner. Strategy, product, design, and engineering in one loop.",
     price: "$8,000",
     priceSuffix: "from",
-    timeline: "4–8 weeks",
+    timeline: "4-8 weeks",
     features: [
       "Weekly strategy + product reviews",
       "Senior full-stack build (frontend, backend, infra)",

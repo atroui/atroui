@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Blog",
   description:
-    "AtroUI blog — install guides, dark-first tokens, and Next.js component library essays that take you from search to npm i atroui.",
+    "AtroUI blog: install guides, dark-first tokens, and Next.js component library essays that take you from search to npm i atroui.",
   path: "/blog",
 })
 
