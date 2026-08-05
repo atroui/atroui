@@ -2,7 +2,10 @@ import Link from "next/link"
 
 import { getBrand } from "@/lib/brand"
 
-/** Edit headline, nav, and social links after install. */
+/**
+ * Edit CONTENT to change headline, nav, and socials.
+ * Defaults match the AtroUI docs Footer Bold demo.
+ */
 const CONTENT = {
   headline: "Have a project in mind? Let's ship something this week.",
   studio: [
@@ -13,12 +16,18 @@ const CONTENT = {
     { label: "Contact", href: "/contact" },
   ],
   elsewhere: [
-    { label: "GitHub", href: "https://github.com", external: true },
-    { label: "X / Twitter", href: "https://x.com", external: true },
+    {
+      label: "GitHub",
+      href: "https://github.com/KOUSTAV2409",
+      external: true,
+    },
+    { label: "X / Twitter", href: "https://x.com/iamk", external: true },
+    { label: "iamk.xyz", href: "https://www.iamk.xyz", external: true },
     { label: "Journal", href: "/journal", external: false },
     { label: "Resources", href: "/resources", external: false },
+    { label: "Brand & links", href: "/brand", external: false },
   ],
-  location: "Remote",
+  location: "West Bengal · Remote",
 }
 
 export function BoldFooter() {
