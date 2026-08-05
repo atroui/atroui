@@ -31,7 +31,9 @@ export function SiteGraphJsonLd({ name }: OrgJsonLdProps = {}) {
         url: siteUrl,
         logo: {
           "@type": "ImageObject",
-          url: `${siteUrl}/icon`,
+          url: `${siteUrl}/favicon-192.png`,
+          width: 192,
+          height: 192,
         },
         sameAs: [
           "https://www.iamk.xyz",
