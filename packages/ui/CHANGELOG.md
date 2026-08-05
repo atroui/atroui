@@ -1,5 +1,15 @@
 # atroui
 
+## 0.2.2
+
+### Patch Changes
+
+- [#24](https://github.com/atroui/atroui/pull/24) [`337fde5`](https://github.com/atroui/atroui/commit/337fde5622f470f7b5b08237e8dad3a81a3fa1a6) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Ship component media inside the package (founder portrait, OG example PNGs, badge SVGs) and wire FounderAvatar / OgExamples / MadeWithEmbed to bundled assets so consumer apps do not need matching /public files.
+
+- [#22](https://github.com/atroui/atroui/pull/22) [`9bb3bda`](https://github.com/atroui/atroui/commit/9bb3bda22bc7ee53755ba07ce238d5fbfdd0ca80) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Document consumer install steps: next-themes, transpilePackages, ThemeProvider, Outfit, and globals.css.
+
+- [#26](https://github.com/atroui/atroui/pull/26) [`fa8deb4`](https://github.com/atroui/atroui/commit/fa8deb452728e9da9b9d3f7c557288f8967b7600) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Normalize punctuation in package README, demo content, and UI copy (replace em/en dashes with plain punctuation).
+
 ## 0.2.1
 
 ### Patch Changes
