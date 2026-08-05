@@ -1,10 +1,12 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useRef } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react"
+import { TimelineAnimation } from "@/components/ui/timeline-animation"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import MotionDrawer from "@/components/ui/motion-drawer"
 import { LogoMark } from "@/components/logo-mark"
-import { HeroShaderBackground } from "@/components/blocks/hero-shader-background"
 
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
@@ -21,120 +23,126 @@ const catalogBands = [
 ] as const
 
 /**
- * Owns mobile menu state so toggling the drawer does not re-render the
- * WebGL shader sibling (R3F Provider crashes on null event targets).
+ * Fresh install of @ui-layouts/hero-digital-success (shader + TimelineAnimation
+ * unchanged). Copy/links branded for AtroUI.
  */
-function HeroMobileMenu() {
-  const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    if (!menuOpen) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.body.style.overflow = prev
-    }
-  }, [menuOpen])
-
-  return (
-    <>
-      <button
-        type="button"
-        className="inline-flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white md:hidden"
-        aria-expanded={menuOpen}
-        aria-controls="hero-mobile-nav"
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
-        onClick={() => setMenuOpen(true)}
-      >
-        <Menu className="size-4" aria-hidden />
-      </button>
-
-      <div
-        className={`fixed inset-0 z-50 md:hidden ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
-        aria-hidden={!menuOpen}
-      >
-        <button
-          type="button"
-          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-250 ${
-            menuOpen ? "opacity-100" : "opacity-0"
-          }`}
-          aria-label="Close menu"
-          tabIndex={menuOpen ? 0 : -1}
-          onClick={() => setMenuOpen(false)}
-        />
-        <nav
-          id="hero-mobile-nav"
-          aria-label="Mobile"
-          className={`absolute inset-y-0 right-0 flex w-[min(18rem,calc(100vw-2.5rem))] flex-col border-l border-white/10 bg-black/40 p-4 pt-[max(1.25rem,env(safe-area-inset-top))] text-white shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_25%,transparent)] backdrop-blur-2xl transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] sm:p-5 ${
-            menuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_45%_at_100%_0%,color-mix(in_oklch,var(--color-brand)_22%,transparent),transparent_60%)]"
-          />
-
-          <div className="relative z-10 mb-6 flex items-center justify-between gap-3">
-            <div className="flex min-w-0 items-center gap-2.5">
-              <LogoMark className="h-7 w-7 shrink-0 text-white" />
-              <span className="truncate text-base font-medium tracking-tight">
-                AtroUI
-              </span>
-            </div>
-            <button
-              type="button"
-              className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white"
-              aria-label="Close menu"
-              onClick={() => setMenuOpen(false)}
-            >
-              <X className="size-4" aria-hidden />
-            </button>
-          </div>
-
-          <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain pb-[max(1rem,env(safe-area-inset-bottom))]">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="rounded-full px-3 py-2.5 text-sm font-medium text-white/85 transition-colors hover:bg-white/5 hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="mt-auto pt-5">
-              <Link
-                href="/docs/components"
-                onClick={() => setMenuOpen(false)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.35)]"
-              >
-                <span className="h-2 w-2 rounded-full bg-sky-400" />
-                Browse catalog
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </>
-  )
-}
-
 export function HeroDigitalSuccess() {
+  const timelineRef = useRef<HTMLDivElement>(null)
+  const isMobile = useMediaQuery("(max-width: 768px)")
+
   return (
-    <section className="relative flex min-h-svh flex-col overflow-hidden bg-black text-white">
-      <HeroShaderBackground />
+    <section
+      ref={timelineRef}
+      className="relative flex min-h-screen flex-col overflow-hidden bg-black text-white"
+    >
+      <Suspense fallback={null}>
+        <ShaderGradientCanvas
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+          }}
+          lazyLoad={false}
+          pixelDensity={1}
+          pointerEvents="none"
+        >
+          <ShaderGradient
+            animate="on"
+            type="sphere"
+            wireframe={false}
+            shader="defaults"
+            uTime={0}
+            uSpeed={0.3}
+            uStrength={0.3}
+            uDensity={0.8}
+            uFrequency={5.5}
+            uAmplitude={3.2}
+            positionX={-0.1}
+            positionY={0}
+            positionZ={0}
+            rotationX={0}
+            rotationY={130}
+            rotationZ={70}
+            color1="#92dbe0"
+            color2="#0b7bff"
+            color3="#3865cf"
+            reflection={0.4}
+            cAzimuthAngle={270}
+            cPolarAngle={180}
+            cDistance={0.5}
+            cameraZoom={15.1}
+            lightType="env"
+            brightness={0.8}
+            envPreset="city"
+            grain="on"
+            toggleAxis={false}
+            zoomOut={false}
+            hoverState=""
+            enableTransition={false}
+          />
+        </ShaderGradientCanvas>
+      </Suspense>
 
-      <header className="relative z-20 px-4 pt-[max(1rem,env(safe-area-inset-top))] sm:px-6 md:px-10">
-        <div className="flex items-center justify-between gap-3 py-3 md:py-4">
-          <div className="flex min-w-0 items-center gap-2.5">
-            <LogoMark className="h-7 w-7 shrink-0 text-white sm:h-8 sm:w-8" />
-            <span className="truncate text-base font-medium tracking-tight sm:text-lg">
-              AtroUI
-            </span>
-          </div>
+      {isMobile ? (
+        <div className="flex items-center justify-between gap-4 px-6 pt-4 sm:px-10">
+          <MotionDrawer
+            direction="right"
+            width={300}
+            backgroundColor="#000000"
+            clsBtnClassName="bg-neutral-800 border-r border-neutral-900 text-white"
+            contentClassName="bg-black border-r border-neutral-900 text-white"
+            btnClassName="bg-white text-black relative w-fit p-2 left-0 top-0"
+          >
+            <nav className="space-y-4">
+              <div className="flex items-center gap-2 text-white">
+                <LogoMark className="h-8 w-8 text-white" />
+                <span>AtroUI</span>
+              </div>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block rounded-sm p-2 hover:bg-neutral-100 hover:text-black"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </MotionDrawer>
+          <TimelineAnimation
+            once
+            as="a"
+            href="/docs/components"
+            animationNum={3}
+            timelineRef={timelineRef}
+            className="flex w-fit items-center gap-2 rounded-full bg-neutral-800 px-5 py-3 text-sm font-medium text-white"
+          >
+            <span className="h-2 w-2 rounded-full bg-sky-400" />
+            Browse
+          </TimelineAnimation>
+        </div>
+      ) : null}
 
-          <nav
-            className="hidden items-center gap-6 text-sm font-medium text-white md:flex lg:gap-10 xl:gap-12"
+      {!isMobile ? (
+        <header className="relative z-10 flex items-center justify-between p-4 px-10">
+          <TimelineAnimation
+            once
+            animationNum={1}
+            timelineRef={timelineRef}
+            className="flex items-center gap-2.5"
+          >
+            <LogoMark className="h-8 w-8 text-white" />
+            <span className="text-lg font-medium tracking-tight">AtroUI</span>
+          </TimelineAnimation>
+
+          <TimelineAnimation
+            once
+            as="nav"
+            animationNum={2}
+            timelineRef={timelineRef}
+            className="hidden items-center gap-12 text-sm font-medium text-white md:flex"
             aria-label="Primary"
           >
             {navLinks.map((link) => (
@@ -146,63 +154,93 @@ export function HeroDigitalSuccess() {
                 {link.label}
               </Link>
             ))}
-          </nav>
+          </TimelineAnimation>
 
-          <div className="flex shrink-0 items-center gap-2">
-            <a
-              href="/docs/components"
-              className="hidden items-center gap-2 rounded-full bg-neutral-800 px-5 py-2.5 text-sm font-medium text-white sm:inline-flex md:px-6 md:py-3 lg:px-8 lg:py-4"
-            >
-              <span className="h-2 w-2 rounded-full bg-sky-400" />
-              <span className="hidden lg:inline">Browse catalog</span>
-              <span className="lg:hidden">Browse</span>
-            </a>
+          <TimelineAnimation
+            once
+            as="a"
+            href="/docs/components"
+            animationNum={3}
+            timelineRef={timelineRef}
+            className="flex w-fit items-center gap-2 rounded-full bg-neutral-800 px-8 py-4 text-sm font-medium text-white"
+          >
+            <span className="h-2 w-2 rounded-full bg-sky-400" />
+            Browse catalog
+          </TimelineAnimation>
+        </header>
+      ) : null}
 
-            <HeroMobileMenu />
-          </div>
-        </div>
-      </header>
-
-      <div className="relative z-10 flex grow flex-col justify-center px-4 py-10 sm:px-8 md:px-16 md:py-14 lg:px-24">
-        <h1 className="flex max-w-[18ch] flex-col gap-y-1 pb-8 text-[clamp(2.5rem,11vw,4.5rem)] font-medium leading-[1.02] tracking-tight sm:max-w-none sm:pb-10 sm:text-[clamp(3rem,9vw,5.5rem)] xl:flex-row xl:items-baseline xl:gap-x-8 xl:text-[clamp(3.5rem,6.5vw,7rem)]">
+      <div className="relative z-10 flex grow flex-col justify-center px-6 sm:px-12 md:px-24">
+        <TimelineAnimation
+          once
+          as="h1"
+          animationNum={4}
+          timelineRef={timelineRef}
+          className="flex flex-col items-baseline gap-x-8 gap-y-2 pb-10 text-[10vw] font-medium leading-[100%] xl:flex-row xl:text-[6.5vw]"
+        >
           AtroUI
-          <span className="block bg-linear-to-r from-white via-sky-300 to-blue-400 bg-clip-text pb-2 text-transparent xl:inline-block xl:pb-4">
+          <span className="block bg-linear-to-r from-white via-sky-300 to-blue-400 bg-clip-text pb-8 text-transparent xl:inline-block">
             Component catalog
           </span>
-        </h1>
+        </TimelineAnimation>
 
-        <div className="flex flex-col items-stretch gap-8 sm:items-start lg:flex-row lg:items-center lg:gap-10">
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
-            <a
+        <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center">
+          <div className="flex flex-wrap justify-start gap-4">
+            <TimelineAnimation
+              once
+              as="a"
               href="/docs/components"
-              className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.35)] sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
+              animationNum={5}
+              timelineRef={timelineRef}
+              className="flex cursor-pointer items-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.4)]"
             >
+              <span className="h-2 w-2 rounded-full bg-sky-400" />
               Browse catalog
-            </a>
-            <a
+            </TimelineAnimation>
+            <TimelineAnimation
+              once
+              as="a"
               href="/docs"
-              className="inline-flex w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-base font-medium backdrop-blur-md sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
+              animationNum={6}
+              timelineRef={timelineRef}
+              className="cursor-pointer rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-medium backdrop-blur-md"
             >
               Read the docs
-            </a>
+            </TimelineAnimation>
           </div>
-          <p className="max-w-md text-base font-light leading-relaxed text-neutral-100 sm:text-lg md:text-xl">
+          <TimelineAnimation
+            once
+            as="p"
+            animationNum={7}
+            timelineRef={timelineRef}
+            className="max-w-md text-xl font-light leading-relaxed text-neutral-100"
+          >
             AtroUI is a React component library and dark-first design system for
-            Next.js - primitives, sections, tools, and SEO modules. Home:{" "}
+            Next.js - primitives, sections, tools, and SEO modules. Home:
             atroui.com.
-          </p>
+          </TimelineAnimation>
         </div>
       </div>
 
-      <div className="relative z-10 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 sm:px-8 md:p-12">
-        <div className="ml-auto grid w-full max-w-3xl grid-cols-2 gap-x-6 gap-y-4 rounded-lg bg-black/25 p-4 backdrop-blur-lg sm:gap-x-10 md:max-w-none md:grid-cols-4 md:p-5">
-          {catalogBands.map((band) => (
-            <div key={band.title}>
+      <div className="relative z-10 flex flex-wrap items-end justify-end p-6 sm:p-12">
+        <TimelineAnimation
+          once
+          animationNum={8}
+          timelineRef={timelineRef}
+          className="grid grid-cols-2 gap-x-12 gap-y-4 rounded-lg bg-black/20 p-4 backdrop-blur-lg md:grid-cols-4"
+        >
+          {catalogBands.map((band, i) => (
+            <TimelineAnimation
+              key={band.title}
+              once
+              animationNum={9 + i}
+              timelineRef={timelineRef}
+            >
               <p className="mb-1 text-sm text-white">{band.title}</p>
-              <p className="text-xs leading-snug text-neutral-300">{band.body}</p>
-            </div>
+              <p className="text-xs text-neutral-300">{band.body}</p>
+            </TimelineAnimation>
           ))}
-        </div>
+        </TimelineAnimation>
       </div>
     </section>
   )
