@@ -77,7 +77,7 @@ export default function ThemingPage() {
         </p>
         <CodeBlock
           language="bash"
-          code={`NEXT_PUBLIC_SITE_NAME=AtroUI\nNEXT_PUBLIC_SITE_DOMAIN=atroui.com\nNEXT_PUBLIC_SITE_EMAIL=hello@atroui.com\nNEXT_PUBLIC_SITE_URL=https://www.atroui.com`}
+          code={`NEXT_PUBLIC_SITE_NAME=AtroUI\nNEXT_PUBLIC_SITE_DOMAIN=atroui.com\nNEXT_PUBLIC_SITE_EMAIL=hello@iamk.xyz\nNEXT_PUBLIC_SITE_URL=https://www.atroui.com`}
         />
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Demo modules under{" "}

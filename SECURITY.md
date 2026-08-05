@@ -18,7 +18,7 @@ When a new minor or major ships, older lines may stop receiving patches unless n
 Please report privately via one of:
 
 1. **GitHub Security Advisories** - [Report a vulnerability](https://github.com/atroui/atroui/security/advisories/new) on this repository (preferred).
-2. **Email** - `hello@atroui.com` with subject `[SECURITY] atroui …`
+2. **Email** - `hello@iamk.xyz` with subject `[SECURITY] atroui …`
 
 Include:
 
