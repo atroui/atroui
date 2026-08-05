@@ -28,7 +28,7 @@ function getHeroStyles(): {
   title: string;
   subtitle: string;
 }[] {
-  const studioLine = `${getBrand().name} — studio + free AI tools`;
+  const studioLine = `${getBrand().name} - studio + free AI tools`;
   return [
     {
       key: "paperQuote",
@@ -70,7 +70,7 @@ function HeroOgCanvas() {
         <Link
           href={`/og?style=${styleKey}`}
           className="group relative block overflow-hidden rounded-xl ring-1 ring-border-subtle"
-          aria-label={`Open OG Image Generator — ${preset.label}`}
+          aria-label={`Open OG Image Generator - ${preset.label}`}
         >
           <div className="relative aspect-1200/630">
             <AnimatePresence mode="wait">
@@ -164,7 +164,7 @@ function HeroOgCanvas() {
 }
 
 /**
- * Landing hero — bordered editorial frame + live OG workspace mock.
+ * Landing hero - bordered editorial frame + live OG workspace mock.
  */
 export function HeroAiValueProposition() {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -205,7 +205,7 @@ export function HeroAiValueProposition() {
               timelineRef={timelineRef}
               className="ds-lede max-w-2xl"
             >
-              We ship the product you were going to build next month — this
+              We ship the product you were going to build next month - this
               week. Fixed scope. Fixed price. No PMs. No handoffs.
             </TimelineAnimation>
           </div>

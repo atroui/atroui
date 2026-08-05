@@ -160,7 +160,7 @@ export function JournalContent() {
               Stay in the loop
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              New articles and studio notes — no spam, unsubscribe anytime.
+              New articles and studio notes - no spam, unsubscribe anytime.
             </p>
           </FadeIn>
           <FadeIn delay={0.06} className="w-full max-w-md sm:w-auto">

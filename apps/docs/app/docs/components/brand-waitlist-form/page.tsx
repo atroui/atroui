@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoWaitlistForm } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Waitlist Form',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Waitlist Form",
+  "/docs/components/brand-waitlist-form"
+)
 
 export default function Page() {
   return (

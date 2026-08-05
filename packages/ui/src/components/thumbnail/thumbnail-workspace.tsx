@@ -214,7 +214,7 @@ export function ThumbnailWorkspace() {
       if (!t) {
         setStatus({
           kind: "error",
-          message: "Add a title — it's the hero of every thumbnail.",
+          message: "Add a title - it's the hero of every thumbnail.",
         });
         return;
       }
@@ -576,7 +576,7 @@ export function ThumbnailWorkspace() {
           <div className="flex items-start gap-3 border border-emerald-500/25 bg-emerald-500/5 px-4 py-3 text-sm text-emerald-700 dark:text-emerald-400">
             <CheckCircle2 className="mt-0.5 size-4 shrink-0" />
             <span>
-              Thumbnail ready — download at {activeFormat.dims} from the
+              Thumbnail ready - download at {activeFormat.dims} from the
               preview.
             </span>
           </div>

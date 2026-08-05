@@ -8,7 +8,7 @@ type DocsExampleProps = {
   preview: React.ReactNode
   code: string
   className?: string
-  /** Section / page components — render edge-to-edge in a scrollable stage */
+  /** Section / page components - render edge-to-edge in a scrollable stage */
   fullBleed?: boolean
 }
 

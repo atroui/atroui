@@ -4,7 +4,7 @@ import { getBrand } from "../../lib/brand";
 import { cn } from "../../lib/utils";
 
 /**
- * AtroUI mark — “interrupted A”
+ * AtroUI mark - “interrupted A”
  *
  * Open letterform for Atro; the classic crossbar is a floating brand capsule
  * (active UI bar). currentColor for the glyph; --color-brand for the accent.
@@ -30,7 +30,7 @@ export function LogoMark({
       className={cn("text-foreground", className)}
     >
       <title>{label}</title>
-      {/* Open A — two legs meet at the apex; base stays open for air */}
+      {/* Open A - two legs meet at the apex; base stays open for air */}
       <path
         d="M14 36 L24 10 L34 36"
         stroke="currentColor"
@@ -38,7 +38,7 @@ export function LogoMark({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* Floating brand bar — the recall cue (does not touch the legs) */}
+      {/* Floating brand bar - the recall cue (does not touch the legs) */}
       <rect
         x="17.5"
         y="24.3"

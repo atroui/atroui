@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoHomeCrafts } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Crafts',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Crafts",
+  "/docs/components/home-crafts"
+)
 
 export default function Page() {
   return (
@@ -15,7 +17,7 @@ export default function Page() {
       code={'import { HomeCrafts } from "atroui"\n\n<HomeCrafts />'}
       fullBleed={true}
       installation='import { HomeCrafts } from "atroui"'
-      usage='Homepage section — place below the hero.'
+      usage='Homepage section - place below the hero.'
     />
   )
 }

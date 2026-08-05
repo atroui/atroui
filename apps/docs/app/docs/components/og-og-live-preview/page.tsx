@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoOgLivePreview } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Og Live Preview',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Og Live Preview",
+  "/docs/components/og-og-live-preview"
+)
 
 export default function Page() {
   return (
@@ -16,9 +18,9 @@ export default function Page() {
       fullBleed={false}
       installation='import { OgLivePreview } from "atroui"'
       props={[
-    { name: 'title', type: 'string', default: '—', description: 'Card title.' },
-    { name: 'subtitle', type: 'string', default: '—', description: 'Card subtitle.' },
-    { name: 'styleKey', type: 'StyleKey', default: '—', description: 'Preset style.' },
+    { name: 'title', type: 'string', default: '-', description: 'Card title.' },
+    { name: 'subtitle', type: 'string', default: '-', description: 'Card subtitle.' },
+    { name: 'styleKey', type: 'StyleKey', default: '-', description: 'Preset style.' },
   ]}
     />
   )

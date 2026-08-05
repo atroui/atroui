@@ -1,16 +1,16 @@
-Every week, another product adds an "AI" sticker next to a button. Most of them feel bolted-on — a chat sidebar nobody uses, a "summarize" action that returns the same paragraph you can already read.
+Every week, another product adds an "AI" sticker next to a button. Most of them feel bolted-on - a chat sidebar nobody uses, a "summarize" action that returns the same paragraph you can already read.
 
 The difference between a feature people love and one they ignore usually comes down to five design decisions.
 
 ## 1. Start from a real job-to-be-done
 
-Before we write a line of code, we ask: **what does the user actually want the AI to do for them?** Not "use GPT-4," not "summarize things" — a specific, painful job they're doing manually today.
+Before we write a line of code, we ask: **what does the user actually want the AI to do for them?** Not "use GPT-4," not "summarize things" - a specific, painful job they're doing manually today.
 
-If we can't finish this sentence in plain English — *"Our customers currently do X, which takes Y minutes, and AI can reduce it to Z seconds"* — we don't build the feature yet.
+If we can't finish this sentence in plain English - *"Our customers currently do X, which takes Y minutes, and AI can reduce it to Z seconds"* - we don't build the feature yet.
 
 ## 2. Make the output boringly useful
 
-The most common AI feature mistake is building a chat interface because chat interfaces are impressive. Most jobs don't need a conversation — they need a single output.
+The most common AI feature mistake is building a chat interface because chat interfaces are impressive. Most jobs don't need a conversation - they need a single output.
 
 - Summarize → button + result.
 - Extract → form + structured JSON.
@@ -33,7 +33,7 @@ A few guardrails we always ship:
 
 Every AI call costs real money. Treat it like a database query, not a free API.
 
-We set per-user rate limits in the app layer (not just at the provider), track cost per feature in our analytics, and build with a small-to-large fallback ladder: cheap model first, escalate only when needed. Users never see the difference — our margins do.
+We set per-user rate limits in the app layer (not just at the provider), track cost per feature in our analytics, and build with a small-to-large fallback ladder: cheap model first, escalate only when needed. Users never see the difference - our margins do.
 
 ## 5. Design for when the model gets it wrong
 
@@ -41,7 +41,7 @@ AI output is probabilistic. Your UI should make that obvious without being anxio
 
 - Show confidence when you have it.
 - Make edits a first-class action, not an edge case.
-- Never hide the raw prompt — power users want to see what you sent.
+- Never hide the raw prompt - power users want to see what you sent.
 - Log failures and regenerate attempts so you can improve prompts over time.
 
 ## The short version

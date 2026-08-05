@@ -15,7 +15,7 @@ export const FOUNDER_TIMELINE: TimelineEntry[] = [
   {
     year: "2016",
     title: "Started building for the web",
-    description: "First production apps — learned that shipping beats perfecting.",
+    description: "First production apps - learned that shipping beats perfecting.",
   },
   {
     year: "2020",
@@ -37,12 +37,12 @@ export const FOUNDER_TIMELINE: TimelineEntry[] = [
 export const FOUNDER_PROJECTS: PersonalProject[] = [
   {
     name: "Makershot OG Generator",
-    description: "Free 1200×630 OG image tool — FLUX backgrounds + Satori typography.",
+    description: "Free 1200×630 OG image tool - FLUX backgrounds + Satori typography.",
     href: "/og",
   },
   {
     name: "iamk.xyz",
-    description: "Personal site — writing, experiments, and the learning log.",
+    description: "Personal site - writing, experiments, and the learning log.",
     href: "https://www.iamk.xyz",
     external: true,
   },
@@ -62,7 +62,7 @@ export const FOUNDER_PROJECTS: PersonalProject[] = [
 
 export const FOUNDER_CREDENTIALS = [
   "Full-stack engineer since 2016",
-  "Based in West Bengal, India — shipping globally",
+  "Based in West Bengal, India - shipping globally",
   "Open source contributor on GitHub",
   "Writing on iamk.xyz about building with AI",
 ];

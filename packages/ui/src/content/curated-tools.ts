@@ -1,6 +1,6 @@
 /**
  * Curated directory of external AI tools we actually use or recommend.
- * Keep it small and honest — no affiliate cruft.
+ * Keep it small and honest - no affiliate cruft.
  */
 
 export type CuratedCategory =
@@ -73,7 +73,7 @@ export const CURATED_TOOLS: CuratedTool[] = [
     url: "https://vercel.com",
     category: "deploy",
     description:
-      "Preview deploys, edge functions, analytics, and the AI SDK — the Next.js platform of choice.",
+      "Preview deploys, edge functions, analytics, and the AI SDK - the Next.js platform of choice.",
   },
   {
     name: "Supabase",
@@ -108,7 +108,7 @@ export const CURATED_TOOLS: CuratedTool[] = [
     url: "https://framer.com",
     category: "content",
     description:
-      "When a client needs a marketing site and we don't need custom code — Framer ships in hours.",
+      "When a client needs a marketing site and we don't need custom code - Framer ships in hours.",
   },
   {
     name: "Motion (Framer Motion)",

@@ -51,7 +51,7 @@ export const RESOURCES: Resource[] = [
     id: "design-token-starter",
     title: "Design Token Starter Kit",
     description:
-      "A Tailwind v4 token file with color, type, spacing, and motion scales — ready to drop into a Next.js project.",
+      "A Tailwind v4 token file with color, type, spacing, and motion scales - ready to drop into a Next.js project.",
     type: "template",
     category: "Design",
     externalUrl: "/journal/design-tokens-in-practice",

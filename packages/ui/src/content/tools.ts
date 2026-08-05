@@ -1,6 +1,6 @@
 /**
  * Makershot tool catalog. Drives /tools grid + home teaser.
- * Keep this the single source of truth — each tool has its own card + route.
+ * Keep this the single source of truth - each tool has its own card + route.
  */
 
 export type ToolStatus = "live" | "beta" | "soon";
@@ -12,7 +12,7 @@ export type Tool = {
   description: string;
   href: string;
   status: ToolStatus;
-  /** Category chip — used for filters later. */
+  /** Category chip - used for filters later. */
   category: "images" | "documents" | "writing" | "dev";
   /** Short feature bullets for the card footer. */
   highlights: string[];
@@ -35,7 +35,7 @@ export const TOOLS: Tool[] = [
     name: "Thumbnail Generator",
     tagline: "Click-worthy thumbnails on demand",
     description:
-      "Generate YouTube, LinkedIn, and blog thumbnails that actually get clicks — from a prompt or a link.",
+      "Generate YouTube, LinkedIn, and blog thumbnails that actually get clicks - from a prompt or a link.",
     href: "/thumbnail",
     status: "live",
     category: "images",
@@ -46,7 +46,7 @@ export const TOOLS: Tool[] = [
     name: "Smart PDF Tools",
     tagline: "Understand, extract, and transform PDFs",
     description:
-      "AI-powered PDF toolkit: summarize, extract structured data, and convert between formats — built for makers.",
+      "AI-powered PDF toolkit: summarize, extract structured data, and convert between formats - built for makers.",
     href: "/tools#smart-pdf",
     status: "soon",
     category: "documents",
@@ -57,7 +57,7 @@ export const TOOLS: Tool[] = [
     name: "Link-to-Preview",
     tagline: "Beautiful preview cards from any URL",
     description:
-      "Paste any link, get a designer-grade preview card with title, description, and OG image — ready to embed.",
+      "Paste any link, get a designer-grade preview card with title, description, and OG image - ready to embed.",
     href: "/tools#link-scraper",
     status: "soon",
     category: "dev",

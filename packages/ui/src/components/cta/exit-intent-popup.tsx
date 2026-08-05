@@ -146,7 +146,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
           Free 7-day MVP scoping
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Not sure what to build first? Book a no-pressure scoping call —
+          Not sure what to build first? Book a no-pressure scoping call -
           we&apos;ll map scope, timeline, and budget in one session.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">

@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoContactForm } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Contact Form",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Contact Form",
+  "/docs/components/contact-contact-form"
+)
 
 export default function Page() {
   return (

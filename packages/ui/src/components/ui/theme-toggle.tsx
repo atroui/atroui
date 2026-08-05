@@ -15,7 +15,7 @@ const OPTIONS = [
 type ThemeId = (typeof OPTIONS)[number]["id"];
 
 /**
- * Theme toggle — pill chrome (cycle on mobile, segmented sm+).
+ * Theme toggle - pill chrome (cycle on mobile, segmented sm+).
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme();

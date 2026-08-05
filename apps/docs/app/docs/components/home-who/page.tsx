@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoHomeWho } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Who",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Who",
+  "/docs/components/home-who"
+)
 
 export default function Page() {
   return (
@@ -34,7 +36,7 @@ export default function Page() {
         {
           name: "bio",
           type: "string",
-          default: "—",
+          default: "-",
           description: "Founder blurb under the headline.",
         },
       ]}

@@ -25,7 +25,7 @@ export type StylePreset = {
   label: string;
   /** One-line tooltip / helper text. */
   description: string;
-  /** Background prompt sent to FLUX — always textless by design. */
+  /** Background prompt sent to FLUX - always textless by design. */
   backgroundPrompt: string;
   safeZone: SafeZone;
   palette: {
@@ -36,10 +36,10 @@ export type StylePreset = {
   };
   /** Two-stop CSS gradient used for the live preview before generation. */
   previewGradient: string;
-  /** Typographic flavour — controls overlay font weight + feel. */
+  /** Typographic flavour - controls overlay font weight + feel. */
   typography: {
     titleWeight: 700;
-    /** px — we auto-shrink for long titles in the compositor. */
+    /** px - we auto-shrink for long titles in the compositor. */
     titleSizeMax: number;
     subtitleSizeMax: number;
   };
@@ -105,8 +105,8 @@ export const STYLE_PRESETS: Readonly<Record<StyleKey, StylePreset>> = {
     key: "darkDev",
     label: "Dark dev",
     description:
-      "Ink-studio noir — charcoal depths, mint accent like proof highlights on dark paper.",
-    backgroundPrompt: `Premium dark-mode product background inspired by refined pen-and-ink on paper reinterpreted as soft digital fields: rich matte charcoal and near-black tones, restrained cool mint-teal luminosity at the edges only (syntax-highlight calm, not neon), silky smooth gradients with generous negative space in the center, high-contrast restrained studio lighting like a monochrome sketch under soft lamp light — calm, authoritative, solitary maker energy, absolutely no terminals, keyboards, brackets, grids, cables, wires, HUD, sci-fi neon, crypto aesthetic, chrome UI, photographs, faces, handwriting, glyphs, symbols, icons, logos, fake text or numbers, ${NO_TEXT_TAIL}`,
+      "Ink-studio noir - charcoal depths, mint accent like proof highlights on dark paper.",
+    backgroundPrompt: `Premium dark-mode product background inspired by refined pen-and-ink on paper reinterpreted as soft digital fields: rich matte charcoal and near-black tones, restrained cool mint-teal luminosity at the edges only (syntax-highlight calm, not neon), silky smooth gradients with generous negative space in the center, high-contrast restrained studio lighting like a monochrome sketch under soft lamp light - calm, authoritative, solitary maker energy, absolutely no terminals, keyboards, brackets, grids, cables, wires, HUD, sci-fi neon, crypto aesthetic, chrome UI, photographs, faces, handwriting, glyphs, symbols, icons, logos, fake text or numbers, ${NO_TEXT_TAIL}`,
     safeZone: "center",
     palette: {
       background: "#0D1117",

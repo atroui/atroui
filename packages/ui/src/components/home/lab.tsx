@@ -13,7 +13,7 @@ function statusLabel(status: Tool["status"]) {
 }
 
 /**
- * Free tools lab — bordered editorial frame matching hero / work.
+ * Free tools lab - bordered editorial frame matching hero / work.
  */
 export function HomeLab() {
   const live = TOOLS.filter((t) => t.status === "live");
@@ -104,7 +104,7 @@ export function HomeLab() {
         </div>
       ) : null}
 
-      {/* Other tools — index */}
+      {/* Other tools - index */}
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
           <ul className="divide-y divide-border-subtle">

@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoFounderAvatar } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Founder Avatar",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Founder Avatar",
+  "/docs/components/ui-founder-avatar"
+)
 
 export default function Page() {
   return (
@@ -15,7 +17,7 @@ export default function Page() {
       code={'import { FounderAvatar } from "atroui"\n\n<FounderAvatar size="md" />'}
       fullBleed={false}
       installation='import { FounderAvatar } from "atroui"'
-      usage="Place the portrait at public /images/founder-portrait.png — the path is fixed in the component. Decorative only (aria-hidden); put the founder name in adjacent copy. Sizes: sm, md, lg."
+      usage="Place the portrait at public /images/founder-portrait.png - the path is fixed in the component. Decorative only (aria-hidden); put the founder name in adjacent copy. Sizes: sm, md, lg."
       props={[
         {
           name: "size",

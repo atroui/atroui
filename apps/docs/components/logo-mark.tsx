@@ -3,7 +3,7 @@
 import { LogoMark as AtroLogoMark } from "atroui"
 import { cn } from "@/lib/utils"
 
-/** Docs chrome mark — same geometry as `atroui` LogoMark. */
+/** Docs chrome mark - same geometry as `atroui` LogoMark. */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <AtroLogoMark

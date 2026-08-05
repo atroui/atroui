@@ -22,7 +22,7 @@ export type OgExample = {
 };
 
 /**
- * Maker-shaped OG categories — the ones indies, devs, and SaaS founders
+ * Maker-shaped OG categories - the ones indies, devs, and SaaS founders
  * actually ship. Every prompt is intentionally textless (FLUX garbles
  * letters); the crisp text comes from Quick mode's Satori overlay.
  */
@@ -94,7 +94,7 @@ export const EXAMPLES: OgExample[] = [
 ];
 
 /**
- * Editorial example index — thumbnail + remixed links, no card grid.
+ * Editorial example index - thumbnail + remixed links, no card grid.
  */
 export function OgExamples({
   className,
@@ -129,7 +129,7 @@ export function OgExamples({
             >
               <img
                 src={`/examples/${ex.slug}.png`}
-                alt={`${ex.title} — sample 1200×630 OG image`}
+                alt={`${ex.title} - sample 1200×630 OG image`}
                 width={1200}
                 height={630}
                 loading="lazy"

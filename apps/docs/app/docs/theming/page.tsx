@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
 import { CodeBlock } from "@/components/code-block"
+import { docsPageMetadata } from "@/lib/docs-metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Theming",
-}
+  description:
+    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, and Outfit. Customize via atroui/globals.css.",
+  path: "/docs/theming",
+})
 
 export default function ThemingPage() {
   return (
@@ -53,7 +57,7 @@ export default function ThemingPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             --font-outfit
           </code>
-          . Display and UI share the same family at medium weight — matching
+          . Display and UI share the same family at medium weight - matching
           the hero typography.
         </p>
       </section>
@@ -80,7 +84,7 @@ export default function ThemingPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui/content/*
           </code>{" "}
-          may still show Makershot studio copy — swap those imports when
+          may still show Makershot studio copy - swap those imports when
           shipping your own site.
         </p>
       </section>

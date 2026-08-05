@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoNewsletterForm } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Newsletter Form',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Newsletter Form",
+  "/docs/components/newsletter-newsletter-form"
+)
 
 export default function Page() {
   return (
@@ -17,7 +19,7 @@ export default function Page() {
       installation='import { NewsletterForm } from "atroui"'
       usage='Posts to your /api/newsletter route.'
       props={[
-    { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },
+    { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}
     />
   )

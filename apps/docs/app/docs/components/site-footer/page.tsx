@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoSiteFooter } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Site Footer',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Site Footer",
+  "/docs/components/site-footer"
+)
 
 export default function Page() {
   return (

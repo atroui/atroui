@@ -1,4 +1,4 @@
-/** Lightweight analytics + A/B testing — no external SDK required. */
+/** Lightweight analytics + A/B testing - no external SDK required. */
 
 export type AnalyticsEvent = {
   name: string;
@@ -46,7 +46,7 @@ export function getExperimentVariant(experiment: Experiment): string {
   return variant;
 }
 
-/** Track an event — forwards to Plausible/GA if configured, always logs in dev. */
+/** Track an event - forwards to Plausible/GA if configured, always logs in dev. */
 export function trackEvent(
   name: string,
   properties?: Record<string, string | number | boolean>

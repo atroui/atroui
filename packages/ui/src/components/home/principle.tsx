@@ -5,7 +5,7 @@ const PRINCIPLES = [
   {
     title: "Fixed scope",
     status: "Locked",
-    detail: "Agreed before day one — no creep theatre.",
+    detail: "Agreed before day one - no creep theatre.",
     tone: "ok" as const,
   },
   {
@@ -35,7 +35,7 @@ const toneDot = {
 } as const;
 
 /**
- * How we work — editorial process band matching hero / work frames.
+ * How we work - editorial process band matching hero / work frames.
  */
 export function HomePrinciple() {
   return (

@@ -12,7 +12,7 @@ import { cn } from "../lib/utils";
 const FAQ_DATA = SERVICES_FAQ;
 
 /**
- * Interactive FAQ — accordion on mobile, side preview on lg+.
+ * Interactive FAQ - accordion on mobile, side preview on lg+.
  */
 export function FaqInteractivePreview() {
   const timelineRef = useRef<HTMLDivElement>(null);

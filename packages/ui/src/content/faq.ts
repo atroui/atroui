@@ -1,5 +1,5 @@
 /**
- * Shared FAQ content — used on /services UI and FAQPage JSON-LD.
+ * Shared FAQ content - used on /services UI and FAQPage JSON-LD.
  */
 
 export type FaqItem = {
@@ -15,7 +15,7 @@ export const SERVICES_FAQ: FaqItem[] = [
     category: "Engagement",
     question: "Why fixed-price instead of hourly?",
     answer:
-      "Hourly aligns incentives against you. Fixed price means we scope carefully up-front and ship on time — if we go over, that's our problem, not yours.",
+      "Hourly aligns incentives against you. Fixed price means we scope carefully up-front and ship on time - if we go over, that's our problem, not yours.",
   },
   {
     id: "stack",
@@ -36,7 +36,7 @@ export const SERVICES_FAQ: FaqItem[] = [
     category: "Billing",
     question: "What about ongoing maintenance?",
     answer:
-      "We offer a monthly retainer for studio time — bug fixes, small features, and infra maintenance. Optional, not bundled with projects.",
+      "We offer a monthly retainer for studio time - bug fixes, small features, and infra maintenance. Optional, not bundled with projects.",
   },
   {
     id: "equity",
@@ -50,6 +50,6 @@ export const SERVICES_FAQ: FaqItem[] = [
     category: "Timing",
     question: "How fast can you start?",
     answer:
-      "Typically within 1–2 weeks of a signed proposal. If you're on a deadline, say so — we keep one slot open for urgent sprints.",
+      "Typically within 1–2 weeks of a signed proposal. If you're on a deadline, say so - we keep one slot open for urgent sprints.",
   },
 ];

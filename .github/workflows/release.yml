@@ -85,7 +85,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ -z "${GH_TOKEN:-}" ]; then
-            echo "GH_PAT secret not set — skipping PAT PR create."
+            echo "GH_PAT secret not set - skipping PAT PR create."
             exit 1
           fi
           existing="$(gh pr list --repo "$GITHUB_REPOSITORY" \

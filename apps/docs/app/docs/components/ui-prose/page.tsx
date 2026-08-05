@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoProse } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Prose',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Prose",
+  "/docs/components/ui-prose"
+)
 
 export default function Page() {
   return (
@@ -16,7 +18,7 @@ export default function Page() {
       fullBleed={false}
       installation='import { Prose } from "atroui"'
       props={[
-    { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },
+    { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}
     />
   )

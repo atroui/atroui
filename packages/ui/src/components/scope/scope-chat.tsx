@@ -11,7 +11,7 @@ import { cn } from "../../lib/utils";
 const STARTER: ScopeMessage = {
   role: "assistant",
   content:
-    "Hi! I'm the scoping assistant. Tell me what you're building — MVP, AI feature, design system, or full product — and I'll recommend the right package and ballpark.",
+    "Hi! I'm the scoping assistant. Tell me what you're building - MVP, AI feature, design system, or full product - and I'll recommend the right package and ballpark.",
 };
 
 function renderContent(text: string) {

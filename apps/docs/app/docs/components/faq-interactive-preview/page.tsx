@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoFaqInteractivePreview } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Faq Interactive Preview',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Faq Interactive Preview",
+  "/docs/components/faq-interactive-preview"
+)
 
 export default function Page() {
   return (

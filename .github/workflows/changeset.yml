@@ -43,9 +43,9 @@ jobs:
 
       - name: Ensure a changeset exists
         run: |
-          # Version Packages PRs already apply changesets — skip.
+          # Version Packages PRs already apply changesets - skip.
           if [[ "${{ github.head_ref }}" == "changeset-release/master" ]]; then
-            echo "Version PR — skipping changeset check."
+            echo "Version PR - skipping changeset check."
             exit 0
           fi
 

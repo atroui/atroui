@@ -1,8 +1,8 @@
 # AtroUI
 
-Personal component catalog packaged as **[`atroui`](https://www.npmjs.com/package/atroui)** · site: [atroui.com](https://atroui.com)
+Production React / Next.js **component library** and dark-first design system - packaged as **[`atroui`](https://www.npmjs.com/package/atroui)** · site: [atroui.com](https://atroui.com)
 
-Dark-first design system: black canvas, electric blue brand (`#0b7bff`), glass surfaces, pill CTAs.
+Black canvas, electric blue brand (`#0b7bff`), glass surfaces, pill CTAs. Primitives, page sections, and host-bound tools from real products.
 
 ## Structure
 
@@ -11,7 +11,7 @@ Dark-first design system: black canvas, electric blue brand (`#0b7bff`), glass s
 ├── apps/
 │   └── docs/          # Landing + documentation (@atroui/docs)
 ├── packages/
-│   ├── ui/            # atroui — publishable component package
+│   ├── ui/            # atroui - publishable component package
 │   └── typescript-config/
 ├── package.json
 ├── pnpm-workspace.yaml
@@ -73,7 +73,7 @@ Load Outfit in the host layout and expose `--font-outfit`.
 
 ## Brand chrome vs demo content
 
-Chrome (logo, headers, footers, SEO, mail defaults) uses `getBrand()` from `atroui/lib/brand` — **AtroUI** by default. Override with:
+Chrome (logo, headers, footers, SEO, mail defaults) uses `getBrand()` from `atroui/lib/brand` - **AtroUI** by default. Override with:
 
 ```bash
 NEXT_PUBLIC_SITE_NAME=AtroUI
@@ -88,14 +88,14 @@ Modules under `atroui/content/*` may still show **Makershot** studio copy as por
 
 Tokens live in `packages/ui/src/globals.css`:
 
-- **Canvas** — black (`oklch(0 0 0)`) with cool undertones
-- **Brand** — hero blues (`#0b7bff` / `#92dbe0`)
-- **CTAs** — rounded-full primary (white on dark) + glass ghost
-- **Surfaces** — `ms-panel` / `md-glass` blur panels
+- **Canvas** - black (`oklch(0 0 0)`) with cool undertones
+- **Brand** - hero blues (`#0b7bff` / `#92dbe0`)
+- **CTAs** - rounded-full primary (white on dark) + glass ghost
+- **Surfaces** - `ms-panel` / `md-glass` blur panels
 
 ## Catalog notes
 
-Some modules call host `/api/*` routes (OG, thumbnail, scope, contact). They render in the docs but need those APIs **and your own keys** in a real app — marked **Host API** in the sidebar. The docs site does not provide shared LLM/image tokens (BYOK).
+Some modules call host `/api/*` routes (OG, thumbnail, scope, contact). They render in the docs but need those APIs **and your own keys** in a real app - marked **Host API** in the sidebar. The docs site does not provide shared LLM/image tokens (BYOK).
 
 For a live OG generator without wiring keys into this repo, use [makershot.tech/og](https://www.makershot.tech/og).
 

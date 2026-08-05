@@ -10,7 +10,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =============================================================================
-   AtroUI — Digital Success system
+   AtroUI - Digital Success system
    Black canvas · electric blue brand · glass surfaces · rounded CTAs
    Base: hero-digital-success (#92dbe0 / #0b7bff / #3865cf)
    ============================================================================= */
@@ -29,7 +29,7 @@
   --font-body: var(--font-outfit);
   --font-label: var(--font-outfit);
 
-  /* Hero brand — #0b7bff / #92dbe0 */
+  /* Hero brand - #0b7bff / #92dbe0 */
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
   --color-brand-dim: var(--brand-dim);
@@ -81,7 +81,7 @@
   --font-geist-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Light alternate — cool neutrals, same brand */
+  /* Light alternate - cool neutrals, same brand */
   --brand: oklch(0.58 0.2 255);
   --brand-hover: oklch(0.64 0.19 255);
   --brand-dim: oklch(0.48 0.16 255);
@@ -125,7 +125,7 @@
 }
 
 .dark {
-  /* Hero canvas — near black with cool undertone */
+  /* Hero canvas - near black with cool undertone */
   --brand: oklch(0.62 0.2 255);
   --brand-hover: oklch(0.72 0.16 230);
   --brand-dim: oklch(0.5 0.15 260);
@@ -276,7 +276,7 @@
     }
   }
 
-  /* Primary CTA — hero white/black pill */
+  /* Primary CTA - hero white/black pill */
   .ms-cta {
     display: inline-flex;
     align-items: center;
@@ -348,7 +348,7 @@
     }
   }
 
-  /* Soft pill stamp — hero status chip language */
+  /* Soft pill stamp - hero status chip language */
   .ms-stamp {
     display: inline-flex;
     align-items: center;

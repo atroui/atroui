@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoOgExamples } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Og Examples',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Og Examples",
+  "/docs/components/og-og-examples"
+)
 
 export default function Page() {
   return (
@@ -16,7 +18,7 @@ export default function Page() {
       fullBleed={true}
       installation='import { OgExamples } from "atroui"'
       props={[
-    { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },
+    { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}
     />
   )

@@ -9,6 +9,7 @@ import { LogoMark } from "@/components/logo-mark"
 const links = [
   { label: "Catalog", href: "/docs/components" },
   { label: "Docs", href: "/docs" },
+  { label: "Blog", href: "/blog" },
   { label: "Install", href: "/docs/installation" },
 ] as const
 

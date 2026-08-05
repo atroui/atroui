@@ -1,5 +1,5 @@
 /**
- * Thumbnail compositor — isolated backend (no imports from `src/lib/og/*`).
+ * Thumbnail compositor - isolated backend (no imports from `src/lib/og/*`).
  *
  * Background: FLUX → sharp polish
  * Text: Satori (Inter) → resvg PNG

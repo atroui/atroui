@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoTextarea } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Textarea',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Textarea",
+  "/docs/components/ui-textarea"
+)
 
 export default function Page() {
   return (
@@ -16,7 +18,7 @@ export default function Page() {
       fullBleed={false}
       installation='import { Textarea } from "atroui"'
       props={[
-    { name: 'placeholder', type: 'string', default: '—', description: 'Hint text.' },
+    { name: 'placeholder', type: 'string', default: '-', description: 'Hint text.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables input.' },
   ]}
     />

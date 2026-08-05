@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoMadeWithEmbed } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Made With Embed",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Made With Embed",
+  "/docs/components/seo-made-with-embed"
+)
 
 export default function Page() {
   return (

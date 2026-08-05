@@ -46,7 +46,7 @@ export function ArPortfolio() {
         <p className="ms-stamp">AR portfolio preview</p>
         <p className="mt-3 max-w-lg text-sm text-muted-foreground">
           On supported devices, tap &ldquo;View in AR&rdquo; to place a project preview in your
-          space. Demo models are placeholders — replace the hardcoded{" "}
+          space. Demo models are placeholders - replace the hardcoded{" "}
           <code className="font-mono text-[11px] text-foreground">MODELS</code>{" "}
           list for real client work.
         </p>

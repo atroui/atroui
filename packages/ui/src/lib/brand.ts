@@ -2,7 +2,7 @@
  * Central brand identity for AtroUI chrome (logo, SEO, mail defaults).
  * Override via NEXT_PUBLIC_SITE_* in the host app.
  *
- * Demo / portfolio content under `content/` may still reference Makershot —
+ * Demo / portfolio content under `content/` may still reference Makershot -
  * that is intentional and independent of this chrome brand.
  */
 
@@ -30,7 +30,7 @@ function readEnv(key: string): string | undefined {
   return value || undefined;
 }
 
-/** Resolved brand — safe on server and client (NEXT_PUBLIC_* only). */
+/** Resolved brand - safe on server and client (NEXT_PUBLIC_* only). */
 export function getBrand(): Brand {
   return {
     name: readEnv("NEXT_PUBLIC_SITE_NAME") ?? DEFAULT_BRAND.name,
