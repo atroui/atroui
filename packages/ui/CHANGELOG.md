@@ -1,5 +1,11 @@
 # atroui
 
+## 0.2.3
+
+### Patch Changes
+
+- [#29](https://github.com/atroui/atroui/pull/29) [`f25c71d`](https://github.com/atroui/atroui/commit/f25c71db3b334b52299da234ab0646f8b3ef5605) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Prefer canonical brand site URL over Vercel deployment hosts in production JSON-LD, and point Organization logo at /favicon-192.png.
+
 ## 0.2.2
 
 ### Patch Changes
