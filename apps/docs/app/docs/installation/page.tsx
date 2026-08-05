@@ -19,11 +19,17 @@ export default function InstallationPage() {
           Installation
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Install the published{" "}
+          Two ways to use AtroUI: install the{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui
           </code>{" "}
-          package in a Next.js 15+ app. Requires React 18+,{" "}
+          npm package for tokens and shared utilities, or copy components into
+          your repo via the{" "}
+          <Link href="/docs/registry" className="bam-link">
+            Registry
+          </Link>{" "}
+          (shadcn CLI) when you want full ownership of code and content. npm
+          path below targets Next.js 15+, React 18+,{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             next-themes
           </code>

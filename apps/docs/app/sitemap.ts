@@ -9,6 +9,7 @@ const staticPaths = [
   "/blog",
   "/docs",
   "/docs/installation",
+  "/docs/registry",
   "/docs/theming",
   "/docs/changelog",
   "/docs/brand",

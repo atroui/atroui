@@ -1,0 +1,138 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "atroui",
+  "homepage": "https://www.atroui.com",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "cn() helper (clsx + tailwind-merge).",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/default/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "brand",
+      "type": "registry:lib",
+      "title": "Brand",
+      "description": "getBrand() and DEFAULT_BRAND - edit or override with NEXT_PUBLIC_SITE_*.",
+      "files": [
+        {
+          "path": "registry/default/lib/brand.ts",
+          "type": "registry:lib",
+          "target": "lib/brand.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "AtroUI button with CVA variants. Source lands in your project.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:ui",
+      "title": "Theme Toggle",
+      "description": "Light / system / dark toggle using next-themes.",
+      "dependencies": ["lucide-react", "next-themes"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/theme-toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/theme-toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "logo",
+      "type": "registry:component",
+      "title": "Logo",
+      "description": "Interrupted-A mark and wordmark. Edit the SVG in your repo.",
+      "registryDependencies": ["utils", "brand"],
+      "files": [
+        {
+          "path": "registry/default/brand/logo.tsx",
+          "type": "registry:component",
+          "target": "components/brand/logo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "home-hero",
+      "type": "registry:block",
+      "title": "Home Hero",
+      "description": "Editable dark-first hero band. Change CONTENT at the top of the file.",
+      "dependencies": ["next"],
+      "registryDependencies": ["brand"],
+      "files": [
+        {
+          "path": "registry/default/blocks/home-hero.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/home-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "home-who",
+      "type": "registry:block",
+      "title": "Home Who",
+      "description": "Founder / who band with editable CONTENT constants.",
+      "dependencies": ["lucide-react", "next"],
+      "registryDependencies": ["brand"],
+      "files": [
+        {
+          "path": "registry/default/blocks/home-who.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/home-who.tsx"
+        }
+      ]
+    },
+    {
+      "name": "site-header",
+      "type": "registry:block",
+      "title": "Site Header",
+      "description": "Sticky site header with editable NAV and CTA.",
+      "dependencies": ["lucide-react", "motion", "next"],
+      "registryDependencies": ["utils", "brand", "logo", "theme-toggle"],
+      "files": [
+        {
+          "path": "registry/default/blocks/site-header.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/site-header.tsx"
+        }
+      ]
+    },
+    {
+      "name": "footer-bold",
+      "type": "registry:block",
+      "title": "Bold Footer",
+      "description": "Bold footer with editable headline, studio links, and socials.",
+      "dependencies": ["next"],
+      "registryDependencies": ["brand"],
+      "files": [
+        {
+          "path": "registry/default/blocks/footer-bold.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/footer-bold.tsx"
+        }
+      ]
+    }
+  ]
+}
