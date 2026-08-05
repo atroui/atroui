@@ -8,9 +8,9 @@ import { LogoMark } from "@/components/logo-mark"
 
 const links = [
   { label: "Catalog", href: "/docs/components" },
+  { label: "Registry", href: "/docs/registry" },
   { label: "Docs", href: "/docs" },
   { label: "Blog", href: "/blog" },
-  { label: "Install", href: "/docs/installation" },
 ] as const
 
 export function LandingNav() {

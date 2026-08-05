@@ -8,19 +8,19 @@ const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 const inside = [
   {
-    title: "Primitives",
-    body: "Button, Card, forms, theme - the small reusable pieces.",
-    href: "/docs/components/ui-button",
+    title: "Registry",
+    body: "Own the UI - shadcn CLI copies source into your repo.",
+    href: "/docs/registry",
   },
   {
     title: "Sections",
-    body: "Home bands, site chrome, CTAs - page modules from production.",
+    body: "Home bands, site chrome, CTAs - edit CONTENT at the top.",
     href: "/docs/components/home-who",
   },
   {
-    title: "Tools",
-    body: "OG workspace, thumbnail, scope - often need host APIs.",
-    href: "/docs/components/og-og-examples",
+    title: "npm",
+    body: "Tokens, ThemeProvider, and Host API tools you do not fork.",
+    href: "/docs/installation",
   },
   {
     title: "Headless",
@@ -55,8 +55,8 @@ export function LandingHero() {
                 <span className="ds-gradient-text">find</span>
               </h2>
               <p className="mt-3 max-w-sm text-[15px] font-light leading-relaxed text-neutral-300 sm:mt-4 sm:text-base">
-                A React / Next.js component library and dark-first design
-                system - primitives, sections, tools, and headless SEO modules.
+                Customize via the registry when you want the files. Use npm for
+                tokens and tools. Same dark-first catalog either way.
               </p>
             </div>
 
@@ -93,12 +93,18 @@ export function LandingHero() {
             </h2>
             <p className="mt-3 text-sm font-light leading-relaxed text-neutral-400 sm:mt-4">
               AtroUI is the React component catalog at{" "}
-              <span className="text-neutral-200">atroui.com</span> - install via{" "}
+              <span className="text-neutral-200">atroui.com</span>. Primary path:{" "}
+              <Link
+                href="/docs/registry"
+                className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+              >
+                registry
+              </Link>{" "}
+              (own the UI). npm (
               <code className="break-all rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
                 npm i atroui
               </code>
-              . Dark-first tokens, production sections, and docs for Next.js
-              apps. Related work lives on{" "}
+              ) for tokens and tools. Related work:{" "}
               <a
                 href="https://www.iamk.xyz"
                 target="_blank"
@@ -132,16 +138,16 @@ export function LandingHero() {
               <Star className="size-3.5 fill-current opacity-80" aria-hidden />
             </a>
             <Link
-              href="/docs"
+              href="/docs/installation"
               className="ms-cta-ghost w-full justify-center text-sm sm:w-auto"
             >
-              Read the docs
+              npm tokens
             </Link>
             <Link
-              href="/docs/installation"
+              href="/docs/registry"
               className="ms-cta w-full justify-center text-sm sm:w-auto"
             >
-              Install AtroUI
+              Own the UI
             </Link>
           </div>
         </div>
