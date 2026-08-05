@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist_Mono, Outfit } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import "atroui/globals.css"
@@ -18,6 +18,16 @@ const geistMono = Geist_Mono({
 
 /** Canonical host matches production (apex → www). */
 const siteUrl = "https://www.atroui.com"
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0a0a" },
+  ],
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -86,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative min-h-screen bg-background text-foreground">
+          <div className="relative min-h-[100svh] bg-background text-foreground">
             {children}
           </div>
         </ThemeProvider>

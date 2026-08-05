@@ -13,7 +13,7 @@ export const metadata: Metadata = docsPageMetadata({
 export default function BlogIndexPage() {
   return (
     <div className="bg-background text-foreground">
-      <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 lg:py-20">
+      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-8 sm:py-16 lg:py-20">
         <p className="ms-stamp mb-3">Blog</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
           AtroUI blog

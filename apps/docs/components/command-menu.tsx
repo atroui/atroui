@@ -37,7 +37,7 @@ export function CommandMenu() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex h-9 w-full max-w-[220px] items-center gap-2 rounded-full border border-border-subtle bg-white/5 px-3 text-[13px] text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+        className="inline-flex h-9 w-full max-w-[min(220px,40vw)] items-center gap-2 rounded-full border border-border-subtle bg-white/5 px-3 text-[13px] text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
       >
         <Search className="size-3.5 shrink-0" aria-hidden />
         <span className="flex-1 text-left">Search…</span>

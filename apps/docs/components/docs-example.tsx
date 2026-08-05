@@ -48,13 +48,18 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
       {tab === "preview" ? (
         <div
           className={cn(
-            "relative bg-background",
+            "relative overflow-x-auto bg-background",
             fullBleed
               ? "max-h-[min(720px,70vh)] overflow-auto"
-              : "flex min-h-[280px] items-center justify-center p-8 sm:p-10"
+              : "flex min-h-[200px] items-center justify-center p-4 sm:min-h-[280px] sm:p-8 md:p-10"
           )}
         >
-          <div className={cn("w-full", !fullBleed && "flex justify-center")}>
+          <div
+            className={cn(
+              "w-full min-w-0",
+              !fullBleed && "flex justify-center"
+            )}
+          >
             {preview}
           </div>
         </div>
