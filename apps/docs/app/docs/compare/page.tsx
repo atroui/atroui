@@ -94,8 +94,8 @@ export default function ComparePage() {
           Prefer a kit if you want every file in your monorepo and a blank visual
           slate. Prefer AtroUI if you want a ready dark catalog, production
           sections, and brandable chrome with a clear home at{" "}
-          <a href="https://atroui.com" className="bam-link">
-            atroui.com
+          <a href="https://www.atroui.com" className="bam-link">
+            www.atroui.com
           </a>
           .
         </p>

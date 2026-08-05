@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
   display: "swap",
 })
 
-const siteUrl = "https://atroui.com"
+/** Canonical host matches production (apex → www). */
+const siteUrl = "https://www.atroui.com"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

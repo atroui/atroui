@@ -10,7 +10,7 @@ export type Brand = {
   name: string;
   domain: string;
   email: string;
-  /** Canonical origin without trailing slash, e.g. https://atroui.com */
+  /** Canonical origin without trailing slash, e.g. https://www.atroui.com */
   siteUrl: string;
   tagline: string;
 };
@@ -19,7 +19,7 @@ export const DEFAULT_BRAND: Brand = {
   name: "AtroUI",
   domain: "atroui.com",
   email: "hello@atroui.com",
-  siteUrl: "https://atroui.com",
+  siteUrl: "https://www.atroui.com",
   tagline:
     "Dark-first React and Next.js component library for production UI",
 };

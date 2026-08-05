@@ -1,12 +1,32 @@
 "use client"
 
-import { Suspense, useRef } from "react"
+import { useRef } from "react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
-import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react"
 import { TimelineAnimation } from "atroui"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import MotionDrawer from "@/components/ui/motion-drawer"
 import { LogoMark } from "@/components/logo-mark"
+
+const HeroShaderBackground = dynamic(
+  () =>
+    import("@/components/blocks/hero-shader-background").then(
+      (m) => m.HeroShaderBackground
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 65% 55% at 72% 38%, rgba(11,123,255,0.22), transparent 58%), #000",
+        }}
+      />
+    ),
+  }
+)
 
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
@@ -31,55 +51,7 @@ export function HeroDigitalSuccess() {
       ref={timelineRef}
       className="relative flex min-h-screen flex-col overflow-hidden bg-black text-white"
     >
-      <Suspense fallback={null}>
-        <ShaderGradientCanvas
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-          }}
-          lazyLoad={false}
-          pixelDensity={1}
-          pointerEvents="none"
-        >
-          <ShaderGradient
-            animate="on"
-            type="sphere"
-            wireframe={false}
-            shader="defaults"
-            uTime={0}
-            uSpeed={0.3}
-            uStrength={0.3}
-            uDensity={0.8}
-            uFrequency={5.5}
-            uAmplitude={3.2}
-            positionX={-0.1}
-            positionY={0}
-            positionZ={0}
-            rotationX={0}
-            rotationY={130}
-            rotationZ={70}
-            color1="#92dbe0"
-            color2="#0b7bff"
-            color3="#3865cf"
-            reflection={0.4}
-            cAzimuthAngle={270}
-            cPolarAngle={180}
-            cDistance={0.5}
-            cameraZoom={15.1}
-            lightType="env"
-            brightness={0.8}
-            envPreset="city"
-            grain="on"
-            toggleAxis={false}
-            zoomOut={false}
-            hoverState=""
-            enableTransition={false}
-          />
-        </ShaderGradientCanvas>
-      </Suspense>
+      <HeroShaderBackground />
 
       {isMobile ? (
         <div className="relative z-10 flex items-center justify-between gap-4 px-6 pt-4 sm:px-10">

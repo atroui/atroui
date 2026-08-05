@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://atroui.com/sitemap.xml",
-    host: "https://atroui.com",
+    sitemap: "https://www.atroui.com/sitemap.xml",
+    host: "https://www.atroui.com",
   }
 }

@@ -85,7 +85,7 @@ On [github.com/atroui/atroui](https://github.com/atroui/atroui) keep:
 
 After each docs deploy to **atroui.com**:
 
-1. [Google Search Console](https://search.google.com/search-console) - property `atroui.com` verified; submit `https://atroui.com/sitemap.xml` if new.
+1. [Google Search Console](https://search.google.com/search-console) - property `atroui.com` verified; submit `https://www.atroui.com/sitemap.xml` if new.
 2. Spot-check brand query **atroui** / **atroui.com** - site should be #1 once indexed.
 3. Refresh titles/descriptions on the top 5 docs URLs by impressions (GSC Performance).
 4. Ship 1–2 posts under `/blog` or update existing ones; keep internal links to `/docs/*`.

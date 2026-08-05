@@ -70,8 +70,8 @@ export default function BrandKitPage() {
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Credit AtroUI on projects that ship with the catalog. Prefer linking to{" "}
-          <a href="https://atroui.com" className="bam-link">
-            atroui.com
+          <a href="https://www.atroui.com" className="bam-link">
+            www.atroui.com
           </a>
           .
         </p>
@@ -83,7 +83,7 @@ export default function BrandKitPage() {
         />
         <CodeBlock
           language="html"
-          code={`<a href="https://atroui.com">\n  <img src="https://atroui.com/badge/atroui.svg" alt="Made with AtroUI" width="160" height="40" />\n</a>`}
+          code={`<a href="https://www.atroui.com">\n  <img src="https://www.atroui.com/badge/atroui.svg" alt="Made with AtroUI" width="160" height="40" />\n</a>`}
         />
         <p className="text-[13px] text-muted-foreground">
           Or use the{" "}
