@@ -90,8 +90,23 @@ export default function DocsIntroPage() {
         <h2 className="ds-headline text-base text-foreground">Quick start</h2>
         <CodeBlock
           language="bash"
-          code={`# Consumer app\nnpm install atroui\n\n# This monorepo (docs + development)\npnpm install\npnpm dev`}
+          code={`# Consumer app\nnpm install atroui next-themes\n\n# Then add transpilePackages: ["atroui"] in next.config.ts\n# Full steps: /docs/installation\n\n# This monorepo (docs + development)\npnpm install\npnpm dev`}
         />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          See{" "}
+          <Link href="/docs/installation" className="bam-link">
+            Installation
+          </Link>{" "}
+          for{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            transpilePackages
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            ThemeProvider
+          </code>
+          , and Outfit setup.
+        </p>
       </section>
 
       <div className="flex flex-wrap gap-3 pt-1">

@@ -22,7 +22,19 @@ Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill 
 ## Install
 
 ```bash
-npm install atroui
+npm install atroui next-themes
+```
+
+In `next.config.ts`:
+
+```ts
+import type { NextConfig } from "next"
+
+const nextConfig: NextConfig = {
+  transpilePackages: ["atroui"],
+}
+
+export default nextConfig
 ```
 
 ```tsx
@@ -38,6 +50,8 @@ export function Example({ children }: { children: React.ReactNode }) {
   )
 }
 ```
+
+Full layout setup (Outfit + `--font-outfit`): [atroui.com/docs/installation](https://www.atroui.com/docs/installation)
 
 Load **Outfit** in the host layout and expose `--font-outfit`. Full guide: [Installation](https://www.atroui.com/docs/installation).
 

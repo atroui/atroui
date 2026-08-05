@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Installation",
   description:
-    "Install AtroUI in a Next.js app with npm i atroui - ThemeProvider, globals.css, brand env overrides, and Host API notes.",
+    "Install AtroUI in a Next.js app: npm i atroui next-themes, transpilePackages, ThemeProvider, and atroui/globals.css.",
   path: "/docs/installation",
 })
 
@@ -23,35 +23,97 @@ export default function InstallationPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui
           </code>{" "}
-          package in a Next.js app, or clone this monorepo to run the docs and
-          develop components.
+          package in a Next.js 15+ app. Requires React 18+,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            next-themes
+          </code>
+          , and Tailwind CSS v4.
         </p>
       </header>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          npm (consumer apps)
+          1. Install packages
         </h2>
         <CodeBlock
           language="bash"
           code={`npm install atroui next-themes`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Peer deps: React 18+, Next.js 15+, and{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             next-themes
+          </code>{" "}
+          is a peer dependency used by{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            ThemeProvider
           </code>
-          . AtroUI ships TypeScript source - tell Next to transpile it:
+          .
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          2. Transpile AtroUI
+        </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          AtroUI ships TypeScript source. Add it to{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            transpilePackages
+          </code>{" "}
+          in{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            next.config.ts
+          </code>{" "}
+          (required for Next.js / Turbopack):
         </p>
         <CodeBlock
           language="ts"
           code={`import type { NextConfig } from "next"\n\nconst nextConfig: NextConfig = {\n  transpilePackages: ["atroui"],\n}\n\nexport default nextConfig`}
         />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          3. Wire layout
+        </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Load Outfit in your layout and expose{" "}
+          Import{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/globals.css
+          </code>
+          , load Outfit as{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             --font-outfit
           </code>
+          , and wrap the tree with{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            ThemeProvider
+          </code>
+          :
+        </p>
+        <CodeBlock
+          language="tsx"
+          code={`import type { Metadata } from "next"\nimport { Outfit, Geist_Mono } from "next/font/google"\nimport { ThemeProvider } from "atroui"\nimport "atroui/globals.css"\n\nconst outfit = Outfit({\n  variable: "--font-outfit",\n  subsets: ["latin"],\n})\n\nconst geistMono = Geist_Mono({\n  variable: "--font-geist-mono",\n  subsets: ["latin"],\n})\n\nexport const metadata: Metadata = {\n  title: "My app",\n}\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html\n      lang="en"\n      className={\`\${outfit.variable} \${geistMono.variable} dark\`}\n      suppressHydrationWarning\n    >\n      <body className="min-h-screen bg-background text-foreground antialiased">\n        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>\n          {children}\n        </ThemeProvider>\n      </body>\n    </html>\n  )\n}`}
+        />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          4. Use a component
+        </h2>
+        <CodeBlock
+          language="tsx"
+          code={`import { Button } from "atroui"\n\nexport default function Page() {\n  return (\n    <main className="p-10">\n      <Button>Get started</Button>\n    </main>\n  )\n}`}
+        />
+        <p className="text-[13px] text-muted-foreground">
+          Tokens and utilities live in{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/globals.css
+          </code>
+          . See{" "}
+          <Link href="/docs/theming" className="bam-link">
+            Theming
+          </Link>
           .
         </p>
       </section>
@@ -74,32 +136,6 @@ export default function InstallationPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             http://localhost:3000
           </code>
-          .
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Use in an app</h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Import components and the global stylesheet. Wrap the tree with{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            ThemeProvider
-          </code>
-          .
-        </p>
-        <CodeBlock
-          language="tsx"
-          code={`import { Button, ThemeProvider } from "atroui"\nimport "atroui/globals.css"\n\nexport function Example({ children }: { children: React.ReactNode }) {\n  return (\n    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n      <Button>Click me</Button>\n      {children}\n    </ThemeProvider>\n  )\n}`}
-        />
-        <p className="text-[13px] text-muted-foreground">
-          Tailwind v4 tokens live in{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/globals.css
-          </code>
-          . See{" "}
-          <Link href="/docs/theming" className="bam-link">
-            Theming
-          </Link>
           .
         </p>
       </section>

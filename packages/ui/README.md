@@ -31,6 +31,8 @@ export function App({ children }: { children: React.ReactNode }) {
   )
 }
 ```
+
+Also load Outfit with `--font-outfit` on `<html>`. Full steps: [atroui.com/docs/installation](https://atroui.com/docs/installation).
 ## Docs
 
 - Site: [atroui.com](https://atroui.com)
