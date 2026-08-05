@@ -1,6 +1,6 @@
 /**
  * Brand chrome for copied AtroUI components.
- * Edit DEFAULT_BRAND or set NEXT_PUBLIC_SITE_* in your app.
+ * Defaults match the docs catalog. Edit DEFAULT_BRAND or set NEXT_PUBLIC_SITE_*.
  */
 
 export type Brand = {
@@ -12,11 +12,11 @@ export type Brand = {
 }
 
 export const DEFAULT_BRAND: Brand = {
-  name: "Acme",
-  domain: "acme.test",
-  email: "hello@acme.test",
-  siteUrl: "https://acme.test",
-  tagline: "Your product tagline",
+  name: "AtroUI",
+  domain: "atroui.com",
+  email: "hello@iamk.xyz",
+  siteUrl: "https://www.atroui.com",
+  tagline: "Dark-first React and Next.js component library for production UI",
 }
 
 function readEnv(key: string): string | undefined {

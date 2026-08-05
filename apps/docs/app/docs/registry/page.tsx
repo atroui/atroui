@@ -21,7 +21,16 @@ export default function RegistryPage() {
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           AtroUI ships a shadcn-compatible registry. Components are copied into
           your project so you can edit code, content, and design - the same
-          ownership model as shadcn/ui.
+          ownership model as shadcn/ui. Registry items match the docs catalog
+          look; change{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            CONTENT
+          </code>{" "}
+          /{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            DEFAULT_BRAND
+          </code>{" "}
+          in the installed files to make them yours.
         </p>
       </header>
 

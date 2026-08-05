@@ -78,8 +78,8 @@
       "name": "home-hero",
       "type": "registry:block",
       "title": "Home Hero",
-      "description": "Editable dark-first hero band. Change CONTENT at the top of the file.",
-      "dependencies": ["next"],
+      "description": "Docs-matching homepage hero with editable CONTENT (stamp, CTAs, sprint, OG preview panel).",
+      "dependencies": ["lucide-react", "next"],
       "registryDependencies": ["@atroui/brand"],
       "files": [
         {
