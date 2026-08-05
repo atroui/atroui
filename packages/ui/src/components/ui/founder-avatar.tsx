@@ -1,6 +1,7 @@
-import Image from "next/image"
+import Image, { type StaticImageData } from "next/image"
 
 import { getBrand } from "../../lib/brand"
+import { MEDIA, mediaSrc, type MediaSrc } from "../../lib/media"
 import { cn } from "../../lib/utils"
 
 const sizeClass = {
@@ -18,20 +19,21 @@ type FounderAvatarProps = {
   size?: FounderAvatarSize
   className?: string
   /**
-   * Portrait URL. Defaults to `NEXT_PUBLIC_FOUNDER_AVATAR` when set.
-   * When neither is provided, renders brand initials (no image request).
+   * Portrait override. Defaults to the bundled package asset, then
+   * `NEXT_PUBLIC_FOUNDER_AVATAR` if set.
    */
-  src?: string
-  /** Override initials when no image is available. */
+  src?: MediaSrc
+  /** Override initials when falling back (no usable image). */
   initials?: string
 }
 
-function resolveSrc(src?: string): string | null {
-  const fromProp = src?.trim()
-  if (fromProp) return fromProp
-  if (typeof process === "undefined" || !process.env) return null
-  const fromEnv = process.env.NEXT_PUBLIC_FOUNDER_AVATAR?.trim()
-  return fromEnv || null
+function resolveSrc(src?: MediaSrc): string | StaticImageData {
+  if (src) return typeof src === "string" ? src : src
+  if (typeof process !== "undefined" && process.env) {
+    const fromEnv = process.env.NEXT_PUBLIC_FOUNDER_AVATAR?.trim()
+    if (fromEnv) return fromEnv
+  }
+  return MEDIA.founderPortrait
 }
 
 function resolveInitials(initials?: string): string {
@@ -48,8 +50,8 @@ function resolveInitials(initials?: string): string {
  * Circular founder portrait for signature rows. Decorative - name sits in
  * adjacent text; `alt` is empty and the wrapper is `aria-hidden`.
  *
- * Consumer apps: omit `src` (or set `NEXT_PUBLIC_FOUNDER_AVATAR`) so missing
- * `/images/founder-portrait.png` does not 404.
+ * Ships with a bundled portrait from the `atroui` package so consumer apps
+ * do not need `/public/images/founder-portrait.png`.
  */
 export function FounderAvatar({
   size = "sm",
@@ -57,7 +59,7 @@ export function FounderAvatar({
   src,
   initials,
 }: FounderAvatarProps) {
-  const imageSrc = resolveSrc(src)
+  const image = resolveSrc(src)
   const label = resolveInitials(initials)
 
   return (
@@ -69,9 +71,9 @@ export function FounderAvatar({
         className,
       )}
     >
-      {imageSrc ? (
+      {image ? (
         <Image
-          src={imageSrc}
+          src={image}
           alt=""
           width={176}
           height={176}
@@ -85,4 +87,9 @@ export function FounderAvatar({
       )}
     </span>
   )
+}
+
+/** @internal helper for docs / tests */
+export function founderAvatarSrc(src?: MediaSrc): string {
+  return mediaSrc(resolveSrc(src))
 }

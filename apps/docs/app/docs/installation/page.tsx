@@ -120,6 +120,27 @@ export default function InstallationPage() {
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
+          Bundled media
+        </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Component images (founder portrait, OG examples, Made-with badge) ship
+          inside the npm package. You do{" "}
+          <span className="font-medium text-foreground">not</span> need to copy
+          files into{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /public
+          </code>{" "}
+          for those components to render. Optional raw files are also exported
+          from{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/assets/*
+          </code>{" "}
+          if you want them on a public CDN path (for example embed snippets).
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
           Clone the monorepo
         </h2>
         <CodeBlock

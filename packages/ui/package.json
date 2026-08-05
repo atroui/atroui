@@ -32,10 +32,12 @@
     "./globals.css": "./src/globals.css",
     "./lib/*": "./src/lib/*",
     "./components/*": "./src/components/*",
-    "./content/*": "./src/content/*"
+    "./content/*": "./src/content/*",
+    "./assets/*": "./assets/*"
   },
   "files": [
     "src",
+    "assets",
     "README.md"
   ],
   "scripts": {

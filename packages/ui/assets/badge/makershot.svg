@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="40" viewBox="0 0 160 40" role="img" aria-label="Made with Makershot">
+  <title>Made with Makershot</title>
+  <rect width="160" height="40" fill="#1c1917"/>
+  <rect x="0.5" y="0.5" width="159" height="39" fill="none" stroke="#a8a29e" stroke-opacity="0.45"/>
+  <text x="12" y="16" fill="#a8a29e" font-family="ui-sans-serif, system-ui, sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em">MADE WITH</text>
+  <text x="12" y="30" fill="#e7e5e4" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.02em">Makershot</text>
+  <rect x="148" y="8" width="4" height="24" fill="#c2410c"/>
+</svg>

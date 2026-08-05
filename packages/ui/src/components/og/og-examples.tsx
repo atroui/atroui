@@ -3,11 +3,12 @@ import Link from "next/link";
 
 import { FadeIn } from "../motion/fade-in";
 import { STYLE_PRESETS, type StyleKey } from "../../lib/og/presets";
+import { MEDIA, mediaSrc, type OgExampleSlug } from "../../lib/media";
 import { cn } from "../../lib/utils";
 
 export type OgExample = {
   /** URL-safe id for the generated PNG filename and router query. */
-  slug: string;
+  slug: OgExampleSlug;
   /** Short display title shown on the card. */
   title: string;
   /** Uppercase eyebrow category (e.g. "Blog cover", "Launch"). */
@@ -128,7 +129,7 @@ export function OgExamples({
               aria-label={`Remix Quick mode: ${ex.title}`}
             >
               <img
-                src={`/examples/${ex.slug}.png`}
+                src={mediaSrc(MEDIA.examples[ex.slug])}
                 alt={`${ex.title} - sample 1200×630 OG image`}
                 width={1200}
                 height={630}

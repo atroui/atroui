@@ -1,4 +1,6 @@
 export { cn } from "./lib/utils"
+export { MEDIA, mediaSrc } from "./lib/media"
+export type { MediaSrc, OgExampleSlug } from "./lib/media"
 
 export * from "./components/analytics/analytics-provider"
 export * from "./components/ar/ar-portfolio"
