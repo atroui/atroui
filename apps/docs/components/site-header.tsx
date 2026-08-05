@@ -1,11 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { Github } from "lucide-react"
+import { Github, Star } from "lucide-react"
 import { ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
+
+const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 export function SiteHeader() {
   return (
@@ -50,13 +52,17 @@ export function SiteHeader() {
           </div>
           <ThemeToggle />
           <a
-            href="https://github.com/atroui/atroui"
+            href={GITHUB_REPO}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="AtroUI on GitHub"
-            className="inline-flex size-9 items-center justify-center rounded-full border border-border-subtle bg-white/5 text-foreground transition-colors hover:bg-white/10"
+            aria-label="Star AtroUI on GitHub"
+            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border-subtle bg-white/5 px-2.5 text-foreground transition-colors hover:bg-white/10 sm:px-3"
           >
-            <Github className="size-4" />
+            <Github className="size-4" aria-hidden />
+            <span className="hidden text-[13px] font-medium sm:inline">
+              Star
+            </span>
+            <Star className="size-3.5 opacity-80" aria-hidden />
           </a>
           <Link
             href="/docs/installation"
