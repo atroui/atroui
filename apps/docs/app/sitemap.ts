@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { allNavItems } from "@/lib/navigation"
 import { blogPosts } from "@/lib/blog"
 
-const siteUrl = "https://atroui.com"
+const siteUrl = "https://www.atroui.com"
 
 const staticPaths = [
   "/",
