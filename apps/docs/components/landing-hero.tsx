@@ -26,6 +26,9 @@ const inside = [
   },
 ] as const
 
+const shell =
+  "mx-auto w-full max-w-7xl px-4 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-20 lg:py-20 xl:px-24"
+
 export function LandingHero() {
   return (
     <div className="bg-black text-white">
@@ -40,15 +43,15 @@ export function LandingHero() {
               "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(11,123,255,0.18), transparent 60%)",
           }}
         />
-        <div className="relative mx-auto max-w-7xl px-8 py-16 md:px-16 lg:px-24 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className={`relative ${shell}`}>
+          <div className="grid gap-10 md:gap-12 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-5">
               <p className="ms-stamp">Inside</p>
-              <h2 className="ds-display mt-5 text-3xl sm:text-4xl lg:text-5xl">
+              <h2 className="ds-display mt-4 text-2xl sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
                 What you&rsquo;ll{" "}
                 <span className="ds-gradient-text">find</span>
               </h2>
-              <p className="mt-4 max-w-sm text-base font-light leading-relaxed text-neutral-300">
+              <p className="mt-3 max-w-sm text-[15px] font-light leading-relaxed text-neutral-300 sm:mt-4 sm:text-base">
                 A React / Next.js component library and dark-first design
                 system - primitives, sections, tools, and headless SEO modules.
               </p>
@@ -59,12 +62,12 @@ export function LandingHero() {
                 <li key={item.title}>
                   <Link
                     href={item.href}
-                    className="group flex flex-col gap-1 px-5 py-5 transition-colors hover:bg-white/5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                    className="group flex flex-col gap-1 px-4 py-4 transition-colors hover:bg-white/5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
                   >
-                    <span className="text-lg font-medium tracking-tight group-hover:text-sky-300">
+                    <span className="text-base font-medium tracking-tight group-hover:text-sky-300 sm:text-lg">
                       {item.title}
                     </span>
-                    <span className="max-w-sm text-sm font-light text-neutral-400 sm:text-right">
+                    <span className="max-w-prose text-sm font-light text-neutral-400 sm:max-w-sm sm:text-right">
                       {item.body}
                     </span>
                   </Link>
@@ -76,17 +79,19 @@ export function LandingHero() {
       </section>
 
       <section className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-8 py-16 sm:flex-row sm:items-end sm:justify-between md:px-16 lg:px-24 lg:py-20">
+        <div
+          className={`${shell} flex flex-col gap-6 sm:gap-8 md:flex-row md:items-end md:justify-between`}
+        >
           <div className="max-w-lg">
             <p className="ms-stamp">atroui.com</p>
-            <h2 className="ds-display mt-5 text-3xl sm:text-4xl">
+            <h2 className="ds-display mt-4 text-2xl sm:mt-5 sm:text-3xl md:text-4xl">
               The home of{" "}
               <span className="ds-gradient-text">AtroUI</span>
             </h2>
-            <p className="mt-4 text-sm font-light leading-relaxed text-neutral-400">
+            <p className="mt-3 text-sm font-light leading-relaxed text-neutral-400 sm:mt-4">
               AtroUI is the React component catalog at{" "}
               <span className="text-neutral-200">atroui.com</span> - install via{" "}
-              <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
+              <code className="break-all rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
                 npm i atroui
               </code>
               . Dark-first tokens, production sections, and docs for Next.js
@@ -111,11 +116,17 @@ export function LandingHero() {
               .
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/docs" className="ms-cta-ghost text-sm">
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+            <Link
+              href="/docs"
+              className="ms-cta-ghost w-full justify-center text-sm sm:w-auto"
+            >
               Read the docs
             </Link>
-            <Link href="/docs/installation" className="ms-cta text-sm">
+            <Link
+              href="/docs/installation"
+              className="ms-cta w-full justify-center text-sm sm:w-auto"
+            >
               Install AtroUI
             </Link>
           </div>
@@ -123,12 +134,12 @@ export function LandingHero() {
       </section>
 
       <footer className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-8 py-6 sm:flex-row sm:items-center sm:justify-between md:px-16 lg:px-24">
-          <p className="text-xs text-neutral-500">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 md:px-12 lg:px-20 xl:px-24">
+          <p className="text-xs leading-relaxed text-neutral-500">
             © {new Date().getFullYear()} AtroUI · atroui.com - React component
             library
           </p>
-          <div className="flex flex-wrap gap-4 text-xs text-neutral-500">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-neutral-500">
             <a
               href="https://www.npmjs.com/package/atroui"
               target="_blank"

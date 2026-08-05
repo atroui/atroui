@@ -19,7 +19,7 @@ export function LandingNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border-subtle bg-background/85 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
       <div className="mx-auto max-w-7xl border-x border-border-subtle">
-        <div className="flex h-14 items-center justify-between gap-4 ms-shell-pad">
+        <div className="flex h-14 items-center justify-between gap-3 px-4 sm:gap-4 sm:px-6 md:px-8">
           <Link
             href="/"
             className="flex items-center gap-2.5 transition-opacity hover:opacity-80"

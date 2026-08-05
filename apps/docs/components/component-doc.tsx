@@ -28,14 +28,16 @@ export function ComponentDoc({
     <article
       className={
         fullBleed
-          ? "mx-auto max-w-6xl space-y-8"
-          : "mx-auto max-w-3xl space-y-8"
+          ? "mx-auto w-full max-w-6xl space-y-6 sm:space-y-8"
+          : "mx-auto w-full max-w-3xl space-y-6 sm:space-y-8"
       }
     >
-      <header className="space-y-3">
+      <header className="space-y-2 sm:space-y-3">
         <p className="ms-stamp">Component</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">{title}</h1>
-        <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+        <h1 className="ds-display text-2xl text-foreground sm:text-3xl md:text-4xl">
+          {title}
+        </h1>
+        <p className="max-w-2xl text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
           {description}
         </p>
       </header>
