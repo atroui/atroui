@@ -13,15 +13,15 @@ const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
+  { label: "Registry", href: "/docs/registry" },
   { label: "Docs", href: "/docs" },
   { label: "Blog", href: "/blog" },
-  { label: "Install", href: "/docs/installation" },
 ] as const
 
 const catalogBands = [
-  { title: "Primitives", body: "Button, Card, forms, theme" },
+  { title: "Registry", body: "Own the UI in your repo" },
   { title: "Sections", body: "Home bands, chrome, CTAs" },
-  { title: "Tools", body: "OG, thumbnail, scope" },
+  { title: "npm", body: "Tokens, ThemeProvider, tools" },
   { title: "Headless", body: "Analytics, JSON-LD, reviews" },
 ] as const
 
@@ -137,7 +137,7 @@ export function HeroDigitalSuccess() {
             <TimelineAnimation
               once
               as="a"
-              href="/docs/components"
+              href="/docs/registry"
               animationNum={3}
               timelineRef={timelineRef}
               className="group inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black shadow-[0_0_14px_rgba(11,123,255,0.3)] transition hover:bg-white/90"
@@ -146,7 +146,7 @@ export function HeroDigitalSuccess() {
                 className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)]"
                 aria-hidden
               />
-              Browse
+              Own UI
             </TimelineAnimation>
           </div>
         </div>
@@ -201,14 +201,14 @@ export function HeroDigitalSuccess() {
               <Star className="size-3.5 opacity-80" aria-hidden />
             </a>
             <a
-              href="/docs/components"
+              href="/docs/registry"
               className="group inline-flex h-11 items-center gap-2.5 rounded-full bg-white px-5 text-sm font-medium text-black shadow-[0_0_18px_rgba(11,123,255,0.35)] transition hover:bg-white/90"
             >
               <span
                 className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)] transition group-hover:scale-110"
                 aria-hidden
               />
-              Browse catalog
+              Own the UI
             </a>
           </TimelineAnimation>
         </header>
@@ -233,23 +233,23 @@ export function HeroDigitalSuccess() {
             <TimelineAnimation
               once
               as="a"
-              href="/docs/components"
+              href="/docs/registry"
               animationNum={5}
               timelineRef={timelineRef}
               className="flex cursor-pointer items-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.4)]"
             >
               <span className="h-2 w-2 rounded-full bg-sky-400" />
-              Browse catalog
+              Own the UI
             </TimelineAnimation>
             <TimelineAnimation
               once
               as="a"
-              href="/docs"
+              href="/docs/installation"
               animationNum={6}
               timelineRef={timelineRef}
               className="cursor-pointer rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-medium backdrop-blur-md"
             >
-              Read the docs
+              npm tokens
             </TimelineAnimation>
           </div>
           <TimelineAnimation
@@ -259,9 +259,8 @@ export function HeroDigitalSuccess() {
             timelineRef={timelineRef}
             className="max-w-md text-xl font-light leading-relaxed text-neutral-100"
           >
-            AtroUI is a React component library and dark-first design system for
-            Next.js - primitives, sections, tools, and SEO modules. Home:
-            atroui.com.
+            Customize via the registry - source lands in your repo. Use npm for
+            tokens, ThemeProvider, and Host API tools. Home: atroui.com.
           </TimelineAnimation>
         </div>
       </div>

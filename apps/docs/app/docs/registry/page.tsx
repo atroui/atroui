@@ -85,9 +85,9 @@ export default function RegistryPage() {
           language="bash"
           code={`npx shadcn@latest add @atroui/home-hero
 npx shadcn@latest add @atroui/site-header
-npx shadcn@latest add @atroui/home-who
-npx shadcn@latest add @atroui/footer-bold
-npx shadcn@latest add @atroui/button`}
+npx shadcn@latest add @atroui/home-principle
+npx shadcn@latest add @atroui/pricing-overview
+npx shadcn@latest add @atroui/contact-form`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Source files land under your aliases (for example{" "}
@@ -115,11 +115,10 @@ npx shadcn@latest add @atroui/button`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          Phase 1 catalog
-        </h2>
+        <h2 className="ds-headline text-base text-foreground">Catalog</h2>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
           <li>
+            Libs:{" "}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/utils
             </code>
@@ -129,6 +128,7 @@ npx shadcn@latest add @atroui/button`}
             </code>
           </li>
           <li>
+            UI:{" "}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/button
             </code>
@@ -142,6 +142,17 @@ npx shadcn@latest add @atroui/button`}
             </code>
           </li>
           <li>
+            Chrome:{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/site-header
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/footer-bold
+            </code>
+          </li>
+          <li>
+            Home:{" "}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/home-hero
             </code>
@@ -151,11 +162,33 @@ npx shadcn@latest add @atroui/button`}
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
-              @atroui/site-header
+              @atroui/home-principle
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
-              @atroui/footer-bold
+              @atroui/home-work
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/home-lab
+            </code>
+          </li>
+          <li>
+            Convert:{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/pricing-overview
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/contextual-cta
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/exit-intent-popup
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/contact-form
             </code>
           </li>
         </ul>

@@ -65,10 +65,10 @@ export function SiteHeader() {
             <Star className="size-3.5 opacity-80" aria-hidden />
           </a>
           <Link
-            href="/docs/installation"
+            href="/docs/registry"
             className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex lg:px-4"
           >
-            Get started
+            Own the UI
           </Link>
         </div>
       </div>

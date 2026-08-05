@@ -138,6 +138,103 @@
           "target": "components/blocks/footer-bold.tsx"
         }
       ]
+    },
+    {
+      "name": "home-principle",
+      "type": "registry:block",
+      "title": "Home Principle",
+      "description": "How-we-work principles band with editable CONTENT and PRINCIPLES.",
+      "files": [
+        {
+          "path": "registry/default/blocks/home-principle.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/home-principle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "home-work",
+      "type": "registry:block",
+      "title": "Home Work",
+      "description": "Selected work band with editable PROJECTS list.",
+      "dependencies": ["lucide-react", "next"],
+      "files": [
+        {
+          "path": "registry/default/blocks/home-work.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/home-work.tsx"
+        }
+      ]
+    },
+    {
+      "name": "home-lab",
+      "type": "registry:block",
+      "title": "Home Lab",
+      "description": "Free tools / lab band with editable TOOLS catalog.",
+      "dependencies": ["lucide-react", "next"],
+      "files": [
+        {
+          "path": "registry/default/blocks/home-lab.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/home-lab.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pricing-overview",
+      "type": "registry:block",
+      "title": "Pricing Overview",
+      "description": "Fixed-package pricing band with editable CONTENT and PACKAGES.",
+      "dependencies": ["lucide-react", "next"],
+      "files": [
+        {
+          "path": "registry/default/blocks/pricing-overview.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/pricing-overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "contextual-cta",
+      "type": "registry:block",
+      "title": "Contextual CTA",
+      "description": "Sticky scroll CTA with editable CONTENT (no analytics wiring).",
+      "dependencies": ["lucide-react", "next"],
+      "files": [
+        {
+          "path": "registry/default/blocks/contextual-cta.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/contextual-cta.tsx"
+        }
+      ]
+    },
+    {
+      "name": "exit-intent-popup",
+      "type": "registry:block",
+      "title": "Exit Intent Popup",
+      "description": "Exit-intent dialog with editable CONTENT and storage keys.",
+      "dependencies": ["lucide-react", "next"],
+      "files": [
+        {
+          "path": "registry/default/blocks/exit-intent-popup.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/exit-intent-popup.tsx"
+        }
+      ]
+    },
+    {
+      "name": "contact-form",
+      "type": "registry:block",
+      "title": "Contact Form",
+      "description": "Multi-step contact form with editable CONTENT; posts to your API.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/default/blocks/contact-form.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/contact-form.tsx"
+        }
+      ]
     }
   ]
 }

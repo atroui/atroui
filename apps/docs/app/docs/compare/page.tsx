@@ -79,15 +79,8 @@ export default function ComparePage() {
             with BYOK; docs do not burn shared LLM keys.
           </li>
           <li>
-            <strong className="text-foreground">npm package</strong> - consume{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-              atroui
-            </code>{" "}
-            for tokens, ThemeProvider, and tools.
-          </li>
-          <li>
-            <strong className="text-foreground">Registry (own the files)</strong>{" "}
-            -{" "}
+            <strong className="text-foreground">Registry (own the UI)</strong>{" "}
+            - primary customize path.{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
               npx shadcn add @atroui/…
             </code>{" "}
@@ -98,20 +91,37 @@ export default function ComparePage() {
             </Link>{" "}
             guide.
           </li>
+          <li>
+            <strong className="text-foreground">npm package</strong> - consume{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+              atroui
+            </code>{" "}
+            for tokens, ThemeProvider, and Host API tools you do not need to
+            fork.
+          </li>
         </ul>
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">When to pick which</h2>
+        <h2 className="ds-headline text-base text-foreground">
+          Customize: registry first
+        </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Prefer a kit if you want every file in your monorepo and a blank visual
-          slate. Prefer AtroUI when you want a ready dark catalog - install from
-          the{" "}
+          Want to edit heroes, footers, and CTAs like a copy-paste kit? Use the{" "}
           <Link href="/docs/registry" className="bam-link">
-            registry
-          </Link>{" "}
-          to own section source, or use the npm package for tokens and tools.
-          Home:{" "}
+            AtroUI registry
+          </Link>
+          . Source lands in your repo; change{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+            CONTENT
+          </code>{" "}
+          at the top of each file. Reach for{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+            npm i atroui
+          </code>{" "}
+          when you need tokens, ThemeProvider, or Host API tools without
+          forking. Prefer a blank-slate kit only if you want every primitive
+          from scratch. Home:{" "}
           <a href="https://www.atroui.com" className="bam-link">
             www.atroui.com
           </a>
@@ -120,14 +130,14 @@ export default function ComparePage() {
       </section>
 
       <div className="flex flex-wrap gap-3 pt-2">
-        <Link href="/docs/installation" className="ms-cta">
-          Install AtroUI
+        <Link href="/docs/registry" className="ms-cta">
+          Own the UI
+        </Link>
+        <Link href="/docs/installation" className="ms-cta-ghost">
+          npm tokens
         </Link>
         <Link href="/blog/atroui-vs-shadcn" className="ms-cta-ghost">
           AtroUI vs shadcn/ui
-        </Link>
-        <Link href="/blog/what-is-atroui" className="ms-cta-ghost">
-          What is AtroUI?
         </Link>
       </div>
     </article>
