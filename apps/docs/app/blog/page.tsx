@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Blog",
   description:
-    "AtroUI blog - short technical posts on the React / Next.js component library, install guides, tokens, and branding. atroui.com",
+    "AtroUI blog — install guides, dark-first tokens, and Next.js component library essays that take you from search to npm i atroui.",
   path: "/blog",
 })
 
@@ -19,8 +19,13 @@ export default function BlogIndexPage() {
           AtroUI blog
         </h1>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-          Short, technical posts about the component library at atroui.com.
-          Deeper essays live on sister sites; this feed owns the brand SERP.
+          Guides that take you from search to install: App Router setup,
+          tokens, branding, and how AtroUI compares to copy-paste kits. Then
+          open the{" "}
+          <Link href="/docs/installation" className="bam-link">
+            docs
+          </Link>{" "}
+          and run npm i atroui.
         </p>
 
         <ul className="mt-12 divide-y divide-border-subtle border-y border-border-subtle">
