@@ -4,8 +4,6 @@
 
 @source "../components";
 @source "../lib";
-@source "../../../../apps/docs/app";
-@source "../../../../apps/docs/components";
 
 @custom-variant dark (&:is(.dark *));
 

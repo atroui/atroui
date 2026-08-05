@@ -3,7 +3,19 @@
 **[AtroUI](https://atroui.com)** - production React / Next.js component library and dark-first design system.
 
 ```bash
-npm install atroui
+npm install atroui next-themes
+```
+
+In `next.config.ts`:
+
+```ts
+import type { NextConfig } from "next"
+
+const nextConfig: NextConfig = {
+  transpilePackages: ["atroui"],
+}
+
+export default nextConfig
 ```
 
 ```tsx
@@ -19,7 +31,6 @@ export function App({ children }: { children: React.ReactNode }) {
   )
 }
 ```
-
 ## Docs
 
 - Site: [atroui.com](https://atroui.com)

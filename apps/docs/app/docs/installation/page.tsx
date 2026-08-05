@@ -32,13 +32,23 @@ export default function InstallationPage() {
         <h2 className="ds-headline text-base text-foreground">
           npm (consumer apps)
         </h2>
-        <CodeBlock language="bash" code={`npm install atroui`} />
+        <CodeBlock
+          language="bash"
+          code={`npm install atroui next-themes`}
+        />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Peer deps: React 18+, Next.js 15+, and{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             next-themes
           </code>
-          . Load Outfit in your layout and expose{" "}
+          . AtroUI ships TypeScript source - tell Next to transpile it:
+        </p>
+        <CodeBlock
+          language="ts"
+          code={`import type { NextConfig } from "next"\n\nconst nextConfig: NextConfig = {\n  transpilePackages: ["atroui"],\n}\n\nexport default nextConfig`}
+        />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Load Outfit in your layout and expose{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             --font-outfit
           </code>
