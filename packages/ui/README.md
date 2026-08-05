@@ -40,4 +40,4 @@ Sample studio data under `atroui/content/*` is optional portfolio copy. Skip or 
 
 ## License
 
-MIT
+[MIT](https://github.com/atroui/atroui/blob/master/LICENSE)
