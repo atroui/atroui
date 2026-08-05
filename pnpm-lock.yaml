@@ -176,12 +176,18 @@ importers:
       satori:
         specifier: ^0.29.0
         version: 0.29.0
+      shadcn:
+        specifier: ^4.1.2
+        version: 4.16.1(typescript@5.9.3)
       sharp:
         specifier: ^0.35.3
         version: 0.35.3(@types/node@22.20.1)
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.6.0
+      tw-animate-css:
+        specifier: ^1.4.0
+        version: 1.4.0
       zod:
         specifier: ^4.3.6
         version: 4.4.3
