@@ -14,7 +14,7 @@ type SocialCardOptions = {
   footer?: string;
 };
 
-/** Shared 1200×630 OG card — amber brand, dark studio aesthetic. */
+/** Shared 1200×630 OG card - amber brand, dark studio aesthetic. */
 export function buildSocialCardImage(options: SocialCardOptions) {
   const brand = getBrand();
   const {

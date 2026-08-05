@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getBrand } from "../lib/brand";
 
 /**
- * Site-wide bold footer — brand name/email from getBrand().
+ * Site-wide bold footer - brand name/email from getBrand().
  */
 export function BoldFooter() {
   const year = new Date().getFullYear();

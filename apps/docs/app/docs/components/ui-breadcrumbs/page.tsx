@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoBreadcrumbs } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Breadcrumbs',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Breadcrumbs",
+  "/docs/components/ui-breadcrumbs"
+)
 
 export default function Page() {
   return (
@@ -16,7 +18,7 @@ export default function Page() {
       fullBleed={false}
       installation='import { Breadcrumbs } from "atroui"'
       props={[
-    { name: 'items', type: 'BreadcrumbItem[]', default: '—', description: 'Trail items with optional href.' },
+    { name: 'items', type: 'BreadcrumbItem[]', default: '-', description: 'Trail items with optional href.' },
   ]}
     />
   )

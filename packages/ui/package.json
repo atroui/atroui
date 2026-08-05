@@ -1,7 +1,7 @@
 {
   "name": "atroui",
   "version": "0.2.0",
-  "description": "AtroUI — personal component catalog. Dark-first design system for production UI.",
+  "description": "AtroUI - production React / Next.js component library and dark-first design system. Docs at atroui.com.",
   "license": "MIT",
   "homepage": "https://atroui.com",
   "repository": {

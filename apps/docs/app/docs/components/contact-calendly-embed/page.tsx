@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoCalendlyEmbed } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Calendly Embed",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Calendly Embed",
+  "/docs/components/contact-calendly-embed"
+)
 
 export default function Page() {
   return (

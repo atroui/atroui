@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /**
  * Server-side environment validation.
- * Imported from instrumentation.ts on startup — throws on invalid formats.
+ * Imported from instrumentation.ts on startup - throws on invalid formats.
  */
 const serverEnvSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
@@ -58,7 +58,7 @@ function parseClientEnv() {
   return result.data;
 }
 
-/** Validated server env — call only on server. */
+/** Validated server env - call only on server. */
 export function getServerEnv(): ServerEnv {
   return parseServerEnv();
 }

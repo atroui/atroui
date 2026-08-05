@@ -6,22 +6,22 @@ import { HeroDigitalSuccess } from "@/components/blocks/hero-digital-success"
 const inside = [
   {
     title: "Primitives",
-    body: "Button, Card, forms, theme — the small reusable pieces.",
+    body: "Button, Card, forms, theme - the small reusable pieces.",
     href: "/docs/components/ui-button",
   },
   {
     title: "Sections",
-    body: "Home bands, site chrome, CTAs — page modules from production.",
+    body: "Home bands, site chrome, CTAs - page modules from production.",
     href: "/docs/components/home-who",
   },
   {
     title: "Tools",
-    body: "OG workspace, thumbnail, scope — often need host APIs.",
+    body: "OG workspace, thumbnail, scope - often need host APIs.",
     href: "/docs/components/og-og-examples",
   },
   {
     title: "Headless",
-    body: "Analytics, JSON-LD, reviews — no visible UI.",
+    body: "Analytics, JSON-LD, reviews - no visible UI.",
     href: "/docs/components/seo-json-ld",
   },
 ] as const
@@ -50,7 +50,7 @@ export function LandingHero() {
               </h2>
               <p className="mt-4 max-w-sm text-base font-light leading-relaxed text-neutral-300">
                 A React / Next.js component library and dark-first design
-                system — primitives, sections, tools, and headless SEO modules.
+                system - primitives, sections, tools, and headless SEO modules.
               </p>
             </div>
 
@@ -85,7 +85,7 @@ export function LandingHero() {
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-neutral-400">
               AtroUI is the React component catalog at{" "}
-              <span className="text-neutral-200">atroui.com</span> — install via{" "}
+              <span className="text-neutral-200">atroui.com</span> - install via{" "}
               <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
                 npm i atroui
               </code>
@@ -125,7 +125,7 @@ export function LandingHero() {
       <footer className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-8 py-6 sm:flex-row sm:items-center sm:justify-between md:px-16 lg:px-24">
           <p className="text-xs text-neutral-500">
-            © {new Date().getFullYear()} AtroUI · atroui.com — React component
+            © {new Date().getFullYear()} AtroUI · atroui.com - React component
             library
           </p>
           <div className="flex flex-wrap gap-4 text-xs text-neutral-500">

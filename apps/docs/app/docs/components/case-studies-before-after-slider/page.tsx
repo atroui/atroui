@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoBeforeAfterSlider } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Before After Slider',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Before After Slider",
+  "/docs/components/case-studies-before-after-slider"
+)
 
 export default function Page() {
   return (

@@ -55,7 +55,7 @@ export const ARTICLES = (
     slug: "async-client-communication",
     title: "Async client communication that actually works",
     description:
-      "Daily updates, Loom walkthroughs, and decision logs — how we run projects without daily standups.",
+      "Daily updates, Loom walkthroughs, and decision logs - how we run projects without daily standups.",
     date: "2026-03-15",
     tag: "Guide",
     category: "Business",
@@ -95,7 +95,7 @@ export const ARTICLES = (
     slug: "tailwind-v4-migration-notes",
     title: "Tailwind v4 migration notes",
     description:
-      "What changed moving from config files to CSS-first tokens — and what we'd do differently.",
+      "What changed moving from config files to CSS-first tokens - and what we'd do differently.",
     date: "2026-01-28",
     tag: "Notes",
     category: "Development",
@@ -115,7 +115,7 @@ export const ARTICLES = (
     slug: "scope-creep-antidote",
     title: "The scope creep antidote",
     description:
-      "One core workflow, written success metrics, and a 'not in v1' list — our sprint scoping ritual.",
+      "One core workflow, written success metrics, and a 'not in v1' list - our sprint scoping ritual.",
     date: "2025-12-20",
     tag: "Playbook",
     category: "Business",
@@ -125,7 +125,7 @@ export const ARTICLES = (
     slug: "indie-founder-stack-2026",
     title: "The indie founder stack in 2026",
     description:
-      "Next.js, Supabase, Clerk, Vercel, and the AI SDK — why we keep reaching for the same tools.",
+      "Next.js, Supabase, Clerk, Vercel, and the AI SDK - why we keep reaching for the same tools.",
     date: "2025-12-05",
     tag: "Essay",
     category: "Development",

@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoButton } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Button",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Button",
+  "/docs/components/ui-button"
+)
 
 export default function Page() {
   return (

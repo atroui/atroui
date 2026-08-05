@@ -13,7 +13,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "t1",
     quote:
-      "Koustav shipped what would have taken me two months in a week. I talked to the person building it every day — no handoffs, no surprises.",
+      "Koustav shipped what would have taken me two months in a week. I talked to the person building it every day - no handoffs, no surprises.",
     name: "Alex R.",
     title: "Founder",
     company: "Dev tools startup",
@@ -23,7 +23,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "t2",
     quote:
-      "The AI feature actually fits our workflow — not a chatbot bolted on the side. Our ops team uses it daily.",
+      "The AI feature actually fits our workflow - not a chatbot bolted on the side. Our ops team uses it daily.",
     name: "Priya M.",
     title: "Head of Product",
     company: "Legal tech",

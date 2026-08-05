@@ -15,13 +15,13 @@ export type HomeWhoProps = {
 };
 
 /**
- * Closing band — founder + CTA in one editorial row.
+ * Closing band - founder + CTA in one editorial row.
  * Chrome strings resolve via getBrand(); pass props to rebrand.
  */
 export function HomeWho({
   brandName,
   email,
-  bio = "Koustav — solo founder. Every line of code, every pixel, every email. When you hire the studio, you talk to the person building your thing. One sprint at a time. Reply same day.",
+  bio = "Koustav - solo founder. Every line of code, every pixel, every email. When you hire the studio, you talk to the person building your thing. One sprint at a time. Reply same day.",
 }: HomeWhoProps = {}) {
   const brand = getBrand();
   const name = brandName ?? brand.name;

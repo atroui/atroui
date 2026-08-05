@@ -11,6 +11,7 @@ import { LogoMark } from "@/components/logo-mark"
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
   { label: "Docs", href: "/docs" },
+  { label: "Blog", href: "/blog" },
   { label: "Install", href: "/docs/installation" },
 ] as const
 
@@ -207,7 +208,7 @@ export function HeroDigitalSuccess() {
             className="max-w-md text-xl font-light leading-relaxed text-neutral-100"
           >
             AtroUI is a React component library and dark-first design system for
-            Next.js — primitives, sections, tools, and SEO modules. Home:{" "}
+            Next.js - primitives, sections, tools, and SEO modules. Home:{" "}
             atroui.com.
           </TimelineAnimation>
         </div>

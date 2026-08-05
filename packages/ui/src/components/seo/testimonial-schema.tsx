@@ -8,7 +8,7 @@ type TestimonialSchemaProps = {
 };
 
 /**
- * Individual Review JSON-LD only — no AggregateRating.
+ * Individual Review JSON-LD only - no AggregateRating.
  * Self-published star aggregates are a spam / manual-action risk when
  * they aren't from a third-party review platform Google trusts.
  */

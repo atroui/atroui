@@ -1,10 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { docsPageMetadata } from "@/lib/docs-metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Introduction",
-}
+  description:
+    "AtroUI is the React / Next.js component library at atroui.com - dark-first design system, production sections, and docs. Install with npm i atroui.",
+  path: "/docs",
+})
 
 export default function DocsIntroPage() {
   return (
@@ -16,7 +20,7 @@ export default function DocsIntroPage() {
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
           AtroUI is the React / Next.js component library at{" "}
-          <strong className="font-medium text-foreground">atroui.com</strong> —
+          <strong className="font-medium text-foreground">atroui.com</strong> -
           production UI packaged as{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui
@@ -29,7 +33,7 @@ export default function DocsIntroPage() {
       <section className="md-glass space-y-3 p-5">
         <h2 className="ds-headline text-base text-foreground">Design base</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Product chrome follows the Digital Success hero language — cyan/blue
+          Product chrome follows the Digital Success hero language - cyan/blue
           shader accents, white primary pills, and blur panels. Catalog demos
           may still show the apps they shipped in; that&rsquo;s intentional
           portfolio context.
@@ -53,7 +57,7 @@ export default function DocsIntroPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui/content/*
           </code>{" "}
-          may still reference Makershot — import your own content or pass props
+          may still reference Makershot - import your own content or pass props
           when you rebrand a section.
         </p>
       </section>
@@ -97,8 +101,11 @@ export default function DocsIntroPage() {
         <Link href="/docs/components" className="ms-cta-ghost">
           Browse components
         </Link>
-        <Link href="/docs/changelog" className="ms-cta-ghost">
-          Changelog
+        <Link href="/blog" className="ms-cta-ghost">
+          Blog
+        </Link>
+        <Link href="/docs/brand" className="ms-cta-ghost">
+          Brand kit
         </Link>
       </div>
     </article>

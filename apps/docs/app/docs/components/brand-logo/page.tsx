@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoLogo } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Logo",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Logo",
+  "/docs/components/brand-logo"
+)
 
 export default function Page() {
   return (
@@ -32,7 +34,7 @@ export default function Page() {
         {
           name: "className",
           type: "string",
-          default: "—",
+          default: "-",
           description: "Size / color via currentColor.",
         },
       ]}

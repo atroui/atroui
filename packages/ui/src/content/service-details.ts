@@ -43,8 +43,8 @@ const SERVICE_DETAILS: Record<string, Omit<ServiceDetail, keyof Service>> = {
     ],
     faqs: [
       { q: "What if my idea is bigger than 7 days?", a: "We scope ruthlessly to one core workflow. If it's bigger, we'll recommend the Full-Stack Build or a phased sprint approach." },
-      { q: "Do I own the code?", a: "Yes. Full repo access from day one. MIT or your preferred license — it's yours." },
-      { q: "What about design?", a: "We use shadcn/ui with custom tokens. Clean, professional, and fast — not a bespoke brand identity." },
+      { q: "Do I own the code?", a: "Yes. Full repo access from day one. MIT or your preferred license - it's yours." },
+      { q: "What about design?", a: "We use shadcn/ui with custom tokens. Clean, professional, and fast - not a bespoke brand identity." },
     ],
     addOns: [
       { name: "Extra revision round", price: "$400", description: "One additional round of changes post-handoff." },
@@ -109,7 +109,7 @@ const SERVICE_DETAILS: Record<string, Omit<ServiceDetail, keyof Service>> = {
     ],
     faqs: [
       { q: "Do you use our existing components?", a: "We audit what you have, keep what works, and refactor what doesn't. No rip-and-replace unless needed." },
-      { q: "Storybook or custom docs?", a: "Your call. We default to a lightweight docs site with copy-paste examples — faster to maintain." },
+      { q: "Storybook or custom docs?", a: "Your call. We default to a lightweight docs site with copy-paste examples - faster to maintain." },
       { q: "What about Figma?", a: "We deliver a Figma file synced to tokens. Designers and engineers work from the same source of truth." },
     ],
     addOns: [
@@ -137,13 +137,13 @@ const SERVICE_DETAILS: Record<string, Omit<ServiceDetail, keyof Service>> = {
     technologies: ["Next.js", "TypeScript", "Postgres", "Stripe", "Vercel", "Resend"],
     processSteps: [
       { title: "Strategy & architecture", duration: "Week 1", description: "Product scope, data model, and technical architecture locked with weekly review cadence." },
-      { title: "Core product", duration: "Weeks 2–4", description: "Frontend, backend, auth, payments — daily async updates and shared repo access." },
+      { title: "Core product", duration: "Weeks 2–4", description: "Frontend, backend, auth, payments - daily async updates and shared repo access." },
       { title: "Polish & launch", duration: "Weeks 5–6", description: "Admin tools, observability, performance pass, docs, and production launch." },
       { title: "Iterate", duration: "Week 7–8", description: "Post-launch fixes, two revision rounds, and optional retainer for ongoing work." },
     ],
     faqs: [
       { q: "How is this different from the MVP Sprint?", a: "More scope, more features, and a longer timeline. MVP Sprint is one workflow in 7 days; Full-Stack Build is a complete product in 4–8 weeks." },
-      { q: "Do you do product strategy?", a: "Yes — weekly calls cover product decisions, not just engineering. We push back on scope creep together." },
+      { q: "Do you do product strategy?", a: "Yes - weekly calls cover product decisions, not just engineering. We push back on scope creep together." },
       { q: "What happens after launch?", a: "Two revision rounds included. Optional monthly retainer for ongoing features and maintenance." },
     ],
     addOns: [

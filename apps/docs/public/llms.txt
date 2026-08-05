@@ -1,0 +1,34 @@
+# AtroUI
+
+> AtroUI is a production React / Next.js component library and dark-first design system.
+> Site: https://atroui.com
+> Package: https://www.npmjs.com/package/atroui
+> Repo: https://github.com/atroui/atroui
+
+## Install
+
+```bash
+npm install atroui
+```
+
+```tsx
+import { Button, ThemeProvider } from "atroui"
+import "atroui/globals.css"
+```
+
+## Key pages
+
+- Home: https://atroui.com
+- Docs: https://atroui.com/docs
+- Installation: https://atroui.com/docs/installation
+- Theming: https://atroui.com/docs/theming
+- Brand kit: https://atroui.com/docs/brand
+- Compare: https://atroui.com/docs/compare
+- Blog: https://atroui.com/blog
+- Changelog: https://atroui.com/docs/changelog
+- Components: https://atroui.com/docs/components
+
+## Related
+
+- iamk.xyz: https://www.iamk.xyz
+- makershot.tech: https://www.makershot.tech

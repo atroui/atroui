@@ -24,6 +24,7 @@ export function SiteHeader() {
           {[
             { href: "/docs", label: "Docs" },
             { href: "/docs/components", label: "Components" },
+            { href: "/blog", label: "Blog" },
             { href: "/docs/theming", label: "Theming" },
           ].map((item) => (
             <Link
@@ -42,10 +43,10 @@ export function SiteHeader() {
           </div>
           <ThemeToggle />
           <a
-            href="https://github.com/KOUSTAV2409"
+            href="https://github.com/atroui/atroui"
             target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
+            rel="noopener noreferrer"
+            aria-label="AtroUI on GitHub"
             className="inline-flex size-9 items-center justify-center rounded-full border border-border-subtle bg-white/5 text-foreground transition-colors hover:bg-white/10"
           >
             <Github className="size-4" />

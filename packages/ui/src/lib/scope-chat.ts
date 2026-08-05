@@ -14,7 +14,7 @@ const KEYWORDS: { pattern: RegExp; response: string }[] = [
   {
     pattern: /\b(ai|ml|gpt|llm|chatbot|document|extract)\b/i,
     response:
-      "For AI features, our **AI Integration** package ($2,400+) is the right fit. We wire streaming UI, guardrails, and cost caps — not a bolted-on chatbot. Timeline is typically 1–2 weeks.",
+      "For AI features, our **AI Integration** package ($2,400+) is the right fit. We wire streaming UI, guardrails, and cost caps - not a bolted-on chatbot. Timeline is typically 1–2 weeks.",
   },
   {
     pattern: /\b(design system|tokens|components|figma|storybook)\b/i,
@@ -24,7 +24,7 @@ const KEYWORDS: { pattern: RegExp; response: string }[] = [
   {
     pattern: /\b(marketplace|full.?stack|complete|platform|payments)\b/i,
     response:
-      "That's a **Full-Stack Build** ($8,000+, 4–8 weeks) — end-to-end product with auth, payments, admin, and observability. We do weekly strategy calls and ship in one loop.",
+      "That's a **Full-Stack Build** ($8,000+, 4–8 weeks) - end-to-end product with auth, payments, admin, and observability. We do weekly strategy calls and ship in one loop.",
   },
   {
     pattern: /\b(budget|price|cost|how much)\b/i,
@@ -41,12 +41,12 @@ const KEYWORDS: { pattern: RegExp; response: string }[] = [
 export function getRuleBasedScopeReply(messages: ScopeMessage[]): string {
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
   if (!lastUser) {
-    return "Hi! I'm the scoping assistant. Tell me what you're building — MVP, AI feature, design system, or full product — and I'll recommend the right package.";
+    return "Hi! I'm the scoping assistant. Tell me what you're building - MVP, AI feature, design system, or full product - and I'll recommend the right package.";
   }
 
   for (const { pattern, response } of KEYWORDS) {
     if (pattern.test(lastUser.content)) return response;
   }
 
-  return "Thanks for sharing! Based on what you've described, I'd suggest starting with our [project planner](/planner) for a tailored recommendation, or [booking a 15-min call](/contact#book) to scope it together. What matters most — speed, AI features, or a complete product?";
+  return "Thanks for sharing! Based on what you've described, I'd suggest starting with our [project planner](/planner) for a tailored recommendation, or [booking a 15-min call](/contact#book) to scope it together. What matters most - speed, AI features, or a complete product?";
 }

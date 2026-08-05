@@ -6,7 +6,7 @@ import { CASE_STUDIES, getCaseStudyHref } from "../../content/case-studies";
 import { cn } from "../../lib/utils";
 
 /**
- * Selected work — editorial index matching the hero's bordered frame.
+ * Selected work - editorial index matching the hero's bordered frame.
  */
 export function HomeWork() {
   const studies = [
@@ -83,7 +83,7 @@ export function HomeWork() {
                     </p>
                     <p className="mt-2 text-sm text-muted-foreground">
                       {topResult.metric}
-                      {topResult.description ? ` — ${topResult.description}` : ""}
+                      {topResult.description ? ` - ${topResult.description}` : ""}
                     </p>
                   </div>
                 ) : null}
@@ -103,7 +103,7 @@ export function HomeWork() {
         </div>
       </div>
 
-      {/* Remaining projects — index rows */}
+      {/* Remaining projects - index rows */}
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
           <ul className="divide-y divide-border-subtle">

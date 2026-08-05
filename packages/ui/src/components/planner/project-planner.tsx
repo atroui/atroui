@@ -101,7 +101,7 @@ function estimateProject(state: PlannerState): {
       priceRange: "$4,800 – $6,000",
       timeline: "7–10 days",
       summary:
-        "MVP sprint with scoped features — we'll narrow scope on the intro call.",
+        "MVP sprint with scoped features - we'll narrow scope on the intro call.",
     };
   }
 
@@ -340,7 +340,7 @@ export function ProjectPlanner() {
                   AI features required?
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Streaming chat, document AI, RAG — or none for now.
+                  Streaming chat, document AI, RAG - or none for now.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -386,7 +386,7 @@ export function ProjectPlanner() {
                   Budget range
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Ballpark only — we confirm on the call.
+                  Ballpark only - we confirm on the call.
                 </p>
               </div>
               <div className="divide-y divide-border-subtle border-y border-border-subtle">
@@ -499,7 +499,7 @@ export function ProjectPlanner() {
               </dl>
 
               <p className="text-xs text-muted-foreground">
-                Ballpark only — final scope and price confirmed on the intro
+                Ballpark only - final scope and price confirmed on the intro
                 call.
               </p>
 

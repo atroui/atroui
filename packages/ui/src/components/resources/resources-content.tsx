@@ -64,7 +64,7 @@ export function ResourcesContent({
               <span className="ds-display-italic text-brand">checklists</span>.
             </h1>
             <p className="ds-lede mt-5 max-w-xl">
-              Practical resources from the studio — scoping templates, launch
+              Practical resources from the studio - scoping templates, launch
               checklists, and playbooks you can use today.
             </p>
           </FadeIn>

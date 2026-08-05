@@ -1,6 +1,6 @@
 # Changesets
 
-This folder stores **changeset** files — short notes that drive version bumps and the changelog.
+This folder stores **changeset** files - short notes that drive version bumps and the changelog.
 
 ## For contributors
 
@@ -17,7 +17,7 @@ Docs-only or internal tooling PRs can skip a changeset (mark the PR with label `
 ## Release flow (maintainers)
 
 1. Merge feature PRs (with changesets) into `master`.
-2. GitHub Action opens/updates a **Version Packages** PR — bumps `packages/ui` version + updates `CHANGELOG.md`.
+2. GitHub Action opens/updates a **Version Packages** PR - bumps `packages/ui` version + updates `CHANGELOG.md`.
 3. Merge that PR → Action runs `changeset publish` and publishes `atroui` to npm.
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md).

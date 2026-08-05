@@ -25,10 +25,10 @@ export const IAMK_FALLBACK: IamkProfile = {
   examDate: "December 14, 2026",
   examProgress: 28,
   currently: [
-    "Reading Rosen — propositional logic, proof techniques",
-    "Learning GO Classes — discrete math lectures",
+    "Reading Rosen - propositional logic, proof techniques",
+    "Learning GO Classes - discrete math lectures",
     "Shipping Crest launcher",
-    "Target TIFR GS CS — 14 December 2026",
+    "Target TIFR GS CS - 14 December 2026",
   ],
   projects: [
     {
@@ -40,24 +40,24 @@ export const IAMK_FALLBACK: IamkProfile = {
     {
       name: "nf",
       description:
-        "Single-command note tool for Linux & macOS — capture in the terminal.",
+        "Single-command note tool for Linux & macOS - capture in the terminal.",
       tags: ["Bash", "CLI", "Open source"],
     },
     {
       name: "iamk.xyz",
-      description: "Personal site — a living document updated as things happen.",
+      description: "Personal site - a living document updated as things happen.",
       tags: ["Next.js", "Tailwind v4", "MDX"],
     },
   ],
   recentLog: [
     {
       date: "May 05",
-      title: "Shipped Crest — a premium productivity launcher for Linux.",
+      title: "Shipped Crest - a premium productivity launcher for Linux.",
       tags: ["crest", "rust", "tauri"],
     },
     {
       date: "Apr 17",
-      title: "Phase 2 of the rebuild — streak row, reading shelf, log preview.",
+      title: "Phase 2 of the rebuild - streak row, reading shelf, log preview.",
       tags: ["meta"],
     },
   ],

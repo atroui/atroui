@@ -46,7 +46,7 @@ export const THUMBNAIL_STYLE_PRESETS: Readonly<
   creatorNight: {
     key: "creatorNight",
     label: "Creator night",
-    description: "Deep black with electric blue — tech YouTuber aesthetic.",
+    description: "Deep black with electric blue - tech YouTuber aesthetic.",
     backgroundPrompt: `Dramatic dark tech creator background, pitch black base with deep electric blue and subtle purple glow from edges, cinematic studio lighting, moody but clean, no bokeh discs, no particles, no fake text, clear center space reserved for large headline, ${NO_TEXT_TAIL}`,
     palette: {
       background: "#050510",
@@ -61,7 +61,7 @@ export const THUMBNAIL_STYLE_PRESETS: Readonly<
   fireSale: {
     key: "fireSale",
     label: "Fire sale",
-    description: "Red-to-orange urgency — launch videos and FOMO energy.",
+    description: "Red-to-orange urgency - launch videos and FOMO energy.",
     backgroundPrompt: `High-energy product launch background, dramatic red to deep orange gradient with abstract flowing shapes, intense warm lighting, urgent and exciting atmosphere, bold but uncluttered composition with clear center reserved for headline overlay, ${NO_TEXT_TAIL}`,
     palette: {
       background: "#7F1D1D",

@@ -177,7 +177,7 @@ export async function composeQuickOgPreview(
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Stage 1 — FLUX background
+// Stage 1 - FLUX background
 // ────────────────────────────────────────────────────────────────────────────
 
 function resolveFluxParams(model: string) {
@@ -234,7 +234,7 @@ async function polishBackground(input: Buffer): Promise<Buffer> {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Stage 2 — Satori text overlay
+// Stage 2 - Satori text overlay
 // ────────────────────────────────────────────────────────────────────────────
 
 function fitTitleSize(
@@ -382,7 +382,7 @@ async function renderOverlayPng(
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Stage 3 — composite + encode
+// Stage 3 - composite + encode
 // ────────────────────────────────────────────────────────────────────────────
 
 export async function composeQuickOg(input: ComposeInput): Promise<Buffer> {

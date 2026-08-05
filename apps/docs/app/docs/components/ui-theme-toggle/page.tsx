@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoThemeToggle } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Theme Toggle',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Theme Toggle",
+  "/docs/components/ui-theme-toggle"
+)
 
 export default function Page() {
   return (
@@ -17,7 +19,7 @@ export default function Page() {
       installation='import { ThemeToggle } from "atroui"'
       usage='Requires next-themes ThemeProvider.'
       props={[
-    { name: 'className', type: 'string', default: '—', description: 'Extra classes.' },
+    { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}
     />
   )

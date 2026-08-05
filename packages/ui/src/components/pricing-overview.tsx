@@ -9,7 +9,7 @@ import { SERVICES } from "../content/services";
 import { cn } from "../lib/utils";
 
 /**
- * Home pricing — editorial package index matching /services.
+ * Home pricing - editorial package index matching /services.
  */
 export function PricingOverview() {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -129,7 +129,7 @@ export function PricingOverview() {
               </div>
               <p className="text-sm leading-relaxed text-muted-foreground">
                 Scope once. Price once. Ship once. If we go over, that&rsquo;s
-                our problem — not yours.
+                our problem - not yours.
               </p>
             </div>
           </TimelineAnimation>

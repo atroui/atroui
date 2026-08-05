@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoSocialShare } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Social Share',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Social Share",
+  "/docs/components/journal-social-share"
+)
 
 export default function Page() {
   return (
@@ -16,8 +18,8 @@ export default function Page() {
       fullBleed={false}
       installation='import { SocialShare } from "atroui"'
       props={[
-    { name: 'url', type: 'string', default: '—', description: 'Share URL.' },
-    { name: 'title', type: 'string', default: '—', description: 'Share title.' },
+    { name: 'url', type: 'string', default: '-', description: 'Share URL.' },
+    { name: 'title', type: 'string', default: '-', description: 'Share title.' },
     { name: 'label', type: 'string', default: "'Share'", description: 'Visible label.' },
   ]}
     />

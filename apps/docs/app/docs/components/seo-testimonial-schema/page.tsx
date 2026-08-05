@@ -1,16 +1,18 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoTestimonialSchema } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Testimonial Schema",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Testimonial Schema",
+  "/docs/components/seo-testimonial-schema"
+)
 
 export default function Page() {
   return (
     <ComponentDoc
       title="Testimonial Schema"
-      description="Emits individual schema.org Review nodes from studio testimonials. Headless — no AggregateRating by design."
+      description="Emits individual schema.org Review nodes from studio testimonials. Headless - no AggregateRating by design."
       preview={<DemoTestimonialSchema />}
       code={
         'import { TestimonialSchema } from "atroui"\n\n' +

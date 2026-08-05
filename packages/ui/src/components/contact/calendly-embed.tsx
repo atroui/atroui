@@ -9,7 +9,7 @@ import { getBrand, getBrandMailto } from "../../lib/brand";
 type Props = { url?: string };
 
 /**
- * Calendly inline embed — theme-aware, framed by the parent page.
+ * Calendly inline embed - theme-aware, framed by the parent page.
  * Falls back to email CTA when NEXT_PUBLIC_CALENDLY_URL is unset.
  */
 export function CalendlyEmbed({ url }: Props) {
@@ -49,7 +49,7 @@ export function CalendlyEmbed({ url }: Props) {
           Calendly isn&rsquo;t connected yet
         </h3>
         <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-          Send a message above and we&rsquo;ll reply with times — or email
+          Send a message above and we&rsquo;ll reply with times - or email
           directly and we&rsquo;ll find a slot the same day.
         </p>
         <a href={getBrandMailto("Intro call")} className="ms-cta w-fit">

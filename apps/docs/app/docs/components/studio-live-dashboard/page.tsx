@@ -1,16 +1,18 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoLiveDashboard } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Live Dashboard",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Live Dashboard",
+  "/docs/components/studio-live-dashboard"
+)
 
 export default function Page() {
   return (
     <ComponentDoc
       title="Live Dashboard"
-      description="Studio live dashboard driven by package content modules — not a host API tool."
+      description="Studio live dashboard driven by package content modules - not a host API tool."
       preview={<DemoLiveDashboard />}
       code={'import { LiveDashboard } from "atroui"\n\n<LiveDashboard />'}
       fullBleed={true}

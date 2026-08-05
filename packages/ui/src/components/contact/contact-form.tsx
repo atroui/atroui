@@ -62,7 +62,7 @@ const TIMELINES = [
   { id: "unsure", label: "Not sure yet" },
 ] as const;
 
-/** Editorial step labels — short, not CRM-speak */
+/** Editorial step labels - short, not CRM-speak */
 const STEPS = [
   { id: "who", label: "Who", title: "Who should we reply to?" },
   { id: "what", label: "What", title: "What are we scoping?" },
@@ -238,7 +238,7 @@ function ContactFormInner() {
         <div>
           <p className="ms-stamp">Sent</p>
           <h3 className="ds-headline mt-3 text-xl text-foreground sm:text-2xl">
-            Got it — talk soon.
+            Got it - talk soon.
           </h3>
           <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
             Koustav reads every brief himself and replies within one business
@@ -376,7 +376,7 @@ function ContactFormInner() {
             label="Company"
             htmlFor="contact-company"
             className="sm:col-span-2"
-            hint="Optional — solo founders usually skip this."
+            hint="Optional - solo founders usually skip this."
           >
             <input
               id="contact-company"
@@ -400,7 +400,7 @@ function ContactFormInner() {
             <p className="text-xs font-medium text-foreground">
               Engagement{" "}
               <span className="font-normal text-muted-foreground">
-                — pick closest, or skip
+                - pick closest, or skip
               </span>
             </p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -430,7 +430,7 @@ function ContactFormInner() {
             <p className="text-xs font-medium text-foreground">
               Budget ballpark{" "}
               <span className="font-normal text-muted-foreground">
-                — honest range helps scope
+                - honest range helps scope
               </span>
             </p>
             <div className="flex flex-wrap gap-2">
@@ -502,7 +502,7 @@ function ContactFormInner() {
           <Field
             label="Attach a brief"
             htmlFor="contact-file"
-            hint="Optional. PDF, DOC, TXT, or image — max 5 MB."
+            hint="Optional. PDF, DOC, TXT, or image - max 5 MB."
           >
             <div className="flex flex-col gap-2">
               <label
@@ -523,7 +523,7 @@ function ContactFormInner() {
                   </span>
                   {!attachment ? (
                     <span className="mt-0.5 block text-[11px] text-muted-foreground">
-                      Specs, Loom notes, Figma export — whatever clarifies.
+                      Specs, Loom notes, Figma export - whatever clarifies.
                     </span>
                   ) : null}
                 </span>

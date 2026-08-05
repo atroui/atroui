@@ -2,7 +2,7 @@ export type NavItem = {
   title: string
   href: string
   description?: string
-  /** Catalog hint — host-bound tools or headless modules */
+  /** Catalog hint - host-bound tools or headless modules */
   badge?: "host-api" | "headless"
 }
 
@@ -12,7 +12,7 @@ export type NavSection = {
 }
 
 /**
- * Curated catalog — not a filesystem dump.
+ * Curated catalog - not a filesystem dump.
  * Primitives → reusable bits
  * Sections → marketing / page modules
  * Tools → need host APIs or env to run fully
@@ -25,7 +25,14 @@ export const navigation: NavSection[] = [
       { title: "Introduction", href: "/docs", description: "Overview" },
       { title: "Installation", href: "/docs/installation", description: "Setup" },
       { title: "Theming", href: "/docs/theming", description: "Tokens" },
+      { title: "Brand kit", href: "/docs/brand", description: "Logo & voice" },
+      {
+        title: "Compare",
+        href: "/docs/compare",
+        description: "vs copy-paste kits",
+      },
       { title: "Changelog", href: "/docs/changelog", description: "Releases" },
+      { title: "Blog", href: "/blog", description: "SEO posts" },
     ],
   },
   {

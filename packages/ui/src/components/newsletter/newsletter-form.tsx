@@ -43,7 +43,7 @@ export function NewsletterForm({ className }: { className?: string }) {
         )}
       >
         <CheckCircle2 className="size-4" />
-        <span>You&rsquo;re on the list — thanks!</span>
+        <span>You&rsquo;re on the list - thanks!</span>
       </div>
     );
   }

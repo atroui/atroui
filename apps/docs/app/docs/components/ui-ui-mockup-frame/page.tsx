@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoUiMockupFrame } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Ui Mockup Frame',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Ui Mockup Frame",
+  "/docs/components/ui-ui-mockup-frame"
+)
 
 export default function Page() {
   return (

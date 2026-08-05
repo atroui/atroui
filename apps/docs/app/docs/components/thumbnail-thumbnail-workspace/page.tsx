@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoThumbnailWorkspace } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Thumbnail Workspace",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Thumbnail Workspace",
+  "/docs/components/thumbnail-thumbnail-workspace"
+)
 
 export default function Page() {
   return (

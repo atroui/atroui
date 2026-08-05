@@ -27,14 +27,14 @@ export type CaseStudy = {
   mockupVariant?: MockupVariant;
   featured?: boolean;
   relatedServices: string[];
-  /** Override detail link — e.g. live product at /og */
+  /** Override detail link - e.g. live product at /og */
   href?: string;
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: "og-image-generator",
-    title: "OG Image Generator — free AI social cards",
+    title: "OG Image Generator - free AI social cards",
     client: {
       name: "Makershot",
       industry: "Studio product",
@@ -42,9 +42,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     },
     projectType: "In-house product",
     challenge:
-      "Indie makers and bloggers still ship bland default OG images — or burn an afternoon in Figma for a 1200×630 card. We needed proof of craft that also helps people ship.",
+      "Indie makers and bloggers still ship bland default OG images - or burn an afternoon in Figma for a 1200×630 card. We needed proof of craft that also helps people ship.",
     solution:
-      "We built a free OG maker: prompt → FLUX background + Satori typography overlay at exact 1200×630. Style presets, live preview, instant download. No signup, no watermark — the same stack we use on client sprints.",
+      "We built a free OG maker: prompt → FLUX background + Satori typography overlay at exact 1200×630. Style presets, live preview, instant download. No signup, no watermark - the same stack we use on client sprints.",
     results: [
       { metric: "Format", value: "1200×630", description: "Exact Open Graph canvas" },
       { metric: "Access", value: "Free", description: "No signup · no watermark" },
@@ -68,7 +68,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     },
     projectType: "MVP Sprint",
     challenge:
-      "A solo founder had validated demand through waitlist signups but needed a working product — auth, billing, and core workflow — before a YC application deadline in two weeks.",
+      "A solo founder had validated demand through waitlist signups but needed a working product - auth, billing, and core workflow - before a YC application deadline in two weeks.",
     solution:
       "We ran a 7-day MVP sprint: scoped to one core workflow, wired Clerk auth, Stripe checkout, and a Postgres-backed dashboard. Daily async updates and a live Vercel preview kept the founder in the loop.",
     results: [
@@ -80,7 +80,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     timeline: "7 days",
     budget: "$4,800",
     testimonial:
-      "Koustav shipped what would have taken me two months in a week. I talked to the person building it every day — no handoffs, no surprises.",
+      "Koustav shipped what would have taken me two months in a week. I talked to the person building it every day - no handoffs, no surprises.",
     testimonialAuthor: "Founder, dev tools startup",
     image: "/og",
     mockupVariant: "saas",
@@ -108,7 +108,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     timeline: "10 days",
     budget: "$2,800",
     testimonial:
-      "The AI feature actually fits our workflow — not a chatbot bolted on the side. Our ops team uses it daily.",
+      "The AI feature actually fits our workflow - not a chatbot bolted on the side. Our ops team uses it daily.",
     testimonialAuthor: "Head of Product, legal tech",
     image: "/og",
     mockupVariant: "ai",
@@ -148,7 +148,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     },
     projectType: "Full-Stack Build",
     challenge:
-      "A founder needed a complete two-sided marketplace — listings, payments, messaging, and admin — with a 6-week runway before a seed round demo.",
+      "A founder needed a complete two-sided marketplace - listings, payments, messaging, and admin - with a 6-week runway before a seed round demo.",
     solution:
       "End-to-end build over 6 weeks: seller onboarding, Stripe Connect payouts, real-time messaging, search with filters, and an admin dashboard. Weekly strategy calls kept scope tight.",
     results: [

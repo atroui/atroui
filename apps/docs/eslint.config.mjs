@@ -24,6 +24,8 @@ const config = [
         },
       ],
       "react/no-unescaped-entities": "off",
+      // Static SVG brand assets in /public - next/image adds little value.
+      "@next/next/no-img-element": "off",
     },
   },
 ]

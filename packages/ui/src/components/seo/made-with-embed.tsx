@@ -18,7 +18,7 @@ type MadeWithEmbedProps = {
 };
 
 /**
- * Embeddable credit badge + copyable HTML — the classic free-tool backlink ask.
+ * Embeddable credit badge + copyable HTML - the classic free-tool backlink ask.
  */
 export function MadeWithEmbed({
   href = "/og",

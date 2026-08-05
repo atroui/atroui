@@ -8,7 +8,7 @@ type ComparisonRow = {
   deliverables: string[];
 };
 
-/** Open a print-friendly window — user saves as PDF via browser print dialog. */
+/** Open a print-friendly window - user saves as PDF via browser print dialog. */
 export function exportComparisonAsPdf(rows: ComparisonRow[]): void {
   const { name, domain, email } = getBrand();
   const html = `<!DOCTYPE html>
@@ -26,7 +26,7 @@ export function exportComparisonAsPdf(rows: ComparisonRow[]): void {
   .footer { margin-top: 32px; font-size: 11px; color: #888; }
 </style>
 </head><body>
-<h1>${escapeHtml(name)} — Service Comparison</h1>
+<h1>${escapeHtml(name)} - Service Comparison</h1>
 <p class="meta">Generated ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} · ${escapeHtml(domain)}</p>
 <table>
 <thead><tr><th>Service</th><th>Timeline</th><th>Starting Price</th><th>Key Deliverables</th></tr></thead>

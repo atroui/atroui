@@ -9,7 +9,7 @@ export type StudioProject = {
   progress: number;
   lastUpdate: string;
   milestone: string;
-  /** Anonymized — shown on public dashboard with client permission */
+  /** Anonymized - shown on public dashboard with client permission */
   public: boolean;
 };
 
@@ -32,7 +32,7 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     service: "AI Integration",
     status: "review",
     progress: 90,
-    lastUpdate: "Streaming UI in staging — client review",
+    lastUpdate: "Streaming UI in staging - client review",
     milestone: "Final polish",
     public: true,
   },

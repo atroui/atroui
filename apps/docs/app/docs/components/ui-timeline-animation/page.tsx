@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoTimelineAnimation } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Timeline Animation',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Timeline Animation",
+  "/docs/components/ui-timeline-animation"
+)
 
 export default function Page() {
   return (

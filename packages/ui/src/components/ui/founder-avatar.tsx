@@ -3,11 +3,11 @@ import Image from "next/image";
 import { cn } from "../../lib/utils";
 
 const sizeClass = {
-  /** 32px — hero signature */
+  /** 32px - hero signature */
   sm: "size-8",
-  /** 36px — CTA / quote figcaption */
+  /** 36px - CTA / quote figcaption */
   md: "size-9",
-  /** 44px — founder letter */
+  /** 44px - founder letter */
   lg: "size-11",
 } as const;
 
@@ -19,7 +19,7 @@ type FounderAvatarProps = {
 };
 
 /**
- * Circular founder portrait for signature rows. Decorative — name sits in
+ * Circular founder portrait for signature rows. Decorative - name sits in
  * adjacent text; `alt` is empty and the wrapper is `aria-hidden`.
  */
 export function FounderAvatar({ size = "sm", className }: FounderAvatarProps) {

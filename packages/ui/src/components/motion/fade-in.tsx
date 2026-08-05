@@ -15,7 +15,7 @@ type FadeInProps = HTMLMotionProps<"div"> & {
   preview?: boolean;
 };
 
-/** Scroll reveal — opacity + small translate, critically damped, <300ms feel. */
+/** Scroll reveal - opacity + small translate, critically damped, <300ms feel. */
 export function FadeIn({
   y = 14,
   delay = 0,

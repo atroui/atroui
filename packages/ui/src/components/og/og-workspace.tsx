@@ -36,7 +36,7 @@ import {
 import { cn } from "../../lib/utils";
 
 /**
- * OG generator workspace — two modes:
+ * OG generator workspace - two modes:
  *
  *   Quick mode (default): title + subtitle + style → AI background with
  *   a crisp Satori-rendered text overlay.
@@ -171,7 +171,7 @@ function OgWorkspaceInner() {
         if (!t) {
           setStatus({
             kind: "error",
-            message: "Add a title — it's what lands on your social card.",
+            message: "Add a title - it's what lands on your social card.",
           });
           return;
         }
@@ -414,7 +414,7 @@ function OgWorkspaceInner() {
         {status.kind === "success" ? (
           <div className="mx-6 mb-6 flex items-start gap-3 border border-emerald-500/25 bg-emerald-500/5 px-4 py-3 text-sm text-emerald-700 dark:text-emerald-400 sm:mx-8">
             <CheckCircle2 className="mt-0.5 size-4 shrink-0" />
-            <span>Image ready — download at 1200×630 from the preview.</span>
+            <span>Image ready - download at 1200×630 from the preview.</span>
           </div>
         ) : null}
       </div>
@@ -493,7 +493,7 @@ function OgWorkspaceInner() {
                       Preview shows up here
                     </p>
                     <p className="relative max-w-[32ch] text-xs text-muted-foreground">
-                      Write a prompt and hit Generate — polished 1200×630 in a
+                      Write a prompt and hit Generate - polished 1200×630 in a
                       few seconds.
                     </p>
                   </div>

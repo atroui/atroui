@@ -1,6 +1,6 @@
 /**
  * Service packages shown on /services and teased on /.
- * Pricing is placeholder — easy to swap.
+ * Pricing is placeholder - easy to swap.
  */
 
 export type Service = {
@@ -46,7 +46,7 @@ export const SERVICES: Service[] = [
     name: "AI Feature Integration",
     tagline: "Drop AI into your product, properly",
     description:
-      "Add a well-designed AI feature to your existing app — streaming, cost-aware, safe, and actually useful.",
+      "Add a well-designed AI feature to your existing app - streaming, cost-aware, safe, and actually useful.",
     price: "$2,400",
     priceSuffix: "from",
     timeline: "1–2 weeks",
@@ -65,7 +65,7 @@ export const SERVICES: Service[] = [
     name: "Custom Design System",
     tagline: "A design language you can ship on",
     description:
-      "A production-ready design system — tokens, components, and docs — that matches your brand and stays consistent as you scale.",
+      "A production-ready design system - tokens, components, and docs - that matches your brand and stays consistent as you scale.",
     price: "$3,600",
     priceSuffix: "from",
     timeline: "2–3 weeks",

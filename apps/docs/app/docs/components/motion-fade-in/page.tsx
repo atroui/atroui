@@ -1,16 +1,18 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoFadeIn } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Fade In',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Fade In",
+  "/docs/components/motion-fade-in"
+)
 
 export default function Page() {
   return (
     <ComponentDoc
       title='Fade In'
-      description='Scroll-triggered fade + rise. Preview animates on mount — use Replay to watch again.'
+      description='Scroll-triggered fade + rise. Preview animates on mount - use Replay to watch again.'
       preview={<DemoFadeIn />}
       code={'import { FadeIn } from "atroui"\n\n<FadeIn>Content</FadeIn>\n\n{/* Docs */}\n<FadeIn preview>Content</FadeIn>'}
       fullBleed={false}

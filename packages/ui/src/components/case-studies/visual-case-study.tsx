@@ -62,7 +62,7 @@ export function VisualCaseStudy({ study }: VisualCaseStudyProps) {
               </p>
               {study.testimonialAuthor ? (
                 <footer className="mt-3 text-xs text-muted-foreground">
-                  — {study.testimonialAuthor}
+                  - {study.testimonialAuthor}
                 </footer>
               ) : null}
             </blockquote>
@@ -78,7 +78,7 @@ export function VisualCaseStudy({ study }: VisualCaseStudyProps) {
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 {topResult.metric}
-                {topResult.description ? ` — ${topResult.description}` : ""}
+                {topResult.description ? ` - ${topResult.description}` : ""}
               </p>
             </div>
           ) : null}

@@ -178,7 +178,7 @@ export function ThumbnailLivePreview({
             </div>
           )}
         </div>
-        {/* Right side — breathing zone for AI background */}
+        {/* Right side - breathing zone for AI background */}
         <div
           style={{
             width: "45%",

@@ -72,11 +72,11 @@ describe("seo helpers", () => {
     });
 
     expect(meta.openGraph?.siteName).toBe("Acme");
-    expect(meta.openGraph?.title).toBe("Hello — Acme");
+    expect(meta.openGraph?.title).toBe("Hello - Acme");
   });
 
   it("resolves brand SEO at call time, not module load", () => {
-    // Module is already imported above — env changes must still apply.
+    // Module is already imported above - env changes must still apply.
     expect(getSiteBrand()).toBe(DEFAULT_BRAND.name);
     expect(getSiteDomain()).toBe(DEFAULT_BRAND.domain);
 
@@ -86,9 +86,9 @@ describe("seo helpers", () => {
 
     expect(getSiteBrand()).toBe("LateBrand");
     expect(getSiteDomain()).toBe("late.test");
-    expect(getDefaultTitle()).toBe("LateBrand — Ships late overrides");
+    expect(getDefaultTitle()).toBe("LateBrand - Ships late overrides");
     expect(getDefaultDescription()).toContain("late.test");
-    expect(getPageSeo().home.title).toBe("LateBrand — Ships late overrides");
+    expect(getPageSeo().home.title).toBe("LateBrand - Ships late overrides");
     expect(getPageSeo().about.description).toContain("LateBrand");
   });
 });

@@ -61,7 +61,7 @@ import {
 } from "atroui"
 import { TESTIMONIALS } from "atroui/content/testimonials"
 
-/** Live canvas demos — one per documented component where a useful preview exists. */
+/** Live canvas demos - one per documented component where a useful preview exists. */
 
 export function DemoHomeHero() {
   return <HeroAiValueProposition />
@@ -100,7 +100,7 @@ export function DemoSiteHeader() {
     <div className="w-full bg-background">
       <SiteHeader />
       <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 text-sm text-muted-foreground">
-        Sticky header — AtroUI logo via getBrand(), studio nav routes, theme
+        Sticky header - AtroUI logo via getBrand(), studio nav routes, theme
         toggle, and Hire CTA. Links use host paths like{" "}
         <code className="font-mono text-xs text-foreground">/work</code> and{" "}
         <code className="font-mono text-xs text-foreground">/contact</code>.
@@ -158,7 +158,7 @@ export function DemoCard() {
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-            Same primitives — compose with tokens, not one-off styles.
+            Same primitives - compose with tokens, not one-off styles.
           </p>
         </CardContent>
       </Card>
@@ -201,7 +201,7 @@ export function DemoLogo() {
       </div>
       <LogoWordmark className="text-xl" />
       <p className="max-w-xs text-xs text-muted-foreground">
-        Interrupted A — open letterform + floating brand bar. Label from{" "}
+        Interrupted A - open letterform + floating brand bar. Label from{" "}
         getBrand(); override with{" "}
         <code className="font-mono text-[11px]">title</code> /{" "}
         <code className="font-mono text-[11px]">name</code>.
@@ -248,7 +248,7 @@ export function DemoProse() {
     <Prose className="max-w-md text-left">
       <h3>Readable by default</h3>
       <p>
-        Prose styles long-form content with comfortable measure, spacing, and contrast —
+        Prose styles long-form content with comfortable measure, spacing, and contrast -
         ready for journal posts and docs.
       </p>
     </Prose>
@@ -315,7 +315,7 @@ export function DemoScrollProgress() {
       <div className="relative border-b border-border-subtle bg-muted/40 px-4 py-2.5">
         <p className="ms-stamp">ScrollProgress</p>
         <p className="mt-1 text-sm text-muted-foreground">
-          Scroll the panel — the brand bar tracks local progress.
+          Scroll the panel - the brand bar tracks local progress.
         </p>
         <ScrollProgress
           containerRef={containerRef}
@@ -353,7 +353,7 @@ export function DemoOgLivePreview() {
     <div className="relative aspect-[1200/630] w-full max-w-xl overflow-hidden rounded-xl ring-1 ring-border-subtle">
       <OgLivePreview
         title={"Ship in days,\nnot quarters."}
-        subtitle="AtroUI — your component catalog"
+        subtitle="AtroUI - your component catalog"
         styleKey="paperQuote"
       />
     </div>
@@ -457,7 +457,7 @@ export function DemoAnalyticsProvider() {
   return (
     <HeadlessShell
       stamp="Headless"
-      title="AnalyticsProvider — scripts + experiments, no chrome"
+      title="AnalyticsProvider - scripts + experiments, no chrome"
     >
       <p>
         Mount once near the root. Loads Plausible / GA when env is set, fires{" "}
@@ -500,7 +500,7 @@ export function DemoJsonLd() {
   return (
     <HeadlessShell
       stamp="Headless"
-      title="JSON-LD helpers — emit schema.org in the document"
+      title="JSON-LD helpers - emit schema.org in the document"
     >
       <p>
         Helpers like{" "}
@@ -511,7 +511,7 @@ export function DemoJsonLd() {
         <code className="font-mono text-xs text-foreground">
           &lt;script type=&quot;application/ld+json&quot;&gt;
         </code>
-        . No visible UI — check View Source or Rich Results Test.
+        . No visible UI - check View Source or Rich Results Test.
       </p>
       {/* Live inject for this preview mount */}
       <SiteGraphJsonLd />
@@ -531,7 +531,7 @@ export function DemoJsonLd() {
       </pre>
       <p className="text-xs">
         This preview mounts <span className="text-foreground">SiteGraphJsonLd</span>{" "}
-        once — inspect the page source for the graph.
+        once - inspect the page source for the graph.
       </p>
     </HeadlessShell>
   )
@@ -564,7 +564,7 @@ export function DemoTestimonialSchema() {
   return (
     <HeadlessShell
       stamp="Headless"
-      title="TestimonialSchema — Review JSON-LD (no AggregateRating)"
+      title="TestimonialSchema - Review JSON-LD (no AggregateRating)"
     >
       <p>
         Emits individual{" "}
@@ -577,7 +577,7 @@ export function DemoTestimonialSchema() {
         {JSON.stringify(sample, null, 2)}
       </pre>
       <p className="text-xs">
-        Full graph is injected on this page — sample above shows the shape.
+        Full graph is injected on this page - sample above shows the shape.
       </p>
     </HeadlessShell>
   )
@@ -654,7 +654,7 @@ export function DemoVisualCaseStudy() {
     client: { name: "Stealth SaaS founder", industry: "Developer tools" },
     projectType: "MVP Sprint",
     challenge:
-      "A solo founder had validated demand through waitlist signups but needed a working product — auth, billing, and core workflow — before a deadline.",
+      "A solo founder had validated demand through waitlist signups but needed a working product - auth, billing, and core workflow - before a deadline.",
     solution:
       "A 7-day MVP sprint: one core workflow, auth, checkout, and a Postgres-backed dashboard with daily async updates and a live preview.",
     results: [

@@ -1,21 +1,23 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoArPortfolio } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "AR Portfolio",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "AR Portfolio",
+  "/docs/components/ar-ar-portfolio"
+)
 
 export default function Page() {
   return (
     <ComponentDoc
       title="AR Portfolio"
-      description="model-viewer showcase with AR modes — demo GLBs until you swap the model list."
+      description="model-viewer showcase with AR modes - demo GLBs until you swap the model list."
       preview={<DemoArPortfolio />}
       code={'import { ArPortfolio } from "atroui"\n\n<ArPortfolio />'}
       fullBleed={true}
       installation='import { ArPortfolio } from "atroui"'
-      usage="Zero-prop mount. Loads model-viewer from Google’s CDN. Demo models are public Astronaut/NeilArmstrong GLBs — fork MODELS (and optional poster) for real work. “View in AR” needs WebXR, Scene Viewer, or Quick Look on a supported device."
+      usage="Zero-prop mount. Loads model-viewer from Google’s CDN. Demo models are public Astronaut/NeilArmstrong GLBs - fork MODELS (and optional poster) for real work. “View in AR” needs WebXR, Scene Viewer, or Quick Look on a supported device."
     />
   )
 }

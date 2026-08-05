@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoScrollProgress } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Scroll Progress',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Scroll Progress",
+  "/docs/components/motion-primitives-scroll-progress"
+)
 
 export default function Page() {
   return (
@@ -14,17 +16,17 @@ export default function Page() {
       preview={<DemoScrollProgress />}
       code={
         'import { ScrollProgress } from "atroui"\n\n' +
-        '{/* Production — document scroll */}\n' +
+        '{/* Production - document scroll */}\n' +
         '<ScrollProgress className="fixed inset-x-0 top-0 z-60 h-0.5 bg-brand" />\n\n' +
-        '{/* Optional — scoped to a scroll parent */}\n' +
+        '{/* Optional - scoped to a scroll parent */}\n' +
         '<ScrollProgress containerRef={ref} className="absolute inset-x-0 top-0 h-0.5 bg-brand" />'
       }
       fullBleed={false}
       installation='import { ScrollProgress } from "atroui"'
       usage='Usually fixed to the top of the viewport with bg-brand.'
       props={[
-    { name: 'className', type: 'string', default: '—', description: 'Positioning + color classes (e.g. fixed, bg-brand).' },
-    { name: 'containerRef', type: 'RefObject<HTMLDivElement>', default: '—', description: 'Scroll container. Defaults to the document.' },
+    { name: 'className', type: 'string', default: '-', description: 'Positioning + color classes (e.g. fixed, bg-brand).' },
+    { name: 'containerRef', type: 'RefObject<HTMLDivElement>', default: '-', description: 'Scroll container. Defaults to the document.' },
     { name: 'springOptions', type: 'SpringOptions', default: 'stiffness 200', description: 'Motion spring for scaleX.' },
   ]}
     />

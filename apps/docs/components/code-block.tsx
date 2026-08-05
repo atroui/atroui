@@ -8,7 +8,7 @@ interface CodeBlockProps {
   code: string
   language?: string
   className?: string
-  /** Nest inside DocsExample — no outer border, lighter chrome */
+  /** Nest inside DocsExample - no outer border, lighter chrome */
   embedded?: boolean
 }
 

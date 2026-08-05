@@ -1,10 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { badgeLabel, navigation } from "@/lib/navigation"
+import { docsPageMetadata } from "@/lib/docs-metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Components",
-}
+  description:
+    "Browse the AtroUI component catalog - primitives, sections, tools, and headless SEO modules for React and Next.js.",
+  path: "/docs/components",
+})
 
 export default function ComponentsIndexPage() {
   const sections = navigation.filter((s) => s.title !== "Getting Started")
@@ -18,7 +22,7 @@ export default function ComponentsIndexPage() {
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
           Production UI curated into primitives, sections, tools, and headless
-          modules — themed with AtroUI&rsquo;s digital system.
+          modules - themed with AtroUI&rsquo;s digital system.
         </p>
       </header>
 

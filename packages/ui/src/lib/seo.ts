@@ -20,12 +20,12 @@ export function getSiteDomain(): string {
 
 export function getDefaultTitle(): string {
   const { name, tagline } = getBrand();
-  return `${name} — ${tagline}`;
+  return `${name} - ${tagline}`;
 }
 
 export function getDefaultDescription(): string {
   const { name, domain, tagline } = getBrand();
-  return `${name} (${domain}) — ${tagline}. Install with npm i atroui.`;
+  return `${name} (${domain}) - ${tagline}. Install with npm i atroui.`;
 }
 
 export function absoluteUrl(path = ""): string {
@@ -67,7 +67,7 @@ export function buildPageMetadata({
     : absoluteUrl("/opengraph-image");
   const socialTitle = title.includes(brandName)
     ? title
-    : `${title} — ${brandName}`;
+    : `${title} - ${brandName}`;
 
   return {
     title,
@@ -113,7 +113,7 @@ export function getPageSeo() {
       path: "/",
     },
     og: {
-      title: "Free OG Image Generator — 1200×630 Social Cards",
+      title: "Free OG Image Generator - 1200×630 Social Cards",
       description: `Generate free Open Graph images (1200×630) for Twitter, LinkedIn, and blogs. Title + style with crisp type, or free-form AI prompt. No signup. By ${name}.`,
       path: "/og",
       image: "/og/opengraph-image",
@@ -126,17 +126,17 @@ export function getPageSeo() {
     },
     tools: {
       title: "Free AI Tools for Indie Makers",
-      description: `Free AI utilities from ${name}: OG image generator, thumbnail maker, and more — built for indie makers and SaaS founders who ship fast.`,
+      description: `Free AI utilities from ${name}: OG image generator, thumbnail maker, and more - built for indie makers and SaaS founders who ship fast.`,
       path: "/tools",
     },
     services: {
-      title: "MVP Sprint & AI Development Services — Fixed Price",
+      title: "MVP Sprint & AI Development Services - Fixed Price",
       description: `Fixed-price packages from ${name}: 7-day MVP sprint ($4,800), AI feature integration, design systems, and full-stack builds. No hourly theater.`,
       path: "/services",
     },
     journal: {
-      title: "Journal — Indie SaaS & AI MVP Playbooks",
-      description: `Practical essays from ${name} on shipping AI MVPs, Next.js, design systems, and OG images that convert — written for indie makers.`,
+      title: "Journal - Indie SaaS & AI MVP Playbooks",
+      description: `Practical essays from ${name} on shipping AI MVPs, Next.js, design systems, and OG images that convert - written for indie makers.`,
       path: "/journal",
     },
     work: {
@@ -146,12 +146,12 @@ export function getPageSeo() {
     },
     about: {
       title: "About the Studio",
-      description: `${name} (${domain}) is a one-person studio — fixed-scope MVP sprints, AI tools, and full-stack builds for indie makers.`,
+      description: `${name} (${domain}) is a one-person studio - fixed-scope MVP sprints, AI tools, and full-stack builds for indie makers.`,
       path: "/about",
     },
     contact: {
       title: "Contact & Hire Us",
-      description: `Start a project with ${name}. Book a free 15-minute intro or send a brief — we reply within one business day.`,
+      description: `Start a project with ${name}. Book a free 15-minute intro or send a brief - we reply within one business day.`,
       path: "/contact",
     },
   } as const;

@@ -9,7 +9,7 @@ type SocialShareProps = {
   url: string;
   title: string;
   className?: string;
-  /** Visible label — defaults to "Share" */
+  /** Visible label - defaults to "Share" */
   label?: string;
 };
 

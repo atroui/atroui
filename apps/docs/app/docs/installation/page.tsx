@@ -1,10 +1,14 @@
 import type { Metadata } from "next"
 import { CodeBlock } from "@/components/code-block"
 import Link from "next/link"
+import { docsPageMetadata } from "@/lib/docs-metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Installation",
-}
+  description:
+    "Install AtroUI in a Next.js app with npm i atroui - ThemeProvider, globals.css, brand env overrides, and Host API notes.",
+  path: "/docs/installation",
+})
 
 export default function InstallationPage() {
   return (
@@ -109,7 +113,7 @@ export default function InstallationPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui/content/*
           </code>{" "}
-          is optional portfolio copy — skip it when rebranding.
+          is optional portfolio copy - skip it when rebranding.
         </p>
         <CodeBlock
           language="bash"
@@ -127,7 +131,7 @@ export default function InstallationPage() {
           </code>{" "}
           routes. The AtroUI docs site does{" "}
           <span className="font-medium text-foreground">not</span> provide those
-          backends or shared AI keys — bring your own API (BYOK). Marked{" "}
+          backends or shared AI keys - bring your own API (BYOK). Marked{" "}
           <span className="font-medium text-foreground">Host API</span> in the
           sidebar. Live OG sample without wiring keys here:{" "}
           <a

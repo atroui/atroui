@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import Link from "next/link"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoOgWorkspace } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Og Workspace",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Og Workspace",
+  "/docs/components/og-og-workspace"
+)
 
 export default function Page() {
   return (
@@ -18,7 +20,7 @@ export default function Page() {
       installation='import { OgWorkspace } from "atroui"'
       usage={
         <>
-          AtroUI docs do not ship generation backends — bring your own{" "}
+          AtroUI docs do not ship generation backends - bring your own{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             POST /api/generate
           </code>{" "}

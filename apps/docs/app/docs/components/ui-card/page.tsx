@@ -1,16 +1,18 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoCard } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: "Card",
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Card",
+  "/docs/components/ui-card"
+)
 
 export default function Page() {
   return (
     <ComponentDoc
       title="Card"
-      description="Elevated surface for grouped content — header, body, footer slots."
+      description="Elevated surface for grouped content - header, body, footer slots."
       preview={<DemoCard />}
       code={
         'import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n  Button,\n} from "atroui"\n\n<Card>\n  <CardHeader>\n    <CardTitle>Project Alpha</CardTitle>\n    <CardDescription>Shipped this week</CardDescription>\n  </CardHeader>\n  <CardContent>Body copy</CardContent>\n  <CardFooter>\n    <Button size="sm">Open</Button>\n  </CardFooter>\n</Card>'
@@ -28,7 +30,7 @@ export default function Page() {
         {
           name: "className",
           type: "string",
-          default: "—",
+          default: "-",
           description: "Extra classes (e.g. border-brand/30).",
         },
       ]}

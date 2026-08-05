@@ -24,7 +24,7 @@ function isActive(pathname: string, href: string) {
 }
 
 /**
- * Editorial site chrome — same max-w-7xl + border-x frame as page bands.
+ * Editorial site chrome - same max-w-7xl + border-x frame as page bands.
  */
 export function SiteHeader() {
   const pathname = usePathname();

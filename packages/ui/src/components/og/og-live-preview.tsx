@@ -4,7 +4,7 @@ import {
 } from "../../lib/og/presets";
 
 /**
- * CSS-only approximation of the server-rendered OG card — same presets as /og.
+ * CSS-only approximation of the server-rendered OG card - same presets as /og.
  * Used in the OG workspace idle state and on the homepage hero as product proof.
  */
 export function OgLivePreview({

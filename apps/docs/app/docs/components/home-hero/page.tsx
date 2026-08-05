@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoHomeHero } from "@/components/registry-demos"
 
-export const metadata: Metadata = {
-  title: 'Hero',
-}
+export const metadata: Metadata = componentPageMetadata(
+  "Hero",
+  "/docs/components/home-hero"
+)
 
 export default function Page() {
   return (

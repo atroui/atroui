@@ -1,10 +1,14 @@
 import fs from "node:fs"
 import path from "node:path"
 import type { Metadata } from "next"
+import { docsPageMetadata } from "@/lib/docs-metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Changelog",
-}
+  description:
+    "AtroUI release notes - version history for the atroui npm package on atroui.com.",
+  path: "/docs/changelog",
+})
 
 type ChangelogBlock = {
   version: string

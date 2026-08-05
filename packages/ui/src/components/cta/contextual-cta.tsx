@@ -28,7 +28,7 @@ const SCROLL_CTAS: Record<string, CTAConfig> = {
     id: "book_call",
     stamp: "Free intro",
     headline: "Ready to ship?",
-    body: "Book a 15-min intro — no pitch deck.",
+    body: "Book a 15-min intro - no pitch deck.",
     cta: "Book a call",
     href: "/contact#book",
     hideOn: ["/contact"],

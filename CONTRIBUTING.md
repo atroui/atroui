@@ -22,7 +22,7 @@ pnpm typecheck
 
    - Select package: `atroui`
    - Bump type: **patch** (fixes), **minor** (new features), **major** (breaking)
-   - Write a short, user-facing summary — it lands in `packages/ui/CHANGELOG.md`
+   - Write a short, user-facing summary - it lands in `packages/ui/CHANGELOG.md`
    - Commit the new `.changeset/*.md` file with your PR
 
 3. Docs-only / CI-only / accidental `packages/ui` path noise: add the GitHub label **`skip-changeset`** so the changeset check can pass.
@@ -44,7 +44,7 @@ changeset publish → npm (atroui@x.y.z)
 
 ### One-time secrets setup
 
-**npm publish — pick one:**
+**npm publish - pick one:**
 
 1. **NPM token:** Automation token on npmjs.com → repo **Settings → Secrets → Actions** → `NPM_TOKEN`.
 2. **Trusted Publishing (OIDC):** on the `atroui` package on npmjs.com, trust workflow `release.yml`.
@@ -60,7 +60,7 @@ What still works automatically: the Release workflow pushes branch `changeset-re
 2. Create the PR → merge it.
 3. That merge triggers publish (`changeset publish` + `NPM_TOKEN`).
 
-Optional: if your org allows it later, enable “Allow GitHub Actions to create and approve pull requests”, or add a working `GH_PAT` with Pull requests write + SSO authorize — then PRs can open automatically again.
+Optional: if your org allows it later, enable “Allow GitHub Actions to create and approve pull requests”, or add a working `GH_PAT` with Pull requests write + SSO authorize - then PRs can open automatically again.
 
 ## Package layout
 
@@ -71,3 +71,23 @@ Optional: if your org allows it later, enable “Allow GitHub Actions to create 
 | `packages/typescript-config` | No |
 
 Changelog UI: [/docs/changelog](https://atroui.com/docs/changelog) reads `packages/ui/CHANGELOG.md`.
+
+## GitHub repo hygiene (maintainers)
+
+On [github.com/atroui/atroui](https://github.com/atroui/atroui) keep:
+
+- **Description** aligned with npm: production React / Next.js component library · atroui.com
+- **Topics:** `react`, `nextjs`, `design-system`, `tailwind`, `ui`, `components`, `atroui`
+- **Social preview** - uses site OG (`atroui.com/opengraph-image`) after deploy
+- **Website** field: `https://atroui.com`
+
+## SEO & growth checklist (monthly)
+
+After each docs deploy to **atroui.com**:
+
+1. [Google Search Console](https://search.google.com/search-console) - property `atroui.com` verified; submit `https://atroui.com/sitemap.xml` if new.
+2. Spot-check brand query **atroui** / **atroui.com** - site should be #1 once indexed.
+3. Refresh titles/descriptions on the top 5 docs URLs by impressions (GSC Performance).
+4. Ship 1–2 posts under `/blog` or update existing ones; keep internal links to `/docs/*`.
+5. Confirm satellite backlinks still point at atroui.com (iamk.xyz, makershot.tech).
+6. Optional: npm download trend + GitHub traffic - no ads until brand SERP is stable.
