@@ -1,3 +1,6 @@
+@source "../components";
+@source "./**/*.{ts,tsx,mdx}";
+
 html {
   scroll-behavior: smooth;
 }
