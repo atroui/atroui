@@ -6,7 +6,12 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   transpilePackages: ["atroui", "@shadergradient/react"],
   experimental: {
-    optimizePackageImports: ["atroui", "lucide-react"],
+    optimizePackageImports: [
+      "atroui",
+      "lucide-react",
+      "motion",
+      "@phosphor-icons/react",
+    ],
   },
   webpack: (config) => {
     config.resolve.alias = {

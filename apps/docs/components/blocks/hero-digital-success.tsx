@@ -1,31 +1,10 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import dynamic from "next/dynamic"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { TimelineAnimation } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
-
-const HeroShaderBackground = dynamic(
-  () =>
-    import("@/components/blocks/hero-shader-background").then(
-      (m) => m.HeroShaderBackground
-    ),
-  {
-    ssr: false,
-    loading: () => (
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 65% 55% at 72% 38%, rgba(11,123,255,0.22), transparent 58%), #000",
-        }}
-      />
-    ),
-  }
-)
+import { HeroShaderBackground } from "@/components/blocks/hero-shader-background"
 
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
@@ -141,34 +120,20 @@ function HeroMobileMenu() {
 }
 
 export function HeroDigitalSuccess() {
-  const timelineRef = useRef<HTMLDivElement>(null)
-
   return (
-    <section
-      ref={timelineRef}
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-black text-white"
-    >
+    <section className="relative flex min-h-svh flex-col overflow-hidden bg-black text-white">
       <HeroShaderBackground />
 
       <header className="relative z-20 px-4 pt-[max(1rem,env(safe-area-inset-top))] sm:px-6 md:px-10">
         <div className="flex items-center justify-between gap-3 py-3 md:py-4">
-          <TimelineAnimation
-            once
-            animationNum={1}
-            timelineRef={timelineRef}
-            className="flex min-w-0 items-center gap-2.5"
-          >
+          <div className="flex min-w-0 items-center gap-2.5">
             <LogoMark className="h-7 w-7 shrink-0 text-white sm:h-8 sm:w-8" />
             <span className="truncate text-base font-medium tracking-tight sm:text-lg">
               AtroUI
             </span>
-          </TimelineAnimation>
+          </div>
 
-          <TimelineAnimation
-            once
-            as="nav"
-            animationNum={2}
-            timelineRef={timelineRef}
+          <nav
             className="hidden items-center gap-6 text-sm font-medium text-white md:flex lg:gap-10 xl:gap-12"
             aria-label="Primary"
           >
@@ -181,21 +146,17 @@ export function HeroDigitalSuccess() {
                 {link.label}
               </Link>
             ))}
-          </TimelineAnimation>
+          </nav>
 
           <div className="flex shrink-0 items-center gap-2">
-            <TimelineAnimation
-              once
-              as="a"
+            <a
               href="/docs/components"
-              animationNum={3}
-              timelineRef={timelineRef}
               className="hidden items-center gap-2 rounded-full bg-neutral-800 px-5 py-2.5 text-sm font-medium text-white sm:inline-flex md:px-6 md:py-3 lg:px-8 lg:py-4"
             >
               <span className="h-2 w-2 rounded-full bg-sky-400" />
               <span className="hidden lg:inline">Browse catalog</span>
               <span className="lg:hidden">Browse</span>
-            </TimelineAnimation>
+            </a>
 
             <HeroMobileMenu />
           </div>
@@ -203,75 +164,45 @@ export function HeroDigitalSuccess() {
       </header>
 
       <div className="relative z-10 flex grow flex-col justify-center px-4 py-10 sm:px-8 md:px-16 md:py-14 lg:px-24">
-        <TimelineAnimation
-          once
-          as="h1"
-          animationNum={4}
-          timelineRef={timelineRef}
-          className="flex max-w-[18ch] flex-col gap-y-1 pb-8 text-[clamp(2.5rem,11vw,4.5rem)] font-medium leading-[1.02] tracking-tight sm:max-w-none sm:pb-10 sm:text-[clamp(3rem,9vw,5.5rem)] xl:flex-row xl:items-baseline xl:gap-x-8 xl:text-[clamp(3.5rem,6.5vw,7rem)]"
-        >
+        <h1 className="flex max-w-[18ch] flex-col gap-y-1 pb-8 text-[clamp(2.5rem,11vw,4.5rem)] font-medium leading-[1.02] tracking-tight sm:max-w-none sm:pb-10 sm:text-[clamp(3rem,9vw,5.5rem)] xl:flex-row xl:items-baseline xl:gap-x-8 xl:text-[clamp(3.5rem,6.5vw,7rem)]">
           AtroUI
           <span className="block bg-linear-to-r from-white via-sky-300 to-blue-400 bg-clip-text pb-2 text-transparent xl:inline-block xl:pb-4">
             Component catalog
           </span>
-        </TimelineAnimation>
+        </h1>
 
         <div className="flex flex-col items-stretch gap-8 sm:items-start lg:flex-row lg:items-center lg:gap-10">
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
-            <TimelineAnimation
-              once
-              as="a"
+            <a
               href="/docs/components"
-              animationNum={5}
-              timelineRef={timelineRef}
               className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.35)] sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
             >
               Browse catalog
-            </TimelineAnimation>
-            <TimelineAnimation
-              once
-              as="a"
+            </a>
+            <a
               href="/docs"
-              animationNum={6}
-              timelineRef={timelineRef}
               className="inline-flex w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-base font-medium backdrop-blur-md sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
             >
               Read the docs
-            </TimelineAnimation>
+            </a>
           </div>
-          <TimelineAnimation
-            once
-            as="p"
-            animationNum={7}
-            timelineRef={timelineRef}
-            className="max-w-md text-base font-light leading-relaxed text-neutral-100 sm:text-lg md:text-xl"
-          >
+          <p className="max-w-md text-base font-light leading-relaxed text-neutral-100 sm:text-lg md:text-xl">
             AtroUI is a React component library and dark-first design system for
             Next.js - primitives, sections, tools, and SEO modules. Home:{" "}
             atroui.com.
-          </TimelineAnimation>
+          </p>
         </div>
       </div>
 
       <div className="relative z-10 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 sm:px-8 md:p-12">
-        <TimelineAnimation
-          once
-          animationNum={8}
-          timelineRef={timelineRef}
-          className="ml-auto grid w-full max-w-3xl grid-cols-2 gap-x-6 gap-y-4 rounded-lg bg-black/25 p-4 backdrop-blur-lg sm:gap-x-10 md:max-w-none md:grid-cols-4 md:p-5"
-        >
-          {catalogBands.map((band, i) => (
-            <TimelineAnimation
-              key={band.title}
-              once
-              animationNum={9 + i}
-              timelineRef={timelineRef}
-            >
+        <div className="ml-auto grid w-full max-w-3xl grid-cols-2 gap-x-6 gap-y-4 rounded-lg bg-black/25 p-4 backdrop-blur-lg sm:gap-x-10 md:max-w-none md:grid-cols-4 md:p-5">
+          {catalogBands.map((band) => (
+            <div key={band.title}>
               <p className="mb-1 text-sm text-white">{band.title}</p>
               <p className="text-xs leading-snug text-neutral-300">{band.body}</p>
-            </TimelineAnimation>
+            </div>
           ))}
-        </TimelineAnimation>
+        </div>
       </div>
     </section>
   )
