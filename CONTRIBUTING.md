@@ -1,37 +1,136 @@
 # Contributing to AtroUI
 
-Thanks for helping improve the catalog. This repo is a pnpm + Turborepo monorepo; the publishable package is **`atroui`** (`packages/ui`).
+Thanks for your interest in contributing. We're happy to have you here.
 
-## Setup
+Please review this guide before your first pull request. Check [open issues](https://github.com/atroui/atroui/issues) and pull requests so you are not duplicating work.
+
+## About this repository
+
+- **Package manager:** [pnpm](https://pnpm.io) + [Turborepo](https://turbo.build)
+- **Publishable package:** [`atroui`](https://www.npmjs.com/package/atroui) in `packages/ui`
+- **Docs / landing:** `apps/docs` → [atroui.com](https://www.atroui.com)
+- **Styling:** Tailwind CSS v4, design tokens in `packages/ui/src/globals.css`
+- **Animation:** [motion](https://motion.dev) (`motion/react`)
+- **Versioning:** [Changesets](https://github.com/changesets/changesets)
+
+## Development
+
+### Fork this repo
+
+Use the **Fork** button on [github.com/atroui/atroui](https://github.com/atroui/atroui).
+
+### Clone your fork
+
+```bash
+git clone https://github.com/<your-username>/atroui.git
+cd atroui
+```
+
+### Create a branch
+
+```bash
+git checkout -b my-new-branch
+```
+
+Default branch is **`master`**.
+
+### Install and run
 
 ```bash
 pnpm install
-pnpm dev          # docs at http://localhost:3000
-pnpm test
+pnpm dev          # http://localhost:3000
 pnpm typecheck
+pnpm test
+pnpm lint
 ```
+
+Copy [`.env.example`](.env.example) to `apps/docs/.env.local` if you need Host API env vars locally.
+
+## Folder structure
+
+```
+/
+├── apps/
+│   └── docs/                      # Next.js docs + landing
+│       ├── app/
+│       ├── components/
+│       └── content/
+├── packages/
+│   ├── ui/                        # `atroui` (published)
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   ├── lib/
+│   │   │   ├── content/           # Optional demo / portfolio copy
+│   │   │   └── globals.css
+│   │   └── CHANGELOG.md
+│   └── typescript-config/
+├── .changeset/
+├── .github/workflows/
+├── CONTRIBUTING.md
+├── LICENSE
+├── SECURITY.md
+└── README.md
+```
+
+| Path | Publish? |
+|------|----------|
+| `packages/ui` (`atroui`) | Yes |
+| `apps/docs` | No (docs site) |
+| `packages/typescript-config` | No |
 
 ## Pull requests
 
-1. Branch from `master`, make your change.
-2. If you touch **`packages/ui`** (components, lib, tokens, package exports), add a **changeset**:
+1. Branch from `master` and make your change.
+2. If you touch **`packages/ui`** (components, lib, tokens, exports), add a **changeset**:
 
    ```bash
    pnpm changeset
    ```
 
-   - Select package: `atroui`
-   - Bump type: **patch** (fixes), **minor** (new features), **major** (breaking)
-   - Write a short, user-facing summary - it lands in `packages/ui/CHANGELOG.md`
-   - Commit the new `.changeset/*.md` file with your PR
+   - Package: `atroui`
+   - Bump: **patch** (fixes), **minor** (features), **major** (breaking)
+   - Short user-facing summary → lands in `packages/ui/CHANGELOG.md`
+   - Commit the new `.changeset/*.md` with your PR
 
-3. Docs-only / CI-only / accidental `packages/ui` path noise: add the GitHub label **`skip-changeset`** so the changeset check can pass.
+3. Docs-only / CI-only changes: add the GitHub label **`skip-changeset`** so the changeset check can pass.
 
-4. Open a PR against `master`. CI runs typecheck, tests, and build.
+4. Open a PR against `master`. CI runs typecheck, lint, test, and build.
+
+## Commit convention
+
+Please follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```text
+category(scope): message
+```
+
+Categories:
+
+| Category | Use for |
+|----------|---------|
+| `feat` | New feature or capability |
+| `fix` | Bug fix |
+| `refactor` | Code change that is neither fix nor feature |
+| `docs` | README, CONTRIBUTING, docs site copy |
+| `build` | Build tooling or dependency changes |
+| `test` | Tests |
+| `ci` | GitHub Actions / CI config |
+| `chore` | Misc repo maintenance |
+
+Examples:
+
+```text
+feat(ui): add ThemeToggle size prop
+fix(docs): correct installation import path
+docs(readme): add security policy link
+chore(ci): pin actions to full SHAs
+```
+
+## Requests for new components
+
+Open a [GitHub Discussion](https://github.com/atroui/atroui/discussions) or issue describing the component, intended API, and whether it needs a Host API. Prefer patterns that match the existing dark-first Digital Success tokens.
 
 ## Release pipeline (maintainers)
-
-Automated with [Changesets](https://github.com/changesets/changesets):
 
 ```text
 Contributor PR (+ changeset)
@@ -42,52 +141,31 @@ Release Action opens/updates “Version Packages” PR
 changeset publish → npm (atroui@x.y.z)
 ```
 
-### One-time secrets setup
+### Secrets
 
 **npm publish - pick one:**
 
-1. **NPM token:** Automation token on npmjs.com → repo **Settings → Secrets → Actions** → `NPM_TOKEN`.
-2. **Trusted Publishing (OIDC):** on the `atroui` package on npmjs.com, trust workflow `release.yml`.
+1. **NPM token:** Automation token → repo **Settings → Secrets → Actions** → `NPM_TOKEN`
+2. **Trusted Publishing (OIDC):** trust workflow `release.yml` on the `atroui` npm package
 
-**Version Packages PRs:** many orgs block both `GITHUB_TOKEN` and PATs from creating PRs.
+If org rules block automatic Version Packages PRs, open manually from `changeset-release/master` after the Release workflow runs:
 
-What still works automatically: the Release workflow pushes branch `changeset-release/master` with the version bump + CHANGELOG.
-
-**Your step after each release run that has pending changesets:**
-
-1. Open:  
-   `https://github.com/atroui/atroui/compare/master...changeset-release/master?expand=1`
-2. Create the PR → merge it.
-3. That merge triggers publish (`changeset publish` + `NPM_TOKEN`).
-
-Optional: if your org allows it later, enable “Allow GitHub Actions to create and approve pull requests”, or add a working `GH_PAT` with Pull requests write + SSO authorize - then PRs can open automatically again.
-
-## Package layout
-
-| Path | Publish? |
-|------|----------|
-| `packages/ui` (`atroui`) | Yes |
-| `apps/docs` | No (docs site) |
-| `packages/typescript-config` | No |
-
-Changelog UI: [/docs/changelog](https://atroui.com/docs/changelog) reads `packages/ui/CHANGELOG.md`.
+`https://github.com/atroui/atroui/compare/master...changeset-release/master?expand=1`
 
 ## GitHub repo hygiene (maintainers)
 
-On [github.com/atroui/atroui](https://github.com/atroui/atroui) keep:
+On [github.com/atroui/atroui](https://github.com/atroui/atroui):
 
-- **Description** aligned with npm: production React / Next.js component library · atroui.com
+- **Description:** production React / Next.js component library · atroui.com
 - **Topics:** `react`, `nextjs`, `design-system`, `tailwind`, `ui`, `components`, `atroui`
-- **Social preview** - uses site OG (`atroui.com/opengraph-image`) after deploy
-- **Website** field: `https://atroui.com`
+- **Website:** `https://www.atroui.com`
+- **License:** MIT (see [LICENSE](./LICENSE))
+- **Security policy:** [SECURITY.md](./SECURITY.md)
 
-## SEO & growth checklist (monthly)
+## Code of conduct
 
-After each docs deploy to **atroui.com**:
+Be respectful in issues, PRs, and discussions. Harassment or spam will be closed.
 
-1. [Google Search Console](https://search.google.com/search-console) - property `atroui.com` verified; submit `https://www.atroui.com/sitemap.xml` if new.
-2. Spot-check brand query **atroui** / **atroui.com** - site should be #1 once indexed.
-3. Refresh titles/descriptions on the top 5 docs URLs by impressions (GSC Performance).
-4. Ship 1–2 posts under `/blog` or update existing ones; keep internal links to `/docs/*`.
-5. Confirm satellite backlinks still point at atroui.com (iamk.xyz, makershot.tech).
-6. Optional: npm download trend + GitHub traffic - no ads until brand SERP is stable.
+## License
+
+By contributing, you agree that your contributions will be licensed under the [MIT License](./LICENSE).

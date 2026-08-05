@@ -1,6 +1,7 @@
 {
   "name": "@atroui/monorepo",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "turbo run dev --filter=@atroui/docs",
     "build": "turbo run build",
