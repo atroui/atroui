@@ -5,6 +5,10 @@ import path from "path"
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   transpilePackages: ["atroui", "@shadergradient/react"],
+  env: {
+    // Docs site ships the portrait under public/; consumer apps omit this.
+    NEXT_PUBLIC_FOUNDER_AVATAR: "/images/founder-portrait.png",
+  },
   experimental: {
     optimizePackageImports: [
       "atroui",
