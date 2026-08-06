@@ -8,7 +8,10 @@
       "type": "registry:lib",
       "title": "Utils",
       "description": "cn() helper (clsx + tailwind-merge).",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/default/lib/utils.ts",
@@ -35,8 +38,13 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "AtroUI button with CVA variants. Source lands in your project.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@atroui/utils"],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/button.tsx",
@@ -50,8 +58,13 @@
       "type": "registry:ui",
       "title": "Theme Toggle",
       "description": "Light / system / dark toggle using next-themes.",
-      "dependencies": ["lucide-react", "next-themes"],
-      "registryDependencies": ["@atroui/utils"],
+      "dependencies": [
+        "lucide-react",
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/theme-toggle.tsx",
@@ -65,7 +78,9 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Elevated surface with header, content, and footer slots.",
-      "registryDependencies": ["@atroui/utils"],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/card.tsx",
@@ -79,7 +94,9 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "Multi-line text input styled for AtroUI forms.",
-      "registryDependencies": ["@atroui/utils"],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/textarea.tsx",
@@ -93,8 +110,13 @@
       "type": "registry:ui",
       "title": "Form Select",
       "description": "Accessible select built on Base UI.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@atroui/utils"],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/form-select.tsx",
@@ -108,8 +130,13 @@
       "type": "registry:ui",
       "title": "Breadcrumbs",
       "description": "Path navigation trail for docs and product pages.",
-      "dependencies": ["lucide-react", "next"],
-      "registryDependencies": ["@atroui/utils"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/breadcrumbs.tsx",
@@ -123,7 +150,9 @@
       "type": "registry:ui",
       "title": "Prose",
       "description": "Long-form typography container for articles and MDX.",
-      "registryDependencies": ["@atroui/utils"],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/prose.tsx",
@@ -137,7 +166,9 @@
       "type": "registry:ui",
       "title": "Fade In",
       "description": "Scroll-triggered fade + rise using motion.",
-      "dependencies": ["motion"],
+      "dependencies": [
+        "motion"
+      ],
       "files": [
         {
           "path": "registry/default/ui/fade-in.tsx",
@@ -151,7 +182,9 @@
       "type": "registry:ui",
       "title": "Stagger",
       "description": "Stagger children on scroll with StaggerChild.",
-      "dependencies": ["motion"],
+      "dependencies": [
+        "motion"
+      ],
       "files": [
         {
           "path": "registry/default/ui/stagger.tsx",
@@ -165,8 +198,12 @@
       "type": "registry:ui",
       "title": "Scroll Progress",
       "description": "Reading-progress bar driven by scroll position.",
-      "dependencies": ["motion"],
-      "registryDependencies": ["@atroui/utils"],
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/scroll-progress.tsx",
@@ -180,7 +217,10 @@
       "type": "registry:component",
       "title": "Logo",
       "description": "Interrupted-A mark and wordmark. Edit the SVG in your repo.",
-      "registryDependencies": ["@atroui/utils", "@atroui/brand"],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/brand"
+      ],
       "files": [
         {
           "path": "registry/default/brand/logo.tsx",
@@ -194,8 +234,13 @@
       "type": "registry:block",
       "title": "Home Hero",
       "description": "Docs-matching homepage hero with editable CONTENT (stamp, CTAs, sprint, OG preview panel).",
-      "dependencies": ["lucide-react", "next"],
-      "registryDependencies": ["@atroui/brand"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/home-hero.tsx",
@@ -209,8 +254,13 @@
       "type": "registry:block",
       "title": "Home Who",
       "description": "Founder / who band with editable CONTENT constants.",
-      "dependencies": ["lucide-react", "next"],
-      "registryDependencies": ["@atroui/brand"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/home-who.tsx",
@@ -224,7 +274,11 @@
       "type": "registry:block",
       "title": "Site Header",
       "description": "Sticky site header with editable NAV and CTA.",
-      "dependencies": ["lucide-react", "motion", "next"],
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "next"
+      ],
       "registryDependencies": [
         "@atroui/utils",
         "@atroui/brand",
@@ -244,8 +298,12 @@
       "type": "registry:block",
       "title": "Bold Footer",
       "description": "Bold footer with editable headline, studio links, and socials.",
-      "dependencies": ["next"],
-      "registryDependencies": ["@atroui/brand"],
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/footer-bold.tsx",
@@ -272,7 +330,10 @@
       "type": "registry:block",
       "title": "Home Work",
       "description": "Selected work band with editable PROJECTS list.",
-      "dependencies": ["lucide-react", "next"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/home-work.tsx",
@@ -286,7 +347,10 @@
       "type": "registry:block",
       "title": "Home Lab",
       "description": "Free tools / lab band with editable TOOLS catalog.",
-      "dependencies": ["lucide-react", "next"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/home-lab.tsx",
@@ -300,7 +364,10 @@
       "type": "registry:block",
       "title": "Pricing Overview",
       "description": "Fixed-package pricing band with editable CONTENT and PACKAGES.",
-      "dependencies": ["lucide-react", "next"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/pricing-overview.tsx",
@@ -314,7 +381,10 @@
       "type": "registry:block",
       "title": "Contextual CTA",
       "description": "Sticky scroll CTA with editable CONTENT (no analytics wiring).",
-      "dependencies": ["lucide-react", "next"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/contextual-cta.tsx",
@@ -328,7 +398,10 @@
       "type": "registry:block",
       "title": "Exit Intent Popup",
       "description": "Exit-intent dialog with editable CONTENT and storage keys.",
-      "dependencies": ["lucide-react", "next"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/exit-intent-popup.tsx",
@@ -342,7 +415,9 @@
       "type": "registry:block",
       "title": "Contact Form",
       "description": "Multi-step contact form with editable CONTENT; posts to your API.",
-      "dependencies": ["lucide-react"],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/contact-form.tsx",
@@ -356,8 +431,12 @@
       "type": "registry:block",
       "title": "Site Footer",
       "description": "Lighter footer with editable CONTENT and link columns.",
-      "dependencies": ["next"],
-      "registryDependencies": ["@atroui/brand"],
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/site-footer.tsx",
@@ -371,7 +450,10 @@
       "type": "registry:block",
       "title": "FAQ",
       "description": "Accordion FAQ with editable CONTENT and ITEMS.",
-      "dependencies": ["lucide-react", "next"],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/faq.tsx",
@@ -385,7 +467,9 @@
       "type": "registry:block",
       "title": "Waitlist Form",
       "description": "Email waitlist form with editable CONTENT; posts to your API.",
-      "dependencies": ["lucide-react"],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/waitlist-form.tsx",
@@ -399,7 +483,9 @@
       "type": "registry:block",
       "title": "Newsletter Form",
       "description": "Email newsletter form with editable CONTENT; posts to your API.",
-      "dependencies": ["lucide-react"],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/newsletter-form.tsx",
@@ -413,8 +499,12 @@
       "type": "registry:block",
       "title": "Calendly Embed",
       "description": "Theme-aware Calendly iframe with editable CONTENT and email fallback.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@atroui/brand"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/calendly-embed.tsx",
@@ -428,13 +518,428 @@
       "type": "registry:block",
       "title": "Made With Embed",
       "description": "Credit badge + copyable HTML snippet with editable CONTENT.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@atroui/brand"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/made-with-embed.tsx",
           "type": "registry:component",
           "target": "components/blocks/made-with-embed.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:ui",
+      "title": "Theme Provider",
+      "description": "next-themes wrapper for class-based dark mode.",
+      "dependencies": [
+        "next-themes"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/theme-provider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/theme-provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "mockup-frame",
+      "type": "registry:ui",
+      "title": "Mockup Frame",
+      "description": "Browser-frame UI placeholder for case studies.",
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/mockup-frame.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/mockup-frame.tsx"
+        }
+      ]
+    },
+    {
+      "name": "timeline-animation",
+      "type": "registry:ui",
+      "title": "Timeline Animation",
+      "description": "Scroll-linked sequenced motion for hero timelines.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/timeline-animation.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/timeline-animation.tsx"
+        }
+      ]
+    },
+    {
+      "name": "founder-avatar",
+      "type": "registry:ui",
+      "title": "Founder Avatar",
+      "description": "Circular founder portrait with editable CONTENT src.",
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/brand"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/founder-avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/founder-avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "site-url",
+      "type": "registry:lib",
+      "title": "Site URL",
+      "description": "getSiteUrl() for metadata and JSON-LD.",
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
+      "files": [
+        {
+          "path": "registry/default/lib/site-url.ts",
+          "type": "registry:lib",
+          "target": "lib/site-url.ts"
+        }
+      ]
+    },
+    {
+      "name": "seo",
+      "type": "registry:lib",
+      "title": "SEO helpers",
+      "description": "getSiteDomain() helper for structured data.",
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
+      "files": [
+        {
+          "path": "registry/default/lib/seo.ts",
+          "type": "registry:lib",
+          "target": "lib/seo.ts"
+        }
+      ]
+    },
+    {
+      "name": "analytics",
+      "type": "registry:lib",
+      "title": "Analytics",
+      "description": "trackEvent and experiment helpers.",
+      "files": [
+        {
+          "path": "registry/default/lib/analytics.ts",
+          "type": "registry:lib",
+          "target": "lib/analytics.ts"
+        }
+      ]
+    },
+    {
+      "name": "social-share",
+      "type": "registry:block",
+      "title": "Social Share",
+      "description": "X / LinkedIn / copy-link share bar.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/social-share.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/social-share.tsx"
+        }
+      ]
+    },
+    {
+      "name": "before-after-slider",
+      "type": "registry:block",
+      "title": "Before / After",
+      "description": "Compare wireframe vs shipped UI mockups.",
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/mockup-frame"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/before-after-slider.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/before-after-slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "visual-case-study",
+      "type": "registry:block",
+      "title": "Case Study",
+      "description": "Case study band with editable CONTENT and before/after.",
+      "registryDependencies": [
+        "@atroui/before-after-slider"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/visual-case-study.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/visual-case-study.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ar-portfolio",
+      "type": "registry:block",
+      "title": "AR Portfolio",
+      "description": "model-viewer AR portfolio with editable CONTENT models.",
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/fade-in"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/ar-portfolio.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/ar-portfolio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "live-dashboard",
+      "type": "registry:block",
+      "title": "Live Dashboard",
+      "description": "Studio status board with editable CONTENT projects.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/fade-in"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/live-dashboard.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/live-dashboard.tsx"
+        }
+      ]
+    },
+    {
+      "name": "project-planner",
+      "type": "registry:block",
+      "title": "Project Planner",
+      "description": "Multi-step project scoping planner UI.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/project-planner.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/project-planner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-schema",
+      "type": "registry:block",
+      "title": "Testimonial Schema",
+      "description": "Review JSON-LD with editable CONTENT.",
+      "registryDependencies": [
+        "@atroui/brand",
+        "@atroui/site-url"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/testimonial-schema.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/testimonial-schema.tsx"
+        }
+      ]
+    },
+    {
+      "name": "json-ld",
+      "type": "registry:block",
+      "title": "JSON-LD",
+      "description": "Site graph, article, FAQ, and breadcrumb JSON-LD helpers.",
+      "registryDependencies": [
+        "@atroui/brand",
+        "@atroui/site-url",
+        "@atroui/seo"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/json-ld.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/json-ld.tsx"
+        }
+      ]
+    },
+    {
+      "name": "analytics-provider",
+      "type": "registry:block",
+      "title": "Analytics Provider",
+      "description": "Plausible / GA loader with trackEvent helpers.",
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/analytics-provider.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/analytics-provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "og-live-preview",
+      "type": "registry:block",
+      "title": "OG Live Preview",
+      "description": "CSS OG card preview with editable CONTENT presets.",
+      "files": [
+        {
+          "path": "registry/default/blocks/og-live-preview.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/og-live-preview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "og-examples",
+      "type": "registry:block",
+      "title": "OG Examples",
+      "description": "OG style gallery with editable CONTENT examples.",
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/og-live-preview"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/og-examples.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/og-examples.tsx"
+        }
+      ]
+    },
+    {
+      "name": "og-workspace",
+      "type": "registry:block",
+      "title": "OG Workspace",
+      "description": "OG generator UI shell. Wire CONTENT.endpoint (Host API).",
+      "registryDependencies": [
+        "@atroui/og-live-preview"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/og-workspace.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/og-workspace.tsx"
+        }
+      ]
+    },
+    {
+      "name": "thumbnail-live-preview",
+      "type": "registry:block",
+      "title": "Thumbnail Preview",
+      "description": "CSS thumbnail preview with editable CONTENT.",
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/thumbnail-live-preview.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/thumbnail-live-preview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "thumbnail-workspace",
+      "type": "registry:block",
+      "title": "Thumbnail Workspace",
+      "description": "Thumbnail generator UI shell. Wire CONTENT.endpoint (Host API).",
+      "registryDependencies": [
+        "@atroui/thumbnail-live-preview"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/thumbnail-workspace.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/thumbnail-workspace.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scope-chat",
+      "type": "registry:block",
+      "title": "Scope Chat",
+      "description": "AI scoping chat UI. Wire CONTENT.endpoint (Host API).",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/scope-chat.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/scope-chat.tsx"
+        }
+      ]
+    },
+    {
+      "name": "journal-content",
+      "type": "registry:block",
+      "title": "Journal",
+      "description": "Blog index layout with editable CONTENT posts.",
+      "dependencies": [
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/journal-content.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/journal-content.tsx"
+        }
+      ]
+    },
+    {
+      "name": "resources-content",
+      "type": "registry:block",
+      "title": "Resources",
+      "description": "Resource library layout with editable CONTENT items.",
+      "dependencies": [
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/resources-content.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/resources-content.tsx"
         }
       ]
     }

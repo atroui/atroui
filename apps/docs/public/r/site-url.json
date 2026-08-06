@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "site-url",
+  "title": "Site URL",
+  "description": "getSiteUrl() for metadata and JSON-LD.",
+  "registryDependencies": [
+    "@atroui/brand"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/site-url.ts",
+      "content": "/**\n * Canonical public site URL for metadata, sitemap, and JSON-LD.\n */\n\nimport { getBrand } from \"@/lib/brand\";\n\nexport function getSiteUrl(): string {\n  const brand = getBrand();\n\n  // Prefer explicit public URL, then brand default. Only use Vercel deployment\n  // host on preview builds so production JSON-LD / OG never point at *.vercel.app.\n  const raw =\n    process.env.NEXT_PUBLIC_SITE_URL ||\n    (process.env.VERCEL_ENV === \"preview\" && process.env.VERCEL_URL\n      ? `https://${process.env.VERCEL_URL}`\n      : brand.siteUrl);\n\n  // Prefer www for apex hosts when crawlers are picky about og:image redirects.\n  try {\n    const url = new URL(raw);\n    const apex = brand.domain.replace(/^www\\./, \"\");\n    if (url.hostname === apex) {\n      url.hostname = `www.${apex}`;\n      return url.toString().replace(/\\/$/, \"\");\n    }\n  } catch {\n    // fall through\n  }\n  return raw.replace(/\\/$/, \"\");\n}\n",
+      "type": "registry:lib",
+      "target": "lib/site-url.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

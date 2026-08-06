@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "thumbnail-live-preview",
+  "title": "Thumbnail Preview",
+  "description": "CSS thumbnail preview with editable CONTENT.",
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/thumbnail-live-preview.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** Edit CONTENT for default preview copy. */\nconst CONTENT = {\n  title: \"How we shipped in 7 days\",\n  subtitle: \"MVP sprint walkthrough\",\n  format: \"youtube\" as const,\n}\n\nexport function ThumbnailLivePreview({\n  title = CONTENT.title,\n  subtitle = CONTENT.subtitle,\n  format = CONTENT.format,\n  className,\n}: {\n  title?: string\n  subtitle?: string\n  format?: \"youtube\" | \"linkedin\"\n  className?: string\n}) {\n  return (\n    <div\n      className={cn(\n        \"relative overflow-hidden rounded-xl border border-border-subtle bg-gradient-to-br from-neutral-900 via-neutral-800 to-brand/30\",\n        format === \"youtube\" ? \"aspect-video\" : \"aspect-[1.91/1]\",\n        className\n      )}\n    >\n      <div className=\"absolute inset-0 flex flex-col justify-end p-6 sm:p-8\">\n        <p className=\"text-xs font-semibold uppercase tracking-[0.12em] text-sky-300/90\">\n          {format}\n        </p>\n        <p className=\"mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl\">\n          {title}\n        </p>\n        <p className=\"mt-2 text-sm text-neutral-300\">{subtitle}</p>\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/thumbnail-live-preview.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

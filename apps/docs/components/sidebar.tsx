@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { createPortal } from "react-dom"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ChevronDown, Menu, X } from "lucide-react"
@@ -83,7 +84,12 @@ export function DocsSidebar({ className }: { className?: string }) {
 
 export function MobileSidebar() {
   const [open, setOpen] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
   const pathname = usePathname()
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   React.useEffect(() => {
     setOpen(false)
@@ -91,12 +97,64 @@ export function MobileSidebar() {
 
   React.useEffect(() => {
     if (!open) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
     const prev = document.body.style.overflow
     document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", onKeyDown)
     return () => {
       document.body.style.overflow = prev
+      window.removeEventListener("keydown", onKeyDown)
     }
   }, [open])
+
+  // Portal out of the sticky header: backdrop-filter creates a containing
+  // block that would clip position:fixed to the header bar.
+  const drawer =
+    open && mounted
+      ? createPortal(
+          <div
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Documentation menu"
+          >
+            <button
+              type="button"
+              className="absolute inset-0 cursor-default"
+              aria-label="Close menu backdrop"
+              onClick={() => setOpen(false)}
+            />
+            <div className="relative flex h-full w-[min(18rem,calc(100vw-2.5rem))] flex-col border-r border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5">
+              <div className="mb-5 flex items-center justify-between gap-3">
+                <Link
+                  href="/"
+                  className="flex min-w-0 items-center gap-2"
+                  onClick={() => setOpen(false)}
+                >
+                  <LogoMark />
+                  <span className="truncate text-[15px] font-medium text-foreground">
+                    AtroUI
+                  </span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="inline-flex size-9 shrink-0 items-center justify-center rounded-full text-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
+                <DocsSidebar />
+              </div>
+            </div>
+          </div>,
+          document.body
+        )
+      : null
 
   return (
     <div className="lg:hidden">
@@ -104,45 +162,12 @@ export function MobileSidebar() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open menu"
+        aria-expanded={open}
         className="inline-flex size-9 items-center justify-center rounded-full border border-border-subtle bg-white/5 text-foreground"
       >
         <Menu className="h-4 w-4" />
       </button>
-      {open ? (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
-          <button
-            type="button"
-            className="absolute inset-0 cursor-default"
-            aria-label="Close menu backdrop"
-            onClick={() => setOpen(false)}
-          />
-          <div className="fixed inset-y-0 left-0 flex w-[min(18rem,calc(100vw-2.5rem))] flex-col border-r border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5">
-            <div className="mb-5 flex items-center justify-between gap-3">
-              <Link
-                href="/"
-                className="flex min-w-0 items-center gap-2"
-                onClick={() => setOpen(false)}
-              >
-                <LogoMark />
-                <span className="truncate text-[15px] font-medium text-foreground">
-                  AtroUI
-                </span>
-              </Link>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="inline-flex size-9 shrink-0 items-center justify-center rounded-full text-foreground"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
-              <DocsSidebar />
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {drawer}
     </div>
   )
 }

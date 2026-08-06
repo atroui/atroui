@@ -12,6 +12,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="timeline-animation"
       href="/docs/components/ui-timeline-animation"
       title="Timeline Animation"
       description="Sequenced scroll-triggered timeline items."

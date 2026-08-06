@@ -31,12 +31,19 @@ npx shadcn@latest add @atroui/home-hero
 
 ### Primitives
 - @atroui/button, @atroui/card, @atroui/textarea, @atroui/form-select
-- @atroui/breadcrumbs, @atroui/prose, @atroui/theme-toggle, @atroui/logo
+- @atroui/breadcrumbs, @atroui/prose, @atroui/theme-toggle, @atroui/theme-provider, @atroui/logo
+- @atroui/mockup-frame, @atroui/timeline-animation, @atroui/founder-avatar
 - @atroui/fade-in, @atroui/stagger, @atroui/scroll-progress
 
 ### Blocks
 - @atroui/home-hero, @atroui/site-header, @atroui/site-footer, @atroui/faq
 - @atroui/pricing-overview, @atroui/contact-form, @atroui/waitlist-form
+- @atroui/social-share, @atroui/before-after-slider, @atroui/visual-case-study
+- @atroui/ar-portfolio, @atroui/live-dashboard, @atroui/project-planner
+- @atroui/json-ld, @atroui/testimonial-schema, @atroui/analytics-provider
+- @atroui/og-live-preview, @atroui/og-workspace, @atroui/thumbnail-workspace, @atroui/scope-chat
+
+Full catalog: https://www.atroui.com/r/registry.json
 
 ## Blog
 

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "seo",
+  "title": "SEO helpers",
+  "description": "getSiteDomain() helper for structured data.",
+  "registryDependencies": [
+    "@atroui/brand"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/seo.ts",
+      "content": "/**\n * Minimal SEO helpers for registry JSON-LD items.\n * Prefer NEXT_PUBLIC_SITE_DOMAIN / getBrand().domain.\n */\n\nimport { getBrand } from \"@/lib/brand\"\n\nexport function getSiteDomain(): string {\n  return getBrand().domain\n}\n",
+      "type": "registry:lib",
+      "target": "lib/seo.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

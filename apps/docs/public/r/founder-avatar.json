@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "founder-avatar",
+  "title": "Founder Avatar",
+  "description": "Circular founder portrait with editable CONTENT src.",
+  "dependencies": [
+    "next"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/brand"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/founder-avatar.tsx",
+      "content": "import Image from \"next/image\"\n\nimport { getBrand } from \"@/lib/brand\"\nimport { cn } from \"@/lib/utils\"\n\n/** Edit CONTENT to point at your founder portrait in /public. */\nconst CONTENT = {\n  /** Path under public/, or absolute URL. Empty falls back to initials. */\n  src: \"\",\n  initials: \"\",\n}\n\nconst sizeClass = {\n  sm: \"size-8 text-[10px]\",\n  md: \"size-9 text-[11px]\",\n  lg: \"size-11 text-xs\",\n} as const\n\nexport type FounderAvatarSize = keyof typeof sizeClass\n\ntype FounderAvatarProps = {\n  size?: FounderAvatarSize\n  className?: string\n  src?: string\n  initials?: string\n}\n\nfunction resolveSrc(src?: string): string {\n  if (src?.trim()) return src.trim()\n  if (CONTENT.src.trim()) return CONTENT.src.trim()\n  if (typeof process !== \"undefined\" && process.env) {\n    const fromEnv = process.env.NEXT_PUBLIC_FOUNDER_AVATAR?.trim()\n    if (fromEnv) return fromEnv\n  }\n  return \"\"\n}\n\nfunction resolveInitials(initials?: string): string {\n  if (initials?.trim()) return initials.trim().slice(0, 2).toUpperCase()\n  if (CONTENT.initials.trim()) return CONTENT.initials.trim().slice(0, 2).toUpperCase()\n  const name = getBrand().name.trim()\n  const parts = name.split(/\\s+/).filter(Boolean)\n  if (parts.length >= 2) {\n    return `${parts[0]![0] ?? \"\"}${parts[1]![0] ?? \"\"}`.toUpperCase()\n  }\n  return (name.slice(0, 2) || \"A\").toUpperCase()\n}\n\n/**\n * Circular founder portrait for signature rows.\n * Decorative - adjacent text carries the name.\n */\nexport function FounderAvatar({\n  size = \"sm\",\n  className,\n  src,\n  initials,\n}: FounderAvatarProps) {\n  const image = resolveSrc(src)\n  const label = resolveInitials(initials)\n\n  return (\n    <span\n      aria-hidden\n      className={cn(\n        \"relative inline-flex shrink-0 overflow-hidden rounded-full ring-1 ring-black/10 dark:ring-white/15\",\n        sizeClass[size],\n        className\n      )}\n    >\n      {image ? (\n        <Image\n          src={image}\n          alt=\"\"\n          width={176}\n          height={176}\n          className=\"size-full object-cover object-[center_25%]\"\n          sizes=\"44px\"\n        />\n      ) : (\n        <span className=\"flex size-full items-center justify-center bg-brand/20 font-semibold tracking-wide text-brand\">\n          {label}\n        </span>\n      )}\n    </span>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/founder-avatar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

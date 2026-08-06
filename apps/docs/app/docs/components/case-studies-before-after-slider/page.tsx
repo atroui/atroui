@@ -12,11 +12,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="before-after-slider"
       href="/docs/components/case-studies-before-after-slider"
       title="Before After Slider"
       description="Interactive before/after comparison."
       preview={<DemoBeforeAfterSlider />}
-      code={'import { BeforeAfterSlider } from "@/components/case-studies/before-after-slider"\n\n<BeforeAfterSlider variant="saas" />'}
+      code={'import { BeforeAfterSlider } from "@/components/blocks/before-after-slider"\n\n<BeforeAfterSlider variant="saas" />'}
       fullBleed={false}
       props={[
     { name: 'variant', type: 'MockupVariant', default: "'saas'", description: 'Mockup style.' },
