@@ -43,6 +43,25 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source:
+          "/:file(favicon.ico|favicon-48.png|favicon-96.png|favicon-192.png|apple-touch-icon.png|icon-512.png|icon.png|site.webmanifest)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+      {
+        source: "/brand/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+      {
         // Registry JSON is public by design - still prevent MIME sniffing / framing
         source: "/r/:path*",
         headers: [
