@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/analytics-analytics-provider"
       title="Analytics Provider"
       description="Headless analytics + experiment helper. Loads Plausible/GA when env is set; no visible UI."
       preview={<DemoAnalyticsProvider />}

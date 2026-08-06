@@ -11,13 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/home-who"
       registryName="home-who"
       title="Who"
       description="Founder / who-we-are section. Brand name and email default to getBrand()."
       preview={<DemoHomeWho />}
-      code={
-        'import { HomeWho } from "atroui"\n\n<HomeWho />\n\n{/* Rebrand */}\n<HomeWho brandName="Acme" email="hello@acme.test" />'
-      }
+      code={'import { HomeWho } from "@/components/blocks/home-who"\n\n<HomeWho />\n\n{/* Rebrand */}\n<HomeWho brandName="Acme" email="hello@acme.test" />'}
       fullBleed={true}
       usage="Pass brandName, email, or bio to override AtroUI defaults. Richer studio narrative still lives under atroui/content for other sections."
       props={[

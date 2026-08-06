@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/ar-ar-portfolio"
       title="AR Portfolio"
       description="model-viewer showcase with AR modes - demo GLBs until you swap the model list."
       preview={<DemoArPortfolio />}

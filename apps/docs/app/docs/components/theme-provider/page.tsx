@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Theme Provider'
-      description='App-level next-themes wrapper. No visible chrome of its own - mount once at the root so ThemeToggle and dark tokens work.'
+      href="/docs/components/theme-provider"
+      title="Theme Provider"
+      description="App-level next-themes wrapper. No visible chrome of its own - mount once at the root so ThemeToggle and dark tokens work."
       preview={<DemoThemeProviderNote />}
       code={
         'import { ThemeProvider, ThemeToggle } from "atroui"\n\n' +
@@ -23,7 +24,7 @@ export default function Page() {
         "<ThemeToggle />"
       }
       fullBleed={false}
-      usage='Wrap the app root once with enableSystem so ThemeToggle’s System option follows prefers-color-scheme. Docs already mounts it this way.'
+      usage="Wrap the app root once with enableSystem so ThemeToggle’s System option follows prefers-color-scheme. Docs already mounts it this way."
     />
   )
 }

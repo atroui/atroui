@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Components",
   description:
-    "Browse the AtroUI component catalog - primitives, sections, tools, and headless SEO modules for React and Next.js.",
+    "Browse the AtroUI component catalog - primitives, blocks, tools, and headless SEO modules for React and Next.js.",
   path: "/docs/components",
 })
 
@@ -21,8 +21,12 @@ export default function ComponentsIndexPage() {
           Components
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          Production UI curated into primitives, sections, tools, and headless
-          modules - themed with AtroUI&rsquo;s digital system.
+          Production UI curated into primitives, blocks, tools, and headless
+          modules. Items tagged CLI install with{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            npx shadcn@latest add @atroui/…
+          </code>
+          .
         </p>
       </header>
 
@@ -39,7 +43,13 @@ export default function ComponentsIndexPage() {
                   <span>{item.title}</span>
                   <span className="flex items-center gap-3">
                     {item.badge ? (
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+                      <span
+                        className={`text-[10px] font-semibold uppercase tracking-[0.06em] ${
+                          item.badge === "registry" || item.badge === "host-api"
+                            ? "text-brand"
+                            : "text-muted-foreground"
+                        }`}
+                      >
                         {badgeLabel[item.badge]}
                       </span>
                     ) : null}

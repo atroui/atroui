@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Before After Slider'
-      description='Interactive before/after comparison.'
+      href="/docs/components/case-studies-before-after-slider"
+      title="Before After Slider"
+      description="Interactive before/after comparison."
       preview={<DemoBeforeAfterSlider />}
       code={'import { BeforeAfterSlider } from "atroui"\n\n<BeforeAfterSlider variant="saas" />'}
       fullBleed={false}

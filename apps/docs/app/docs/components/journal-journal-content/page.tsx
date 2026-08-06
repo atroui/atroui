@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Journal Content'
-      description='Journal listing / content.'
+      href="/docs/components/journal-journal-content"
+      title="Journal Content"
+      description="Journal listing / content."
       preview={<DemoJournalContent />}
       code={'import { JournalContent } from "atroui"\n\n<JournalContent />'}
       fullBleed={true}

@@ -28,9 +28,15 @@ export function CommandMenu() {
     setOpen(false)
   }, [pathname])
 
-  const results = allNavItems.filter((item) =>
-    item.title.toLowerCase().includes(query.toLowerCase())
-  )
+  const q = query.toLowerCase().trim()
+  const results = allNavItems.filter((item) => {
+    if (!q) return true
+    return (
+      item.title.toLowerCase().includes(q) ||
+      item.description?.toLowerCase().includes(q) ||
+      item.href.toLowerCase().includes(q)
+    )
+  })
 
   return (
     <>
@@ -95,7 +101,7 @@ export function CommandMenu() {
                       <span
                         className={cn(
                           "shrink-0 text-[10px] font-semibold uppercase tracking-[0.06em]",
-                          item.badge === "host-api"
+                          item.badge === "host-api" || item.badge === "registry"
                             ? "text-brand"
                             : "text-muted-foreground"
                         )}

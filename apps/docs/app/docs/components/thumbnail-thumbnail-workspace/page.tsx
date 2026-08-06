@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/thumbnail-thumbnail-workspace"
       title="Thumbnail Workspace"
       description="Thumbnail generator workspace UI. Catalog demos do not call paid image APIs."
       preview={<DemoThumbnailWorkspace />}

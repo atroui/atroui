@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/seo-testimonial-schema"
       title="Testimonial Schema"
       description="Emits individual schema.org Review nodes from studio testimonials. Headless - no AggregateRating by design."
       preview={<DemoTestimonialSchema />}

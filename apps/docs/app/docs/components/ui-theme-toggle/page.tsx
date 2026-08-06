@@ -11,13 +11,14 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/ui-theme-toggle"
       registryName="theme-toggle"
-      title='Theme Toggle'
-      description='Light / dark theme switch.'
+      title="Theme Toggle"
+      description="Light / dark theme switch."
       preview={<DemoThemeToggle />}
-      code={'import { ThemeToggle } from "atroui"\n\n<ThemeToggle />'}
+      code={'import { ThemeToggle } from "@/components/ui/theme-toggle"\n\n<ThemeToggle />'}
       fullBleed={false}
-      usage='Requires next-themes ThemeProvider.'
+      usage="Requires next-themes ThemeProvider."
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}

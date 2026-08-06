@@ -11,13 +11,13 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      registryName="pricing-overview"
-      title='Crafts'
-      description='Pricing / crafts overview section from the homepage.'
+      href="/docs/components/home-crafts"
+      title="Crafts"
+      description="Pricing crafts band from the homepage. Prefer @atroui/pricing-overview from the registry for owned source."
       preview={<DemoHomeCrafts />}
       code={'import { HomeCrafts } from "atroui"\n\n<HomeCrafts />'}
       fullBleed={true}
-      usage='Homepage section - place below the hero.'
+      usage="Homepage section - place below the hero. For CLI install, use pricing-overview instead."
     />
   )
 }

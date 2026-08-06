@@ -11,13 +11,14 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/newsletter-newsletter-form"
       registryName="newsletter-form"
-      title='Newsletter Form'
-      description='Email capture form.'
+      title="Newsletter Form"
+      description="Email capture form."
       preview={<DemoNewsletterForm />}
       code={'import { NewsletterForm } from "@/components/blocks/newsletter-form"\n\n<NewsletterForm />'}
       fullBleed={false}
-      usage='Posts to CONTENT.endpoint (default /api/newsletter). Host API.'
+      usage="Posts to CONTENT.endpoint (default /api/newsletter). Host API."
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}

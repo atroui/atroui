@@ -11,9 +11,10 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/site-footer"
       registryName="site-footer"
-      title='Site Footer'
-      description='Lighter marketing footer with editable CONTENT and link columns. (Docs demo still shows BoldFooter.)'
+      title="Site Footer"
+      description="Lighter marketing footer with editable CONTENT and link columns. (Docs demo still shows BoldFooter.)"
       preview={<DemoSiteFooter />}
       code={'import { SiteFooter } from "@/components/blocks/site-footer"\n\n<SiteFooter />'}
       fullBleed={true}

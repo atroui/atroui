@@ -11,13 +11,14 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/home-hero"
       registryName="home-hero"
-      title='Hero'
-      description='Primary homepage hero with interactive OG canvas, sprint timeline, and CTA.'
+      title="Hero"
+      description="Primary homepage hero with interactive OG canvas, sprint timeline, and CTA."
       preview={<DemoHomeHero />}
       code={'import { HomeHero } from "@/components/blocks/home-hero"\n\nexport function Example() {\n  return <HomeHero />\n}'}
       fullBleed={true}
-      usage='Use once at the top of a marketing homepage. Full-bleed section.'
+      usage="Use once at the top of a marketing homepage. Full-bleed section."
     />
   )
 }

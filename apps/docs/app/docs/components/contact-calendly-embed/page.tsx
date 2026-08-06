@@ -11,11 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/contact-calendly-embed"
       registryName="calendly-embed"
       title="Calendly Embed"
       description="Theme-aware Calendly embed with email fallback."
       preview={<DemoCalendlyEmbed />}
-      code={'import { CalendlyEmbed } from "@/components/blocks/calendly-embed"\n\n<CalendlyEmbed url={process.env.NEXT_PUBLIC_CALENDLY_URL} />'}
+      code={'import { CalendlyEmbed } from "@/components/blocks/calendly-embed"\n\n<CalendlyEmbed />'}
       fullBleed={false}
       usage="Pass url, set CONTENT.url, or NEXT_PUBLIC_CALENDLY_URL. Without a URL, shows email fallback via getBrand()."
       props={[

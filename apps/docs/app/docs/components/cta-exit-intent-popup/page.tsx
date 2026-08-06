@@ -11,13 +11,14 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/cta-exit-intent-popup"
       registryName="exit-intent-popup"
-      title='Exit Intent Popup'
-      description='Exit-intent dialog (opens when the cursor leaves the top of the viewport). Preview below forces it open inline.'
+      title="Exit Intent Popup"
+      description="Exit-intent dialog (opens when the cursor leaves the top of the viewport). Preview below forces it open inline."
       preview={<DemoExitIntentPopup />}
-      code={'import { ExitIntentPopup } from "atroui"\n\n{/* Production: mount near root; triggers on exit intent */}\n<ExitIntentPopup />\n\n{/* Docs */}\n<ExitIntentPopup preview />'}
+      code={'import { ExitIntentPopup } from "@/components/blocks/exit-intent-popup"\n\n{/* Production: mount near root; triggers on exit intent */}\n<ExitIntentPopup />\n\n{/* Docs */}\n<ExitIntentPopup preview />'}
       fullBleed={false}
-      usage='Mount once near the root on live pages. Use preview in docs.'
+      usage="Mount once near the root on live pages. Use preview in docs."
     />
   )
 }

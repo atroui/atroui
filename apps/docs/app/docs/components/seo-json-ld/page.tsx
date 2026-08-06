@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/seo-json-ld"
       title="JSON-LD"
       description="schema.org helpers for Organization/WebSite, articles, FAQ, breadcrumbs, offers, and tool pages. Headless - emits JSON-LD scripts only."
       preview={<DemoJsonLd />}

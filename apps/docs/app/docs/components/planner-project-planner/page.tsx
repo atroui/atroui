@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/planner-project-planner"
       title="Project Planner"
       description="Client-side project planner. Routes into /contact with query params - no generation API."
       preview={<DemoProjectPlanner />}

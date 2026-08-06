@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Scroll Progress'
-      description='Reading-progress bar. Production mounts it fixed on the viewport; the preview tracks a local scroll container.'
+      href="/docs/components/motion-primitives-scroll-progress"
+      title="Scroll Progress"
+      description="Reading-progress bar. Production mounts it fixed on the viewport; the preview tracks a local scroll container."
       preview={<DemoScrollProgress />}
       code={
         'import { ScrollProgress } from "atroui"\n\n' +
@@ -22,7 +23,7 @@ export default function Page() {
         '<ScrollProgress containerRef={ref} className="absolute inset-x-0 top-0 h-0.5 bg-brand" />'
       }
       fullBleed={false}
-      usage='Usually fixed to the top of the viewport with bg-brand.'
+      usage="Usually fixed to the top of the viewport with bg-brand."
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Positioning + color classes (e.g. fixed, bg-brand).' },
     { name: 'containerRef', type: 'RefObject<HTMLDivElement>', default: '-', description: 'Scroll container. Defaults to the document.' },

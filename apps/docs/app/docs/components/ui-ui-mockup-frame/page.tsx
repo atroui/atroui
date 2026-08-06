@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Ui Mockup Frame'
-      description='Device / product mockup frame.'
+      href="/docs/components/ui-ui-mockup-frame"
+      title="Ui Mockup Frame"
+      description="Device / product mockup frame."
       preview={<DemoUiMockupFrame />}
       code={'import { UiMockupFrame } from "atroui"\n\n<UiMockupFrame variant="saas" />'}
       fullBleed={false}

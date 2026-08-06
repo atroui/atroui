@@ -13,7 +13,9 @@ function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
     <span
       className={cn(
         "shrink-0 text-[9px] font-semibold uppercase tracking-[0.06em]",
-        badge === "host-api" ? "text-brand" : "text-muted-foreground"
+        badge === "host-api" || badge === "registry"
+          ? "text-brand"
+          : "text-muted-foreground"
       )}
     >
       {badgeLabel[badge]}

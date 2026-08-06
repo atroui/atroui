@@ -5,14 +5,15 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoOgWorkspace } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "Og Workspace",
+  "OG Workspace",
   "/docs/components/og-og-workspace"
 )
 
 export default function Page() {
   return (
     <ComponentDoc
-      title="Og Workspace"
+      href="/docs/components/og-og-workspace"
+      title="OG Workspace"
       description="Full OG image generator workspace UI. Catalog demos do not call paid image APIs."
       preview={<DemoOgWorkspace />}
       code={'import { OgWorkspace } from "atroui"\n\n<OgWorkspace />'}

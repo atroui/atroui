@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Og Live Preview'
-      description='CSS preview of an OG social card.'
+      href="/docs/components/og-og-live-preview"
+      title="Og Live Preview"
+      description="CSS preview of an OG social card."
       preview={<DemoOgLivePreview />}
       code={'import { OgLivePreview } from "atroui"\n\n<OgLivePreview title="…" subtitle="…" styleKey="paperQuote" />'}
       fullBleed={false}

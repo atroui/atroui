@@ -13,7 +13,7 @@ export function docsPageMetadata(input: DocsMetaInput) {
   return buildPageMetadata(input)
 }
 
-/** Component doc page: unique snippet for “{Title} AtroUI”. */
+/** Component doc page: unique snippet for "{Title} AtroUI". */
 export function componentPageMetadata(
   title: string,
   path: string,
@@ -23,7 +23,7 @@ export function componentPageMetadata(
     title,
     description:
       description ??
-      `${title} in AtroUI - the React / Next.js component library and dark-first design system at atroui.com.`,
+      `${title} in AtroUI - preview, install, and API for the React / Next.js catalog at atroui.com.`,
     path,
   })
 }

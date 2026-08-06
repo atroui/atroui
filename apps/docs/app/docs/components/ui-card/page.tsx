@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/ui-card"
       title="Card"
       description="Elevated surface for grouped content - header, body, footer slots."
       preview={<DemoCard />}

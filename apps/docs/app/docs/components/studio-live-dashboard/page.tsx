@@ -11,6 +11,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/studio-live-dashboard"
       title="Live Dashboard"
       description="Studio live dashboard driven by package content modules - not a host API tool."
       preview={<DemoLiveDashboard />}

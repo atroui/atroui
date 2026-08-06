@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Breadcrumbs'
-      description='Hierarchical navigation trail.'
+      href="/docs/components/ui-breadcrumbs"
+      title="Breadcrumbs"
+      description="Hierarchical navigation trail."
       preview={<DemoBreadcrumbs />}
       code={'import { Breadcrumbs } from "atroui"\n\n<Breadcrumbs items={[…]} />'}
       fullBleed={false}

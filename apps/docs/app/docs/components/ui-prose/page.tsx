@@ -11,8 +11,9 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Prose'
-      description='Long-form typography wrapper.'
+      href="/docs/components/ui-prose"
+      title="Prose"
+      description="Long-form typography wrapper."
       preview={<DemoProse />}
       code={'import { Prose } from "atroui"\n\n<Prose><p>…</p></Prose>'}
       fullBleed={false}
