@@ -1,5 +1,15 @@
 # atroui
 
+## 0.3.0
+
+### Minor Changes
+
+- [#42](https://github.com/atroui/atroui/pull/42) [`70452b0`](https://github.com/atroui/atroui/commit/70452b010fbaf29265dbccc072b7061b6aba7c26) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Ship out-of-the-box Host API handlers for forms and AI tools (`atroui/api/contact|waitlist|newsletter|generate|thumbnail|scope`). Consumers supply their own keys; AtroUI never ships secrets. Includes validation, body caps, and in-memory rate limiting.
+
+### Patch Changes
+
+- [#39](https://github.com/atroui/atroui/pull/39) [`10d0bd3`](https://github.com/atroui/atroui/commit/10d0bd35f86bc5a7914106a932c377ddab5448fa) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Allow ArticleJsonLd and BlogJsonLd to target /blog; drop npm-install phrasing from default SEO description.
+
 ## 0.2.3
 
 ### Patch Changes

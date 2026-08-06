@@ -1,6 +1,6 @@
 {
   "name": "atroui",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "AtroUI - production React / Next.js component catalog via the shadcn registry, plus optional Host API handlers. Docs at https://www.atroui.com.",
   "license": "MIT",
   "homepage": "https://www.atroui.com",
