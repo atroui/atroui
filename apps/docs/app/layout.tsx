@@ -80,18 +80,37 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  // Stable favicon URLs for Google SERP (needs >=48x48 + /favicon.ico).
-  // Avoid relying only on hashed /icon?... routes from the App Router.
+  // Stable absolute favicon URLs for Google SERP (>=48x48 PNG + /favicon.ico).
+  // Prefer PNG first; keep conventional /apple-touch-icon.png + webmanifest.
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/favicon-96.png", sizes: "96x96", type: "image/png" },
-      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+      {
+        url: `${siteUrl}/favicon-48.png`,
+        sizes: "48x48",
+        type: "image/png",
+      },
+      {
+        url: `${siteUrl}/favicon-96.png`,
+        sizes: "96x96",
+        type: "image/png",
+      },
+      {
+        url: `${siteUrl}/favicon-192.png`,
+        sizes: "192x192",
+        type: "image/png",
+      },
+      { url: `${siteUrl}/favicon.ico`, sizes: "48x48" },
     ],
-    apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
-    shortcut: ["/favicon.ico"],
+    apple: [
+      {
+        url: `${siteUrl}/apple-touch-icon.png`,
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    shortcut: [`${siteUrl}/favicon.ico`],
   },
+  manifest: `${siteUrl}/site.webmanifest`,
   category: "technology",
 }
 
