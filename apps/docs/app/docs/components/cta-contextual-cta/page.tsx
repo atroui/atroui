@@ -4,18 +4,19 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoContextualCta } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "Contextual Cta",
+  "Contextual CTA",
   "/docs/components/cta-contextual-cta"
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/cta-contextual-cta"
       registryName="contextual-cta"
-      title='Contextual Cta'
-      description='Scroll-triggered bottom CTA (shows after ~28% scroll on live pages). Preview below forces it open inline.'
+      title="Contextual CTA"
+      description="Scroll-triggered bottom CTA (shows after ~28% scroll on live pages). Preview below forces it open inline."
       preview={<DemoContextualCta />}
-      code={'import { ContextualCTA } from "atroui"\n\n{/* Production: mounts fixed; appears on scroll */}\n<ContextualCTA />\n\n{/* Docs */}\n<ContextualCTA preview />'}
+      code={'import { ContextualCta } from "@/components/blocks/contextual-cta"\n\n{/* Production: mounts fixed; appears on scroll */}\n<ContextualCta />\n\n{/* Docs */}\n<ContextualCta preview />'}
       fullBleed={false}
     />
   )

@@ -20,7 +20,7 @@ const navLinks = [
 
 const catalogBands = [
   { title: "Registry", body: "Own the UI in your repo" },
-  { title: "Sections", body: "Home bands, chrome, CTAs" },
+  { title: "Blocks", body: "Home bands, chrome, CTAs" },
   { title: "Primitives", body: "Button, logo, theme toggle" },
   { title: "Headless", body: "Analytics, JSON-LD, reviews" },
 ] as const

@@ -11,10 +11,11 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Fade In'
-      description='Scroll-triggered fade + rise. Preview animates on mount - use Replay to watch again.'
+      href="/docs/components/motion-fade-in"
+      title="Fade In"
+      description="Scroll-triggered fade + rise. Preview animates on mount - use Replay to watch again."
       preview={<DemoFadeIn />}
-      code={'import { FadeIn } from "atroui"\n\n<FadeIn>Content</FadeIn>\n\n{/* Docs */}\n<FadeIn preview>Content</FadeIn>'}
+      code={'import { FadeIn } from "@/components/motion/fade-in"\n\n<FadeIn>Content</FadeIn>\n\n{/* Docs */}\n<FadeIn preview>Content</FadeIn>'}
       fullBleed={false}
       props={[
     { name: 'y', type: 'number', default: '14', description: 'Initial translateY.' },

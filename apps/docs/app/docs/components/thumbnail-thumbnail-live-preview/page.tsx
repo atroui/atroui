@@ -11,10 +11,11 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Thumbnail Live Preview'
-      description='CSS preview of a video thumbnail.'
+      href="/docs/components/thumbnail-thumbnail-live-preview"
+      title="Thumbnail Live Preview"
+      description="CSS preview of a video thumbnail."
       preview={<DemoThumbnailLivePreview />}
-      code={'import { ThumbnailLivePreview } from "atroui"\n\n<ThumbnailLivePreview title="…" subtitle="…" styleKey="youtubePop" format="youtube" />'}
+      code={'import { ThumbnailLivePreview } from "@/components/thumbnail/thumbnail-live-preview"\n\n<ThumbnailLivePreview title="…" subtitle="…" styleKey="youtubePop" format="youtube" />'}
       fullBleed={false}
       props={[
     { name: 'format', type: 'ThumbnailFormat', default: '-', description: 'Aspect format.' },

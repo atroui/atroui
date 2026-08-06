@@ -11,10 +11,11 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Social Share'
-      description='Share actions for articles.'
+      href="/docs/components/journal-social-share"
+      title="Social Share"
+      description="Share actions for articles."
       preview={<DemoSocialShare />}
-      code={'import { SocialShare } from "atroui"\n\n<SocialShare url="…" title="…" />'}
+      code={'import { SocialShare } from "@/components/journal/social-share"\n\n<SocialShare url="…" title="…" />'}
       fullBleed={false}
       props={[
     { name: 'url', type: 'string', default: '-', description: 'Share URL.' },

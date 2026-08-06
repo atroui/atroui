@@ -11,13 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/seo-made-with-embed"
       registryName="made-with-embed"
       title="Made With Embed"
       description="Credit badge + copyable HTML embed. Defaults to AtroUI branding."
       preview={<DemoMadeWithEmbed />}
-      code={
-        'import { MadeWithEmbed } from "@/components/blocks/made-with-embed"\n\n<MadeWithEmbed />\n\n<MadeWithEmbed\n  brandName="Acme"\n  badgeSrc="/badge/acme.svg"\n  href="/tools"\n/>'
-      }
+      code={'import { MadeWithEmbed } from "@/components/blocks/made-with-embed"\n\n<MadeWithEmbed />\n\n<MadeWithEmbed\n  brandName="Acme"\n  badgeSrc="/badge/acme.svg"\n  href="/tools"\n/>'}
       fullBleed={false}
       usage="Edit CONTENT.siteOrigin and badgeSrc after install. Host the badge SVG in your public folder."
       props={[

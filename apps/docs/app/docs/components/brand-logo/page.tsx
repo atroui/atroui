@@ -11,11 +11,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      href="/docs/components/brand-logo"
       registryName="logo"
       title="Logo"
       description="Interrupted-A mark + wordmark. Open letterform for Atro; floating brand bar is the recall cue. Defaults to getBrand().name."
       preview={<DemoLogo />}
-      code={'import { LogoMark, LogoWordmark } from "atroui"\n\n<LogoMark />\n<LogoWordmark />\n<LogoWordmark name="Acme" />'}
+      code={'import { LogoMark, LogoWordmark } from "@/components/brand/logo"\n\n<LogoMark />\n<LogoWordmark />\n<LogoWordmark name="Acme" />'}
       fullBleed={false}
       usage="Mark uses currentColor for the A; the crossbar uses --color-brand (#0b7bff). Static assets: /brand/atroui-mark.svg and /brand/atroui-mark-app.svg. Pass title or name to override the label."
       props={[

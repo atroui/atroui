@@ -27,14 +27,48 @@ export default function DocsIntroPage() {
         </p>
       </header>
 
-      <section className="md-glass space-y-3 p-5">
-        <h2 className="ds-headline text-base text-foreground">Design base</h2>
-        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Product chrome follows the Digital Success hero language - cyan/blue
-          shader accents, white primary pills, and blur panels. Catalog demos
-          may still show the apps they shipped in; that&rsquo;s intentional
-          portfolio context.
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">Quick start</h2>
+        <CodeBlock
+          language="bash"
+          code={`npx shadcn@latest init
+npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
+npx shadcn@latest add @atroui/home-hero`}
+        />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Full steps:{" "}
+          <Link href="/docs/installation" className="bam-link">
+            Installation
+          </Link>
+          . Catalog:{" "}
+          <Link href="/docs/registry" className="bam-link">
+            Registry
+          </Link>
+          .
         </p>
+      </section>
+
+      <section className="md-glass space-y-3 p-5">
+        <h2 className="ds-headline text-base text-foreground">How the catalog is organized</h2>
+        <ul className="space-y-2 text-[15px] font-light leading-relaxed text-muted-foreground">
+          <li>
+            <span className="font-medium text-foreground">Primitives</span> -
+            buttons, forms, motion, logo. Small reusable pieces.
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Blocks</span> - heroes,
+            footers, pricing, FAQ, forms. Production-shaped page sections. Prefer
+            items tagged CLI in the sidebar.
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Tools</span> - OG,
+            thumbnails, planners. Often need your own host APIs.
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Headless</span> -
+            analytics and structured data with no visible UI.
+          </li>
+        </ul>
       </section>
 
       <section className="md-glass space-y-3 p-5">
@@ -88,33 +122,12 @@ export default function DocsIntroPage() {
         </p>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Quick start</h2>
-        <CodeBlock
-          language="bash"
-          code={`npx shadcn@latest init
-npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
-npx shadcn@latest add @atroui/home-hero`}
-        />
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Full steps:{" "}
-          <Link href="/docs/installation" className="bam-link">
-            Installation
-          </Link>
-          . Catalog:{" "}
-          <Link href="/docs/registry" className="bam-link">
-            Registry
-          </Link>
-          .
-        </p>
-      </section>
-
       <div className="flex flex-wrap gap-3 pt-1">
-        <Link href="/docs/registry" className="ms-cta">
-          Own the UI
-        </Link>
-        <Link href="/docs/installation" className="ms-cta-ghost">
+        <Link href="/docs/installation" className="ms-cta">
           Installation
+        </Link>
+        <Link href="/docs/registry" className="ms-cta-ghost">
+          Own the UI
         </Link>
         <Link href="/docs/components" className="ms-cta-ghost">
           Browse components

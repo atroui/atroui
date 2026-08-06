@@ -13,7 +13,7 @@ const inside = [
     href: "/docs/registry",
   },
   {
-    title: "Sections",
+    title: "Blocks",
     body: "Home bands, site chrome, CTAs - edit CONTENT at the top.",
     href: "/docs/components/home-who",
   },

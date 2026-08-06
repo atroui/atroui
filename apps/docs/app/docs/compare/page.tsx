@@ -71,7 +71,7 @@ export default function ComparePage() {
             guide.
           </li>
           <li>
-            <strong className="text-foreground">Sections, not only atoms</strong>{" "}
+            <strong className="text-foreground">Blocks, not only atoms</strong>{" "}
             - heroes, who bands, footers, CTAs shaped by shipped products.
           </li>
           <li>

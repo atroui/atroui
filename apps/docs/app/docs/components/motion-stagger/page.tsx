@@ -11,10 +11,11 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
-      title='Stagger'
-      description='Staggered children reveal. Preview plays on mount - use Replay to watch again.'
+      href="/docs/components/motion-stagger"
+      title="Stagger"
+      description="Staggered children reveal. Preview plays on mount - use Replay to watch again."
       preview={<DemoStagger />}
-      code={'import { Stagger, StaggerChild } from "atroui"\n\n<Stagger>\n  <StaggerChild>One</StaggerChild>\n</Stagger>\n\n{/* Docs */}\n<Stagger preview>\n  <StaggerChild>One</StaggerChild>\n</Stagger>'}
+      code={'import { Stagger, StaggerChild } from "@/components/motion/stagger"\n\n<Stagger>\n  <StaggerChild>One</StaggerChild>\n</Stagger>\n\n{/* Docs */}\n<Stagger preview>\n  <StaggerChild>One</StaggerChild>\n</Stagger>'}
       fullBleed={false}
     />
   )
