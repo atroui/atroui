@@ -1,12 +1,11 @@
 /**
- * Thumbnail compositor - isolated backend (no imports from `src/lib/og/*`).
+ * Thumbnail compositor - shares Inter fonts with OG via `load-fonts` only.
  *
  * Background: FLUX → sharp polish
  * Text: Satori (Inter) → resvg PNG
  * Output: composite → JPEG
  */
 
-import fs from "node:fs";
 import {
   InferenceClient,
   InferenceClientProviderApiError,
@@ -16,6 +15,7 @@ import satori from "satori";
 import sharp from "sharp";
 
 import { getBrand } from "../brand";
+import { loadOgFonts } from "../og/load-fonts";
 import {
   THUMBNAIL_INPUT_LIMITS,
   THUMBNAIL_STYLE_PRESETS,
@@ -34,12 +34,17 @@ const DIMS: Record<ThumbnailFormat, { w: number; h: number; genW: number; genH: 
 
 const DEFAULT_HF_MODEL = "black-forest-labs/FLUX.1-schnell";
 
-const FONT_INTER_BOLD = fs.readFileSync(
-  new URL("../og/fonts/Inter-Bold.ttf", import.meta.url),
-);
-const FONT_INTER_MEDIUM = fs.readFileSync(
-  new URL("../og/fonts/Inter-Medium.ttf", import.meta.url),
-);
+let fontBold: Buffer | null = null;
+let fontMedium: Buffer | null = null;
+
+function fonts() {
+  if (!fontBold || !fontMedium) {
+    const loaded = loadOgFonts();
+    fontBold = loaded.bold;
+    fontMedium = loaded.medium;
+  }
+  return { bold: fontBold, medium: fontMedium };
+}
 
 export class ThumbnailInputError extends Error {}
 
@@ -581,10 +586,10 @@ async function renderThumbnailOverlayPng(
       width: dims.w,
       height: dims.h,
       fonts: [
-        { name: "Inter", data: FONT_INTER_BOLD, weight: 700, style: "normal" },
+        { name: "Inter", data: fonts().bold, weight: 700, style: "normal" },
         {
           name: "Inter",
-          data: FONT_INTER_MEDIUM,
+          data: fonts().medium,
           weight: 500,
           style: "normal",
         },
