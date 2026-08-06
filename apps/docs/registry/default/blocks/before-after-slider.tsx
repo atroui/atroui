@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 
-import { UiMockupFrame, type MockupVariant } from "@/components/ui/mockup-frame";
+import { UiMockupFrame, type MockupVariant } from "../ui/mockup-frame";
 import { cn } from "@/lib/utils";
 
 type BeforeAfterSliderProps = {

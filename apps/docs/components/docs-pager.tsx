@@ -14,7 +14,7 @@ export function DocsPager({ href }: { href: string }) {
       {prev ? (
         <Link
           href={prev.href}
-          className="group flex min-h-16 items-center gap-3 rounded-2xl border border-border-subtle bg-white/[0.02] px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/[0.05]"
+          className="group flex min-h-16 items-center gap-3 rounded-2xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
         >
           <ChevronLeft
             className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand"
@@ -35,7 +35,7 @@ export function DocsPager({ href }: { href: string }) {
       {next ? (
         <Link
           href={next.href}
-          className="group flex min-h-16 items-center justify-end gap-3 rounded-2xl border border-border-subtle bg-white/[0.02] px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/[0.05]"
+          className="group flex min-h-16 items-center justify-end gap-3 rounded-2xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
         >
           <span className="min-w-0 text-right">
             <span className="block text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">

@@ -1,6 +1,6 @@
 "use client"
 
-import { BeforeAfterSlider } from "@/components/blocks/before-after-slider"
+import { BeforeAfterSlider } from "./before-after-slider"
 
 /** Edit CONTENT to match your case study. */
 const CONTENT = {
