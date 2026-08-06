@@ -15,7 +15,7 @@ export default function Page() {
       title="Thumbnail Workspace"
       description="Thumbnail generator workspace UI. Catalog demos do not call paid image APIs."
       preview={<DemoThumbnailWorkspace />}
-      code={'import { ThumbnailWorkspace } from "atroui"\n\n<ThumbnailWorkspace />'}
+      code={'import { ThumbnailWorkspace } from "@/components/thumbnail/thumbnail-workspace"\n\n<ThumbnailWorkspace />'}
       fullBleed={true}
       usage={
         <>

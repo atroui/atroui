@@ -15,7 +15,7 @@ export default function Page() {
       title="Textarea"
       description="Multi-line text input."
       preview={<DemoTextarea />}
-      code={'import { Textarea } from "atroui"\n\n<Textarea placeholder="Message" />'}
+      code={'import { Textarea } from "@/components/ui/textarea"\n\n<Textarea placeholder="Message" />'}
       fullBleed={false}
       props={[
     { name: 'placeholder', type: 'string', default: '-', description: 'Hint text.' },

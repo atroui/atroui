@@ -16,7 +16,8 @@ export default function Page() {
       description="App-level next-themes wrapper. No visible chrome of its own - mount once at the root so ThemeToggle and dark tokens work."
       preview={<DemoThemeProviderNote />}
       code={
-        'import { ThemeProvider, ThemeToggle } from "atroui"\n\n' +
+        'import { ThemeProvider } from "@/components/theme-provider"\n' +
+        'import { ThemeToggle } from "@/components/ui/theme-toggle"\n\n' +
         "<ThemeProvider attribute=\"class\" defaultTheme=\"system\" enableSystem>\n" +
         "  {children}\n" +
         "</ThemeProvider>\n\n" +

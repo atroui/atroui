@@ -38,10 +38,19 @@ export default function ComponentsIndexPage() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex items-center justify-between gap-3 px-4 py-3.5 text-[14px] font-medium text-foreground transition-colors hover:bg-white/5"
+                  className="flex items-center justify-between gap-3 px-4 py-3.5 transition-colors hover:bg-white/5"
                 >
-                  <span>{item.title}</span>
-                  <span className="flex items-center gap-3">
+                  <span className="min-w-0">
+                    <span className="block text-[14px] font-medium text-foreground">
+                      {item.title}
+                    </span>
+                    {item.description ? (
+                      <span className="mt-0.5 block text-[12px] font-normal text-muted-foreground">
+                        {item.description}
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="flex shrink-0 items-center gap-3">
                     {item.badge ? (
                       <span
                         className={`text-[10px] font-semibold uppercase tracking-[0.06em] ${

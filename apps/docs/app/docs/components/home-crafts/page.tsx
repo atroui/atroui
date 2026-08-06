@@ -15,7 +15,7 @@ export default function Page() {
       title="Crafts"
       description="Pricing crafts band from the homepage. Prefer @atroui/pricing-overview from the registry for owned source."
       preview={<DemoHomeCrafts />}
-      code={'import { HomeCrafts } from "atroui"\n\n<HomeCrafts />'}
+      code={'import { HomeCrafts } from "@/components/home/crafts"\n\n<HomeCrafts />'}
       fullBleed={true}
       usage="Homepage section - place below the hero. For CLI install, use pricing-overview instead."
     />

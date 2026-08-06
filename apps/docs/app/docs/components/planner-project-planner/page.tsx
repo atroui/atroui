@@ -15,7 +15,7 @@ export default function Page() {
       title="Project Planner"
       description="Client-side project planner. Routes into /contact with query params - no generation API."
       preview={<DemoProjectPlanner />}
-      code={'import { ProjectPlanner } from "atroui"\n\n<ProjectPlanner />'}
+      code={'import { ProjectPlanner } from "@/components/planner/project-planner"\n\n<ProjectPlanner />'}
       fullBleed={true}
       usage="Fully client-side. Expect host routes like /contact (and /planner) to exist when CTAs navigate."
     />

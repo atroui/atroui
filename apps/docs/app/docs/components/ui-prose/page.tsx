@@ -15,7 +15,7 @@ export default function Page() {
       title="Prose"
       description="Long-form typography wrapper."
       preview={<DemoProse />}
-      code={'import { Prose } from "atroui"\n\n<Prose><p>…</p></Prose>'}
+      code={'import { Prose } from "@/components/ui/prose"\n\n<Prose><p>…</p></Prose>'}
       fullBleed={false}
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },

@@ -15,7 +15,7 @@ export default function Page() {
       title="Ui Mockup Frame"
       description="Device / product mockup frame."
       preview={<DemoUiMockupFrame />}
-      code={'import { UiMockupFrame } from "atroui"\n\n<UiMockupFrame variant="saas" />'}
+      code={'import { UiMockupFrame } from "@/components/ui/ui-mockup-frame"\n\n<UiMockupFrame variant="saas" />'}
       fullBleed={false}
       props={[
     { name: 'variant', type: 'MockupVariant', default: "'saas'", description: 'Mockup style.' },

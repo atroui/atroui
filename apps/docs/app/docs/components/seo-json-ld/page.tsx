@@ -16,7 +16,7 @@ export default function Page() {
       description="schema.org helpers for Organization/WebSite, articles, FAQ, breadcrumbs, offers, and tool pages. Headless - emits JSON-LD scripts only."
       preview={<DemoJsonLd />}
       code={
-        'import {\n  SiteGraphJsonLd,\n  ArticleJsonLd,\n  FaqJsonLd,\n  BreadcrumbJsonLd,\n} from "atroui"\n\n' +
+        'import {\n  SiteGraphJsonLd,\n  ArticleJsonLd,\n  FaqJsonLd,\n  BreadcrumbJsonLd,\n} from "@/components/seo/json-ld"\n\n' +
         "<SiteGraphJsonLd />\n" +
         "<ArticleJsonLd title={…} description={…} slug={…} date={…} />"
       }

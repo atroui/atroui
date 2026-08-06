@@ -15,7 +15,7 @@ export default function Page() {
       title="Founder Avatar"
       description="Circular founder portrait for signature rows and about bands."
       preview={<DemoFounderAvatar />}
-      code={'import { FounderAvatar } from "atroui"\n\n<FounderAvatar size="md" />'}
+      code={'import { FounderAvatar } from "@/components/ui/founder-avatar"\n\n<FounderAvatar size="md" />'}
       fullBleed={false}
       usage="Portrait ships inside the atroui package (no /public copy needed). Override with src or NEXT_PUBLIC_FOUNDER_AVATAR. Decorative only (aria-hidden); put the name in adjacent copy. Sizes: sm, md, lg."
       props={[

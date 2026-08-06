@@ -15,7 +15,7 @@ export default function Page() {
       title="Og Examples"
       description="Gallery of OG style examples with sample 1200×630 thumbnails and remix links."
       preview={<DemoOgExamples />}
-      code={'import { OgExamples } from "atroui"\n\n<OgExamples />\n\n{/* Docs */}\n<OgExamples preview />'}
+      code={'import { OgExamples } from "@/components/og/og-examples"\n\n<OgExamples />\n\n{/* Docs */}\n<OgExamples preview />'}
       fullBleed={true}
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },

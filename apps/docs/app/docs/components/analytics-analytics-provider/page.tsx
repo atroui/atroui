@@ -15,11 +15,7 @@ export default function Page() {
       title="Analytics Provider"
       description="Headless analytics + experiment helper. Loads Plausible/GA when env is set; no visible UI."
       preview={<DemoAnalyticsProvider />}
-      code={
-        'import { AnalyticsProvider, trackEvent, useExperiment } from "atroui"\n\n' +
-        "<AnalyticsProvider>\n  {children}\n</AnalyticsProvider>\n\n" +
-        'trackEvent("cta_click", { placement: "hero" })'
-      }
+      code={'import {\n  AnalyticsProvider,\n  trackEvent,\n  useExperiment,\n} from "@/components/analytics/analytics-provider"\n\n<AnalyticsProvider>\n  {children}\n</AnalyticsProvider>\n\ntrackEvent("cta_click", { placement: "hero" })'}
       usage="Mount once in the root layout. Set NEXT_PUBLIC_PLAUSIBLE_DOMAIN and/or NEXT_PUBLIC_GA_ID. Marked Headless in the catalog - pair with ThemeProvider, not a visual section."
       props={[
         {

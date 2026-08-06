@@ -15,7 +15,7 @@ export default function Page() {
       title="Resources Content"
       description="Resources library content."
       preview={<DemoResourcesContent />}
-      code={'import { ResourcesContent } from "atroui"\n\n<ResourcesContent />'}
+      code={'import { ResourcesContent } from "@/components/resources/resources-content"\n\n<ResourcesContent />'}
       fullBleed={true}
     />
   )

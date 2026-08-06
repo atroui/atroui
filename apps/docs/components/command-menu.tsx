@@ -96,7 +96,14 @@ export function CommandMenu() {
                       router.push(item.href)
                     }}
                   >
-                    <span>{item.title}</span>
+                    <span className="min-w-0">
+                      <span className="block truncate">{item.title}</span>
+                      {item.description ? (
+                        <span className="mt-0.5 block truncate text-[12px] font-normal text-muted-foreground">
+                          {item.description}
+                        </span>
+                      ) : null}
+                    </span>
                     {item.badge ? (
                       <span
                         className={cn(

@@ -16,7 +16,7 @@ export default function Page() {
       title="OG Workspace"
       description="Full OG image generator workspace UI. Catalog demos do not call paid image APIs."
       preview={<DemoOgWorkspace />}
-      code={'import { OgWorkspace } from "atroui"\n\n<OgWorkspace />'}
+      code={'import { OgWorkspace } from "@/components/og/og-workspace"\n\n<OgWorkspace />'}
       fullBleed={true}
       usage={
         <>

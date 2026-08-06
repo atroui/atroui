@@ -15,7 +15,7 @@ export default function Page() {
       title="Social Share"
       description="Share actions for articles."
       preview={<DemoSocialShare />}
-      code={'import { SocialShare } from "atroui"\n\n<SocialShare url="…" title="…" />'}
+      code={'import { SocialShare } from "@/components/journal/social-share"\n\n<SocialShare url="…" title="…" />'}
       fullBleed={false}
       props={[
     { name: 'url', type: 'string', default: '-', description: 'Share URL.' },

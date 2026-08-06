@@ -15,7 +15,7 @@ export default function Page() {
       title="Scope Chat"
       description="Interactive scoping chat. Calls the host /api/scope route for replies."
       preview={<DemoScopeChat />}
-      code={'import { ScopeChat } from "atroui"\n\n<ScopeChat />'}
+      code={'import { ScopeChat } from "@/components/scope/scope-chat"\n\n<ScopeChat />'}
       fullBleed={true}
       usage={
         <>

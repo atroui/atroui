@@ -15,7 +15,7 @@ export default function Page() {
       title="Journal Content"
       description="Journal listing / content."
       preview={<DemoJournalContent />}
-      code={'import { JournalContent } from "atroui"\n\n<JournalContent />'}
+      code={'import { JournalContent } from "@/components/journal/journal-content"\n\n<JournalContent />'}
       fullBleed={true}
     />
   )
