@@ -35,7 +35,7 @@ function resolveChangelogPath(): string {
     if (fs.existsSync(candidate)) return candidate
   }
   throw new Error(
-    `Could not find packages/ui/CHANGELOG.md (cwd=${process.cwd()}). Tried:\n${candidates.join("\n")}`,
+    `Could not find packages/ui/CHANGELOG.md relative to the docs app.`,
   )
 }
 

@@ -16,14 +16,30 @@ function RichParagraph({ text }: { text: string }) {
   let last = 0
   let match: RegExpExecArray | null
   let key = 0
+
+  const safeHref = (raw: string): string | null => {
+    const href = raw.trim()
+    if (!href) return null
+    if (href.startsWith("/") && !href.startsWith("//")) return href
+    if (href.startsWith("#")) return href
+    try {
+      const url = new URL(href)
+      if (url.protocol === "http:" || url.protocol === "https:") return href
+    } catch {
+      return null
+    }
+    return null
+  }
+
   while ((match = re.exec(text)) !== null) {
     if (match.index > last) {
       parts.push(text.slice(last, match.index))
     }
     const label = match[1] ?? ""
-    const href = match[2] ?? "#"
-    const external = href.startsWith("http")
-    if (external) {
+    const href = safeHref(match[2] ?? "")
+    if (!href) {
+      parts.push(label || match[0])
+    } else if (href.startsWith("http")) {
       parts.push(
         <a
           key={key++}

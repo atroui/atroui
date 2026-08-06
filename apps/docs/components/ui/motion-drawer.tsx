@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import type React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type SideMenuDirection = 'left' | 'right';
 export type ButtonOpeningVariants = 'push' | 'merge' | 'stay';
@@ -108,6 +108,7 @@ const MotionDrawer: React.FC<SideMenuProps> = ({
   isOpen: controlledIsOpen,
   onToggle,
   showToggleButton = true,
+  toggleButtonText,
 
   // Styling
   btnClassName = '',
@@ -138,6 +139,24 @@ const MotionDrawer: React.FC<SideMenuProps> = ({
     }
     onToggle?.(value);
   };
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (controlledIsOpen === undefined) {
+        setInternalIsOpen(false);
+      }
+      onToggle?.(false);
+    };
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen, controlledIsOpen, onToggle]);
 
   const getDrawerVariants = () => {
     if (direction === 'left') {
@@ -203,15 +222,23 @@ const MotionDrawer: React.FC<SideMenuProps> = ({
           transition={animationConfig}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          aria-label={toggleButtonText?.open ?? 'Open menu'}
+          aria-expanded={isOpen}
+          aria-haspopup="dialog"
         >
-          <Menu />
+          <Menu aria-hidden />
           {/* Open */}
         </motion.button>
       )}
 
       <AnimatePresence>
         {isOpen && (
-          <div className={`fixed w-full h-full top-0 left-0 z-9999 ${className}`}>
+          <div
+            className={`fixed w-full h-full top-0 left-0 z-9999 ${className}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+          >
             {/* Overlay */}
             <motion.div
               className={`absolute w-full h-full top-0 left-0 ${overlayClassName}`}
@@ -221,6 +248,7 @@ const MotionDrawer: React.FC<SideMenuProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
+              aria-hidden
             />
 
             {/* Drawer */}
@@ -254,8 +282,9 @@ const MotionDrawer: React.FC<SideMenuProps> = ({
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ duration: 0.2 }}
+                  aria-label={toggleButtonText?.close ?? 'Close menu'}
                 >
-                  <X size={20} /> {/* Close */}
+                  <X size={20} aria-hidden /> {/* Close */}
                 </motion.button>
               )}
 

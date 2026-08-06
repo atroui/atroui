@@ -2,6 +2,11 @@ import { getBrand } from "@/lib/brand"
 import { getSiteDomain } from "@/lib/seo"
 import { getSiteUrl } from "@/lib/site-url"
 
+function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\u003c")
+}
+
+
 type OrgJsonLdProps = {
   name?: string
 }
@@ -46,7 +51,7 @@ export function SiteGraphJsonLd({ name }: OrgJsonLdProps = {}) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   )
 }
@@ -107,7 +112,7 @@ export function ArticleJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   )
 }
@@ -133,7 +138,7 @@ export function BreadcrumbJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   )
 }
@@ -167,7 +172,7 @@ export function FaqJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   )
 }
