@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "api-contact",
+  "title": "Contact API",
+  "description": "POST /api/contact - honeypot, rate limit, SMTP via atroui/api/contact.",
+  "dependencies": [
+    "atroui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/api/contact/route.ts",
+      "content": "import { handleContactPost } from \"atroui/api/contact\"\n\nexport const runtime = \"nodejs\"\n\nexport async function POST(req: Request) {\n  return handleContactPost(req)\n}\n",
+      "type": "registry:file",
+      "target": "app/api/contact/route.ts"
+    }
+  ],
+  "type": "registry:item"
+}

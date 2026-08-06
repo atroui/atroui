@@ -19,7 +19,7 @@ export default function Page() {
       preview={<DemoWaitlistForm />}
       code={'import { WaitlistForm } from "@/components/blocks/waitlist-form"\n\n<WaitlistForm />'}
       fullBleed={false}
-      usage="Posts to CONTENT.endpoint (default /api/waitlist). Host API."
+      usage="Posts to /api/waitlist. Install @atroui/api-waitlist (Resend audience or SMTP). See Installation."
     />
   )
 }

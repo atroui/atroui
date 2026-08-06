@@ -109,6 +109,47 @@ npx shadcn@latest add @atroui/site-footer`}
       </section>
 
       <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          4. Forms + Host APIs
+        </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Contact, waitlist, and newsletter UIs post to{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/*
+          </code>
+          . Install the matching route handlers (they call{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/api/*
+          </code>{" "}
+          with honeypot checks, body caps, and in-memory rate limits):
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`npm i atroui
+npx shadcn@latest add @atroui/contact-form @atroui/api-contact
+npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
+npx shadcn@latest add @atroui/newsletter-form @atroui/api-newsletter`}
+        />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Then set mail env (SMTP and/or Resend). See{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .env.example
+          </code>{" "}
+          in the repo. Multi-instance production should replace the in-memory
+          rate limiter with Upstash / Vercel KV.
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`CONTACT_EMAIL_TO=hello@acme.test
+SMTP_USER=…
+SMTP_PASSWORD=…
+# or
+RESEND_API_KEY=…
+RESEND_AUDIENCE_ID=…`}
+        />
+      </section>
+
+      <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Brand overrides</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           After adding{" "}
@@ -137,12 +178,20 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Host-bound tools</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Some catalog items (OG workspace, contact form, scope chat) expect
-          your own{" "}
+          Forms ship with optional API routes (step 4). OG workspace, thumbnail
+          workspace, and scope chat still expect your own{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /api/*
+            /api/generate
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/thumbnail
+          </code>
+          , and{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/scope
           </code>{" "}
-          routes and keys. Marked{" "}
+          until wave-2 handlers land. Marked{" "}
           <span className="font-medium text-foreground">Host API</span> in the
           sidebar. Live OG sample without wiring keys here:{" "}
           <a

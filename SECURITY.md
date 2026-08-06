@@ -48,7 +48,7 @@ In scope:
 
 Out of scope (unless they expose AtroUI users to risk):
 
-- Third-party Host APIs you wire yourself (LLM keys, SMTP, analytics)
+- Third-party LLM / image Host APIs you wire yourself (OG generate, thumbnail, scope) until those handlers ship
 - Demo / portfolio content under `atroui/content/*`
 - Vulnerabilities only present after you fork and heavily modify the monorepo
 
@@ -56,6 +56,7 @@ Out of scope (unless they expose AtroUI users to risk):
 
 - Keep `atroui` updated to the latest supported release
 - Do not commit API keys; use env vars as documented in `.env.example`
-- Treat Host API routes (OG, thumbnail, scope, contact) as **your** surface - authenticate and rate-limit them in production
-- Cap request body size on contact uploads (base64 attachments) and AI generate routes
+- Install form APIs with `@atroui/api-contact`, `@atroui/api-waitlist`, `@atroui/api-newsletter` (or call `atroui/api/*` from your own `route.ts`)
+- Shipped form handlers include honeypot checks, body size caps, and an **in-memory** rate limiter - swap for Upstash / Vercel KV (or a WAF) on multi-instance production
+- Cap request body size on AI generate routes you build yourself; authenticate and rate-limit them hard
 - Never expose `SMTP_*`, `*_API_KEY`, or `REVALIDATE_SECRET` via `NEXT_PUBLIC_*`

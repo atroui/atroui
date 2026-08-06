@@ -355,6 +355,20 @@ npx shadcn@latest add @atroui/site-footer`}
               @atroui/scope-chat
             </code>
           </li>
+          <li>
+            Host APIs (forms):{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/api-contact
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/api-waitlist
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/api-newsletter
+            </code>
+          </li>
         </ul>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Browse the catalog JSON at{" "}
