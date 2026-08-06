@@ -87,6 +87,7 @@ export const navigation: NavSection[] = [
         title: "Founder Avatar",
         href: "/docs/components/ui-founder-avatar",
         description: "Portrait mark",
+        badge: "registry",
       },
       {
         title: "Theme Toggle",
@@ -98,6 +99,7 @@ export const navigation: NavSection[] = [
         title: "Theme Provider",
         href: "/docs/components/theme-provider",
         description: "next-themes root",
+        badge: "registry",
       },
       {
         title: "Logo",
@@ -109,11 +111,13 @@ export const navigation: NavSection[] = [
         title: "Mockup Frame",
         href: "/docs/components/ui-ui-mockup-frame",
         description: "Product chrome frame",
+        badge: "registry",
       },
       {
         title: "Timeline",
         href: "/docs/components/ui-timeline-animation",
         description: "Scroll-linked motion",
+        badge: "registry",
       },
       {
         title: "Fade In",
@@ -178,6 +182,7 @@ export const navigation: NavSection[] = [
         title: "Crafts",
         href: "/docs/components/home-crafts",
         description: "Pricing alias band",
+        badge: "registry",
       },
       {
         title: "Lab",
@@ -243,31 +248,37 @@ export const navigation: NavSection[] = [
         title: "Journal",
         href: "/docs/components/journal-journal-content",
         description: "Blog index layout",
+        badge: "registry",
       },
       {
         title: "Social Share",
         href: "/docs/components/journal-social-share",
         description: "Share links",
+        badge: "registry",
       },
       {
         title: "Resources",
         href: "/docs/components/resources-resources-content",
         description: "Resource library",
+        badge: "registry",
       },
       {
         title: "Before / After",
         href: "/docs/components/case-studies-before-after-slider",
         description: "Compare slider",
+        badge: "registry",
       },
       {
         title: "Case Study",
         href: "/docs/components/case-studies-visual-case-study",
         description: "Case study layout",
+        badge: "registry",
       },
       {
         title: "AR Portfolio",
         href: "/docs/components/ar-ar-portfolio",
         description: "AR showcase",
+        badge: "registry",
       },
       {
         title: "Made With Embed",
@@ -284,11 +295,13 @@ export const navigation: NavSection[] = [
         title: "OG Examples",
         href: "/docs/components/og-og-examples",
         description: "OG style gallery",
+        badge: "registry",
       },
       {
         title: "OG Live Preview",
         href: "/docs/components/og-og-live-preview",
         description: "OG card preview",
+        badge: "registry",
       },
       {
         title: "OG Workspace",
@@ -300,6 +313,7 @@ export const navigation: NavSection[] = [
         title: "Thumbnail Preview",
         href: "/docs/components/thumbnail-thumbnail-live-preview",
         description: "Thumb style preview",
+        badge: "registry",
       },
       {
         title: "Thumbnail Workspace",
@@ -311,6 +325,7 @@ export const navigation: NavSection[] = [
         title: "Project Planner",
         href: "/docs/components/planner-project-planner",
         description: "Scope planner",
+        badge: "registry",
       },
       {
         title: "Scope Chat",
@@ -322,6 +337,7 @@ export const navigation: NavSection[] = [
         title: "Live Dashboard",
         href: "/docs/components/studio-live-dashboard",
         description: "Studio status board",
+        badge: "registry",
       },
     ],
   },
@@ -332,19 +348,19 @@ export const navigation: NavSection[] = [
         title: "Analytics Provider",
         href: "/docs/components/analytics-analytics-provider",
         description: "Plausible / GA wrapper",
-        badge: "headless",
+        badge: "registry",
       },
       {
         title: "JSON-LD",
         href: "/docs/components/seo-json-ld",
         description: "schema.org helpers",
-        badge: "headless",
+        badge: "registry",
       },
       {
         title: "Testimonial Schema",
         href: "/docs/components/seo-testimonial-schema",
         description: "Review structured data",
-        badge: "headless",
+        badge: "registry",
       },
     ],
   },

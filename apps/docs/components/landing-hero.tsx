@@ -105,7 +105,7 @@ export function LandingHero() {
               <code className="break-all rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
                 CONTENT
               </code>
-              . Related work:{" "}
+              . Built by{" "}
               <a
                 href="https://www.iamk.xyz"
                 target="_blank"
@@ -114,7 +114,7 @@ export function LandingHero() {
               >
                 iamk.xyz
               </a>{" "}
-              and{" "}
+              at{" "}
               <a
                 href="https://www.makershot.tech"
                 target="_blank"

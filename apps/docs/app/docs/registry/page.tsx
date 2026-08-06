@@ -126,6 +126,18 @@ npx shadcn@latest add @atroui/site-footer`}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/brand
             </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/site-url
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/seo
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/analytics
+            </code>
           </li>
           <li>
             UI:{" "}
@@ -158,7 +170,23 @@ npx shadcn@latest add @atroui/site-footer`}
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
+              @atroui/theme-provider
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
               @atroui/logo
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/mockup-frame
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/timeline-animation
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/founder-avatar
             </code>
           </li>
           <li>
@@ -249,6 +277,82 @@ npx shadcn@latest add @atroui/site-footer`}
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/made-with-embed
+            </code>
+          </li>
+          <li>
+            Content &amp; share:{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/social-share
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/journal-content
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/resources-content
+            </code>
+          </li>
+          <li>
+            Case study &amp; studio:{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/before-after-slider
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/visual-case-study
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/ar-portfolio
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/live-dashboard
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/project-planner
+            </code>
+          </li>
+          <li>
+            SEO &amp; analytics:{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/json-ld
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/testimonial-schema
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/analytics-provider
+            </code>
+          </li>
+          <li>
+            Tools (OG / thumbnail / scope):{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/og-live-preview
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/og-examples
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/og-workspace
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/thumbnail-live-preview
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/thumbnail-workspace
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/scope-chat
             </code>
           </li>
         </ul>

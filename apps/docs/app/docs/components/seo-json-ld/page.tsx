@@ -12,12 +12,13 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="json-ld"
       href="/docs/components/seo-json-ld"
       title="JSON-LD"
       description="schema.org helpers for Organization/WebSite, articles, FAQ, breadcrumbs, offers, and tool pages. Headless - emits JSON-LD scripts only."
       preview={<DemoJsonLd />}
       code={
-        'import {\n  SiteGraphJsonLd,\n  ArticleJsonLd,\n  FaqJsonLd,\n  BreadcrumbJsonLd,\n} from "@/components/seo/json-ld"\n\n' +
+        'import {\n  SiteGraphJsonLd,\n  ArticleJsonLd,\n  FaqJsonLd,\n  BreadcrumbJsonLd,\n} from "@/components/blocks/json-ld"\n\n' +
         "<SiteGraphJsonLd />\n" +
         "<ArticleJsonLd title={…} description={…} slug={…} date={…} />"
       }

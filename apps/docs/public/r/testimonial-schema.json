@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-schema",
+  "title": "Testimonial Schema",
+  "description": "Review JSON-LD with editable CONTENT.",
+  "registryDependencies": [
+    "@atroui/brand",
+    "@atroui/site-url"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/testimonial-schema.tsx",
+      "content": "import { getBrand } from \"@/lib/brand\"\nimport { getSiteUrl } from \"@/lib/site-url\"\n\n/** Edit CONTENT to set the reviews emitted as JSON-LD. */\nconst CONTENT = {\n  reviews: [\n    {\n      name: \"Alex R.\",\n      title: \"Founder\",\n      company: \"Dev tools startup\",\n      rating: 5,\n      quote:\n        \"Shipped what would have taken two months in a week. Daily updates, no handoffs.\",\n    },\n    {\n      name: \"Priya M.\",\n      title: \"Head of Product\",\n      company: \"Legal tech\",\n      rating: 5,\n      quote:\n        \"The AI feature fits our workflow - not a chatbot bolted on the side.\",\n    },\n  ],\n}\n\ntype TestimonialSchemaProps = {\n  pageUrl?: string\n}\n\n/**\n * Individual Review JSON-LD only - no AggregateRating.\n */\nexport function TestimonialSchema({ pageUrl }: TestimonialSchemaProps = {}) {\n  const siteUrl = getSiteUrl()\n  const url = pageUrl ?? siteUrl\n\n  const data = {\n    \"@context\": \"https://schema.org\",\n    \"@graph\": CONTENT.reviews.map((t) => ({\n      \"@type\": \"Review\",\n      author: {\n        \"@type\": \"Person\",\n        name: t.name,\n        jobTitle: t.title,\n        worksFor: { \"@type\": \"Organization\", name: t.company },\n      },\n      reviewRating: {\n        \"@type\": \"Rating\",\n        ratingValue: String(t.rating),\n        bestRating: \"5\",\n        worstRating: \"1\",\n      },\n      reviewBody: t.quote,\n      itemReviewed: {\n        \"@type\": \"ProfessionalService\",\n        name: getBrand().name,\n        url,\n      },\n    })),\n  }\n\n  return (\n    <script\n      type=\"application/ld+json\"\n      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}\n    />\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/testimonial-schema.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resources-content",
+  "title": "Resources",
+  "description": "Resource library layout with editable CONTENT items.",
+  "dependencies": [
+    "next"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/resources-content.tsx",
+      "content": "\"use client\"\n\nimport Link from \"next/link\"\nimport { useMemo, useState } from \"react\"\n\n/** Edit CONTENT.items for your resource library. */\nconst CONTENT = {\n  title: \"Resources\",\n  blurb: \"Guides and downloads for shipping faster.\",\n  items: [\n    {\n      id: \"r1\",\n      title: \"7-day MVP checklist\",\n      description: \"Scope, stack, and daily cadence for a fixed sprint.\",\n      href: \"/resources/mvp-checklist\",\n      kind: \"Guide\",\n    },\n    {\n      id: \"r2\",\n      title: \"OG card brief\",\n      description: \"Title, subtitle, and safe-zone rules for social images.\",\n      href: \"/resources/og-brief\",\n      kind: \"PDF\",\n    },\n  ],\n}\n\nexport function ResourcesContent() {\n  const [q, setQ] = useState(\"\")\n  const items = useMemo(() => {\n    const needle = q.trim().toLowerCase()\n    if (!needle) return CONTENT.items\n    return CONTENT.items.filter(\n      (p) =>\n        p.title.toLowerCase().includes(needle) ||\n        p.description.toLowerCase().includes(needle)\n    )\n  }, [q])\n\n  return (\n    <div className=\"space-y-8\">\n      <header>\n        <p className=\"ms-stamp\">{CONTENT.title}</p>\n        <p className=\"mt-2 text-sm text-muted-foreground\">{CONTENT.blurb}</p>\n        <input\n          value={q}\n          onChange={(e) => setQ(e.target.value)}\n          placeholder=\"Search resources…\"\n          className=\"mt-4 w-full max-w-md rounded-full border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n        />\n      </header>\n      <ul className=\"grid gap-3 sm:grid-cols-2\">\n        {items.map((item) => (\n          <li key={item.id}>\n            <Link\n              href={item.href}\n              className=\"block rounded-2xl border border-border-subtle bg-card/40 p-5 transition-colors hover:bg-white/[0.04]\"\n            >\n              <p className=\"text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground\">\n                {item.kind}\n              </p>\n              <h3 className=\"mt-2 text-base font-medium text-foreground\">\n                {item.title}\n              </h3>\n              <p className=\"mt-1 text-sm text-muted-foreground\">\n                {item.description}\n              </p>\n            </Link>\n          </li>\n        ))}\n      </ul>\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/resources-content.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

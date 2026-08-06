@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-provider",
+  "title": "Theme Provider",
+  "description": "next-themes wrapper for class-based dark mode.",
+  "dependencies": [
+    "next-themes"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/theme-provider.tsx",
+      "content": "\"use client\";\n\nimport { ThemeProvider as NextThemesProvider } from \"next-themes\";\nimport type { ComponentProps } from \"react\";\n\nexport function ThemeProvider({\n  children,\n  ...props\n}: ComponentProps<typeof NextThemesProvider>) {\n  return (\n    <NextThemesProvider\n      attribute=\"class\"\n      defaultTheme=\"system\"\n      enableSystem\n      disableTransitionOnChange\n      {...props}\n    >\n      {children}\n    </NextThemesProvider>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/theme-provider.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

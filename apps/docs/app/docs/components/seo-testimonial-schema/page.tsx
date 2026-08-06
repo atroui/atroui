@@ -12,11 +12,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="testimonial-schema"
       href="/docs/components/seo-testimonial-schema"
       title="Testimonial Schema"
       description="Emits individual schema.org Review nodes from studio testimonials. Headless - no AggregateRating by design."
       preview={<DemoTestimonialSchema />}
-      code={'import { TestimonialSchema } from "@/components/seo/testimonial-schema"\n\n<TestimonialSchema testimonials={[…]} />'}
+      code={'import { TestimonialSchema } from "@/components/blocks/testimonial-schema"\n\n<TestimonialSchema />'}
       usage="Place on pages where reviews should be eligible for rich results. Skips AggregateRating to avoid self-published star spam signals."
       props={[
         {

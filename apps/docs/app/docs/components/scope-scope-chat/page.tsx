@@ -12,11 +12,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="scope-chat"
       href="/docs/components/scope-scope-chat"
       title="Scope Chat"
       description="Interactive scoping chat. Calls the host /api/scope route for replies."
       preview={<DemoScopeChat />}
-      code={'import { ScopeChat } from "@/components/scope/scope-chat"\n\n<ScopeChat />'}
+      code={'import { ScopeChat } from "@/components/blocks/scope-chat"\n\n<ScopeChat />'}
       fullBleed={true}
       usage={
         <>

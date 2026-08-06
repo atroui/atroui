@@ -12,11 +12,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="og-live-preview"
       href="/docs/components/og-og-live-preview"
       title="Og Live Preview"
       description="CSS preview of an OG social card."
       preview={<DemoOgLivePreview />}
-      code={'import { OgLivePreview } from "@/components/og/og-live-preview"\n\n<OgLivePreview title="…" subtitle="…" styleKey="paperQuote" />'}
+      code={'import { OgLivePreview } from "@/components/blocks/og-live-preview"\n\n<div className="relative aspect-[1200/630]">\n  <OgLivePreview title="…" subtitle="…" styleKey="paperQuote" />\n</div>'}
       fullBleed={false}
       props={[
     { name: 'title', type: 'string', default: '-', description: 'Card title.' },

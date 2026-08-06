@@ -12,12 +12,13 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="theme-provider"
       href="/docs/components/theme-provider"
       title="Theme Provider"
       description="App-level next-themes wrapper. No visible chrome of its own - mount once at the root so ThemeToggle and dark tokens work."
       preview={<DemoThemeProviderNote />}
       code={
-        'import { ThemeProvider } from "@/components/theme-provider"\n' +
+        'import { ThemeProvider } from "@/components/ui/theme-provider"\n' +
         'import { ThemeToggle } from "@/components/ui/theme-toggle"\n\n' +
         "<ThemeProvider attribute=\"class\" defaultTheme=\"system\" enableSystem>\n" +
         "  {children}\n" +

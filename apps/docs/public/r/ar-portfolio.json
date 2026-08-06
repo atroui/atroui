@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ar-portfolio",
+  "title": "AR Portfolio",
+  "description": "model-viewer AR portfolio with editable CONTENT models.",
+  "dependencies": [
+    "next"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/fade-in"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/ar-portfolio.tsx",
+      "content": "\"use client\";\n\nimport Script from \"next/script\";\nimport { createElement, useState } from \"react\";\n\nimport { FadeIn } from \"@/components/ui/fade-in\";\nimport { cn } from \"@/lib/utils\";\n\n/** Edit CONTENT to swap demo models. */\nconst CONTENT = [\n  {\n    id: \"og-tool\",\n    title: \"OG Image Generator\",\n    description: \"Preview how your social cards look in 3D space before sharing.\",\n    src: \"https://modelviewer.dev/shared-assets/models/Astronaut.glb\",\n    poster: \"/opengraph-image\",\n  },\n  {\n    id: \"dashboard\",\n    title: \"SaaS Dashboard MVP\",\n    description: \"Interactive 3D preview of a shipped client dashboard layout.\",\n    src: \"https://modelviewer.dev/shared-assets/models/NeilArmstrong.glb\",\n  },\n];\n\nconst chipBase =\n  \"border px-3 py-1.5 text-xs font-medium transition-colors\";\nconst chipActive = \"border-brand bg-brand/10 text-brand\";\nconst chipIdle =\n  \"border-border-subtle text-muted-foreground hover:border-border hover:text-foreground\";\n\nexport function ArPortfolio() {\n  const [active, setActive] = useState(CONTENT[0]!.id);\n  const model = CONTENT.find((m) => m.id === active) ?? CONTENT[0]!;\n  const [scriptReady, setScriptReady] = useState(false);\n\n  return (\n    <>\n      <Script\n        type=\"module\"\n        src=\"https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js\"\n        onLoad={() => setScriptReady(true)}\n        strategy=\"lazyOnload\"\n      />\n\n      <FadeIn>\n        <p className=\"ms-stamp\">AR portfolio preview</p>\n        <p className=\"mt-3 max-w-lg text-sm text-muted-foreground\">\n          On supported devices, tap &ldquo;View in AR&rdquo; to place a project preview in your\n          space. Demo models are placeholders - replace the hardcoded{\" \"}\n          <code className=\"font-mono text-[11px] text-foreground\">CONTENT</code>{\" \"}\n          list for real client work.\n        </p>\n\n        <div className=\"mt-4 flex flex-wrap gap-2\">\n          {CONTENT.map((m) => (\n            <button\n              key={m.id}\n              type=\"button\"\n              onClick={() => setActive(m.id)}\n              className={cn(\n                chipBase,\n                \"rounded-full\",\n                active === m.id ? chipActive : chipIdle\n              )}\n            >\n              {m.title}\n            </button>\n          ))}\n        </div>\n\n        <div className=\"mt-6 overflow-hidden rounded-2xl border border-border-subtle bg-card/40\">\n          {scriptReady ? (\n            createElement(\"model-viewer\", {\n              src: model.src,\n              poster: model.poster,\n              alt: model.title,\n              ar: true,\n              \"ar-modes\": \"webxr scene-viewer quick-look\",\n              \"camera-controls\": true,\n              \"touch-action\": \"pan-y\",\n              \"auto-rotate\": true,\n              \"shadow-intensity\": \"1\",\n              style: { width: \"100%\", height: \"400px\", background: \"transparent\" },\n            })\n          ) : (\n            <div className=\"flex h-[400px] items-center justify-center text-sm text-muted-foreground\">\n              Loading 3D viewer…\n            </div>\n          )}\n        </div>\n        <p className=\"mt-3 text-sm font-medium text-foreground\">{model.title}</p>\n        <p className=\"text-xs text-muted-foreground\">{model.description}</p>\n      </FadeIn>\n    </>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/ar-portfolio.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

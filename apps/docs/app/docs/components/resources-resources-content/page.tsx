@@ -12,11 +12,12 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="resources-content"
       href="/docs/components/resources-resources-content"
       title="Resources Content"
       description="Resources library content."
       preview={<DemoResourcesContent />}
-      code={'import { ResourcesContent } from "@/components/resources/resources-content"\n\n<ResourcesContent />'}
+      code={'import { ResourcesContent } from "@/components/blocks/resources-content"\n\n<ResourcesContent />'}
       fullBleed={true}
     />
   )

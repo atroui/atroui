@@ -12,6 +12,7 @@ export const metadata: Metadata = componentPageMetadata(
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="founder-avatar"
       href="/docs/components/ui-founder-avatar"
       title="Founder Avatar"
       description="Circular founder portrait for signature rows and about bands."
