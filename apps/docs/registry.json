@@ -942,6 +942,54 @@
           "target": "components/blocks/resources-content.tsx"
         }
       ]
+    },
+    {
+      "name": "api-contact",
+      "type": "registry:item",
+      "title": "Contact API",
+      "description": "POST /api/contact - honeypot, rate limit, SMTP via atroui/api/contact.",
+      "dependencies": [
+        "atroui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/api/contact/route.ts",
+          "type": "registry:file",
+          "target": "app/api/contact/route.ts"
+        }
+      ]
+    },
+    {
+      "name": "api-waitlist",
+      "type": "registry:item",
+      "title": "Waitlist API",
+      "description": "POST /api/waitlist - Resend audience or SMTP via atroui/api/waitlist.",
+      "dependencies": [
+        "atroui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/api/waitlist/route.ts",
+          "type": "registry:file",
+          "target": "app/api/waitlist/route.ts"
+        }
+      ]
+    },
+    {
+      "name": "api-newsletter",
+      "type": "registry:item",
+      "title": "Newsletter API",
+      "description": "POST /api/newsletter - Resend audience or SMTP via atroui/api/newsletter.",
+      "dependencies": [
+        "atroui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/api/newsletter/route.ts",
+          "type": "registry:file",
+          "target": "app/api/newsletter/route.ts"
+        }
+      ]
     }
   ]
 }

@@ -33,6 +33,9 @@
       "types": "./src/globals.css.d.ts",
       "default": "./src/globals.css"
     },
+    "./api/contact": "./src/api/contact.ts",
+    "./api/waitlist": "./src/api/waitlist.ts",
+    "./api/newsletter": "./src/api/newsletter.ts",
     "./lib/*": "./src/lib/*",
     "./components/*": "./src/components/*",
     "./content/*": "./src/content/*",

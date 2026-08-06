@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "api-newsletter",
+  "title": "Newsletter API",
+  "description": "POST /api/newsletter - Resend audience or SMTP via atroui/api/newsletter.",
+  "dependencies": [
+    "atroui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/api/newsletter/route.ts",
+      "content": "import { handleNewsletterPost } from \"atroui/api/newsletter\"\n\nexport const runtime = \"nodejs\"\n\nexport async function POST(req: Request) {\n  return handleNewsletterPost(req)\n}\n",
+      "type": "registry:file",
+      "target": "app/api/newsletter/route.ts"
+    }
+  ],
+  "type": "registry:item"
+}

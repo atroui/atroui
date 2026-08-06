@@ -19,7 +19,7 @@ export default function Page() {
       preview={<DemoNewsletterForm />}
       code={'import { NewsletterForm } from "@/components/blocks/newsletter-form"\n\n<NewsletterForm />'}
       fullBleed={false}
-      usage="Posts to CONTENT.endpoint (default /api/newsletter). Host API."
+      usage="Posts to /api/newsletter. Install @atroui/api-newsletter (Resend audience or SMTP). See Installation."
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}

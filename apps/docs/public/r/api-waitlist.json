@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "api-waitlist",
+  "title": "Waitlist API",
+  "description": "POST /api/waitlist - Resend audience or SMTP via atroui/api/waitlist.",
+  "dependencies": [
+    "atroui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/api/waitlist/route.ts",
+      "content": "import { handleWaitlistPost } from \"atroui/api/waitlist\"\n\nexport const runtime = \"nodejs\"\n\nexport async function POST(req: Request) {\n  return handleWaitlistPost(req)\n}\n",
+      "type": "registry:file",
+      "target": "app/api/waitlist/route.ts"
+    }
+  ],
+  "type": "registry:item"
+}
