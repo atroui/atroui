@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/default/api/thumbnail/route.ts",
-      "content": "import { handleThumbnailPost } from \"atroui/api/thumbnail\"\n\nexport const runtime = \"nodejs\"\nexport const maxDuration = 60\n\nexport async function POST(req: Request) {\n  return handleThumbnailPost(req)\n}\n",
+      "content": "import { handleThumbnailPost } from \"atroui/api/thumbnail\"\n\nexport const runtime = \"nodejs\"\nexport const dynamic = \"force-dynamic\"\nexport const maxDuration = 60\n\nexport async function POST(req: Request) {\n  return handleThumbnailPost(req)\n}\n",
       "type": "registry:file",
       "target": "app/api/thumbnail/route.ts"
     }

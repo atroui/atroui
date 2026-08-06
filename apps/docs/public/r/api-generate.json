@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/default/api/generate/route.ts",
-      "content": "import { handleGeneratePost } from \"atroui/api/generate\"\n\nexport const runtime = \"nodejs\"\nexport const maxDuration = 60\n\nexport async function POST(req: Request) {\n  return handleGeneratePost(req)\n}\n",
+      "content": "import { handleGeneratePost } from \"atroui/api/generate\"\n\nexport const runtime = \"nodejs\"\nexport const dynamic = \"force-dynamic\"\nexport const maxDuration = 60\n\nexport async function POST(req: Request) {\n  return handleGeneratePost(req)\n}\n",
       "type": "registry:file",
       "target": "app/api/generate/route.ts"
     }
