@@ -24,8 +24,36 @@ export function jsonOk(data: Record<string, unknown> = { ok: true }, status = 20
   return Response.json(data, { status })
 }
 
-export function jsonError(error: string, status: number) {
-  return Response.json({ ok: false, error }, { status })
+export function jsonError(
+  error: string,
+  status: number,
+  extra?: Record<string, unknown>,
+) {
+  return Response.json({ ok: false, error, ...extra }, { status })
+}
+
+/** JPEG/PNG buffer → data URL for workspace clients. */
+export function bufferToDataUrl(
+  buffer: Buffer,
+  mime: "image/jpeg" | "image/png" = "image/jpeg",
+): string {
+  return `data:${mime};base64,${buffer.toString("base64")}`
+}
+
+export function getHfToken(): string | null {
+  return process.env.HUGGINGFACE_API_KEY?.trim() || null
+}
+
+export function hasGoogleAiKey(): boolean {
+  return Boolean(
+    process.env.GOOGLE_AI_KEY?.trim() ||
+      process.env.GOOGLE_AI_API_KEY?.trim() ||
+      process.env.GEMINI_API_KEY?.trim(),
+  )
+}
+
+export function getXaiApiKey(): string | null {
+  return process.env.XAI_API_KEY?.trim() || null
 }
 
 export function clientIp(req: Request): string {

@@ -990,6 +990,54 @@
           "target": "app/api/newsletter/route.ts"
         }
       ]
+    },
+    {
+      "name": "api-generate",
+      "type": "registry:item",
+      "title": "OG Generate API",
+      "description": "POST /api/generate - consumer HF/Google keys via atroui/api/generate. No keys shipped.",
+      "dependencies": [
+        "atroui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/api/generate/route.ts",
+          "type": "registry:file",
+          "target": "app/api/generate/route.ts"
+        }
+      ]
+    },
+    {
+      "name": "api-thumbnail",
+      "type": "registry:item",
+      "title": "Thumbnail API",
+      "description": "POST /api/thumbnail - consumer HF/Google/XAI keys via atroui/api/thumbnail. No keys shipped.",
+      "dependencies": [
+        "atroui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/api/thumbnail/route.ts",
+          "type": "registry:file",
+          "target": "app/api/thumbnail/route.ts"
+        }
+      ]
+    },
+    {
+      "name": "api-scope",
+      "type": "registry:item",
+      "title": "Scope Chat API",
+      "description": "POST /api/scope - rule-based by default; optional XAI_API_KEY via atroui/api/scope.",
+      "dependencies": [
+        "atroui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/api/scope/route.ts",
+          "type": "registry:file",
+          "target": "app/api/scope/route.ts"
+        }
+      ]
     }
   ]
 }

@@ -21,21 +21,19 @@ export default function Page() {
       fullBleed={true}
       usage={
         <>
-          Bring your own{" "}
+          Install{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            POST /api/thumbnail
+            @atroui/api-thumbnail
+          </code>
+          . Set{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            HUGGINGFACE_API_KEY
           </code>{" "}
-          and AI keys in the host app. This catalog only mounts the workspace
-          chrome. For a live image tool in the same family, try{" "}
-          <a
-            href="https://www.makershot.tech/og"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand underline underline-offset-2"
-          >
-            makershot.tech/og
-          </a>
-          .
+          in your env (plus{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            XAI_API_KEY
+          </code>{" "}
+          for Pro mode). AtroUI never ships keys. Preview-only works without AI.
         </>
       }
     />

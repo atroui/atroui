@@ -368,6 +368,18 @@ npx shadcn@latest add @atroui/site-footer`}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/api-newsletter
             </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/api-generate
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/api-thumbnail
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/api-scope
+            </code>
           </li>
         </ul>
         <p className="text-[15px] leading-relaxed text-muted-foreground">

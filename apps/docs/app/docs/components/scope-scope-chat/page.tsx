@@ -21,13 +21,15 @@ export default function Page() {
       fullBleed={true}
       usage={
         <>
-          Bring your own{" "}
+          Install{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            POST /api/scope
+            @atroui/api-scope
+          </code>
+          . Rule-based replies work with no keys. Optional{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            XAI_API_KEY
           </code>{" "}
-          (and AI keys if you want model replies). The docs app does not burn
-          shared LLM tokens - without a host route, the UI still mounts and
-          rule-based fallbacks may apply depending on your wiring.
+          enables LLM replies in your app - AtroUI never ships keys.
         </>
       }
     />

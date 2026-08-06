@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "api-thumbnail",
+  "title": "Thumbnail API",
+  "description": "POST /api/thumbnail - consumer HF/Google/XAI keys via atroui/api/thumbnail. No keys shipped.",
+  "dependencies": [
+    "atroui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/api/thumbnail/route.ts",
+      "content": "import { handleThumbnailPost } from \"atroui/api/thumbnail\"\n\nexport const runtime = \"nodejs\"\nexport const maxDuration = 60\n\nexport async function POST(req: Request) {\n  return handleThumbnailPost(req)\n}\n",
+      "type": "registry:file",
+      "target": "app/api/thumbnail/route.ts"
+    }
+  ],
+  "type": "registry:item"
+}
