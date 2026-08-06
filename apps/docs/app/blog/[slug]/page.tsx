@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { ArticleJsonLd } from "atroui"
 import { CodeBlock } from "@/components/code-block"
 import { blogPosts, getPost } from "@/lib/blog"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -77,6 +78,13 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="bg-background text-foreground">
+      <ArticleJsonLd
+        title={post.title}
+        description={post.description}
+        slug={post.slug}
+        date={post.date}
+        basePath="/blog"
+      />
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-8 sm:py-16 lg:py-20">
         <p className="ms-stamp mb-3">
           <Link href="/blog" className="hover:text-foreground">

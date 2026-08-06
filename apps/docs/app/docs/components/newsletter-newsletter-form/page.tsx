@@ -5,7 +5,8 @@ import { DemoNewsletterForm } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Newsletter Form",
-  "/docs/components/newsletter-newsletter-form"
+  "/docs/components/newsletter-newsletter-form",
+  "Email capture form."
 )
 
 export default function Page() {

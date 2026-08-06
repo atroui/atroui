@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { BlogJsonLd } from "atroui"
 import { blogPosts } from "@/lib/blog"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -13,6 +14,11 @@ export const metadata: Metadata = docsPageMetadata({
 export default function BlogIndexPage() {
   return (
     <div className="bg-background text-foreground">
+      <BlogJsonLd
+        path="/blog"
+        name="AtroUI Blog"
+        description="Guides that take you from search to owning the UI with the shadcn CLI."
+      />
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-8 sm:py-16 lg:py-20">
         <p className="ms-stamp mb-3">Blog</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">

@@ -61,6 +61,121 @@
       ]
     },
     {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Elevated surface with header, content, and footer slots.",
+      "registryDependencies": ["@atroui/utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multi-line text input styled for AtroUI forms.",
+      "registryDependencies": ["@atroui/utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-select",
+      "type": "registry:ui",
+      "title": "Form Select",
+      "description": "Accessible select built on Base UI.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@atroui/utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/form-select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form-select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumbs",
+      "type": "registry:ui",
+      "title": "Breadcrumbs",
+      "description": "Path navigation trail for docs and product pages.",
+      "dependencies": ["lucide-react", "next"],
+      "registryDependencies": ["@atroui/utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/breadcrumbs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/breadcrumbs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "prose",
+      "type": "registry:ui",
+      "title": "Prose",
+      "description": "Long-form typography container for articles and MDX.",
+      "registryDependencies": ["@atroui/utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/prose.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/prose.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fade-in",
+      "type": "registry:ui",
+      "title": "Fade In",
+      "description": "Scroll-triggered fade + rise using motion.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/default/ui/fade-in.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/fade-in.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stagger",
+      "type": "registry:ui",
+      "title": "Stagger",
+      "description": "Stagger children on scroll with StaggerChild.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/default/ui/stagger.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/stagger.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-progress",
+      "type": "registry:ui",
+      "title": "Scroll Progress",
+      "description": "Reading-progress bar driven by scroll position.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["@atroui/utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/scroll-progress.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-progress.tsx"
+        }
+      ]
+    },
+    {
       "name": "logo",
       "type": "registry:component",
       "title": "Logo",

@@ -5,7 +5,8 @@ import { DemoAnalyticsProvider } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Analytics Provider",
-  "/docs/components/analytics-analytics-provider"
+  "/docs/components/analytics-analytics-provider",
+  "Headless analytics + experiment helper. Loads Plausible/GA when env is set; no visible UI."
 )
 
 export default function Page() {

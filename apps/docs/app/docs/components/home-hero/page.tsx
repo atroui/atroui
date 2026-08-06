@@ -5,7 +5,8 @@ import { DemoHomeHero } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Hero",
-  "/docs/components/home-hero"
+  "/docs/components/home-hero",
+  "Primary homepage hero with interactive OG canvas, sprint timeline, and CTA."
 )
 
 export default function Page() {

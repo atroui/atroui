@@ -1,19 +1,16 @@
 # AtroUI
 
-> AtroUI is a production React / Next.js component library and dark-first design system.
+> Dark-first React / Next.js component catalog. Install with the shadcn CLI and own the source in your repo.
 > Site: https://www.atroui.com
-> Package: https://www.npmjs.com/package/atroui
+> Registry: https://www.atroui.com/r/{name}.json
 > Repo: https://github.com/atroui/atroui
 
 ## Install
 
 ```bash
-npm install atroui
-```
-
-```tsx
-import { Button, ThemeProvider } from "atroui"
-import "atroui/globals.css"
+npx shadcn@latest init
+npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
+npx shadcn@latest add @atroui/home-hero
 ```
 
 ## Key pages
@@ -21,14 +18,31 @@ import "atroui/globals.css"
 - Home: https://www.atroui.com
 - Docs: https://www.atroui.com/docs
 - Installation: https://www.atroui.com/docs/installation
+- Registry: https://www.atroui.com/docs/registry
 - Theming: https://www.atroui.com/docs/theming
 - Brand kit: https://www.atroui.com/docs/brand
 - Compare: https://www.atroui.com/docs/compare
 - Blog: https://www.atroui.com/blog
 - Changelog: https://www.atroui.com/docs/changelog
 - Components: https://www.atroui.com/docs/components
+- Catalog JSON: https://www.atroui.com/r/registry.json
+
+## Registry highlights
+
+### Primitives
+- @atroui/button, @atroui/card, @atroui/textarea, @atroui/form-select
+- @atroui/breadcrumbs, @atroui/prose, @atroui/theme-toggle, @atroui/logo
+- @atroui/fade-in, @atroui/stagger, @atroui/scroll-progress
+
+### Blocks
+- @atroui/home-hero, @atroui/site-header, @atroui/site-footer, @atroui/faq
+- @atroui/pricing-overview, @atroui/contact-form, @atroui/waitlist-form
+
+## Blog
+
+- https://www.atroui.com/blog
 
 ## Related
 
-- iamk.xyz: https://www.iamk.xyz
-- makershot.tech: https://www.makershot.tech
+- GitHub: https://github.com/atroui/atroui
+- npm (tokens / package): https://www.npmjs.com/package/atroui

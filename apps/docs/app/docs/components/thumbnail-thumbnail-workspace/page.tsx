@@ -5,7 +5,8 @@ import { DemoThumbnailWorkspace } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Thumbnail Workspace",
-  "/docs/components/thumbnail-thumbnail-workspace"
+  "/docs/components/thumbnail-thumbnail-workspace",
+  "Thumbnail generator workspace UI. Catalog demos do not call paid image APIs."
 )
 
 export default function Page() {

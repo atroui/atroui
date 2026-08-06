@@ -5,12 +5,14 @@ import { DemoTextarea } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Textarea",
-  "/docs/components/ui-textarea"
+  "/docs/components/ui-textarea",
+  "Multi-line text input styled for AtroUI forms."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="textarea"
       href="/docs/components/ui-textarea"
       title="Textarea"
       description="Multi-line text input."

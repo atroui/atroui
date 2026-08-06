@@ -5,7 +5,8 @@ import { DemoPricingOverview } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Pricing Overview",
-  "/docs/components/pricing-overview"
+  "/docs/components/pricing-overview",
+  "Service pricing overview grid."
 )
 
 export default function Page() {

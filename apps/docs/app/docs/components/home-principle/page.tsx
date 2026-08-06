@@ -5,7 +5,8 @@ import { DemoHomePrinciple } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Principle",
-  "/docs/components/home-principle"
+  "/docs/components/home-principle",
+  "Studio principles section."
 )
 
 export default function Page() {

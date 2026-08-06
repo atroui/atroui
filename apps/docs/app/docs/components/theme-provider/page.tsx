@@ -5,7 +5,8 @@ import { DemoThemeProviderNote } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Theme Provider",
-  "/docs/components/theme-provider"
+  "/docs/components/theme-provider",
+  "App-level next-themes wrapper. No visible chrome of its own - mount once at the root so ThemeToggle and dark tokens work."
 )
 
 export default function Page() {

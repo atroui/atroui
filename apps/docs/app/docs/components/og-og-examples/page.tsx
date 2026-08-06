@@ -5,7 +5,8 @@ import { DemoOgExamples } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Og Examples",
-  "/docs/components/og-og-examples"
+  "/docs/components/og-og-examples",
+  "Gallery of OG style examples with sample 1200×630 thumbnails and remix links."
 )
 
 export default function Page() {

@@ -5,7 +5,8 @@ import { DemoHomeWho } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Who",
-  "/docs/components/home-who"
+  "/docs/components/home-who",
+  "Founder / who-we-are section. Brand name and email default to getBrand()."
 )
 
 export default function Page() {

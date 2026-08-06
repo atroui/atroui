@@ -5,12 +5,14 @@ import { DemoFadeIn } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Fade In",
-  "/docs/components/motion-fade-in"
+  "/docs/components/motion-fade-in",
+  "Scroll-triggered fade + rise. Preview animates on mount."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="fade-in"
       href="/docs/components/motion-fade-in"
       title="Fade In"
       description="Scroll-triggered fade + rise. Preview animates on mount - use Replay to watch again."

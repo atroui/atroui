@@ -5,7 +5,8 @@ import { DemoTimelineAnimation } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Timeline Animation",
-  "/docs/components/ui-timeline-animation"
+  "/docs/components/ui-timeline-animation",
+  "Sequenced scroll-triggered timeline items."
 )
 
 export default function Page() {

@@ -72,6 +72,8 @@ export function ArticleJsonLd({
   dateModified,
   author,
   image,
+  /** URL segment before the slug. Docs site uses `/blog`; studio hosts often use `/journal`. */
+  basePath = "/journal",
 }: {
   title: string;
   description: string;
@@ -81,17 +83,19 @@ export function ArticleJsonLd({
   /** Defaults to brand organization name (not a personal byline). */
   author?: string;
   image?: string;
+  basePath?: string;
 }) {
   const siteUrl = getSiteUrl();
   const brandName = getBrand().name;
   const authorName = author ?? brandName;
-  const pageUrl = `${siteUrl}/journal/${slug}`;
+  const segment = basePath.startsWith("/") ? basePath : `/${basePath}`;
+  const pageUrl = `${siteUrl}${segment}/${slug}`;
   const imageUrl =
     image?.startsWith("http")
       ? image
       : image
         ? `${siteUrl}${image.startsWith("/") ? image : `/${image}`}`
-        : `${siteUrl}/journal/${slug}/opengraph-image`;
+        : `${siteUrl}${segment}/${slug}/opengraph-image`;
 
   const data = {
     "@context": "https://schema.org",
@@ -339,17 +343,27 @@ export function SoftwareAppJsonLd() {
   );
 }
 
-/** CollectionPage hint for /journal index. */
-export function BlogJsonLd() {
+/** CollectionPage hint for the blog / journal index. */
+export function BlogJsonLd({
+  path = "/journal",
+  name,
+  description,
+}: {
+  path?: string;
+  name?: string;
+  description?: string;
+} = {}) {
   const siteUrl = getSiteUrl();
   const brandName = getBrand().name;
+  const pagePath = path.startsWith("/") ? path : `/${path}`;
   const data = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: `${brandName} Journal`,
+    name: name ?? `${brandName} Blog`,
     description:
-      "Practical essays on shipping AI MVPs, Next.js, design systems, and OG images that convert.",
-    url: `${siteUrl}/journal`,
+      description ??
+      "Guides on the shadcn registry, dark-first tokens, and Next.js components.",
+    url: `${siteUrl}${pagePath}`,
     publisher: {
       "@type": "Organization",
       name: brandName,

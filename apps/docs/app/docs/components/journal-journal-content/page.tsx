@@ -5,7 +5,8 @@ import { DemoJournalContent } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Journal Content",
-  "/docs/components/journal-journal-content"
+  "/docs/components/journal-journal-content",
+  "Journal listing / content."
 )
 
 export default function Page() {

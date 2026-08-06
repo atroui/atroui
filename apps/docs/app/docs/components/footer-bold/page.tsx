@@ -5,7 +5,8 @@ import { DemoBoldFooter } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Footer Bold",
-  "/docs/components/footer-bold"
+  "/docs/components/footer-bold",
+  "Bold marketing footer with links and brand mark."
 )
 
 export default function Page() {

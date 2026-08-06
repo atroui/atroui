@@ -5,7 +5,8 @@ import { DemoContactForm } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Contact Form",
-  "/docs/components/contact-contact-form"
+  "/docs/components/contact-contact-form",
+  "Full contact / briefing form. Posts to the host /api/contact route."
 )
 
 export default function Page() {

@@ -5,12 +5,14 @@ import { DemoCard } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Card",
-  "/docs/components/ui-card"
+  "/docs/components/ui-card",
+  "Elevated surface for grouped content - header, body, footer slots."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="card"
       href="/docs/components/ui-card"
       title="Card"
       description="Elevated surface for grouped content - header, body, footer slots."

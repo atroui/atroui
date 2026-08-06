@@ -25,7 +25,7 @@ export function getDefaultTitle(): string {
 
 export function getDefaultDescription(): string {
   const { name, domain, tagline } = getBrand();
-  return `${name} (${domain}) - ${tagline}. Install with npm i atroui.`;
+  return `${name} (${domain}) - ${tagline}. Add components with the shadcn CLI.`;
 }
 
 export function absoluteUrl(path = ""): string {

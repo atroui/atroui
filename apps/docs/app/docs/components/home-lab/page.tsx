@@ -5,7 +5,8 @@ import { DemoHomeLab } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Lab",
-  "/docs/components/home-lab"
+  "/docs/components/home-lab",
+  "Lab / experiments section from the homepage."
 )
 
 export default function Page() {

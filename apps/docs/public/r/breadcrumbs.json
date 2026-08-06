@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumbs",
+  "title": "Breadcrumbs",
+  "description": "Path navigation trail for docs and product pages.",
+  "dependencies": [
+    "lucide-react",
+    "next"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/breadcrumbs.tsx",
+      "content": "import { ChevronRight } from \"lucide-react\"\nimport Link from \"next/link\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type BreadcrumbItem = {\n  label: string\n  href?: string\n}\n\nexport function Breadcrumbs({\n  items,\n  className,\n}: {\n  items: BreadcrumbItem[]\n  className?: string\n}) {\n  return (\n    <nav aria-label=\"Breadcrumb\" className={cn(\"text-sm\", className)}>\n      <ol className=\"flex flex-wrap items-center gap-1.5\">\n        {items.map((item, i) => {\n          const isLast = i === items.length - 1\n          return (\n            <li key={item.label} className=\"flex items-center gap-1.5\">\n              {i > 0 ? (\n                <ChevronRight\n                  className=\"size-3.5 text-muted-foreground/60\"\n                  aria-hidden\n                />\n              ) : null}\n              {isLast || !item.href ? (\n                <span\n                  className=\"text-muted-foreground\"\n                  aria-current={isLast ? \"page\" : undefined}\n                >\n                  {item.label}\n                </span>\n              ) : (\n                <Link\n                  href={item.href}\n                  className=\"text-muted-foreground hover:text-foreground\"\n                >\n                  {item.label}\n                </Link>\n              )}\n            </li>\n          )\n        })}\n      </ol>\n    </nav>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/breadcrumbs.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

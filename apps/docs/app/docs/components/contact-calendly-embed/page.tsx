@@ -5,7 +5,8 @@ import { DemoCalendlyEmbed } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Calendly Embed",
-  "/docs/components/contact-calendly-embed"
+  "/docs/components/contact-calendly-embed",
+  "Theme-aware Calendly embed with email fallback."
 )
 
 export default function Page() {

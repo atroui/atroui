@@ -5,7 +5,8 @@ import { DemoThumbnailLivePreview } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Thumbnail Live Preview",
-  "/docs/components/thumbnail-thumbnail-live-preview"
+  "/docs/components/thumbnail-thumbnail-live-preview",
+  "CSS preview of a video thumbnail."
 )
 
 export default function Page() {

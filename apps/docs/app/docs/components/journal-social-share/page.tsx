@@ -5,7 +5,8 @@ import { DemoSocialShare } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Social Share",
-  "/docs/components/journal-social-share"
+  "/docs/components/journal-social-share",
+  "Share actions for articles."
 )
 
 export default function Page() {

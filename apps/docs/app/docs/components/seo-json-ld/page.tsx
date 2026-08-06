@@ -5,7 +5,8 @@ import { DemoJsonLd } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "JSON-LD",
-  "/docs/components/seo-json-ld"
+  "/docs/components/seo-json-ld",
+  "schema.org helpers for Organization/WebSite, articles, FAQ, breadcrumbs, offers, and tool pages. Headless - emits JSON-LD scripts only."
 )
 
 export default function Page() {

@@ -5,7 +5,8 @@ import { DemoLiveDashboard } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Live Dashboard",
-  "/docs/components/studio-live-dashboard"
+  "/docs/components/studio-live-dashboard",
+  "Studio live dashboard driven by package content modules - not a host API tool."
 )
 
 export default function Page() {

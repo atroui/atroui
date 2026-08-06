@@ -5,7 +5,8 @@ import { DemoTestimonialSchema } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Testimonial Schema",
-  "/docs/components/seo-testimonial-schema"
+  "/docs/components/seo-testimonial-schema",
+  "Emits individual schema.org Review nodes from studio testimonials. Headless - no AggregateRating by design."
 )
 
 export default function Page() {

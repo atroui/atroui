@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "prose",
+  "title": "Prose",
+  "description": "Long-form typography container for articles and MDX.",
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/prose.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Article prose container. Keeps MDX and plain-HTML content consistent.\n */\nexport function Prose({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn(\n        \"prose-studio text-foreground\",\n        \"[&>h1]:ds-display [&>h1]:text-4xl [&>h1]:mt-0 [&>h1]:mb-6\",\n        \"[&>h2]:ds-headline [&>h2]:text-2xl [&>h2]:mt-12 [&>h2]:mb-4\",\n        \"[&>h3]:ds-headline [&>h3]:text-xl [&>h3]:mt-10 [&>h3]:mb-3\",\n        \"[&>p]:text-[0.975rem] [&>p]:leading-[1.75] [&>p]:text-foreground/85 [&>p]:my-5\",\n        \"[&>ul]:my-5 [&>ul]:list-disc [&>ul]:pl-6 [&>ul>li]:my-1.5 [&>ul>li]:text-foreground/85\",\n        \"[&>ol]:my-5 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol>li]:my-1.5 [&>ol>li]:text-foreground/85\",\n        \"[&>blockquote]:my-6 [&>blockquote]:border-l-2 [&>blockquote]:border-brand/50 [&>blockquote]:pl-4 [&>blockquote]:text-foreground/75 [&>blockquote]:italic\",\n        \"[&>hr]:my-10 [&>hr]:border-border-subtle\",\n        \"[&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-brand/40 hover:[&_a]:decoration-brand [&_a]:text-foreground\",\n        \"[&_code]:border [&_code]:border-border-subtle [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-[0.85em] [&_code]:font-mono\",\n        \"[&>pre]:my-6 [&>pre]:overflow-x-auto [&>pre]:border [&>pre]:border-border-subtle [&>pre]:bg-muted/30 [&>pre]:p-4 [&>pre]:text-[0.88rem]\",\n        \"[&>pre_code]:border-0 [&>pre_code]:bg-transparent [&>pre_code]:p-0\",\n        \"[&>img]:my-8 [&>img]:border [&>img]:border-border-subtle\",\n        \"[&>table]:my-6 [&>table]:w-full [&>table]:text-sm\",\n        \"[&>table_th]:border-b [&>table_th]:border-border [&>table_th]:px-3 [&>table_th]:py-2 [&>table_th]:text-left [&>table_th]:font-medium\",\n        \"[&>table_td]:border-b [&>table_td]:border-border-subtle [&>table_td]:px-3 [&>table_td]:py-2\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/prose.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -5,12 +5,14 @@ import { DemoBreadcrumbs } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Breadcrumbs",
-  "/docs/components/ui-breadcrumbs"
+  "/docs/components/ui-breadcrumbs",
+  "Path navigation trail for docs and product pages."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="breadcrumbs"
       href="/docs/components/ui-breadcrumbs"
       title="Breadcrumbs"
       description="Hierarchical navigation trail."

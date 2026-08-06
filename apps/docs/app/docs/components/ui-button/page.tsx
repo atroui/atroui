@@ -5,7 +5,8 @@ import { DemoButton } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Button",
-  "/docs/components/ui-button"
+  "/docs/components/ui-button",
+  "Primary action control with variants and sizes."
 )
 
 export default function Page() {

@@ -5,7 +5,8 @@ import { DemoWaitlistForm } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Waitlist Form",
-  "/docs/components/brand-waitlist-form"
+  "/docs/components/brand-waitlist-form",
+  "Brand waitlist signup."
 )
 
 export default function Page() {

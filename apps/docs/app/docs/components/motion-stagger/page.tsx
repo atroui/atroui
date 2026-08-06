@@ -5,12 +5,14 @@ import { DemoStagger } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Stagger",
-  "/docs/components/motion-stagger"
+  "/docs/components/motion-stagger",
+  "Stagger children on scroll with StaggerChild."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="stagger"
       href="/docs/components/motion-stagger"
       title="Stagger"
       description="Staggered children reveal. Preview plays on mount - use Replay to watch again."

@@ -5,7 +5,8 @@ import { DemoProjectPlanner } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Project Planner",
-  "/docs/components/planner-project-planner"
+  "/docs/components/planner-project-planner",
+  "Client-side project planner. Routes into /contact with query params - no generation API."
 )
 
 export default function Page() {
