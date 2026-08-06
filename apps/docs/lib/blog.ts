@@ -36,10 +36,24 @@ export const blogPosts: BlogPost[] = [
         heading: "What the old npm-first path looked like",
         body: [
           "Early AtroUI leaned on the classic library contract:",
-          "Install: `npm i atroui` (and peers like `next-themes`).",
-          "Configure Next: `transpilePackages: [\"atroui\"]` so TypeScript source inside `node_modules` compiled with the app.",
-          "Import: `import { HomeHero } from \"atroui/components/…\"` or barrel paths from the package.",
-          "Theme: import `atroui/globals.css` and hope the host layout already loaded Outfit / next-themes the way the docs site did.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `# Install
+npm i atroui next-themes
+
+# next.config.ts
+transpilePackages: ["atroui"]
+
+# Import UI from the package
+import { HomeHero } from "atroui/components/…"
+import "atroui/globals.css"`,
+          },
+        ],
+      },
+      {
+        body: [
           "That is fine when every consumer wants the *same* locked component binary. It fights you when every consumer wants to rewrite copy, swap CTAs, fork layout, and ship tomorrow.",
         ],
       },
@@ -92,18 +106,42 @@ npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
           "The docs monorepo itself - `@atroui/docs` depends on `atroui: workspace:*` so the marketing site and API routes can import the same handlers.",
           "Optional `atroui/globals.css` for hosts that already install the package.",
           "So the product has **two install modes** (also documented on [Installation](/docs/installation)):",
-          "Registry UI only - CLI, no npm package required.",
-          "Host APIs - `npm i atroui`, `transpilePackages: [\"atroui\"]`, then `npx shadcn add @atroui/api-…` for thin `app/api/*/route.ts` stubs.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `# Registry UI only - no npm package required
+npx shadcn@latest add @atroui/home-hero
+
+# Host APIs - package + thin route stubs
+npm i atroui
+# next.config.ts → transpilePackages: ["atroui"]
+npx shadcn@latest add @atroui/api-contact @atroui/api-generate`,
+          },
+        ],
+      },
+      {
+        body: [
           "AtroUI never ships API keys and does not run paid AI on atroui.com. BYOK stays in *your* env. That rule is easier to enforce when secrets never live in copied UI files.",
         ],
       },
       {
         heading: "How the monorepo changed shape",
         body: [
-          "`apps/docs/registry/` is the source of truth for copy-paste items.",
-          "`pnpm registry:build` (shadcn build) emits `apps/docs/public/r/*.json` for the CDN/CLI.",
-          "`packages/ui` remains the publishable npm package: handlers, compose helpers, tests, CHANGELOG via Changesets.",
-          "Docs routes under `app/api/*` are thin wrappers - the same shape consumers get from `@atroui/api-*` registry items.",
+          "The repo split is deliberate: registry for UI you own, package for Host API machinery.",
+        ],
+        codeBlocks: [
+          {
+            language: "text",
+            code: `apps/docs/registry/     # source of truth for copy-paste items
+pnpm registry:build     # emits apps/docs/public/r/*.json for the CLI
+packages/ui             # publishable atroui (handlers, compose, tests)
+apps/docs/app/api/*     # thin wrappers (= @atroui/api-* stubs)`,
+          },
+        ],
+      },
+      {
+        body: [
           "Consumer-facing README and install docs lead with the CLI. npm is documented where Host APIs need it, not as the default hero path.",
         ],
       },

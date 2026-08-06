@@ -9,10 +9,11 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 
 type Props = { params: Promise<{ slug: string }> }
 
-/** Render paragraphs that may include simple [label](/path) or [label](https://…) links. */
+/** Render paragraphs with [links](/path), `inline code`, and **bold**. */
 function RichParagraph({ text }: { text: string }) {
   const parts: ReactNode[] = []
-  const re = /\[([^\]]+)\]\(([^)]+)\)/g
+  const re =
+    /\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`|\*\*([^*]+)\*\*/g
   let last = 0
   let match: RegExpExecArray | null
   let key = 0
@@ -31,38 +32,62 @@ function RichParagraph({ text }: { text: string }) {
     return null
   }
 
+  const pushText = (value: string) => {
+    if (value) parts.push(value)
+  }
+
   while ((match = re.exec(text)) !== null) {
     if (match.index > last) {
-      parts.push(text.slice(last, match.index))
+      pushText(text.slice(last, match.index))
     }
-    const label = match[1] ?? ""
-    const href = safeHref(match[2] ?? "")
-    if (!href) {
-      parts.push(label || match[0])
-    } else if (href.startsWith("http")) {
+
+    if (match[1] !== undefined) {
+      const label = match[1]
+      const href = safeHref(match[2] ?? "")
+      if (!href) {
+        pushText(label || match[0])
+      } else if (href.startsWith("http")) {
+        parts.push(
+          <a
+            key={key++}
+            href={href}
+            className="bam-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {label}
+          </a>
+        )
+      } else {
+        parts.push(
+          <Link key={key++} href={href} className="bam-link">
+            {label}
+          </Link>
+        )
+      }
+    } else if (match[3] !== undefined) {
       parts.push(
-        <a
+        <code
           key={key++}
-          href={href}
-          className="bam-link"
-          target="_blank"
-          rel="noopener noreferrer"
+          className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground"
         >
-          {label}
-        </a>
+          {match[3]}
+        </code>
       )
-    } else {
+    } else if (match[4] !== undefined) {
       parts.push(
-        <Link key={key++} href={href} className="bam-link">
-          {label}
-        </Link>
+        <strong key={key++} className="font-medium text-foreground">
+          {match[4]}
+        </strong>
       )
     }
+
     last = match.index + match[0].length
   }
   if (last < text.length) {
-    parts.push(text.slice(last))
+    pushText(text.slice(last))
   }
+
   return (
     <p className="text-[15px] leading-relaxed text-muted-foreground">
       {parts}
