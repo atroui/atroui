@@ -703,3 +703,19 @@ export default function RootLayout({
 export function getPost(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug)
 }
+
+/** Newest by `date` (YYYY-MM-DD); ties keep array order. */
+export function getLatestPost(): BlogPost | undefined {
+  if (blogPosts.length === 0) return undefined
+  return [...blogPosts].sort((a, b) => {
+    const byDate = b.date.localeCompare(a.date)
+    if (byDate !== 0) return byDate
+    return blogPosts.indexOf(a) - blogPosts.indexOf(b)
+  })[0]
+}
+
+export function getOlderPosts(): BlogPost[] {
+  const latest = getLatestPost()
+  if (!latest) return []
+  return blogPosts.filter((p) => p.slug !== latest.slug)
+}
