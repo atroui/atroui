@@ -126,6 +126,8 @@ npx shadcn@latest add @atroui/site-footer`}
         <CodeBlock
           language="bash"
           code={`npm i atroui
+# next.config.ts → transpilePackages: ["atroui"]
+
 npx shadcn@latest add @atroui/contact-form @atroui/api-contact
 npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
 npx shadcn@latest add @atroui/newsletter-form @atroui/api-newsletter`}
@@ -176,6 +178,52 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
       </section>
 
       <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          Two install modes
+        </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          <strong className="font-medium text-foreground">Registry UI</strong>{" "}
+          (heroes, chrome, forms UI) -{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            npx shadcn add @atroui/…
+          </code>{" "}
+          only. You own the files; no{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui
+          </code>{" "}
+          package required.
+        </p>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          <strong className="font-medium text-foreground">Host APIs</strong>{" "}
+          (form routes, OG, thumbnail, scope) - thin registry{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            app/api/*/route.ts
+          </code>{" "}
+          stubs plus the published{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui
+          </code>{" "}
+          package for{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/api/*
+          </code>
+          . Add{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            transpilePackages: [&quot;atroui&quot;]
+          </code>{" "}
+          in{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            next.config
+          </code>
+          . Why we split this:{" "}
+          <Link href="/blog/npm-to-shadcn-registry" className="bam-link">
+            npm → shadcn registry migration
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Host-bound tools</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Forms and AI tool routes ship as thin{" "}
@@ -192,7 +240,10 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
         </p>
         <CodeBlock
           language="bash"
-          code={`npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
+          code={`npm i atroui
+# next.config.ts → transpilePackages: ["atroui"]
+
+npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
 npx shadcn@latest add @atroui/thumbnail-workspace @atroui/api-thumbnail
 npx shadcn@latest add @atroui/scope-chat @atroui/api-scope
 

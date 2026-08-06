@@ -36,7 +36,7 @@ Open the installed file and edit `CONTENT` / `DEFAULT_BRAND` at the top - that i
 ├── apps/
 │   └── docs/                 # Landing + docs + registry (@atroui/docs)
 ├── packages/
-│   ├── ui/                   # Package used by the docs site
+│   ├── ui/                   # Publishable `atroui` (Host APIs + docs host)
 │   └── typescript-config/
 ├── package.json
 ├── pnpm-workspace.yaml
@@ -45,7 +45,7 @@ Open the installed file and edit `CONTENT` / `DEFAULT_BRAND` at the top - that i
 
 ## Development
 
-Requires [pnpm](https://pnpm.io) and Node 22+.
+Requires [pnpm](https://pnpm.io) and Node 20+ (engines: `>=20`).
 
 ```bash
 pnpm install
