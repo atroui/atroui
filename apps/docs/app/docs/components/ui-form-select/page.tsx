@@ -5,12 +5,14 @@ import { DemoFormSelect } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Form Select",
-  "/docs/components/ui-form-select"
+  "/docs/components/ui-form-select",
+  "Accessible select built on Base UI."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="form-select"
       href="/docs/components/ui-form-select"
       title="Form Select"
       description="Accessible select built on Base UI."

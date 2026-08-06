@@ -5,7 +5,8 @@ import { DemoThemeToggle } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Theme Toggle",
-  "/docs/components/ui-theme-toggle"
+  "/docs/components/ui-theme-toggle",
+  "Light / dark theme switch."
 )
 
 export default function Page() {

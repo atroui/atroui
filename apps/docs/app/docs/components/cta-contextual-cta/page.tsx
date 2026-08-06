@@ -5,7 +5,8 @@ import { DemoContextualCta } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Contextual CTA",
-  "/docs/components/cta-contextual-cta"
+  "/docs/components/cta-contextual-cta",
+  "Scroll-triggered bottom CTA (shows after ~28% scroll on live pages). Preview below forces it open inline."
 )
 
 export default function Page() {

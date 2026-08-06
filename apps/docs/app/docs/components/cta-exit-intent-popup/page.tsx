@@ -5,7 +5,8 @@ import { DemoExitIntentPopup } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Exit Intent Popup",
-  "/docs/components/cta-exit-intent-popup"
+  "/docs/components/cta-exit-intent-popup",
+  "Exit-intent dialog (opens when the cursor leaves the top of the viewport). Preview below forces it open inline."
 )
 
 export default function Page() {

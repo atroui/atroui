@@ -5,7 +5,8 @@ import { DemoArPortfolio } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "AR Portfolio",
-  "/docs/components/ar-ar-portfolio"
+  "/docs/components/ar-ar-portfolio",
+  "model-viewer showcase with AR modes - demo GLBs until you swap the model list."
 )
 
 export default function Page() {

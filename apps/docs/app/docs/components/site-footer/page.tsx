@@ -5,7 +5,8 @@ import { DemoSiteFooter } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Site Footer",
-  "/docs/components/site-footer"
+  "/docs/components/site-footer",
+  "Lighter marketing footer with editable CONTENT and link columns. (Docs demo still shows BoldFooter.)"
 )
 
 export default function Page() {

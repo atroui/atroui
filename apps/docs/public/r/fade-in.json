@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fade-in",
+  "title": "Fade In",
+  "description": "Scroll-triggered fade + rise using motion.",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/fade-in.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { motion, useReducedMotion } from \"motion/react\"\nimport type { HTMLMotionProps } from \"motion/react\"\n\ntype FadeInProps = HTMLMotionProps<\"div\"> & {\n  y?: number\n  delay?: number\n  duration?: number\n  once?: boolean\n  /**\n   * Docs: animate on mount instead of scroll-reveal so the\n   * content is never stuck at opacity 0 inside a preview canvas.\n   */\n  preview?: boolean\n}\n\n/** Scroll reveal - opacity + small translate, critically damped, <300ms feel. */\nexport function FadeIn({\n  y = 14,\n  delay = 0,\n  duration = 0.28,\n  once = true,\n  preview = false,\n  children,\n  ...props\n}: FadeInProps) {\n  const reduce = useReducedMotion()\n\n  if (reduce) {\n    return (\n      <div {...(props as React.HTMLAttributes<HTMLDivElement>)}>\n        {children as React.ReactNode}\n      </div>\n    )\n  }\n\n  if (preview) {\n    return (\n      <motion.div\n        initial={{ opacity: 0, y }}\n        animate={{ opacity: 1, y: 0 }}\n        transition={{\n          type: \"spring\",\n          bounce: 0,\n          duration,\n          delay,\n        }}\n        {...props}\n      >\n        {children}\n      </motion.div>\n    )\n  }\n\n  return (\n    <motion.div\n      initial={{ opacity: 0, y }}\n      whileInView={{ opacity: 1, y: 0 }}\n      viewport={{ once, margin: \"0px\", amount: 0.15 }}\n      transition={{\n        type: \"spring\",\n        bounce: 0,\n        duration,\n        delay,\n      }}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/fade-in.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

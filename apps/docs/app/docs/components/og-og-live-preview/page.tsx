@@ -5,7 +5,8 @@ import { DemoOgLivePreview } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Og Live Preview",
-  "/docs/components/og-og-live-preview"
+  "/docs/components/og-og-live-preview",
+  "CSS preview of an OG social card."
 )
 
 export default function Page() {

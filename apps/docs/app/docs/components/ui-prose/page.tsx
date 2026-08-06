@@ -5,12 +5,14 @@ import { DemoProse } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Prose",
-  "/docs/components/ui-prose"
+  "/docs/components/ui-prose",
+  "Long-form typography container for articles and MDX."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="prose"
       href="/docs/components/ui-prose"
       title="Prose"
       description="Long-form typography wrapper."

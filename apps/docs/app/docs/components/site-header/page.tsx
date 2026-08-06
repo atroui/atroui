@@ -5,7 +5,8 @@ import { DemoSiteHeader } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Site Header",
-  "/docs/components/site-header"
+  "/docs/components/site-header",
+  "Sticky editorial header with logo, primary nav, theme toggle, and hire CTA. Logo text comes from getBrand()."
 )
 
 export default function Page() {

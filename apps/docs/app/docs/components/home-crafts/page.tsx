@@ -5,7 +5,8 @@ import { DemoHomeCrafts } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Crafts",
-  "/docs/components/home-crafts"
+  "/docs/components/home-crafts",
+  "Pricing crafts band from the homepage. Prefer @atroui/pricing-overview from the registry for owned source."
 )
 
 export default function Page() {

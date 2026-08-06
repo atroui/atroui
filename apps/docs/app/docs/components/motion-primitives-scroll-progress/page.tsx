@@ -5,12 +5,14 @@ import { DemoScrollProgress } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Scroll Progress",
-  "/docs/components/motion-primitives-scroll-progress"
+  "/docs/components/motion-primitives-scroll-progress",
+  "Reading-progress bar driven by scroll position."
 )
 
 export default function Page() {
   return (
     <ComponentDoc
+      registryName="scroll-progress"
       href="/docs/components/motion-primitives-scroll-progress"
       title="Scroll Progress"
       description="Reading-progress bar. Production mounts it fixed on the viewport; the preview tracks a local scroll container."

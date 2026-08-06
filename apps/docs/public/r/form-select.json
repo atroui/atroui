@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-select",
+  "title": "Form Select",
+  "description": "Accessible select built on Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/form-select.tsx",
+      "content": "\"use client\"\n\nimport { Select } from \"@base-ui/react/select\"\nimport { ChevronDown } from \"lucide-react\"\nimport { useMemo } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type FormSelectOption = { value: string; label: string }\n\ntype FormSelectProps = {\n  id?: string\n  value: string\n  onValueChange: (value: string) => void\n  options: FormSelectOption[]\n  placeholder?: string\n  disabled?: boolean\n  className?: string\n}\n\nexport function FormSelect({\n  id,\n  value,\n  onValueChange,\n  options,\n  placeholder = \"Choose…\",\n  disabled,\n  className,\n}: FormSelectProps) {\n  const labelByValue = useMemo(\n    () => Object.fromEntries(options.map((o) => [o.value, o.label])),\n    [options]\n  )\n\n  return (\n    <Select.Root\n      value={value}\n      onValueChange={(v) => onValueChange(v ?? \"\")}\n      disabled={disabled}\n    >\n      <Select.Trigger\n        id={id}\n        className={cn(\n          \"flex w-full items-center justify-between gap-2 border border-border-subtle bg-background px-3.5 py-2.5 text-left text-base text-foreground sm:text-sm\",\n          \"transition-[border-color,box-shadow] duration-200\",\n          \"focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/20\",\n          \"data-popup-open:border-ring data-popup-open:ring-2 data-popup-open:ring-ring/20\",\n          \"disabled:cursor-not-allowed disabled:opacity-60\",\n          className\n        )}\n      >\n        <span className=\"min-w-0 flex-1 truncate\">\n          <Select.Value placeholder={placeholder}>\n            {(v) => {\n              const key = v == null ? \"\" : String(v)\n              return labelByValue[key] ?? placeholder\n            }}\n          </Select.Value>\n        </span>\n        <Select.Icon className=\"pointer-events-none shrink-0 text-muted-foreground\">\n          <ChevronDown className=\"size-4\" aria-hidden />\n        </Select.Icon>\n      </Select.Trigger>\n      <Select.Portal>\n        <Select.Positioner className=\"z-100\" sideOffset={6} align=\"start\">\n          <Select.Popup\n            className={cn(\n              \"max-h-[min(320px,var(--available-height))] min-w-(--anchor-width) overflow-hidden rounded-lg border border-border-subtle bg-surface py-1 shadow-md outline-none\",\n              \"origin-(--transform-origin)\"\n            )}\n          >\n            <Select.List className=\"max-h-[min(280px,var(--available-height))] scroll-py-1 overflow-y-auto p-1 outline-none\">\n              {options.map((opt) => (\n                <Select.Item\n                  key={opt.value === \"\" ? \"__empty__\" : opt.value}\n                  value={opt.value}\n                  className={cn(\n                    \"flex cursor-pointer select-none items-center rounded-lg px-2.5 py-2 text-base text-foreground outline-none sm:text-[14.5px]\",\n                    \"data-highlighted:bg-muted/90 data-highlighted:text-foreground\",\n                    \"data-selected:font-medium\",\n                    \"data-disabled:pointer-events-none data-disabled:opacity-50\"\n                  )}\n                >\n                  <Select.ItemText>{opt.label}</Select.ItemText>\n                </Select.Item>\n              ))}\n            </Select.List>\n          </Select.Popup>\n        </Select.Positioner>\n      </Select.Portal>\n    </Select.Root>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/form-select.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

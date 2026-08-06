@@ -5,7 +5,8 @@ import { DemoFaqInteractivePreview } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "FAQ",
-  "/docs/components/faq-interactive-preview"
+  "/docs/components/faq-interactive-preview",
+  "Interactive FAQ accordion. Install @atroui/faq for editable CONTENT / ITEMS in your repo."
 )
 
 export default function Page() {

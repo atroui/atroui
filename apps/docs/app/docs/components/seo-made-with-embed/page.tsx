@@ -5,7 +5,8 @@ import { DemoMadeWithEmbed } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Made With Embed",
-  "/docs/components/seo-made-with-embed"
+  "/docs/components/seo-made-with-embed",
+  "Credit badge + copyable HTML embed. Defaults to AtroUI branding."
 )
 
 export default function Page() {

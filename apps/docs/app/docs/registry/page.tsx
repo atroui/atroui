@@ -134,11 +134,45 @@ npx shadcn@latest add @atroui/site-footer`}
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
+              @atroui/card
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/textarea
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/form-select
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/breadcrumbs
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/prose
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
               @atroui/theme-toggle
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/logo
+            </code>
+          </li>
+          <li>
+            Motion:{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/fade-in
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/stagger
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
+              @atroui/scroll-progress
             </code>
           </li>
           <li>

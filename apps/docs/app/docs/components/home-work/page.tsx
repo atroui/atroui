@@ -5,7 +5,8 @@ import { DemoHomeWork } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Work",
-  "/docs/components/home-work"
+  "/docs/components/home-work",
+  "Selected work section."
 )
 
 export default function Page() {

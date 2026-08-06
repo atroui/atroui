@@ -6,7 +6,8 @@ import { DemoOgWorkspace } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "OG Workspace",
-  "/docs/components/og-og-workspace"
+  "/docs/components/og-og-workspace",
+  "Full OG image generator workspace UI. Catalog demos do not call paid image APIs."
 )
 
 export default function Page() {

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stagger",
+  "title": "Stagger",
+  "description": "Stagger children on scroll with StaggerChild.",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/stagger.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { motion, useReducedMotion } from \"motion/react\"\nimport type { HTMLMotionProps } from \"motion/react\"\n\ntype StaggerProps = HTMLMotionProps<\"div\"> & {\n  delay?: number\n  stagger?: number\n  once?: boolean\n  /** Docs: play on mount instead of waiting for scroll. */\n  preview?: boolean\n}\n\nexport function Stagger({\n  delay = 0,\n  stagger = 0.08,\n  once = true,\n  preview = false,\n  children,\n  ...props\n}: StaggerProps) {\n  const reduce = useReducedMotion()\n\n  if (reduce) {\n    return (\n      <div {...(props as React.HTMLAttributes<HTMLDivElement>)}>\n        {children as React.ReactNode}\n      </div>\n    )\n  }\n\n  const transition = {\n    delayChildren: delay,\n    staggerChildren: stagger,\n  }\n\n  return (\n    <motion.div\n      initial=\"hidden\"\n      {...(preview\n        ? { animate: \"show\" as const }\n        : {\n            whileInView: \"show\" as const,\n            viewport: { once, margin: \"0px\", amount: 0.15 },\n          })}\n      variants={{\n        hidden: {},\n        show: { transition },\n      }}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\ntype ChildProps = HTMLMotionProps<\"div\"> & { y?: number }\n\nexport function StaggerChild({ y = 14, children, ...props }: ChildProps) {\n  const reduce = useReducedMotion()\n\n  if (reduce) {\n    return (\n      <div {...(props as React.HTMLAttributes<HTMLDivElement>)}>\n        {children as React.ReactNode}\n      </div>\n    )\n  }\n\n  return (\n    <motion.div\n      variants={{\n        hidden: { opacity: 0, y },\n        show: {\n          opacity: 1,\n          y: 0,\n          transition: { duration: 0.26, ease: [0.23, 1, 0.32, 1] },\n        },\n      }}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/stagger.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

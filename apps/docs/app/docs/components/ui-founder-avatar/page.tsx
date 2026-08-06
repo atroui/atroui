@@ -5,7 +5,8 @@ import { DemoFounderAvatar } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Founder Avatar",
-  "/docs/components/ui-founder-avatar"
+  "/docs/components/ui-founder-avatar",
+  "Circular founder portrait for signature rows and about bands."
 )
 
 export default function Page() {

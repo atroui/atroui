@@ -5,7 +5,8 @@ import { DemoUiMockupFrame } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Ui Mockup Frame",
-  "/docs/components/ui-ui-mockup-frame"
+  "/docs/components/ui-ui-mockup-frame",
+  "Device / product mockup frame."
 )
 
 export default function Page() {

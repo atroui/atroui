@@ -53,9 +53,6 @@ export const metadata: Metadata = {
     "UI kit",
     "shadcn registry",
   ],
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",

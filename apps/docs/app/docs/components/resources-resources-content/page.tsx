@@ -5,7 +5,8 @@ import { DemoResourcesContent } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Resources Content",
-  "/docs/components/resources-resources-content"
+  "/docs/components/resources-resources-content",
+  "Resources library content."
 )
 
 export default function Page() {

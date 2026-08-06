@@ -5,7 +5,8 @@ import { DemoBeforeAfterSlider } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Before After Slider",
-  "/docs/components/case-studies-before-after-slider"
+  "/docs/components/case-studies-before-after-slider",
+  "Interactive before/after comparison."
 )
 
 export default function Page() {

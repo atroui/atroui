@@ -5,7 +5,8 @@ import { DemoLogo } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Logo",
-  "/docs/components/brand-logo"
+  "/docs/components/brand-logo",
+  "Interrupted-A mark + wordmark. Open letterform for Atro; floating brand bar is the recall cue. Defaults to getBrand().name."
 )
 
 export default function Page() {

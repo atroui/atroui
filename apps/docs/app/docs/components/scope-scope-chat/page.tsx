@@ -5,7 +5,8 @@ import { DemoScopeChat } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
   "Scope Chat",
-  "/docs/components/scope-scope-chat"
+  "/docs/components/scope-scope-chat",
+  "Interactive scoping chat. Calls the host /api/scope route for replies."
 )
 
 export default function Page() {
