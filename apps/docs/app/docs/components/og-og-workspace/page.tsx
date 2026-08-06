@@ -22,16 +22,18 @@ export default function Page() {
       fullBleed={true}
       usage={
         <>
-          AtroUI docs do not ship generation backends - bring your own{" "}
+          Install{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            POST /api/generate
+            @atroui/api-generate
           </code>{" "}
-          (and keys such as{" "}
+          and set{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             HUGGINGFACE_API_KEY
-          </code>
-          ) in the host app. To try a live generator without wiring keys here,
-          use{" "}
+          </code>{" "}
+          (or Google AI keys for freeform prompts) in{" "}
+          <strong className="font-medium text-foreground">your</strong> env.
+          AtroUI never ships keys. Preview-only downloads work without AI.
+          Live sample elsewhere:{" "}
           <a
             href="https://www.makershot.tech/og"
             target="_blank"

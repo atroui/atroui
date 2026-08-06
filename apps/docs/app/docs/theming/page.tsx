@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
 import { CodeBlock } from "@/components/code-block"
+import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Theming",
   description:
-    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, and Outfit. Customize via atroui/globals.css.",
+    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, and Outfit. Customize host CSS and @atroui/brand.",
   path: "/docs/theming",
 })
 
@@ -23,11 +24,13 @@ export default function ThemingPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             #0b7bff
           </code>
-          ), Outfit UI, glass panels, and pill CTAs. Tokens live in{" "}
+          ), Outfit UI, glass panels, and pill CTAs. After{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/globals.css
+            npx shadcn add
           </code>
-          .
+          , tokens live in{" "}
+          <strong className="font-medium text-foreground">your</strong> host
+          CSS (or a theme sheet you copy), not behind a required npm import.
         </p>
       </header>
 
@@ -48,6 +51,22 @@ export default function ThemingPage() {
           language="css"
           code={`.dark {\n  --brand: oklch(0.62 0.2 255);\n  --background: oklch(0 0 0);\n  --primary: oklch(0.99 0 0);\n  --primary-foreground: oklch(0 0 0);\n  --font-sans: var(--font-outfit);\n}`}
         />
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          The docs host and Host API consumers can still import{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/globals.css
+          </code>{" "}
+          from the npm package when they already depend on{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui
+          </code>
+          . Pure registry apps should keep tokens in the host stylesheet the
+          CLI/theme setup already owns. See{" "}
+          <Link href="/blog/npm-to-shadcn-registry" className="bam-link">
+            npm → shadcn registry
+          </Link>
+          .
+        </p>
       </section>
 
       <section className="space-y-4">
@@ -69,23 +88,26 @@ export default function ThemingPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             getBrand()
           </code>{" "}
-          in{" "}
+          after you add{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/lib/brand
+            @atroui/brand
+          </code>{" "}
+          (typically{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            lib/brand.ts
           </code>
-          . Defaults are AtroUI; override with env:
+          ). Defaults are AtroUI; override with env:
         </p>
         <CodeBlock
           language="bash"
           code={`NEXT_PUBLIC_SITE_NAME=AtroUI\nNEXT_PUBLIC_SITE_DOMAIN=atroui.com\nNEXT_PUBLIC_SITE_EMAIL=hello@iamk.xyz\nNEXT_PUBLIC_SITE_URL=https://www.atroui.com`}
         />
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Demo modules under{" "}
+          Demo modules may still show studio sample copy - swap{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/content/*
+            CONTENT
           </code>{" "}
-          may still show Makershot studio copy - swap those imports when
-          shipping your own site.
+          at the top of each installed block when shipping your own site.
         </p>
       </section>
 

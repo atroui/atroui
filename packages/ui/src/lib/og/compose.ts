@@ -9,7 +9,6 @@
  * Keep OG and thumbnail backends isolated so performance and maintenance don’t couple.
  */
 
-import fs from "node:fs";
 import {
   InferenceClient,
   InferenceClientProviderApiError,
@@ -18,6 +17,7 @@ import { Resvg } from "@resvg/resvg-js";
 import satori from "satori";
 import sharp from "sharp";
 
+import { loadOgFonts } from "./load-fonts";
 import {
   QUICK_INPUT_LIMITS,
   STYLE_PRESETS,
@@ -34,15 +34,20 @@ const GEN_HEIGHT = 640;
 const DEFAULT_HF_MODEL = "black-forest-labs/FLUX.1-schnell";
 
 // ────────────────────────────────────────────────────────────────────────────
-// Font bundle (loaded once per server process).
+// Font bundle (lazy - safe under Next webpack bundling of API routes).
 // ────────────────────────────────────────────────────────────────────────────
 
-const FONT_INTER_BOLD = fs.readFileSync(
-  new URL("./fonts/Inter-Bold.ttf", import.meta.url),
-);
-const FONT_INTER_MEDIUM = fs.readFileSync(
-  new URL("./fonts/Inter-Medium.ttf", import.meta.url),
-);
+let fontBold: Buffer | null = null;
+let fontMedium: Buffer | null = null;
+
+function fonts() {
+  if (!fontBold || !fontMedium) {
+    const loaded = loadOgFonts();
+    fontBold = loaded.bold;
+    fontMedium = loaded.medium;
+  }
+  return { bold: fontBold, medium: fontMedium };
+}
 
 // ────────────────────────────────────────────────────────────────────────────
 // Public types
@@ -363,10 +368,10 @@ async function renderOverlayPng(
       width: OG_WIDTH,
       height: OG_HEIGHT,
       fonts: [
-        { name: "Inter", data: FONT_INTER_BOLD, weight: 700, style: "normal" },
+        { name: "Inter", data: fonts().bold, weight: 700, style: "normal" },
         {
           name: "Inter",
-          data: FONT_INTER_MEDIUM,
+          data: fonts().medium,
           weight: 500,
           style: "normal",
         },

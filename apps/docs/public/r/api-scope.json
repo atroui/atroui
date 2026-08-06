@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "api-scope",
+  "title": "Scope Chat API",
+  "description": "POST /api/scope - rule-based by default; optional XAI_API_KEY via atroui/api/scope.",
+  "dependencies": [
+    "atroui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/api/scope/route.ts",
+      "content": "import { handleScopePost } from \"atroui/api/scope\"\n\nexport const runtime = \"nodejs\"\n\nexport async function POST(req: Request) {\n  return handleScopePost(req)\n}\n",
+      "type": "registry:file",
+      "target": "app/api/scope/route.ts"
+    }
+  ],
+  "type": "registry:item"
+}

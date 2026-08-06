@@ -9,7 +9,7 @@ Security fixes are applied to the latest published `atroui` release line on npm.
 | 0.2.x | :white_check_mark: |
 | 0.1.x and earlier | :x: |
 
-When a new minor or major ships, older lines may stop receiving patches unless noted here.
+When a new minor or major ships (pending Changesets will cut **0.3.x** for Host API handlers), older lines may stop receiving patches unless noted here. Update this table when that release publishes.
 
 ## Reporting a Vulnerability
 
@@ -48,7 +48,7 @@ In scope:
 
 Out of scope (unless they expose AtroUI users to risk):
 
-- Third-party LLM / image Host APIs you wire yourself (OG generate, thumbnail, scope) until those handlers ship
+- Third-party provider outages or billing on keys **you** configure (Hugging Face, Google AI, xAI, SMTP, Resend)
 - Demo / portfolio content under `atroui/content/*`
 - Vulnerabilities only present after you fork and heavily modify the monorepo
 
@@ -57,6 +57,7 @@ Out of scope (unless they expose AtroUI users to risk):
 - Keep `atroui` updated to the latest supported release
 - Do not commit API keys; use env vars as documented in `.env.example`
 - Install form APIs with `@atroui/api-contact`, `@atroui/api-waitlist`, `@atroui/api-newsletter` (or call `atroui/api/*` from your own `route.ts`)
-- Shipped form handlers include honeypot checks, body size caps, and an **in-memory** rate limiter - swap for Upstash / Vercel KV (or a WAF) on multi-instance production
-- Cap request body size on AI generate routes you build yourself; authenticate and rate-limit them hard
+- Install AI tool APIs with `@atroui/api-generate`, `@atroui/api-thumbnail`, `@atroui/api-scope` - AtroUI never ships keys and does not run paid generation on atroui.com
+- Shipped handlers include honeypot checks (forms), body size caps, and an **in-memory** rate limiter - swap for Upstash / Vercel KV (or a WAF) on multi-instance production
+- Prefer preview-only / rule-based paths in CI and public demos; only enable HF/Google/xAI in environments you control
 - Never expose `SMTP_*`, `*_API_KEY`, or `REVALIDATE_SECRET` via `NEXT_PUBLIC_*`

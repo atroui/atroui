@@ -126,6 +126,8 @@ npx shadcn@latest add @atroui/site-footer`}
         <CodeBlock
           language="bash"
           code={`npm i atroui
+# next.config.ts → transpilePackages: ["atroui"]
+
 npx shadcn@latest add @atroui/contact-form @atroui/api-contact
 npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
 npx shadcn@latest add @atroui/newsletter-form @atroui/api-newsletter`}
@@ -176,33 +178,89 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
       </section>
 
       <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          Two install modes
+        </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          <strong className="font-medium text-foreground">Registry UI</strong>{" "}
+          (heroes, chrome, forms UI) -{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            npx shadcn add @atroui/…
+          </code>{" "}
+          only. You own the files; no{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui
+          </code>{" "}
+          package required.
+        </p>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          <strong className="font-medium text-foreground">Host APIs</strong>{" "}
+          (form routes, OG, thumbnail, scope) - thin registry{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            app/api/*/route.ts
+          </code>{" "}
+          stubs plus the published{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui
+          </code>{" "}
+          package for{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/api/*
+          </code>
+          . Add{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            transpilePackages: [&quot;atroui&quot;]
+          </code>{" "}
+          in{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            next.config
+          </code>
+          . Why we split this:{" "}
+          <Link href="/blog/npm-to-shadcn-registry" className="bam-link">
+            npm → shadcn registry migration
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Host-bound tools</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Forms ship with optional API routes (step 4). OG workspace, thumbnail
-          workspace, and scope chat still expect your own{" "}
+          Forms and AI tool routes ship as thin{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /api/generate
-          </code>
-          ,{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /api/thumbnail
-          </code>
-          , and{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /api/scope
+            app/api/*/route.ts
           </code>{" "}
-          until wave-2 handlers land. Marked{" "}
+          files that call{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/api/*
+          </code>
+          . AtroUI never ships API keys and does not run paid AI on atroui.com -
+          you set keys in{" "}
+          <strong className="font-medium text-foreground">your</strong> env.
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`npm i atroui
+# next.config.ts → transpilePackages: ["atroui"]
+
+npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
+npx shadcn@latest add @atroui/thumbnail-workspace @atroui/api-thumbnail
+npx shadcn@latest add @atroui/scope-chat @atroui/api-scope
+
+# Your keys only (examples):
+HUGGINGFACE_API_KEY=…
+# GEMINI_API_KEY=…          # optional freeform / Pro image
+# XAI_API_KEY=…             # optional scope LLM + thumbnail Pro pipeline`}
+        />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Preview-only OG/thumbnail downloads and rule-based scope replies work
+          without keys. Full AI generation returns{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            503
+          </code>{" "}
+          until you configure providers. Marked{" "}
           <span className="font-medium text-foreground">Host API</span> in the
-          sidebar. Live OG sample without wiring keys here:{" "}
-          <a
-            href="https://www.makershot.tech/og"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand underline underline-offset-2"
-          >
-            makershot.tech/og
-          </a>
-          .
+          sidebar.
         </p>
       </section>
 

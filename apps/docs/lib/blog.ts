@@ -18,6 +18,155 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "npm-to-shadcn-registry",
+    title:
+      "Why AtroUI moved from npm install to the shadcn registry (and what stayed on npm)",
+    description:
+      "A detailed look at migrating AtroUI from a classic npm UI package to a shadcn-compatible registry: ownership, updates, Host APIs, and how to migrate an existing app.",
+    date: "2026-08-06",
+    sections: [
+      {
+        body: [
+          "For a long time the natural way to ship a React design system was simple: publish an npm package, tell people to `npm install atroui`, import from `atroui/…`, and hope `transpilePackages` plus peer deps lined up.",
+          "That model still works for some libraries. It stopped being the right *consumer* story for AtroUI. The catalog is now a [shadcn-compatible registry](https://www.atroui.com/docs/registry): you run `npx shadcn add @atroui/home-hero`, source lands in your repo, and you edit `CONTENT` at the top of the file.",
+          "This post explains what we migrated, why, what still lives on npm, and how to move an app that already depended on the package.",
+        ],
+      },
+      {
+        heading: "What the old npm-first path looked like",
+        body: [
+          "Early AtroUI leaned on the classic library contract:",
+          "Install: `npm i atroui` (and peers like `next-themes`).",
+          "Configure Next: `transpilePackages: [\"atroui\"]` so TypeScript source inside `node_modules` compiled with the app.",
+          "Import: `import { HomeHero } from \"atroui/components/…\"` or barrel paths from the package.",
+          "Theme: import `atroui/globals.css` and hope the host layout already loaded Outfit / next-themes the way the docs site did.",
+          "That is fine when every consumer wants the *same* locked component binary. It fights you when every consumer wants to rewrite copy, swap CTAs, fork layout, and ship tomorrow.",
+        ],
+      },
+      {
+        heading: "Where npm-as-UI started to hurt",
+        body: [
+          "Black-box ownership. A hero that lives only in node_modules is awkward to restyle. Teams either monkey-patched props forever or forked the package. The shadcn ecosystem already solved that by copying source into the app.",
+          "Update friction in the wrong place. Semver bumps for a wording tweak or a class rename force a dependency upgrade dance across every consumer. When the file lives in *your* repo, you merge what you want and ignore the rest.",
+          "Install surface area. Fresh App Router apps hit Turbopack/webpack errors until `transpilePackages` was set. Peers were easy to forget. Docs had to teach library packaging before teaching design. See [transpilePackages and Turbopack](/blog/transpile-packages-turbopack-ui-libraries).",
+          "Wrong altitude for marketing UI. Atoms in a package make sense. Full page bands with studio demo copy locked behind an import path do not. AtroUI’s job is production sections - heroes, who bands, footers, CTAs - with editable constants on day one.",
+          "Discovery. Designers and indie makers already know `npx shadcn add`. Teaching a second install religion for the same class of UI slows adoption.",
+        ],
+      },
+      {
+        heading: "What we migrated to",
+        body: [
+          "AtroUI now leads with the registry on [atroui.com](https://www.atroui.com):",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest init
+npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
+npx shadcn@latest add @atroui/home-hero
+npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Each item is a JSON registry entry that points at source under `apps/docs/registry/`. The CLI copies files into your aliases (`components/blocks/…`, `lib/brand.ts`, and so on). Dependencies resolve as `@atroui/brand`, `@atroui/utils`, etc. - registry names, not opaque package internals.",
+          "You own the files. Diff them. Delete what you do not need. Rebrand by editing `DEFAULT_BRAND` or setting `NEXT_PUBLIC_SITE_*`. That is the same ownership model as shadcn/ui, aimed at a higher altitude: [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn).",
+        ],
+      },
+      {
+        heading: "Why the shadcn ecosystem specifically",
+        body: [
+          "It is already the default distribution channel for copy-into-repo UI in Next.js land. Fighting that means inventing a second CLI, a second docs language, and a second mental model.",
+          "Registries compose. Teams can keep blank-slate primitives from one registry and AtroUI sections from another, as long as tokens do not fight. We document that path on [Compare](/docs/compare).",
+          "Directory and tooling. A public `https://www.atroui.com/r/{name}.json` URL works with the stock CLI, CI checks, and the emerging shadcn directory surface. See our [directory notes](https://github.com/atroui/atroui/blob/master/apps/docs/SHADCN_DIRECTORY.md).",
+          "Docs and product stay aligned. The same registry that powers consumer installs also builds the live catalog on atroui.com. What you add is what we demo.",
+        ],
+      },
+      {
+        heading: "What we deliberately kept on npm",
+        body: [
+          "The migration is not “delete the package.” It is “stop pretending every UI file should be consumed as a versioned black box.”",
+          "The published `atroui` package (currently **0.2.3**, with a pending **0.3.0** minor for Host API handlers) still matters for:",
+          "Host API handlers under `atroui/api/*` - contact, waitlist, newsletter, generate, thumbnail, scope. These share validation, honeypots, body caps, rate limits, and image compose logic (Satori, resvg, sharp). Vendoring that into every app via the CLI would ship native `.node` addons and font paths into consumer trees in painful ways.",
+          "The docs monorepo itself - `@atroui/docs` depends on `atroui: workspace:*` so the marketing site and API routes can import the same handlers.",
+          "Optional `atroui/globals.css` for hosts that already install the package.",
+          "So the product has **two install modes** (also documented on [Installation](/docs/installation)):",
+          "Registry UI only - CLI, no npm package required.",
+          "Host APIs - `npm i atroui`, `transpilePackages: [\"atroui\"]`, then `npx shadcn add @atroui/api-…` for thin `app/api/*/route.ts` stubs.",
+          "AtroUI never ships API keys and does not run paid AI on atroui.com. BYOK stays in *your* env. That rule is easier to enforce when secrets never live in copied UI files.",
+        ],
+      },
+      {
+        heading: "How the monorepo changed shape",
+        body: [
+          "`apps/docs/registry/` is the source of truth for copy-paste items.",
+          "`pnpm registry:build` (shadcn build) emits `apps/docs/public/r/*.json` for the CDN/CLI.",
+          "`packages/ui` remains the publishable npm package: handlers, compose helpers, tests, CHANGELOG via Changesets.",
+          "Docs routes under `app/api/*` are thin wrappers - the same shape consumers get from `@atroui/api-*` registry items.",
+          "Consumer-facing README and install docs lead with the CLI. npm is documented where Host APIs need it, not as the default hero path.",
+        ],
+      },
+      {
+        heading: "Migrating an existing npm-based app",
+        body: [
+          "If you already `import … from \"atroui/…\"` for UI, plan a deliberate cutover rather than a big-bang delete.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `# 1. Register the catalog
+npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
+
+# 2. Add the blocks you actually use (example)
+npx shadcn@latest add @atroui/home-hero @atroui/site-header @atroui/brand @atroui/utils
+
+# 3. Point imports at local files (@/components/…, @/lib/brand)
+# 4. Copy CONTENT / DEFAULT_BRAND values you already customized
+# 5. Keep or add npm atroui only if you use Host APIs
+npm i atroui   # optional - Host API consumers only`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Replace `from \"atroui/components/…\"` with imports from the files the CLI wrote.",
+          "Replace `from \"atroui/lib/brand\"` with `@/lib/brand` (or your alias) after adding `@atroui/brand`.",
+          "Move token ownership into the host CSS sheet you already maintain. Keep `atroui/globals.css` only if you still depend on the package for other reasons.",
+          "If you use contact / OG / thumbnail / scope, install the matching `@atroui/api-*` routes and leave `transpilePackages: [\"atroui\"]` in place.",
+          "Delete unused package imports last. Run the app, then drop `atroui` from package.json only if nothing under `atroui/api/*` remains.",
+        ],
+      },
+      {
+        heading: "Versioning after the split",
+        body: [
+          "Registry items are not semver’d the same way as npm. The JSON on atroui.com is what the CLI fetches; your copied files version with *your* git history.",
+          "The npm package still uses Changesets. Pending notes bump **atroui** to **0.3.0** for the Host API surface (`atroui/api/contact|waitlist|newsletter|generate|thumbnail|scope`). Until that release ships, published line remains **0.2.x** (see [Changelog](/docs/changelog) and [SECURITY](https://github.com/atroui/atroui/blob/master/SECURITY.md)).",
+          "Docs app `@atroui/docs@0.1.0` is private and ignored by Changesets - that version is not the library version.",
+        ],
+      },
+      {
+        heading: "What we optimized for",
+        body: [
+          "Speed to a coherent dark UI you can edit.",
+          "Same CLI muscle memory as the rest of the Next.js ecosystem.",
+          "A clean boundary for secrets and native image tooling via Host APIs.",
+          "One canonical brand home: [www.atroui.com](https://www.atroui.com).",
+        ],
+      },
+      {
+        heading: "Next steps",
+        body: [
+          "New project: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
+          "Catalog: [Registry](/docs/registry).",
+          "Brand: [Rebrand with getBrand()](/blog/rebrand-with-getbrand).",
+          "Positioning: [What is AtroUI?](/blog/what-is-atroui).",
+          "Lessons from shipping: [Registry + package internals](/blog/shipping-component-library-npm).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "what-is-atroui",
     title: "What is AtroUI? A Next.js component catalog on the shadcn registry",
     description:
@@ -365,7 +514,9 @@ export default nextConfig`,
           "components.json includes the @atroui registry",
           "npx shadcn add @atroui/… succeeded",
           "CONTENT / DEFAULT_BRAND edited for your brand",
+          "If you use Host APIs: npm i atroui + transpilePackages: [\"atroui\"]",
           "Restart the Next dev server after config changes",
+          "Pure registry UI does not require the npm package - see [npm → shadcn registry](/blog/npm-to-shadcn-registry)",
         ],
       },
     ],

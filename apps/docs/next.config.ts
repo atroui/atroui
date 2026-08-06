@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   transpilePackages: ["atroui", "@shadergradient/react"],
   poweredByHeader: false,
+  // Native Node addons used by OG/thumbnail compose - do not webpack-bundle.
+  serverExternalPackages: [
+    "@resvg/resvg-js",
+    "@resvg/resvg-js-linux-x64-gnu",
+    "sharp",
+  ],
   env: {
     // Docs site ships the portrait under public/; consumer apps omit this.
     NEXT_PUBLIC_FOUNDER_AVATAR: "/images/founder-portrait.png",
@@ -50,10 +56,35 @@ const nextConfig: NextConfig = {
       },
     ]
   },
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "atroui": path.resolve(__dirname, "../../packages/ui/src"),
+      atroui: path.resolve(__dirname, "../../packages/ui/src"),
+    }
+    if (isServer) {
+      const nativeExternals = {
+        "@resvg/resvg-js": "commonjs @resvg/resvg-js",
+        sharp: "commonjs sharp",
+      }
+      if (Array.isArray(config.externals)) {
+        config.externals.push(nativeExternals)
+      } else if (typeof config.externals === "function") {
+        const prev = config.externals
+        config.externals = async (
+          ...args: Parameters<NonNullable<typeof prev>>
+        ) => {
+          const result = await prev(...args)
+          if (Array.isArray(result)) return [...result, nativeExternals]
+          if (typeof result === "object" && result !== null) {
+            return { ...result, ...nativeExternals }
+          }
+          return result ?? nativeExternals
+        }
+      } else if (config.externals && typeof config.externals === "object") {
+        config.externals = { ...config.externals, ...nativeExternals }
+      } else {
+        config.externals = [nativeExternals]
+      }
     }
     return config
   },

@@ -1,9 +1,9 @@
 {
   "name": "atroui",
   "version": "0.2.3",
-  "description": "AtroUI - production React / Next.js component library and dark-first design system. Docs at atroui.com.",
+  "description": "AtroUI - production React / Next.js component catalog via the shadcn registry, plus optional Host API handlers. Docs at https://www.atroui.com.",
   "license": "MIT",
-  "homepage": "https://atroui.com",
+  "homepage": "https://www.atroui.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/atroui/atroui.git"
@@ -36,6 +36,9 @@
     "./api/contact": "./src/api/contact.ts",
     "./api/waitlist": "./src/api/waitlist.ts",
     "./api/newsletter": "./src/api/newsletter.ts",
+    "./api/generate": "./src/api/generate.ts",
+    "./api/thumbnail": "./src/api/thumbnail.ts",
+    "./api/scope": "./src/api/scope.ts",
     "./lib/*": "./src/lib/*",
     "./components/*": "./src/components/*",
     "./content/*": "./src/content/*",
