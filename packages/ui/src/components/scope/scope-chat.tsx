@@ -14,13 +14,41 @@ const STARTER: ScopeMessage = {
     "Hi! I'm the scoping assistant. Tell me what you're building - MVP, AI feature, design system, or full product - and I'll recommend the right package and ballpark.",
 };
 
+function safeHref(raw: string): string | null {
+  const href = raw.trim();
+  if (!href) return null;
+  if (href.startsWith("/") && !href.startsWith("//")) return href;
+  if (href.startsWith("#")) return href;
+  try {
+    const url = new URL(href);
+    if (url.protocol === "http:" || url.protocol === "https:") return href;
+  } catch {
+    return null;
+  }
+  return null;
+}
+
 function renderContent(text: string) {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
   return parts.map((part, i) => {
     const linkMatch = part.match(/\[([^\]]+)\]\(([^)]+)\)/);
     if (linkMatch) {
       const label = linkMatch[1]!;
-      const href = linkMatch[2]!;
+      const href = safeHref(linkMatch[2]!);
+      if (!href) return <span key={i}>{label}</span>;
+      if (href.startsWith("http")) {
+        return (
+          <a
+            key={i}
+            href={href}
+            className="text-brand underline underline-offset-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {label}
+          </a>
+        );
+      }
       return (
         <Link key={i} href={href} className="text-brand underline underline-offset-2">
           {label}
@@ -31,6 +59,8 @@ function renderContent(text: string) {
   });
 }
 
+const MAX_MESSAGES = 40;
+
 export function ScopeChat() {
   const [messages, setMessages] = useState<ScopeMessage[]>([STARTER]);
   const [input, setInput] = useState("");
@@ -40,7 +70,7 @@ export function ScopeChat() {
   const send = async (text: string) => {
     if (!text.trim() || loading) return;
     const userMsg: ScopeMessage = { role: "user", content: text.trim() };
-    const next = [...messages, userMsg];
+    const next = [...messages, userMsg].slice(-MAX_MESSAGES);
     setMessages(next);
     setInput("");
     setLoading(true);
@@ -53,16 +83,29 @@ export function ScopeChat() {
         body: JSON.stringify({ messages: next }),
       });
       const data = (await res.json()) as { reply?: string; source?: string };
-      setMessages((m) => [
-        ...m,
-        { role: "assistant", content: data.reply ?? "Sorry, I couldn't process that. Try the project planner instead." },
-      ]);
+      setMessages((m) =>
+        [
+          ...m,
+          {
+            role: "assistant" as const,
+            content:
+              data.reply ??
+              "Sorry, I couldn't process that. Try the project planner instead.",
+          },
+        ].slice(-MAX_MESSAGES),
+      );
       trackEvent("scope_chat_reply", { source: data.source ?? "unknown" });
     } catch {
-      setMessages((m) => [
-        ...m,
-        { role: "assistant", content: "Something went wrong. Try the project planner or contact form instead." },
-      ]);
+      setMessages((m) =>
+        [
+          ...m,
+          {
+            role: "assistant" as const,
+            content:
+              "Something went wrong. Try the project planner or contact form instead.",
+          },
+        ].slice(-MAX_MESSAGES),
+      );
     } finally {
       setLoading(false);
       setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 100);

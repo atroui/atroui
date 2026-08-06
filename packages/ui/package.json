@@ -29,7 +29,10 @@
   ],
   "exports": {
     ".": "./src/index.ts",
-    "./globals.css": "./src/globals.css",
+    "./globals.css": {
+      "types": "./src/globals.css.d.ts",
+      "default": "./src/globals.css"
+    },
     "./lib/*": "./src/lib/*",
     "./components/*": "./src/components/*",
     "./content/*": "./src/content/*",

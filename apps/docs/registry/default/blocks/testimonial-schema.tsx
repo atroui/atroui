@@ -1,6 +1,11 @@
 import { getBrand } from "@/lib/brand"
 import { getSiteUrl } from "@/lib/site-url"
 
+function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\u003c")
+}
+
+
 /** Edit CONTENT to set the reviews emitted as JSON-LD. */
 const CONTENT = {
   reviews: [
@@ -62,7 +67,7 @@ export function TestimonialSchema({ pageUrl }: TestimonialSchemaProps = {}) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   )
 }

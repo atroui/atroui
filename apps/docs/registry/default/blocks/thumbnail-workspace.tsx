@@ -1,6 +1,6 @@
 "use client"
 
-import { ThumbnailLivePreview } from "@/components/blocks/thumbnail-live-preview"
+import { ThumbnailLivePreview } from "./thumbnail-live-preview"
 
 /**
  * Thumbnail workspace shell. Wire CONTENT.endpoint for real exports (Host API).

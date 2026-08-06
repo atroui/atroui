@@ -8,6 +8,7 @@ import { ChevronDown, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LogoMark } from "@/components/logo-mark"
 import { badgeLabel, navigation, type NavItem } from "@/lib/navigation"
+import { useFocusTrap } from "@/lib/use-focus-trap"
 
 function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   return (
@@ -32,11 +33,14 @@ export function DocsSidebar({ className }: { className?: string }) {
     <nav className={cn("space-y-6", className)}>
       {navigation.map((section) => {
         const isCollapsed = collapsed[section.title]
+        const panelId = `docs-nav-${section.title.toLowerCase().replace(/\s+/g, "-")}`
         return (
           <div key={section.title}>
             <button
               type="button"
               className="mb-2 flex w-full items-center justify-between px-2 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground"
+              aria-expanded={!isCollapsed}
+              aria-controls={panelId}
               onClick={() =>
                 setCollapsed((prev) => ({
                   ...prev,
@@ -53,7 +57,7 @@ export function DocsSidebar({ className }: { className?: string }) {
               />
             </button>
             {!isCollapsed ? (
-              <ul className="space-y-0.5">
+              <ul id={panelId} className="space-y-0.5">
                 {section.items.map((item) => {
                   const active = pathname === item.href
                   return (
@@ -79,6 +83,54 @@ export function DocsSidebar({ className }: { className?: string }) {
         )
       })}
     </nav>
+  )
+}
+
+function MobileDrawer({ onClose }: { onClose: () => void }) {
+  const panelRef = React.useRef<HTMLDivElement>(null)
+  useFocusTrap(true, panelRef)
+
+  return (
+    <div
+      ref={panelRef}
+      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Documentation menu"
+      tabIndex={-1}
+    >
+      <button
+        type="button"
+        className="absolute inset-0 cursor-default"
+        aria-label="Close menu backdrop"
+        onClick={onClose}
+      />
+      <div className="relative flex h-full w-[min(18rem,calc(100vw-2.5rem))] flex-col border-r border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5">
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <Link
+            href="/"
+            className="flex min-w-0 items-center gap-2"
+            onClick={onClose}
+          >
+            <LogoMark />
+            <span className="truncate text-[15px] font-medium text-foreground">
+              AtroUI
+            </span>
+          </Link>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close menu"
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-full text-foreground"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
+          <DocsSidebar />
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -109,53 +161,6 @@ export function MobileSidebar() {
     }
   }, [open])
 
-  // Portal out of the sticky header: backdrop-filter creates a containing
-  // block that would clip position:fixed to the header bar.
-  const drawer =
-    open && mounted
-      ? createPortal(
-          <div
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Documentation menu"
-          >
-            <button
-              type="button"
-              className="absolute inset-0 cursor-default"
-              aria-label="Close menu backdrop"
-              onClick={() => setOpen(false)}
-            />
-            <div className="relative flex h-full w-[min(18rem,calc(100vw-2.5rem))] flex-col border-r border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5">
-              <div className="mb-5 flex items-center justify-between gap-3">
-                <Link
-                  href="/"
-                  className="flex min-w-0 items-center gap-2"
-                  onClick={() => setOpen(false)}
-                >
-                  <LogoMark />
-                  <span className="truncate text-[15px] font-medium text-foreground">
-                    AtroUI
-                  </span>
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  aria-label="Close menu"
-                  className="inline-flex size-9 shrink-0 items-center justify-center rounded-full text-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
-                <DocsSidebar />
-              </div>
-            </div>
-          </div>,
-          document.body
-        )
-      : null
-
   return (
     <div className="lg:hidden">
       <button
@@ -163,11 +168,17 @@ export function MobileSidebar() {
         onClick={() => setOpen(true)}
         aria-label="Open menu"
         aria-expanded={open}
+        aria-haspopup="dialog"
         className="inline-flex size-9 items-center justify-center rounded-full border border-border-subtle bg-white/5 text-foreground"
       >
         <Menu className="h-4 w-4" />
       </button>
-      {drawer}
+      {open && mounted
+        ? createPortal(
+            <MobileDrawer onClose={() => setOpen(false)} />,
+            document.body
+          )
+        : null}
     </div>
   )
 }

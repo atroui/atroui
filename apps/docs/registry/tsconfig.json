@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/lib/*": ["../lib/*", "./default/lib/*"],
+      "@/components/ui/*": ["../components/ui/*", "./default/ui/*"],
+      "@/components/blocks/*": ["./default/blocks/*"],
+      "@/components/brand/*": ["./default/brand/*"],
+      "@/*": ["../*", "./default/*"],
+      "atroui": ["../../../packages/ui/src/index.ts"],
+      "atroui/*": ["../../../packages/ui/src/*"]
+    }
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": ["node_modules"]
+}

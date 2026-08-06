@@ -34,8 +34,9 @@ export async function generateImagen3(req: ImagenRequest): Promise<Buffer> {
     );
   }
 
-  // Google AI Studio Nano Banana Pro (Gemini 3 Pro Image)
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent?key=${apiKey}`;
+  // Prefer header over query string so the key is less likely to land in access logs.
+  const url =
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent";
 
   const body = {
     contents: [
@@ -59,6 +60,7 @@ export async function generateImagen3(req: ImagenRequest): Promise<Buffer> {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-goog-api-key": apiKey,
     },
     body: JSON.stringify(body),
   });

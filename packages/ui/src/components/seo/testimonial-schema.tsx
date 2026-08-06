@@ -1,5 +1,6 @@
 import { TESTIMONIALS } from "../../content/testimonials";
 import { getBrand } from "../../lib/brand";
+import { serializeJsonLd } from "../../lib/serialize-json-ld";
 import { getSiteUrl } from "../../lib/site-url";
 
 type TestimonialSchemaProps = {
@@ -44,7 +45,7 @@ export function TestimonialSchema({ pageUrl }: TestimonialSchemaProps = {}) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   );
 }

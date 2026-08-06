@@ -47,6 +47,9 @@ export function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="md:hidden">
+            <CommandMenu compact />
+          </div>
           <div className="hidden md:block">
             <CommandMenu />
           </div>

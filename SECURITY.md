@@ -57,3 +57,5 @@ Out of scope (unless they expose AtroUI users to risk):
 - Keep `atroui` updated to the latest supported release
 - Do not commit API keys; use env vars as documented in `.env.example`
 - Treat Host API routes (OG, thumbnail, scope, contact) as **your** surface - authenticate and rate-limit them in production
+- Cap request body size on contact uploads (base64 attachments) and AI generate routes
+- Never expose `SMTP_*`, `*_API_KEY`, or `REVALIDATE_SECRET` via `NEXT_PUBLIC_*`

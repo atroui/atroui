@@ -5,6 +5,7 @@ import path from "path"
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   transpilePackages: ["atroui", "@shadergradient/react"],
+  poweredByHeader: false,
   env: {
     // Docs site ships the portrait under public/; consumer apps omit this.
     NEXT_PUBLIC_FOUNDER_AVATAR: "/images/founder-portrait.png",
@@ -16,6 +17,38 @@ const nextConfig: NextConfig = {
       "motion",
       "@phosphor-icons/react",
     ],
+  },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+        ],
+      },
+      {
+        // Registry JSON is public by design - still prevent MIME sniffing / framing
+        source: "/r/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=300, stale-while-revalidate=86400",
+          },
+        ],
+      },
+    ]
   },
   webpack: (config) => {
     config.resolve.alias = {

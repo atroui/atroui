@@ -17,7 +17,9 @@ type AnalyticsProviderProps = {
  */
 export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const rawGaId = process.env.NEXT_PUBLIC_GA_ID ?? "";
+  // Only allow Measurement ID shape (G-XXXXXXXX) to avoid script injection.
+  const gaId = /^G-[A-Z0-9]+$/i.test(rawGaId) ? rawGaId : undefined;
 
   useEffect(() => {
     trackEvent("page_view", { path: window.location.pathname });

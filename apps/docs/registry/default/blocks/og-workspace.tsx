@@ -1,7 +1,6 @@
 "use client"
 
-import { OgLivePreview } from "@/components/blocks/og-live-preview"
-import type { OgStyleKey } from "@/components/blocks/og-live-preview"
+import { OgLivePreview, type OgStyleKey } from "./og-live-preview"
 
 /**
  * Lightweight OG workspace shell. Wire CONTENT.endpoint in your host app

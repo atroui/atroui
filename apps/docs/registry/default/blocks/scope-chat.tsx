@@ -9,9 +9,10 @@ import { cn } from "@/lib/utils"
  * Scope chat UI shell. Wire CONTENT.endpoint to your AI host API.
  */
 const CONTENT = {
-  endpoint: "/api/scope-chat",
+  endpoint: "/api/scope",
   placeholder: "Describe the product you want to ship…",
   emptyHint: "Ask for a fixed-scope plan. Host API required for replies.",
+  maxMessages: 40,
 }
 
 type Msg = { role: "user" | "assistant"; content: string }
@@ -28,7 +29,9 @@ export function ScopeChat() {
     if (!text || loading) return
     setInput("")
     setError(null)
-    const next: Msg[] = [...messages, { role: "user", content: text }]
+    const next: Msg[] = [...messages, { role: "user", content: text }].slice(
+      -CONTENT.maxMessages
+    )
     setMessages(next)
     setLoading(true)
     try {
@@ -39,13 +42,15 @@ export function ScopeChat() {
       })
       if (!res.ok) throw new Error(`Request failed (${res.status})`)
       const data = (await res.json()) as { reply?: string }
-      setMessages((m) => [
-        ...m,
-        {
-          role: "assistant",
-          content: data.reply ?? "No reply from host API.",
-        },
-      ])
+      setMessages((m) =>
+        [
+          ...m,
+          {
+            role: "assistant" as const,
+            content: data.reply ?? "No reply from host API.",
+          },
+        ].slice(-CONTENT.maxMessages)
+      )
     } catch (err) {
       setError(err instanceof Error ? err.message : "Request failed")
     } finally {

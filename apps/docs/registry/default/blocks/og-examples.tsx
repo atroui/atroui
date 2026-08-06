@@ -2,8 +2,7 @@
 
 import Link from "next/link"
 
-import { OgLivePreview } from "@/components/blocks/og-live-preview"
-import type { OgStyleKey } from "@/components/blocks/og-live-preview"
+import { OgLivePreview, type OgStyleKey } from "./og-live-preview"
 import { cn } from "@/lib/utils"
 
 /** Edit CONTENT for demo cards shown in the gallery. */
@@ -37,7 +36,7 @@ export function OgExamples({
         <Link
           key={ex.title}
           href={ex.href}
-          className="group relative aspect-[1200/630] overflow-hidden rounded-2xl border border-border-subtle"
+          className="group relative aspect-1200/630 overflow-hidden rounded-2xl border border-border-subtle"
         >
           <OgLivePreview
             title={ex.title}
