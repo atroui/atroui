@@ -6,10 +6,11 @@ Security fixes are applied to the latest published `atroui` release line on npm.
 
 | Version | Supported |
 | ------- | ------------------ |
-| 0.2.x | :white_check_mark: |
+| 0.3.x | :white_check_mark: |
+| 0.2.x | :x: |
 | 0.1.x and earlier | :x: |
 
-When a new minor or major ships (pending Changesets will cut **0.3.x** for Host API handlers), older lines may stop receiving patches unless noted here. Update this table when that release publishes.
+When a new minor or major ships, older lines may stop receiving patches unless noted here.
 
 ## Reporting a Vulnerability
 
