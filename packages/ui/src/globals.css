@@ -216,14 +216,18 @@
   .ds-display {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
-    line-height: 1.05;
+    /* Caveat needs room for ascenders / descenders — tight LH clips glyphs */
+    line-height: 1.25;
     font-weight: 500;
+    overflow: visible;
   }
   .ds-display-italic {
     font-family: var(--font-display);
     font-style: italic;
     letter-spacing: -0.01em;
     font-weight: 500;
+    line-height: 1.25;
+    overflow: visible;
   }
   .ds-headline {
     font-family: var(--font-heading);
@@ -256,6 +260,11 @@
     color: var(--muted-foreground);
   }
   .ds-gradient-text {
+    display: inline-block;
+    /* bg-clip-text + handwriting fonts clip stems/descenders without padding */
+    padding-block: 0.08em 0.18em;
+    line-height: 1.3;
+    vertical-align: baseline;
     background-image: linear-gradient(
       90deg,
       oklch(0.99 0 0),
@@ -265,6 +274,13 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  /* Prefer this over .ds-gradient-text on Caveat / sketch display — no clip */
+  .ds-sketch-accent {
+    color: color-mix(in oklch, var(--brand-hover) 85%, white);
+    text-shadow: 0 0 18px color-mix(in oklch, var(--brand-glow) 55%, transparent);
   }
   .bam-section-label {
     font-size: 0.8125rem;

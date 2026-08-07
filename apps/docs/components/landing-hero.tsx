@@ -50,9 +50,9 @@ export function LandingHero() {
           <div className="grid gap-10 md:gap-12 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-5">
               <p className="ms-stamp">Inside</p>
-              <h2 className="ds-display mt-4 text-2xl sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
+              <h2 className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
                 What you&rsquo;ll{" "}
-                <span className="ds-gradient-text">find</span>
+                <span className="ds-sketch-accent">find</span>
               </h2>
               <p className="mt-3 max-w-sm text-[15px] font-light leading-relaxed text-neutral-300 sm:mt-4 sm:text-base">
                 Own the UI with the registry. Borrow Host APIs for forms and AI
@@ -87,9 +87,9 @@ export function LandingHero() {
         >
           <div className="max-w-lg">
             <p className="ms-stamp">atroui.com</p>
-            <h2 className="ds-display mt-4 text-2xl sm:mt-5 sm:text-3xl md:text-4xl">
+            <h2 className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl">
               The home of{" "}
-              <span className="ds-gradient-text">AtroUI</span>
+              <span className="ds-sketch-accent">AtroUI</span>
             </h2>
             <p className="mt-3 text-sm font-light leading-relaxed text-neutral-400 sm:mt-4">
               AtroUI is the React component catalog at{" "}
