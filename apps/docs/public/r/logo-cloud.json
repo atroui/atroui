@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-cloud",
+  "title": "Logo Cloud",
+  "description": "Partner / client name strip with editable CONTENT and NAMES.",
+  "files": [
+    {
+      "path": "registry/default/blocks/logo-cloud.tsx",
+      "content": "/**\n * Edit CONTENT / NAMES when you have real clients or partners.\n * Text marks by default — swap cells for Image when you have assets.\n */\nconst CONTENT = {\n  stamp: \"Trusted by\",\n  lede: \"Swap NAMES for clients or stack partners. Prefer real marks when you have them.\",\n}\n\nconst NAMES = [\n  \"Northline\",\n  \"Cascade\",\n  \"Harbor\",\n  \"Kiln\",\n  \"Fieldwork\",\n  \"Orbit\",\n]\n\nexport function LogoCloud() {\n  return (\n    <section className=\"border-t border-border-subtle\">\n      <div className=\"border-b border-border-subtle\">\n        <div className=\"mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 sm:px-10 sm:py-12\">\n          <div className=\"max-w-md\">\n            <p className=\"text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase\">\n              {CONTENT.stamp}\n            </p>\n            <p className=\"mt-2 text-sm leading-relaxed text-muted-foreground\">\n              {CONTENT.lede}\n            </p>\n          </div>\n          <ul className=\"mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border-subtle bg-border-subtle sm:grid-cols-3 md:grid-cols-6\">\n            {NAMES.map((name) => (\n              <li\n                key={name}\n                className=\"flex min-h-16 items-center justify-center bg-background px-3 py-4\"\n              >\n                <span className=\"text-sm font-medium tracking-tight text-muted-foreground\">\n                  {name}\n                </span>\n              </li>\n            ))}\n          </ul>\n        </div>\n      </div>\n    </section>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/logo-cloud.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

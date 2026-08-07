@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "count-up",
+  "title": "Count Up",
+  "description": "In-view count-up number with reduced-motion support.",
+  "files": [
+    {
+      "path": "registry/default/blocks/count-up.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\n/**\n * Counts up from 0 to `value` over `duration` ms with out-quart easing.\n * Runs once on first in-view and respects prefers-reduced-motion.\n */\nexport function CountUp({\n  value,\n  duration = 1200,\n  className,\n  ariaLabel,\n}: {\n  value: number\n  duration?: number\n  className?: string\n  ariaLabel?: string\n}) {\n  const ref = React.useRef<HTMLSpanElement | null>(null)\n  const [display, setDisplay] = React.useState(0)\n  const startedRef = React.useRef(false)\n\n  React.useEffect(() => {\n    const node = ref.current\n    if (!node) return\n\n    const reduced =\n      window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches\n    if (reduced) {\n      setDisplay(value)\n      return\n    }\n\n    let raf = 0\n    const start = () => {\n      if (startedRef.current) return\n      startedRef.current = true\n      const t0 = performance.now()\n      const from = 0\n      const to = value\n      const ease = (t: number) => 1 - Math.pow(1 - t, 4)\n\n      const step = (now: number) => {\n        const t = Math.min(1, (now - t0) / duration)\n        setDisplay(Math.round(from + (to - from) * ease(t)))\n        if (t < 1) raf = requestAnimationFrame(step)\n      }\n      raf = requestAnimationFrame(step)\n    }\n\n    if (typeof IntersectionObserver === \"undefined\") {\n      start()\n      return () => cancelAnimationFrame(raf)\n    }\n\n    const io = new IntersectionObserver(\n      (entries) => {\n        if (entries[0]?.isIntersecting) {\n          start()\n          io.disconnect()\n        }\n      },\n      { threshold: 0.3 }\n    )\n    io.observe(node)\n    return () => {\n      io.disconnect()\n      cancelAnimationFrame(raf)\n    }\n  }, [value, duration])\n\n  return (\n    <span\n      ref={ref}\n      className={className}\n      aria-label={ariaLabel ?? String(value)}\n    >\n      {display}\n    </span>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/count-up.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

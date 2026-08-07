@@ -12,6 +12,11 @@ import { OgLivePreview } from "./og/og-live-preview";
 import { STYLE_PRESETS, type StyleKey } from "../lib/og/presets";
 import { cn } from "../lib/utils";
 
+/**
+ * Studio homepage hero (OG canvas + sprint rail).
+ * Registry install: `@atroui/home-hero` (CONTENT clone under components/blocks).
+ */
+
 const SPRINT_DAYS = [
   { day: "01", label: "Scope + stack", done: true },
   { day: "02", label: "Auth + data", done: true },

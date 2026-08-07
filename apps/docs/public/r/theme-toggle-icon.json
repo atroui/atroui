@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-toggle-icon",
+  "title": "Theme Toggle Icon",
+  "description": "Compact sun/moon theme toggle for narrow chrome.",
+  "dependencies": [
+    "next-themes",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/theme-toggle-icon.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useTheme } from \"next-themes\"\nimport { Moon, Sun } from \"lucide-react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Simple sun/moon theme toggle for narrow personal chrome.\n */\nexport function ThemeToggleIcon({ className }: { className?: string }) {\n  const { resolvedTheme, setTheme } = useTheme()\n  const [mounted, setMounted] = React.useState(false)\n  React.useEffect(() => setMounted(true), [])\n\n  const isDark = mounted && resolvedTheme === \"dark\"\n  const next = isDark ? \"light\" : \"dark\"\n  const label = `Switch to ${next} mode`\n\n  return (\n    <button\n      type=\"button\"\n      aria-label={label}\n      title={label}\n      onClick={() => setTheme(next)}\n      className={cn(\n        \"inline-flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground\",\n        className\n      )}\n    >\n      {!mounted ? (\n        <Sun className=\"h-[13px] w-[13px] opacity-0\" aria-hidden />\n      ) : isDark ? (\n        <Sun className=\"h-[13px] w-[13px]\" aria-hidden />\n      ) : (\n        <Moon className=\"h-[13px] w-[13px]\" aria-hidden />\n      )}\n    </button>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/theme-toggle-icon.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

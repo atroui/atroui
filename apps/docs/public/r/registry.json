@@ -360,6 +360,23 @@
       ]
     },
     {
+      "name": "home-crafts",
+      "type": "registry:block",
+      "title": "Home Crafts",
+      "description": "Capabilities / crafts band with editable CONTENT and CRAFTS (distinct from pricing).",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/home-crafts.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/home-crafts.tsx"
+        }
+      ]
+    },
+    {
       "name": "pricing-overview",
       "type": "registry:block",
       "title": "Pricing Overview",
@@ -373,6 +390,32 @@
           "path": "registry/default/blocks/pricing-overview.tsx",
           "type": "registry:component",
           "target": "components/blocks/pricing-overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:block",
+      "title": "Feature Grid",
+      "description": "Product feature grid with editable CONTENT and FEATURES.",
+      "files": [
+        {
+          "path": "registry/default/blocks/feature-grid.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/feature-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:block",
+      "title": "Logo Cloud",
+      "description": "Partner / client name strip with editable CONTENT and NAMES.",
+      "files": [
+        {
+          "path": "registry/default/blocks/logo-cloud.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/logo-cloud.tsx"
         }
       ]
     },
@@ -1036,6 +1079,296 @@
           "path": "registry/default/api/scope/route.ts",
           "type": "registry:file",
           "target": "app/api/scope/route.ts"
+        }
+      ]
+    },
+    {
+      "name": "count-up",
+      "type": "registry:block",
+      "title": "Count Up",
+      "description": "In-view count-up number with reduced-motion support.",
+      "files": [
+        {
+          "path": "registry/default/blocks/count-up.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/count-up.tsx"
+        }
+      ]
+    },
+    {
+      "name": "deadline-countdown",
+      "type": "registry:block",
+      "title": "Deadline Countdown",
+      "description": "Days-to-deadline band with segmented progress and CountUp.",
+      "files": [
+        {
+          "path": "registry/default/blocks/deadline-countdown.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/deadline-countdown.tsx"
+        }
+      ]
+    },
+    {
+      "name": "currently",
+      "type": "registry:block",
+      "title": "Currently",
+      "description": "Narrow “now” list with editable stamp and items.",
+      "files": [
+        {
+          "path": "registry/default/blocks/currently.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/currently.tsx"
+        }
+      ]
+    },
+    {
+      "name": "project-list",
+      "type": "registry:block",
+      "title": "Project List",
+      "description": "Hairline project list with tags and optional view-all link.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/project-list.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/project-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "log-preview",
+      "type": "registry:block",
+      "title": "Log Preview",
+      "description": "Recent log entries band with view-all link.",
+      "dependencies": [
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/log-preview.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/log-preview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "changelog",
+      "type": "registry:block",
+      "title": "Changelog",
+      "description": "Filterable month-grouped changelog list.",
+      "files": [
+        {
+          "path": "registry/default/blocks/changelog.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/changelog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "command-menu",
+      "type": "registry:block",
+      "title": "Command Menu",
+      "description": "⌘K command palette for nav, posts, connect, and theme.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react",
+        "next",
+        "next-themes"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/command-menu.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/command-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reveal",
+      "type": "registry:block",
+      "title": "Reveal",
+      "description": "IntersectionObserver reveal using .atro-reveal CSS.",
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/reveal.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/reveal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle-icon",
+      "type": "registry:block",
+      "title": "Theme Toggle Icon",
+      "description": "Compact sun/moon theme toggle for narrow chrome.",
+      "dependencies": [
+        "next-themes",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/theme-toggle-icon.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/theme-toggle-icon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "site-header-narrow",
+      "type": "registry:block",
+      "title": "Site Header Narrow",
+      "description": "Sticky 640px personal header with mono nav and theme icon.",
+      "dependencies": [
+        "lucide-react",
+        "next",
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/brand",
+        "@atroui/theme-toggle-icon"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/site-header-narrow.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/site-header-narrow.tsx"
+        }
+      ]
+    },
+    {
+      "name": "site-footer-narrow",
+      "type": "registry:block",
+      "title": "Site Footer Narrow",
+      "description": "Quiet personal footer with tagline and link grid.",
+      "registryDependencies": [
+        "@atroui/brand"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/site-footer-narrow.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/site-footer-narrow.tsx"
+        }
+      ]
+    },
+    {
+      "name": "social-float",
+      "type": "registry:block",
+      "title": "Social Float",
+      "description": "Fixed social FAB with expandable link tray.",
+      "dependencies": [
+        "lucide-react",
+        "next",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/social-float.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/social-float.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reading-shelf",
+      "type": "registry:block",
+      "title": "Reading Shelf",
+      "description": "Horizontal book-cover shelf for currently reading.",
+      "files": [
+        {
+          "path": "registry/default/blocks/reading-shelf.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/reading-shelf.tsx"
+        }
+      ]
+    },
+    {
+      "name": "personal-hero",
+      "type": "registry:block",
+      "title": "Personal Hero",
+      "description": "Narrow personal intro with status, lede links, and meta.",
+      "files": [
+        {
+          "path": "registry/default/blocks/personal-hero.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/personal-hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "resume",
+      "type": "registry:block",
+      "title": "Resume",
+      "description": "Printable resume layout with experience, skills, and projects.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/resume.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/resume.tsx"
+        }
+      ]
+    },
+    {
+      "name": "local-clock",
+      "type": "registry:block",
+      "title": "Local Clock",
+      "description": "Timezone-aware local time chip.",
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/local-clock.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/local-clock.tsx"
+        }
+      ]
+    },
+    {
+      "name": "weather-chip",
+      "type": "registry:block",
+      "title": "Weather Chip",
+      "description": "Open-Meteo weather chip — no API key required.",
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/weather-chip.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/weather-chip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stack-list",
+      "type": "registry:block",
+      "title": "Stack List",
+      "description": "Sectioned tools/stack definition list.",
+      "files": [
+        {
+          "path": "registry/default/blocks/stack-list.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/stack-list.tsx"
         }
       ]
     }

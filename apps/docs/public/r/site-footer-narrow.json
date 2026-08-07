@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "site-footer-narrow",
+  "title": "Site Footer Narrow",
+  "description": "Quiet personal footer with tagline and link grid.",
+  "registryDependencies": [
+    "@atroui/brand"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/site-footer-narrow.tsx",
+      "content": "import { getBrand } from \"@/lib/brand\"\n\nconst CONTENT = {\n  siteName: \"\",\n  tagline: \"A narrow personal site built with AtroUI.\",\n  links: [\n    { href: \"/projects\", label: \"Projects\" },\n    { href: \"/writing\", label: \"Writing\" },\n    { href: \"/log\", label: \"Log\" },\n    { href: \"/stack\", label: \"Stack\" },\n    { href: \"/resume\", label: \"Resume\" },\n    { href: \"/contact\", label: \"Contact\" },\n    { href: \"https://github.com\", label: \"GitHub\", external: true },\n    { href: \"https://x.com\", label: \"X\", external: true },\n    { href: \"/rss.xml\", label: \"RSS\" },\n  ] as Array<{ href: string; label: string; external?: boolean }>,\n}\n\nexport function SiteFooterNarrow({\n  siteName,\n  tagline = CONTENT.tagline,\n  links = CONTENT.links,\n  className,\n}: {\n  siteName?: string\n  tagline?: string\n  links?: Array<{ href: string; label: string; external?: boolean }>\n  className?: string\n} = {}) {\n  const brand = getBrand()\n  const name = siteName || CONTENT.siteName || brand.name\n\n  return (\n    <footer\n      className={\n        className ??\n        \"mt-auto border-t border-border-subtle pb-[env(safe-area-inset-bottom)]\"\n      }\n    >\n      <div className=\"mx-auto flex max-w-[640px] flex-col gap-8 px-5 py-8 text-[12px] text-muted-foreground sm:flex-row sm:items-start sm:justify-between sm:gap-10\">\n        <div className=\"min-w-0 space-y-1.5\">\n          <div className=\"font-mono text-[12px] tracking-[-0.01em] text-foreground\">\n            {name}\n          </div>\n          <p className=\"font-mono text-[11px] leading-[1.55] text-muted-foreground/80\">\n            {tagline}\n          </p>\n        </div>\n\n        <nav\n          aria-label=\"Footer\"\n          className=\"grid shrink-0 grid-cols-3 gap-x-5 gap-y-1.5 font-mono text-[11.5px] sm:grid-cols-4 sm:justify-items-end\"\n        >\n          {links.map((item) => (\n            <a\n              key={item.href}\n              href={item.href}\n              {...(item.external\n                ? { target: \"_blank\", rel: \"noopener noreferrer\" }\n                : {})}\n              className=\"hover:text-foreground\"\n            >\n              {item.label}\n            </a>\n          ))}\n        </nav>\n      </div>\n    </footer>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/site-footer-narrow.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

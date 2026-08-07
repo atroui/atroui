@@ -168,7 +168,7 @@ export const navigation: NavSection[] = [
       {
         title: "Hero",
         href: "/docs/components/home-hero",
-        description: "Homepage hero",
+        description: "AI value-prop hero",
         badge: "registry",
       },
       {
@@ -186,7 +186,7 @@ export const navigation: NavSection[] = [
       {
         title: "Crafts",
         href: "/docs/components/home-crafts",
-        description: "Pricing alias band",
+        description: "Capabilities band",
         badge: "registry",
       },
       {
@@ -205,6 +205,18 @@ export const navigation: NavSection[] = [
         title: "Pricing",
         href: "/docs/components/pricing-overview",
         description: "Offer tiers",
+        badge: "registry",
+      },
+      {
+        title: "Feature Grid",
+        href: "/docs/components/feature-grid",
+        description: "Product pillars",
+        badge: "registry",
+      },
+      {
+        title: "Logo Cloud",
+        href: "/docs/components/logo-cloud",
+        description: "Partner name strip",
         badge: "registry",
       },
       {
@@ -289,6 +301,119 @@ export const navigation: NavSection[] = [
         title: "Made With Embed",
         href: "/docs/components/seo-made-with-embed",
         description: "Credit badge",
+        badge: "registry",
+      },
+    ],
+  },
+  {
+    title: "Personal",
+    items: [
+      {
+        title: "Count Up",
+        href: "/docs/components/count-up",
+        description: "In-view number animation",
+        badge: "registry",
+      },
+      {
+        title: "Deadline Countdown",
+        href: "/docs/components/deadline-countdown",
+        description: "Days-to-deadline band",
+        badge: "registry",
+      },
+      {
+        title: "Currently",
+        href: "/docs/components/currently",
+        description: "What you’re up to now",
+        badge: "registry",
+      },
+      {
+        title: "Project List",
+        href: "/docs/components/project-list",
+        description: "Hairline project list",
+        badge: "registry",
+      },
+      {
+        title: "Log Preview",
+        href: "/docs/components/log-preview",
+        description: "Recent log entries",
+        badge: "registry",
+      },
+      {
+        title: "Changelog",
+        href: "/docs/components/changelog",
+        description: "Filterable ship log",
+        badge: "registry",
+      },
+      {
+        title: "Command Menu",
+        href: "/docs/components/command-menu",
+        description: "⌘K personal palette",
+        badge: "registry",
+      },
+      {
+        title: "Reveal",
+        href: "/docs/components/reveal",
+        description: "Scroll reveal wrapper",
+        badge: "registry",
+      },
+      {
+        title: "Theme Toggle Icon",
+        href: "/docs/components/theme-toggle-icon",
+        description: "Compact sun/moon toggle",
+        badge: "registry",
+      },
+      {
+        title: "Site Header Narrow",
+        href: "/docs/components/site-header-narrow",
+        description: "640px personal header",
+        badge: "registry",
+      },
+      {
+        title: "Site Footer Narrow",
+        href: "/docs/components/site-footer-narrow",
+        description: "Quiet personal footer",
+        badge: "registry",
+      },
+      {
+        title: "Social Float",
+        href: "/docs/components/social-float",
+        description: "Fixed social FAB",
+        badge: "registry",
+      },
+      {
+        title: "Reading Shelf",
+        href: "/docs/components/reading-shelf",
+        description: "Book cover shelf",
+        badge: "registry",
+      },
+      {
+        title: "Personal Hero",
+        href: "/docs/components/personal-hero",
+        description: "Name, status, lede",
+        badge: "registry",
+      },
+      {
+        title: "Resume",
+        href: "/docs/components/resume",
+        description: "Printable resume block",
+        badge: "registry",
+      },
+      {
+        title: "Local Clock",
+        href: "/docs/components/local-clock",
+        description: "Timezone time chip",
+        badge: "registry",
+      },
+      {
+        title: "Weather Chip",
+        href: "/docs/components/weather-chip",
+        description: "Open-Meteo weather",
+        badge: "registry",
+      },
+      {
+        title: "Stack List",
+        href: "/docs/components/stack-list",
+        description: "Tools and stack list",
         badge: "registry",
       },
     ],
@@ -388,6 +513,7 @@ export type DocKind = "Primitive" | "Block" | "Tool" | "Headless"
 const sectionKind: Record<string, DocKind> = {
   Primitives: "Primitive",
   Blocks: "Block",
+  Personal: "Block",
   Tools: "Tool",
   Headless: "Headless",
 }

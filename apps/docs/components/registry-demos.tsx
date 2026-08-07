@@ -12,10 +12,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  Changelog,
+  CommandMenu,
+  ContactForm,
   ContextualCTA,
+  CountUp,
+  Currently,
+  CalendlyEmbed,
+  DeadlineCountdown,
   ExitIntentPopup,
   FadeIn,
   FaqInteractivePreview,
+  FeatureGrid,
   FormSelect,
   FounderAvatar,
   HeroAiValueProposition,
@@ -24,6 +32,9 @@ import {
   HomePrinciple,
   HomeWho,
   HomeWork,
+  LocalClock,
+  LogPreview,
+  LogoCloud,
   LogoMark,
   LogoWordmark,
   MadeWithEmbed,
@@ -31,27 +42,36 @@ import {
   OgExamples,
   OgLivePreview,
   OgWorkspace,
+  PersonalHero,
   PricingOverview,
+  ProjectList,
   Prose,
   ProjectPlanner,
+  ReadingShelf,
   ResourcesContent,
+  Resume,
+  Reveal,
   ScopeChat,
   ScrollProgress,
   SiteFooter,
+  SiteFooterNarrow,
   SiteHeader,
+  SiteHeaderNarrow,
+  SocialFloat,
   SocialShare,
+  StackList,
   Stagger,
   StaggerChild,
   Textarea,
   ThemeToggle,
+  ThemeToggleIcon,
   ThumbnailLivePreview,
   ThumbnailWorkspace,
   TimelineAnimation,
   UiMockupFrame,
   VisualCaseStudy,
   WaitlistForm,
-  ContactForm,
-  CalendlyEmbed,
+  WeatherChip,
   ArPortfolio,
   JournalContent,
   LiveDashboard,
@@ -89,6 +109,14 @@ export function DemoHomeWork() {
 
 export function DemoPricingOverview() {
   return <PricingOverview />
+}
+
+export function DemoFeatureGrid() {
+  return <FeatureGrid />
+}
+
+export function DemoLogoCloud() {
+  return <LogoCloud />
 }
 
 export function DemoBoldFooter() {
@@ -742,4 +770,143 @@ export function DemoThemeProviderNote() {
       </div>
     </div>
   )
+}
+
+/** Personal site kit demos */
+
+export function DemoCountUp() {
+  return (
+    <div className="flex items-baseline gap-2 font-mono tabular-nums">
+      <CountUp
+        value={128}
+        className="text-5xl font-medium tracking-tight text-foreground"
+        ariaLabel="128"
+      />
+      <span className="text-sm text-muted-foreground">ships</span>
+    </div>
+  )
+}
+
+export function DemoDeadlineCountdown() {
+  return <DeadlineCountdown className="w-full max-w-[640px]" />
+}
+
+export function DemoCurrently() {
+  return <Currently className="w-full max-w-[640px]" />
+}
+
+export function DemoProjectList() {
+  return <ProjectList className="w-full max-w-[640px]" />
+}
+
+export function DemoLogPreview() {
+  return <LogPreview className="w-full max-w-[640px]" />
+}
+
+export function DemoChangelog() {
+  return <Changelog className="w-full max-w-[640px]" />
+}
+
+export function DemoCommandMenu() {
+  return (
+    <div className="relative w-full max-w-md rounded-xl border border-border-subtle bg-background px-6 py-10 text-center">
+      <p className="text-sm text-muted-foreground">
+        Press{" "}
+        <kbd className="rounded border border-border-subtle bg-muted px-1.5 py-0.5 font-mono text-[11px] text-foreground">
+          ⌘K
+        </kbd>{" "}
+        (or Ctrl+K) to open the command menu.
+      </p>
+      <CommandMenu />
+    </div>
+  )
+}
+
+export function DemoReveal() {
+  return (
+    <Reveal className="w-full max-w-md rounded-xl border border-border-subtle bg-card px-6 py-8 text-left">
+      <p className="ms-stamp">Reveal</p>
+      <p className="mt-2 text-sm text-foreground">
+        Fades and rises when the block enters the viewport. Pair with{" "}
+        <code className="font-mono text-xs">.atro-reveal</code> CSS from{" "}
+        <code className="font-mono text-xs">atroui/globals.css</code>.
+      </p>
+    </Reveal>
+  )
+}
+
+export function DemoThemeToggleIcon() {
+  return (
+    <div className="flex items-center gap-3 rounded-lg border border-border-subtle bg-background px-4 py-3">
+      <ThemeToggleIcon />
+      <span className="font-mono text-[12px] text-muted-foreground">
+        Compact sun / moon toggle
+      </span>
+    </div>
+  )
+}
+
+export function DemoSiteHeaderNarrow() {
+  return (
+    <div className="w-full max-w-[640px] overflow-hidden rounded-xl border border-border-subtle bg-background">
+      <SiteHeaderNarrow siteName="atroui" />
+      <div className="px-5 py-8 text-sm text-muted-foreground">
+        Narrow sticky chrome — 640px max width, mono nav, theme icon.
+      </div>
+    </div>
+  )
+}
+
+export function DemoSiteFooterNarrow() {
+  return (
+    <div className="w-full max-w-[640px] overflow-hidden rounded-xl border border-border-subtle bg-background">
+      <SiteFooterNarrow siteName="atroui" />
+    </div>
+  )
+}
+
+export function DemoSocialFloat() {
+  return (
+    <div className="relative h-48 w-full max-w-md rounded-xl border border-border-subtle bg-background">
+      <p className="absolute inset-x-0 top-6 px-6 text-center text-sm text-muted-foreground">
+        Social float mounts fixed to the viewport — open the FAB in the corner.
+      </p>
+      <SocialFloat />
+    </div>
+  )
+}
+
+export function DemoReadingShelf() {
+  return <ReadingShelf className="w-full max-w-[640px]" />
+}
+
+export function DemoPersonalHero() {
+  return (
+    <PersonalHero
+      name="Your Name"
+      className="w-full max-w-[640px] px-5 pt-8 sm:pt-10"
+    />
+  )
+}
+
+export function DemoResume() {
+  return (
+    <div className="max-h-[560px] w-full max-w-[720px] overflow-auto">
+      <Resume />
+    </div>
+  )
+}
+
+export function DemoLocalClock() {
+  return (
+    <LocalClock timezone="America/New_York" timezoneLabel="NYC" />
+  )
+}
+
+export function DemoWeatherChip() {
+  return <WeatherChip lat={40.7128} lon={-74.006} label="NYC" />
+}
+
+export function DemoStackList() {
+  return <StackList className="w-full max-w-[640px]" />
 }
