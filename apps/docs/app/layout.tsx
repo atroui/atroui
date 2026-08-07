@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Caveat, Geist_Mono, Outfit } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import "atroui/globals.css"
 import "./globals.css"
@@ -140,6 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
