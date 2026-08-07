@@ -22,6 +22,7 @@
     "@shadergradient/react": "^2.4.20",
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "atroui": "workspace:*",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.0",
