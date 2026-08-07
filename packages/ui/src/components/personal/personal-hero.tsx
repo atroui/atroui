@@ -73,7 +73,7 @@ export function PersonalHero({
 
   return (
     <section
-      className={className ?? "mx-auto max-w-[640px] pt-14 sm:pt-20"}
+      className={className ?? "mx-auto max-w-160 pt-14 sm:pt-20"}
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-start gap-4">
@@ -83,7 +83,7 @@ export function PersonalHero({
               alt={imageAlt.trim() || name}
               width={72}
               height={72}
-              className="mt-1 h-[72px] w-[72px] shrink-0 rounded-full border border-border-subtle bg-muted object-cover"
+              className="mt-1 size-18 shrink-0 rounded-full border border-border-subtle bg-muted object-cover"
             />
           ) : null}
           <h1 className="min-w-0 pt-1 text-[2rem] font-medium tracking-tight text-foreground sm:text-[2.5rem]">
@@ -145,7 +145,7 @@ function StatusDot({ status }: { status: StatusKind }) {
       className="inline-flex items-center gap-1.5 pt-2 font-mono text-[11px] text-muted-foreground"
       aria-label={`Status: ${statusCopy[status]}`}
     >
-      <span className="relative inline-flex h-[7px] w-[7px] shrink-0">
+      <span className="relative inline-flex h-1.75 w-1.75 shrink-0">
         <span
           className={`absolute inset-0 rounded-full ${statusDot[status]} ${
             status === "shipping" ? "animate-ping opacity-60" : "opacity-0"
@@ -153,7 +153,7 @@ function StatusDot({ status }: { status: StatusKind }) {
           aria-hidden
         />
         <span
-          className={`relative h-[7px] w-[7px] rounded-full ${statusDot[status]}`}
+          className={`relative h-1.75 w-1.75 rounded-full ${statusDot[status]}`}
           aria-hidden
         />
       </span>
