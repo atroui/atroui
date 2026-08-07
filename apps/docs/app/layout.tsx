@@ -135,7 +135,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative min-h-[100svh] bg-background text-foreground">
+          <div className="relative min-h-svh bg-background text-foreground">
             {children}
           </div>
         </ThemeProvider>
