@@ -7,7 +7,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Host APIs",
   description:
-    "Own the UI in your repo. Borrow the boring API security. Bring your own keys — AtroUI Host APIs for forms, OG, thumbnail, and scope.",
+    "Own the UI in your repo. Borrow the boring API security. Bring your own keys. AtroUI Host APIs for forms, OG, thumbnail, and scope.",
   path: "/docs/host-api",
 })
 
@@ -22,7 +22,14 @@ export default function HostApiPage() {
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           Own the UI in your repo. Borrow the boring API security. Bring your
           own keys. AtroUI never stores secrets and does not run paid AI on
-          atroui.com.
+          atroui.com. Essay-length walkthrough:{" "}
+          <Link
+            href="/blog/host-apis-own-the-ui-bring-your-keys"
+            className="bam-link"
+          >
+            Host APIs blog post
+          </Link>
+          .
         </p>
       </header>
 
@@ -149,8 +156,8 @@ RESEND_AUDIENCE_ID=…   # newsletter audience subscribe`}
         </h3>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Set these only in{" "}
-          <strong className="font-medium text-foreground">your</strong> app —
-          never commit keys. Preview and rule-based paths work without them.
+          <strong className="font-medium text-foreground">your</strong> app.
+          Never commit keys. Preview and rule-based paths work without them.
         </p>
         <CodeBlock
           language="bash"
@@ -185,7 +192,7 @@ XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             503
           </code>{" "}
-          until providers are configured — including on atroui.com demos.
+          until providers are configured, including on atroui.com demos.
         </p>
       </section>
 
@@ -215,8 +222,8 @@ XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`}
                 <td className="px-4 py-3 text-muted-foreground">
                   <code className="font-mono text-[12px] text-foreground">
                     honeypot
-                  </code>{" "}
-                  — filled bots get a fake{" "}
+                  </code>
+                  : filled bots get a fake{" "}
                   <code className="font-mono text-[12px] text-foreground">
                     200
                   </code>{" "}
@@ -278,7 +285,7 @@ XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`}
           </strong>{" "}
           per Node process. Fine for local demos and a single instance. On
           multi-region Vercel (or any multi-instance host), each instance has
-          its own map — so effective limits multiply.
+          its own map, so effective limits multiply.
         </p>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Paste Upstash Redis REST (or Vercel KV) env vars into the host. The
@@ -286,10 +293,10 @@ XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             checkRateLimit
           </code>{" "}
-          API switches to a shared backend automatically — no handler fork. Redis
-          is never required for open-source consumers; memory remains the
-          default. On Vercel production without a store, handlers log a one-time
-          console warning.
+          API switches to a shared backend automatically. You do not fork
+          handlers. Redis is never required for open-source consumers; memory
+          remains the default. On Vercel production without a store, handlers
+          log a one-time console warning.
         </p>
         <CodeBlock
           language="bash"
@@ -319,12 +326,12 @@ KV_REST_API_TOKEN=…`}
         </p>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
           <li>
-            <strong className="text-foreground">We help with</strong> — body
+            <strong className="text-foreground">Handlers cover</strong>: body
             size caps, basic validation, honeypot bots, per-IP rate windows,
             clear 503 when secrets are missing (BYOK), no AtroUI-held keys.
           </li>
           <li>
-            <strong className="text-foreground">You still own</strong> —
+            <strong className="text-foreground">You still own</strong>:
             authentication / authorization, CDN or WAF abuse controls, email
             deliverability and spam reputation, provider spend, and shared
             rate-limit storage across instances.

@@ -169,9 +169,15 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         <div className="mt-12 flex flex-wrap gap-3 border-t border-border-subtle pt-8">
-          <Link href="/docs/registry" className="ms-cta text-sm">
-            Own the UI
-          </Link>
+          {post.slug === "host-apis-own-the-ui-bring-your-keys" ? (
+            <Link href="/docs/host-api" className="ms-cta text-sm">
+              Host APIs docs
+            </Link>
+          ) : (
+            <Link href="/docs/registry" className="ms-cta text-sm">
+              Own the UI
+            </Link>
+          )}
           <Link href="/docs" className="ms-cta-ghost text-sm">
             Docs
           </Link>

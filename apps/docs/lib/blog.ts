@@ -18,6 +18,208 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "host-apis-own-the-ui-bring-your-keys",
+    title:
+      "Host APIs: own the UI, borrow the boring security, bring your own keys",
+    description:
+      "How AtroUI Host APIs work: thin Next.js routes, hardened handlers in atroui/api/*, BYOK for forms and AI tools, install modes, rate limits, and what you still own in production.",
+    date: "2026-08-07",
+    sections: [
+      {
+        body: [
+          "Most UI kits stop at a nice form. You still write `/api/contact` yourself: validation, a spam honeypot, body size caps, rate limits, and the mail send. AI workspaces add more glue: the compose pipeline, provider errors, and what happens when the key is missing.",
+          "AtroUI’s answer is **Host APIs**. You copy UI from the [shadcn registry](/docs/registry), keep a thin `app/api/*/route.ts` stub on **your** Next.js app, and call production-minded handlers in the published `atroui` package (`atroui/api/*`). Secrets stay in **your** env. AtroUI never ships shared keys and does not run paid AI on [atroui.com](https://www.atroui.com).",
+          "The line we use everywhere:",
+          "**Own the UI in your repo. Borrow the boring API security. Bring your own keys.**",
+          "This post is the long version of [Host APIs](/docs/host-api). It covers why the split exists, how install modes work, what is wired today, and what you still own in production.",
+        ],
+      },
+      {
+        heading: "What a Host API is",
+        body: [
+          "**Host** is the app that hosts the route: your Next.js deployment. **API** is that backend handler. Together: Host API.",
+          "Three layers fit together:",
+        ],
+        codeBlocks: [
+          {
+            language: "text",
+            code: `Browser  →  your /api/contact  →  atroui/api/contact (library)
+                                      ↓
+                            your SMTP / Resend / HF / xAI`,
+          },
+        ],
+      },
+      {
+        body: [
+          "**UI:** registry items like `@atroui/contact-form` or `@atroui/og-workspace`. The CLI copies source into your repo. You edit `CONTENT`, rebrand, and delete what you do not need.",
+          "**Route stub:** `@atroui/api-contact` (and siblings) drop a thin App Router file that forwards `POST` to the package handler.",
+          "**Handler:** `atroui/api/contact|waitlist|newsletter|generate|thumbnail|scope`. Shared validation, honeypot, body caps, rate limits, and mail or AI wiring. You upgrade this with npm instead of re-vendoring native image deps into every app.",
+        ],
+        codeBlocks: [
+          {
+            language: "ts",
+            code: `import { handleContactPost } from "atroui/api/contact"
+
+export const runtime = "nodejs"
+
+export async function POST(req: Request) {
+  return handleContactPost(req)
+}`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Host APIs are **not** a SaaS API on atroui.com that you call with an AtroUI key. They are not required for pure marketing sections (heroes, footers, who bands). Those stay [registry UI only](/docs/installation).",
+          "They target the **Next.js App Router** today. If your stack is not Next, you can still own the UI via the CLI. Host APIs are the optional backend chapter for Next hosts. See [What is AtroUI?](/blog/what-is-atroui) for the wider catalog story.",
+        ],
+      },
+      {
+        heading: "Why this stands out",
+        body: [
+          "Typical kits ship buttons and forms UI, then leave the API to you. Shared demo hosts often bake in studio keys. That is fine for a playground. It is wrong for a library that claims you own production.",
+          "AtroUI ships named exports with boring security already in place, refuses to hold consumer secrets, and documents rate-limit upgrades instead of pretending in-memory limits are multi-region safe.",
+          "That hybrid is rare: **copy-paste UI plus production-minded handlers**, with BYOK as a product rule, not a footnote.",
+        ],
+      },
+      {
+        heading: "Three install modes",
+        body: [
+          "Never lead with `npm i atroui` for pure UI. The matrix is identical on [Host APIs](/docs/host-api), [Installation](/docs/installation), and the READMEs.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `# 1) Registry UI only (no npm package)
+npx shadcn@latest add @atroui/home-hero
+
+# 2) Forms: package + thin route stubs
+npm i atroui
+# next.config.ts → transpilePackages: ["atroui"]
+npx shadcn@latest add @atroui/contact-form @atroui/api-contact
+# same pattern: waitlist, newsletter
+
+# 3) AI tools: same package setup
+npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
+npx shadcn@latest add @atroui/thumbnail-workspace @atroui/api-thumbnail
+npx shadcn@latest add @atroui/scope-chat @atroui/api-scope`,
+          },
+        ],
+      },
+      {
+        body: [
+          "`transpilePackages: [\"atroui\"]` matters when you import Host API handlers from the package. It does not matter when you only copy heroes. More context: [transpilePackages and Turbopack](/blog/transpile-packages-turbopack-ui-libraries) and [why npm stayed for handlers](/blog/npm-to-shadcn-registry).",
+        ],
+      },
+      {
+        heading: "From zero to a live contact form",
+        body: [
+          "A concrete path for forms:",
+          "1. Register the catalog and add the form plus route (see [Installation](/docs/installation)).",
+          "2. Install `atroui` and set `transpilePackages`.",
+          "3. Put mail secrets in the **host** env. Never commit them.",
+          "4. Deploy your Next app. The browser posts to **your** `/api/contact`.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `CONTACT_EMAIL_TO=hello@acme.test
+CONTACT_EMAIL_FROM=noreply@acme.test
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=…
+SMTP_PASSWORD=…
+# or
+RESEND_API_KEY=…
+RESEND_AUDIENCE_ID=…   # newsletter audience subscribe`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Without mail config, handlers return **503**. That means “host not configured,” not “the client sent a bad payload.” Bots that fill the `honeypot` field get a fake **200** and no send.",
+        ],
+      },
+      {
+        heading: "AI tools: UI, route, and BYOK",
+        body: [
+          "OG, thumbnail, and scope follow the same pattern. Preview and rule-based paths work without keys so demos stay useful. Full AI generation returns **503** until providers are set, including on atroui.com.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `HUGGINGFACE_API_KEY=…   # OG / thumbnail AI
+GEMINI_API_KEY=…          # optional freeform / Pro image
+XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`,
+          },
+        ],
+      },
+      {
+        body: [
+          "**What works without keys:** OG and thumbnail preview-only downloads; scope chat **rule-based** replies when `XAI_API_KEY` is unset.",
+          "**Supported engines today:** Hugging Face, Gemini, and xAI where each feature needs them. Dropping `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` in `.env` does **not** auto-wire those vendors. BYOK means bring **supported** keys. More providers are deliberate future work. Until then you can fork the thin route and call your own SDK while keeping the UI.",
+          "Catalog entries tagged **Host API** in the sidebar link back to the [Host APIs](/docs/host-api) guide and the matching component docs.",
+        ],
+      },
+      {
+        heading: "Security defaults in the handlers",
+        body: [
+          "These are the boring controls handlers already apply. Per-route numbers live on the docs page:",
+          "Honeypot JSON field `honeypot`: filled bots get a quiet fake success.",
+          "Body cap **8 MB** JSON; contact attachment cap **5 MB** decoded.",
+          "Per-IP sliding windows (15 minutes): contact 5 · waitlist/newsletter 10 · scope 30 · generate/thumbnail preview 30 · AI 5.",
+          "**429** means rate limit exceeded (`retryAfterSec`). **503** means missing mail or AI config.",
+          "Handlers cover common copy-paste route mistakes. You still own auth, CDN/WAF abuse controls, email deliverability, provider spend, and shared rate-limit storage across instances. Full threat model: [Host APIs](/docs/host-api).",
+        ],
+      },
+      {
+        heading: "Production rate limiting: memory vs Redis",
+        body: [
+          "Default `checkRateLimit` is an **in-memory** sliding window per Node process. That is fine locally and on a single instance. On multi-region Vercel (or any multi-instance host), each process has its own map, so effective limits multiply.",
+          "Set Upstash Redis REST or Vercel KV env vars on the host. The same API switches to a shared backend automatically. You do not fork handlers. Redis is optional; memory stays the default. If Redis is unreachable, handlers fall back to memory so forms stay up. On Vercel production without a store, you get a one-time console warning.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `# Upstash Redis REST (recommended)
+UPSTASH_REDIS_REST_URL=https://….upstash.io
+UPSTASH_REDIS_REST_TOKEN=…
+
+# or Vercel KV (same REST protocol)
+KV_REST_API_URL=…
+KV_REST_API_TOKEN=…`,
+          },
+        ],
+      },
+      {
+        heading: "Why handlers stay on npm",
+        body: [
+          "UI moved to the registry so you own files day one ([npm to shadcn registry](/blog/npm-to-shadcn-registry)). Handlers stayed in `atroui` on purpose.",
+          "Contact and waitlist are mostly TypeScript. OG and thumbnail pull in Satori, resvg, sharp, fonts, and compose logic. Vendoring that into every consumer via the CLI would ship native `.node` addons and font paths into app trees in painful ways. A versioned package keeps one upgrade path for security and compose fixes while UI remains editable source in your repo.",
+        ],
+      },
+      {
+        heading: "What this product optimizes for",
+        body: [
+          "Speed from “pretty form” to “posts to my `/api` with sane defaults.”",
+          "A hard boundary: AtroUI never holds your Resend, HF, or xAI bill.",
+          "Honest install modes: CLI for UI, npm only when you need handlers.",
+          "Docs and demos that fail closed (503 / preview / rules) instead of burning a shared studio key.",
+        ],
+      },
+      {
+        heading: "Next steps",
+        body: [
+          "Canonical guide: [Host APIs](/docs/host-api).",
+          "CLI setup: [Installation](/docs/installation). Catalog: [Registry](/docs/registry).",
+          "Try a form: [Contact form](/docs/components/contact-contact-form).",
+          "How the split happened: [Why we moved to the shadcn registry](/blog/npm-to-shadcn-registry).",
+          "Fresh app walkthrough: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "npm-to-shadcn-registry",
     title:
       "Why AtroUI moved from npm install to the shadcn registry (and what stayed on npm)",
@@ -198,6 +400,7 @@ npm i atroui   # optional - Host API consumers only`,
       {
         heading: "Next steps",
         body: [
+          "Host APIs deep dive: [Own the UI, borrow the boring security, bring your keys](/blog/host-apis-own-the-ui-bring-your-keys).",
           "New project: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
           "Catalog: [Registry](/docs/registry).",
           "Brand: [Rebrand with getBrand()](/blog/rebrand-with-getbrand).",
@@ -247,14 +450,14 @@ npm i atroui   # optional - Host API consumers only`,
         body: [
           "Registry items for utils, brand, button, logo, site header, home bands, pricing, CTAs, and contact.",
           "Editable CONTENT / DEFAULT_BRAND constants in every block file.",
-          "Host API tools (OG, thumbnails, scope) that you wire to your own backends.",
+          "Host API tools (OG, thumbnails, scope, forms): UI plus thin routes plus hardened handlers; you bring keys. Deep dive: [Host APIs essay](/blog/host-apis-own-the-ui-bring-your-keys).",
         ],
       },
       {
         heading: "Get started in one path",
         body: [
           "Init shadcn, add the @atroui registry, then add a component. Open the file and edit CONTENT.",
-          "Full steps: [Installation](/docs/installation). Catalog: [Registry](/docs/registry). Walkthrough: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
+          "Full steps: [Installation](/docs/installation). Catalog: [Registry](/docs/registry). Walkthrough: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router). Forms and AI backends: [Host APIs](/docs/host-api).",
         ],
       },
     ],

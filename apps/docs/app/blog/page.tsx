@@ -7,7 +7,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Blog",
   description:
-    "AtroUI blog: shadcn registry guides, dark-first tokens, and Next.js component essays that take you from search to owning the UI.",
+    "AtroUI blog: Host APIs, shadcn registry guides, dark-first tokens, and Next.js essays from search to owning the UI.",
   path: "/blog",
 })
 
@@ -28,9 +28,9 @@ export default function BlogIndexPage() {
           AtroUI blog
         </h1>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-          Guides that take you from search to install: App Router setup,
-          tokens, branding, and how AtroUI compares to other kits. Then open
-          the{" "}
+          Guides that take you from search to install: Host APIs and BYOK,
+          App Router setup, tokens, branding, and how AtroUI compares to other
+          kits. Then open the{" "}
           <Link href="/docs/registry" className="bam-link">
             registry
           </Link>{" "}
