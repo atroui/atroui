@@ -18,6 +18,94 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "indie-site-kit-new-components",
+    title: "Indie site kit: new AtroUI components for portfolio sites",
+    description:
+      "What shipped in the AtroUI indie site kit: narrow chrome, command menu, changelog, countdown, personal hero, and more. Plus Home Crafts, Feature Grid, and Logo Cloud. How to install and where it sits vs studio Blocks.",
+    date: "2026-08-07",
+    sections: [
+      {
+        body: [
+          "AtroUI started as a dark-first studio catalog: heroes, pricing, Host APIs, marketing sections extracted from shipped work. That remains the [Blocks](/docs/components) story.",
+          "Indie founders also need a different altitude: a narrow column, mono stamps, a ⌘K palette, a ship log, a portrait hero. Not another max-w-7xl marketing band.",
+          "We shipped that as the **indie site kit**. Same registry install model. Same tokens. A second chrome language you can own in your repo.",
+          "This post lists what landed, how to install it, and how it sits next to studio Blocks without replacing them.",
+        ],
+      },
+      {
+        heading: "Why a second kit",
+        body: [
+          "Studio Blocks assume a wide editorial frame: border-x shells, loud CTAs, package pricing. Portfolio sites often want the opposite: ~640px reading width, quiet hairlines, status rows, and tools that feel like a personal homepage.",
+          "Shipping both styles is intentional. [Site Header](/docs/components/site-header) and [Site Header Narrow](/docs/components/site-header-narrow) are different products. Same for footer and theme toggle. Pick the language that matches the site you are shipping.",
+          "In the docs sidebar the kit lives under **Indie**. Component IDs stay stable (`@atroui/personal-hero`, `@atroui/command-menu`, and so on).",
+        ],
+      },
+      {
+        heading: "What shipped in Indie",
+        body: [
+          "**Chrome and motion:** `@atroui/site-header-narrow`, `@atroui/site-footer-narrow`, `@atroui/theme-toggle-icon`, `@atroui/reveal` (CSS IntersectionObserver reveal, no motion dependency).",
+          "**Home surfaces:** `@atroui/personal-hero` (optional circular portrait), `@atroui/currently`, `@atroui/project-list`, `@atroui/reading-shelf`, `@atroui/stack-list`.",
+          "**Ship in public:** `@atroui/log-preview`, `@atroui/changelog` (tag filters, month groups).",
+          "**Tools:** `@atroui/command-menu` (cmdk, ⌘K), `@atroui/social-float`, `@atroui/deadline-countdown` + `@atroui/count-up`, `@atroui/local-clock`, `@atroui/weather-chip` (Open-Meteo, no API key), `@atroui/resume`.",
+          "Browse the full list under [Indie](/docs/components/personal-hero) in the docs nav, or start from any item above.",
+        ],
+      },
+      {
+        heading: "Also new in Blocks",
+        body: [
+          "Alongside the kit we fixed catalog trust and filled two common landing gaps:",
+          "**Home Crafts** (`@atroui/home-crafts`) is a real capabilities band, not a pricing alias. Pair it with [Pricing Overview](/docs/components/pricing-overview) when you need a rate card.",
+          "**Feature Grid** and **Logo Cloud** ship as CONTENT-driven landing blocks. They stay off the atroui.com homepage until you have real social proof worth showing. Install them when your product site needs pillars or partner marks.",
+          "**Site Footer** is no longer an alias of Bold Footer. Quiet chrome and loud wordmark footer are distinct demos again.",
+        ],
+      },
+      {
+        heading: "Install",
+        body: [
+          "Same CLI as everything else in the catalog. No Host API package required for these UI blocks.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `# Indie chrome
+npx shadcn@latest add @atroui/site-header-narrow @atroui/site-footer-narrow
+
+# Homepage slice
+npx shadcn@latest add @atroui/personal-hero @atroui/currently @atroui/project-list
+
+# Command palette (needs cmdk)
+npx shadcn@latest add @atroui/command-menu
+
+# Studio landing extras
+npx shadcn@latest add @atroui/home-crafts @atroui/feature-grid`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Edit the top-level `CONTENT` (and lists) after install. For Personal Hero, set `imageSrc` to your portrait path. For Command Menu, mount once in the root layout; it listens for ⌘K / Ctrl+K.",
+          "If you use Host APIs too, keep the install-mode story straight: [registry UI only](/docs/installation) for these sections; npm `atroui` only when you add forms or AI routes. See [Host APIs](/docs/host-api).",
+        ],
+      },
+      {
+        heading: "What we did not do",
+        body: [
+          "We did not replace studio Blocks. We did not put fake testimonials on atroui.com. We did not ship a personal brand mark as AtroUI identity.",
+          "The kit is for builders who want the portfolio altitude in their git history. Compose it with studio sections when a product page needs both.",
+        ],
+      },
+      {
+        heading: "Where to go next",
+        body: [
+          "Open the **Indie** section in the docs sidebar and click through previews.",
+          "Read [Installation](/docs/installation) if you are new to the registry.",
+          "Read [Host APIs: own the UI, bring your keys](/blog/host-apis-own-the-ui-bring-your-keys) if forms and AI tools are next.",
+          "Own the UI. Borrow the boring API security when you need it. Bring your own keys.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "host-apis-own-the-ui-bring-your-keys",
     title:
       "Host APIs: own the UI, borrow the boring security, bring your own keys",

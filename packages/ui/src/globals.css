@@ -275,15 +275,19 @@
     letter-spacing: 0.02em;
     color: var(--muted-foreground);
   }
-  /* Sidebar / catalog section rails — sketch, bold + soft brand highlight */
+  /* Sidebar / catalog section rails — sketch, bold + brand highlight */
   .ds-nav-section {
     font-family: var(--font-sketch);
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
     line-height: 1.2;
-    color: color-mix(in oklch, var(--foreground) 88%, var(--brand) 12%);
-    text-shadow: 0 0 14px color-mix(in oklch, var(--brand-glow) 40%, transparent);
+    color: color-mix(in oklch, var(--foreground) 70%, var(--brand) 30%);
+    text-shadow: 0 0 18px color-mix(in oklch, var(--brand-glow) 55%, transparent);
+  }
+  .ds-nav-section:hover {
+    color: color-mix(in oklch, var(--foreground) 45%, var(--brand) 55%);
+    text-shadow: 0 0 22px color-mix(in oklch, var(--brand-glow) 70%, transparent);
   }
   .ds-mono-label {
     font-family: var(--font-mono);
