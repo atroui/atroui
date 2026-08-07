@@ -35,7 +35,7 @@ export async function handleWaitlistPost(req: Request): Promise<Response> {
   }
 
   const ip = clientIp(req)
-  const limited = checkRateLimit(`waitlist:${ip}`, {
+  const limited = await checkRateLimit(`waitlist:${ip}`, {
     limit: 10,
     windowMs: 15 * 60 * 1000,
   })

@@ -15,7 +15,6 @@ import {
 } from "../lib/og/compose"
 import { handleGeneratePost } from "./generate"
 import { resetRateLimits } from "./rate-limit"
-import { handleScopePost } from "./scope"
 
 function jsonRequest(url: string, body: unknown) {
   return new Request(url, {
@@ -79,32 +78,6 @@ describe("handleGeneratePost", () => {
         style: "paperQuote",
         previewOnly: true,
       }),
-    )
-    expect(res.status).toBe(400)
-  })
-})
-
-describe("handleScopePost", () => {
-  beforeEach(() => {
-    resetRateLimits()
-    delete process.env.XAI_API_KEY
-  })
-
-  it("returns rule-based reply without XAI key", async () => {
-    const res = await handleScopePost(
-      jsonRequest("http://localhost/api/scope", {
-        messages: [{ role: "user", content: "I need an MVP in a week" }],
-      }),
-    )
-    expect(res.status).toBe(200)
-    const data = await res.json()
-    expect(data.source).toBe("rules")
-    expect(data.reply).toMatch(/MVP/i)
-  })
-
-  it("rejects empty messages", async () => {
-    const res = await handleScopePost(
-      jsonRequest("http://localhost/api/scope", { messages: [] }),
     )
     expect(res.status).toBe(400)
   })

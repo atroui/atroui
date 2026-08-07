@@ -29,6 +29,11 @@ export const navigation: NavSection[] = [
         description: "shadcn CLI setup",
       },
       {
+        title: "Host APIs",
+        href: "/docs/host-api",
+        description: "Forms & AI routes, BYOK",
+      },
+      {
         title: "Registry",
         href: "/docs/registry",
         description: "Own components in your repo",

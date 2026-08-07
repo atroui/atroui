@@ -25,9 +25,19 @@ npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
 npx shadcn@latest add @atroui/home-hero
 ```
 
-Full guide: [atroui.com/docs/installation](https://www.atroui.com/docs/installation) · Catalog: [atroui.com/docs/registry](https://www.atroui.com/docs/registry)
+Full guide: [atroui.com/docs/installation](https://www.atroui.com/docs/installation) · Catalog: [atroui.com/docs/registry](https://www.atroui.com/docs/registry) · Host APIs: [atroui.com/docs/host-api](https://www.atroui.com/docs/host-api)
 
 Open the installed file and edit `CONTENT` / `DEFAULT_BRAND` at the top - that is the point.
+
+### Install modes
+
+Never lead with `npm i atroui` for pure UI. Use the CLI first; add the package only when `/api` handlers appear.
+
+| Mode | What you get | Install |
+|------|--------------|---------|
+| **Registry UI only** | Heroes, chrome, form UI — owned source files | `npx shadcn add @atroui/…`. No `atroui` package. |
+| **Forms** | Contact / waitlist / newsletter UI + hardened routes | `npm i atroui`, `transpilePackages: ["atroui"]`, then `@atroui/contact-form` + `@atroui/api-contact` (same for waitlist / newsletter). |
+| **AI tools** | OG, thumbnail, scope chat + matching APIs | Same package setup + `@atroui/og-workspace` / `thumbnail-workspace` / `scope-chat` + `@atroui/api-*`. |
 
 ## Monorepo structure
 
@@ -69,12 +79,14 @@ Copy [`.env.example`](.env.example) to `apps/docs/.env.local` when you need emai
 |------|------|
 | [atroui.com](https://www.atroui.com) | Landing |
 | [Docs](https://www.atroui.com/docs) | Introduction |
+| [Installation](https://www.atroui.com/docs/installation) | CLI + install modes |
+| [Host APIs](https://www.atroui.com/docs/host-api) | Forms / AI routes, BYOK |
 | [Components](https://www.atroui.com/docs/components) | Catalog |
 | [Brand kit](https://www.atroui.com/docs/brand) | Logo & voice |
 | [Blog](https://www.atroui.com/blog) | Articles |
 | [Changelog](https://www.atroui.com/docs/changelog) | Release notes |
 
-Some catalog modules call host `/api/*` routes (OG, thumbnail, scope, contact). They need your own keys in production (**Host API** in the sidebar).
+Some catalog modules call host `/api/*` routes (OG, thumbnail, scope, contact). They need your own keys in production — see [Host APIs](https://www.atroui.com/docs/host-api) (**Host API** in the sidebar).
 
 ## Brand chrome vs demo content
 

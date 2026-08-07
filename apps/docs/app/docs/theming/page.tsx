@@ -6,7 +6,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Theming",
   description:
-    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, and Outfit. Customize host CSS and @atroui/brand.",
+    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, Caveat sketch display + Outfit UI. Customize host CSS and @atroui/brand.",
   path: "/docs/theming",
 })
 
@@ -24,7 +24,11 @@ export default function ThemingPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             #0b7bff
           </code>
-          ), Outfit UI, glass panels, and pill CTAs. After{" "}
+          ),{" "}
+          <strong className="font-medium text-foreground">
+            Caveat sketch display
+          </strong>
+          , Outfit UI, glass panels, and pill CTAs. After{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             npx shadcn add
           </code>
@@ -72,13 +76,75 @@ export default function ThemingPage() {
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Fonts</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Load Outfit in the host layout and expose{" "}
+          Two voices on purpose:
+        </p>
+        <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
+          <li>
+            <strong className="text-foreground">Caveat (sketch)</strong> —
+            brand display, stamps, list titles, nav section rails (
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-display
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-sketch
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ms-stamp
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-nav-section
+            </code>
+            ).
+          </li>
+          <li>
+            <strong className="text-foreground">Outfit (calm UI)</strong> —
+            body and supporting copy at{" "}
+            <em className="text-foreground">regular</em> weight — not
+            ultra-light — so it sits quietly under handwriting (
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-lede
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-body
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-meta
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-headline
+            </code>
+            ).
+          </li>
+          <li>
+            <strong className="text-foreground">Geist Mono</strong> — code /
+            technical precision.
+          </li>
+        </ul>
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          On the docs host, load Caveat + Outfit in the root layout and expose{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            --font-caveat
+          </code>{" "}
+          /{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             --font-outfit
           </code>
-          . Display and UI share the same family at medium weight - matching
-          the hero typography.
+          .
         </p>
+        <CodeBlock
+          language="css"
+          code={`/* Token map (already in atroui globals) */
+--font-sketch: var(--font-caveat);
+--font-display: var(--font-sketch); /* page titles, brand marks */
+--font-heading: var(--font-outfit); /* section h2 */
+--font-sans: var(--font-outfit);    /* body / UI */`}
+        />
       </section>
 
       <section className="space-y-4">

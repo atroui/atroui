@@ -21,10 +21,8 @@ export function DocsPager({ href }: { href: string }) {
             aria-hidden
           />
           <span className="min-w-0 text-left">
-            <span className="block text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
-              Previous
-            </span>
-            <span className="mt-0.5 block truncate text-[14px] font-medium text-foreground transition-colors group-hover:text-brand">
+            <span className="ds-meta block">Previous</span>
+            <span className="ds-sketch mt-0.5 block truncate text-lg text-foreground transition-colors group-hover:text-brand">
               {prev.title}
             </span>
           </span>
@@ -38,10 +36,8 @@ export function DocsPager({ href }: { href: string }) {
           className="group flex min-h-16 items-center justify-end gap-3 rounded-2xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
         >
           <span className="min-w-0 text-right">
-            <span className="block text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
-              Next
-            </span>
-            <span className="mt-0.5 block truncate text-[14px] font-medium text-foreground transition-colors group-hover:text-brand">
+            <span className="ds-meta block">Next</span>
+            <span className="ds-sketch mt-0.5 block truncate text-lg text-foreground transition-colors group-hover:text-brand">
               {next.title}
             </span>
           </span>

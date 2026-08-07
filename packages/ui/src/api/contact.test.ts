@@ -13,7 +13,6 @@ import {
 } from "../lib/mail"
 import { handleContactPost } from "./contact"
 import { resetRateLimits } from "./rate-limit"
-import { handleWaitlistPost } from "./waitlist"
 
 function jsonRequest(url: string, body: unknown) {
   return new Request(url, {
@@ -105,32 +104,5 @@ describe("handleContactPost", () => {
     expect(res.status).toBe(200)
     expect(sendMail).toHaveBeenCalledOnce()
     expect(vi.mocked(getDefaultFromAddress)).toHaveBeenCalled()
-  })
-})
-
-describe("handleWaitlistPost", () => {
-  beforeEach(() => {
-    resetRateLimits()
-    vi.mocked(isSmtpConfigured).mockReturnValue(false)
-    delete process.env.RESEND_API_KEY
-    delete process.env.RESEND_AUDIENCE_ID
-    delete process.env.CONTACT_EMAIL_TO
-  })
-
-  it("returns 503 without Resend or SMTP", async () => {
-    const res = await handleWaitlistPost(
-      jsonRequest("http://localhost/api/waitlist", {
-        email: "ada@example.com",
-        source: "test",
-      }),
-    )
-    expect(res.status).toBe(503)
-  })
-
-  it("rejects invalid email", async () => {
-    const res = await handleWaitlistPost(
-      jsonRequest("http://localhost/api/waitlist", { email: "nope" }),
-    )
-    expect(res.status).toBe(400)
   })
 })

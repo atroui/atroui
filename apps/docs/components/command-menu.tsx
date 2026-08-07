@@ -82,7 +82,7 @@ function SearchDialog({
                 {item.badge ? (
                   <span
                     className={cn(
-                      "shrink-0 text-[10px] font-semibold uppercase tracking-[0.06em]",
+                      "ds-sketch shrink-0 text-[13px]",
                       item.badge === "host-api" || item.badge === "registry"
                         ? "text-brand"
                         : "text-muted-foreground"

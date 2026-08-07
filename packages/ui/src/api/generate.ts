@@ -97,7 +97,7 @@ export async function handleGeneratePost(req: Request): Promise<Response> {
   const data = raw as Record<string, unknown>
   const previewOnly = data.previewOnly === true
 
-  const limited = rateLimitAi(ip, previewOnly)
+  const limited = await rateLimitAi(ip, previewOnly)
   if (!limited.ok) {
     return jsonError(
       `Too many requests. Try again in ${limited.retryAfterSec}s.`,

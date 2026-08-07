@@ -109,7 +109,11 @@ npx shadcn@latest add @atroui/home-hero`}
             /api/*
           </code>{" "}
           and your own keys. This docs site does not burn shared LLM / image
-          API tokens. Want sample OG output without setup? Try the live tool at{" "}
+          API tokens. Guide:{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
+          </Link>
+          . Want sample OG output without setup? Try the live tool at{" "}
           <a
             href="https://www.makershot.tech/og"
             target="_blank"
@@ -125,6 +129,9 @@ npx shadcn@latest add @atroui/home-hero`}
       <div className="flex flex-wrap gap-3 pt-1">
         <Link href="/docs/installation" className="ms-cta">
           Installation
+        </Link>
+        <Link href="/docs/host-api" className="ms-cta-ghost">
+          Host APIs
         </Link>
         <Link href="/docs/registry" className="ms-cta-ghost">
           Own the UI

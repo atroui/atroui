@@ -34,7 +34,7 @@ export async function handleNewsletterPost(req: Request): Promise<Response> {
   }
 
   const ip = clientIp(req)
-  const limited = checkRateLimit(`newsletter:${ip}`, {
+  const limited = await checkRateLimit(`newsletter:${ip}`, {
     limit: 10,
     windowMs: 15 * 60 * 1000,
   })
