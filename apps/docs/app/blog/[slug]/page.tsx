@@ -69,14 +69,14 @@ function RichParagraph({ text }: { text: string }) {
       parts.push(
         <code
           key={key++}
-          className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground"
+          className="rounded-md border border-border-subtle bg-muted px-1.5 py-0.5 font-mono text-[0.875em] text-foreground"
         >
           {match[3]}
         </code>
       )
     } else if (match[4] !== undefined) {
       parts.push(
-        <strong key={key++} className="font-medium text-foreground">
+        <strong key={key++} className="font-semibold text-foreground">
           {match[4]}
         </strong>
       )
@@ -88,11 +88,7 @@ function RichParagraph({ text }: { text: string }) {
     pushText(text.slice(last))
   }
 
-  return (
-    <p className="text-[15px] leading-relaxed text-muted-foreground">
-      {parts}
-    </p>
-  )
+  return <p className="blog-prose">{parts}</p>
 }
 
 export function generateStaticParams() {
@@ -126,30 +122,29 @@ export default async function BlogPostPage({ params }: Props) {
         date={post.date}
         basePath="/blog"
       />
-      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-8 sm:py-16 lg:py-20">
-        <p className="ms-stamp mb-3">
+      {/* ~65ch column — comfortable tracking for Merriweather at 17–18px */}
+      <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
+        <p className="ms-stamp mb-4">
           <Link href="/blog" className="hover:text-foreground">
             Blog
           </Link>
         </p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
+        <h1 className="ds-headline text-[1.85rem] tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem]">
           {post.title}
         </h1>
         <time
           dateTime={post.date}
-          className="mt-3 block font-mono text-[12px] text-muted-foreground"
+          className="mt-4 block font-mono text-[13px] tracking-wide text-muted-foreground"
         >
           {post.date}
         </time>
-        <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          {post.description}
-        </p>
+        <p className="blog-lede mt-6">{post.description}</p>
 
-        <div className="mt-10 space-y-8">
+        <div className="mt-12 space-y-10 sm:mt-14 sm:space-y-12">
           {post.sections.map((section, i) => (
-            <section key={i} className="space-y-3">
+            <section key={i} className="space-y-4">
               {section.heading ? (
-                <h2 className="ds-headline text-base text-foreground">
+                <h2 className="ds-headline text-xl tracking-tight text-foreground sm:text-2xl">
                   {section.heading}
                 </h2>
               ) : null}
@@ -161,14 +156,14 @@ export default async function BlogPostPage({ params }: Props) {
                   key={k}
                   language={block.language}
                   code={block.code}
-                  className="mt-2"
+                  className="mt-3"
                 />
               ))}
             </section>
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap gap-3 border-t border-border-subtle pt-8">
+        <div className="mt-16 flex flex-wrap gap-3 border-t border-border-subtle pt-10">
           {post.slug === "host-apis-own-the-ui-bring-your-keys" ? (
             <Link href="/docs/host-api" className="ms-cta text-sm">
               Host APIs docs

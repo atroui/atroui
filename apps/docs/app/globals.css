@@ -17,3 +17,37 @@ html {
     transparent 70%
   );
 }
+
+/* Blog long-form — Merriweather body, Outfit headings, ~65ch measure */
+.blog-prose {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.55;
+  color: color-mix(in oklch, var(--foreground) 82%, transparent);
+}
+
+@media (min-width: 640px) {
+  .blog-prose {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+  }
+}
+
+.blog-prose strong {
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.blog-lede {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: color-mix(in oklch, var(--foreground) 68%, transparent);
+}
+
+@media (min-width: 640px) {
+  .blog-lede {
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+}
