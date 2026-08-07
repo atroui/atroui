@@ -78,7 +78,6 @@ export function PersonalHero({
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-start gap-4">
           {portrait ? (
-            // eslint-disable-next-line @next/next/no-img-element -- consumer portraits are arbitrary public URLs
             <img
               src={portrait}
               alt={imageAlt.trim() || name}

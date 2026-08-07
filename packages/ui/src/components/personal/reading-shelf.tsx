@@ -84,7 +84,6 @@ export function ReadingShelf({
               }}
             >
               {book.cover ? (
-                // eslint-disable-next-line @next/next/no-img-element -- consumer covers are arbitrary URLs
                 <img
                   src={book.cover}
                   alt={`${book.title} by ${book.author}`}
