@@ -231,8 +231,8 @@
   }
   .ds-headline {
     font-family: var(--font-heading);
-    letter-spacing: -0.03em;
-    line-height: 1.15;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
     font-weight: 500;
   }
   /* Explicit sketch voice — brand marks, couplets, chalkboard accents */
@@ -240,17 +240,50 @@
     font-family: var(--font-sketch);
     letter-spacing: -0.01em;
     font-weight: 500;
+    line-height: 1.2;
   }
+  /* Quiet Outfit labels that sit under sketch titles */
   .ds-eyebrow {
-    font-size: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--muted-foreground);
   }
+  /* Supporting copy next to Caveat — regular weight, not ultra-light */
   .ds-lede {
-    font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem);
-    line-height: 1.55;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
     color: var(--muted-foreground);
+  }
+  .ds-body {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: 0.005em;
+  }
+  .ds-meta {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: var(--muted-foreground);
+  }
+  /* Sidebar / catalog section rails — sketch, bold + soft brand highlight */
+  .ds-nav-section {
+    font-family: var(--font-sketch);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    color: color-mix(in oklch, var(--foreground) 88%, var(--brand) 12%);
+    text-shadow: 0 0 14px color-mix(in oklch, var(--brand-glow) 40%, transparent);
   }
   .ds-mono-label {
     font-family: var(--font-mono);
@@ -372,21 +405,22 @@
     }
   }
 
-  /* Soft stamp — sketch handwriting (chalkboard / marker voice) */
+  /* Soft stamp — sketch handwriting, bold + soft brand highlight */
   .ms-stamp {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
     border-radius: 9999px;
-    border: 1px solid color-mix(in oklch, var(--foreground) 14%, transparent);
-    background: color-mix(in oklch, var(--foreground) 6%, transparent);
-    color: var(--muted-foreground);
-    padding: 0.35rem 0.85rem;
+    border: 1px solid color-mix(in oklch, var(--brand) 28%, transparent);
+    background: color-mix(in oklch, var(--brand) 10%, transparent);
+    color: color-mix(in oklch, var(--foreground) 88%, var(--brand) 12%);
+    padding: 0.4rem 0.9rem;
     font-family: var(--font-sketch);
-    font-size: 0.9375rem;
-    font-weight: 500;
+    font-size: 1.0625rem;
+    font-weight: 700;
     letter-spacing: 0.01em;
     text-transform: none;
+    text-shadow: 0 0 12px color-mix(in oklch, var(--brand-glow) 35%, transparent);
   }
   .ms-stamp::before {
     content: "";

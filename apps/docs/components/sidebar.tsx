@@ -14,7 +14,7 @@ function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   return (
     <span
       className={cn(
-        "shrink-0 text-[9px] font-semibold uppercase tracking-[0.06em]",
+        "ds-sketch shrink-0 text-[13px] leading-none",
         badge === "host-api" || badge === "registry"
           ? "text-brand"
           : "text-muted-foreground"
@@ -38,7 +38,7 @@ export function DocsSidebar({ className }: { className?: string }) {
           <div key={section.title}>
             <button
               type="button"
-              className="mb-2 flex w-full items-center justify-between px-2 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground"
+              className="ds-nav-section mb-2 flex w-full items-center justify-between px-2"
               aria-expanded={!isCollapsed}
               aria-controls={panelId}
               onClick={() =>
@@ -65,7 +65,7 @@ export function DocsSidebar({ className }: { className?: string }) {
                       <Link
                         href={item.href}
                         className={cn(
-                          "flex items-center justify-between gap-2 rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors",
+                          "flex items-center justify-between gap-2 rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
                           active
                             ? "bg-white/10 text-foreground shadow-[0_0_20px_color-mix(in_oklch,var(--color-brand)_25%,transparent)]"
                             : "text-muted-foreground hover:bg-white/5 hover:text-foreground"

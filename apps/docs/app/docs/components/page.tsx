@@ -20,7 +20,7 @@ export default function ComponentsIndexPage() {
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
           Components
         </h1>
-        <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
+        <p className="ds-lede mt-3 max-w-2xl">
           Production UI curated into primitives, blocks, tools, and headless
           modules. Items tagged CLI install with{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -40,7 +40,7 @@ export default function ComponentsIndexPage() {
 
       {sections.map((section) => (
         <section key={section.title} className="space-y-3">
-          <h2 className="ds-headline text-base text-foreground">{section.title}</h2>
+          <h2 className="ds-nav-section text-foreground">{section.title}</h2>
           <ul className="md-glass divide-y divide-border-subtle">
             {section.items.map((item) => (
               <li key={item.href}>
@@ -49,11 +49,11 @@ export default function ComponentsIndexPage() {
                   className="flex items-center justify-between gap-3 px-4 py-3.5 transition-colors hover:bg-white/5"
                 >
                   <span className="min-w-0">
-                    <span className="block text-[14px] font-medium text-foreground">
+                    <span className="ds-sketch block text-lg text-foreground">
                       {item.title}
                     </span>
                     {item.description ? (
-                      <span className="mt-0.5 block text-[12px] font-normal text-muted-foreground">
+                      <span className="ds-meta mt-0.5 block">
                         {item.description}
                       </span>
                     ) : null}
@@ -61,7 +61,7 @@ export default function ComponentsIndexPage() {
                   <span className="flex shrink-0 items-center gap-3">
                     {item.badge ? (
                       <span
-                        className={`text-[10px] font-semibold uppercase tracking-[0.06em] ${
+                        className={`ds-sketch text-[13px] ${
                           item.badge === "registry" || item.badge === "host-api"
                             ? "text-brand"
                             : "text-muted-foreground"

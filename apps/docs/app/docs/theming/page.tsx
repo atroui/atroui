@@ -81,11 +81,7 @@ export default function ThemingPage() {
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
           <li>
             <strong className="text-foreground">Caveat (sketch)</strong> —
-            brand display, stamps, hero couplets (
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              --font-sketch
-            </code>
-            ,{" "}
+            brand display, stamps, list titles, nav section rails (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-display
             </code>
@@ -97,22 +93,37 @@ export default function ThemingPage() {
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ms-stamp
             </code>
-            ). The chalkboard{" "}
-            <span className="ds-sketch text-foreground">
-              Own the UI. Borrow the API.
-            </span>{" "}
-            mark is the reference.
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-nav-section
+            </code>
+            ).
           </li>
           <li>
-            <strong className="text-foreground">Outfit</strong> — body, section
-            headlines (
+            <strong className="text-foreground">Outfit (calm UI)</strong> —
+            body and supporting copy at{" "}
+            <em className="text-foreground">regular</em> weight — not
+            ultra-light — so it sits quietly under handwriting (
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-lede
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-body
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-meta
+            </code>
+            ,{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-headline
             </code>
-            ), UI chrome. Readable for long docs.
+            ).
           </li>
           <li>
-            <strong className="text-foreground">Geist Mono</strong> — code.
+            <strong className="text-foreground">Geist Mono</strong> — code /
+            technical precision.
           </li>
         </ul>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">

@@ -54,7 +54,7 @@ export function LandingHero() {
                 What you&rsquo;ll{" "}
                 <span className="ds-sketch-accent">find</span>
               </h2>
-              <p className="mt-3 max-w-sm text-[15px] font-light leading-relaxed text-neutral-300 sm:mt-4 sm:text-base">
+              <p className="ds-lede mt-3 max-w-sm text-neutral-300 sm:mt-4">
                 Own the UI with the registry. Borrow Host APIs for forms and AI
                 tools — your keys stay in your env.
               </p>
@@ -65,12 +65,12 @@ export function LandingHero() {
                 <li key={item.title}>
                   <Link
                     href={item.href}
-                    className="group flex flex-col gap-1 px-4 py-4 transition-colors hover:bg-white/5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
+                    className="group flex flex-col gap-1.5 px-4 py-4 transition-colors hover:bg-white/5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
                   >
-                    <span className="text-base font-medium tracking-tight group-hover:text-sky-300 sm:text-lg">
+                    <span className="ds-sketch text-xl text-white transition-colors group-hover:text-sky-300 sm:text-2xl">
                       {item.title}
                     </span>
-                    <span className="max-w-prose text-sm font-light text-neutral-400 sm:max-w-sm sm:text-right">
+                    <span className="ds-meta max-w-prose text-neutral-400 sm:max-w-sm sm:text-right">
                       {item.body}
                     </span>
                   </Link>
@@ -91,7 +91,7 @@ export function LandingHero() {
               The home of{" "}
               <span className="ds-sketch-accent">AtroUI</span>
             </h2>
-            <p className="mt-3 text-sm font-light leading-relaxed text-neutral-400 sm:mt-4">
+            <p className="ds-lede mt-3 text-neutral-400 sm:mt-4">
               AtroUI is the React component catalog at{" "}
               <span className="text-neutral-200">atroui.com</span>. Add it with
               the{" "}
@@ -156,11 +156,12 @@ export function LandingHero() {
 
       <footer className="border-t border-white/10">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 md:px-12 lg:px-20 xl:px-24">
-          <p className="text-xs leading-relaxed text-neutral-500">
-            © {new Date().getFullYear()} AtroUI · atroui.com - React component
-            library
+          <p className="ds-meta text-neutral-500">
+            © {new Date().getFullYear()}{" "}
+            <span className="ds-sketch text-sm text-neutral-400">AtroUI</span>
+            {" · "}atroui.com — React component library
           </p>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-500">
+          <div className="ds-meta flex flex-wrap items-center gap-x-4 gap-y-2 text-neutral-500">
             <a
               href={GITHUB_REPO}
               target="_blank"

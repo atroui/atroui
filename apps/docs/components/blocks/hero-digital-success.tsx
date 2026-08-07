@@ -174,7 +174,7 @@ export function HeroDigitalSuccess() {
             as="nav"
             animationNum={2}
             timelineRef={timelineRef}
-            className="hidden items-center gap-12 text-sm font-medium text-white md:flex"
+            className="hidden items-center gap-12 text-sm font-medium tracking-wide text-white/80 md:flex"
             aria-label="Primary"
           >
             {navLinks.map((link) => (
@@ -258,7 +258,7 @@ export function HeroDigitalSuccess() {
             as="p"
             animationNum={7}
             timelineRef={timelineRef}
-            className="max-w-md text-lg font-light leading-relaxed text-neutral-200 sm:text-xl"
+            className="max-w-md ds-lede text-neutral-200"
           >
             Dark-first Next.js sections in your repo — plus Host APIs for forms
             and AI. Your keys stay in your env.
@@ -280,8 +280,8 @@ export function HeroDigitalSuccess() {
               animationNum={9 + i}
               timelineRef={timelineRef}
             >
-              <p className="mb-1 text-sm text-white">{band.title}</p>
-              <p className="text-xs text-neutral-300">{band.body}</p>
+              <p className="ds-sketch mb-1 text-lg text-white">{band.title}</p>
+              <p className="ds-meta text-neutral-400">{band.body}</p>
             </TimelineAnimation>
           ))}
         </TimelineAnimation>
