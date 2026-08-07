@@ -19,7 +19,7 @@ export default function Page() {
       preview={<DemoPersonalHero />}
       code={'import { PersonalHero } from "@/components/blocks/personal-hero"\n\n<PersonalHero />'}
       fullBleed={true}
-      usage="Compose with LocalClock / WeatherChip via the meta slot."
+      usage="Optional circular portrait via imageSrc (same layout as iamk.xyz). Set CONTENT.imageSrc to your photo after install. Compose LocalClock / WeatherChip via the meta slot."
     />
   )
 }

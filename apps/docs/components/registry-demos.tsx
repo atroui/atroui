@@ -78,6 +78,8 @@ import {
   SiteGraphJsonLd,
   TestimonialSchema,
   trackEvent,
+  MEDIA,
+  mediaSrc,
 } from "atroui"
 import { TESTIMONIALS } from "atroui/content/testimonials"
 
@@ -772,11 +774,18 @@ export function DemoThemeProviderNote() {
   )
 }
 
-/** Personal site kit demos */
+/** Personal site kit demos — center the 640px column in the wide docs preview. */
+function PersonalKitFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mx-auto w-full max-w-[640px] px-4 py-6 sm:px-5 sm:py-8">
+      {children}
+    </div>
+  )
+}
 
 export function DemoCountUp() {
   return (
-    <div className="flex items-baseline gap-2 font-mono tabular-nums">
+    <div className="flex items-baseline justify-center gap-2 font-mono tabular-nums">
       <CountUp
         value={128}
         className="text-5xl font-medium tracking-tight text-foreground"
@@ -788,28 +797,48 @@ export function DemoCountUp() {
 }
 
 export function DemoDeadlineCountdown() {
-  return <DeadlineCountdown className="w-full max-w-[640px]" />
+  return (
+    <PersonalKitFrame>
+      <DeadlineCountdown className="w-full" />
+    </PersonalKitFrame>
+  )
 }
 
 export function DemoCurrently() {
-  return <Currently className="w-full max-w-[640px]" />
+  return (
+    <PersonalKitFrame>
+      <Currently className="w-full" />
+    </PersonalKitFrame>
+  )
 }
 
 export function DemoProjectList() {
-  return <ProjectList className="w-full max-w-[640px]" />
+  return (
+    <PersonalKitFrame>
+      <ProjectList className="w-full" />
+    </PersonalKitFrame>
+  )
 }
 
 export function DemoLogPreview() {
-  return <LogPreview className="w-full max-w-[640px]" />
+  return (
+    <PersonalKitFrame>
+      <LogPreview className="w-full" />
+    </PersonalKitFrame>
+  )
 }
 
 export function DemoChangelog() {
-  return <Changelog className="w-full max-w-[640px]" />
+  return (
+    <PersonalKitFrame>
+      <Changelog className="w-full" />
+    </PersonalKitFrame>
+  )
 }
 
 export function DemoCommandMenu() {
   return (
-    <div className="relative w-full max-w-md rounded-xl border border-border-subtle bg-background px-6 py-10 text-center">
+    <div className="relative mx-auto w-full max-w-md rounded-xl border border-border-subtle bg-background px-6 py-10 text-center">
       <p className="text-sm text-muted-foreground">
         Press{" "}
         <kbd className="rounded border border-border-subtle bg-muted px-1.5 py-0.5 font-mono text-[11px] text-foreground">
@@ -824,20 +853,22 @@ export function DemoCommandMenu() {
 
 export function DemoReveal() {
   return (
-    <Reveal className="w-full max-w-md rounded-xl border border-border-subtle bg-card px-6 py-8 text-left">
-      <p className="ms-stamp">Reveal</p>
-      <p className="mt-2 text-sm text-foreground">
-        Fades and rises when the block enters the viewport. Pair with{" "}
-        <code className="font-mono text-xs">.atro-reveal</code> CSS from{" "}
-        <code className="font-mono text-xs">atroui/globals.css</code>.
-      </p>
-    </Reveal>
+    <div className="mx-auto w-full max-w-md">
+      <Reveal className="w-full rounded-xl border border-border-subtle bg-card px-6 py-8 text-left">
+        <p className="ms-stamp">Reveal</p>
+        <p className="mt-2 text-sm text-foreground">
+          Fades and rises when the block enters the viewport. Pair with{" "}
+          <code className="font-mono text-xs">.atro-reveal</code> CSS from{" "}
+          <code className="font-mono text-xs">atroui/globals.css</code>.
+        </p>
+      </Reveal>
+    </div>
   )
 }
 
 export function DemoThemeToggleIcon() {
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-border-subtle bg-background px-4 py-3">
+    <div className="mx-auto flex w-fit items-center gap-3 rounded-lg border border-border-subtle bg-background px-4 py-3">
       <ThemeToggleIcon />
       <span className="font-mono text-[12px] text-muted-foreground">
         Compact sun / moon toggle
@@ -848,26 +879,30 @@ export function DemoThemeToggleIcon() {
 
 export function DemoSiteHeaderNarrow() {
   return (
-    <div className="w-full max-w-[640px] overflow-hidden rounded-xl border border-border-subtle bg-background">
-      <SiteHeaderNarrow siteName="atroui" />
-      <div className="px-5 py-8 text-sm text-muted-foreground">
-        Narrow sticky chrome — 640px max width, mono nav, theme icon.
+    <PersonalKitFrame>
+      <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">
+        <SiteHeaderNarrow siteName="atroui" />
+        <div className="px-5 py-8 text-sm text-muted-foreground">
+          Narrow sticky chrome — 640px max width, mono nav, theme icon.
+        </div>
       </div>
-    </div>
+    </PersonalKitFrame>
   )
 }
 
 export function DemoSiteFooterNarrow() {
   return (
-    <div className="w-full max-w-[640px] overflow-hidden rounded-xl border border-border-subtle bg-background">
-      <SiteFooterNarrow siteName="atroui" />
-    </div>
+    <PersonalKitFrame>
+      <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">
+        <SiteFooterNarrow siteName="atroui" />
+      </div>
+    </PersonalKitFrame>
   )
 }
 
 export function DemoSocialFloat() {
   return (
-    <div className="relative h-48 w-full max-w-md rounded-xl border border-border-subtle bg-background">
+    <div className="relative mx-auto h-48 w-full max-w-md rounded-xl border border-border-subtle bg-background">
       <p className="absolute inset-x-0 top-6 px-6 text-center text-sm text-muted-foreground">
         Social float mounts fixed to the viewport — open the FAB in the corner.
       </p>
@@ -877,21 +912,29 @@ export function DemoSocialFloat() {
 }
 
 export function DemoReadingShelf() {
-  return <ReadingShelf className="w-full max-w-[640px]" />
+  return (
+    <PersonalKitFrame>
+      <ReadingShelf className="w-full" />
+    </PersonalKitFrame>
+  )
 }
 
 export function DemoPersonalHero() {
   return (
-    <PersonalHero
-      name="Your Name"
-      className="w-full max-w-[640px] px-5 pt-8 sm:pt-10"
-    />
+    <PersonalKitFrame>
+      <PersonalHero
+        name="Your Name"
+        imageSrc={mediaSrc(MEDIA.founderPortrait)}
+        imageAlt="Portrait"
+        className="w-full px-0 pt-2 sm:pt-4"
+      />
+    </PersonalKitFrame>
   )
 }
 
 export function DemoResume() {
   return (
-    <div className="max-h-[560px] w-full max-w-[720px] overflow-auto">
+    <div className="mx-auto max-h-[560px] w-full max-w-[720px] overflow-auto">
       <Resume />
     </div>
   )
@@ -899,14 +942,24 @@ export function DemoResume() {
 
 export function DemoLocalClock() {
   return (
-    <LocalClock timezone="America/New_York" timezoneLabel="NYC" />
+    <div className="flex justify-center py-6">
+      <LocalClock timezone="America/New_York" timezoneLabel="NYC" />
+    </div>
   )
 }
 
 export function DemoWeatherChip() {
-  return <WeatherChip lat={40.7128} lon={-74.006} label="NYC" />
+  return (
+    <div className="flex justify-center py-6">
+      <WeatherChip lat={40.7128} lon={-74.006} label="NYC" />
+    </div>
+  )
 }
 
 export function DemoStackList() {
-  return <StackList className="w-full max-w-[640px]" />
+  return (
+    <PersonalKitFrame>
+      <StackList className="w-full" />
+    </PersonalKitFrame>
+  )
 }

@@ -5,6 +5,9 @@ const CONTENT = {
   tagline: "Designer-engineer building calm software.",
   location: "Somewhere on Earth",
   status: "shipping" as StatusKind,
+  /** Set to your portrait path (e.g. `/me.jpg`) after install. */
+  imageSrc: "",
+  imageAlt: "",
   ledeLinks: [
     { label: "studio", href: "https://example.com" },
     { label: "writing", href: "/writing" },
@@ -27,6 +30,9 @@ export type PersonalHeroProps = {
   tagline?: string;
   location?: string;
   status?: StatusKind | null;
+  /** Circular portrait URL — same role as the iamk.xyz hero photo. */
+  imageSrc?: string;
+  imageAlt?: string;
   lede?: ReactNode;
   ledeLinks?: PersonalHeroLink[];
   ledeBefore?: string;
@@ -53,6 +59,8 @@ export function PersonalHero({
   tagline = CONTENT.tagline,
   location = CONTENT.location,
   status = CONTENT.status,
+  imageSrc = CONTENT.imageSrc,
+  imageAlt = CONTENT.imageAlt,
   lede,
   ledeLinks = CONTENT.ledeLinks,
   ledeBefore = CONTENT.ledeBefore,
@@ -61,14 +69,27 @@ export function PersonalHero({
   meta,
   className,
 }: PersonalHeroProps = {}) {
+  const portrait = imageSrc.trim();
+
   return (
     <section
       className={className ?? "mx-auto max-w-[640px] pt-14 sm:pt-20"}
     >
       <div className="flex items-start justify-between gap-4">
-        <h1 className="min-w-0 pt-1 text-[2rem] font-medium tracking-tight text-foreground sm:text-[2.5rem]">
-          {name}
-        </h1>
+        <div className="flex min-w-0 items-start gap-4">
+          {portrait ? (
+            <img
+              src={portrait}
+              alt={imageAlt.trim() || name}
+              width={72}
+              height={72}
+              className="mt-1 h-[72px] w-[72px] shrink-0 rounded-full border border-border-subtle bg-muted object-cover"
+            />
+          ) : null}
+          <h1 className="min-w-0 pt-1 text-[2rem] font-medium tracking-tight text-foreground sm:text-[2.5rem]">
+            {name}
+          </h1>
+        </div>
         {status ? <StatusDot status={status} /> : null}
       </div>
 

@@ -1,10 +1,11 @@
-import type { ReactNode } from "react"
-
 const CONTENT = {
   name: "Your Name",
   tagline: "Designer-engineer building calm software.",
   location: "Somewhere on Earth",
-  status: "shipping" as StatusKind,
+  status: "shipping" as const,
+  /** Set to your portrait path (e.g. `/me.jpg`) after install. */
+  imageSrc: "",
+  imageAlt: "",
   ledeLinks: [
     { label: "studio", href: "https://example.com" },
     { label: "writing", href: "/writing" },
@@ -33,32 +34,47 @@ export function PersonalHero({
   tagline = CONTENT.tagline,
   location = CONTENT.location,
   status = CONTENT.status,
-  lede,
+  imageSrc = CONTENT.imageSrc,
+  imageAlt = CONTENT.imageAlt,
   ledeLinks = CONTENT.ledeLinks,
   ledeBefore = CONTENT.ledeBefore,
   ledeBetween = CONTENT.ledeBetween,
   ledeAfter = CONTENT.ledeAfter,
-  meta,
   className,
 }: {
   name?: string
   tagline?: string
   location?: string
   status?: StatusKind | null
-  lede?: ReactNode
+  imageSrc?: string
+  imageAlt?: string
   ledeLinks?: Array<{ label: string; href: string; external?: boolean }>
   ledeBefore?: string
   ledeBetween?: string
   ledeAfter?: string
-  meta?: ReactNode
   className?: string
 } = {}) {
+  const portrait = imageSrc.trim()
+
   return (
-    <section className={className ?? "mx-auto max-w-[640px] pt-14 sm:pt-20"}>
+    <section
+      className={className ?? "mx-auto max-w-[640px] pt-14 sm:pt-20"}
+    >
       <div className="flex items-start justify-between gap-4">
-        <h1 className="min-w-0 pt-1 text-[2rem] font-medium tracking-tight text-foreground sm:text-[2.5rem]">
-          {name}
-        </h1>
+        <div className="flex min-w-0 items-start gap-4">
+          {portrait ? (
+            <img
+              src={portrait}
+              alt={imageAlt.trim() || name}
+              width={72}
+              height={72}
+              className="mt-1 h-[72px] w-[72px] shrink-0 rounded-full border border-border-subtle bg-muted object-cover"
+            />
+          ) : null}
+          <h1 className="min-w-0 pt-1 text-[2rem] font-medium tracking-tight text-foreground sm:text-[2.5rem]">
+            {name}
+          </h1>
+        </div>
         {status ? <StatusDot status={status} /> : null}
       </div>
 
@@ -66,15 +82,12 @@ export function PersonalHero({
         {tagline}
       </p>
 
-      {lede ? (
-        <div className="mt-1.5 max-w-[42ch] text-[14px] leading-[1.65] text-muted-foreground">
-          {lede}
-        </div>
-      ) : ledeLinks.length > 0 ? (
+      {ledeLinks.length > 0 ? (
         <p className="mt-1.5 max-w-[42ch] text-[14px] leading-[1.65] text-muted-foreground">
           {ledeBefore}
           {ledeLinks.map((link, i) => {
-            const external = link.external ?? /^https?:\/\//.test(link.href)
+            const external =
+              link.external ?? /^https?:\/\//.test(link.href)
             return (
               <span key={link.href}>
                 {i > 0 ? ledeBetween : null}
@@ -96,12 +109,6 @@ export function PersonalHero({
 
       <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11.5px] text-muted-foreground">
         <span>{location}</span>
-        {meta ? (
-          <>
-            <span aria-hidden>·</span>
-            {meta}
-          </>
-        ) : null}
       </div>
     </section>
   )
