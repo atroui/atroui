@@ -13,14 +13,14 @@ const inside = [
     href: "/docs/registry",
   },
   {
+    title: "Host APIs",
+    body: "UI + hardened routes. You bring the keys.",
+    href: "/docs/host-api",
+  },
+  {
     title: "Blocks",
     body: "Home bands, site chrome, CTAs - edit CONTENT at the top.",
     href: "/docs/components/home-who",
-  },
-  {
-    title: "Primitives",
-    body: "Button, logo, theme toggle - same ownership model.",
-    href: "/docs/components/ui-button",
   },
   {
     title: "Headless",
@@ -55,8 +55,8 @@ export function LandingHero() {
                 <span className="ds-gradient-text">find</span>
               </h2>
               <p className="mt-3 max-w-sm text-[15px] font-light leading-relaxed text-neutral-300 sm:mt-4 sm:text-base">
-                One path: the shadcn registry. Components copy into your project
-                so you own every line.
+                Own the UI with the registry. Borrow Host APIs for forms and AI
+                tools — your keys stay in your env.
               </p>
             </div>
 
@@ -139,10 +139,10 @@ export function LandingHero() {
               <Star className="size-3.5 fill-current opacity-80" aria-hidden />
             </a>
             <Link
-              href="/docs/components"
+              href="/docs/host-api"
               className="ms-cta-ghost w-full justify-center text-sm sm:w-auto"
             >
-              Browse catalog
+              Host APIs
             </Link>
             <Link
               href="/docs/registry"

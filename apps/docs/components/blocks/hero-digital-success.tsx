@@ -8,20 +8,25 @@ import { TimelineAnimation } from "@/components/ui/timeline-animation"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import MotionDrawer from "@/components/ui/motion-drawer"
 import { LogoMark } from "@/components/logo-mark"
+import { HeroSketchMark } from "@/components/hero-sketch-mark"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
   { label: "Registry", href: "/docs/registry" },
+  { label: "Host APIs", href: "/docs/host-api" },
   { label: "Docs", href: "/docs" },
   { label: "Blog", href: "/blog" },
 ] as const
 
 const catalogBands = [
   { title: "Registry", body: "Own the UI in your repo" },
+  {
+    title: "Host APIs",
+    body: "UI + hardened routes. You bring the keys.",
+  },
   { title: "Blocks", body: "Home bands, chrome, CTAs" },
-  { title: "Primitives", body: "Button, logo, theme toggle" },
   { title: "Headless", body: "Analytics, JSON-LD, reviews" },
 ] as const
 
@@ -217,15 +222,11 @@ export function HeroDigitalSuccess() {
       <div className="relative z-10 flex grow flex-col justify-center px-6 sm:px-12 md:px-24">
         <TimelineAnimation
           once
-          as="h1"
           animationNum={4}
           timelineRef={timelineRef}
-          className="flex flex-col items-baseline gap-x-8 gap-y-2 pb-10 text-[10vw] font-medium leading-[100%] xl:flex-row xl:text-[6.5vw]"
+          className="pb-10"
         >
-          AtroUI
-          <span className="block bg-linear-to-r from-white via-sky-300 to-blue-400 bg-clip-text pb-8 text-transparent xl:inline-block">
-            Component catalog
-          </span>
+          <HeroSketchMark />
         </TimelineAnimation>
 
         <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center">
@@ -244,12 +245,12 @@ export function HeroDigitalSuccess() {
             <TimelineAnimation
               once
               as="a"
-              href="/docs/components"
+              href="/docs/host-api"
               animationNum={6}
               timelineRef={timelineRef}
               className="cursor-pointer rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-medium backdrop-blur-md"
             >
-              Browse catalog
+              Host APIs
             </TimelineAnimation>
           </div>
           <TimelineAnimation
@@ -257,10 +258,10 @@ export function HeroDigitalSuccess() {
             as="p"
             animationNum={7}
             timelineRef={timelineRef}
-            className="max-w-md text-xl font-light leading-relaxed text-neutral-100"
+            className="max-w-md text-lg font-light leading-relaxed text-neutral-200 sm:text-xl"
           >
-            Add AtroUI with the shadcn CLI. Source lands in your repo - edit
-            CONTENT, keep the craft. Home: atroui.com.
+            Dark-first Next.js sections in your repo — plus Host APIs for forms
+            and AI. Your keys stay in your env.
           </TimelineAnimation>
         </div>
       </div>

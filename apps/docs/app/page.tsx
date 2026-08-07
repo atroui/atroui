@@ -4,9 +4,9 @@ import { LandingHero } from "@/components/landing-hero"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
-  title: "AtroUI - React Component Library & Dark Design System",
+  title: "AtroUI - Own the UI. Borrow the API.",
   description:
-    "AtroUI is the React and Next.js component catalog at atroui.com. Add with the shadcn registry - own the UI in your repo. Dark-first design system.",
+    "Dark-first Next.js sections you copy into your repo — plus Host APIs for forms and AI tools. Your keys stay in your env. atroui.com",
   path: "/",
 })
 
