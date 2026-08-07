@@ -360,6 +360,23 @@
       ]
     },
     {
+      "name": "home-crafts",
+      "type": "registry:block",
+      "title": "Home Crafts",
+      "description": "Capabilities / crafts band with editable CONTENT and CRAFTS (distinct from pricing).",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/home-crafts.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/home-crafts.tsx"
+        }
+      ]
+    },
+    {
       "name": "pricing-overview",
       "type": "registry:block",
       "title": "Pricing Overview",
@@ -373,6 +390,32 @@
           "path": "registry/default/blocks/pricing-overview.tsx",
           "type": "registry:component",
           "target": "components/blocks/pricing-overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:block",
+      "title": "Feature Grid",
+      "description": "Product feature grid with editable CONTENT and FEATURES.",
+      "files": [
+        {
+          "path": "registry/default/blocks/feature-grid.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/feature-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:block",
+      "title": "Logo Cloud",
+      "description": "Partner / client name strip with editable CONTENT and NAMES.",
+      "files": [
+        {
+          "path": "registry/default/blocks/logo-cloud.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/logo-cloud.tsx"
         }
       ]
     },

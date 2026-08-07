@@ -168,7 +168,7 @@ export const navigation: NavSection[] = [
       {
         title: "Hero",
         href: "/docs/components/home-hero",
-        description: "Homepage hero",
+        description: "AI value-prop hero",
         badge: "registry",
       },
       {
@@ -186,7 +186,7 @@ export const navigation: NavSection[] = [
       {
         title: "Crafts",
         href: "/docs/components/home-crafts",
-        description: "Pricing alias band",
+        description: "Capabilities band",
         badge: "registry",
       },
       {
@@ -205,6 +205,18 @@ export const navigation: NavSection[] = [
         title: "Pricing",
         href: "/docs/components/pricing-overview",
         description: "Offer tiers",
+        badge: "registry",
+      },
+      {
+        title: "Feature Grid",
+        href: "/docs/components/feature-grid",
+        description: "Product pillars",
+        badge: "registry",
+      },
+      {
+        title: "Logo Cloud",
+        href: "/docs/components/logo-cloud",
+        description: "Partner name strip",
         badge: "registry",
       },
       {

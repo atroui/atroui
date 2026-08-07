@@ -16,6 +16,7 @@ import {
   ExitIntentPopup,
   FadeIn,
   FaqInteractivePreview,
+  FeatureGrid,
   FormSelect,
   FounderAvatar,
   HeroAiValueProposition,
@@ -24,6 +25,7 @@ import {
   HomePrinciple,
   HomeWho,
   HomeWork,
+  LogoCloud,
   LogoMark,
   LogoWordmark,
   MadeWithEmbed,
@@ -89,6 +91,14 @@ export function DemoHomeWork() {
 
 export function DemoPricingOverview() {
   return <PricingOverview />
+}
+
+export function DemoFeatureGrid() {
+  return <FeatureGrid />
+}
+
+export function DemoLogoCloud() {
+  return <LogoCloud />
 }
 
 export function DemoBoldFooter() {
