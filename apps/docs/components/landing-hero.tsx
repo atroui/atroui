@@ -176,21 +176,18 @@ export function LandingHero() {
               href={GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-neutral-300"
+              className="ds-hero-nav-link"
             >
               GitHub
             </a>
-            <Link
-              href="/docs/registry"
-              className="transition-colors hover:text-neutral-300"
-            >
+            <Link href="/docs/registry" className="ds-hero-nav-link">
               Registry
             </Link>
             <a
               href="https://www.iamk.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-neutral-300"
+              className="ds-hero-nav-link"
             >
               iamk.xyz
             </a>
@@ -198,7 +195,7 @@ export function LandingHero() {
               href="https://www.makershot.tech"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-neutral-300"
+              className="ds-hero-nav-link"
             >
               makershot.tech
             </a>

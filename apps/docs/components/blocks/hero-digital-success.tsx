@@ -181,7 +181,7 @@ export function HeroDigitalSuccess() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition hover:text-white/80"
+                className="ds-hero-nav-link"
               >
                 {link.label}
               </Link>
@@ -260,7 +260,7 @@ export function HeroDigitalSuccess() {
             timelineRef={timelineRef}
             className="max-w-md ds-lede text-neutral-200"
           >
-            Dark-first Next.js sections in your repo — plus Host APIs for forms
+            Dark-first Next.js sections in your repo, plus Host APIs for forms
             and AI. Your keys stay in your env.
           </TimelineAnimation>
         </div>
