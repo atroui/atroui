@@ -19,6 +19,7 @@ export default function Page() {
       preview={<DemoFadeIn />}
       code={'import { FadeIn } from "@/components/motion/fade-in"\n\n<FadeIn>Content</FadeIn>\n\n{/* Docs */}\n<FadeIn preview>Content</FadeIn>'}
       fullBleed={false}
+      usage="Motion-based scroll fade. For a CSS IntersectionObserver reveal (no motion dependency), use @atroui/reveal."
       props={[
     { name: 'y', type: 'number', default: '14', description: 'Initial translateY.' },
     { name: 'delay', type: 'number', default: '0', description: 'Delay in seconds.' },

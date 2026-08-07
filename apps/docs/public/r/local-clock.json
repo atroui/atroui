@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "local-clock",
+  "title": "Local Clock",
+  "description": "Timezone-aware local time chip.",
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/local-clock.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** Defaults — edit timezone props after install. */\nconst CONTENT = {\n  timezone: \"America/New_York\",\n  timezoneLabel: \"ET\",\n}\n\nexport function LocalClock({\n  timezone = CONTENT.timezone,\n  timezoneLabel = CONTENT.timezoneLabel,\n  className,\n}: {\n  timezone?: string\n  timezoneLabel?: string\n  className?: string\n} = {}) {\n  const [now, setNow] = React.useState<Date | null>(null)\n\n  React.useEffect(() => {\n    const tick = () => setNow(new Date())\n    tick()\n    const timer = window.setInterval(tick, 30_000)\n    return () => window.clearInterval(timer)\n  }, [])\n\n  const time = now\n    ? new Intl.DateTimeFormat(\"en-US\", {\n        timeZone: timezone,\n        hour: \"numeric\",\n        minute: \"2-digit\",\n        hour12: true,\n      }).format(now)\n    : \"—:—\"\n\n  return (\n    <span\n      className={cn(\n        \"inline-flex items-center gap-1 font-mono text-[11.5px] text-muted-foreground tabular-nums\",\n        className\n      )}\n      aria-label={`Local time in ${timezoneLabel}: ${time}`}\n      title={`${timezoneLabel} · ${timezone}`}\n    >\n      <span className=\"text-foreground\">{time}</span>\n      <span className=\"text-muted-foreground/70\">{timezoneLabel}</span>\n    </span>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/local-clock.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

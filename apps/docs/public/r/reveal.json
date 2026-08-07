@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reveal",
+  "title": "Reveal",
+  "description": "IntersectionObserver reveal using .atro-reveal CSS.",
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/reveal.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\ntype RevealProps = {\n  as?: React.ElementType\n  delay?: number\n  once?: boolean\n  id?: string\n  className?: string\n  children: React.ReactNode\n}\n\n/**\n * IntersectionObserver reveal. Pair with `.atro-reveal` / `.atro-reveal-in` CSS.\n */\nexport function Reveal({\n  as,\n  delay = 0,\n  once = true,\n  id,\n  className,\n  children,\n}: RevealProps) {\n  const Tag = (as ?? \"div\") as React.ElementType\n  const ref = React.useRef<HTMLElement | null>(null)\n  const [inView, setInView] = React.useState(false)\n\n  React.useEffect(() => {\n    const node = ref.current\n    if (!node) return\n    if (typeof IntersectionObserver === \"undefined\") {\n      setInView(true)\n      return\n    }\n    const io = new IntersectionObserver(\n      ([entry]) => {\n        if (entry?.isIntersecting) {\n          setInView(true)\n          if (once) io.disconnect()\n        } else if (!once) {\n          setInView(false)\n        }\n      },\n      { threshold: 0.12, rootMargin: \"0px 0px -40px 0px\" }\n    )\n    io.observe(node)\n    return () => io.disconnect()\n  }, [once])\n\n  return (\n    <Tag\n      id={id}\n      ref={ref as React.Ref<HTMLElement>}\n      className={cn(\"atro-reveal\", inView && \"atro-reveal-in\", className)}\n      style={delay ? { animationDelay: `${delay}ms` } : undefined}\n    >\n      {children}\n    </Tag>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/reveal.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

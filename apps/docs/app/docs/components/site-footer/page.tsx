@@ -19,7 +19,7 @@ export default function Page() {
       preview={<DemoSiteFooter />}
       code={'import { SiteFooter } from "@/components/blocks/site-footer"\n\n<SiteFooter />'}
       fullBleed={true}
-      usage="Quiet chrome for docs and product pages. For a loud CTA + giant wordmark footer, use @atroui/footer-bold instead."
+      usage="Quiet chrome for docs and product pages. For a loud CTA + giant wordmark footer, use @atroui/footer-bold instead. For narrow personal chrome, use @atroui/site-footer-narrow."
     />
   )
 }

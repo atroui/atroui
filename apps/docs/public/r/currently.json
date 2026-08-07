@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "currently",
+  "title": "Currently",
+  "description": "Narrow “now” list with editable stamp and items.",
+  "files": [
+    {
+      "path": "registry/default/blocks/currently.tsx",
+      "content": "/**\n * Narrow “now” list — edit CONTENT after install.\n */\n\nconst CONTENT = {\n  stamp: \"Currently\",\n  updatedLabel: \"Updated recently\",\n  items: [\n    {\n      label: \"Focus\",\n      value: \"Shipping the personal site kit\",\n      swatch: \"var(--color-brand, #0b7bff)\",\n    },\n    {\n      label: \"Build\",\n      value: \"React / Next.js components for indie sites\",\n    },\n    {\n      label: \"Read\",\n      value: \"Something worth finishing\",\n    },\n  ],\n}\n\nexport function Currently({\n  stamp = CONTENT.stamp,\n  updatedLabel = CONTENT.updatedLabel,\n  items = CONTENT.items,\n  className,\n}: {\n  stamp?: string\n  updatedLabel?: string\n  items?: Array<{ label: string; value: string; swatch?: string }>\n  className?: string\n} = {}) {\n  return (\n    <section className={className ?? \"mx-auto max-w-[640px]\"}>\n      <div className=\"mb-3 flex items-baseline justify-between\">\n        <h2 className=\"font-mono text-[10.5px] tracking-[0.12em] text-muted-foreground uppercase\">\n          {stamp}\n        </h2>\n        <span className=\"font-mono text-[11px] text-muted-foreground\">\n          {updatedLabel}\n        </span>\n      </div>\n\n      <ul className=\"divide-y divide-border-subtle border-y border-border-subtle\">\n        {items.map((item) => (\n          <li\n            key={item.label}\n            className=\"flex items-start gap-3 py-[11px] text-[14.5px]\"\n          >\n            {item.swatch ? (\n              <span\n                aria-hidden\n                className=\"mt-[9px] h-[6px] w-[6px] shrink-0 rounded-[1px]\"\n                style={{ background: item.swatch }}\n              />\n            ) : (\n              <span\n                aria-hidden\n                className=\"mt-[9px] h-[6px] w-[6px] shrink-0\"\n              />\n            )}\n            <span className=\"w-[76px] shrink-0 pt-[3px] font-mono text-[10.5px] tracking-[0.1em] text-muted-foreground uppercase\">\n              {item.label}\n            </span>\n            <span className=\"flex-1 leading-[1.55] text-foreground\">\n              {item.value}\n            </span>\n          </li>\n        ))}\n      </ul>\n    </section>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/currently.tsx"
+    }
+  ],
+  "type": "registry:block"
+}
