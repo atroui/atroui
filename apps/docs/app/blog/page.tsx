@@ -22,12 +22,12 @@ export default function BlogIndexPage() {
         name="AtroUI Blog"
         description="Guides that take you from search to owning the UI with the shadcn CLI."
       />
-      <div className="mx-auto max-w-160 px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
         <p className="ms-stamp mb-3">Blog</p>
-        <h1 className="ds-display text-[2rem] leading-tight text-foreground sm:text-4xl">
+        <h1 className="ds-headline text-[1.85rem] tracking-tight text-foreground sm:text-4xl">
           AtroUI blog
         </h1>
-        <p className="mt-4 text-[1.0625rem] leading-[1.55] text-foreground/75 sm:text-lg sm:leading-[1.6]">
+        <p className="blog-lede mt-4">
           Guides that take you from search to install: Host APIs and BYOK,
           App Router setup, tokens, branding, and how AtroUI compares to other
           kits. Then open the{" "}
@@ -59,7 +59,7 @@ export default function BlogIndexPage() {
               <h3 className="mt-2 text-xl font-medium tracking-tight text-foreground group-hover:text-brand sm:text-2xl">
                 {latest.title}
               </h3>
-              <p className="mt-3 text-[1.0625rem] leading-[1.55] text-foreground/70 sm:text-lg sm:leading-[1.6]">
+              <p className="blog-lede mt-3 text-[1.0625rem] sm:text-lg">
                 {latest.description}
               </p>
               <span className="mt-5 inline-block text-sm font-medium text-brand">
@@ -88,7 +88,7 @@ export default function BlogIndexPage() {
                       <h3 className="text-lg font-medium tracking-tight text-foreground group-hover:text-brand sm:text-xl">
                         {post.title}
                       </h3>
-                      <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-foreground/65 sm:text-base">
+                      <p className="mt-1.5 max-w-xl font-[family-name:var(--font-merriweather)] text-[15px] leading-[1.55] text-foreground/65 sm:text-base">
                         {post.description}
                       </p>
                     </div>

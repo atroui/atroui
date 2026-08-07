@@ -88,11 +88,7 @@ function RichParagraph({ text }: { text: string }) {
     pushText(text.slice(last))
   }
 
-  return (
-    <p className="text-[1.0625rem] leading-[1.55] text-foreground/85 sm:text-lg sm:leading-[1.6]">
-      {parts}
-    </p>
-  )
+  return <p className="blog-prose">{parts}</p>
 }
 
 export function generateStaticParams() {
@@ -126,13 +122,14 @@ export default async function BlogPostPage({ params }: Props) {
         date={post.date}
         basePath="/blog"
       />
-      <div className="mx-auto max-w-160 px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
+      {/* ~65ch column — comfortable tracking for Merriweather at 17–18px */}
+      <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
         <p className="ms-stamp mb-4">
           <Link href="/blog" className="hover:text-foreground">
             Blog
           </Link>
         </p>
-        <h1 className="ds-display text-[2rem] leading-tight text-foreground sm:text-4xl sm:leading-[1.15] lg:text-[2.75rem]">
+        <h1 className="ds-headline text-[1.85rem] tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem]">
           {post.title}
         </h1>
         <time
@@ -141,15 +138,13 @@ export default async function BlogPostPage({ params }: Props) {
         >
           {post.date}
         </time>
-        <p className="mt-6 text-lg leading-snug text-foreground/70 sm:text-xl sm:leading-[1.45]">
-          {post.description}
-        </p>
+        <p className="blog-lede mt-6">{post.description}</p>
 
         <div className="mt-12 space-y-10 sm:mt-14 sm:space-y-12">
           {post.sections.map((section, i) => (
             <section key={i} className="space-y-4">
               {section.heading ? (
-                <h2 className="ds-headline text-xl text-foreground sm:text-2xl">
+                <h2 className="ds-headline text-xl tracking-tight text-foreground sm:text-2xl">
                   {section.heading}
                 </h2>
               ) : null}
