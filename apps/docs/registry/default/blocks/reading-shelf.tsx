@@ -2,24 +2,25 @@ const CONTENT = {
   stamp: "Reading now",
 }
 
+/** Default demo covers — typographic fallbacks (no remote images required). */
 const BOOKS = [
   {
     title: "Designing Data-Intensive Applications",
     author: "Martin Kleppmann",
-    cover:
-      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=176&h=256&fit=crop",
+    cover: "",
+    tone: "#1e3a5f",
   },
   {
     title: "Refactoring",
     author: "Martin Fowler",
-    cover:
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=176&h=256&fit=crop",
+    cover: "",
+    tone: "#3d2c29",
   },
   {
     title: "The Pragmatic Programmer",
     author: "Hunt & Thomas",
-    cover:
-      "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=176&h=256&fit=crop",
+    cover: "",
+    tone: "#1a3d2e",
   },
 ]
 
@@ -32,7 +33,12 @@ export function ReadingShelf({
   className,
 }: {
   stamp?: string
-  books?: Array<{ title: string; author: string; cover: string }>
+  books?: Array<{
+    title: string
+    author: string
+    cover?: string
+    tone?: string
+  }>
   className?: string
 } = {}) {
   if (books.length === 0) return null
@@ -71,14 +77,29 @@ export function ReadingShelf({
                   "0 1px 2px 0 rgba(0,0,0,0.08), 0 0 0 1px color-mix(in oklab, black 6%, transparent) inset",
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={book.cover}
-                alt={`${book.title} by ${book.author}`}
-                width={COVER_W * 2}
-                height={COVER_H * 2}
-                className="h-full w-full object-cover"
-              />
+              {book.cover ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={book.cover}
+                  alt={`${book.title} by ${book.author}`}
+                  width={COVER_W * 2}
+                  height={COVER_H * 2}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div
+                  className="flex h-full w-full flex-col justify-between p-2.5"
+                  style={{ background: book.tone ?? "#1a1a1a" }}
+                  aria-hidden
+                >
+                  <span className="font-mono text-[9px] tracking-wide text-white/70 uppercase">
+                    {book.author.split(" ").slice(-1)[0]}
+                  </span>
+                  <span className="text-[11px] leading-snug font-medium text-white">
+                    {shortTitle(book.title, 28)}
+                  </span>
+                </div>
+              )}
             </div>
             <div
               className="mt-2 truncate text-[11px] leading-tight text-muted-foreground"
@@ -93,6 +114,6 @@ export function ReadingShelf({
   )
 }
 
-function shortTitle(t: string) {
-  return t.length > 22 ? `${t.slice(0, 20)}…` : t
+function shortTitle(t: string, max = 22) {
+  return t.length > max ? `${t.slice(0, max - 2)}…` : t
 }
