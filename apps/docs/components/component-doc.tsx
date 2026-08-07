@@ -44,6 +44,7 @@ export function ComponentDoc({
   const nav = href ? findNavContext(href) : null
   const kind = kindProp ?? nav?.kind ?? "Primitive"
   const inRegistry = Boolean(registryName)
+  const isHostApi = nav?.item.badge === "host-api"
   const installCmd =
     installation ??
     (registryName ? `npx shadcn@latest add @atroui/${registryName}` : null)
@@ -63,6 +64,14 @@ export function ComponentDoc({
             <span className="rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-brand">
               CLI registry
             </span>
+          ) : null}
+          {isHostApi ? (
+            <Link
+              href="/docs/host-api"
+              className="rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-brand transition-colors hover:bg-brand/20"
+            >
+              Host API
+            </Link>
           ) : null}
         </div>
         <h1 className="ds-display text-2xl text-foreground sm:text-3xl md:text-4xl">
@@ -89,6 +98,14 @@ export function ComponentDoc({
               <Link href="/docs/registry" className="bam-link">
                 Registry catalog
               </Link>
+              {isHostApi ? (
+                <>
+                  {" · "}
+                  <Link href="/docs/host-api" className="bam-link">
+                    Host APIs
+                  </Link>
+                </>
+              ) : null}
               .
             </p>
           </>

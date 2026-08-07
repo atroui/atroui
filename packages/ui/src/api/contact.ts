@@ -43,7 +43,7 @@ export async function handleContactPost(req: Request): Promise<Response> {
   }
 
   const ip = clientIp(req)
-  const limited = checkRateLimit(`contact:${ip}`, {
+  const limited = await checkRateLimit(`contact:${ip}`, {
     limit: 5,
     windowMs: 15 * 60 * 1000,
   })

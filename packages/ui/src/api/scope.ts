@@ -35,7 +35,7 @@ export async function handleScopePost(req: Request): Promise<Response> {
   }
 
   const ip = clientIp(req)
-  const limited = checkRateLimit(`scope:${ip}`, {
+  const limited = await checkRateLimit(`scope:${ip}`, {
     limit: 30,
     windowMs: 15 * 60 * 1000,
   })

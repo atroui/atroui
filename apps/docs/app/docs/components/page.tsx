@@ -26,7 +26,15 @@ export default function ComponentsIndexPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             npx shadcn@latest add @atroui/…
           </code>
-          .
+          . Items tagged{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host API
+          </Link>{" "}
+          need thin{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/*
+          </code>{" "}
+          routes plus your own keys.
         </p>
       </header>
 

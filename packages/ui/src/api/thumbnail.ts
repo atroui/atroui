@@ -75,7 +75,7 @@ export async function handleThumbnailPost(req: Request): Promise<Response> {
   const previewOnly = data.previewOnly === true
   const usePro = data.usePro === true
 
-  const limited = rateLimitThumb(ip, previewOnly)
+  const limited = await rateLimitThumb(ip, previewOnly)
   if (!limited.ok) {
     return jsonError(
       `Too many requests. Try again in ${limited.retryAfterSec}s.`,

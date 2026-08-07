@@ -32,6 +32,29 @@ export default function RegistryPage() {
           </code>{" "}
           in the installed files to make them yours.
         </p>
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+          Pure UI needs only the CLI. Forms and AI tools that post to{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/*
+          </code>{" "}
+          also need{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            npm i atroui
+          </code>{" "}
+          +{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            transpilePackages
+          </code>
+          . Same three-row matrix:{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
+          </Link>{" "}
+          ·{" "}
+          <Link href="/docs/installation" className="bam-link">
+            Installation
+          </Link>
+          .
+        </p>
       </header>
 
       <section className="space-y-4">
@@ -356,7 +379,10 @@ npx shadcn@latest add @atroui/site-footer`}
             </code>
           </li>
           <li>
-            Host APIs (forms):{" "}
+            <Link href="/docs/host-api" className="bam-link">
+              Host APIs
+            </Link>{" "}
+            (forms + AI routes):{" "}
             <code className="font-mono text-[12px] text-foreground">
               @atroui/api-contact
             </code>

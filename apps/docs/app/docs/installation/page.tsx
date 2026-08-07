@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { CodeBlock } from "@/components/code-block"
+import { InstallModesMatrix } from "@/components/install-modes-matrix"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -133,12 +134,16 @@ npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
 npx shadcn@latest add @atroui/newsletter-form @atroui/api-newsletter`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Then set mail env (SMTP and/or Resend). See{" "}
+          Then set mail env (SMTP and/or Resend). Full Host API guide (env,
+          security defaults, rate limits):{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
+          </Link>
+          . See also{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             .env.example
           </code>{" "}
-          in the repo. Multi-instance production should replace the in-memory
-          rate limiter with Upstash / Vercel KV.
+          in the repo.
         </p>
         <CodeBlock
           language="bash"
@@ -179,43 +184,11 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          Two install modes
+          Install modes
         </h2>
+        <InstallModesMatrix showCanonicalLink />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          <strong className="font-medium text-foreground">Registry UI</strong>{" "}
-          (heroes, chrome, forms UI) -{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            npx shadcn add @atroui/…
-          </code>{" "}
-          only. You own the files; no{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui
-          </code>{" "}
-          package required.
-        </p>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          <strong className="font-medium text-foreground">Host APIs</strong>{" "}
-          (form routes, OG, thumbnail, scope) - thin registry{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            app/api/*/route.ts
-          </code>{" "}
-          stubs plus the published{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui
-          </code>{" "}
-          package for{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/api/*
-          </code>
-          . Add{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            transpilePackages: [&quot;atroui&quot;]
-          </code>{" "}
-          in{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            next.config
-          </code>
-          . Why we split this:{" "}
+          Why we split registry UI from the package:{" "}
           <Link href="/blog/npm-to-shadcn-registry" className="bam-link">
             npm → shadcn registry migration
           </Link>
@@ -260,7 +233,11 @@ HUGGINGFACE_API_KEY=…
           </code>{" "}
           until you configure providers. Marked{" "}
           <span className="font-medium text-foreground">Host API</span> in the
-          sidebar.
+          sidebar — details on{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
+          </Link>
+          .
         </p>
       </section>
 

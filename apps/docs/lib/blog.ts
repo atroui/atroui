@@ -105,18 +105,21 @@ npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
           "Host API handlers under `atroui/api/*` - contact, waitlist, newsletter, generate, thumbnail, scope. These share validation, honeypots, body caps, rate limits, and image compose logic (Satori, resvg, sharp). Vendoring that into every app via the CLI would ship native `.node` addons and font paths into consumer trees in painful ways.",
           "The docs monorepo itself - `@atroui/docs` depends on `atroui: workspace:*` so the marketing site and API routes can import the same handlers.",
           "Optional `atroui/globals.css` for hosts that already install the package.",
-          "So the product has **two install modes** (also documented on [Installation](/docs/installation)):",
+          "So the product has **three install modes** (identical matrix on [Host APIs](/docs/host-api) and [Installation](/docs/installation)):",
         ],
         codeBlocks: [
           {
             language: "bash",
-            code: `# Registry UI only - no npm package required
+            code: `# Registry UI only - no npm package
 npx shadcn@latest add @atroui/home-hero
 
-# Host APIs - package + thin route stubs
+# Forms - package + thin route stubs
 npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
-npx shadcn@latest add @atroui/api-contact @atroui/api-generate`,
+npx shadcn@latest add @atroui/contact-form @atroui/api-contact
+
+# AI tools - same package setup
+npx shadcn@latest add @atroui/og-workspace @atroui/api-generate`,
           },
         ],
       },
@@ -504,12 +507,13 @@ NEXT_PUBLIC_SITE_TAGLINE=Ship faster with Acme`,
     sections: [
       {
         body: [
-          "Fresh Next.js apps often fail the first time they import a TypeScript-shipped UI library. The error looks like a package bug. The fix is usually one line in next.config: transpilePackages.",
-          "AtroUI ships source that Next must compile with your app. Without transpilePackages: [\"atroui\"], Turbopack and webpack can refuse unknown module types or skip transforming the package.",
+          "Fresh Next.js apps that import the published `atroui` package (Host APIs) often fail until Next compiles that package with the app. The error looks like a package bug. The fix is usually one line in next.config: transpilePackages.",
+          "Pure registry UI (`npx shadcn add @atroui/…` only) does **not** need `npm i atroui` or transpilePackages. Use transpilePackages only when you install the package for `atroui/api/*` handlers.",
+          "AtroUI Host API handlers ship as TypeScript Next must compile with your app. Without transpilePackages: [\"atroui\"], Turbopack and webpack can refuse unknown module types or skip transforming the package.",
         ],
       },
       {
-        heading: "The required config",
+        heading: "The required config (Host API consumers)",
         body: [
           "Add AtroUI to transpilePackages alongside any other source-shipped packages you consume.",
         ],
@@ -531,13 +535,13 @@ export default nextConfig`,
         body: [
           "Unknown module type when importing from atroui.",
           "Unexpected token / TSX parse errors inside node_modules/atroui.",
-          "Works in the monorepo docs app but breaks in a clean create-next-app consumer.",
+          "Works in the monorepo docs app but breaks in a clean create-next-app consumer that uses Host APIs.",
         ],
       },
       {
         heading: "Barrel imports and heavy side paths",
         body: [
-          "Prefer documented public exports from registry items you installed. Stick to paths listed in the [Installation](/docs/installation) and [Registry](/docs/registry) guides.",
+          "Prefer documented public exports from registry items you installed. Stick to paths listed in the [Installation](/docs/installation), [Host APIs](/docs/host-api), and [Registry](/docs/registry) guides.",
         ],
       },
       {
@@ -552,7 +556,7 @@ export default nextConfig`,
           "components.json includes the @atroui registry",
           "npx shadcn add @atroui/… succeeded",
           "CONTENT / DEFAULT_BRAND edited for your brand",
-          "If you use Host APIs: npm i atroui + transpilePackages: [\"atroui\"]",
+          "If you use Host APIs: npm i atroui + transpilePackages: [\"atroui\"] — see [Host APIs](/docs/host-api)",
           "Restart the Next dev server after config changes",
           "Pure registry UI does not require the npm package - see [npm → shadcn registry](/blog/npm-to-shadcn-registry)",
         ],

@@ -91,7 +91,11 @@ export default function ComparePage() {
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
               /api/*
             </code>{" "}
-            with BYOK; docs do not burn shared LLM keys.
+            with BYOK; docs do not burn shared LLM keys. See{" "}
+            <Link href="/docs/host-api" className="bam-link">
+              Host APIs
+            </Link>
+            .
           </li>
         </ul>
       </section>
