@@ -6,7 +6,7 @@ import { DemoSiteFooter } from "@/components/registry-demos"
 export const metadata: Metadata = componentPageMetadata(
   "Site Footer",
   "/docs/components/site-footer",
-  "Lighter marketing footer with editable CONTENT and link columns. (Docs demo still shows BoldFooter.)"
+  "Lighter marketing footer with brand blurb, link columns, and legal row."
 )
 
 export default function Page() {
@@ -15,10 +15,11 @@ export default function Page() {
       href="/docs/components/site-footer"
       registryName="site-footer"
       title="Site Footer"
-      description="Lighter marketing footer with editable CONTENT and link columns. (Docs demo still shows BoldFooter.)"
+      description="Lighter marketing footer with brand blurb, link columns, and legal row."
       preview={<DemoSiteFooter />}
       code={'import { SiteFooter } from "@/components/blocks/site-footer"\n\n<SiteFooter />'}
       fullBleed={true}
+      usage="Quiet chrome for docs and product pages. For a loud CTA + giant wordmark footer, use @atroui/footer-bold instead."
     />
   )
 }

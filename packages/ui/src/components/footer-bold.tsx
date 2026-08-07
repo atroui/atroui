@@ -4,6 +4,7 @@ import { getBrand } from "../lib/brand";
 
 /**
  * Site-wide bold footer - brand name/email from getBrand().
+ * Quieter alternative: SiteFooter / @atroui/site-footer.
  */
 export function BoldFooter() {
   const year = new Date().getFullYear();

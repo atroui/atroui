@@ -19,6 +19,7 @@ export default function Page() {
       preview={<DemoBoldFooter />}
       code={'import { BoldFooter } from "@/components/blocks/footer-bold"\n\n<BoldFooter />'}
       fullBleed={true}
+      usage="Loud marketing footer with CTA mailto and oversized brand wordmark. For quieter chrome, use @atroui/site-footer."
     />
   )
 }
