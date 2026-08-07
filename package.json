@@ -22,5 +22,13 @@
   "packageManager": "pnpm@10.28.2",
   "engines": {
     "node": ">=20"
+  },
+  "pnpm": {
+    "overrides": {
+      "nodemailer": "^9.0.1",
+      "postcss": "^8.5.23",
+      "sharp": "^0.35.3",
+      "undici": "^6.28.0"
+    }
   }
 }
