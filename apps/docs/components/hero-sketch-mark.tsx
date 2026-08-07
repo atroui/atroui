@@ -1,14 +1,11 @@
 /**
  * Sketch-style hero mark: AtroUI ----> { Own the UI. / Borrow the API. }
- * Hand-feel type + imperfect SVG braces (matches product whiteboard sketch).
+ * Canonical AtroUI brand voice — Caveat + imperfect braces.
  */
 export function HeroSketchMark({ className }: { className?: string }) {
   return (
     <h1
-      className={[
-        "[font-family:var(--font-caveat),cursive] text-neutral-100",
-        className,
-      ]
+      className={["ds-sketch text-neutral-100", className]
         .filter(Boolean)
         .join(" ")}
     >

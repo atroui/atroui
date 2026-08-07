@@ -106,7 +106,7 @@ export function HeroDigitalSuccess() {
             <nav className="space-y-4">
               <div className="flex items-center gap-2 text-white">
                 <LogoMark className="h-8 w-8 text-white" />
-                <span>AtroUI</span>
+                <span className="ds-sketch text-2xl tracking-tight">AtroUI</span>
               </div>
               {navLinks.map((link) => (
                 <Link
@@ -166,7 +166,7 @@ export function HeroDigitalSuccess() {
             className="flex items-center gap-2.5"
           >
             <LogoMark className="h-8 w-8 text-white" />
-            <span className="text-lg font-medium tracking-tight">AtroUI</span>
+            <span className="ds-sketch text-2xl tracking-tight">AtroUI</span>
           </TimelineAnimation>
 
           <TimelineAnimation
