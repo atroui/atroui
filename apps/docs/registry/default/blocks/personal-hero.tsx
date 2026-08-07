@@ -68,7 +68,7 @@ export function PersonalHero({
               alt={imageAlt.trim() || name}
               width={72}
               height={72}
-              className="mt-1 h-[72px] w-[72px] shrink-0 rounded-full border border-border-subtle bg-muted object-cover"
+              className="mt-1 size-18 shrink-0 rounded-full border border-border-subtle bg-muted object-cover"
             />
           ) : null}
           <h1 className="min-w-0 pt-1 text-[2rem] font-medium tracking-tight text-foreground sm:text-[2.5rem]">

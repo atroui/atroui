@@ -774,8 +774,8 @@ export function DemoThemeProviderNote() {
   )
 }
 
-/** Personal site kit demos — center the 640px column in the wide docs preview. */
-function PersonalKitFrame({ children }: { children: React.ReactNode }) {
+/** Indie site kit demos — center the 640px column in the wide docs preview. */
+function IndieKitFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="mx-auto w-full max-w-[640px] px-4 py-6 sm:px-5 sm:py-8">
       {children}
@@ -798,41 +798,41 @@ export function DemoCountUp() {
 
 export function DemoDeadlineCountdown() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <DeadlineCountdown className="w-full" />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
 export function DemoCurrently() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <Currently className="w-full" />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
 export function DemoProjectList() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <ProjectList className="w-full" />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
 export function DemoLogPreview() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <LogPreview className="w-full" />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
 export function DemoChangelog() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <Changelog className="w-full" />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
@@ -879,24 +879,24 @@ export function DemoThemeToggleIcon() {
 
 export function DemoSiteHeaderNarrow() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">
         <SiteHeaderNarrow siteName="atroui" />
         <div className="px-5 py-8 text-sm text-muted-foreground">
           Narrow sticky chrome — 640px max width, mono nav, theme icon.
         </div>
       </div>
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
 export function DemoSiteFooterNarrow() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">
         <SiteFooterNarrow siteName="atroui" />
       </div>
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
@@ -913,22 +913,22 @@ export function DemoSocialFloat() {
 
 export function DemoReadingShelf() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <ReadingShelf className="w-full" />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
 export function DemoPersonalHero() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <PersonalHero
         name="Your Name"
         imageSrc={mediaSrc(MEDIA.founderPortrait)}
         imageAlt="Portrait"
         className="w-full px-0 pt-2 sm:pt-4"
       />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }
 
@@ -958,8 +958,8 @@ export function DemoWeatherChip() {
 
 export function DemoStackList() {
   return (
-    <PersonalKitFrame>
+    <IndieKitFrame>
       <StackList className="w-full" />
-    </PersonalKitFrame>
+    </IndieKitFrame>
   )
 }

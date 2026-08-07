@@ -38,7 +38,7 @@ export function DocsSidebar({ className }: { className?: string }) {
           <div key={section.title}>
             <button
               type="button"
-              className="ds-nav-section mb-2 flex w-full items-center justify-between px-2"
+              className="ds-nav-section mb-2 flex w-full items-center justify-between px-2 transition-[color,text-shadow] duration-150"
               aria-expanded={!isCollapsed}
               aria-controls={panelId}
               onClick={() =>
@@ -51,7 +51,7 @@ export function DocsSidebar({ className }: { className?: string }) {
               {section.title}
               <ChevronDown
                 className={cn(
-                  "h-3.5 w-3.5 transition-transform",
+                  "h-3.5 w-3.5 shrink-0 text-brand/70 transition-transform",
                   isCollapsed && "-rotate-90"
                 )}
               />

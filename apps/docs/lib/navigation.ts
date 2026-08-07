@@ -306,7 +306,7 @@ export const navigation: NavSection[] = [
     ],
   },
   {
-    title: "Personal",
+    title: "Indie",
     items: [
       {
         title: "Count Up",
@@ -347,7 +347,7 @@ export const navigation: NavSection[] = [
       {
         title: "Command Menu",
         href: "/docs/components/command-menu",
-        description: "⌘K personal palette",
+        description: "⌘K command palette",
         badge: "registry",
       },
       {
@@ -365,13 +365,13 @@ export const navigation: NavSection[] = [
       {
         title: "Site Header Narrow",
         href: "/docs/components/site-header-narrow",
-        description: "640px personal header",
+        description: "640px indie header",
         badge: "registry",
       },
       {
         title: "Site Footer Narrow",
         href: "/docs/components/site-footer-narrow",
-        description: "Quiet personal footer",
+        description: "Quiet indie footer",
         badge: "registry",
       },
       {
@@ -389,7 +389,7 @@ export const navigation: NavSection[] = [
       {
         title: "Personal Hero",
         href: "/docs/components/personal-hero",
-        description: "Name, status, lede",
+        description: "Indie intro + portrait",
         badge: "registry",
       },
       {
@@ -513,7 +513,7 @@ export type DocKind = "Primitive" | "Block" | "Tool" | "Headless"
 const sectionKind: Record<string, DocKind> = {
   Primitives: "Primitive",
   Blocks: "Block",
-  Personal: "Block",
+  Indie: "Block",
   Tools: "Tool",
   Headless: "Headless",
 }
