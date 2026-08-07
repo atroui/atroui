@@ -87,37 +87,39 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  // Stable absolute favicon URLs for Google SERP (>=48x48 PNG + /favicon.ico).
-  // Prefer PNG first; keep conventional /apple-touch-icon.png + webmanifest.
+  // Stable favicon set: SVG for crisp tabs, PNG ≥48 for Google SERP, ICO for legacy.
+  // Prefer relative paths so metadataBase resolves; do not ship app/favicon.ico
+  // (Next was emitting sizes="16x16" and browsers picked the muddy 16px frame).
   icons: {
     icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
       {
-        url: `${siteUrl}/favicon-48.png`,
+        url: "/favicon-48.png",
         sizes: "48x48",
         type: "image/png",
       },
       {
-        url: `${siteUrl}/favicon-96.png`,
+        url: "/favicon-96.png",
         sizes: "96x96",
         type: "image/png",
       },
       {
-        url: `${siteUrl}/favicon-192.png`,
+        url: "/favicon-192.png",
         sizes: "192x192",
         type: "image/png",
       },
-      { url: `${siteUrl}/favicon.ico`, sizes: "48x48" },
+      { url: "/favicon.ico", sizes: "48x48" },
     ],
     apple: [
       {
-        url: `${siteUrl}/apple-touch-icon.png`,
+        url: "/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
       },
     ],
-    shortcut: [`${siteUrl}/favicon.ico`],
+    shortcut: ["/favicon.ico"],
   },
-  manifest: `${siteUrl}/site.webmanifest`,
+  manifest: "/site.webmanifest",
   category: "technology",
 }
 
