@@ -148,7 +148,7 @@ export default function ChangelogPage() {
       <header>
         <p className="ms-stamp mb-3">Getting started</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Changelog
+          Change<span className="ds-sketch-accent">log</span>
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
           Released versions of{" "}
@@ -163,7 +163,7 @@ export default function ChangelogPage() {
       <div className="space-y-10">
         {releases.map((release) => (
           <section key={release.version} className="space-y-4">
-            <h2 className="ds-headline text-xl text-foreground">
+            <h2 className="ds-sketch text-2xl text-foreground sm:text-3xl">
               {release.version}
             </h2>
             <ChangelogBody body={release.body} />

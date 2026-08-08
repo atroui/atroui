@@ -1,39 +1,45 @@
 ---
-description: AtroUI product UX — Family Values (simplicity, fluidity, delight)
+description: AtroUI product UX — Family Values (simplicity, fluidity, careful delight)
 alwaysApply: true
 ---
 
 # Family Values (AtroUI)
 
-Inspired by [Family Values](https://benji.org/family-values). Every product UI change in this repo should respect these principles. Table-stakes (utility, performance, security, a11y, `prefers-reduced-motion`) are never traded away.
+Inspired by [Family Values](https://benji.org/family-values). We **do** use Family Values — these three philosophies are how we practice it in UI, UX, and animation. Table-stakes (utility, performance, security, a11y, `prefers-reduced-motion`) are never traded away.
 
-## Simplicity — gradual revelation
+## 1. Simplicity through gradual revelation
 
-- Fundamentals stay visible; depth appears when relevant.
-- Prefer overlays / trays / progressive disclosure over dumping every option on screen.
-- One primary action or idea per focused surface (tray, dialog step, hero scrap).
-- Keep context: overlay on place rather than full-screen teleport when the user is mid-task.
+Show the fundamental first. Reveal depth only when it is relevant.
 
-## Fluidity — fly, don’t teleport
+- Fundamentals stay visible; options appear in context (overlay / tray / step), not all at once.
+- One primary action or idea per focused surface (tray, dialog step, hero signature).
+- Prefer progressive disclosure over dumping every control on screen.
+- Keep place: overlay on the current task rather than full-screen teleport mid-flow.
+- Opinionated defaults — ship the good version; don’t ask the user to configure the basics.
 
-- Transitions must clarify path A→B (space, direction, cause).
-- Shared elements that persist should **travel**, not remount as duplicates.
+## 2. Fluidity through seamless transition
+
+Motion clarifies path A→B (space, direction, cause). Elements travel; they don’t teleport.
+
+- Shared elements that persist should **morph / travel**, not remount as duplicates.
 - Prefer short tweens (`easeOutExpo`-ish) over spring overshoot for chrome (drawers, menus) — overshoot feels glitchy on web.
-- Directional motion for hierarchical nav; lateral/fade for peer switches.
+- Directional motion for hierarchical nav; lateral / fade for peer switches.
 - Fixed overlays: portal to `document.body`, iOS-safe scroll lock (`apps/docs/hooks/use-body-scroll-lock.ts`), shared easings (`apps/docs/lib/motion.ts`).
-- Never animate “for vibes” without an architectural reason.
+- Never animate “for vibes” without an architectural reason (continuity, hierarchy, or cause).
 
-## Delight — selective emphasis
+## 3. Careful delight
 
-- Polish everywhere; sprinkle magic selectively.
-- Frequent paths: tiny details only (copy feedback, label morph, comma shift energy).
-- Rare paths: stronger moments allowed (settling chalk, confetti-scale only if earned).
+Polish everywhere; sprinkle magic selectively. Delight is earned, not constant fireworks.
+
+- Frequent paths: tiny details only (copy feedback, caret blink, label morph).
+- Rare paths: stronger moments only when earned (install complete, first success).
 - Corners count (empty states, errors, 404) — dirty bathroom problem.
-- Avoid AI-slop atmosphere: no soft blur-orb soup as the product identity. Prefer intentional material (chalkboard, real WebGL sphere, owned sketch language).
+- Avoid AI-slop atmosphere: no soft blur-orb soup as identity. Prefer intentional material (owned sketch voice, deferred WebGL underpainting, quiet chrome).
+- Soft-rect via `--radius` by default — not capsule CTAs everywhere.
 
 ## When editing UI
 
-1. Name which principle you’re serving.
+1. Name which Family Values principle you’re serving.
 2. Prefer shared motion tokens over one-off springs.
 3. Respect reduced motion: skip decorative motion; keep clarity.
 4. Mobile is first-class — no “CSS bloom only” excuses that leave a lifeless frame.

@@ -15,7 +15,7 @@ export default function ComparePage() {
       <header>
         <p className="ms-stamp mb-3">Compare</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          AtroUI vs copy-paste kits
+          <span className="ds-sketch-accent">AtroUI</span> vs copy-paste kits
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           Clear differences - not trash talk. Choose the tool that matches how

@@ -23,13 +23,16 @@ const NAV = [
 
 const CTA = { label: "Hire us", href: "/contact" }
 
-const panelEase = [0.32, 0.72, 0, 1] as const
+const panelEase = [0.32, 0.72, 0, 1] as const // easeOutSoft — match apps/docs/lib/motion.ts
 
 function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
-/** iOS-safe lock — overflow:hidden alone fights fixed drawers. */
+/**
+ * iOS-safe lock — same contract as apps/docs/hooks/use-body-scroll-lock.ts.
+ * Inlined so the registry item stays self-contained after install.
+ */
 function useBodyScrollLock(locked: boolean) {
   useEffect(() => {
     if (!locked) return
