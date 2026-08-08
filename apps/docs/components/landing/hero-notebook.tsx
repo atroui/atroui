@@ -31,27 +31,28 @@ export function HeroNotebook({ className }: { className?: string }) {
         aria-label="Install · two altitudes"
       >
         <div className="relative flex flex-col gap-3 px-4 py-4 sm:gap-3.5 sm:px-5 sm:py-5">
-          <p className="ds-sketch rotate-[-1deg] text-base text-sky-200/90">
+          <p className="ds-sketch rotate-[-1deg] text-base text-[color:var(--ds-cyan,#92dbe0)]">
             install · two altitudes
           </p>
 
           <div className="flex flex-col gap-2.5">
             {altitudes.map((item) => (
               <div key={item.label} className="landing-hero-altitude">
-                <p className="font-mono text-[10px] tracking-[0.14em] text-neutral-500 uppercase">
+                <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/50 uppercase">
                   {item.label}
                 </p>
-                <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-neutral-200 sm:text-[12.5px]">
-                  <span className="text-sky-300/90">$</span> npx shadcn@latest
-                  add <span className="text-sky-200">{item.pkg}</span>
+                <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-neutral-100 sm:text-[12.5px]">
+                  <span className="text-[color:var(--ds-cyan,#92dbe0)]">$</span>{" "}
+                  npx shadcn@latest add{" "}
+                  <span className="text-sky-200">{item.pkg}</span>
                 </p>
               </div>
             ))}
           </div>
 
-          <p className="font-mono text-[11px] text-neutral-500">
-            <span className="text-neutral-400">#</span> edit{" "}
-            <code className="rounded-full bg-white/10 px-1.5 py-0.5 text-neutral-200">
+          <p className="font-mono text-[11px] text-sky-100/45">
+            <span className="text-sky-200/60">#</span> edit{" "}
+            <code className="rounded-full border border-sky-300/25 bg-sky-500/15 px-1.5 py-0.5 text-sky-100">
               CONTENT
             </code>{" "}
             · own the files
@@ -63,32 +64,35 @@ export function HeroNotebook({ className }: { className?: string }) {
 
       {/* Chalk fork — install hangs down into the claim */}
       <svg
-        className="landing-hero-fork mx-auto -my-0.5 h-11 w-[4.5rem] shrink-0 text-sky-300/55"
-        viewBox="0 0 72 44"
+        className="landing-hero-fork mx-auto -my-0.5 h-12 w-20 shrink-0"
+        viewBox="0 0 80 48"
         fill="none"
         aria-hidden
       >
         <path
-          d="M36 1 V16"
+          d="M40 2 V18"
           stroke="currentColor"
-          strokeWidth="1.7"
+          strokeWidth="2.4"
           strokeLinecap="round"
-          strokeDasharray="3 5"
+          strokeDasharray="4 5"
         />
         <path
-          d="M36 16 C28 24, 16 30, 12 42"
+          d="M40 18 C30 28, 16 34, 10 46"
           stroke="currentColor"
-          strokeWidth="1.7"
+          strokeWidth="2.4"
           strokeLinecap="round"
-          strokeDasharray="3 5"
+          strokeDasharray="4 5"
         />
         <path
-          d="M36 16 C44 24, 56 30, 60 42"
+          d="M40 18 C50 28, 64 34, 70 46"
           stroke="currentColor"
-          strokeWidth="1.7"
+          strokeWidth="2.4"
           strokeLinecap="round"
-          strokeDasharray="3 5"
+          strokeDasharray="4 5"
         />
+        <circle cx="40" cy="18" r="2.5" fill="currentColor" opacity="0.9" />
+        <circle cx="10" cy="46" r="2.2" fill="currentColor" opacity="0.85" />
+        <circle cx="70" cy="46" r="2.2" fill="currentColor" opacity="0.85" />
       </svg>
 
       {/* ── 2. Claim scrap — Host APIs + BYOK ── */}
@@ -97,16 +101,16 @@ export function HeroNotebook({ className }: { className?: string }) {
         aria-label="Host APIs and bring your own keys"
       >
         <div className="relative px-4 py-4 sm:px-5 sm:py-5">
-          <p className="font-mono text-[10px] tracking-[0.14em] text-neutral-500 uppercase">
+          <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/55 uppercase">
             Host APIs · BYOK
           </p>
-          <p className="ds-sketch mt-2 rotate-[0.5deg] text-[1.2rem] leading-[1.2] text-neutral-100 sm:text-[1.35rem]">
+          <p className="ds-sketch mt-2 rotate-[0.5deg] text-[1.2rem] leading-[1.2] text-neutral-50 sm:text-[1.35rem]">
             Borrow the boring security.
             <br />
             <span className="ds-sketch-accent">Bring your own keys.</span>
           </p>
-          <p className="mt-3 max-w-[34ch] font-mono text-[11px] leading-snug text-neutral-500">
-            Forms + AI on <span className="text-neutral-300">your</span> Next.js
+          <p className="mt-3 max-w-[34ch] font-mono text-[11px] leading-snug text-sky-100/50">
+            Forms + AI on <span className="text-sky-100/85">your</span> Next.js
             host. AtroUI never holds Resend, SMTP, or model keys.
           </p>
         </div>
