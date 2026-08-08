@@ -22,7 +22,7 @@ const navLinks = [
 /**
  * Benji-style hero — one thesis, one living signature (live install),
  * deferred Digital Success sphere as quiet underpainting only.
- * Brand + couplet SSR for LCP; typing starts after mount.
+ * Nav stays quiet (mark · links · Star). One primary Own the UI below install.
  */
 export function PresenceHero() {
   return (
@@ -42,7 +42,7 @@ export function PresenceHero() {
         </SharedBrand>
 
         <nav
-          className="flex items-center gap-10 text-sm font-medium tracking-wide text-white/70 lg:gap-12"
+          className="flex items-center gap-8 text-sm font-medium tracking-wide text-white/70 lg:gap-10"
           aria-label="Primary"
         >
           {navLinks.map((link) => (
@@ -56,29 +56,17 @@ export function PresenceHero() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2.5">
-          <a
-            href={GITHUB_REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Star AtroUI on GitHub"
-            className="inline-flex h-11 items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/10"
-          >
-            <Github className="size-3.5" aria-hidden />
-            Star
-            <Star className="size-3.5 opacity-80" aria-hidden />
-          </a>
-          <TransitionLink
-            href="/docs/registry"
-            className="group inline-flex h-11 items-center gap-2.5 rounded-full bg-white px-5 text-sm font-medium text-black shadow-[0_0_18px_rgba(11,123,255,0.35)] transition hover:bg-white/90"
-          >
-            <span
-              className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)] transition group-hover:scale-110"
-              aria-hidden
-            />
-            Own the UI
-          </TransitionLink>
-        </div>
+        <a
+          href={GITHUB_REPO}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Star AtroUI on GitHub"
+          className="inline-flex h-10 items-center gap-2 border border-white/15 bg-white/[0.04] px-3.5 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.08]"
+        >
+          <Github className="size-3.5" aria-hidden />
+          Star
+          <Star className="size-3.5 opacity-80" aria-hidden />
+        </a>
       </header>
 
       <div className="relative z-10 flex grow flex-col justify-center px-5 pb-14 pt-10 sm:px-10 sm:pb-16 md:px-16 lg:px-24">
@@ -100,19 +88,18 @@ export function PresenceHero() {
 
           <LiveInstall className="mt-9 w-full sm:mt-10" />
 
-          <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-3.5">
+          <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
             <SharedOwnCta>
               <TransitionLink
                 href="/docs/registry"
-                className="presence-hero-cta inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.35)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
+                className="inline-flex items-center gap-2.5 bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
               >
-                <span className="size-1.5 rounded-full bg-sky-400" aria-hidden />
                 Own the UI
               </TransitionLink>
             </SharedOwnCta>
             <TransitionLink
               href="/docs/host-api"
-              className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-[15px] font-medium text-white backdrop-blur-md transition hover:bg-white/10 sm:px-7 sm:py-3.5 sm:text-base"
+              className="inline-flex items-center border border-white/18 px-6 py-3 text-[15px] font-medium text-white/85 transition hover:border-white/30 hover:text-white sm:px-7 sm:py-3.5 sm:text-base"
             >
               Host APIs
             </TransitionLink>

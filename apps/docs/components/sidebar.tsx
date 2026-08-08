@@ -77,10 +77,10 @@ export function DocsSidebar({ className }: { className?: string }) {
                         <Link
                           href={item.href}
                           className={cn(
-                            "flex items-center justify-between gap-2 rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
+                            "flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
                             active
-                              ? "bg-white/10 text-foreground shadow-[0_0_20px_color-mix(in_oklch,var(--color-brand)_25%,transparent)]"
-                              : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                              ? "bg-white/10 text-foreground"
+                              : "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground"
                           )}
                         >
                           <span className="truncate">{item.title}</span>

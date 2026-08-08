@@ -80,17 +80,17 @@ export function ComponentDoc({
       }
     >
       <header className="space-y-2 sm:space-y-3">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <p className="ms-stamp">{kind}</p>
           {inRegistry ? (
-            <span className="ds-sketch rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-sm text-brand">
+            <span className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase">
               CLI registry
             </span>
           ) : null}
           {isHostApi ? (
             <Link
               href="/docs/host-api"
-              className="ds-sketch rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-sm text-brand transition-colors hover:bg-brand/20"
+              className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase transition-colors hover:text-brand"
             >
               Host API
             </Link>

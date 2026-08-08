@@ -9,11 +9,11 @@ html {
   background: color-mix(in oklab, var(--color-brand) 32%, transparent);
 }
 
-/* Ambient brand wash behind docs chrome */
+/* Quiet brand wash behind docs chrome — keep opacity low (anti-orb) */
 .md-ambient {
   background-image: radial-gradient(
     ellipse 70% 40% at 50% -5%,
-    color-mix(in oklch, var(--color-brand) 18%, transparent),
+    color-mix(in oklch, var(--color-brand) 8%, transparent),
     transparent 70%
   );
 }
@@ -89,11 +89,7 @@ html {
     0 0 36px color-mix(in srgb, var(--ds-brand) 22%, transparent);
 }
 
-.presence-hero-cta {
-  animation: presence-cta-breathe 3.6s ease-in-out infinite;
-}
-
-/* Live install caret — one thing breathing */
+/* Live install caret — one thing breathing (frequent CTAs stay static) */
 .presence-install-caret {
   animation: presence-caret-blink 1s steps(1, end) infinite;
 }
@@ -128,16 +124,6 @@ html {
   }
 }
 
-@keyframes presence-cta-breathe {
-  0%,
-  100% {
-    box-shadow: 0 0 18px rgba(11, 123, 255, 0.32);
-  }
-  50% {
-    box-shadow: 0 0 26px rgba(11, 123, 255, 0.48);
-  }
-}
-
 @keyframes presence-caret-blink {
   0%,
   49% {
@@ -150,7 +136,6 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .presence-hero-cta,
   .presence-install-caret,
   .landing-hero-shader {
     animation: none !important;

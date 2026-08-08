@@ -1,18 +1,27 @@
-import type { Variants } from 'motion/react';
-import { type HTMLMotionProps, motion, useInView } from 'motion/react';
-import type React from 'react';
+"use client"
+
+import type { Variants } from "motion/react"
+import {
+  type HTMLMotionProps,
+  motion,
+  useInView,
+  useReducedMotion,
+} from "motion/react"
+import type React from "react"
 
 type TimelineContentProps<T extends keyof HTMLElementTagNameMap> = {
-  children?: React.ReactNode;
-  animationNum: number;
-  className?: string;
-  timelineRef: React.RefObject<HTMLElement | null>;
-  as?: T;
-  customVariants?: Variants;
-  once?: boolean;
-} & HTMLMotionProps<T>;
+  children?: React.ReactNode
+  animationNum: number
+  className?: string
+  timelineRef: React.RefObject<HTMLElement | null>
+  as?: T
+  customVariants?: Variants
+  once?: boolean
+} & HTMLMotionProps<T>
 
-export const TimelineAnimation = <T extends keyof HTMLElementTagNameMap = 'div'>({
+export const TimelineAnimation = <
+  T extends keyof HTMLElementTagNameMap = "div",
+>({
   children,
   animationNum,
   timelineRef,
@@ -22,35 +31,35 @@ export const TimelineAnimation = <T extends keyof HTMLElementTagNameMap = 'div'>
   once = true,
   ...props
 }: TimelineContentProps<T>) => {
-  const defaultSequenceVariants = {
+  const reduce = useReducedMotion()
+
+  const defaultSequenceVariants: Variants = {
     visible: (i: number) => ({
-      filter: 'blur(0px)',
       y: 0,
       opacity: 1,
       transition: {
-        delay: i * 0.5,
-        duration: 0.5,
+        delay: reduce ? 0 : i * 0.5,
+        duration: reduce ? 0 : 0.5,
       },
     }),
     hidden: {
-      filter: 'blur(20px)',
-      y: 0,
-      opacity: 0,
+      y: reduce ? 0 : 8,
+      opacity: reduce ? 1 : 0,
     },
-  };
+  }
 
-  const sequenceVariants = customVariants || defaultSequenceVariants;
+  const sequenceVariants = customVariants || defaultSequenceVariants
 
   const isInView = useInView(timelineRef, {
     once,
-  });
+  })
 
-  const MotionComponent = motion[as || 'div'] as React.ElementType;
+  const MotionComponent = motion[as || "div"] as React.ElementType
 
   return (
     <MotionComponent
-      initial='hidden'
-      animate={isInView ? 'visible' : 'hidden'}
+      initial={reduce ? false : "hidden"}
+      animate={reduce || isInView ? "visible" : "hidden"}
       custom={animationNum}
       variants={sequenceVariants}
       className={className}
@@ -58,5 +67,5 @@ export const TimelineAnimation = <T extends keyof HTMLElementTagNameMap = 'div'>
     >
       {children}
     </MotionComponent>
-  );
-};
+  )
+}

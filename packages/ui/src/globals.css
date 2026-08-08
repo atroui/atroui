@@ -388,7 +388,6 @@
     border-radius: 9999px;
     border: 1px solid color-mix(in oklch, var(--foreground) 20%, transparent);
     background: color-mix(in oklch, var(--foreground) 5%, transparent);
-    backdrop-filter: blur(12px);
     font-size: 0.9375rem;
     font-weight: 500;
     color: var(--foreground);
@@ -537,9 +536,8 @@
     box-shadow: 0 0 0 1px var(--border-subtle);
   }
   .md-glass {
-    background: color-mix(in oklch, var(--foreground) 5%, transparent);
+    background: color-mix(in oklch, var(--background) 88%, var(--foreground));
     border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
-    backdrop-filter: blur(16px);
     border-radius: var(--radius-xl);
   }
 }

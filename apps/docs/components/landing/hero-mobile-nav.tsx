@@ -129,23 +129,13 @@ export function HeroMobileNav() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Star AtroUI on GitHub"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md transition hover:bg-white/10"
+          className="inline-flex size-10 items-center justify-center border border-white/15 bg-white/[0.04] text-white transition hover:border-white/25 hover:bg-white/[0.08]"
         >
           <Star className="size-4" aria-hidden />
         </a>
-        <Link
-          href="/docs/registry"
-          className="group inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black shadow-[0_0_14px_rgba(11,123,255,0.3)] transition hover:bg-white/90"
-        >
-          <span
-            className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)]"
-            aria-hidden
-          />
-          Own UI
-        </Link>
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-lg bg-white text-black"
+          className="inline-flex size-10 items-center justify-center bg-white text-black"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls={panelId}

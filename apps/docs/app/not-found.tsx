@@ -10,16 +10,13 @@ export default function NotFound() {
         <span className="ds-sketch absolute top-[18%] left-[12%] rotate-[-8deg] text-[7rem] leading-none text-brand">
           ?
         </span>
-        <span className="ds-sketch absolute right-[10%] bottom-[22%] rotate-[6deg] text-[5rem] leading-none text-muted-foreground">
-          chalk
-        </span>
       </span>
 
       <p className="ms-stamp">404</p>
-      <h1 className="ds-display text-3xl sm:text-4xl">Off the board</h1>
+      <h1 className="ds-display text-3xl sm:text-4xl">Off the map</h1>
       <p className="max-w-[36ch] text-[15px] leading-relaxed text-muted-foreground">
-        That URL isn&apos;t in the catalog. The chalkboard is still here —
-        pick a door that is.
+        That URL isn&apos;t in the catalog. Files are still yours — pick a door
+        that is.
       </p>
       <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
         <Link href="/docs" className="ms-cta text-sm">

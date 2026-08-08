@@ -13,10 +13,17 @@ import {
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
+const primaryNav = [
+  { href: "/docs", label: "Docs" },
+  { href: "/docs/components", label: "Components" },
+  { href: "/blog", label: "Blog" },
+  { href: "/docs/theming", label: "Theming" },
+] as const
+
 export function SiteHeader() {
   return (
     <header
-      className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/80 pt-[env(safe-area-inset-top)] backdrop-blur-xl"
+      className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/95 pt-[env(safe-area-inset-top)]"
       style={{ viewTransitionName: "site-header" }}
     >
       <div className="mx-auto flex h-14 max-w-350 items-center gap-2 px-3 sm:gap-3 sm:px-6">
@@ -37,19 +44,14 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary"
-          className="ml-1 hidden items-center gap-0.5 lg:ml-3 lg:flex"
+          className="ml-1 hidden items-center gap-0.5 md:ml-2 md:flex lg:ml-3"
         >
-          {[
-            { href: "/docs", label: "Docs" },
-            { href: "/docs/components", label: "Components" },
-            { href: "/blog", label: "Blog" },
-            { href: "/docs/theming", label: "Theming" },
-          ].map((item) => (
+          {primaryNav.map((item) => (
             <TransitionLink
               key={item.href}
               href={item.href}
               transitionTypes={[]}
-              className="rounded-full px-2.5 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground xl:px-3.5"
+              className="px-2 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground xl:px-2.5"
             >
               {item.label}
             </TransitionLink>
@@ -69,7 +71,7 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Star AtroUI on GitHub"
-            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border-subtle bg-white/5 px-2.5 text-foreground transition-colors hover:bg-white/10 sm:px-3"
+            className="inline-flex h-9 items-center gap-1.5 border border-border-subtle bg-white/[0.03] px-2.5 text-foreground transition-colors hover:bg-white/[0.06] sm:px-3"
           >
             <Github className="size-4" aria-hidden />
             <span className="hidden text-[13px] font-medium sm:inline">
