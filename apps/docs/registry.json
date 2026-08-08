@@ -459,7 +459,8 @@
       "title": "Contact Form",
       "description": "Multi-step contact form with editable CONTENT; posts to your API.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "motion"
       ],
       "files": [
         {
@@ -787,6 +788,7 @@
       "description": "Multi-step project scoping planner UI.",
       "dependencies": [
         "lucide-react",
+        "motion",
         "next"
       ],
       "registryDependencies": [

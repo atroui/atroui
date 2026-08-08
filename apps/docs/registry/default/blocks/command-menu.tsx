@@ -77,6 +77,35 @@ export function CommandMenu({
     return () => window.removeEventListener("keydown", onKeyDown)
   }, [])
 
+  React.useEffect(() => {
+    if (!open) return
+    const y = window.scrollY
+    const { style } = document.body
+    const prev = {
+      overflow: style.overflow,
+      position: style.position,
+      top: style.top,
+      width: style.width,
+      left: style.left,
+      right: style.right,
+    }
+    style.overflow = "hidden"
+    style.position = "fixed"
+    style.top = `-${y}px`
+    style.left = "0"
+    style.right = "0"
+    style.width = "100%"
+    return () => {
+      style.overflow = prev.overflow
+      style.position = prev.position
+      style.top = prev.top
+      style.width = prev.width
+      style.left = prev.left
+      style.right = prev.right
+      window.scrollTo(0, y)
+    }
+  }, [open])
+
   const run = React.useCallback((action: () => void) => {
     setOpen(false)
     requestAnimationFrame(action)
@@ -112,7 +141,9 @@ export function CommandMenu({
       </div>
 
       <Command.List className="cmdk-list">
-        <Command.Empty className="cmdk-empty">No results.</Command.Empty>
+        <Command.Empty className="cmdk-empty">
+          Nothing matches — try a page name or ⌘K again.
+        </Command.Empty>
 
         <Command.Group heading="Go" className="cmdk-group">
           {nav.map((item) => (
