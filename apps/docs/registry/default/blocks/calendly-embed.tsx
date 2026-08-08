@@ -80,7 +80,7 @@ export function CalendlyEmbed({ url }: CalendlyEmbedProps) {
         </p>
         <a
           href={`mailto:${brand.email}`}
-          className="inline-flex h-11 w-fit items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background"
+          className="inline-flex h-11 w-fit items-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background"
         >
           {CONTENT.emailCtaPrefix} {brand.email}
           <ExternalLink className="size-3.5" aria-hidden />

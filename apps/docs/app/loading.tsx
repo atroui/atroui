@@ -5,11 +5,11 @@ export default function Loading() {
       aria-busy="true"
       aria-label="Loading"
     >
-      <div className="h-3 w-24 animate-pulse rounded-full bg-white/10" />
-      <div className="h-9 w-2/3 max-w-md animate-pulse rounded-xl bg-white/10" />
-      <div className="mt-4 h-40 w-full animate-pulse rounded-2xl bg-white/5" />
-      <div className="h-4 w-full animate-pulse rounded-full bg-white/5" />
-      <div className="h-4 w-5/6 animate-pulse rounded-full bg-white/5" />
+      <p className="ms-stamp">Loading</p>
+      <div className="h-9 w-2/3 max-w-md rounded-md bg-white/8" />
+      <div className="mt-2 h-36 w-full rounded-xl border border-border-subtle bg-white/[0.03]" />
+      <div className="h-3.5 w-full rounded-sm bg-white/[0.05]" />
+      <div className="h-3.5 w-5/6 rounded-sm bg-white/[0.05]" />
     </div>
   )
 }

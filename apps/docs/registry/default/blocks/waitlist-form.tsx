@@ -78,7 +78,7 @@ export function WaitlistForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50"
+          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50"
         >
           {status === "loading" ? (
             <Loader2 className="size-4 animate-spin" aria-hidden />

@@ -183,7 +183,7 @@ function TagButton({
       type="button"
       onClick={onClick}
       className={
-        "inline-flex items-center rounded-full px-2.5 py-1 font-mono text-[11px] transition-colors " +
+        "inline-flex items-center rounded-md px-2.5 py-1 font-mono text-[11px] transition-colors " +
         (active
           ? "bg-[color-mix(in_oklab,var(--color-brand,#0b7bff)_16%,transparent)] text-[var(--color-brand,#0b7bff)]"
           : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground")

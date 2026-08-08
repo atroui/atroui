@@ -1,4 +1,5 @@
 import { DocsSidebar } from "@/components/sidebar"
+import { DocsRouteTransition } from "@/components/view-transitions"
 
 export function DocsLayoutShell({ children }: { children: React.ReactNode }) {
   return (
@@ -8,7 +9,7 @@ export function DocsLayoutShell({ children }: { children: React.ReactNode }) {
           <DocsSidebar />
         </aside>
         <main className="min-w-0 flex-1 overflow-x-hidden px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10 xl:px-10">
-          {children}
+          <DocsRouteTransition>{children}</DocsRouteTransition>
         </main>
       </div>
     </div>

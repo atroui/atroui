@@ -44,7 +44,7 @@ export function HomeHero() {
       <div className="relative z-10">
         <article className="w-full border-y border-border-subtle">
           <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle px-6 py-10 text-center sm:px-10 sm:py-14">
-            <p className="inline-flex items-center gap-2 rounded-full border border-border-subtle px-3 py-1 text-[11px] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+            <p className="inline-flex items-center gap-2 rounded-lg border border-border-subtle px-3 py-1 text-[11px] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
               <span
                 className="size-1.5 rounded-full bg-[var(--color-brand,#0b7bff)]"
                 aria-hidden
@@ -71,14 +71,14 @@ export function HomeHero() {
             <div className="flex w-full max-w-xl flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
               <Link
                 href={CONTENT.primaryCta.href}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto"
               >
                 {CONTENT.primaryCta.label}
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
               <Link
                 href={CONTENT.secondaryCta.href}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-border-subtle px-5 text-sm font-medium text-foreground sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-border-subtle px-5 text-sm font-medium text-foreground sm:w-auto"
               >
                 {CONTENT.secondaryCta.label}
                 <ArrowRight className="size-3.5 opacity-60" aria-hidden />

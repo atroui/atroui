@@ -1,11 +1,13 @@
 "use client"
 
 import { ArrowLeft, ArrowRight, Check, Loader2, Send } from "lucide-react"
+import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { useState, type FormEvent } from "react"
 
 /**
  * Edit CONTENT / PROJECT_TYPES to match your studio intake.
  * Posts JSON to CONTENT.endpoint (wire your own API route).
+ * Steps reveal one at a time (Family: gradual revelation + fluid travel).
  */
 const CONTENT = {
   stamp: "Contact",
@@ -81,6 +83,7 @@ function Chip({
 }
 
 export function ContactForm() {
+  const reduce = useReducedMotion()
   const [step, setStep] = useState(0)
   const [status, setStatus] = useState<Status>({ kind: "idle" })
   const [form, setForm] = useState({
@@ -132,7 +135,12 @@ export function ContactForm() {
 
   if (status.kind === "success") {
     return (
-      <section className="border border-border-subtle p-6 sm:p-8">
+      <motion.section
+        className="border border-border-subtle p-6 sm:p-8"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
+      >
         <div className="flex size-10 items-center justify-center rounded-full bg-[var(--color-brand,#0b7bff)]/15 text-[var(--color-brand,#0b7bff)]">
           <Check className="size-5" aria-hidden />
         </div>
@@ -140,7 +148,7 @@ export function ContactForm() {
           {CONTENT.successTitle}
         </h2>
         <p className="mt-2 text-sm text-muted-foreground">{CONTENT.successBody}</p>
-      </section>
+      </motion.section>
     )
   }
 
@@ -156,14 +164,16 @@ export function ContactForm() {
           {CONTENT.headline}
         </h2>
         <p className="mt-2 text-sm text-muted-foreground">{CONTENT.lede}</p>
-        <ol className="mt-6 flex gap-2">
+        <ol className="mt-6 flex flex-wrap gap-2" aria-label="Form progress">
           {STEPS.map((s, i) => (
             <li
               key={s.id}
               className={
                 i === step
                   ? "text-xs font-medium text-foreground"
-                  : "text-xs text-muted-foreground"
+                  : i < step
+                    ? "text-xs text-[var(--color-brand,#0b7bff)]"
+                    : "text-xs text-muted-foreground"
               }
             >
               {String(i + 1).padStart(2, "0")} {s.label}
@@ -189,11 +199,23 @@ export function ContactForm() {
           aria-hidden
         />
 
-        <div>
-          <h3 className="text-lg font-medium text-foreground">{current.title}</h3>
-        </div>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={current.id}
+            initial={reduce ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
+            className="space-y-6"
+            style={{ minHeight: 160 + step * 24 }}
+          >
+            <div>
+              <h3 className="text-lg font-medium text-foreground">
+                {current.title}
+              </h3>
+            </div>
 
-        {step === 0 ? (
+            {step === 0 ? (
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block space-y-1.5 sm:col-span-1">
               <span className="text-xs font-medium text-muted-foreground">
@@ -235,9 +257,9 @@ export function ContactForm() {
               />
             </label>
           </div>
-        ) : null}
+            ) : null}
 
-        {step === 1 ? (
+            {step === 1 ? (
           <div className="space-y-4">
             <div>
               <p className="mb-2 text-xs font-medium text-muted-foreground">
@@ -277,9 +299,9 @@ export function ContactForm() {
               />
             </label>
           </div>
-        ) : null}
+            ) : null}
 
-        {step === 2 ? (
+            {step === 2 ? (
           <div className="space-y-4">
             <div>
               <p className="mb-2 text-xs font-medium text-muted-foreground">
@@ -314,9 +336,9 @@ export function ContactForm() {
               </div>
             </div>
           </div>
-        ) : null}
+            ) : null}
 
-        {step === 3 ? (
+            {step === 3 ? (
           <dl className="space-y-3 text-sm">
             <div className="flex justify-between gap-4 border-b border-border-subtle pb-2">
               <dt className="text-muted-foreground">Name</dt>
@@ -338,7 +360,9 @@ export function ContactForm() {
               <dd className="mt-1 text-foreground">{form.message}</dd>
             </div>
           </dl>
-        ) : null}
+            ) : null}
+          </motion.div>
+        </AnimatePresence>
 
         {status.kind === "error" ? (
           <p className="text-sm text-red-600 dark:text-red-400" role="alert">
@@ -361,24 +385,41 @@ export function ContactForm() {
             disabled={
               status.kind === "submitting" || (step < 3 && !canNext())
             }
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50"
+            className="inline-flex h-11 min-w-[7.5rem] items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50"
           >
-            {status.kind === "submitting" ? (
-              <>
-                <Loader2 className="size-4 animate-spin" aria-hidden />
-                Sending…
-              </>
-            ) : step === 3 ? (
-              <>
-                {CONTENT.submitLabel}
-                <Send className="size-3.5" aria-hidden />
-              </>
-            ) : (
-              <>
-                Continue
-                <ArrowRight className="size-3.5" aria-hidden />
-              </>
-            )}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={
+                  status.kind === "submitting"
+                    ? "submitting"
+                    : step === 3
+                      ? "send"
+                      : "continue"
+                }
+                className="inline-flex items-center gap-2"
+                initial={reduce ? false : { opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -4 }}
+                transition={{ duration: 0.16 }}
+              >
+                {status.kind === "submitting" ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin" aria-hidden />
+                    Sending…
+                  </>
+                ) : step === 3 ? (
+                  <>
+                    {CONTENT.submitLabel}
+                    <Send className="size-3.5" aria-hidden />
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <ArrowRight className="size-3.5" aria-hidden />
+                  </>
+                )}
+              </motion.span>
+            </AnimatePresence>
           </button>
         </div>
       </form>

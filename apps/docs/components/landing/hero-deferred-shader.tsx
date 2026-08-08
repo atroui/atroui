@@ -5,38 +5,53 @@ import dynamic from "next/dynamic"
 
 /**
  * Production WebGL palette — deferred so LCP stays on SSR text + CSS bloom.
- * Desktop / capable networks only; skipped for reduced-motion, mobile, Save-Data.
+ * Skipped for reduced-motion, Save-Data, and very slow networks.
+ * Mobile loads a lower-density canvas after a longer idle delay.
  */
 const ShaderLayer = dynamic(
   () => import("./hero-shader-canvas").then((m) => m.HeroShaderCanvas),
   { ssr: false, loading: () => null }
 )
 
-function shouldLoadShader(): boolean {
-  if (typeof window === "undefined") return false
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false
-  // Keep mobile on CSS bloom only — WebGL was the insights killer on phones
-  if (window.matchMedia("(max-width: 768px)").matches) return false
+type ShaderPlan =
+  | { ok: false }
+  | { ok: true; mobile: boolean; delayMs: number }
+
+function planShader(): ShaderPlan {
+  if (typeof window === "undefined") return { ok: false }
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return { ok: false }
+  }
   const nav = navigator as Navigator & {
     connection?: { saveData?: boolean; effectiveType?: string }
   }
-  if (nav.connection?.saveData) return false
+  if (nav.connection?.saveData) return { ok: false }
   if (
     nav.connection?.effectiveType === "2g" ||
     nav.connection?.effectiveType === "slow-2g"
   ) {
-    return false
+    return { ok: false }
   }
-  return true
+  const mobile = window.matchMedia("(max-width: 768px)").matches
+  return {
+    ok: true,
+    mobile,
+    // Give mobile LCP more headroom before WebGL mounts
+    delayMs: mobile ? 1400 : 600,
+  }
 }
 
 export function HeroDeferredShader() {
   const [ready, setReady] = useState(false)
+  const [mobile, setMobile] = useState(false)
 
   useEffect(() => {
-    if (!shouldLoadShader()) return
+    const plan = planShader()
+    if (!plan.ok) return
 
     let cancelled = false
+    setMobile(plan.mobile)
+
     const enable = () => {
       if (!cancelled) setReady(true)
     }
@@ -44,21 +59,20 @@ export function HeroDeferredShader() {
     const ric = window.requestIdleCallback
     let idleId: number | undefined
 
-    // Past first paint / LCP, then idle — then bring the real sphere
     const timeoutId = setTimeout(() => {
       if (typeof ric === "function") {
-        idleId = ric(enable, { timeout: 1200 })
+        idleId = ric(enable, { timeout: plan.mobile ? 2000 : 1200 })
       } else {
         enable()
       }
-    }, 600)
+    }, plan.delayMs)
 
     return () => {
       cancelled = true
       if (idleId !== undefined && typeof window.cancelIdleCallback === "function") {
         window.cancelIdleCallback(idleId)
       }
-      if (timeoutId !== undefined) clearTimeout(timeoutId)
+      clearTimeout(timeoutId)
     }
   }, [])
 
@@ -69,7 +83,7 @@ export function HeroDeferredShader() {
       className="landing-hero-shader pointer-events-none absolute inset-0"
       aria-hidden
     >
-      <ShaderLayer />
+      <ShaderLayer pixelDensity={mobile ? 0.55 : 1} />
     </div>
   )
 }

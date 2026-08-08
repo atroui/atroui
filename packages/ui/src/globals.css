@@ -356,13 +356,13 @@
     }
   }
 
-  /* Primary CTA - hero white/black pill */
+  /* Primary CTA — soft rect via --radius (not capsule) */
   .ms-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-lg);
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: 0.9375rem;
@@ -379,16 +379,15 @@
     transform: scale(0.97);
   }
 
-  /* Glass secondary CTA */
+  /* Secondary CTA — same radius token */
   .ms-cta-ghost {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-lg);
     border: 1px solid color-mix(in oklch, var(--foreground) 20%, transparent);
     background: color-mix(in oklch, var(--foreground) 5%, transparent);
-    backdrop-filter: blur(12px);
     font-size: 0.9375rem;
     font-weight: 500;
     color: var(--foreground);
@@ -428,12 +427,12 @@
     }
   }
 
-  /* Soft stamp — sketch handwriting, bold + soft brand highlight */
+  /* Soft stamp — sketch handwriting + brand highlight (soft rect, not capsule) */
   .ms-stamp {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-md);
     border: 1px solid color-mix(in oklch, var(--brand) 28%, transparent);
     background: color-mix(in oklch, var(--brand) 10%, transparent);
     color: color-mix(in oklch, var(--foreground) 88%, var(--brand) 12%);
@@ -537,9 +536,8 @@
     box-shadow: 0 0 0 1px var(--border-subtle);
   }
   .md-glass {
-    background: color-mix(in oklch, var(--foreground) 5%, transparent);
+    background: color-mix(in oklch, var(--background) 88%, var(--foreground));
     border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
-    backdrop-filter: blur(16px);
     border-radius: var(--radius-xl);
   }
 }

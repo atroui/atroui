@@ -105,12 +105,12 @@ export function ScopeChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={CONTENT.placeholder}
-          className="min-w-0 flex-1 rounded-full border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="min-w-0 flex-1 rounded-lg border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex size-10 items-center justify-center rounded-full bg-brand text-white disabled:opacity-60"
+          className="inline-flex size-10 items-center justify-center rounded-lg bg-brand text-white disabled:opacity-60"
           aria-label="Send"
         >
           {loading ? (

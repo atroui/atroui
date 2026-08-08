@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { Github, Star } from "lucide-react"
-import { LandingSketchHero } from "@/components/landing/sketch-hero"
+import { Star } from "lucide-react"
+import { PresenceHero } from "@/components/landing/presence-hero"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
@@ -34,18 +34,10 @@ const shell =
 export function LandingHero() {
   return (
     <div className="bg-black text-white">
-      <LandingSketchHero />
+      <PresenceHero />
 
-      <section className="relative border-t border-white/10">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-60"
-          style={{
-            backgroundImage:
-              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(11,123,255,0.18), transparent 60%)",
-          }}
-        />
-        <div className={`relative ${shell}`}>
+      <section className="border-t border-white/10">
+        <div className={shell}>
           <div className="grid gap-10 md:gap-12 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-5">
               <p className="ms-stamp">Inside</p>
@@ -54,17 +46,16 @@ export function LandingHero() {
                 <span className="ds-sketch-accent">find</span>
               </h2>
               <p className="ds-lede mt-3 max-w-sm text-neutral-300 sm:mt-4">
-                Own the UI with the registry. Borrow Host APIs for forms and AI
-                tools — your keys stay in your env.
+                Registry, Host APIs, blocks, and headless tools — one catalog.
               </p>
             </div>
 
-            <ul className="md-glass divide-y divide-white/10 lg:col-span-7">
+            <ul className="divide-y divide-white/10 border border-white/10 bg-white/[0.03] lg:col-span-7">
               {inside.map((item) => (
                 <li key={item.title}>
                   <Link
                     href={item.href}
-                    className="group flex flex-col gap-1.5 px-4 py-4 transition-colors hover:bg-white/5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
+                    className="group flex flex-col gap-1.5 px-4 py-4 transition-colors hover:bg-white/[0.04] sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
                   >
                     <span className="ds-sketch text-xl text-white transition-colors group-hover:text-sky-300 sm:text-2xl">
                       {item.title}
@@ -81,9 +72,7 @@ export function LandingHero() {
       </section>
 
       <section className="border-t border-white/10">
-        <div
-          className={`${shell} flex flex-col gap-6 sm:gap-8 md:flex-row md:items-end md:justify-between`}
-        >
+        <div className={shell}>
           <div className="max-w-lg">
             <p className="ms-stamp">atroui.com</p>
             <h2 className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl">
@@ -100,7 +89,7 @@ export function LandingHero() {
               >
                 shadcn registry
               </Link>{" "}
-              - source in your repo, editable{" "}
+              — source in your repo, editable{" "}
               <code className="break-all rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
                 CONTENT
               </code>
@@ -125,31 +114,6 @@ export function LandingHero() {
               .
             </p>
           </div>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
-            <a
-              href={GITHUB_REPO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ms-cta-ghost inline-flex w-full items-center justify-center gap-2 text-sm sm:w-auto"
-              aria-label="Star AtroUI on GitHub"
-            >
-              <Github className="size-4" aria-hidden />
-              <span>Star on GitHub</span>
-              <Star className="size-3.5 fill-current opacity-80" aria-hidden />
-            </a>
-            <Link
-              href="/docs/host-api"
-              className="ms-cta-ghost w-full justify-center text-sm sm:w-auto"
-            >
-              Host APIs
-            </Link>
-            <Link
-              href="/docs/registry"
-              className="ms-cta w-full justify-center text-sm sm:w-auto"
-            >
-              Own the UI
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -165,18 +129,10 @@ export function LandingHero() {
               href={GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 font-medium text-neutral-200 transition-colors hover:border-white/25 hover:bg-white/10 hover:text-white"
+              className="ds-hero-nav-link inline-flex items-center gap-1.5"
               aria-label="Star AtroUI on GitHub"
             >
               <Star className="size-3.5" aria-hidden />
-              Star
-            </a>
-            <a
-              href={GITHUB_REPO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ds-hero-nav-link"
-            >
               GitHub
             </a>
             <Link href="/docs/registry" className="ds-hero-nav-link">

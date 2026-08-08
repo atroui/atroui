@@ -80,7 +80,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background disabled:opacity-60"
+        className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background disabled:opacity-60"
       >
         {status === "loading" ? (
           <Loader2 className="size-4 animate-spin" aria-hidden />

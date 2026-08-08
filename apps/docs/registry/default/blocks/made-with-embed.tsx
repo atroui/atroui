@@ -97,7 +97,7 @@ export function MadeWithEmbed({
         <button
           type="button"
           onClick={copy}
-          className="mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background"
+          className="mt-4 inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background"
         >
           {copied ? (
             <>

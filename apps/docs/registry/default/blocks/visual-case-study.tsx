@@ -141,7 +141,7 @@ export function VisualCaseStudy({
                 {study.technologies.map((tech) => (
                   <li
                     key={tech}
-                    className="rounded-full border border-border-subtle bg-background px-3 py-1 text-xs text-muted-foreground"
+                    className="rounded-md border border-border-subtle bg-background px-3 py-1 text-xs text-muted-foreground"
                   >
                     {tech}
                   </li>

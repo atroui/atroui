@@ -297,7 +297,7 @@ function MetaChip({
   children: ReactNode;
 }) {
   const className =
-    "inline-flex items-center gap-1.5 rounded-full border border-border-subtle bg-background px-2.5 py-1 font-mono text-[11px] text-muted-foreground";
+    "inline-flex items-center gap-1.5 rounded-md border border-border-subtle bg-background px-2.5 py-1 font-mono text-[11px] text-muted-foreground";
   const inner = (
     <>
       <Icon className="h-3 w-3" strokeWidth={1.75} aria-hidden />

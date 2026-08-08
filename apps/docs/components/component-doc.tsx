@@ -27,6 +27,28 @@ interface ComponentDocProps {
   installation?: string
 }
 
+function DocStep({
+  n,
+  label,
+  children,
+}: {
+  n: string
+  label: string
+  children: React.ReactNode
+}) {
+  return (
+    <section className="space-y-3">
+      <div className="flex items-baseline gap-2.5">
+        <span className="font-mono text-[11px] tracking-[0.12em] text-brand/80">
+          {n}
+        </span>
+        <h2 className="ds-headline text-base text-foreground">{label}</h2>
+      </div>
+      {children}
+    </section>
+  )
+}
+
 export function ComponentDoc({
   title,
   description,
@@ -53,22 +75,22 @@ export function ComponentDoc({
     <article
       className={
         fullBleed
-          ? "mx-auto w-full max-w-6xl space-y-6 sm:space-y-8"
-          : "mx-auto w-full max-w-3xl space-y-6 sm:space-y-8"
+          ? "mx-auto w-full max-w-6xl space-y-8 sm:space-y-10"
+          : "mx-auto w-full max-w-3xl space-y-8 sm:space-y-10"
       }
     >
       <header className="space-y-2 sm:space-y-3">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <p className="ms-stamp">{kind}</p>
           {inRegistry ? (
-            <span className="ds-sketch rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-sm text-brand">
+            <span className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase">
               CLI registry
             </span>
           ) : null}
           {isHostApi ? (
             <Link
               href="/docs/host-api"
-              className="ds-sketch rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-sm text-brand transition-colors hover:bg-brand/20"
+              className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase transition-colors hover:text-brand"
             >
               Host API
             </Link>
@@ -80,12 +102,16 @@ export function ComponentDoc({
         <p className="max-w-2xl text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
           {description}
         </p>
+        <p className="font-mono text-[11px] tracking-[0.1em] text-muted-foreground/70 uppercase">
+          Preview → install → use
+        </p>
       </header>
 
-      <DocsExample preview={preview} code={code} fullBleed={fullBleed} />
+      <DocStep n="01" label="Preview">
+        <DocsExample preview={preview} code={code} fullBleed={fullBleed} />
+      </DocStep>
 
-      <section className="space-y-3">
-        <h2 className="ds-headline text-base text-foreground">Installation</h2>
+      <DocStep n="02" label="Install">
         {installCmd ? (
           <>
             <CodeBlock language="bash" code={installCmd} />
@@ -121,22 +147,20 @@ export function ComponentDoc({
             </p>
           </div>
         )}
-      </section>
+      </DocStep>
 
       {usage ? (
-        <section className="space-y-3">
-          <h2 className="ds-headline text-base text-foreground">Usage</h2>
+        <DocStep n="03" label="Usage">
           <div className="text-[15px] leading-relaxed text-muted-foreground">
             {usage}
           </div>
-        </section>
+        </DocStep>
       ) : null}
 
       {props && props.length > 0 ? (
-        <section className="space-y-3">
-          <h2 className="ds-headline text-base text-foreground">API Reference</h2>
+        <DocStep n={usage ? "04" : "03"} label="API reference">
           <PropsTable data={props} />
-        </section>
+        </DocStep>
       ) : null}
 
       {extra}

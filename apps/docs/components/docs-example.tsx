@@ -1,8 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "@/components/code-block"
+import { revealTween } from "@/lib/motion"
 
 type DocsExampleProps = {
   preview: React.ReactNode
@@ -13,33 +15,44 @@ type DocsExampleProps = {
 }
 
 /**
- * Preview / Code tabs with a live canvas that preserves design tokens.
+ * Preview / Code tabs — shared pill travels (fluidity) instead of a hard swap.
+ * Tween, not spring — Family chrome prefers easeOut over overshoot.
  */
 export function DocsExample({ preview, code, className, fullBleed }: DocsExampleProps) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
+  const reduce = useReducedMotion()
 
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-2xl border border-border-subtle bg-card/40 text-foreground backdrop-blur-md",
+        "overflow-hidden rounded-xl border border-border-subtle bg-card text-foreground",
         className
       )}
     >
-      <div className="flex items-center border-b border-border-subtle bg-white/[0.03] px-1.5">
-        <div className="flex gap-0.5 p-1.5">
+      <div className="flex items-center border-b border-border-subtle bg-white/[0.02] px-1.5">
+        <div className="relative flex gap-0.5 p-1.5">
           {(["preview", "code"] as const).map((key) => (
             <button
               key={key}
               type="button"
               onClick={() => setTab(key)}
               className={cn(
-                "rounded-full px-3.5 py-1.5 text-[13px] font-medium capitalize transition-colors",
+                "relative px-3.5 py-1.5 text-[13px] font-medium capitalize transition-colors",
                 tab === key
-                  ? "bg-white/10 text-foreground"
+                  ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
-              {key}
+              {tab === key && !reduce ? (
+                <motion.span
+                  layoutId="docs-example-tab"
+                  className="absolute inset-0 bg-white/10"
+                  transition={revealTween}
+                />
+              ) : tab === key ? (
+                <span className="absolute inset-0 bg-white/10" />
+              ) : null}
+              <span className="relative z-[1]">{key}</span>
             </button>
           ))}
         </div>

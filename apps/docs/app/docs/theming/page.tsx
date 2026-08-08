@@ -28,7 +28,7 @@ export default function ThemingPage() {
           <strong className="font-medium text-foreground">
             Caveat sketch display
           </strong>
-          , Outfit UI, glass panels, and pill CTAs. After{" "}
+          , Outfit UI, quiet panels, and soft-rect CTAs. After{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             npx shadcn add
           </code>
@@ -145,6 +145,41 @@ export default function ThemingPage() {
 --font-heading: var(--font-outfit); /* section h2 */
 --font-sans: var(--font-outfit);    /* body / UI */`}
         />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">Radius</h2>
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          One knob. CTAs, stamps, and panels use{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            --radius
+          </code>{" "}
+          (and{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            --radius-lg
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            --radius-md
+          </code>
+          ). Default is soft rectangle — not capsules. Circles stay for avatars,
+          status dots, and true toggles.
+        </p>
+        <CodeBlock
+          language="css"
+          code={`:root {\n  /* Soft rect (AtroUI default) */\n  --radius: 0.875rem;\n\n  /* Sharp — set once, CTAs follow */\n  /* --radius: 0; */\n\n  /* Extra soft — still not a pill */\n  /* --radius: 1.25rem; */\n}`}
+        />
+        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+          Want full pills? Edit the installed block — change{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            rounded-lg
+          </code>{" "}
+          to{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            rounded-full
+          </code>{" "}
+          on that button. We don&rsquo;t ship a second variant of every block.
+        </p>
       </section>
 
       <section className="space-y-4">

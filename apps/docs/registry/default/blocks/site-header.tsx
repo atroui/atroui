@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 
 import { LogoWordmark } from "@/components/brand/logo"
 import { getBrand } from "@/lib/brand"
@@ -22,16 +23,55 @@ const NAV = [
 
 const CTA = { label: "Hire us", href: "/contact" }
 
+const panelEase = [0.32, 0.72, 0, 1] as const
+
 function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`)
+}
+
+/** iOS-safe lock — overflow:hidden alone fights fixed drawers. */
+function useBodyScrollLock(locked: boolean) {
+  useEffect(() => {
+    if (!locked) return
+    const y = window.scrollY
+    const { style } = document.body
+    const prev = {
+      overflow: style.overflow,
+      position: style.position,
+      top: style.top,
+      width: style.width,
+      left: style.left,
+      right: style.right,
+    }
+    style.overflow = "hidden"
+    style.position = "fixed"
+    style.top = `-${y}px`
+    style.left = "0"
+    style.right = "0"
+    style.width = "100%"
+    return () => {
+      style.overflow = prev.overflow
+      style.position = prev.position
+      style.top = prev.top
+      style.width = prev.width
+      style.left = prev.left
+      style.right = prev.right
+      window.scrollTo(0, y)
+    }
+  }, [locked])
 }
 
 export function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const reduce = useReducedMotion()
   const brandName = getBrand().name
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     setOpen(false)
@@ -50,12 +90,87 @@ export function SiteHeader() {
       if (e.key === "Escape") setOpen(false)
     }
     window.addEventListener("keydown", onKey)
-    document.body.style.overflow = "hidden"
-    return () => {
-      window.removeEventListener("keydown", onKey)
-      document.body.style.overflow = ""
-    }
+    return () => window.removeEventListener("keydown", onKey)
   }, [open])
+
+  useBodyScrollLock(open)
+
+  const drawer =
+    mounted &&
+    createPortal(
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            key="site-header-drawer"
+            className="fixed inset-0 z-[200] flex md:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <button
+              type="button"
+              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+            />
+            <motion.div
+              id="mobile-nav"
+              className="relative ml-auto flex h-full w-[min(100%,20rem)] flex-col border-l border-border-subtle bg-background shadow-[-20px_0_40px_rgba(0,0,0,0.25)]"
+              initial={reduce ? false : { x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.28, ease: panelEase }}
+            >
+              <div className="flex items-center justify-between gap-3 border-b border-border-subtle px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
+                <LogoWordmark />
+                <button
+                  type="button"
+                  className="inline-flex size-9 items-center justify-center border border-border-subtle text-foreground"
+                  aria-label="Close menu"
+                  onClick={() => setOpen(false)}
+                >
+                  <X className="size-4" aria-hidden />
+                </button>
+              </div>
+              <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto overscroll-contain px-2 py-3 pb-[env(safe-area-inset-bottom)]">
+                {NAV.map((item) => {
+                  const active = isActive(pathname, item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "rounded-lg px-3 py-3 text-[15px] transition-colors",
+                        active
+                          ? "bg-muted font-medium text-foreground"
+                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+                <Link
+                  href={CTA.href}
+                  onClick={() => setOpen(false)}
+                  className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground"
+                >
+                  {CTA.label}
+                  <ArrowRight className="size-3.5" aria-hidden />
+                </Link>
+              </nav>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>,
+      document.body
+    )
 
   return (
     <header
@@ -116,7 +231,7 @@ export function SiteHeader() {
             <ThemeToggle />
             <Link
               href={CTA.href}
-              className="hidden h-9 items-center gap-1.5 rounded-full bg-primary px-3.5 text-sm font-medium text-primary-foreground md:inline-flex"
+              className="hidden h-9 items-center gap-1.5 rounded-lg bg-primary px-3.5 text-sm font-medium text-primary-foreground md:inline-flex"
             >
               {CTA.label}
               <ArrowRight className="size-3.5" aria-hidden />
@@ -139,55 +254,7 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            id="mobile-nav"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Navigation"
-            className="border-t border-border-subtle bg-background/95 backdrop-blur-xl md:hidden"
-            initial={reduce ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
-          >
-            <div className="mx-auto max-w-7xl border-x border-border-subtle">
-              <nav className="flex flex-col divide-y divide-border-subtle">
-                {NAV.map((item) => {
-                  const active = isActive(pathname, item.href)
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "flex min-h-12 items-center justify-between gap-3 px-4 py-3 text-base sm:px-6",
-                        active
-                          ? "font-medium text-foreground"
-                          : "text-muted-foreground"
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  )
-                })}
-                <div className="px-4 py-4 sm:px-6">
-                  <Link
-                    href={CTA.href}
-                    onClick={() => setOpen(false)}
-                    className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-full bg-primary text-sm font-medium text-primary-foreground"
-                  >
-                    {CTA.label}
-                    <ArrowRight className="size-4" aria-hidden />
-                  </Link>
-                </div>
-              </nav>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      {drawer}
     </header>
   )
 }

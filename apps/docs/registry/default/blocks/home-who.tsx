@@ -99,7 +99,7 @@ export function HomeWho({
             <div className="flex flex-col gap-3">
               <Link
                 href={CONTENT.ctaHref}
-                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto sm:justify-start"
+                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto sm:justify-start"
               >
                 {CONTENT.ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />

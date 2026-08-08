@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -152,6 +153,7 @@ function ChoiceButton({
 
 export function ProjectPlanner() {
   const router = useRouter();
+  const reduce = useReducedMotion();
   const [step, setStep] = useState(0);
   const [state, setState] = useState<PlannerState>({
     projectType: "",
@@ -263,6 +265,15 @@ export function ProjectPlanner() {
         </div>
 
         <div className="flex flex-1 flex-col p-6 sm:p-8 lg:p-10">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={step}
+              className="flex flex-1 flex-col"
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
+            >
           {step === 0 ? (
             <div className="space-y-4">
               <div>
@@ -533,13 +544,26 @@ export function ProjectPlanner() {
                 type="button"
                 onClick={() => setStep((s) => s + 1)}
                 disabled={!canNext()}
-                className="ms-cta disabled:pointer-events-none disabled:opacity-50"
+                className="ms-cta min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50"
               >
-                {step === 4 ? "See estimate" : "Continue"}
-                <ArrowRight className="size-4" aria-hidden />
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={step === 4 ? "estimate" : "continue"}
+                    className="inline-flex items-center gap-1.5"
+                    initial={reduce ? false : { opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduce ? undefined : { opacity: 0, y: -4 }}
+                    transition={{ duration: 0.16 }}
+                  >
+                    {step === 4 ? "See estimate" : "Continue"}
+                    <ArrowRight className="size-4" aria-hidden />
+                  </motion.span>
+                </AnimatePresence>
               </button>
             </div>
           ) : null}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>

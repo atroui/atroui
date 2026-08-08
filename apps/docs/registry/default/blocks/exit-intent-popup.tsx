@@ -158,14 +158,14 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
               localStorage.setItem(CONTENT.storageKey, "converted")
               sessionStorage.setItem(CONTENT.sessionKey, "1")
             }}
-            className="inline-flex h-11 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background"
+            className="inline-flex h-11 flex-1 items-center justify-center rounded-lg bg-foreground px-4 text-sm font-medium text-background"
           >
             {CONTENT.primaryLabel}
           </Link>
           <button
             type="button"
             onClick={close}
-            className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-border-subtle px-4 text-sm font-medium"
+            className="inline-flex h-11 flex-1 items-center justify-center rounded-lg border border-border-subtle px-4 text-sm font-medium"
           >
             {CONTENT.secondaryLabel}
           </button>
