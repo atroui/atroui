@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Docs & guides
+    url: https://www.atroui.com/docs
+    about: Installation, registry, Host APIs, and theming live on atroui.com.
+  - name: Discussions
+    url: https://github.com/atroui/atroui/discussions
+    about: Questions, ideas, and component requests that are not bugs.
+  - name: Security vulnerability
+    url: https://github.com/atroui/atroui/security/advisories/new
+    about: Report security issues privately (do not open a public issue).

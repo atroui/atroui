@@ -65,7 +65,11 @@ Copy [`.env.example`](.env.example) to `apps/docs/.env.local` if you need Host A
 │   │   └── CHANGELOG.md
 │   └── typescript-config/
 ├── .changeset/
-├── .github/workflows/
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows/
+├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── SECURITY.md
@@ -161,10 +165,14 @@ On [github.com/atroui/atroui](https://github.com/atroui/atroui):
 - **Website:** `https://www.atroui.com`
 - **License:** MIT (see [LICENSE](./LICENSE))
 - **Security policy:** [SECURITY.md](./SECURITY.md)
+- **Code of conduct:** [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- **Issue / PR templates:** `.github/ISSUE_TEMPLATE/`, `.github/PULL_REQUEST_TEMPLATE.md`
 
 ## Code of conduct
 
-Be respectful in issues, PRs, and discussions. Harassment or spam will be closed.
+This project follows the [Contributor Covenant](./CODE_OF_CONDUCT.md). Be
+respectful in issues, PRs, and discussions. Report enforcement concerns to
+`hello@iamk.xyz` with subject `[CONDUCT] atroui …`.
 
 ## License
 
