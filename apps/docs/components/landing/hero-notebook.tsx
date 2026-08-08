@@ -1,110 +1,150 @@
 /**
- * Dark notebook scrap — tangible "own the UI" object for the landing hero.
- * Two altitudes: studio registry + indie kit. Server-rendered (not LCP).
+ * Landing artifact pair (sketch concept):
+ * 1) Install scrap — two altitudes (Studio / Indie)
+ * 2) Claim scrap — Host APIs + BYOK, hanging below on a chalk fork
  */
+
+const altitudes = [
+  {
+    label: "Studio",
+    pkg: "@atroui/home-hero",
+  },
+  {
+    label: "Indie",
+    pkg: "@atroui/personal-hero",
+  },
+] as const
+
 export function HeroNotebook({ className }: { className?: string }) {
   return (
-    <aside
+    <div
       className={[
-        "landing-hero-notebook relative w-full max-w-md shrink-0",
+        "landing-hero-artifact relative flex w-full max-w-md shrink-0 flex-col",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
-      aria-label="Install examples"
     >
-      {/* Imperfect chalk frame */}
-      <svg
-        className="landing-hero-notebook-frame pointer-events-none absolute inset-0 h-full w-full"
-        viewBox="0 0 400 220"
-        preserveAspectRatio="none"
-        fill="none"
-        aria-hidden
+      {/* ── 1. Install scrap ── */}
+      <aside
+        className="landing-hero-notebook relative w-full"
+        aria-label="Install · two altitudes"
       >
-        <path
-          d="M14 18 C18 10, 380 8, 386 16 C394 28, 392 190, 384 202 C372 214, 22 216, 12 204 C4 190, 6 28, 14 18 Z"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Corner ticks */}
-        <path d="M22 28h14 M22 28v12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M378 28h-14 M378 28v12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M22 194h14 M22 194v-12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M378 194h-14 M378 194v-12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      </svg>
+        <div className="relative flex flex-col gap-3 px-4 py-4 sm:gap-3.5 sm:px-5 sm:py-5">
+          <p className="ds-sketch rotate-[-1deg] text-base text-sky-200/90">
+            install · two altitudes
+          </p>
 
-      <div className="relative px-5 py-5 sm:px-6 sm:py-6">
-        <p className="ds-sketch mb-3 text-base text-sky-200/90 rotate-[-1deg]">
-          install · two altitudes
-        </p>
+          <div className="flex flex-col gap-2.5">
+            {altitudes.map((item) => (
+              <div key={item.label} className="landing-hero-altitude">
+                <p className="font-mono text-[10px] tracking-[0.14em] text-neutral-500 uppercase">
+                  {item.label}
+                </p>
+                <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-neutral-200 sm:text-[12.5px]">
+                  <span className="text-sky-300/90">$</span> npx shadcn@latest
+                  add <span className="text-sky-200">{item.pkg}</span>
+                </p>
+              </div>
+            ))}
+          </div>
 
-        <div className="space-y-3 font-mono text-[11.5px] leading-relaxed sm:text-[12.5px]">
-          <div>
-            <p className="mb-0.5 text-[10px] tracking-[0.12em] text-neutral-500 uppercase">
-              Studio
-            </p>
-            <p className="break-all text-neutral-200">
-              <span className="text-sky-300/90">$</span>{" "}
-              npx shadcn@latest add @atroui/home-hero
-            </p>
-          </div>
-          <div>
-            <p className="mb-0.5 text-[10px] tracking-[0.12em] text-neutral-500 uppercase">
-              Indie
-            </p>
-            <p className="break-all text-neutral-200">
-              <span className="text-sky-300/90">$</span>{" "}
-              npx shadcn@latest add @atroui/personal-hero
-            </p>
-          </div>
+          <p className="font-mono text-[11px] text-neutral-500">
+            <span className="text-neutral-400">#</span> edit{" "}
+            <code className="rounded-full bg-white/10 px-1.5 py-0.5 text-neutral-200">
+              CONTENT
+            </code>{" "}
+            · own the files
+          </p>
         </div>
 
-        <p className="mt-4 font-mono text-[11px] text-neutral-500">
-          <span className="text-neutral-400">#</span> edit{" "}
-          <code className="rounded bg-white/10 px-1 py-0.5 text-neutral-200">
-            CONTENT
-          </code>{" "}
-          · own the files
-        </p>
-      </div>
+        <PencilMark />
+      </aside>
 
-      {/* Tiny pencil tip pointing at the scrap */}
+      {/* Chalk fork — install hangs down into the claim */}
       <svg
-        className="landing-hero-pencil pointer-events-none absolute -top-3 -right-2 h-10 w-10 text-neutral-300 sm:-top-4 sm:-right-3 sm:h-12 sm:w-12"
-        viewBox="0 0 48 48"
+        className="landing-hero-fork mx-auto -my-0.5 h-11 w-[4.5rem] shrink-0 text-sky-300/55"
+        viewBox="0 0 72 44"
         fill="none"
         aria-hidden
       >
         <path
-          d="M8 40 L28 8 C30 5, 34 6, 35 9 L40 28"
+          d="M36 1 V16"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="1.7"
           strokeLinecap="round"
-          strokeLinejoin="round"
+          strokeDasharray="3 5"
         />
         <path
-          d="M28 8 L34 11"
+          d="M36 16 C28 24, 16 30, 12 42"
           stroke="currentColor"
-          strokeWidth="1.8"
+          strokeWidth="1.7"
           strokeLinecap="round"
+          strokeDasharray="3 5"
         />
         <path
-          d="M8 40 L14 38 L12 34 Z"
-          fill="currentColor"
-          opacity="0.85"
-        />
-        <path
-          d="M36 22 L42 36"
-          stroke="#92dbe0"
-          strokeWidth="1.6"
+          d="M36 16 C44 24, 56 30, 60 42"
+          stroke="currentColor"
+          strokeWidth="1.7"
           strokeLinecap="round"
-          opacity="0.7"
+          strokeDasharray="3 5"
         />
       </svg>
-    </aside>
+
+      {/* ── 2. Claim scrap — Host APIs + BYOK ── */}
+      <aside
+        className="landing-hero-claim relative w-full"
+        aria-label="Host APIs and bring your own keys"
+      >
+        <div className="relative px-4 py-4 sm:px-5 sm:py-5">
+          <p className="font-mono text-[10px] tracking-[0.14em] text-neutral-500 uppercase">
+            Host APIs · BYOK
+          </p>
+          <p className="ds-sketch mt-2 rotate-[0.5deg] text-[1.2rem] leading-[1.2] text-neutral-100 sm:text-[1.35rem]">
+            Borrow the boring security.
+            <br />
+            <span className="ds-sketch-accent">Bring your own keys.</span>
+          </p>
+          <p className="mt-3 max-w-[34ch] font-mono text-[11px] leading-snug text-neutral-500">
+            Forms + AI on <span className="text-neutral-300">your</span> Next.js
+            host. AtroUI never holds Resend, SMTP, or model keys.
+          </p>
+        </div>
+      </aside>
+    </div>
+  )
+}
+
+function PencilMark() {
+  return (
+    <svg
+      className="landing-hero-pencil pointer-events-none absolute -top-3 -right-2 h-10 w-10 text-neutral-300 sm:-top-4 sm:-right-3 sm:h-12 sm:w-12"
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden
+    >
+      <path
+        d="M8 40 L28 8 C30 5, 34 6, 35 9 L40 28"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M28 8 L34 11"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path d="M8 40 L14 38 L12 34 Z" fill="currentColor" opacity="0.85" />
+      <path
+        d="M36 22 L42 36"
+        stroke="#92dbe0"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+    </svg>
   )
 }
 

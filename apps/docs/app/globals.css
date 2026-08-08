@@ -173,7 +173,8 @@ html {
 }
 
 /* Notebook scrap — dark paper on chalkboard */
-.landing-hero-notebook {
+.landing-hero-notebook,
+.landing-hero-claim {
   background:
     linear-gradient(
       155deg,
@@ -183,13 +184,36 @@ html {
     ),
     rgba(12, 12, 14, 0.92);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(146, 219, 224, 0.28),
     0 18px 40px rgba(0, 0, 0, 0.45);
+  /* imperfect chalk edge — not a perfect radius */
+  border-radius: 0.85rem 0.7rem 0.9rem 0.75rem;
+}
+
+.landing-hero-notebook {
   animation: landing-notebook-settle 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.landing-hero-claim {
+  transform: rotate(-0.8deg);
+  animation: landing-claim-settle 1s cubic-bezier(0.23, 1, 0.32, 1) 0.15s both;
 }
 
 .landing-hero-notebook-frame {
   color: rgba(146, 219, 224, 0.45);
+}
+
+/* Inner altitude panes — Studio / Indie */
+.landing-hero-altitude {
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.38);
+  padding: 0.7rem 0.85rem 0.8rem;
+  box-shadow: inset 0 0 0 1px rgba(146, 219, 224, 0.04);
+}
+
+.landing-hero-altitude + .landing-hero-altitude {
+  transform: rotate(-0.4deg);
 }
 
 .landing-hero-pencil {
@@ -255,7 +279,18 @@ html {
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(1.5deg);
+    transform: translate3d(0, 0, 0) rotate(1.2deg);
+  }
+}
+
+@keyframes landing-claim-settle {
+  from {
+    opacity: 0.5;
+    transform: translate3d(-8px, 12px, 0) rotate(-2.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-0.8deg);
   }
 }
 
@@ -286,6 +321,7 @@ html {
   .landing-hero-scribble--dot,
   .landing-hero-cta,
   .landing-hero-notebook,
+  .landing-hero-claim,
   .landing-hero-connector-path,
   .landing-hero-connector-end {
     animation: none !important;
@@ -293,7 +329,12 @@ html {
 
   .landing-hero-notebook {
     opacity: 1;
-    transform: rotate(1.5deg);
+    transform: rotate(1.2deg);
+  }
+
+  .landing-hero-claim {
+    opacity: 1;
+    transform: rotate(-0.8deg);
   }
 
   .landing-hero-connector-path {

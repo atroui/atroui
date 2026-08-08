@@ -1,8 +1,9 @@
 "use client"
 
+import { useEffect, useId, useState } from "react"
 import Link from "next/link"
-import { Star } from "lucide-react"
-import MotionDrawer from "@/components/ui/motion-drawer"
+import { AnimatePresence, motion } from "motion/react"
+import { Menu, Star, X } from "lucide-react"
 import { LogoMark } from "@/components/logo-mark"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
@@ -15,43 +16,32 @@ const navLinks = [
   { label: "Blog", href: "/blog" },
 ] as const
 
+const spring = { type: "spring" as const, damping: 28, stiffness: 180 }
+
 export function HeroMobileNav() {
+  const [open, setOpen] = useState(false)
+  const panelId = useId()
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
+    document.addEventListener("keydown", onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.removeEventListener("keydown", onKey)
+      document.body.style.overflow = prev
+    }
+  }, [open])
+
   return (
-    <div className="flex items-center justify-between gap-4 px-5 pt-4 sm:px-8 md:hidden">
-      <MotionDrawer
-        direction="right"
-        width={300}
-        backgroundColor="#000000"
-        clsBtnClassName="bg-neutral-800 border-r border-neutral-900 text-white"
-        contentClassName="bg-black border-r border-neutral-900 text-white"
-        btnClassName="bg-white text-black relative w-fit p-2 left-0 top-0"
-      >
-        <nav className="space-y-4">
-          <div className="flex items-center gap-2 text-white">
-            <LogoMark className="h-8 w-8 text-white" />
-            <span className="ds-sketch text-2xl tracking-tight">AtroUI</span>
-          </div>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block rounded-sm p-2 hover:bg-neutral-100 hover:text-black"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href={GITHUB_REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 flex items-center gap-2 rounded-sm p-2 hover:bg-neutral-100 hover:text-black"
-            aria-label="Star AtroUI on GitHub"
-          >
-            <Star className="size-4" aria-hidden />
-            Star on GitHub
-          </a>
-        </nav>
-      </MotionDrawer>
+    <div className="relative z-20 flex items-center justify-between gap-3 px-5 pt-4 sm:px-8 md:hidden">
+      <Link href="/" className="flex items-center gap-2 text-white">
+        <LogoMark className="h-8 w-8 text-white" />
+        <span className="ds-sketch text-2xl tracking-tight">AtroUI</span>
+      </Link>
 
       <div className="flex items-center gap-2">
         <a
@@ -73,7 +63,99 @@ export function HeroMobileNav() {
           />
           Own UI
         </Link>
+        <button
+          type="button"
+          className="inline-flex size-10 items-center justify-center rounded-lg bg-white text-black"
+          aria-label="Open menu"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen(true)}
+        >
+          <Menu className="size-5" aria-hidden />
+        </button>
       </div>
+
+      <AnimatePresence>
+        {open ? (
+          <div
+            className="fixed inset-0 z-[100] flex"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+          >
+            <motion.button
+              type="button"
+              className="absolute inset-0 bg-black/75"
+              aria-label="Close menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              onClick={() => setOpen(false)}
+            />
+
+            <motion.div
+              id={panelId}
+              className="relative ml-auto flex h-full w-[min(100%,20rem)] flex-col border-l border-white/10 bg-black shadow-[-24px_0_48px_rgba(0,0,0,0.65)]"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={spring}
+            >
+              <div className="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
+                <div className="flex items-center gap-2 text-white">
+                  <LogoMark className="h-7 w-7 text-white" />
+                  <span className="ds-sketch text-xl tracking-tight">AtroUI</span>
+                </div>
+                <button
+                  type="button"
+                  className="inline-flex size-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white"
+                  aria-label="Close menu"
+                  onClick={() => setOpen(false)}
+                >
+                  <X className="size-5" aria-hidden />
+                </button>
+              </div>
+
+              <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-3 py-4">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + i * 0.05, duration: 0.35 }}
+                  >
+                    <Link
+                      href={link.href}
+                      className="block rounded-lg px-3 py-3 text-[15px] text-neutral-200 transition-colors hover:bg-white/5 hover:text-white"
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.08 + navLinks.length * 0.05, duration: 0.35 }}
+                >
+                  <a
+                    href={GITHUB_REPO}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-2 rounded-lg px-3 py-3 text-[15px] text-neutral-200 transition-colors hover:bg-white/5 hover:text-white"
+                    aria-label="Star AtroUI on GitHub"
+                    onClick={() => setOpen(false)}
+                  >
+                    <Star className="size-4" aria-hidden />
+                    Star on GitHub
+                  </a>
+                </motion.div>
+              </nav>
+            </motion.div>
+          </div>
+        ) : null}
+      </AnimatePresence>
     </div>
   )
 }
