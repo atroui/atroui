@@ -43,10 +43,9 @@ export function HeroDeferredShader() {
 
     const ric = window.requestIdleCallback
     let idleId: number | undefined
-    let timeoutId: ReturnType<typeof setTimeout> | undefined
 
     // Past first paint / LCP, then idle — then bring the real sphere
-    timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if (typeof ric === "function") {
         idleId = ric(enable, { timeout: 1200 })
       } else {

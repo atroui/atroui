@@ -79,7 +79,6 @@ export function MadeWithEmbed({
           className="mt-6 inline-block ring-1 ring-border-subtle transition-opacity hover:opacity-90"
           aria-label={`${name} badge preview`}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={badgeSrc}
             alt={alt}
