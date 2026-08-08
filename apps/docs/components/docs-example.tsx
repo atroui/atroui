@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "@/components/code-block"
 
@@ -13,10 +14,11 @@ type DocsExampleProps = {
 }
 
 /**
- * Preview / Code tabs with a live canvas that preserves design tokens.
+ * Preview / Code tabs — shared pill travels (fluidity) instead of a hard swap.
  */
 export function DocsExample({ preview, code, className, fullBleed }: DocsExampleProps) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
+  const reduce = useReducedMotion()
 
   return (
     <div
@@ -26,20 +28,29 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
       )}
     >
       <div className="flex items-center border-b border-border-subtle bg-white/[0.03] px-1.5">
-        <div className="flex gap-0.5 p-1.5">
+        <div className="relative flex gap-0.5 p-1.5">
           {(["preview", "code"] as const).map((key) => (
             <button
               key={key}
               type="button"
               onClick={() => setTab(key)}
               className={cn(
-                "rounded-full px-3.5 py-1.5 text-[13px] font-medium capitalize transition-colors",
+                "relative rounded-full px-3.5 py-1.5 text-[13px] font-medium capitalize transition-colors",
                 tab === key
-                  ? "bg-white/10 text-foreground"
+                  ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
-              {key}
+              {tab === key && !reduce ? (
+                <motion.span
+                  layoutId="docs-example-tab"
+                  className="absolute inset-0 rounded-full bg-white/10"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              ) : tab === key ? (
+                <span className="absolute inset-0 rounded-full bg-white/10" />
+              ) : null}
+              <span className="relative z-[1]">{key}</span>
             </button>
           ))}
         </div>
