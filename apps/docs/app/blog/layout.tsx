@@ -1,6 +1,6 @@
 import { Merriweather } from "next/font/google"
 import { SiteHeader } from "@/components/site-header"
-import { DocsPageMotion } from "@/components/docs-page-motion"
+import { DocsRouteTransition } from "@/components/view-transitions"
 
 /** Screen-optimized serif for long-form posts — paired with Outfit headings. */
 const merriweather = Merriweather({
@@ -15,7 +15,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     <>
       <SiteHeader />
       <div className={merriweather.variable}>
-        <DocsPageMotion>{children}</DocsPageMotion>
+        <DocsRouteTransition>{children}</DocsRouteTransition>
       </div>
     </>
   )

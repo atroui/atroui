@@ -8,6 +8,11 @@ import {
   HeroChalkConnector,
   HeroNotebook,
 } from "@/components/landing/hero-notebook"
+import {
+  SharedBrand,
+  SharedOwnCta,
+  TransitionLink,
+} from "@/components/view-transitions"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
@@ -173,19 +178,25 @@ export function LandingSketchHero() {
       <HeroMobileNav />
 
       <header className="relative z-10 hidden items-center justify-between px-8 py-5 md:flex lg:px-12">
-        <Link href="/" className="flex items-center gap-2.5 text-white">
-          <LogoMark className="h-8 w-8 text-white" />
-          <span className="ds-sketch text-2xl tracking-tight">AtroUI</span>
-        </Link>
+        <SharedBrand>
+          <TransitionLink href="/" className="flex items-center gap-2.5 text-white">
+            <LogoMark className="h-8 w-8 text-white" />
+            <span className="ds-sketch text-2xl tracking-tight">AtroUI</span>
+          </TransitionLink>
+        </SharedBrand>
 
         <nav
           className="flex items-center gap-10 text-sm font-medium tracking-wide text-white/75 lg:gap-12"
           aria-label="Primary"
         >
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="ds-hero-nav-link">
+            <TransitionLink
+              key={link.href}
+              href={link.href}
+              className="ds-hero-nav-link"
+            >
               {link.label}
-            </Link>
+            </TransitionLink>
           ))}
         </nav>
 
@@ -201,16 +212,18 @@ export function LandingSketchHero() {
             Star
             <Star className="size-3.5 opacity-80" aria-hidden />
           </a>
-          <Link
-            href="/docs/registry"
-            className="group inline-flex h-11 items-center gap-2.5 rounded-full bg-white px-5 text-sm font-medium text-black shadow-[0_0_18px_rgba(11,123,255,0.35)] transition hover:bg-white/90"
-          >
-            <span
-              className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)] transition group-hover:scale-110"
-              aria-hidden
-            />
-            Own the UI
-          </Link>
+          <SharedOwnCta>
+            <TransitionLink
+              href="/docs/registry"
+              className="group inline-flex h-11 items-center gap-2.5 rounded-full bg-white px-5 text-sm font-medium text-black shadow-[0_0_18px_rgba(11,123,255,0.35)] transition hover:bg-white/90"
+            >
+              <span
+                className="size-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(146,219,224,0.9)] transition group-hover:scale-110"
+                aria-hidden
+              />
+              Own the UI
+            </TransitionLink>
+          </SharedOwnCta>
         </div>
       </header>
 
@@ -241,19 +254,19 @@ export function LandingSketchHero() {
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-3.5">
-                <Link
+                <TransitionLink
                   href="/docs/registry"
                   className="landing-hero-cta inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.4)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
                 >
                   <span className="size-1.5 rounded-full bg-sky-400" aria-hidden />
                   Own the UI
-                </Link>
-                <Link
+                </TransitionLink>
+                <TransitionLink
                   href="/docs/host-api"
                   className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-[15px] font-medium text-white backdrop-blur-md transition hover:bg-white/10 sm:px-7 sm:py-3.5 sm:text-base"
                 >
                   Host APIs
-                </Link>
+                </TransitionLink>
               </div>
             </div>
 

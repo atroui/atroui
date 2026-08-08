@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_FOUNDER_AVATAR: "/images/founder-portrait.png",
   },
   experimental: {
+    viewTransition: true,
     optimizePackageImports: [
       "atroui",
       "lucide-react",
