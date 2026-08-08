@@ -43,49 +43,128 @@ const catalogBands = [
 ] as const
 
 /**
- * Landing hero — chalkboard + notebook artifact (A) + light chalk mural (B).
- * Critical text + CSS atmosphere are server-rendered (instant LCP).
+ * Landing hero — chalkboard mural + notebook artifact.
+ * SSR chalk sphere holds the frame; WebGL fades in as underpainting upgrade.
  */
 export function LandingSketchHero() {
   return (
     <section className="landing-sketch-hero relative flex min-h-svh flex-col overflow-hidden bg-black text-white">
+      {/*
+        Chalkboard mural — intentional when WebGL is delayed/off.
+        Not soft orbs (those read as AI-default). The sphere is drawn.
+      */}
       <div className="landing-hero-atmosphere" aria-hidden>
-        <div className="landing-hero-orb landing-hero-orb--cyan" />
-        <div className="landing-hero-orb landing-hero-orb--brand" />
-        <div className="landing-hero-orb landing-hero-orb--ink" />
-        <div className="landing-hero-grain bg-grain" />
+        <div className="landing-hero-board" />
+        <div className="landing-hero-dust" />
         <svg
-          className="landing-hero-scribbles"
+          className="landing-hero-chalk"
           viewBox="0 0 1200 800"
           preserveAspectRatio="xMidYMid slice"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
+          {/* Hatched chalk sphere — silhouette of the product WebGL orb */}
+          <g className="landing-hero-chalk-sphere">
+            <ellipse
+              cx="720"
+              cy="430"
+              rx="268"
+              ry="252"
+              stroke="#0b7bff"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeDasharray="3 7 1 5"
+              opacity="0.55"
+            />
+            <ellipse
+              cx="718"
+              cy="428"
+              rx="248"
+              ry="232"
+              stroke="#92dbe0"
+              strokeWidth="1.4"
+              strokeDasharray="2 9 4 6"
+              opacity="0.4"
+            />
+            <path
+              d="M470 430 C490 280, 620 210, 720 205 S950 280, 970 430 S850 650, 720 655 S490 580, 470 430"
+              stroke="#3865cf"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeDasharray="5 8 2 6"
+              opacity="0.5"
+            />
+            {/* Contour meridians — imperfect, chalky */}
+            <path
+              d="M720 205 C640 300, 620 380, 720 430 S800 560, 720 655"
+              stroke="#92dbe0"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              opacity="0.35"
+            />
+            <path
+              d="M720 205 C800 300, 820 380, 720 430 S640 560, 720 655"
+              stroke="#0b7bff"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              opacity="0.32"
+            />
+            <path
+              d="M490 360 C580 330, 680 320, 780 340 S920 390, 950 430"
+              stroke="#92dbe0"
+              strokeWidth="1.1"
+              strokeLinecap="round"
+              opacity="0.28"
+            />
+            <path
+              d="M500 520 C600 560, 700 570, 800 550 S920 490, 960 450"
+              stroke="#3865cf"
+              strokeWidth="1.1"
+              strokeLinecap="round"
+              opacity="0.28"
+            />
+            {/* Cross-hatch fill (chalk pressure) */}
+            <path
+              d="M560 300 L640 380 M590 280 L680 370 M630 265 L720 360 M680 255 L760 350 M720 250 L800 345 M760 255 L840 360 M800 270 L870 380 M540 360 L620 450 M570 390 L660 490 M610 420 L700 520 M660 450 L750 545 M710 470 L800 555 M760 490 L850 560"
+              stroke="#0b7bff"
+              strokeWidth="0.9"
+              strokeLinecap="round"
+              opacity="0.18"
+            />
+          </g>
+
+          {/* Margin chalk marks — board edge language, not floating decor */}
           <path
-            className="landing-hero-scribble landing-hero-scribble--a"
-            d="M80 120 C220 40, 340 200, 480 90 S760 40, 920 160"
+            className="landing-hero-chalk-stroke"
+            d="M48 90 C120 60, 160 140, 220 100"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeDasharray="4 8 2 6"
+          />
+          <path
+            className="landing-hero-chalk-stroke landing-hero-chalk-stroke--late"
+            d="M980 120 L1040 95 M1060 140 L1110 118 M1020 170 L1085 155"
             stroke="currentColor"
             strokeWidth="1.4"
             strokeLinecap="round"
-            strokeDasharray="6 10 3 8"
           />
           <path
-            className="landing-hero-scribble landing-hero-scribble--b"
-            d="M1080 640 C920 720, 780 560, 620 680 S280 760, 140 620"
+            className="landing-hero-chalk-stroke"
+            d="M70 680 C140 720, 200 640, 280 700"
             stroke="currentColor"
-            strokeWidth="1.2"
+            strokeWidth="1.3"
             strokeLinecap="round"
-            strokeDasharray="4 12 2 9"
+            strokeDasharray="3 9"
           />
-          <circle
-            className="landing-hero-scribble landing-hero-scribble--dot"
-            cx="1040"
-            cy="180"
-            r="18"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeDasharray="3 5"
-          />
+          <text
+            className="landing-hero-chalk-label"
+            x="86"
+            y="740"
+            fill="currentColor"
+          >
+            own the files
+          </text>
         </svg>
       </div>
 

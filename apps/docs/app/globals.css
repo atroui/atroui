@@ -71,124 +71,126 @@ html {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  background: var(--ds-void);
+  background: #050608;
 }
 
-/* Soft sphere bloom — matches the old shader silhouette without WebGL */
-.landing-hero-atmosphere::before {
-  content: "";
+/* Real chalkboard — slate board, not soft neon orbs */
+.landing-hero-board {
   position: absolute;
-  inset: -10%;
+  inset: 0;
   background:
-    linear-gradient(
-      118deg,
-      transparent 58%,
-      color-mix(in srgb, var(--ds-brand) 22%, transparent) 68%,
-      color-mix(in srgb, var(--ds-cyan) 28%, transparent) 74%,
-      transparent 82%
+    radial-gradient(
+      ellipse 80% 55% at 62% 58%,
+      color-mix(in srgb, var(--ds-brand) 14%, transparent) 0%,
+      transparent 62%
     ),
     radial-gradient(
-      ellipse 70% 55% at 18% 88%,
-      color-mix(in srgb, var(--ds-brand) 55%, transparent) 0%,
-      color-mix(in srgb, var(--ds-brand) 28%, transparent) 35%,
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 45% 40% at 62% 42%,
-      color-mix(in srgb, var(--ds-cyan) 32%, transparent) 0%,
-      color-mix(in srgb, var(--ds-brand) 18%, transparent) 40%,
+      ellipse 50% 40% at 18% 82%,
+      color-mix(in srgb, var(--ds-ink) 18%, transparent) 0%,
       transparent 70%
     ),
-    radial-gradient(
-      ellipse 90% 60% at 50% 110%,
-      color-mix(in srgb, var(--ds-ink) 45%, transparent) 0%,
-      transparent 55%
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.012) 2px,
+      rgba(255, 255, 255, 0.012) 3px
     ),
-    var(--ds-void);
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.008) 3px,
+      rgba(255, 255, 255, 0.008) 4px
+    ),
+    linear-gradient(
+      165deg,
+      #0a0c10 0%,
+      #07090d 42%,
+      #050608 100%
+    );
 }
 
-/* Film grain locked to the blue wash */
-.landing-hero-atmosphere::after {
-  content: "";
+/* Chalk dust — fine, board-specific, not film-grain glow soup */
+.landing-hero-dust {
   position: absolute;
   inset: 0;
-  opacity: 0.55;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.35  0 0 0 0 0.85  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  background-size: 180px 180px;
-  pointer-events: none;
-}
-
-.landing-hero-orb {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.85;
-  will-change: transform;
-  mix-blend-mode: screen;
-}
-
-.landing-hero-orb--cyan {
-  top: 8%;
-  right: 8%;
-  width: min(52vw, 36rem);
-  height: min(52vw, 36rem);
-  background: color-mix(in srgb, var(--ds-cyan) 55%, transparent);
-  animation: landing-orb-drift 18s ease-in-out infinite alternate;
-}
-
-.landing-hero-orb--brand {
-  bottom: -8%;
-  left: -10%;
-  width: min(70vw, 48rem);
-  height: min(70vw, 48rem);
-  background: color-mix(in srgb, var(--ds-brand) 60%, transparent);
-  animation: landing-orb-drift 22s ease-in-out infinite alternate-reverse;
-}
-
-.landing-hero-orb--ink {
-  top: 35%;
-  left: 35%;
-  width: min(44vw, 28rem);
-  height: min(44vw, 28rem);
-  background: color-mix(in srgb, var(--ds-ink) 50%, transparent);
-  animation: landing-orb-drift 26s ease-in-out infinite alternate;
-}
-
-.landing-hero-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.4;
+  opacity: 0.45;
   mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='d'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.9  0 0 0 0 0.95  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23d)'/></svg>");
+  background-size: 200px 200px;
   z-index: 1;
 }
 
-.landing-hero-scribbles {
+.landing-hero-chalk {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  color: color-mix(in srgb, var(--ds-cyan) 22%, transparent);
+  color: color-mix(in srgb, var(--ds-cyan) 40%, #c8d4e0);
   z-index: 1;
 }
 
-.landing-hero-scribble--a {
-  animation: landing-scribble-pulse 9s ease-in-out infinite;
+.landing-hero-chalk-sphere {
+  transform-origin: 720px 430px;
+  animation: landing-chalk-settle 1.4s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
-.landing-hero-scribble--b {
-  animation: landing-scribble-pulse 11s ease-in-out infinite 1.2s;
+/* When WebGL arrives, keep chalk as a quiet underdrawing — don't compete */
+.landing-sketch-hero:has(.landing-hero-shader) .landing-hero-chalk-sphere {
+  opacity: 0.22;
+  transition: opacity 1.2s ease;
 }
 
-.landing-hero-scribble--dot {
-  color: color-mix(in srgb, var(--ds-cyan) 45%, transparent);
-  animation: landing-scribble-pulse 7s ease-in-out infinite 0.6s;
+.landing-sketch-hero:has(.landing-hero-shader) .landing-hero-board {
+  opacity: 0.55;
+  transition: opacity 1.2s ease;
+}
+
+.landing-hero-chalk-stroke {
+  opacity: 0.55;
+  animation: landing-chalk-stroke 8s ease-in-out infinite alternate;
+}
+
+.landing-hero-chalk-stroke--late {
+  animation-delay: 1.4s;
+  opacity: 0.4;
+}
+
+.landing-hero-chalk-label {
+  font-family: var(--font-caveat, Caveat, cursive);
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .landing-hero-chalk-label {
+    font-size: 34px;
+  }
+
+  .landing-hero-shader {
+    mask-image: radial-gradient(
+      ellipse 120% 100% at 50% 55%,
+      black 35%,
+      transparent 95%
+    );
+  }
+
+  .landing-hero-stage {
+    min-height: 0;
+    padding-top: 1rem;
+  }
+
+  .landing-hero-artifact {
+    max-width: none;
+  }
 }
 
 .landing-hero-brand-word {
   text-shadow:
-    0 0 56px color-mix(in srgb, var(--ds-brand) 45%, transparent),
-    0 0 2px rgba(255, 255, 255, 0.15);
+    0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 40px color-mix(in srgb, var(--ds-brand) 28%, transparent);
 }
 
 .landing-hero-rule {
@@ -208,7 +210,6 @@ html {
 /* Production WebGL sphere — full-bleed fade after idle */
 .landing-hero-shader {
   opacity: 0;
-  /* Let the sphere read like atroui.com — light vignette only */
   mask-image: radial-gradient(
     ellipse 95% 90% at 50% 45%,
     black 40%,
@@ -358,22 +359,23 @@ html {
   animation: landing-connector-end 0.35s ease-out 1.15s forwards;
 }
 
-@keyframes landing-orb-drift {
+@keyframes landing-chalk-settle {
   from {
-    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.35;
+    transform: translate3d(8px, 6px, 0) rotate(-1.2deg);
   }
   to {
-    transform: translate3d(3%, -4%, 0) scale(1.08);
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
 }
 
-@keyframes landing-scribble-pulse {
-  0%,
-  100% {
+@keyframes landing-chalk-stroke {
+  from {
     opacity: 0.35;
   }
-  50% {
-    opacity: 0.85;
+  to {
+    opacity: 0.65;
   }
 }
 
@@ -430,10 +432,8 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .landing-hero-orb,
-  .landing-hero-scribble--a,
-  .landing-hero-scribble--b,
-  .landing-hero-scribble--dot,
+  .landing-hero-chalk-sphere,
+  .landing-hero-chalk-stroke,
   .landing-hero-cta,
   .landing-hero-notebook,
   .landing-hero-claim,
@@ -445,6 +445,11 @@ html {
 
   .landing-hero-shader {
     display: none;
+  }
+
+  .landing-hero-chalk-sphere {
+    opacity: 1;
+    transform: none;
   }
 
   .landing-hero-notebook {

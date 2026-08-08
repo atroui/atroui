@@ -1,0 +1,39 @@
+---
+description: AtroUI product UX — Family Values (simplicity, fluidity, delight)
+alwaysApply: true
+---
+
+# Family Values (AtroUI)
+
+Inspired by [Family Values](https://benji.org/family-values). Every product UI change in this repo should respect these principles. Table-stakes (utility, performance, security, a11y, `prefers-reduced-motion`) are never traded away.
+
+## Simplicity — gradual revelation
+
+- Fundamentals stay visible; depth appears when relevant.
+- Prefer overlays / trays / progressive disclosure over dumping every option on screen.
+- One primary action or idea per focused surface (tray, dialog step, hero scrap).
+- Keep context: overlay on place rather than full-screen teleport when the user is mid-task.
+
+## Fluidity — fly, don’t teleport
+
+- Transitions must clarify path A→B (space, direction, cause).
+- Shared elements that persist should **travel**, not remount as duplicates.
+- Prefer short tweens (`easeOutExpo`-ish) over spring overshoot for chrome (drawers, menus) — overshoot feels glitchy on web.
+- Directional motion for hierarchical nav; lateral/fade for peer switches.
+- Fixed overlays: portal to `document.body`, iOS-safe scroll lock (`apps/docs/hooks/use-body-scroll-lock.ts`), shared easings (`apps/docs/lib/motion.ts`).
+- Never animate “for vibes” without an architectural reason.
+
+## Delight — selective emphasis
+
+- Polish everywhere; sprinkle magic selectively.
+- Frequent paths: tiny details only (copy feedback, label morph, comma shift energy).
+- Rare paths: stronger moments allowed (settling chalk, confetti-scale only if earned).
+- Corners count (empty states, errors, 404) — dirty bathroom problem.
+- Avoid AI-slop atmosphere: no soft blur-orb soup as the product identity. Prefer intentional material (chalkboard, real WebGL sphere, owned sketch language).
+
+## When editing UI
+
+1. Name which principle you’re serving.
+2. Prefer shared motion tokens over one-off springs.
+3. Respect reduced motion: skip decorative motion; keep clarity.
+4. Mobile is first-class — no “CSS bloom only” excuses that leave a lifeless frame.

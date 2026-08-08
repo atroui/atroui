@@ -3,10 +3,13 @@
 import * as React from "react"
 import { createPortal } from "react-dom"
 import { usePathname, useRouter } from "next/navigation"
+import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { Search, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { badgeLabel, allNavItems } from "@/lib/navigation"
 import { useFocusTrap } from "@/lib/use-focus-trap"
+import { useBodyScrollLock } from "@/hooks/use-body-scroll-lock"
+import { dialogTween, fadeTween } from "@/lib/motion"
 
 function SearchDialog({
   query,
@@ -22,20 +25,30 @@ function SearchDialog({
   onSelect: (href: string) => void
 }) {
   const panelRef = React.useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
   useFocusTrap(true, panelRef)
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 px-4 pt-[12vh] backdrop-blur-sm"
+    <motion.div
+      className="fixed inset-0 z-[200] flex items-start justify-center px-4 pt-[12vh]"
+      initial={reduce ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={fadeTween}
       onClick={onClose}
     >
-      <div
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" aria-hidden />
+      <motion.div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Search documentation"
         tabIndex={-1}
-        className="w-full max-w-lg overflow-hidden rounded-2xl border border-border-subtle bg-card shadow-[0_24px_64px_-20px_color-mix(in_oklch,var(--color-brand)_35%,transparent)]"
+        className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-border-subtle bg-card shadow-[0_24px_64px_-20px_color-mix(in_oklch,var(--color-brand)_35%,transparent)]"
+        initial={reduce ? false : { opacity: 0, y: 10, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+        transition={dialogTween}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 border-b border-border-subtle px-3 py-2">
@@ -95,8 +108,8 @@ function SearchDialog({
             ))
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -127,14 +140,7 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
     setOpen(false)
   }, [pathname])
 
-  React.useEffect(() => {
-    if (!open) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.body.style.overflow = prev
-    }
-  }, [open])
+  useBodyScrollLock(open)
 
   const q = query.toLowerCase().trim()
   const results = allNavItems.filter((item) => {
@@ -174,18 +180,23 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           </kbd>
         </button>
       )}
-      {open && mounted
+      {mounted
         ? createPortal(
-            <SearchDialog
-              query={query}
-              setQuery={setQuery}
-              results={results}
-              onClose={() => setOpen(false)}
-              onSelect={(href) => {
-                setOpen(false)
-                router.push(href)
-              }}
-            />,
+            <AnimatePresence>
+              {open ? (
+                <SearchDialog
+                  key="cmdk"
+                  query={query}
+                  setQuery={setQuery}
+                  results={results}
+                  onClose={() => setOpen(false)}
+                  onSelect={(href) => {
+                    setOpen(false)
+                    router.push(href)
+                  }}
+                />
+              ) : null}
+            </AnimatePresence>,
             document.body
           )
         : null}

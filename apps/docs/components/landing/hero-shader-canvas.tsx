@@ -7,8 +7,13 @@ import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react"
  * Exact Digital Success / atroui.com WebGL palette.
  * Mounted only after idle via HeroDeferredShader — never on the LCP path.
  * Params match the previous production HeroDigitalSuccess sphere.
+ * Mobile uses a lower pixelDensity to keep frame cost down.
  */
-export function HeroShaderCanvas() {
+export function HeroShaderCanvas({
+  pixelDensity = 1,
+}: {
+  pixelDensity?: number
+}) {
   return (
     <Suspense fallback={null}>
       <ShaderGradientCanvas
@@ -20,7 +25,7 @@ export function HeroShaderCanvas() {
           height: "100%",
         }}
         lazyLoad
-        pixelDensity={1}
+        pixelDensity={pixelDensity}
         pointerEvents="none"
       >
         <ShaderGradient
