@@ -44,7 +44,7 @@ export function JournalContent() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search posts…"
-          className="mt-4 w-full max-w-md rounded-full border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mt-4 w-full max-w-md rounded-lg border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </header>
       <ul className="divide-y divide-border-subtle border-y border-border-subtle">

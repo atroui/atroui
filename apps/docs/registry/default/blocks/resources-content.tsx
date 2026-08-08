@@ -46,7 +46,7 @@ export function ResourcesContent() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search resources…"
-          className="mt-4 w-full max-w-md rounded-full border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mt-4 w-full max-w-md rounded-lg border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </header>
       <ul className="grid gap-3 sm:grid-cols-2">

@@ -112,7 +112,7 @@ export function ContextualCta({ preview = false }: ContextualCtaProps) {
             <div className="flex items-center gap-2">
               <Link
                 href={CONTENT.href}
-                className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-full bg-foreground px-3.5 text-sm font-medium text-background sm:flex-none"
+                className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg bg-foreground px-3.5 text-sm font-medium text-background sm:flex-none"
               >
                 {CONTENT.cta}
                 <ArrowRight className="size-3.5" aria-hidden />

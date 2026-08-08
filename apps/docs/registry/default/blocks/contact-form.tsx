@@ -385,7 +385,7 @@ export function ContactForm() {
             disabled={
               status.kind === "submitting" || (step < 3 && !canNext())
             }
-            className="inline-flex h-11 min-w-[7.5rem] items-center justify-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50"
+            className="inline-flex h-11 min-w-[7.5rem] items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50"
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.span

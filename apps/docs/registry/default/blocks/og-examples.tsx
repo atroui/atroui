@@ -44,7 +44,7 @@ export function OgExamples({
             styleKey={ex.styleKey}
           />
           {!preview ? (
-            <span className="absolute right-3 bottom-3 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[11px] text-white backdrop-blur-sm">
+            <span className="absolute right-3 bottom-3 rounded-md border border-white/20 bg-black/50 px-2.5 py-1 text-[11px] text-white backdrop-blur-sm">
               Open
             </span>
           ) : null}

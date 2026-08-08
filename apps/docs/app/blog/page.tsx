@@ -24,8 +24,8 @@ export default function BlogIndexPage() {
       />
       <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
         <p className="ms-stamp mb-3">Blog</p>
-        <h1 className="ds-headline text-[1.85rem] tracking-tight text-foreground sm:text-4xl">
-          AtroUI blog
+        <h1 className="ds-display text-[2rem] tracking-tight text-foreground sm:text-4xl">
+          AtroUI <span className="ds-sketch-accent">blog</span>
         </h1>
         <p className="blog-lede mt-4">
           Guides that take you from search to install: Host APIs and BYOK,
@@ -56,7 +56,7 @@ export default function BlogIndexPage() {
               >
                 {latest.date}
               </time>
-              <h3 className="mt-2 text-xl font-medium tracking-tight text-foreground group-hover:text-brand sm:text-2xl">
+              <h3 className="ds-display mt-2 text-xl tracking-tight text-foreground group-hover:text-brand sm:text-2xl">
                 {latest.title}
               </h3>
               <p className="blog-lede mt-3 text-[1.0625rem] sm:text-lg">
@@ -85,7 +85,7 @@ export default function BlogIndexPage() {
                     className="group flex flex-col gap-1 py-6 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
                   >
                     <div>
-                      <h3 className="text-lg font-medium tracking-tight text-foreground group-hover:text-brand sm:text-xl">
+                      <h3 className="ds-display text-lg tracking-tight text-foreground group-hover:text-brand sm:text-xl">
                         {post.title}
                       </h3>
                       <p className="mt-1.5 max-w-xl font-[family-name:var(--font-merriweather)] text-[15px] leading-[1.55] text-foreground/65 sm:text-base">

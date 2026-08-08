@@ -159,7 +159,7 @@ export function SiteHeader() {
                 <Link
                   href={CTA.href}
                   onClick={() => setOpen(false)}
-                  className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground"
+                  className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground"
                 >
                   {CTA.label}
                   <ArrowRight className="size-3.5" aria-hidden />
@@ -231,7 +231,7 @@ export function SiteHeader() {
             <ThemeToggle />
             <Link
               href={CTA.href}
-              className="hidden h-9 items-center gap-1.5 rounded-full bg-primary px-3.5 text-sm font-medium text-primary-foreground md:inline-flex"
+              className="hidden h-9 items-center gap-1.5 rounded-lg bg-primary px-3.5 text-sm font-medium text-primary-foreground md:inline-flex"
             >
               {CTA.label}
               <ArrowRight className="size-3.5" aria-hidden />
