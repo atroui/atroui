@@ -46,11 +46,8 @@ export function HeroMobileNav() {
           aria-controls={panelId}
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? (
-            <X className="size-5" aria-hidden />
-          ) : (
-            <Menu className="size-5" aria-hidden />
-          )}
+          {/* Keep Menu glyph while open — X lives in the drawer (avoids header swap glitch) */}
+          <Menu className="size-5" aria-hidden />
         </button>
       </div>
 
