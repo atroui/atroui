@@ -1,0 +1,48 @@
+name: Docs
+description: Typo, unclear guide, missing install step, or docs-site bug that is not a package bug.
+title: "docs: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For broken **runtime** behavior in `atroui` or a registry block, use the **Bug report** template instead.
+
+  - type: dropdown
+    id: page
+    attributes:
+      label: Related surface
+      options:
+        - Installation
+        - Registry
+        - Host APIs
+        - Theming / brand
+        - Component doc page
+        - Blog / landing
+        - Changelog / compare
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://www.atroui.com/docs/...
+    validations:
+      required: false
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What’s wrong or missing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested fix
+      description: Optional — wording, structure, or a link that should exist.
+    validations:
+      required: false

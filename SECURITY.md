@@ -6,9 +6,9 @@ Security fixes are applied to the latest published `atroui` release line on npm.
 
 | Version | Supported |
 | ------- | ------------------ |
-| 0.3.x | :white_check_mark: |
-| 0.2.x | :x: |
-| 0.1.x and earlier | :x: |
+| 0.4.x | :white_check_mark: |
+| 0.3.x | :x: |
+| 0.2.x and earlier | :x: |
 
 When a new minor or major ships, older lines may stop receiving patches unless noted here.
 

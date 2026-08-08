@@ -1,0 +1,55 @@
+name: Feature request
+description: Propose a component, Host API, docs improvement, or UX change.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Prefer patterns that match AtroUI’s dark-first tokens and [Family Values](https://github.com/atroui/atroui/blob/master/.cursor/rules/family-values.mdc)
+        (simplicity / fluidity / careful delight). For open-ended design chat, use [Discussions](https://github.com/atroui/atroui/discussions).
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Request type
+      options:
+        - New registry block / component
+        - Change to existing component
+        - Host API / BYOK
+        - Docs / landing UX
+        - Tooling / DX
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do that is hard or missing today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should we ship? Include API sketch or CONTENT shape if you have one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: host-api
+    attributes:
+      label: Host API
+      options:
+        - label: This likely needs a matching `app/api/*` Host API route (BYOK)
+        - label: Pure UI / registry only — no shared keys

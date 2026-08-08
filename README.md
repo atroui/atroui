@@ -95,6 +95,7 @@ Chrome (logo, headers, SEO, mail) resolves through `getBrand()` - **AtroUI** by 
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, PR flow, changesets, and commit conventions.
+See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) for community standards.
 
 ## Security
 

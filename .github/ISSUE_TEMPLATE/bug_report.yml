@@ -1,0 +1,80 @@
+name: Bug report
+description: Something is broken in atroui, the registry, Host APIs, or the docs site.
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Check [open issues](https://github.com/atroui/atroui/issues) first.
+        Security-sensitive reports → [SECURITY.md](https://github.com/atroui/atroui/blob/master/SECURITY.md) (private advisory), not this form.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Where does the bug show up?
+      options:
+        - packages/ui (npm `atroui`)
+        - Registry block / shadcn CLI install
+        - Host API route or handler
+        - Docs site (atroui.com / apps/docs)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Package / site version
+      description: e.g. `atroui@0.4.0`, or docs commit / deploy URL
+      placeholder: atroui@0.4.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Clear summary of the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps or a small repo help a lot.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      placeholder: |
+        - OS:
+        - Node:
+        - Next.js / React:
+        - Browser (if UI):
+    validations:
+      required: false
+
+  - type: textarea
+    id: extras
+    attributes:
+      label: Screenshots / logs
+      description: Optional. Paste text logs; attach images in the issue after creating it.
+    validations:
+      required: false
