@@ -1,5 +1,5 @@
 /**
- * Legacy name kept for imports. The live landing hero is LandingSketchHero —
- * CSS chalkboard atmosphere + deferred WebGL (never on the LCP path).
+ * Legacy name kept for imports. The live landing hero is PresenceHero —
+ * thesis + live install signature; deferred WebGL as quiet underpainting.
  */
-export { LandingSketchHero as HeroDigitalSuccess } from "@/components/landing/sketch-hero"
+export { PresenceHero as HeroDigitalSuccess } from "@/components/landing/presence-hero"

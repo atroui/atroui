@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Github, Star } from "lucide-react"
-import { LandingSketchHero } from "@/components/landing/sketch-hero"
+import { PresenceHero } from "@/components/landing/presence-hero"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
@@ -34,18 +34,10 @@ const shell =
 export function LandingHero() {
   return (
     <div className="bg-black text-white">
-      <LandingSketchHero />
+      <PresenceHero />
 
-      <section className="relative border-t border-white/10">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-60"
-          style={{
-            backgroundImage:
-              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(11,123,255,0.18), transparent 60%)",
-          }}
-        />
-        <div className={`relative ${shell}`}>
+      <section className="border-t border-white/10">
+        <div className={shell}>
           <div className="grid gap-10 md:gap-12 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-5">
               <p className="ms-stamp">Inside</p>
@@ -54,8 +46,7 @@ export function LandingHero() {
                 <span className="ds-sketch-accent">find</span>
               </h2>
               <p className="ds-lede mt-3 max-w-sm text-neutral-300 sm:mt-4">
-                Own the UI with the registry. Borrow Host APIs for forms and AI
-                tools — your keys stay in your env.
+                Registry, Host APIs, blocks, and headless tools — one catalog.
               </p>
             </div>
 
