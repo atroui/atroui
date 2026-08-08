@@ -1,23 +1,95 @@
+"use client"
+
 /**
  * Landing artifact pair (sketch concept):
- * 1) Install scrap — three install lines (Studio / Indie / Host APIs)
+ * 1) Install scrap — init → registry → add (three lines) + click-to-copy
  * 2) Claim scrap — Host APIs + BYOK, hanging below on a chalk fork
  */
 
-const altitudes = [
+import * as React from "react"
+import { Check, Copy } from "lucide-react"
+
+const installLines = [
   {
-    label: "Studio",
-    pkgs: ["@atroui/home-hero"],
+    label: "1 · init",
+    cmd: "npx shadcn@latest init",
+    accent: null,
   },
   {
-    label: "Indie",
-    pkgs: ["@atroui/personal-hero"],
+    label: "2 · registry",
+    cmd: "npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json",
+    accent: "@atroui=https://www.atroui.com/r/{name}.json",
   },
   {
-    label: "Host APIs",
-    pkgs: ["@atroui/contact-form", "@atroui/api-contact"],
+    label: "3 · add",
+    cmd: "npx shadcn@latest add @atroui/home-hero",
+    accent: "@atroui/home-hero",
   },
 ] as const
+
+const allInstallCmds = installLines.map((l) => l.cmd).join("\n")
+
+function InstallCmd({
+  cmd,
+  accent,
+}: {
+  cmd: string
+  accent: string | null
+}) {
+  if (!accent || !cmd.includes(accent)) {
+    return <>{cmd}</>
+  }
+  const [before, after] = cmd.split(accent)
+  return (
+    <>
+      {before}
+      <span className="text-sky-100">{accent}</span>
+      {after}
+    </>
+  )
+}
+
+function CopyButton({
+  text,
+  label,
+  compact,
+}: {
+  text: string
+  label: string
+  compact?: boolean
+}) {
+  const [copied, setCopied] = React.useState(false)
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch {
+      /* ignore */
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      aria-label={copied ? "Copied" : label}
+      className={
+        compact
+          ? "inline-flex size-7 shrink-0 items-center justify-center rounded-md border border-sky-300/30 bg-sky-500/10 text-sky-100/80 transition-colors hover:border-sky-300/50 hover:bg-sky-500/20 hover:text-white"
+          : "inline-flex h-7 items-center gap-1.5 rounded-full border border-sky-300/30 bg-sky-500/10 px-2.5 font-mono text-[10px] tracking-[0.08em] text-sky-100/80 uppercase transition-colors hover:border-sky-300/50 hover:bg-sky-500/20 hover:text-white"
+      }
+    >
+      {copied ? (
+        <Check className="size-3.5" aria-hidden />
+      ) : (
+        <Copy className="size-3.5" aria-hidden />
+      )}
+      {compact ? null : copied ? "Copied" : "Copy all"}
+    </button>
+  )
+}
 
 export function HeroNotebook({ className }: { className?: string }) {
   return (
@@ -35,33 +107,40 @@ export function HeroNotebook({ className }: { className?: string }) {
         aria-label="Install · three lines"
       >
         <div className="relative flex flex-col gap-3 px-4 py-4 sm:gap-3.5 sm:px-5 sm:py-5">
-          <p className="ds-sketch rotate-[-1deg] text-base text-[color:var(--ds-cyan,#92dbe0)]">
-            install · three lines
-          </p>
+          <div className="flex items-center justify-between gap-3">
+            <p className="ds-sketch rotate-[-1deg] text-base text-[color:var(--ds-cyan,#92dbe0)]">
+              install · three lines
+            </p>
+            <CopyButton
+              text={allInstallCmds}
+              label="Copy all install commands"
+            />
+          </div>
 
           <div className="flex flex-col gap-2.5">
-            {altitudes.map((item) => (
+            {installLines.map((item) => (
               <div key={item.label} className="landing-hero-altitude">
-                <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/50 uppercase">
-                  {item.label}
-                </p>
-                <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-neutral-100 sm:text-[12.5px]">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/70 uppercase">
+                    {item.label}
+                  </p>
+                  <CopyButton
+                    text={item.cmd}
+                    label={`Copy ${item.label} command`}
+                    compact
+                  />
+                </div>
+                <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-white sm:text-[12.5px]">
                   <span className="text-[color:var(--ds-cyan,#92dbe0)]">$</span>{" "}
-                  npx shadcn@latest add{" "}
-                  {item.pkgs.map((pkg, i) => (
-                    <span key={pkg}>
-                      {i > 0 ? " " : null}
-                      <span className="text-sky-200">{pkg}</span>
-                    </span>
-                  ))}
+                  <InstallCmd cmd={item.cmd} accent={item.accent} />
                 </p>
               </div>
             ))}
           </div>
 
-          <p className="font-mono text-[11px] text-sky-100/45">
-            <span className="text-sky-200/60">#</span> edit{" "}
-            <code className="rounded-full border border-sky-300/25 bg-sky-500/15 px-1.5 py-0.5 text-sky-100">
+          <p className="font-mono text-[11px] text-sky-100/70">
+            <span className="text-sky-200/80">#</span> edit{" "}
+            <code className="rounded-full border border-sky-300/35 bg-sky-500/20 px-1.5 py-0.5 text-sky-50">
               CONTENT
             </code>{" "}
             · own the files
@@ -110,17 +189,17 @@ export function HeroNotebook({ className }: { className?: string }) {
         aria-label="Host APIs and bring your own keys"
       >
         <div className="relative px-4 py-4 sm:px-5 sm:py-5">
-          <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/55 uppercase">
+          <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/75 uppercase">
             Host APIs · BYOK
           </p>
-          <p className="ds-sketch mt-2 rotate-[0.5deg] text-[1.2rem] leading-[1.2] text-neutral-50 sm:text-[1.35rem]">
+          <p className="ds-sketch mt-2 rotate-[0.5deg] text-[1.2rem] leading-[1.2] text-white sm:text-[1.35rem]">
             Borrow the boring security.
             <br />
             <span className="ds-sketch-accent">Bring your own keys.</span>
           </p>
-          <p className="mt-3 max-w-[34ch] font-mono text-[11px] leading-snug text-sky-100/50">
-            Forms + AI on <span className="text-sky-100/85">your</span> Next.js
-            host. AtroUI never holds Resend, SMTP, or model keys.
+          <p className="mt-3 max-w-[34ch] font-mono text-[11px] leading-snug text-sky-100/75">
+            Forms + AI on <span className="text-white">your</span> Next.js host.
+            AtroUI never holds Resend, SMTP, or model keys.
           </p>
         </div>
       </aside>

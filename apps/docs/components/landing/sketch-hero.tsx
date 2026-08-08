@@ -19,11 +19,27 @@ const navLinks = [
   { label: "Blog", href: "/blog" },
 ] as const
 
-const marginNotes = [
-  { title: "Registry", href: "/docs/registry" },
-  { title: "Host APIs", href: "/docs/host-api" },
-  { title: "Blocks", href: "/docs/components/home-who" },
-  { title: "Indie", href: "/docs/components/personal-hero" },
+const catalogBands = [
+  {
+    title: "Registry",
+    body: "Own the UI in your repo",
+    href: "/docs/registry",
+  },
+  {
+    title: "Host APIs",
+    body: "UI + hardened routes. You bring the keys.",
+    href: "/docs/host-api",
+  },
+  {
+    title: "Blocks",
+    body: "Home bands, chrome, CTAs",
+    href: "/docs/components/home-who",
+  },
+  {
+    title: "Headless",
+    body: "Analytics, JSON-LD, reviews",
+    href: "/docs/components/seo-json-ld",
+  },
 ] as const
 
 /**
@@ -167,18 +183,20 @@ export function LandingSketchHero() {
         </div>
       </div>
 
-      <div className="relative z-10 border-t border-white/10 px-5 py-5 sm:px-10 md:px-16 lg:px-24">
-        <ul className="flex flex-wrap items-baseline gap-x-6 gap-y-2 sm:gap-x-10">
-          <li className="font-mono text-[10px] tracking-[0.14em] text-neutral-500 uppercase">
-            Open
-          </li>
-          {marginNotes.map((note) => (
-            <li key={note.href}>
+      <div className="relative z-10 px-5 pb-6 pt-2 sm:px-10 sm:pb-8 md:px-16 lg:px-24">
+        <ul className="landing-hero-bands grid grid-cols-2 gap-x-6 gap-y-5 sm:gap-x-8 md:grid-cols-4 md:gap-x-10">
+          {catalogBands.map((band) => (
+            <li key={band.href}>
               <Link
-                href={note.href}
-                className="ds-sketch text-lg text-neutral-300 transition-colors hover:text-sky-300 sm:text-xl"
+                href={band.href}
+                className="group block transition-colors"
               >
-                {note.title}
+                <p className="ds-sketch text-lg text-white transition-colors group-hover:text-sky-200 sm:text-xl">
+                  {band.title}
+                </p>
+                <p className="mt-1 text-[12px] leading-snug text-white/55 sm:text-[13px]">
+                  {band.body}
+                </p>
               </Link>
             </li>
           ))}
