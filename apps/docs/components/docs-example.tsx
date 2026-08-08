@@ -46,11 +46,11 @@ export function DocsExample({ preview, code, className, fullBleed }: DocsExample
               {tab === key && !reduce ? (
                 <motion.span
                   layoutId="docs-example-tab"
-                  className="absolute inset-0 bg-white/10"
+                  className="absolute inset-0 rounded-md bg-white/10"
                   transition={revealTween}
                 />
               ) : tab === key ? (
-                <span className="absolute inset-0 bg-white/10" />
+                <span className="absolute inset-0 rounded-md bg-white/10" />
               ) : null}
               <span className="relative z-[1]">{key}</span>
             </button>
