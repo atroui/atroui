@@ -49,7 +49,7 @@ export function DocsTrayStack({
               aria-current={i === index ? "step" : undefined}
               onClick={() => setIndex(i)}
               className={cn(
-                "h-1.5 w-5 rounded-full transition-colors",
+                "h-1.5 w-5 rounded-md transition-colors",
                 i === index ? "bg-brand" : "bg-white/15 hover:bg-white/25"
               )}
             />
@@ -62,7 +62,7 @@ export function DocsTrayStack({
           key={step.title}
           role="group"
           aria-labelledby={`docs-tray-title-${index}`}
-          className="overflow-hidden rounded-2xl border border-border-subtle bg-card/50 shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_12%,transparent)] backdrop-blur-md"
+          className="overflow-hidden rounded-xl border border-border-subtle bg-card shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_12%,transparent)]"
           style={{ minHeight }}
           initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export function DocsTrayStack({
           type="button"
           disabled={atStart}
           onClick={() => setIndex((i) => Math.max(0, i - 1))}
-          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border-subtle bg-white/5 px-3.5 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
+          className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/5 px-3.5 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
         >
           <ChevronLeft className="size-3.5" aria-hidden />
           Back
@@ -106,7 +106,7 @@ export function DocsTrayStack({
           type="button"
           disabled={atEnd}
           onClick={() => setIndex((i) => Math.min(steps.length - 1, i + 1))}
-          className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-3.5 text-[13px] font-medium text-background transition-opacity enabled:hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-35"
+          className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-foreground px-3.5 text-[13px] font-medium text-background transition-opacity enabled:hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-35"
         >
           {atEnd ? "Done" : "Next"}
           {!atEnd ? <ChevronRight className="size-3.5" aria-hidden /> : null}

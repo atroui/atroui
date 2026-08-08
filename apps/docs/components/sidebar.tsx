@@ -1,17 +1,15 @@
 "use client"
 
 import * as React from "react"
-import { createPortal } from "react-dom"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LogoMark } from "@/components/logo-mark"
+import { OverlayShell } from "@/components/overlay-shell"
 import { badgeLabel, navigation, type NavItem } from "@/lib/navigation"
-import { useFocusTrap } from "@/lib/use-focus-trap"
-import { useBodyScrollLock } from "@/hooks/use-body-scroll-lock"
-import { fadeTween, panelTween, revealTween } from "@/lib/motion"
+import { revealTween } from "@/lib/motion"
 
 function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   return (
@@ -80,7 +78,7 @@ export function DocsSidebar({ className }: { className?: string }) {
                             "flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
                             active
                               ? "bg-white/10 text-foreground"
-                              : "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground"
+                              : "text-muted-foreground hover:bg-white/4 hover:text-foreground"
                           )}
                         >
                           <span className="truncate">{item.title}</span>
@@ -99,88 +97,13 @@ export function DocsSidebar({ className }: { className?: string }) {
   )
 }
 
-function MobileDrawer({ onClose }: { onClose: () => void }) {
-  const panelRef = React.useRef<HTMLDivElement>(null)
-  const reduce = useReducedMotion()
-  useFocusTrap(true, panelRef)
-
-  return (
-    <motion.div
-      ref={panelRef}
-      className="fixed inset-0 z-[200] flex lg:hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Documentation menu"
-      tabIndex={-1}
-      initial={reduce ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={fadeTween}
-    >
-      <button
-        type="button"
-        className="absolute inset-0 cursor-default bg-black/70"
-        aria-label="Close menu backdrop"
-        onClick={onClose}
-      />
-      <motion.div
-        className="relative flex h-full w-[min(18rem,calc(100vw-2.5rem))] flex-col border-r border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5"
-        initial={reduce ? false : { x: "-100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "-100%" }}
-        transition={panelTween}
-      >
-        <div className="mb-5 flex items-center justify-between gap-3">
-          <Link
-            href="/"
-            className="flex min-w-0 items-center gap-2"
-            onClick={onClose}
-          >
-            <LogoMark />
-            <span className="truncate text-[15px] font-medium text-foreground">
-              AtroUI
-            </span>
-          </Link>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close menu"
-            className="inline-flex size-9 shrink-0 items-center justify-center rounded-full text-foreground"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
-          <DocsSidebar />
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
-
 export function MobileSidebar() {
   const [open, setOpen] = React.useState(false)
-  const [mounted, setMounted] = React.useState(false)
   const pathname = usePathname()
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
 
   React.useEffect(() => {
     setOpen(false)
   }, [pathname])
-
-  React.useEffect(() => {
-    if (!open) return
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false)
-    }
-    window.addEventListener("keydown", onKeyDown)
-    return () => window.removeEventListener("keydown", onKeyDown)
-  }, [open])
-
-  useBodyScrollLock(open)
 
   return (
     <div className="lg:hidden">
@@ -190,20 +113,43 @@ export function MobileSidebar() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="inline-flex size-9 items-center justify-center rounded-full border border-border-subtle bg-white/5 text-foreground"
+        className="inline-flex size-9 items-center justify-center rounded-lg border border-border-subtle bg-white/5 text-foreground"
       >
         {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
       </button>
-      {mounted
-        ? createPortal(
-            <AnimatePresence>
-              {open ? (
-                <MobileDrawer key="docs-drawer" onClose={() => setOpen(false)} />
-              ) : null}
-            </AnimatePresence>,
-            document.body
-          )
-        : null}
+      <OverlayShell
+        open={open}
+        onClose={() => setOpen(false)}
+        side="left"
+        label="Documentation menu"
+        trapFocus
+        className="lg:hidden"
+        panelClassName="w-[min(18rem,calc(100vw-2.5rem))] border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5"
+      >
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <Link
+            href="/"
+            className="flex min-w-0 items-center gap-2"
+            onClick={() => setOpen(false)}
+          >
+            <LogoMark />
+            <span className="truncate text-[15px] font-medium text-foreground">
+              AtroUI
+            </span>
+          </Link>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-foreground"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
+          <DocsSidebar />
+        </div>
+      </OverlayShell>
     </div>
   )
 }
