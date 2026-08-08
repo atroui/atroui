@@ -2,8 +2,7 @@
 
 /**
  * Shared overlay shell — Family fluidity.
- * One portal + scroll lock + tween stack for drawers (landing + docs).
- * Content differs; chrome motion must not.
+ * Backdrop fades; panel slides. Parent does not opacity-fade (that glitches the slide).
  */
 
 import * as React from "react"
@@ -34,7 +33,6 @@ export function OverlayShell({
   panelId?: string
   panelClassName?: string
   children: React.ReactNode
-  /** Extra classes on the fixed root (e.g. md:hidden) */
   className?: string
   trapFocus?: boolean
 }) {
@@ -42,6 +40,8 @@ export function OverlayShell({
   const panelRef = React.useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
   const from = side === "left" ? "-100%" : "100%"
+  const onCloseRef = React.useRef(onClose)
+  onCloseRef.current = onClose
 
   React.useEffect(() => {
     setMounted(true)
@@ -50,11 +50,11 @@ export function OverlayShell({
   React.useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose()
+      if (e.key === "Escape") onCloseRef.current()
     }
     document.addEventListener("keydown", onKey)
     return () => document.removeEventListener("keydown", onKey)
-  }, [open, onClose])
+  }, [open])
 
   useBodyScrollLock(open)
   useFocusTrap(trapFocus && open, panelRef)
@@ -66,34 +66,50 @@ export function OverlayShell({
       {open ? (
         <motion.div
           key={`overlay-${side}`}
-          className={cn("fixed inset-0 z-[200] flex", className)}
+          className={cn(
+            "fixed inset-0 z-[200] flex overflow-hidden",
+            className
+          )}
           role="dialog"
           aria-modal="true"
           aria-label={label}
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={fadeTween}
+          initial="closed"
+          animate="open"
+          exit="closed"
+          variants={{
+            open: {
+              transition: { when: "beforeChildren" },
+            },
+            closed: {
+              transition: { when: "afterChildren" },
+            },
+          }}
         >
-          <button
+          <motion.button
             type="button"
             className="absolute inset-0 cursor-default bg-black/75"
             aria-label="Close menu"
-            onClick={onClose}
+            variants={{
+              closed: { opacity: 0 },
+              open: { opacity: 1 },
+            }}
+            transition={reduce ? { duration: 0 } : fadeTween}
+            onClick={() => onCloseRef.current()}
           />
           <motion.div
             ref={panelRef}
             id={panelId}
             tabIndex={trapFocus ? -1 : undefined}
             className={cn(
-              "relative flex h-full flex-col outline-none",
+              "relative z-[1] flex h-dvh max-h-dvh flex-col outline-none will-change-transform",
               side === "left" ? "mr-auto border-r" : "ml-auto border-l",
               panelClassName
             )}
-            initial={reduce ? false : { x: from }}
-            animate={{ x: 0 }}
-            exit={{ x: from }}
-            transition={panelTween}
+            variants={{
+              closed: { x: from },
+              open: { x: 0 },
+            }}
+            transition={reduce ? { duration: 0 } : panelTween}
           >
             {children}
           </motion.div>
