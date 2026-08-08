@@ -1,6 +1,7 @@
 /**
- * Sketch-style hero mark: AtroUI ----> { Own the UI. / Borrow the API. }
- * Canonical AtroUI brand voice — Caveat + imperfect braces.
+ * Sketch-style hero mark: AtroUI → { Own the UI. / Borrow the API. }
+ * Stacked for clear hierarchy (brand, then couplet) — avoids crushed side-by-side.
+ * Kept paint-ready (no client gates) so it can be the LCP element.
  */
 export function HeroSketchMark({ className }: { className?: string }) {
   return (
@@ -9,31 +10,34 @@ export function HeroSketchMark({ className }: { className?: string }) {
         .filter(Boolean)
         .join(" ")}
     >
-      <span className="flex flex-col items-start gap-6 sm:gap-8 lg:flex-row lg:items-center lg:gap-5 xl:gap-7">
-        <span className="rotate-[-1.5deg] text-[clamp(3.25rem,11vw,6.5rem)] font-medium leading-none tracking-tight">
+      <span className="flex flex-col items-start gap-4 sm:gap-5">
+        <span className="landing-hero-brand-word rotate-[-1.5deg] text-[clamp(3.25rem,10vw,5.75rem)] font-medium leading-none tracking-tight">
           AtroUI
         </span>
 
-        <span
-          className="hidden text-neutral-400 lg:inline-flex"
-          aria-hidden
-        >
-          <SketchArrow />
-        </span>
-        <span
-          className="inline-flex rotate-90 text-neutral-400 lg:hidden"
-          aria-hidden
-        >
-          <SketchArrow />
-        </span>
-
-        <span className="flex items-center gap-2 sm:gap-3">
-          <SketchBrace side="left" className="h-[4.5rem] w-7 shrink-0 text-neutral-200 sm:h-[5.5rem] sm:w-9 md:h-[6.5rem] md:w-10" />
-          <span className="flex rotate-[0.8deg] flex-col gap-0.5 text-[clamp(1.75rem,4.5vw,3rem)] font-medium leading-[1.05] tracking-tight">
-            <span>Own the UI.</span>
-            <span>Borrow the API.</span>
+        <span className="flex items-center gap-3 sm:gap-4">
+          <span className="text-neutral-500" aria-hidden>
+            <SketchArrow />
           </span>
-          <SketchBrace side="right" className="h-[4.5rem] w-7 shrink-0 text-neutral-200 sm:h-[5.5rem] sm:w-9 md:h-[6.5rem] md:w-10" />
+
+          <span className="flex items-center gap-2 sm:gap-2.5">
+            <SketchBrace
+              side="left"
+              className="h-11 w-5 shrink-0 text-sky-200/75 sm:h-14 sm:w-6 md:h-16 md:w-7"
+            />
+            <span className="flex rotate-[0.6deg] flex-col gap-0 text-[clamp(1.5rem,3.8vw,2.35rem)] font-medium leading-[1.12] tracking-tight">
+              <span>
+                Own the <span className="ds-sketch-accent">UI.</span>
+              </span>
+              <span>
+                Borrow the <span className="text-neutral-300">API.</span>
+              </span>
+            </span>
+            <SketchBrace
+              side="right"
+              className="h-11 w-5 shrink-0 text-sky-200/75 sm:h-14 sm:w-6 md:h-16 md:w-7"
+            />
+          </span>
         </span>
       </span>
     </h1>
@@ -44,12 +48,11 @@ function SketchArrow() {
   return (
     <svg
       viewBox="0 0 88 24"
-      className="h-6 w-[4.5rem] sm:h-7 sm:w-24"
+      className="h-5 w-14 sm:h-6 sm:w-18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden
     >
-      {/* Dashed shaft — slightly uneven gaps */}
       <path
         d="M2 12.2h9 M16 11.6h9 M30 12.5h9 M44 11.8h10"
         stroke="currentColor"
@@ -74,7 +77,6 @@ function SketchBrace({
   side: "left" | "right"
   className?: string
 }) {
-  // Intentionally imperfect paths — marker / chalkboard feel
   const d =
     side === "left"
       ? "M28 4 C18 10, 14 22, 16 36 C12 48, 6 54, 4 58 C8 64, 14 70, 16 82 C14 96, 18 108, 28 116"

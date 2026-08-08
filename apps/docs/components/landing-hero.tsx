@@ -1,8 +1,6 @@
-"use client"
-
 import Link from "next/link"
 import { Github, Star } from "lucide-react"
-import { HeroDigitalSuccess } from "@/components/blocks/hero-digital-success"
+import { LandingSketchHero } from "@/components/landing/sketch-hero"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
@@ -32,10 +30,11 @@ const inside = [
 const shell =
   "mx-auto w-full max-w-7xl px-4 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-20 lg:py-20 xl:px-24"
 
+/** Server-rendered landing shell — hero text paints without waiting on WebGL. */
 export function LandingHero() {
   return (
     <div className="bg-black text-white">
-      <HeroDigitalSuccess />
+      <LandingSketchHero />
 
       <section className="relative border-t border-white/10">
         <div
