@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 import { usePathname, useRouter } from "next/navigation"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { Search, X } from "lucide-react"
+import posthog from "posthog-js"
 import { cn } from "@/lib/utils"
 import { badgeLabel, allNavItems } from "@/lib/navigation"
 import { useFocusTrap } from "@/lib/use-focus-trap"
@@ -22,7 +23,7 @@ function SearchDialog({
   setQuery: (q: string) => void
   results: typeof allNavItems
   onClose: () => void
-  onSelect: (href: string) => void
+  onSelect: (item: (typeof allNavItems)[number]) => void
 }) {
   const panelRef = React.useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
@@ -82,7 +83,7 @@ function SearchDialog({
                 className={cn(
                   "flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-white/5"
                 )}
-                onClick={() => onSelect(item.href)}
+                onClick={() => onSelect(item)}
               >
                 <span className="min-w-0">
                   <span className="block truncate">{item.title}</span>
@@ -190,9 +191,13 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
                   setQuery={setQuery}
                   results={results}
                   onClose={() => setOpen(false)}
-                  onSelect={(href) => {
+                  onSelect={(item) => {
+                    posthog.capture("documentation_search_result_selected", {
+                      destination: item.href,
+                      result_type: item.badge ?? "page",
+                    })
                     setOpen(false)
-                    router.push(href)
+                    router.push(item.href)
                   }}
                 />
               ) : null}

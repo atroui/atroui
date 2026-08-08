@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
+import posthog from "posthog-js"
 import { cn } from "@/lib/utils"
 
 interface CodeBlockProps {
@@ -22,6 +23,10 @@ export function CodeBlock({
 
   async function copy() {
     await navigator.clipboard.writeText(code)
+    posthog.capture("documentation_code_copied", {
+      language,
+      embedded,
+    })
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
