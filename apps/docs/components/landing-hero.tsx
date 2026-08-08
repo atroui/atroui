@@ -50,7 +50,7 @@ export function LandingHero() {
               </p>
             </div>
 
-            <ul className="divide-y divide-white/10 border border-white/10 bg-white/[0.03] lg:col-span-7">
+            <ul className="divide-y divide-white/10 overflow-hidden rounded-xl border border-white/10 bg-white/3 lg:col-span-7">
               {inside.map((item) => (
                 <li key={item.title}>
                   <Link

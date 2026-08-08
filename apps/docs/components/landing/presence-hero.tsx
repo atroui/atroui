@@ -61,7 +61,7 @@ export function PresenceHero() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Star AtroUI on GitHub"
-          className="inline-flex h-10 items-center gap-2 border border-white/15 bg-white/[0.04] px-3.5 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.08]"
+          className="inline-flex h-10 items-center gap-2 rounded-lg border border-white/15 bg-white/4 px-3.5 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/8"
         >
           <Github className="size-3.5" aria-hidden />
           Star
@@ -92,14 +92,14 @@ export function PresenceHero() {
             <SharedOwnCta>
               <TransitionLink
                 href="/docs/registry"
-                className="inline-flex items-center gap-2.5 bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
+                className="inline-flex items-center gap-2.5 rounded-lg bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
               >
                 Own the UI
               </TransitionLink>
             </SharedOwnCta>
             <TransitionLink
               href="/docs/host-api"
-              className="inline-flex items-center border border-white/18 px-6 py-3 text-[15px] font-medium text-white/85 transition hover:border-white/30 hover:text-white sm:px-7 sm:py-3.5 sm:text-base"
+              className="inline-flex items-center rounded-lg border border-white/18 px-6 py-3 text-[15px] font-medium text-white/85 transition hover:border-white/30 hover:text-white sm:px-7 sm:py-3.5 sm:text-base"
             >
               Host APIs
             </TransitionLink>

@@ -129,7 +129,7 @@ export function HeroMobileNav() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Star AtroUI on GitHub"
-          className="inline-flex size-10 items-center justify-center border border-white/15 bg-white/[0.04] text-white transition hover:border-white/25 hover:bg-white/[0.08]"
+          className="inline-flex size-10 items-center justify-center rounded-lg border border-white/15 bg-white/4 text-white transition hover:border-white/25 hover:bg-white/8"
         >
           <Star className="size-4" aria-hidden />
         </a>
