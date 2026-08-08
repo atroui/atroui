@@ -121,7 +121,7 @@ export function LandingSketchHero() {
 
       <div className="relative z-10 flex grow flex-col justify-center px-5 pb-10 pt-8 sm:px-10 sm:pb-14 md:px-16 lg:px-24">
         {/* Stage: stamp → couplet → notebook, linked by chalk path */}
-        <div className="landing-hero-stage relative">
+        <div className="landing-hero-stage relative pt-6 sm:pt-8 lg:pt-10">
           <HeroChalkConnector />
 
           <p className="ms-stamp relative z-[1] mb-6 w-fit border-white/15 bg-white/5 text-white/90 sm:mb-8">

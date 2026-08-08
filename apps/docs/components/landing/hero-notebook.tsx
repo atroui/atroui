@@ -1,17 +1,21 @@
 /**
  * Landing artifact pair (sketch concept):
- * 1) Install scrap — two altitudes (Studio / Indie)
+ * 1) Install scrap — three install lines (Studio / Indie / Host APIs)
  * 2) Claim scrap — Host APIs + BYOK, hanging below on a chalk fork
  */
 
 const altitudes = [
   {
     label: "Studio",
-    pkg: "@atroui/home-hero",
+    pkgs: ["@atroui/home-hero"],
   },
   {
     label: "Indie",
-    pkg: "@atroui/personal-hero",
+    pkgs: ["@atroui/personal-hero"],
+  },
+  {
+    label: "Host APIs",
+    pkgs: ["@atroui/contact-form", "@atroui/api-contact"],
   },
 ] as const
 
@@ -28,11 +32,11 @@ export function HeroNotebook({ className }: { className?: string }) {
       {/* ── 1. Install scrap ── */}
       <aside
         className="landing-hero-notebook relative w-full"
-        aria-label="Install · two altitudes"
+        aria-label="Install · three lines"
       >
         <div className="relative flex flex-col gap-3 px-4 py-4 sm:gap-3.5 sm:px-5 sm:py-5">
           <p className="ds-sketch rotate-[-1deg] text-base text-[color:var(--ds-cyan,#92dbe0)]">
-            install · two altitudes
+            install · three lines
           </p>
 
           <div className="flex flex-col gap-2.5">
@@ -44,7 +48,12 @@ export function HeroNotebook({ className }: { className?: string }) {
                 <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-neutral-100 sm:text-[12.5px]">
                   <span className="text-[color:var(--ds-cyan,#92dbe0)]">$</span>{" "}
                   npx shadcn@latest add{" "}
-                  <span className="text-sky-200">{item.pkg}</span>
+                  {item.pkgs.map((pkg, i) => (
+                    <span key={pkg}>
+                      {i > 0 ? " " : null}
+                      <span className="text-sky-200">{pkg}</span>
+                    </span>
+                  ))}
                 </p>
               </div>
             ))}
