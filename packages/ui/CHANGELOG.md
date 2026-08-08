@@ -1,5 +1,23 @@
 # atroui
 
+## 0.4.0
+
+### Minor Changes
+
+- [#56](https://github.com/atroui/atroui/pull/56) [`c4a2445`](https://github.com/atroui/atroui/commit/c4a24458ea1e24484b91b4cfd6e61245da1b90bc) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Ship Home Crafts, Feature Grid, and Logo Cloud; add a distinct SiteFooter (no longer an alias of BoldFooter); export the personal site kit (command menu, changelog, narrow chrome, countdown, and related blocks) with cmdk support.
+
+### Patch Changes
+
+- [#51](https://github.com/atroui/atroui/pull/51) [`536045a`](https://github.com/atroui/atroui/commit/536045ac60546023e98b4f05f45d412002301a08) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Bump nodemailer, AI SDK, and related transitive pins (postcss, sharp, undici) to clear Dependabot advisories.
+
+- [#57](https://github.com/atroui/atroui/pull/57) [`f5980ea`](https://github.com/atroui/atroui/commit/f5980eaa88bb1bd42a40f1150e79fe60f4594868) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Personal Hero optional portrait slot; Reading Shelf typographic covers (no next/image remote host requirement).
+
+- [#58](https://github.com/atroui/atroui/pull/58) [`bfb2593`](https://github.com/atroui/atroui/commit/bfb2593349495f9eaf64f50f373e89b00d4af45d) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Personal Hero: use Tailwind size tokens (`size-18`, `max-w-160`) for layout consistency.
+
+- [#63](https://github.com/atroui/atroui/pull/63) [`82dc2c6`](https://github.com/atroui/atroui/commit/82dc2c652091ab98d6e480c1006191456f48d387) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Soft-rect defaults: CTAs and stamps use `--radius` instead of capsules; chip badges align to `rounded-md`. Document `--radius` for sharp vs soft on theming.
+
+- [#52](https://github.com/atroui/atroui/pull/52) [`6991064`](https://github.com/atroui/atroui/commit/6991064cd113ebc29e65dc8683a82ef84f674f20) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Optional Upstash / Vercel KV backend for Host API rate limits (same checkRateLimit API; memory remains default).
+
 ## 0.3.0
 
 ### Minor Changes
