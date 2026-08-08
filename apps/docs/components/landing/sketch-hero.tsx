@@ -22,22 +22,22 @@ const navLinks = [
 const catalogBands = [
   {
     title: "Registry",
-    body: "Own the UI in your repo",
+    body: "Install UI into your repo",
     href: "/docs/registry",
   },
   {
     title: "Host APIs",
-    body: "UI + hardened routes. You bring the keys.",
+    body: "Forms + AI. Your keys.",
     href: "/docs/host-api",
   },
   {
     title: "Blocks",
-    body: "Home bands, chrome, CTAs",
+    body: "Home bands and chrome",
     href: "/docs/components/home-who",
   },
   {
     title: "Headless",
-    body: "Analytics, JSON-LD, reviews",
+    body: "SEO, analytics, schema",
     href: "/docs/components/seo-json-ld",
   },
 ] as const
@@ -263,17 +263,26 @@ export function LandingSketchHero() {
       </div>
 
       <div className="relative z-10 px-5 pb-6 pt-2 sm:px-10 sm:pb-8 md:px-16 lg:px-24">
-        <ul className="landing-hero-bands grid grid-cols-2 gap-x-6 gap-y-5 sm:gap-x-8 md:grid-cols-4 md:gap-x-10">
+        <p className="mb-4 font-mono text-[10px] tracking-[0.16em] text-white/40 uppercase sm:mb-5">
+          Four doors · one catalog
+        </p>
+        <ul className="landing-hero-bands grid grid-cols-2 gap-x-5 gap-y-4 sm:gap-x-8 sm:gap-y-5 md:grid-cols-4 md:gap-x-10">
           {catalogBands.map((band) => (
             <li key={band.href}>
               <Link
                 href={band.href}
-                className="group block transition-colors"
+                className="landing-hero-band group block"
               >
-                <p className="ds-sketch text-lg text-white transition-colors group-hover:text-sky-200 sm:text-xl">
+                <p className="ds-sketch text-lg text-white transition-colors duration-200 group-hover:text-sky-200 sm:text-xl">
                   {band.title}
+                  <span
+                    className="ml-1.5 inline-block translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+                    aria-hidden
+                  >
+                    →
+                  </span>
                 </p>
-                <p className="mt-1 text-[12px] leading-snug text-white/55 sm:text-[13px]">
+                <p className="mt-1 max-w-[18ch] text-[12px] leading-snug text-white/55 transition-colors duration-200 group-hover:text-white/70 sm:text-[13px]">
                   {band.body}
                 </p>
               </Link>

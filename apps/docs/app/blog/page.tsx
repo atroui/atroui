@@ -48,7 +48,7 @@ export default function BlogIndexPage() {
             </h2>
             <Link
               href={`/blog/${latest.slug}`}
-              className="group mt-5 block border-y border-border-subtle py-7 transition-colors hover:bg-muted/30"
+              className="group mt-5 block border-y border-border-subtle py-7 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2"
             >
               <time
                 dateTime={latest.date}
@@ -82,7 +82,7 @@ export default function BlogIndexPage() {
                 <li key={post.slug}>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="group flex flex-col gap-1 py-6 transition-colors hover:bg-muted/30 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+                    className="group flex flex-col gap-1 py-6 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
                   >
                     <div>
                       <h3 className="text-lg font-medium tracking-tight text-foreground group-hover:text-brand sm:text-xl">

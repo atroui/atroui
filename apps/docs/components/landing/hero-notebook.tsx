@@ -1,27 +1,33 @@
 "use client"
 
 /**
- * Landing artifact pair (sketch concept):
- * 1) Install scrap — init → registry → add (three lines) + click-to-copy
- * 2) Claim scrap — Host APIs + BYOK, hanging below on a chalk fork
+ * Landing artifact pair — Family Values:
+ * Simplicity: install lines reveal one at a time
+ * Fluidity: steps travel in; claim hangs from chalk fork after step 3
+ * Delight: copy check + tiny next affordance (not fireworks)
  */
 
 import * as React from "react"
-import { Check, Copy } from "lucide-react"
+import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import { Check, ChevronRight, Copy } from "lucide-react"
+import { revealTween, fadeTween } from "@/lib/motion"
 
 const installLines = [
   {
     label: "1 · init",
+    hint: "Scaffold shadcn in your app",
     cmd: "npx shadcn@latest init",
     accent: null,
   },
   {
     label: "2 · registry",
+    hint: "Point CLI at AtroUI",
     cmd: "npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json",
     accent: "@atroui=https://www.atroui.com/r/{name}.json",
   },
   {
     label: "3 · add",
+    hint: "Own a block in your repo",
     cmd: "npx shadcn@latest add @atroui/home-hero",
     accent: "@atroui/home-hero",
   },
@@ -92,6 +98,13 @@ function CopyButton({
 }
 
 export function HeroNotebook({ className }: { className?: string }) {
+  const reduce = useReducedMotion()
+  /** How many steps are visible (1–3). Gradual revelation. */
+  const [visibleCount, setVisibleCount] = React.useState(1)
+  const shownCount = reduce ? installLines.length : visibleCount
+  const complete = shownCount >= installLines.length
+  const visible = installLines.slice(0, shownCount)
+
   return (
     <div
       className={[
@@ -101,7 +114,6 @@ export function HeroNotebook({ className }: { className?: string }) {
         .filter(Boolean)
         .join(" ")}
     >
-      {/* ── 1. Install scrap ── */}
       <aside
         className="landing-hero-notebook relative w-full"
         aria-label="Install · three lines"
@@ -117,92 +129,143 @@ export function HeroNotebook({ className }: { className?: string }) {
             />
           </div>
 
-          <div className="flex flex-col gap-2.5">
-            {installLines.map((item) => (
-              <div key={item.label} className="landing-hero-altitude">
-                <div className="flex items-center justify-between gap-2">
-                  <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/70 uppercase">
-                    {item.label}
+          <p className="font-mono text-[10px] tracking-[0.12em] text-sky-200/55 uppercase">
+            Step {shownCount} of {installLines.length}
+          </p>
+
+          <div className="flex flex-col gap-2.5" aria-live="polite">
+            <AnimatePresence initial={false}>
+              {visible.map((item) => (
+                <motion.div
+                  key={item.label}
+                  className="landing-hero-altitude"
+                  initial={reduce ? false : { opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={revealTween}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <div>
+                      <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/70 uppercase">
+                        {item.label}
+                      </p>
+                      <p className="mt-0.5 font-mono text-[10px] text-sky-100/45">
+                        {item.hint}
+                      </p>
+                    </div>
+                    <CopyButton
+                      text={item.cmd}
+                      label={`Copy ${item.label} command`}
+                      compact
+                    />
+                  </div>
+                  <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-white sm:text-[12.5px]">
+                    <span className="text-[color:var(--ds-cyan,#92dbe0)]">$</span>{" "}
+                    <InstallCmd cmd={item.cmd} accent={item.accent} />
                   </p>
-                  <CopyButton
-                    text={item.cmd}
-                    label={`Copy ${item.label} command`}
-                    compact
-                  />
-                </div>
-                <p className="mt-1.5 break-all font-mono text-[11.5px] leading-relaxed text-white sm:text-[12.5px]">
-                  <span className="text-[color:var(--ds-cyan,#92dbe0)]">$</span>{" "}
-                  <InstallCmd cmd={item.cmd} accent={item.accent} />
-                </p>
-              </div>
-            ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
-          <p className="font-mono text-[11px] text-sky-100/70">
-            <span className="text-sky-200/80">#</span> edit{" "}
-            <code className="rounded-full border border-sky-300/35 bg-sky-500/20 px-1.5 py-0.5 text-sky-50">
-              CONTENT
-            </code>{" "}
-            · own the files
-          </p>
+          {!complete ? (
+            <button
+              type="button"
+              onClick={() =>
+                setVisibleCount((n) => Math.min(n + 1, installLines.length))
+              }
+              className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-sky-300/35 bg-sky-500/15 font-mono text-[11px] tracking-[0.1em] text-sky-50 uppercase transition-colors hover:border-sky-300/50 hover:bg-sky-500/25"
+            >
+              Next line
+              <ChevronRight className="size-3.5" aria-hidden />
+            </button>
+          ) : (
+            <p className="font-mono text-[11px] text-sky-100/70">
+              <span className="text-sky-200/80">#</span> edit{" "}
+              <code className="rounded-full border border-sky-300/35 bg-sky-500/20 px-1.5 py-0.5 text-sky-50">
+                CONTENT
+              </code>{" "}
+              · own the files
+            </p>
+          )}
+
+          {!reduce && !complete ? (
+            <button
+              type="button"
+              onClick={() => setVisibleCount(installLines.length)}
+              className="self-start font-mono text-[10px] text-sky-200/45 underline-offset-2 transition-colors hover:text-sky-100/70 hover:underline"
+            >
+              Show all three
+            </button>
+          ) : null}
         </div>
 
         <PencilMark />
       </aside>
 
-      {/* Chalk fork — install hangs down into the claim */}
-      <svg
-        className="landing-hero-fork mx-auto -my-0.5 h-12 w-20 shrink-0"
-        viewBox="0 0 80 48"
-        fill="none"
-        aria-hidden
-      >
-        <path
-          d="M40 2 V18"
-          stroke="currentColor"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeDasharray="4 5"
-        />
-        <path
-          d="M40 18 C30 28, 16 34, 10 46"
-          stroke="currentColor"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeDasharray="4 5"
-        />
-        <path
-          d="M40 18 C50 28, 64 34, 70 46"
-          stroke="currentColor"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeDasharray="4 5"
-        />
-        <circle cx="40" cy="18" r="2.5" fill="currentColor" opacity="0.9" />
-        <circle cx="10" cy="46" r="2.2" fill="currentColor" opacity="0.85" />
-        <circle cx="70" cy="46" r="2.2" fill="currentColor" opacity="0.85" />
-      </svg>
+      <AnimatePresence>
+        {complete ? (
+          <motion.div
+            key="claim-branch"
+            initial={reduce ? false : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={fadeTween}
+            className="flex flex-col"
+          >
+            <svg
+              className="landing-hero-fork mx-auto -my-0.5 h-12 w-20 shrink-0"
+              viewBox="0 0 80 48"
+              fill="none"
+              aria-hidden
+            >
+              <path
+                d="M40 2 V18"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeDasharray="4 5"
+              />
+              <path
+                d="M40 18 C30 28, 16 34, 10 46"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeDasharray="4 5"
+              />
+              <path
+                d="M40 18 C50 28, 64 34, 70 46"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeDasharray="4 5"
+              />
+              <circle cx="40" cy="18" r="2.5" fill="currentColor" opacity="0.9" />
+              <circle cx="10" cy="46" r="2.2" fill="currentColor" opacity="0.85" />
+              <circle cx="70" cy="46" r="2.2" fill="currentColor" opacity="0.85" />
+            </svg>
 
-      {/* ── 2. Claim scrap — Host APIs + BYOK ── */}
-      <aside
-        className="landing-hero-claim relative w-full"
-        aria-label="Host APIs and bring your own keys"
-      >
-        <div className="relative px-4 py-4 sm:px-5 sm:py-5">
-          <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/75 uppercase">
-            Host APIs · BYOK
-          </p>
-          <p className="ds-sketch mt-2 rotate-[0.5deg] text-[1.2rem] leading-[1.2] text-white sm:text-[1.35rem]">
-            Borrow the boring security.
-            <br />
-            <span className="ds-sketch-accent">Bring your own keys.</span>
-          </p>
-          <p className="mt-3 max-w-[34ch] font-mono text-[11px] leading-snug text-sky-100/75">
-            Forms + AI on <span className="text-white">your</span> Next.js host.
-            AtroUI never holds Resend, SMTP, or model keys.
-          </p>
-        </div>
-      </aside>
+            <aside
+              className="landing-hero-claim relative w-full"
+              aria-label="Host APIs and bring your own keys"
+            >
+              <div className="relative px-4 py-4 sm:px-5 sm:py-5">
+                <p className="font-mono text-[10px] tracking-[0.14em] text-sky-200/75 uppercase">
+                  Host APIs · BYOK
+                </p>
+                <p className="ds-sketch mt-2 rotate-[0.5deg] text-[1.2rem] leading-[1.2] text-white sm:text-[1.35rem]">
+                  Borrow the boring security.
+                  <br />
+                  <span className="ds-sketch-accent">Bring your own keys.</span>
+                </p>
+                <p className="mt-3 max-w-[34ch] font-mono text-[11px] leading-snug text-sky-100/75">
+                  Forms + AI on <span className="text-white">your</span> Next.js
+                  host. AtroUI never holds Resend, SMTP, or model keys.
+                </p>
+              </div>
+            </aside>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   )
 }

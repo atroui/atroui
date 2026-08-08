@@ -136,15 +136,26 @@ html {
   animation: landing-chalk-settle 1.4s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
-/* When WebGL arrives, keep chalk as a quiet underdrawing — don't compete */
+/* When WebGL arrives, chalk becomes quiet underdrawing — continuous, not a snap */
 .landing-sketch-hero:has(.landing-hero-shader) .landing-hero-chalk-sphere {
-  opacity: 0.22;
-  transition: opacity 1.2s ease;
+  opacity: 0.18;
+  transition: opacity 1.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .landing-sketch-hero:has(.landing-hero-shader) .landing-hero-board {
-  opacity: 0.55;
-  transition: opacity 1.2s ease;
+  opacity: 0.4;
+  transition: opacity 1.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.landing-sketch-hero:has(.landing-hero-shader) .landing-hero-dust {
+  opacity: 0.22;
+  transition: opacity 1.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.landing-sketch-hero:has(.landing-hero-shader) .landing-hero-chalk-label,
+.landing-sketch-hero:has(.landing-hero-shader) .landing-hero-chalk-stroke {
+  opacity: 0.2;
+  transition: opacity 1.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .landing-hero-chalk-stroke {
