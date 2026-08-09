@@ -2,7 +2,7 @@
 
 /**
  * Docs guide — Family Values: gradual revelation.
- * One chapter open at a time. Editorial rail, not a glowing wizard card.
+ * Fixed stage height so chapters swap without the box jumping.
  */
 
 import * as React from "react"
@@ -60,9 +60,9 @@ export function DocsTrayStack({
       <div className="md:grid md:grid-cols-[minmax(9.5rem,12rem)_minmax(0,1fr)]">
         <nav
           aria-label="Guide chapters"
-          className="border-b border-border-subtle md:border-r md:border-b-0"
+          className="border-b border-border-subtle md:border-r md:border-b-0 md:self-stretch"
         >
-          <ul className="flex gap-1 overflow-x-auto px-2 py-2 md:flex-col md:gap-0 md:overflow-visible md:px-0 md:py-3">
+          <ul className="flex gap-1 overflow-x-auto px-2 py-2 md:h-full md:flex-col md:gap-0 md:overflow-y-auto md:px-0 md:py-3">
             {steps.map((s, i) => {
               const active = i === index
               return (
@@ -99,65 +99,66 @@ export function DocsTrayStack({
           </ul>
         </nav>
 
-        <div className="relative min-w-0">
-          <AnimatePresence mode="wait" initial={false} custom={dir}>
-            <motion.section
-              key={step.title}
-              role="group"
-              aria-labelledby={`docs-tray-title-${index}`}
-              custom={dir}
-              initial={
-                reduce
-                  ? false
-                  : { opacity: 0, x: dir >= 0 ? 18 : -18 }
-              }
-              animate={{ opacity: 1, x: 0 }}
-              exit={
-                reduce
-                  ? undefined
-                  : { opacity: 0, x: dir >= 0 ? -14 : 14 }
-              }
-              transition={panelTween}
-              className="flex min-h-[16rem] flex-col"
+        {/* Fixed stage: chapters swap inside; shell size stays put */}
+        <div className="flex h-[min(34rem,70vh)] min-h-[28rem] flex-col md:h-[34rem] md:min-h-0">
+          <div className="relative min-h-0 flex-1 overflow-hidden">
+            <AnimatePresence mode="wait" initial={false} custom={dir}>
+              <motion.section
+                key={step.title}
+                role="group"
+                aria-labelledby={`docs-tray-title-${index}`}
+                custom={dir}
+                initial={
+                  reduce ? false : { opacity: 0, x: dir >= 0 ? 16 : -16 }
+                }
+                animate={{ opacity: 1, x: 0 }}
+                exit={
+                  reduce
+                    ? undefined
+                    : { opacity: 0, x: dir >= 0 ? -12 : 12 }
+                }
+                transition={panelTween}
+                className="absolute inset-0 overflow-y-auto overscroll-contain"
+              >
+                <header className="sticky top-0 z-10 space-y-1.5 border-b border-border-subtle bg-background/95 px-4 py-4 backdrop-blur-sm sm:px-5">
+                  <p className="text-[13px] leading-snug text-muted-foreground">
+                    {step.summary}
+                  </p>
+                  <h2
+                    id={`docs-tray-title-${index}`}
+                    className="ds-headline text-lg text-foreground sm:text-xl"
+                  >
+                    {step.title}
+                  </h2>
+                </header>
+
+                <div className="space-y-4 px-4 py-4 sm:px-5 sm:py-5">
+                  {step.children}
+                </div>
+              </motion.section>
+            </AnimatePresence>
+          </div>
+
+          <div className="flex shrink-0 items-center justify-between gap-3 border-t border-border-subtle px-4 py-3 sm:px-5">
+            <button
+              type="button"
+              disabled={atStart}
+              onClick={() => goTo(index - 1)}
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
             >
-              <header className="space-y-1.5 border-b border-border-subtle px-4 py-4 sm:px-5">
-                <p className="text-[13px] leading-snug text-muted-foreground">
-                  {step.summary}
-                </p>
-                <h2
-                  id={`docs-tray-title-${index}`}
-                  className="ds-headline text-lg text-foreground sm:text-xl"
-                >
-                  {step.title}
-                </h2>
-              </header>
-
-              <div className="flex-1 space-y-4 px-4 py-4 sm:px-5 sm:py-5">
-                {step.children}
-              </div>
-
-              <div className="mt-auto flex items-center justify-between gap-3 border-t border-border-subtle px-4 py-3 sm:px-5">
-                <button
-                  type="button"
-                  disabled={atStart}
-                  onClick={() => goTo(index - 1)}
-                  className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
-                >
-                  <ChevronLeft className="size-3.5" aria-hidden />
-                  Back
-                </button>
-                <button
-                  type="button"
-                  disabled={atEnd}
-                  onClick={() => goTo(index + 1)}
-                  className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
-                >
-                  Next
-                  <ChevronRight className="size-3.5" aria-hidden />
-                </button>
-              </div>
-            </motion.section>
-          </AnimatePresence>
+              <ChevronLeft className="size-3.5" aria-hidden />
+              Back
+            </button>
+            <button
+              type="button"
+              disabled={atEnd}
+              onClick={() => goTo(index + 1)}
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
+            >
+              Next
+              <ChevronRight className="size-3.5" aria-hidden />
+            </button>
+          </div>
         </div>
       </div>
     </div>
