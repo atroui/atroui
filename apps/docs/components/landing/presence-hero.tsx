@@ -219,40 +219,70 @@ export function PresenceHero() {
         </header>
 
         <div className="relative z-10 flex grow flex-col justify-center px-5 pb-14 pt-10 sm:px-10 sm:pb-16 md:px-16 lg:px-24">
-          <div className="mx-auto flex w-full max-w-3xl flex-col items-start">
-            <h1 className="ds-sketch">
-              <span className="presence-hero-brand block text-[clamp(3.5rem,12vw,6rem)] font-medium leading-none tracking-tight text-white">
-                AtroUI
-              </span>
-              <span className="mt-5 block max-w-[16ch] text-[clamp(1.65rem,4.5vw,2.5rem)] font-medium leading-[1.15] tracking-tight text-neutral-100 sm:mt-6">
-                Own the UI.
-                <br />
-                <span className="ds-sketch-accent">Borrow the API.</span>
-              </span>
-            </h1>
+          <div className="mx-auto flex w-full max-w-3xl items-start gap-6 sm:gap-8 md:max-w-4xl">
+            <div className="flex min-w-0 flex-1 flex-col items-start">
+              <h1 className="ds-sketch">
+                <span className="presence-hero-brand block text-[clamp(3.5rem,12vw,6rem)] font-medium leading-none tracking-tight text-white">
+                  AtroUI
+                </span>
+                <span className="mt-5 block max-w-[16ch] text-[clamp(1.65rem,4.5vw,2.5rem)] font-medium leading-[1.15] tracking-tight text-neutral-100 sm:mt-6">
+                  Own the UI.
+                  <br />
+                  <span className="ds-sketch-accent">Borrow the API.</span>
+                </span>
+              </h1>
 
-            <p className="mt-5 max-w-[36ch] text-[1.05rem] leading-relaxed text-neutral-400 sm:mt-6 sm:text-lg">
-              Files land in your repo. Keys stay in yours.
-            </p>
+              <p className="mt-5 max-w-[36ch] text-[1.05rem] leading-relaxed text-neutral-400 sm:mt-6 sm:text-lg">
+                Files land in your repo. Keys stay in yours.
+              </p>
 
-            <LiveInstall className="mt-9 w-full sm:mt-10" />
+              <LiveInstall className="mt-9 w-full sm:mt-10" />
 
-            <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
-              <SharedOwnCta>
+              <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
+                <SharedOwnCta>
+                  <TransitionLink
+                    href="/docs/registry"
+                    className="inline-flex items-center gap-2.5 rounded-lg bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
+                  >
+                    Own the UI
+                  </TransitionLink>
+                </SharedOwnCta>
                 <TransitionLink
-                  href="/docs/registry"
-                  className="inline-flex items-center gap-2.5 rounded-lg bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
+                  href="/docs/host-api"
+                  className="inline-flex items-center rounded-lg border border-white/18 px-6 py-3 text-[15px] font-medium text-white/85 transition hover:border-white/30 hover:text-white sm:px-7 sm:py-3.5 sm:text-base"
                 >
-                  Own the UI
+                  Host APIs
                 </TransitionLink>
-              </SharedOwnCta>
-              <TransitionLink
-                href="/docs/host-api"
-                className="inline-flex items-center rounded-lg border border-white/18 px-6 py-3 text-[15px] font-medium text-white/85 transition hover:border-white/30 hover:text-white sm:px-7 sm:py-3.5 sm:text-base"
-              >
-                Host APIs
-              </TransitionLink>
+              </div>
             </div>
+
+            {/* Quiet right rail — fills dead space without reshaping the stack */}
+            <aside
+              className="presence-hero-rail hidden w-[8.75rem] shrink-0 flex-col self-stretch border-l border-white/10 pl-5 pt-3 sm:flex sm:w-[9.5rem] md:w-[10.5rem] md:pl-6"
+              aria-label="Also install with AtroUI CLI"
+            >
+              <p className="font-mono text-[10px] tracking-[0.16em] text-white/40 uppercase">
+                Also
+              </p>
+              <p className="ds-sketch mt-4 text-[1.35rem] leading-[1.15] tracking-tight text-white">
+                No shadcn?
+              </p>
+              <p className="mt-2.5 text-[12px] leading-relaxed text-white/45">
+                Same registry JSON. First-party CLI.
+              </p>
+              <div className="mt-auto space-y-2 pt-8">
+                <p className="font-mono text-[10px] tracking-[0.12em] text-white/35 uppercase">
+                  Try
+                </p>
+                <TransitionLink
+                  href="/docs/installation"
+                  className="block rounded-lg border border-white/12 bg-white/[0.03] px-2.5 py-2.5 font-mono text-[10px] leading-snug text-[color:var(--ds-cyan,#92dbe0)] transition hover:border-white/22 hover:bg-white/[0.06]"
+                >
+                  npx @atroui/cli
+                  <span className="mt-0.5 block text-white/40">add home-hero</span>
+                </TransitionLink>
+              </div>
+            </aside>
           </div>
         </div>
       </div>
