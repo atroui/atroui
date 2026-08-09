@@ -52,7 +52,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         role="radiogroup"
         aria-label="Theme"
         className={cn(
-          "hidden items-stretch overflow-hidden rounded-full border border-border-subtle bg-white/5 sm:inline-flex",
+          "hidden items-stretch overflow-hidden rounded-lg border border-border-subtle bg-white/5 sm:inline-flex",
           className
         )}
       >

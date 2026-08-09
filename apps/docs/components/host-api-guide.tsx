@@ -11,7 +11,7 @@ export function HostApiGuide() {
       steps={[
         {
           title: "What Host APIs are",
-          summary: "UI posts to your /api — handlers live in atroui",
+          summary: "UI posts to your /api. Handlers live in atroui.",
           children: (
             <>
               <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         },
         {
           title: "Install modes",
-          summary: "Add UI + route stubs with the shadcn CLI",
+          summary: "Add UI + route stubs with AtroUI CLI or shadcn",
           children: (
             <>
               <InstallModesMatrix />
@@ -58,12 +58,12 @@ export async function POST(req: Request) {
 npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
 
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact
+npx @atroui/cli@latest add contact-form api-contact
+# or: npx shadcn@latest add @atroui/contact-form @atroui/api-contact
 
 # AI tools example
-npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
-npx shadcn@latest add @atroui/thumbnail-workspace @atroui/api-thumbnail
-npx shadcn@latest add @atroui/scope-chat @atroui/api-scope`}
+npx @atroui/cli@latest add og-workspace api-generate
+# or: npx shadcn@latest add @atroui/og-workspace @atroui/api-generate`}
               />
               <p className="text-[15px] leading-relaxed text-muted-foreground">
                 Full CLI setup:{" "}
@@ -81,7 +81,7 @@ npx shadcn@latest add @atroui/scope-chat @atroui/api-scope`}
         },
         {
           title: "Env · mail",
-          summary: "Contact, waitlist, newsletter — your SMTP or Resend",
+          summary: "Contact, waitlist, newsletter. Your SMTP or Resend.",
           children: (
             <>
               <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -112,7 +112,7 @@ RESEND_AUDIENCE_ID=…   # newsletter audience subscribe`}
         },
         {
           title: "Env · AI / image",
-          summary: "BYOK only — never in AtroUI's cloud",
+          summary: "BYOK only. Never in AtroUI cloud.",
           children: (
             <>
               <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -236,7 +236,7 @@ KV_REST_API_TOKEN=…`}
                 <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
                   checkRateLimit
                 </code>{" "}
-                API — no handler fork. Redis unreachable → memory fallback.
+                API. No handler fork. Redis unreachable falls back to memory.
               </p>
             </>
           ),
