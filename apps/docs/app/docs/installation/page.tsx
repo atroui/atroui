@@ -230,6 +230,10 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
           <Link href="/blog/npm-to-shadcn-registry" className="bam-link">
             npm → shadcn registry migration
           </Link>
+          . Why a first-party installer:{" "}
+          <Link href="/blog/atroui-cli-without-shadcn" className="bam-link">
+            AtroUI CLI without shadcn
+          </Link>
           .
         </p>
       </section>

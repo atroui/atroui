@@ -18,6 +18,91 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "atroui-cli-without-shadcn",
+    title: "AtroUI CLI: same registry, install without the shadcn CLI",
+    description:
+      "Why we shipped @atroui/cli: dual install for the same www.atroui.com/r JSON. Source in your repo either way. What add and list do in v1, and what stayed out of scope.",
+    date: "2026-08-09",
+    sections: [
+      {
+        body: [
+          "AtroUI components do not depend on shadcn. Only the **installer** did.",
+          "That was fine when everyone already lived in the shadcn CLI. It was a hard gate for teams that refuse that toolchain, or that want a first-party `npx` path for a third-party catalog.",
+          "So we shipped **`@atroui/cli`**: a thin installer aimed at the same public registry JSON we already publish. Dual install. One catalog. Same owned source in your repo.",
+        ],
+      },
+      {
+        heading: "The rule: same result",
+        body: [
+          "If you run either of these from a normal Next app, you should get the **same files**, the **same npm deps**, and the **same editable `CONTENT`**:",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `# Mode A: AtroUI CLI (no components.json required)
+npx @atroui/cli@latest add home-hero
+
+# Mode B: shadcn CLI (after init + @atroui registry)
+npx shadcn@latest add @atroui/home-hero`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Both hit `https://www.atroui.com/r/home-hero.json`. Both resolve `@atroui/brand` first. Both write `lib/brand.ts` and `components/blocks/home-hero.tsx` (under `src/` when your app uses it). Both install missing packages like `lucide-react`.",
+          "The product experience after install is identical. Only the ceremony differs: shadcn wants `init` and a registry entry in `components.json`. AtroUI CLI does not.",
+        ],
+      },
+      {
+        heading: "Why not abandon shadcn",
+        body: [
+          "We are not replacing the [shadcn directory path](https://github.com/shadcn-ui/ui/pull/11420) or the docs Mode B flow.",
+          "Plenty of builders already know `npx shadcn add`. Registries compose. Fighting that ecosystem for ego would just invent a second religion.",
+          "Owning a first-party CLI means distribution is not **gated** on someone else’s binary. Prefer shadcn? Use it. Prefer AtroUI CLI? Same JSON, same sections.",
+        ],
+      },
+      {
+        heading: "What v1 does",
+        body: [
+          "`atroui add <name…>` fetches items, walks `registryDependencies`, writes `files[].content` to `files[].target`, then installs missing npm `dependencies` with the package manager it detects from lockfiles.",
+          "`atroui add` with no names opens an interactive multi-select from remote `registry.json`.",
+          "`atroui list` prints the catalog.",
+          "Full walkthrough: [Installation](/docs/installation). The bin name is `atroui`; the npm package `atroui` stays Host APIs only.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx @atroui/cli@latest add home-hero site-header
+npx @atroui/cli@latest add          # interactive
+npx @atroui/cli@latest list`,
+          },
+        ],
+      },
+      {
+        heading: "What v1 deliberately skips",
+        body: [
+          "No `init` that injects a token sheet. No `components.json` coupling. No Tailwind config merging. No telemetry. No overwrite-without-confirm by default.",
+          "AtroUI registry items already ship explicit `target` paths and `@/` imports for brand and utils. They do not depend on rewriting `@/components/ui` into a private alias. Keep the installer boring; keep the catalog honest.",
+        ],
+      },
+      {
+        heading: "Where this sits in the install story",
+        body: [
+          "Registry UI still leads. Never start with `npm i atroui` for a hero alone.",
+          "Forms and AI tools still need the published `atroui` package for Host API handlers. The CLI (either one) copies the UI and thin route stubs; secrets stay in your env. See [Host APIs](/blog/host-apis-own-the-ui-bring-your-keys).",
+          "The earlier migration post still stands: we moved **UI** off black-box npm into the registry. This CLI just removes the assumption that shadcn is the only door into that registry. [Why we moved to the registry](/blog/npm-to-shadcn-registry).",
+        ],
+      },
+      {
+        heading: "Try it",
+        body: [
+          "Pick a block from the [catalog](/docs/registry), run Mode A or Mode B from [Installation](/docs/installation), open the file, edit `CONTENT`.",
+          "You own the source. Two installers. One registry.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "webgl-hero-gate-loading",
     title: "Don’t show the hero until the sphere is ready",
     description:
