@@ -41,7 +41,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         title={`Theme: ${currentOption.label}`}
         onClick={cycle}
         className={cn(
-          "inline-flex size-9 items-center justify-center rounded-md border border-border-subtle bg-white/5 text-foreground sm:hidden active:scale-[0.97]",
+          "inline-flex size-9 items-center justify-center rounded-lg border border-border-subtle bg-white/5 text-foreground sm:hidden active:scale-[0.97]",
           className
         )}
       >
@@ -52,7 +52,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         role="radiogroup"
         aria-label="Theme"
         className={cn(
-          "hidden items-stretch overflow-hidden rounded-md border border-border-subtle bg-white/5 sm:inline-flex",
+          "hidden items-stretch overflow-hidden rounded-lg border border-border-subtle bg-white/5 sm:inline-flex",
           className
         )}
       >

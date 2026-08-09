@@ -71,7 +71,7 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Star AtroUI on GitHub"
-            className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border-subtle bg-white/[0.03] px-2.5 text-foreground transition-colors hover:bg-white/[0.06] sm:px-3"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] px-2.5 text-foreground transition-colors hover:bg-white/[0.06] sm:px-3"
           >
             <Github className="size-4" aria-hidden />
             <span className="hidden text-[13px] font-medium sm:inline">
