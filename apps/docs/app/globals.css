@@ -53,7 +53,8 @@ html {
 }
 
 /* ==========================================================================
-   Presence hero — Digital Success palette, quiet void + deferred sphere
+   Presence hero — gate then open (industry WebGL pattern)
+   Opaque gate + real progress while sphere warms; one fade into finished hero.
    #000000 · #0b7bff · #92dbe0 · #3865cf
    ========================================================================== */
 
@@ -62,10 +63,10 @@ html {
   --ds-brand: #0b7bff;
   --ds-ink: #3865cf;
   --ds-void: #000000;
+  --presence-ease: cubic-bezier(0.32, 0.72, 0, 1);
   background: var(--ds-void);
 }
 
-/* Minimal void — no chalkboard, no blur-orb soup */
 .presence-hero-void {
   position: absolute;
   inset: 0;
@@ -89,20 +90,18 @@ html {
     0 0 36px color-mix(in srgb, var(--ds-brand) 22%, transparent);
 }
 
-/* Live install caret — one thing breathing (frequent CTAs stay static) */
 .presence-install-caret {
   animation: presence-caret-blink 1s steps(1, end) infinite;
 }
 
-/* Deferred WebGL — lower weight underpainting (never LCP) */
+/* Sphere at full underpainting while warming under the gate */
 .landing-hero-shader {
-  opacity: 0;
+  opacity: 0.42;
   mask-image: radial-gradient(
     ellipse 95% 90% at 55% 48%,
     black 30%,
     transparent 88%
   );
-  animation: presence-shader-fade 1.2s ease-out forwards;
 }
 
 @media (max-width: 768px) {
@@ -115,13 +114,27 @@ html {
   }
 }
 
-@keyframes presence-shader-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.42;
-  }
+/* Seal interactions / a11y under the gate (hero is already painted underneath) */
+.presence-hero-stage--sealed {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Gate — solid black; one fade when open */
+.presence-gate {
+  background: var(--ds-void);
+  opacity: 1;
+  transition: opacity 0.85s var(--presence-ease);
+}
+
+.presence-gate--out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.presence-gate-fill {
+  transition: width 0.2s linear;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ds-cyan) 45%, transparent);
 }
 
 @keyframes presence-caret-blink {
@@ -137,11 +150,17 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .presence-install-caret,
-  .landing-hero-shader {
+  .presence-gate,
+  .presence-gate-fill {
     animation: none !important;
+    transition: none !important;
   }
 
   .landing-hero-shader {
+    display: none;
+  }
+
+  .presence-gate {
     display: none;
   }
 
