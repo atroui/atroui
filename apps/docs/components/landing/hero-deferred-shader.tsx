@@ -1,21 +1,27 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 
 /**
- * Production WebGL palette — deferred so LCP stays on SSR text + CSS bloom.
- * Skipped for reduced-motion, Save-Data, and very slow networks.
- * Mobile loads a lower-density canvas after a longer idle delay.
+ * WebGL sphere — loads under the gate, reports stage progress, onReady when painted.
+ * Skipped for reduced-motion / Save-Data / slow-2g.
  */
+
 const ShaderLayer = dynamic(
   () => import("./hero-shader-canvas").then((m) => m.HeroShaderCanvas),
   { ssr: false, loading: () => null }
 )
 
+export type ShaderProgress = {
+  /** 0–1 */
+  value: number
+  label: string
+}
+
 type ShaderPlan =
   | { ok: false }
-  | { ok: true; mobile: boolean; delayMs: number }
+  | { ok: true; mobile: boolean }
 
 function planShader(): ShaderPlan {
   if (typeof window === "undefined") return { ok: false }
@@ -32,58 +38,70 @@ function planShader(): ShaderPlan {
   ) {
     return { ok: false }
   }
-  const mobile = window.matchMedia("(max-width: 768px)").matches
   return {
     ok: true,
-    mobile,
-    // Give mobile LCP more headroom before WebGL mounts
-    delayMs: mobile ? 1400 : 600,
+    mobile: window.matchMedia("(max-width: 768px)").matches,
   }
 }
 
-export function HeroDeferredShader() {
-  const [ready, setReady] = useState(false)
+export function HeroDeferredShader({
+  onReady,
+  onSkip,
+  onProgress,
+  active,
+}: {
+  onReady: () => void
+  onSkip: () => void
+  onProgress?: (progress: ShaderProgress) => void
+  active: boolean
+}) {
   const [mobile, setMobile] = useState(false)
+  const [mount, setMount] = useState(false)
+  const onReadyRef = useRef(onReady)
+  const onSkipRef = useRef(onSkip)
+  const onProgressRef = useRef(onProgress)
+  onReadyRef.current = onReady
+  onSkipRef.current = onSkip
+  onProgressRef.current = onProgress
 
   useEffect(() => {
+    if (!active) return
+
     const plan = planShader()
-    if (!plan.ok) return
-
-    let cancelled = false
-    setMobile(plan.mobile)
-
-    const enable = () => {
-      if (!cancelled) setReady(true)
+    if (!plan.ok) {
+      onProgressRef.current?.({ value: 1, label: "Ready" })
+      onSkipRef.current()
+      return
     }
 
-    const ric = window.requestIdleCallback
-    let idleId: number | undefined
+    setMobile(plan.mobile)
+    onProgressRef.current?.({ value: 0.12, label: "Fetching sphere" })
 
-    const timeoutId = setTimeout(() => {
-      if (typeof ric === "function") {
-        idleId = ric(enable, { timeout: plan.mobile ? 2000 : 1200 })
-      } else {
-        enable()
-      }
-    }, plan.delayMs)
+    let cancelled = false
+
+    void import("./hero-shader-canvas").then(() => {
+      if (cancelled) return
+      onProgressRef.current?.({ value: 0.45, label: "Compiling" })
+      setMount(true)
+    })
 
     return () => {
       cancelled = true
-      if (idleId !== undefined && typeof window.cancelIdleCallback === "function") {
-        window.cancelIdleCallback(idleId)
-      }
-      clearTimeout(timeoutId)
     }
-  }, [])
+  }, [active])
 
-  if (!ready) return null
+  if (!mount) return null
 
   return (
     <div
       className="landing-hero-shader pointer-events-none absolute inset-0"
       aria-hidden
     >
-      <ShaderLayer pixelDensity={mobile ? 0.55 : 1} />
+      <ShaderLayer
+        pixelDensity={mobile ? 0.55 : 1}
+        onProgress={(p) => onProgressRef.current?.(p)}
+        onReady={() => onReadyRef.current()}
+      />
     </div>
   )
 }
