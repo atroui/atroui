@@ -49,12 +49,12 @@ export function HeroShaderCanvas({
       if (canvas && canvas.width > 0 && canvas.height > 0) {
         if (!reportedMount) {
           reportedMount = true
-          onProgressRef.current?.({ value: 0.78, label: "Warming GPU" })
+          onProgressRef.current?.({ value: 0.7, label: "Warming GPU" })
         }
         painted += 1
         if (!reportedFrame && painted >= 2) {
           reportedFrame = true
-          onProgressRef.current?.({ value: 0.92, label: "First frame" })
+          onProgressRef.current?.({ value: 0.88, label: "First frame" })
           // Don't rely only on more rAFs — open shortly after first real frame
           afterFrameTimer = window.setTimeout(finish, 180)
         }

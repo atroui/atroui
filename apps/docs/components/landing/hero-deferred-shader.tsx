@@ -75,13 +75,13 @@ export function HeroDeferredShader({
     }
 
     setMobile(plan.mobile)
-    onProgressRef.current?.({ value: 0.08, label: "Fetching sphere" })
+    onProgressRef.current?.({ value: 0.12, label: "Fetching sphere" })
 
     let cancelled = false
 
     void import("./hero-shader-canvas").then(() => {
       if (cancelled) return
-      onProgressRef.current?.({ value: 0.52, label: "Compiling" })
+      onProgressRef.current?.({ value: 0.45, label: "Compiling" })
       setMount(true)
     })
 

@@ -3,7 +3,7 @@
 /**
  * Presence hero — industry gate pattern.
  * Full hero + sphere warm under an opaque gate with real stage progress.
- * One overlay fade when ready — temperament intact, no piecemeal assemble.
+ * Progress bar is DOM-driven (no React setState per frame) so 0→100 stays smooth.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -33,65 +33,127 @@ const navLinks = [
   { label: "Blog", href: "/blog" },
 ] as const
 
+const STAGE_COPY: Record<string, string> = {
+  Preparing: "Preparing",
+  "Fetching sphere": "Loading",
+  Compiling: "Building",
+  "Warming GPU": "Warming",
+  "First frame": "Almost",
+  Ready: "Ready",
+}
+
+/** Frame-rate independent ease (ms time-constant). */
+function damp(current: number, target: number, lambda: number, dtMs: number) {
+  return current + (target - current) * (1 - Math.exp(-dtMs / lambda))
+}
+
 export function PresenceHero() {
   const reduce = useReducedMotion()
   const [open, setOpen] = useState(() => Boolean(reduce))
   const [gateGone, setGateGone] = useState(() => Boolean(reduce))
-  const [progress, setProgress] = useState<ShaderProgress>({
-    value: 0,
-    label: "Preparing",
-  })
+  const [label, setLabel] = useState("Preparing")
+  const [labelKey, setLabelKey] = useState(0)
+
+  const fillRef = useRef<HTMLDivElement>(null)
+  const pctRef = useRef<HTMLSpanElement>(null)
+  const barRef = useRef<HTMLDivElement>(null)
+
+  const milestoneRef = useRef(0.02)
   const displayRef = useRef(0)
-  const [displayPct, setDisplayPct] = useState(0)
+  const openRef = useRef(open)
+  const finishingRef = useRef(false)
+  const startRef = useRef(0)
+  openRef.current = open
+
+  const paintBar = useCallback((pct: number) => {
+    const clamped = Math.max(0, Math.min(100, pct))
+    if (fillRef.current) {
+      fillRef.current.style.transform = `scaleX(${clamped / 100})`
+    }
+    if (pctRef.current) {
+      pctRef.current.textContent = `${Math.round(clamped)}%`
+    }
+    if (barRef.current) {
+      barRef.current.setAttribute("aria-valuenow", String(Math.round(clamped)))
+    }
+  }, [])
 
   const finish = useCallback(() => {
-    setProgress({ value: 1, label: "Ready" })
-    displayRef.current = 100
-    setDisplayPct(100)
-    // Yield past GPU hitch, then one gate fade into the finished hero
-    requestAnimationFrame(() => {
+    if (finishingRef.current) return
+    finishingRef.current = true
+    milestoneRef.current = 1
+    setLabel("Ready")
+    setLabelKey((k) => k + 1)
+    window.setTimeout(() => {
       requestAnimationFrame(() => {
-        window.setTimeout(() => setOpen(true), 120)
+        requestAnimationFrame(() => {
+          window.setTimeout(() => setOpen(true), 200)
+        })
       })
-    })
+    }, 320)
   }, [])
 
-  const onProgress = useCallback((p: ShaderProgress) => {
-    setProgress((prev) =>
-      p.value >= prev.value ? p : prev
-    )
-  }, [])
+  const onProgress = useCallback(
+    (p: ShaderProgress) => {
+      if (p.value > milestoneRef.current) {
+        milestoneRef.current = Math.min(p.value, 0.94)
+      }
+      const next = STAGE_COPY[p.label] ?? p.label
+      setLabel((prev) => {
+        if (prev === next) return prev
+        setLabelKey((k) => k + 1)
+        return next
+      })
+      if (p.value >= 1) finish()
+    },
+    [finish]
+  )
 
-  // Smooth the bar toward the latest stage (honest ceiling, no fake 100%)
   useEffect(() => {
-    if (open || reduce) {
-      setDisplayPct(100)
+    if (reduce) {
       displayRef.current = 100
+      paintBar(100)
       return
     }
-    const target = Math.min(progress.value, 0.97) * 100
+
+    startRef.current = performance.now()
     let raf = 0
-    const tick = () => {
-      const cur = displayRef.current
-      const next = cur + (target - cur) * 0.12
-      displayRef.current = next
-      setDisplayPct(next)
-      if (Math.abs(target - next) > 0.15) {
-        raf = requestAnimationFrame(tick)
+    let last = performance.now()
+
+    const tick = (now: number) => {
+      const dt = Math.min(40, now - last)
+      last = now
+
+      const elapsed = (now - startRef.current) / 1000
+      // Time floor = continuous motion even while the main thread is busy
+      const timeFloor = Math.min(0.9, elapsed / 2.4)
+      let target = Math.max(milestoneRef.current, timeFloor)
+
+      if (finishingRef.current || openRef.current) {
+        target = 1
+      } else {
+        target = Math.min(target, 0.94)
       }
+
+      const lambda = finishingRef.current || openRef.current ? 85 : 150
+      const next = damp(displayRef.current, target * 100, lambda, dt)
+      displayRef.current = next
+      paintBar(next)
+
+      raf = requestAnimationFrame(tick)
     }
+
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [progress.value, open, reduce])
+  }, [reduce, paintBar])
 
   useEffect(() => {
     if (!open) return
-    setDisplayPct(100)
-    const t = window.setTimeout(() => setGateGone(true), 900)
+    displayRef.current = 100
+    paintBar(100)
+    const t = window.setTimeout(() => setGateGone(true), 1100)
     return () => window.clearTimeout(t)
-  }, [open])
-
-  const pct = Math.round(displayPct)
+  }, [open, paintBar])
 
   return (
     <section
@@ -104,7 +166,6 @@ export function PresenceHero() {
     >
       <div className="presence-hero-void pointer-events-none absolute inset-0" aria-hidden />
 
-      {/* Sphere warms under the gate at full underpainting strength */}
       <HeroDeferredShader
         active
         onReady={finish}
@@ -112,7 +173,6 @@ export function PresenceHero() {
         onProgress={onProgress}
       />
 
-      {/* Finished hero — always in place; revealed when gate lifts */}
       <div
         className={cn(
           "presence-hero-stage relative z-10 flex min-h-svh flex-col",
@@ -197,7 +257,6 @@ export function PresenceHero() {
         </div>
       </div>
 
-      {/* Gate — opaque until sphere is lit; one fade, then unmount */}
       {!gateGone ? (
         <div
           className={cn(
@@ -207,22 +266,35 @@ export function PresenceHero() {
           aria-hidden={open}
           {...(open ? { inert: true } : {})}
         >
-          <div className="flex w-full max-w-sm flex-col items-center gap-8">
-            <div className="flex flex-col items-center gap-3 text-center">
+          <div className="presence-gate-inner flex w-full max-w-xs flex-col items-center gap-9 sm:max-w-sm">
+            <div className="presence-gate-brand flex flex-col items-center gap-3 text-center">
               <LogoMark className="h-10 w-10 text-white" />
               <p className="ds-sketch text-3xl tracking-tight text-white">AtroUI</p>
             </div>
 
-            <div className="w-full space-y-3" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label={progress.label}>
-              <div className="presence-gate-track h-[2px] w-full overflow-hidden rounded-full bg-white/10">
+            <div
+              ref={barRef}
+              className="w-full space-y-3.5"
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={0}
+              aria-label={label}
+            >
+              <div className="presence-gate-track h-px w-full overflow-hidden bg-white/12">
                 <div
-                  className="presence-gate-fill h-full rounded-full bg-[color:var(--ds-cyan,#92dbe0)]"
-                  style={{ width: `${pct}%` }}
+                  ref={fillRef}
+                  className="presence-gate-fill h-full origin-left bg-[color:var(--ds-cyan,#92dbe0)]"
+                  style={{ transform: "scaleX(0)" }}
                 />
               </div>
-              <div className="flex items-center justify-between gap-3 font-mono text-[10px] tracking-[0.14em] text-white/40 uppercase">
-                <span>{progress.label}</span>
-                <span>{pct}%</span>
+              <div className="flex items-center justify-between gap-3 font-mono text-[10px] tracking-[0.16em] text-white/45 uppercase">
+                <span key={labelKey} className="presence-gate-label">
+                  {label}
+                </span>
+                <span ref={pctRef} className="tabular-nums text-white/35">
+                  0%
+                </span>
               </div>
             </div>
           </div>

@@ -120,11 +120,11 @@ html {
   user-select: none;
 }
 
-/* Gate — solid black; one fade when open */
+/* Gate — solid black; soft enter, longer open fade */
 .presence-gate {
   background: var(--ds-void);
   opacity: 1;
-  transition: opacity 0.85s var(--presence-ease);
+  transition: opacity 1.05s var(--presence-ease);
 }
 
 .presence-gate--out {
@@ -132,9 +132,66 @@ html {
   pointer-events: none;
 }
 
+.presence-gate-inner {
+  animation: presence-gate-in 0.7s var(--presence-ease) both;
+}
+
+.presence-gate--out .presence-gate-inner {
+  animation: presence-gate-leave 0.85s var(--presence-ease) both;
+}
+
+.presence-gate-brand {
+  filter: drop-shadow(0 0 28px color-mix(in srgb, var(--ds-brand) 28%, transparent));
+}
+
+.presence-gate-track {
+  transform: translateZ(0);
+}
+
 .presence-gate-fill {
-  transition: width 0.2s linear;
-  box-shadow: 0 0 12px color-mix(in srgb, var(--ds-cyan) 45%, transparent);
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+  backface-visibility: hidden;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--ds-cyan) 40%, transparent);
+}
+
+.presence-gate-label {
+  animation: presence-gate-label-in 0.35s var(--presence-ease) both;
+}
+
+@keyframes presence-gate-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes presence-gate-leave {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+@keyframes presence-gate-label-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes presence-caret-blink {
@@ -151,7 +208,8 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .presence-install-caret,
   .presence-gate,
-  .presence-gate-fill {
+  .presence-gate-inner,
+  .presence-gate-label {
     animation: none !important;
     transition: none !important;
   }
