@@ -22,11 +22,11 @@ const START_DELAY_MS = 480
 function CopyBtn({
   text,
   label,
-  ready,
+  ready = true,
 }: {
   text: string
   label: string
-  ready: boolean
+  ready?: boolean
 }) {
   const [copied, setCopied] = React.useState(false)
 
@@ -59,6 +59,8 @@ function CopyBtn({
     </button>
   )
 }
+
+export { CopyBtn as PresenceCopyBtn }
 
 export function LiveInstall({ className }: { className?: string }) {
   const reduce = useReducedMotion()

@@ -15,7 +15,7 @@ import {
   type ShaderProgress,
 } from "@/components/landing/hero-deferred-shader"
 import { HeroMobileNav } from "@/components/landing/hero-mobile-nav"
-import { LiveInstall } from "@/components/landing/live-install"
+import { LiveInstall, PresenceCopyBtn } from "@/components/landing/live-install"
 import {
   SharedBrand,
   SharedOwnCta,
@@ -24,6 +24,7 @@ import {
 import { cn } from "@/lib/utils"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
+const ATROUI_CLI_CMD = "npx @atroui/cli@latest add home-hero"
 
 const navLinks = [
   { label: "Catalog", href: "/docs/components" },
@@ -274,13 +275,21 @@ export function PresenceHero() {
                 <p className="font-mono text-[10px] tracking-[0.12em] text-white/35 uppercase">
                   Try
                 </p>
-                <TransitionLink
-                  href="/docs/installation"
-                  className="block rounded-lg border border-white/12 bg-white/[0.03] px-2.5 py-2.5 font-mono text-[10px] leading-snug text-[color:var(--ds-cyan,#92dbe0)] transition hover:border-white/22 hover:bg-white/[0.06]"
-                >
-                  npx @atroui/cli
-                  <span className="mt-0.5 block text-white/40">add home-hero</span>
-                </TransitionLink>
+                <div className="flex items-start gap-0.5 rounded-lg border border-white/12 bg-white/[0.03] py-1.5 pr-1 pl-2.5 transition hover:border-white/22 hover:bg-white/[0.06]">
+                  <TransitionLink
+                    href="/docs/installation"
+                    className="min-w-0 flex-1 py-1 font-mono text-[10px] leading-snug text-[color:var(--ds-cyan,#92dbe0)] transition hover:text-white"
+                  >
+                    npx @atroui/cli
+                    <span className="mt-0.5 block text-white/40">
+                      add home-hero
+                    </span>
+                  </TransitionLink>
+                  <PresenceCopyBtn
+                    text={ATROUI_CLI_CMD}
+                    label="Copy AtroUI CLI command"
+                  />
+                </div>
               </div>
             </aside>
           </div>
