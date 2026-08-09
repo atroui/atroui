@@ -18,6 +18,57 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "webgl-hero-gate-loading",
+    title: "Don’t show the hero until the sphere is ready",
+    description:
+      "How atroui.com loads a heavy WebGL hero: opaque gate, real progress, shader warm-up underneath, one fade into the finished room. Why piecemeal UI while Three.js boots feels broken.",
+    date: "2026-08-09",
+    sections: [
+      {
+        body: [
+          "The Digital Success sphere on [atroui.com](https://www.atroui.com) is not decoration. It is the temperament of the landing hero. Without it, the page is just black type on a void.",
+          "That temperament costs something: Three.js, R3F, and shadergradient land as a multi-megabyte chunk. Download, parse, and first GPU compile take real time. Pretending otherwise is how you get a half-built hero and a sphere that pops in four seconds late.",
+        ],
+      },
+      {
+        heading: "What we tried that failed",
+        body: [
+          "CSS stand-ins while WebGL deferred. Fast first paint, hollow identity.",
+          "Show the full thesis immediately, fade the sphere in later. The room arrived without its atmosphere.",
+          "Hide thesis and chrome, leave LiveInstall alone, then fade everything in when ready. Closer, but still felt like UI turning on, not a finished scene opening.",
+          "Heavy sites do not assemble the experience piecemeal while the engine boots. They **gate**, then reveal.",
+        ],
+      },
+      {
+        heading: "The pattern we shipped",
+        body: [
+          "**Opaque gate:** brand mark, stage label, progress. Nothing of the hero peeks through.",
+          "**Warm underneath:** the sphere mounts and paints under the gate at full underpainting strength. Compile hitch stays invisible.",
+          "**Finished hero already in place:** thesis, install, CTAs, chrome. Sealed from interaction until open.",
+          "**One fade:** when the canvas has settled frames, the gate lifts. You see the room intact, sphere included.",
+          "Progress stages are honest ceilings (fetch → compile → warm → first frame → ready), smoothed on the compositor so the bar does not hitch every React render.",
+        ],
+      },
+      {
+        heading: "Rules we kept",
+        body: [
+          "Gate on a real ready signal, not a guessed timer. Failsafe if WebGL stalls.",
+          "Skip the gate for `prefers-reduced-motion`, Save-Data, and slow-2g. Temperament yields to access.",
+          "Do not restart the paint loop when progress updates. Callbacks stay ref-stable or the gate sticks at 92%.",
+          "Drive the progress fill with DOM transforms, not `setState` every frame. Main-thread WebGL work already steals frames; the bar should not.",
+        ],
+      },
+      {
+        heading: "Why it fits AtroUI",
+        body: [
+          "Family Values: gradual revelation, then fluidity. The wait is a designed beat. The open is one continuous lift into a complete composition.",
+          "Own the UI means owning the hard parts too, including when the pretty sphere is expensive. Borrow the industry pattern. Keep the keys (and the temperament) yours.",
+          "Hard refresh [atroui.com](https://www.atroui.com) and watch the gate. Then ship the same idea on your own hero when WebGL is the product, not the garnish.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "indie-site-kit-new-components",
     title: "Indie site kit: new AtroUI components for portfolio sites",
     description:
