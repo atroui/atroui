@@ -4,14 +4,14 @@
 
 Docs: [atroui.com](https://www.atroui.com) · Registry: [atroui.com/docs/registry](https://www.atroui.com/docs/registry)
 
-Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill CTAs. Primitives, page sections, and host-bound tools extracted from real products - delivered via the **shadcn CLI**.
+Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill CTAs. Primitives, page sections, and host-bound tools extracted from real products - delivered via the **AtroUI CLI** or the **shadcn CLI**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![CI](https://github.com/atroui/atroui/actions/workflows/ci.yml/badge.svg)](https://github.com/atroui/atroui/actions/workflows/ci.yml)
 
 ## Features
 
-- **Registry (own the files)** - `npx shadcn add @atroui/home-hero` copies source into your repo
+- **Registry (own the files)** - `npx @atroui/cli add home-hero` or `npx shadcn add @atroui/home-hero` copies source into your repo
 - **Dark-first sections** - heroes, chrome, CTAs with editable `CONTENT`
 - **Primitives** - Button, logo, theme toggle
 - **Tools** - OG workspace, thumbnail, scope (host APIs)
@@ -20,6 +20,10 @@ Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill 
 ## Install
 
 ```bash
+# AtroUI CLI (no shadcn required)
+npx @atroui/cli@latest add home-hero
+
+# or shadcn CLI
 npx shadcn@latest init
 npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
 npx shadcn@latest add @atroui/home-hero
@@ -31,13 +35,13 @@ Open the installed file and edit `CONTENT` / `DEFAULT_BRAND` at the top - that i
 
 ### Install modes
 
-Never lead with `npm i atroui` for pure UI. Use the CLI first; add the package only when `/api` handlers appear.
+Never lead with `npm i atroui` for pure UI. Use a registry CLI first; add the package only when `/api` handlers appear.
 
 | Mode | What you get | Install |
 |------|--------------|---------|
-| **Registry UI only** | Heroes, chrome, form UI — owned source files | `npx shadcn add @atroui/…`. No `atroui` package. |
-| **Forms** | Contact / waitlist / newsletter UI + hardened routes | `npm i atroui`, `transpilePackages: ["atroui"]`, then `@atroui/contact-form` + `@atroui/api-contact` (same for waitlist / newsletter). |
-| **AI tools** | OG, thumbnail, scope chat + matching APIs | Same package setup + `@atroui/og-workspace` / `thumbnail-workspace` / `scope-chat` + `@atroui/api-*`. |
+| **Registry UI only** | Heroes, chrome, form UI. Owned source files | `npx @atroui/cli add …` or `npx shadcn add @atroui/…`. No `atroui` package. |
+| **Forms** | Contact / waitlist / newsletter UI + hardened routes | `npm i atroui`, `transpilePackages: ["atroui"]`, then `contact-form` + `api-contact` (same for waitlist / newsletter). |
+| **AI tools** | OG, thumbnail, scope chat + matching APIs | Same package setup + `og-workspace` / `thumbnail-workspace` / `scope-chat` + `api-*`. |
 
 ## Monorepo structure
 
@@ -46,6 +50,7 @@ Never lead with `npm i atroui` for pure UI. Use the CLI first; add the package o
 ├── apps/
 │   └── docs/                 # Landing + docs + registry (@atroui/docs)
 ├── packages/
+│   ├── cli/                  # Publishable `@atroui/cli` (registry installer)
 │   ├── ui/                   # Publishable `atroui` (Host APIs + docs host)
 │   └── typescript-config/
 ├── package.json
@@ -69,7 +74,7 @@ pnpm dev          # Docs → http://localhost:3000
 | `pnpm typecheck` | Typecheck all packages |
 | `pnpm test` | Vitest |
 | `pnpm lint` | ESLint |
-| `pnpm changeset` | Add a version bump note for `atroui` |
+| `pnpm changeset` | Add a version bump note for `atroui` / `@atroui/cli` |
 
 Copy [`.env.example`](.env.example) to `apps/docs/.env.local` when you need email, analytics, or image-gen APIs.
 

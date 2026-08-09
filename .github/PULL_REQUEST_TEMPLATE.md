@@ -15,8 +15,8 @@ Which principle(s) does this serve? (check all that apply)
 
 ## Changeset
 
-- [ ] Added a changeset (`pnpm changeset`) for `packages/ui` changes
-- [ ] Docs / CI only — will use label **`skip-changeset`**
+- [ ] Added a changeset (`pnpm changeset`) for `packages/ui` / `packages/cli` changes
+- [ ] Docs / CI only - will use label **`skip-changeset`**
 - [ ] N/A (Version Packages PR or no publishable change)
 
 ## Test plan

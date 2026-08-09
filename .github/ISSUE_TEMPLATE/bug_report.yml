@@ -16,7 +16,8 @@ body:
       description: Where does the bug show up?
       options:
         - packages/ui (npm `atroui`)
-        - Registry block / shadcn CLI install
+        - packages/cli (npm `@atroui/cli`)
+        - Registry block / AtroUI CLI or shadcn CLI install
         - Host API route or handler
         - Docs site (atroui.com / apps/docs)
         - Other
@@ -27,7 +28,7 @@ body:
     id: version
     attributes:
       label: Package / site version
-      description: e.g. `atroui@0.4.0`, or docs commit / deploy URL
+      description: e.g. `atroui@0.4.0`, `@atroui/cli@0.1.0`, or docs commit / deploy URL
       placeholder: atroui@0.4.0
     validations:
       required: true

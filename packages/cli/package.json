@@ -1,0 +1,54 @@
+{
+  "name": "@atroui/cli",
+  "version": "0.0.0",
+  "description": "AtroUI CLI: add registry components into your repo without the shadcn CLI.",
+  "license": "MIT",
+  "homepage": "https://www.atroui.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atroui/atroui.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/atroui/atroui/issues"
+  },
+  "keywords": [
+    "atroui",
+    "cli",
+    "components",
+    "registry",
+    "nextjs",
+    "tailwind"
+  ],
+  "type": "module",
+  "bin": {
+    "atroui": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist .turbo",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.9.1",
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@atroui/typescript-config": "workspace:*",
+    "@types/node": "^22.16.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

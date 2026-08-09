@@ -10,7 +10,7 @@ const code = (text: string) => (
 )
 
 /**
- * Install modes — gradual revelation (one mode at a time) instead of a dense table.
+ * Install modes: gradual revelation (one mode at a time) instead of a dense table.
  * Same three modes as before: Registry UI → Forms → AI tools.
  */
 export function InstallModesMatrix({
@@ -21,7 +21,8 @@ export function InstallModesMatrix({
   return (
     <div className="space-y-3">
       <p className="text-[15px] leading-relaxed text-muted-foreground">
-        Never lead with {code("npm i atroui")} for pure UI. Use the CLI first;
+        Never lead with {code("npm i atroui")} for pure UI. Use a registry CLI
+        first ({code("npx @atroui/cli add")} or {code("npx shadcn add @atroui/…")});
         add the package only when {code("/api")} handlers appear.
       </p>
 
@@ -29,11 +30,12 @@ export function InstallModesMatrix({
         steps={[
           {
             title: "Registry UI only",
-            summary: "Heroes, chrome, form UI — owned source files. No npm package.",
+            summary: "Heroes, chrome, form UI. Owned source files. No npm package.",
             children: (
               <p className="text-[15px] leading-relaxed text-muted-foreground">
-                Install with {code("npx shadcn add @atroui/…")}. Source lands in
-                your repo. No {code("atroui")} package required.
+                Install with {code("npx @atroui/cli add …")} or{" "}
+                {code("npx shadcn add @atroui/…")}. Source lands in your repo. No{" "}
+                {code("atroui")} package required.
               </p>
             ),
           },

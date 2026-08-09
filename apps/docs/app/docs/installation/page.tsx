@@ -7,7 +7,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Installation",
   description:
-    "Add AtroUI with the shadcn CLI. Components copy into your repo so you own the source - same model as shadcn/ui.",
+    "Add AtroUI with the AtroUI CLI or the shadcn CLI. Components copy into your repo so you own the source.",
   path: "/docs/installation",
 })
 
@@ -22,9 +22,17 @@ export default function InstallationPage() {
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           AtroUI ships as a{" "}
           <strong className="font-medium text-foreground">
-            shadcn-compatible registry
-          </strong>
-          . Run the CLI, components land in your project, and you edit{" "}
+            public registry
+          </strong>{" "}
+          at{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            www.atroui.com/r
+          </code>
+          . Install with the{" "}
+          <strong className="font-medium text-foreground">AtroUI CLI</strong>{" "}
+          or the{" "}
+          <strong className="font-medium text-foreground">shadcn CLI</strong>.
+          Either way, source lands in your project and you edit{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             CONTENT
           </code>{" "}
@@ -35,26 +43,61 @@ export default function InstallationPage() {
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          1. Init shadcn (if needed)
+          Mode A: AtroUI CLI (no shadcn required)
         </h2>
-        <CodeBlock language="bash" code={`npx shadcn@latest init`} />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          You need a{" "}
+          First-party installer. Same registry JSON. No{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             components.json
           </code>{" "}
-          in the app. See the{" "}
+          required.
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`# Add one or more items (resolves @atroui/* registry deps)
+npx @atroui/cli@latest add home-hero
+
+# Interactive picker
+npx @atroui/cli@latest add
+
+# Browse the catalog
+npx @atroui/cli@latest list`}
+        />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Files write under{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            src/
+          </code>{" "}
+          when your app uses a{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            src
+          </code>{" "}
+          layout (or{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @/*
+          </code>{" "}
+          maps there). Missing npm dependencies are installed with your package
+          manager. See{" "}
           <Link href="/docs/theming" className="bam-link">
             Theming
           </Link>{" "}
-          guide for dark-first tokens that match the catalog.
+          for dark-first tokens that match the catalog.
         </p>
       </section>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          2. Add the AtroUI registry
+          Mode B: shadcn CLI
         </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Same registry, via the shadcn toolchain. Useful if you already use
+          shadcn or want{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            components.json
+          </code>
+          .
+        </p>
+        <CodeBlock language="bash" code={`npx shadcn@latest init`} />
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json`}
@@ -74,12 +117,6 @@ export default function InstallationPage() {
   }
 }`}
         />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          3. Add a component
-        </h2>
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest add @atroui/home-hero
@@ -92,8 +129,7 @@ npx shadcn@latest add @atroui/site-footer`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             components/blocks/home-hero.tsx
           </code>
-          ). Open the file and edit the constants at the top. Dependencies
-          resolve as{" "}
+          ). Dependencies resolve as{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @atroui/brand
           </code>
@@ -111,7 +147,7 @@ npx shadcn@latest add @atroui/site-footer`}
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          4. Forms + Host APIs
+          Forms + Host APIs
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Contact, waitlist, and newsletter UIs post to{" "}
@@ -129,9 +165,11 @@ npx shadcn@latest add @atroui/site-footer`}
           code={`npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
 
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact
-npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
-npx shadcn@latest add @atroui/newsletter-form @atroui/api-newsletter`}
+# AtroUI CLI
+npx @atroui/cli@latest add contact-form api-contact
+
+# or shadcn CLI
+npx shadcn@latest add @atroui/contact-form @atroui/api-contact`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Then set mail env (SMTP and/or Resend). Full Host API guide (env,
@@ -161,7 +199,7 @@ RESEND_AUDIENCE_ID=…`}
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           After adding{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @atroui/brand
+            brand
           </code>
           , edit{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -216,9 +254,8 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
           code={`npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
 
-npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
-npx shadcn@latest add @atroui/thumbnail-workspace @atroui/api-thumbnail
-npx shadcn@latest add @atroui/scope-chat @atroui/api-scope
+npx @atroui/cli@latest add og-workspace api-generate
+# or: npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
 
 # Your keys only (examples):
 HUGGINGFACE_API_KEY=…
@@ -233,7 +270,7 @@ HUGGINGFACE_API_KEY=…
           </code>{" "}
           until you configure providers. Marked{" "}
           <span className="font-medium text-foreground">Host API</span> in the
-          sidebar — details on{" "}
+          sidebar. Details on{" "}
           <Link href="/docs/host-api" className="bam-link">
             Host APIs
           </Link>

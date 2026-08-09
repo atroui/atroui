@@ -7,7 +7,7 @@ Please review this guide before your first pull request. Check [open issues](htt
 ## About this repository
 
 - **Package manager:** [pnpm](https://pnpm.io) + [Turborepo](https://turbo.build)
-- **Publishable package:** [`atroui`](https://www.npmjs.com/package/atroui) in `packages/ui`
+- **Publishable packages:** [`atroui`](https://www.npmjs.com/package/atroui) (Host APIs) in `packages/ui`, [`@atroui/cli`](https://www.npmjs.com/package/@atroui/cli) (registry installer) in `packages/cli`
 - **Docs / landing:** `apps/docs` → [atroui.com](https://www.atroui.com)
 - **Styling:** Tailwind CSS v4, design tokens in `packages/ui/src/globals.css`
 - **Animation:** [motion](https://motion.dev) (`motion/react`)
@@ -56,6 +56,7 @@ Copy [`.env.example`](.env.example) to `apps/docs/.env.local` if you need Host A
 │       ├── components/
 │       └── content/
 ├── packages/
+│   ├── cli/                       # `@atroui/cli` (published)
 │   ├── ui/                        # `atroui` (published)
 │   │   ├── src/
 │   │   │   ├── components/
@@ -79,21 +80,22 @@ Copy [`.env.example`](.env.example) to `apps/docs/.env.local` if you need Host A
 | Path | Publish? |
 |------|----------|
 | `packages/ui` (`atroui`) | Yes |
+| `packages/cli` (`@atroui/cli`) | Yes |
 | `apps/docs` | No (docs site) |
 | `packages/typescript-config` | No |
 
 ## Pull requests
 
 1. Branch from `master` and make your change.
-2. If you touch **`packages/ui`** (components, lib, tokens, exports), add a **changeset**:
+2. If you touch **`packages/ui`** or **`packages/cli`**, add a **changeset**:
 
    ```bash
    pnpm changeset
    ```
 
-   - Package: `atroui`
+   - Package: `atroui` and/or `@atroui/cli`
    - Bump: **patch** (fixes), **minor** (features), **major** (breaking)
-   - Short user-facing summary → lands in `packages/ui/CHANGELOG.md`
+   - Short user-facing summary → lands in that package's `CHANGELOG.md`
    - Commit the new `.changeset/*.md` with your PR
 
 3. Docs-only / CI-only changes: add the GitHub label **`skip-changeset`** so the changeset check can pass.
@@ -142,7 +144,7 @@ Contributor PR (+ changeset)
 Release Action opens/updates “Version Packages” PR
   (bumps version + CHANGELOG)
         ↓ merge Version PR
-changeset publish → npm (atroui@x.y.z)
+changeset publish → npm (`atroui`, `@atroui/cli`)
 ```
 
 ### Secrets
@@ -150,7 +152,7 @@ changeset publish → npm (atroui@x.y.z)
 **npm publish - pick one:**
 
 1. **NPM token:** Automation token → repo **Settings → Secrets → Actions** → `NPM_TOKEN`
-2. **Trusted Publishing (OIDC):** trust workflow `release.yml` on the `atroui` npm package
+2. **Trusted Publishing (OIDC):** trust workflow `release.yml` on the `atroui` and `@atroui/cli` npm packages
 
 If org rules block automatic Version Packages PRs, open manually from `changeset-release/master` after the Release workflow runs:
 

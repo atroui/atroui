@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - "packages/ui/**"
+      - "packages/cli/**"
       - ".changeset/**"
 
 concurrency:
@@ -13,9 +14,9 @@ concurrency:
 
 jobs:
   require-changeset:
-    name: Require changeset for UI changes
+    name: Require changeset for publishable packages
     runs-on: ubuntu-latest
-    # Maintainers can skip with label `skip-changeset` (docs-only touch of packages/ui, etc.)
+    # Maintainers can skip with label `skip-changeset` (docs-only touch of packages, etc.)
     if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changeset') }}
 
     steps:
@@ -62,17 +63,17 @@ jobs:
           echo "Comparing range: ${RANGE}"
 
           # Publishable package source only - README / markdown docs do not need a bump.
-          UI_SOURCE=$(git diff --name-only "$RANGE" -- packages/ui \
+          PKG_SOURCE=$(git diff --name-only "$RANGE" -- packages/ui packages/cli \
             | grep -vE '\.(md|mdx)$' \
             || true)
 
-          if [[ -z "${UI_SOURCE}" ]]; then
-            echo "No publishable UI source changes (docs/README/changeset-only). OK."
+          if [[ -z "${PKG_SOURCE}" ]]; then
+            echo "No publishable package source changes (docs/README/changeset-only). OK."
             exit 0
           fi
 
-          echo "Publishable UI source changed:"
-          echo "${UI_SOURCE}"
+          echo "Publishable package source changed:"
+          echo "${PKG_SOURCE}"
 
           # Any new/changed changeset markdown on this PR counts.
           if git diff --name-only "$RANGE" | grep -qE '^\.changeset/.+\.md$'; then
@@ -88,7 +89,7 @@ jobs:
             exit 0
           fi
 
-          echo "::error::UI package source changed but no changeset found."
+          echo "::error::Publishable package source changed but no changeset found."
           echo "Run: pnpm changeset"
           echo "Or add the label 'skip-changeset' if this PR should not bump the package."
           exit 1
