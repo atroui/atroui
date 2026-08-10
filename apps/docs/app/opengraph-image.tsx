@@ -1,32 +1,12 @@
 import { ImageResponse } from "next/og"
+import { loadOgFonts } from "atroui/lib/og/load-fonts"
 
 export const alt = "AtroUI - React component library at atroui.com"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
 export default async function OpenGraphImage() {
-  let fontBold: ArrayBuffer
-  let fontMedium: ArrayBuffer
-
-  try {
-    fontBold = await fetch(
-      new URL("../../../packages/ui/src/lib/og/fonts/Inter-Bold.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer())
-  } catch {
-    fontBold = await fetch(
-      "https://api.fontsource.org/v1/fonts/inter/latin-700-normal.ttf"
-    ).then((res) => res.arrayBuffer())
-  }
-
-  try {
-    fontMedium = await fetch(
-      new URL("../../../packages/ui/src/lib/og/fonts/Inter-Medium.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer())
-  } catch {
-    fontMedium = await fetch(
-      "https://api.fontsource.org/v1/fonts/inter/latin-500-normal.ttf"
-    ).then((res) => res.arrayBuffer())
-  }
+  const { bold: fontBold, medium: fontMedium } = loadOgFonts()
 
   return new ImageResponse(
     (
@@ -190,6 +170,8 @@ export default async function OpenGraphImage() {
               </div>
               <div
                 style={{
+                  display: "flex",
+                  flexDirection: "column",
                   color: "#fafafa",
                   fontSize: 54,
                   fontWeight: 700,
@@ -197,9 +179,8 @@ export default async function OpenGraphImage() {
                   lineHeight: 1.1,
                 }}
               >
-                Own the UI.
-                <br />
-                Borrow the API.
+                <span>Own the UI.</span>
+                <span>Borrow the API.</span>
               </div>
               <div
                 style={{
