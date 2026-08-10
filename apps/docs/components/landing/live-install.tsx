@@ -11,7 +11,6 @@ import { useReducedMotion } from "motion/react"
 
 export const INSTALL_LINES = [
   "npx shadcn@latest init",
-  "npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json",
   "npx shadcn@latest add @atroui/home-hero",
 ] as const
 
@@ -63,7 +62,7 @@ function CopyBtn({
 export function LiveInstall({ className }: { className?: string }) {
   const reduce = useReducedMotion()
   const [typed, setTyped] = React.useState<string[]>(() =>
-    reduce ? [...INSTALL_LINES] : ["", "", ""]
+    reduce ? [...INSTALL_LINES] : INSTALL_LINES.map(() => "")
   )
   const [activeLine, setActiveLine] = React.useState(0)
   const [done, setDone] = React.useState(() => Boolean(reduce))

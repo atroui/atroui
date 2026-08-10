@@ -417,7 +417,6 @@ import "atroui/globals.css"`,
           {
             language: "bash",
             code: `npx shadcn@latest init
-npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
 npx shadcn@latest add @atroui/home-hero
 npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
           },
@@ -434,7 +433,7 @@ npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
         body: [
           "It is already the default distribution channel for copy-into-repo UI in Next.js land. Fighting that means inventing a second CLI, a second docs language, and a second mental model.",
           "Registries compose. Teams can keep blank-slate primitives from one registry and AtroUI sections from another, as long as tokens do not fight. We document that path on [Compare](/docs/compare).",
-          "Directory and tooling. A public `https://www.atroui.com/r/{name}.json` URL works with the stock CLI, CI checks, and the emerging shadcn directory surface. See our [directory notes](https://github.com/atroui/atroui/blob/master/apps/docs/SHADCN_DIRECTORY.md).",
+          "Directory and tooling. `@atroui` is listed in the [official registry directory](https://ui.shadcn.com/docs/directory) ([PR #11420](https://github.com/shadcn-ui/ui/pull/11420)), so `npx shadcn add @atroui/…` works without a manual registry URL. See our [directory notes](https://github.com/atroui/atroui/blob/master/apps/docs/SHADCN_DIRECTORY.md).",
           "Docs and product stay aligned. The same registry that powers consumer installs also builds the live catalog on atroui.com. What you add is what we demo.",
         ],
       },
@@ -497,15 +496,13 @@ apps/docs/app/api/*     # thin wrappers (= @atroui/api-* stubs)`,
         codeBlocks: [
           {
             language: "bash",
-            code: `# 1. Register the catalog
-npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
-
-# 2. Add the blocks you actually use (example)
+            code: `# 1. Add the blocks you actually use (example)
+# @atroui is in the official directory - no manual registry URL
 npx shadcn@latest add @atroui/home-hero @atroui/site-header @atroui/brand @atroui/utils
 
-# 3. Point imports at local files (@/components/…, @/lib/brand)
-# 4. Copy CONTENT / DEFAULT_BRAND values you already customized
-# 5. Keep or add npm atroui only if you use Host APIs
+# 2. Point imports at local files (@/components/…, @/lib/brand)
+# 3. Copy CONTENT / DEFAULT_BRAND values you already customized
+# 4. Keep or add npm atroui only if you use Host APIs
 npm i atroui   # optional - Host API consumers only`,
           },
         ],
@@ -605,7 +602,7 @@ npm i atroui   # optional - Host API consumers only`,
     slug: "install-atroui-nextjs-app-router",
     title: "Install AtroUI in a Next.js App Router project (step-by-step)",
     description:
-      "Add AtroUI with the shadcn CLI: init, register @atroui, add home-hero. Components land in your repo with editable CONTENT.",
+      "Add AtroUI with the shadcn CLI: init, then add @atroui/home-hero. Listed in the official directory. Components land in your repo with editable CONTENT.",
     date: "2026-08-05",
     sections: [
       {
@@ -627,28 +624,9 @@ npm i atroui   # optional - Host API consumers only`,
         ],
       },
       {
-        heading: "2. Add the AtroUI registry",
+        heading: "2. Add a component",
         body: [
-          "Point the CLI at the AtroUI registry on atroui.com.",
-        ],
-        codeBlocks: [
-          {
-            language: "bash",
-            code: "npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json",
-          },
-          {
-            language: "json",
-            code: `{
-  "registries": {
-    "@atroui": "https://www.atroui.com/r/{name}.json"
-  }
-}`,
-          },
-        ],
-      },
-      {
-        heading: "3. Add a component",
-        body: [
+          "`@atroui` is in the [official shadcn registry directory](https://ui.shadcn.com/docs/directory). No manual `registry add` URL step. The CLI resolves the namespace for you.",
           "Dependencies resolve as @atroui/brand, @atroui/utils, and so on - not bare names on the default shadcn registry.",
         ],
         codeBlocks: [
@@ -661,7 +639,7 @@ npx shadcn@latest add @atroui/button`,
         ],
       },
       {
-        heading: "4. Edit CONTENT",
+        heading: "3. Edit CONTENT",
         body: [
           "Open the installed file (for example components/blocks/home-hero.tsx). Change the CONTENT constants at the top - stamp, headline, CTAs. That is the point of the registry.",
           "Full catalog: [Registry](/docs/registry). Theming tokens: [Theming](/docs/theming).",

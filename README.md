@@ -21,7 +21,6 @@ Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill 
 
 ```bash
 npx shadcn@latest init
-npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
 npx shadcn@latest add @atroui/home-hero
 ```
 
