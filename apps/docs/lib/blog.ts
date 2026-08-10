@@ -18,6 +18,72 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "atroui-in-shadcn-directory",
+    title: "AtroUI is now in the official shadcn registry directory",
+    description:
+      "@atroui merged into the official shadcn/ui registry directory. What changed, what did not, and how to install without a manual registry URL.",
+    date: "2026-08-10",
+    sections: [
+      {
+        body: [
+          "AtroUI started as a catalog you could install by pointing the shadcn CLI at a custom URL. That worked, but it was one extra step and a bit of proof-of-concept energy.",
+          "Today [shadcn-ui/ui#11420](https://github.com/shadcn-ui/ui/pull/11420) is merged. `@atroui` is now listed in the [official shadcn registry directory](https://ui.shadcn.com/docs/directory?q=atroui). Consumers can install blocks without a manual `registry add` URL. Same registry. Same source. One less chore.",
+          "The registry URL is still `https://www.atroui.com/r/{name}.json`. The change is that the CLI now resolves the namespace from the directory, so the first install path looks like the rest of the ecosystem.",
+        ],
+      },
+      {
+        heading: "What changed",
+        body: [
+          "`@atroui` appears in `https://ui.shadcn.com/r/registries.json`. The directory entry points at `https://www.atroui.com/r/{name}.json` with a short description and a logo.",
+          "New installs do not need to run `npx shadcn registry add @atroui=https://...`. They can run `npx shadcn add @atroui/home-hero` directly after `shadcn init`. The CLI will add the registry to `components.json` automatically if needed.",
+          "Our docs, README, and install snippets have been updated to the simpler flow. Older projects that already have the registry URL in `components.json` continue to work unchanged.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest init
+npx shadcn@latest add @atroui/home-hero
+npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
+          },
+        ],
+      },
+      {
+        heading: "What did not change",
+        body: [
+          "The source still lands in your repo. You still own every file. Edit `CONTENT` and `DEFAULT_BRAND` at the top.",
+          "Registry items are still served from `https://www.atroui.com/r`. The directory is just a pointer.",
+          "Host APIs are still the same hybrid: UI from the registry, hardened handlers from `atroui` on npm, and you bring your own keys.",
+          "We did not replace the shadcn install path. AtroUI CLI remains an alternative for teams that prefer not to use the shadcn toolchain. Both use the same JSON.",
+        ],
+      },
+      {
+        heading: "What this means for the project",
+        body: [
+          "Distribution is no longer gated on a custom registry command. Being in the directory lowers friction for anyone already inside the shadcn ecosystem.",
+          "It also makes the catalog easier to discover. A builder can `shadcn search` or browse the directory and find AtroUI alongside the official and community registries.",
+          "Most importantly, the product stays the same. We are not pivoting to be a shadcn clone. The directory entry is a door, not a rebrand. We still ship production sections, Host APIs, and an identity kit that stays on-brand.",
+        ],
+      },
+      {
+        heading: "Try it",
+        body: [
+          "Start a fresh Next.js app, run `shadcn init`, then add one block:",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest add @atroui/home-hero`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Open the installed file, edit `CONTENT`, and the hero is yours. For forms, AI tools, and rate limits: see [Host APIs](/docs/host-api). For the earlier thinking behind the registry model: [npm to shadcn registry](/blog/npm-to-shadcn-registry).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "webgl-hero-gate-loading",
     title: "Don’t show the hero until the sphere is ready",
     description:
@@ -876,7 +942,7 @@ export default nextConfig`,
           "components.json includes the @atroui registry",
           "npx shadcn add @atroui/… succeeded",
           "CONTENT / DEFAULT_BRAND edited for your brand",
-          "If you use Host APIs: npm i atroui + transpilePackages: [\"atroui\"] — see [Host APIs](/docs/host-api)",
+          "If you use Host APIs: npm i atroui + transpilePackages: [\"atroui\"] - see [Host APIs](/docs/host-api)",
           "Restart the Next dev server after config changes",
           "Pure registry UI does not require the npm package - see [npm → shadcn registry](/blog/npm-to-shadcn-registry)",
         ],
