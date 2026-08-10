@@ -41,6 +41,11 @@ export const navigation: NavSection[] = [
       { title: "Theming", href: "/docs/theming", description: "Tokens" },
       { title: "Brand kit", href: "/docs/brand", description: "Logo & voice" },
       {
+        title: "Identity kit",
+        href: "/docs/identity",
+        description: "Brand & SEO config",
+      },
+      {
         title: "Compare",
         href: "/docs/compare",
         description: "vs copy-paste kits",

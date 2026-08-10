@@ -4,9 +4,9 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoContactForm } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "Contact Form",
+  "Hardened Next.js Contact Form with SMTP API",
   "/docs/components/contact-contact-form",
-  "Full contact / briefing form. Posts to /api/contact - install @atroui/api-contact or use atroui/api/contact."
+  "A secure, production-ready React contact form component for Next.js with a matching SMTP and Resend backend API route."
 )
 
 export default function Page() {
@@ -14,8 +14,8 @@ export default function Page() {
     <ComponentDoc
       href="/docs/components/contact-contact-form"
       registryName="contact-form"
-      title="Contact Form"
-      description="Full contact / briefing form. Posts to /api/contact - install @atroui/api-contact or use atroui/api/contact."
+      title="Hardened Next.js Contact Form with SMTP API"
+      description="A secure, production-ready React contact form component for Next.js with a matching SMTP and Resend backend API route."
       preview={<DemoContactForm />}
       code={'import { ContactForm } from "@/components/blocks/contact-form"\n\n<ContactForm />'}
       fullBleed={true}

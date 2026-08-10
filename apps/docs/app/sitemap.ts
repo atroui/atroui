@@ -14,6 +14,7 @@ const staticPaths = [
   "/docs/theming",
   "/docs/changelog",
   "/docs/brand",
+  "/docs/identity",
   "/docs/compare",
   "/docs/components",
 ] as const
@@ -38,14 +39,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = staticPaths.map((path) => ({
     url: path === "/" ? siteUrl : `${siteUrl}${path}`,
     lastModified,
-    changeFrequency: (path === "/" || path === "/blog"
+    changeFrequency: (path === "/" || path === "/blog" || path === "/docs/registry"
       ? "weekly"
       : "monthly") as "weekly" | "monthly",
-    priority: path === "/" ? 1 : path.startsWith("/blog") ? 0.85 : 0.8,
+    priority: path === "/" ? 1 : (path === "/docs/registry" || path === "/docs/identity") ? 0.9 : path.startsWith("/blog") ? 0.85 : 0.8,
   }))
 
   const byUrl = new Map<string, MetadataRoute.Sitemap[number]>()
-  for (const entry of [...staticEntries, ...docsFromNav, ...blog]) {
+  // Lower-priority sources first, so higher-priority staticEntries win on collisions.
+  for (const entry of [...blog, ...docsFromNav, ...staticEntries]) {
     byUrl.set(entry.url, entry)
   }
   return Array.from(byUrl.values())

@@ -17,6 +17,7 @@ import { Resvg } from "@resvg/resvg-js";
 import satori from "satori";
 import sharp from "sharp";
 
+import { getBrand } from "../brand";
 import { loadOgFonts } from "./load-fonts";
 import {
   QUICK_INPUT_LIMITS,
@@ -331,6 +332,7 @@ function buildOverlayNode(
       style: {
         display: "flex",
         flexDirection: "column",
+        position: "relative",
         width: OG_WIDTH,
         height: OG_HEIGHT,
         padding: `${padding}px`,
@@ -348,6 +350,38 @@ function buildOverlayNode(
               width: "100%",
             },
             children,
+          },
+        },
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute",
+              bottom: 32,
+              right: 48,
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              padding: "4px 8px",
+              borderRadius: "4px",
+              background: "rgba(0,0,0,0.35)",
+              border: "1px solid rgba(255,255,255,0.06)",
+            },
+            children: [
+              {
+                type: "span",
+                props: {
+                  style: {
+                    color: "rgba(255,255,255,0.45)",
+                    fontFamily: "Inter",
+                    fontSize: 10,
+                    fontWeight: 500,
+                    letterSpacing: "0.05em",
+                  },
+                  children: getBrand().domain,
+                },
+              },
+            ],
           },
         },
       ],

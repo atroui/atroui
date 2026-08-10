@@ -4,9 +4,9 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoPersonalHero } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "Personal Hero",
+  "Personal Hero - Shadcn Portfolio Kit",
   "/docs/components/personal-hero",
-  "Narrow personal intro with status, lede links, and meta."
+  "A narrow personal homepage portfolio hero section built as a shadcn registry component with profile portrait and status tags."
 )
 
 export default function Page() {
@@ -14,8 +14,8 @@ export default function Page() {
     <ComponentDoc
       href="/docs/components/personal-hero"
       registryName="personal-hero"
-      title="Personal Hero"
-      description="Narrow personal intro with status, lede links, and meta."
+      title="Personal Hero - Shadcn Portfolio Kit"
+      description="A narrow personal homepage portfolio hero section built as a shadcn registry component with profile portrait and status tags."
       preview={<DemoPersonalHero />}
       code={'import { PersonalHero } from "@/components/blocks/personal-hero"\n\n<PersonalHero />'}
       fullBleed={true}

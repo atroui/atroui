@@ -5,9 +5,9 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoOgWorkspace } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "OG Workspace",
+  "Next.js OG Image Workspace (Satori + BYOK)",
   "/docs/components/og-og-workspace",
-  "Full OG image generator workspace UI. Catalog demos do not call paid image APIs."
+  "An interactive, client-side Open Graph social card workspace UI for Next.js powered by Satori, tailwindcss, and AI prompt overrides."
 )
 
 export default function Page() {
@@ -15,8 +15,8 @@ export default function Page() {
     <ComponentDoc
       registryName="og-workspace"
       href="/docs/components/og-og-workspace"
-      title="OG Workspace"
-      description="Full OG image generator workspace UI. Catalog demos do not call paid image APIs."
+      title="Next.js OG Image Workspace (Satori + BYOK)"
+      description="An interactive, client-side Open Graph social card workspace UI for Next.js powered by Satori, tailwindcss, and AI prompt overrides."
       preview={<DemoOgWorkspace />}
       code={'import { OgWorkspace } from "@/components/blocks/og-workspace"\n\n<OgWorkspace />'}
       fullBleed={true}
