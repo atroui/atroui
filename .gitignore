@@ -10,6 +10,9 @@ storybook-static
 coverage
 *.tsbuildinfo
 
+# IndexNow verification key - managed via INDEX_NOW_KEY env var, never commit
+apps/docs/public/INDEX_NOW_KEY.txt
+
 # Local agent skills / product marketing context (not for contributors)
 .agents/
 skills-lock.json

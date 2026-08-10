@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { FaqJsonLd } from "atroui"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -128,6 +129,24 @@ export default function ComparePage() {
           AtroUI vs shadcn/ui
         </Link>
       </div>
+
+      <FaqJsonLd
+        pagePath="/docs/compare"
+        items={[
+          {
+            question: "What is AtroUI?",
+            answer: "AtroUI is a production-ready dark-first component catalog on the shadcn registry that lets you copy raw React and Next.js files directly into your repository. You retain 100% source code ownership.",
+          },
+          {
+            question: "How does AtroUI differ from copy-paste UI kits?",
+            answer: "Unlike typical copy-paste kits that provide only primitive atoms (like basic buttons or inputs), AtroUI provides fully designed blocks (heroes, pricing layouts, footers) and hardened Host API backend handlers for forms and AI workspaces under a Bring Your Own Keys (BYOK) paradigm.",
+          },
+          {
+            question: "Does AtroUI require installing an npm dependency?",
+            answer: "Pure UI layout blocks have no npm dependencies; they copy raw code. Only form components or AI workspaces that use our pre-hardened routes require installing the helper library 'atroui' to run rate-limiting and SMTP validation safely on your server.",
+          },
+        ]}
+      />
     </article>
   )
 }

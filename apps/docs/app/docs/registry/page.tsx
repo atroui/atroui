@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { getSiteUrl } from "atroui/lib/site-url"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -11,6 +12,8 @@ export const metadata: Metadata = docsPageMetadata({
 })
 
 export default function RegistryPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <article className="mx-auto max-w-3xl space-y-10">
       <header>
@@ -432,6 +435,57 @@ npx shadcn@latest add @atroui/site-footer`}
           .
         </p>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "AtroUI Component Registry Catalog",
+            "description": "Production dark-first React and Next.js components to copy-paste into your repository via shadcn CLI.",
+            "url": `${siteUrl}/docs/registry`,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home Hero Component",
+                "url": `${siteUrl}/docs/components/home-hero`
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Theme Toggle Switch Component",
+                "url": `${siteUrl}/docs/components/ui-theme-toggle`
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Contact Form Component with SMTP API",
+                "url": `${siteUrl}/docs/components/contact-contact-form`
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Personal Portfolio Hero Component",
+                "url": `${siteUrl}/docs/components/personal-hero`
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Satori OG Image Workspace UI",
+                "url": `${siteUrl}/docs/components/og-og-workspace`
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "name": "Interactive FAQ Accordion",
+                "url": `${siteUrl}/docs/components/faq-interactive-preview`
+              }
+            ]
+          }).replace(/</g, "\\u003c")
+        }}
+      />
     </article>
   )
 }

@@ -4,9 +4,9 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoThemeToggle } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "Theme Toggle",
+  "React Theme Toggle Component",
   "/docs/components/ui-theme-toggle",
-  "Light / dark theme switch."
+  "An elegant React theme toggle component built for Tailwind CSS and next-themes with soft-rect radius options."
 )
 
 export default function Page() {
@@ -14,8 +14,8 @@ export default function Page() {
     <ComponentDoc
       href="/docs/components/ui-theme-toggle"
       registryName="theme-toggle"
-      title="Theme Toggle"
-      description="Light / dark theme switch."
+      title="React Theme Toggle Component"
+      description="An elegant React theme toggle component built for Tailwind CSS and next-themes with soft-rect radius options."
       preview={<DemoThemeToggle />}
       code={'import { ThemeToggle } from "@/components/ui/theme-toggle"\n\n<ThemeToggle />'}
       fullBleed={false}
