@@ -32,7 +32,6 @@ export default function DocsIntroPage() {
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest init
-npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
 npx shadcn@latest add @atroui/home-hero`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">

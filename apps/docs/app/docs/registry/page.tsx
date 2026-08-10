@@ -77,33 +77,27 @@ export default function RegistryPage() {
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
-          2. Add the AtroUI registry
+          2. Add a component
         </h2>
-        <CodeBlock
-          language="bash"
-          code={`npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json`}
-        />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Or add this to{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            components.json
-          </code>
-          :
+            @atroui
+          </code>{" "}
+          is in the{" "}
+          <a
+            href="https://ui.shadcn.com/docs/directory?q=atroui"
+            className="bam-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            official shadcn registry directory
+          </a>
+          . No manual{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            registry add
+          </code>{" "}
+          step. The CLI resolves the namespace for you.
         </p>
-        <CodeBlock
-          language="json"
-          code={`{
-  "registries": {
-    "@atroui": "https://www.atroui.com/r/{name}.json"
-  }
-}`}
-        />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          3. Add a component
-        </h2>
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest add @atroui/home-hero

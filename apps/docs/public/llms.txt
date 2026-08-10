@@ -3,15 +3,17 @@
 > Dark-first React / Next.js component catalog. Install with the shadcn CLI and own the source in your repo.
 > Site: https://www.atroui.com
 > Registry: https://www.atroui.com/r/{name}.json
+> Directory: listed as `@atroui` in https://ui.shadcn.com/r/registries.json
 > Repo: https://github.com/atroui/atroui
 
 ## Install
 
 ```bash
 npx shadcn@latest init
-npx shadcn@latest registry add @atroui=https://www.atroui.com/r/{name}.json
 npx shadcn@latest add @atroui/home-hero
 ```
+
+`@atroui` is in the official shadcn registry directory. No manual `registry add` URL step.
 
 ## Key pages
 
@@ -53,3 +55,4 @@ Full catalog: https://www.atroui.com/r/registry.json
 
 - GitHub: https://github.com/atroui/atroui
 - npm (tokens / package): https://www.npmjs.com/package/atroui
+- shadcn directory: https://ui.shadcn.com/docs/directory?q=atroui
