@@ -626,7 +626,7 @@ npm i atroui   # optional - Host API consumers only`,
       {
         heading: "2. Add a component",
         body: [
-          "`@atroui` is in the [official shadcn registry directory](https://ui.shadcn.com/docs/directory). No manual `registry add` URL step. The CLI resolves the namespace for you.",
+          "`@atroui` is in the [official shadcn registry directory](https://ui.shadcn.com/docs/directory?q=atroui). No manual `registry add` URL step. The CLI resolves the namespace for you.",
           "Dependencies resolve as @atroui/brand, @atroui/utils, and so on - not bare names on the default shadcn registry.",
         ],
         codeBlocks: [

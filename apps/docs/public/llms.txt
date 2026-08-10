@@ -55,4 +55,4 @@ Full catalog: https://www.atroui.com/r/registry.json
 
 - GitHub: https://github.com/atroui/atroui
 - npm (tokens / package): https://www.npmjs.com/package/atroui
-- shadcn directory: https://ui.shadcn.com/docs/directory
+- shadcn directory: https://ui.shadcn.com/docs/directory?q=atroui

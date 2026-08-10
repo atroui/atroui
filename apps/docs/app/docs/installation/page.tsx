@@ -61,7 +61,7 @@ export default function InstallationPage() {
           </code>{" "}
           is in the{" "}
           <a
-            href="https://ui.shadcn.com/docs/directory"
+            href="https://ui.shadcn.com/docs/directory?q=atroui"
             className="bam-link"
             target="_blank"
             rel="noopener noreferrer"

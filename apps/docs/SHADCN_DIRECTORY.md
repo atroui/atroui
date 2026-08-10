@@ -1,7 +1,7 @@
 # `@atroui` in the shadcn registry directory
 
 Official docs: https://ui.shadcn.com/docs/registry/registry-index  
-Directory UI: https://ui.shadcn.com/docs/directory  
+Directory UI: https://ui.shadcn.com/docs/directory?q=atroui  
 Index JSON: https://ui.shadcn.com/r/registries.json
 
 ## Status
