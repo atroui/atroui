@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Star } from "lucide-react"
+import { CatalogStage } from "@/components/landing/catalog-stage"
 import { PresenceHero } from "@/components/landing/presence-hero"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
@@ -35,6 +36,7 @@ export function LandingHero() {
   return (
     <div className="bg-black text-white">
       <PresenceHero />
+      <CatalogStage />
 
       <section className="border-t border-white/10">
         <div className={shell}>
@@ -55,7 +57,7 @@ export function LandingHero() {
                 <li key={item.title}>
                   <Link
                     href={item.href}
-                    className="group flex flex-col gap-1.5 px-4 py-4 transition-colors hover:bg-white/[0.04] sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
+                    className="group flex flex-col gap-1.5 px-4 py-4 transition-colors hover:bg-white/4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
                   >
                     <span className="ds-sketch text-xl text-white transition-colors group-hover:text-sky-300 sm:text-2xl">
                       {item.title}
