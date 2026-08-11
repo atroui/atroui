@@ -34,7 +34,7 @@ const shell =
 /** Server-rendered landing shell — hero text paints without waiting on WebGL. */
 export function LandingHero() {
   return (
-    <div className="bg-black text-white">
+    <div className="dark bg-black text-white">
       <PresenceHero />
       <CatalogStage />
 

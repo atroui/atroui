@@ -2,9 +2,12 @@
 
 /**
  * Catalog Stage — Family Values on the landing catalog.
- * 1. Gradual revelation: one live component at a time.
+ * 1. Gradual revelation: one live block at a time.
  * 2. Fluidity: shared-layout tab indicator + soft crossfade (easeOutSoft).
  * 3. Careful delight: copy feedback on the install line only.
+ *
+ * Every preview is the real registry export users install — no mocks.
+ * Lined up to the claim: Own the UI. Borrow the API.
  */
 
 import * as React from "react"
@@ -12,15 +15,10 @@ import Link from "next/link"
 import { Check, Copy } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import {
-  Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  ContactForm,
   DeadlineCountdown,
-  LocalClock,
-  ThemeToggle,
+  HomeHero,
+  WaitlistForm,
 } from "atroui"
 import { cn } from "@/lib/utils"
 import { easeOutSoft, panelTween } from "@/lib/motion"
@@ -28,7 +26,7 @@ import { easeOutSoft, panelTween } from "@/lib/motion"
 const shell =
   "mx-auto w-full max-w-7xl px-4 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-20 lg:py-20 xl:px-24"
 
-type CatalogId = "theme" | "button" | "card" | "countdown" | "clock"
+type CatalogId = "hero" | "countdown" | "contact" | "waitlist"
 
 type CatalogItem = {
   id: CatalogId
@@ -41,44 +39,36 @@ type CatalogItem = {
 
 const CATALOG: CatalogItem[] = [
   {
-    id: "theme",
-    label: "Theme",
-    registry: "theme-toggle",
-    docs: "/docs/components/ui-theme-toggle",
-    blurb: "Soft-rect chrome. Dark, light, system.",
-    command: "npx shadcn@latest add @atroui/theme-toggle",
-  },
-  {
-    id: "button",
-    label: "Button",
-    registry: "button",
-    docs: "/docs/components/ui-button",
-    blurb: "Primary actions with quiet variants.",
-    command: "npx shadcn@latest add @atroui/button",
-  },
-  {
-    id: "card",
-    label: "Card",
-    registry: "card",
-    docs: "/docs/components/ui-card",
-    blurb: "Elevated surface for focused content.",
-    command: "npx shadcn@latest add @atroui/card",
+    id: "hero",
+    label: "Hero",
+    registry: "home-hero",
+    docs: "/docs/components/home-hero",
+    blurb: "Own the UI — production hero, source in your repo.",
+    command: "npx shadcn@latest add @atroui/home-hero",
   },
   {
     id: "countdown",
     label: "Countdown",
     registry: "deadline-countdown",
     docs: "/docs/components/deadline-countdown",
-    blurb: "Personal kit — days to a date you own.",
+    blurb: "Own the UI — personal kit block, edit CONTENT.",
     command: "npx shadcn@latest add @atroui/deadline-countdown",
   },
   {
-    id: "clock",
-    label: "Clock",
-    registry: "local-clock",
-    docs: "/docs/components/local-clock",
-    blurb: "Monospace local time for indie chrome.",
-    command: "npx shadcn@latest add @atroui/local-clock",
+    id: "contact",
+    label: "Contact",
+    registry: "contact-form",
+    docs: "/docs/components/contact-contact-form",
+    blurb: "Borrow the API — form UI + SMTP Host API (BYOK).",
+    command: "npx shadcn@latest add @atroui/contact-form",
+  },
+  {
+    id: "waitlist",
+    label: "Waitlist",
+    registry: "waitlist-form",
+    docs: "/docs/components/brand-waitlist-form",
+    blurb: "Borrow the API — waitlist UI + Host API route (BYOK).",
+    command: "npx shadcn@latest add @atroui/waitlist-form",
   },
 ]
 
@@ -104,7 +94,7 @@ function StageCopyBtn({ text }: { text: string }) {
     >
       {copied ? (
         <Check
-          className="size-3.5 text-(--ds-cyan,#92dbe0)"
+          className="size-3.5 text-[color:var(--ds-cyan,#92dbe0)]"
           aria-hidden
         />
       ) : (
@@ -114,83 +104,67 @@ function StageCopyBtn({ text }: { text: string }) {
   )
 }
 
-function PreviewTheme() {
-  return (
-    <div className="flex flex-col items-center gap-5">
-      <ThemeToggle />
-      <p className="max-w-xs text-center font-mono text-[11px] leading-relaxed text-white/45">
-        Switches the site theme. Soft-rect, not a capsule.
-      </p>
-    </div>
-  )
+function renderPreview(id: CatalogId) {
+  switch (id) {
+    case "hero":
+      // Real `@atroui/home-hero` — same export users install.
+      return <HomeHero />
+    case "countdown":
+      // Real `@atroui/deadline-countdown` — same export users install.
+      return (
+        <DeadlineCountdown className="mx-auto w-full max-w-md" />
+      )
+    case "contact":
+      // Real `@atroui/contact-form` — pair with `@atroui/api-contact` (BYOK).
+      return (
+        <div className="mx-auto w-full max-w-2xl space-y-3">
+          <React.Suspense
+            fallback={
+              <p className="font-mono text-[12px] text-muted-foreground">
+                Loading contact form…
+              </p>
+            }
+          >
+            <ContactForm />
+          </React.Suspense>
+          <p className="font-mono text-[11px] text-muted-foreground">
+            Pair with{" "}
+            <span className="text-foreground">@atroui/api-contact</span> — SMTP
+            / Resend on your route. Keys stay in your env.
+          </p>
+        </div>
+      )
+    case "waitlist":
+      // Real `@atroui/waitlist-form` — pair with `@atroui/api-waitlist` (BYOK).
+      return (
+        <div className="mx-auto w-full max-w-sm space-y-3">
+          <WaitlistForm />
+          <p className="font-mono text-[11px] leading-relaxed text-muted-foreground">
+            Pair with{" "}
+            <span className="text-foreground">@atroui/api-waitlist</span> on
+            your Next.js route (BYOK).
+          </p>
+        </div>
+      )
+    default:
+      return null
+  }
 }
 
-function PreviewButton() {
-  return (
-    <div className="flex flex-wrap items-center justify-center gap-3">
-      <Button>Get started</Button>
-      <Button variant="outline">Docs</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-    </div>
-  )
-}
-
-function PreviewCard() {
-  return (
-    <Card className="w-full max-w-sm border border-white/10 bg-white/3 shadow-none ring-0">
-      <CardHeader>
-        <CardTitle className="text-white">Own the UI</CardTitle>
-        <CardDescription className="text-white/50">
-          Files land in your repo. Edit CONTENT at the top.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex gap-2">
-        <Button size="sm">Install</Button>
-        <Button size="sm" variant="outline">
-          Registry
-        </Button>
-      </CardContent>
-    </Card>
-  )
-}
-
-function PreviewCountdown() {
-  return (
-    <div className="w-full max-w-md">
-      <DeadlineCountdown className="mx-auto max-w-md" />
-    </div>
-  )
-}
-
-function PreviewClock() {
-  return (
-    <div className="flex flex-col items-center gap-3">
-      <LocalClock
-        timezone="Asia/Kolkata"
-        timezoneLabel="IST"
-        className="text-base text-white/80"
-      />
-      <p className="font-mono text-[11px] text-white/40">
-        LocalClock · Asia/Kolkata
-      </p>
-    </div>
-  )
-}
-
-const PREVIEWS: Record<CatalogId, React.ReactNode> = {
-  theme: <PreviewTheme />,
-  button: <PreviewButton />,
-  card: <PreviewCard />,
-  countdown: <PreviewCountdown />,
-  clock: <PreviewClock />,
-}
+/** Fixed stage height so tab switches don’t resize the chrome (Family Values: fluidity). */
+const STAGE_VIEWPORT =
+  "h-[min(70dvh,36rem)] sm:h-[min(72dvh,40rem)]"
 
 export function CatalogStage() {
   const reduce = useReducedMotion()
-  const [activeId, setActiveId] = React.useState<CatalogId>("theme")
+  const [activeId, setActiveId] = React.useState<CatalogId>("hero")
   const active = CATALOG.find((item) => item.id === activeId) ?? CATALOG[0]!
   const tablistRef = React.useRef<HTMLDivElement>(null)
+  const viewportRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    viewportRef.current?.scrollTo({ top: 0 })
+  }, [activeId])
 
   function onTabListKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     const index = CATALOG.findIndex((item) => item.id === activeId)
@@ -212,29 +186,34 @@ export function CatalogStage() {
     event.preventDefault()
     const nextId = CATALOG[next]!.id
     setActiveId(nextId)
-    const btn = tablistRef.current?.querySelector<HTMLButtonElement>(
-      `#catalog-tab-${nextId}`
-    )
-    btn?.focus()
+    tablistRef.current
+      ?.querySelector<HTMLButtonElement>(`#catalog-tab-${nextId}`)
+      ?.focus()
   }
 
   return (
-    <section className="border-t border-white/10" aria-labelledby="catalog-stage-title">
+    <section
+      className="border-t border-white/10"
+      aria-labelledby="catalog-stage-title"
+    >
       <div className={shell}>
         <div className="flex flex-col gap-8 sm:gap-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-xl">
-              <p className="ms-stamp">Catalog</p>
+              <p className="ms-stamp">The claim</p>
               <h2
                 id="catalog-stage-title"
                 className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl"
               >
-                See it before you{" "}
-                <span className="ds-sketch-accent">install</span>
+                Own the UI.{" "}
+                <span className="ds-sketch-accent">Borrow the API.</span>
               </h2>
               <p className="ds-lede mt-3 max-w-md text-neutral-400 sm:mt-4">
-                Live pieces from the registry. One at a time — the same source
-                that lands in your repo.
+                Live registry blocks — the same exports{" "}
+                <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
+                  shadcn add @atroui/…
+                </code>{" "}
+                writes into your repo. Host APIs stay on your keys.
               </p>
             </div>
             <Link
@@ -275,8 +254,7 @@ export function CatalogStage() {
                     <motion.span
                       layoutId="catalog-tab-pill"
                       className="absolute inset-0 rounded-lg border border-white/12 bg-white/6"
-                      transition={{ ...panelTween }}
-                      style={{ transitionTimingFunction: easeOutSoft.join(",") }}
+                      transition={panelTween}
                     />
                   ) : selected ? (
                     <span className="absolute inset-0 rounded-lg border border-white/12 bg-white/6" />
@@ -296,7 +274,7 @@ export function CatalogStage() {
             <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <span className="font-mono text-[12px] text-(--ds-cyan,#92dbe0)">
+                  <span className="font-mono text-[12px] text-[color:var(--ds-cyan,#92dbe0)]">
                     {active.registry}
                   </span>
                   <span className="text-[12px] text-white/35">·</span>
@@ -311,7 +289,16 @@ export function CatalogStage() {
               </Link>
             </div>
 
-            <div className="relative flex min-h-70 items-center justify-center px-4 py-10 sm:min-h-80 sm:px-8 sm:py-14">
+            <div
+              ref={viewportRef}
+              className={cn(
+                "relative overflow-y-auto overscroll-contain",
+                STAGE_VIEWPORT,
+                active.id === "hero"
+                  ? "px-0 py-0"
+                  : "flex items-center justify-center px-4 py-8 sm:px-8 sm:py-12"
+              )}
+            >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active.id}
@@ -323,16 +310,19 @@ export function CatalogStage() {
                       ? { duration: 0 }
                       : { duration: 0.22, ease: easeOutSoft }
                   }
-                  className="flex w-full items-center justify-center"
+                  className={cn(
+                    "w-full",
+                    active.id === "hero" ? undefined : "flex justify-center"
+                  )}
                 >
-                  {PREVIEWS[active.id]}
+                  {renderPreview(active.id)}
                 </motion.div>
               </AnimatePresence>
             </div>
 
             <div className="flex items-center gap-2 border-t border-white/10 bg-black/40 px-3 py-2.5 sm:px-4">
               <span
-                className="font-mono text-[12px] text-(--ds-cyan,#92dbe0)"
+                className="font-mono text-[12px] text-[color:var(--ds-cyan,#92dbe0)]"
                 aria-hidden
               >
                 $
