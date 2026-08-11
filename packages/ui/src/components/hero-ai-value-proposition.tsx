@@ -36,14 +36,14 @@ function getHeroStyles(): {
   const studioLine = `${getBrand().name} - studio + free AI tools`;
   return [
     {
-      key: "paperQuote",
-      label: "Paper",
+      key: "techMinimal",
+      label: "Tech",
       title: "Ship in days,\nnot quarters.",
       subtitle: studioLine,
     },
     {
-      key: "techMinimal",
-      label: "Tech",
+      key: "paperQuote",
+      label: "Paper",
       title: "Ship in days,\nnot quarters.",
       subtitle: studioLine,
     },
@@ -63,7 +63,7 @@ function getHeroStyles(): {
 }
 
 function HeroOgCanvas() {
-  const [styleKey, setStyleKey] = useState<StyleKey>("paperQuote");
+  const [styleKey, setStyleKey] = useState<StyleKey>("techMinimal");
   const heroStyles = getHeroStyles();
   const active = heroStyles.find((s) => s.key === styleKey) ?? heroStyles[0]!;
   const preset = STYLE_PRESETS[styleKey];
