@@ -127,14 +127,9 @@ export function LiveInstall({ className }: { className?: string }) {
       ]
         .filter(Boolean)
         .join(" ")}
-      aria-label="Install AtroUI in three lines"
+      aria-label="Install AtroUI"
     >
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-3.5 py-2.5 sm:px-4">
-        <div className="flex items-center gap-1.5" aria-hidden>
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
-        </div>
         <p className="font-mono text-[10px] tracking-[0.14em] text-white/40 uppercase">
           install · live
         </p>
