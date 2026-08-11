@@ -90,13 +90,10 @@ function StageCopyBtn({ text }: { text: string }) {
       type="button"
       onClick={copy}
       aria-label={copied ? "Copied" : "Copy install command"}
-      className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg text-white/45 transition-colors hover:bg-white/10 hover:text-white"
+      className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-[color:var(--ds-cyan,#92dbe0)] transition-colors hover:bg-[color:var(--ds-cyan,#92dbe0)]/15 hover:text-white"
     >
       {copied ? (
-        <Check
-          className="size-3.5 text-[color:var(--ds-cyan,#92dbe0)]"
-          aria-hidden
-        />
+        <Check className="size-3.5" aria-hidden />
       ) : (
         <Copy className="size-3.5" aria-hidden />
       )}
@@ -271,8 +268,8 @@ export function CatalogStage() {
             aria-labelledby={`catalog-tab-${active.id}`}
             className="overflow-hidden rounded-xl border border-white/10 bg-white/2"
           >
-            <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-              <div className="min-w-0">
+            <div className="flex min-w-0 flex-col gap-3 border-b border-white/10 px-3 py-2.5 sm:flex-row sm:items-center sm:gap-4 sm:px-4">
+              <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                   <span className="font-mono text-[12px] text-[color:var(--ds-cyan,#92dbe0)]">
                     {active.registry}
@@ -281,12 +278,26 @@ export function CatalogStage() {
                   <span className="text-[12px] text-white/50">{active.blurb}</span>
                 </div>
               </div>
-              <Link
-                href={active.docs}
-                className="shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-white/45 transition-colors hover:text-white"
-              >
-                Docs
-              </Link>
+              <div className="flex min-w-0 items-center gap-2 sm:ml-auto sm:max-w-[min(100%,28rem)]">
+                <div className="flex min-w-0 flex-1 items-center gap-1.5 rounded-lg border border-[color:var(--ds-cyan,#92dbe0)]/25 bg-[color:var(--ds-cyan,#92dbe0)]/10 py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
+                  <span
+                    className="hidden shrink-0 font-mono text-[12px] font-medium text-[color:var(--ds-cyan,#92dbe0)] sm:inline"
+                    aria-hidden
+                  >
+                    $
+                  </span>
+                  <code className="min-w-0 flex-1 truncate font-mono text-[11px] text-white sm:text-[12px]">
+                    {active.command}
+                  </code>
+                  <StageCopyBtn text={active.command} />
+                </div>
+                <Link
+                  href={active.docs}
+                  className="shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-white/45 transition-colors hover:text-white"
+                >
+                  Docs
+                </Link>
+              </div>
             </div>
 
             <div
@@ -318,19 +329,6 @@ export function CatalogStage() {
                   {renderPreview(active.id)}
                 </motion.div>
               </AnimatePresence>
-            </div>
-
-            <div className="flex items-center gap-2 border-t border-white/10 bg-black/40 px-3 py-2.5 sm:px-4">
-              <span
-                className="font-mono text-[12px] text-[color:var(--ds-cyan,#92dbe0)]"
-                aria-hidden
-              >
-                $
-              </span>
-              <code className="min-w-0 flex-1 truncate font-mono text-[12px] text-white/80 sm:text-[13px]">
-                {active.command}
-              </code>
-              <StageCopyBtn text={active.command} />
             </div>
           </div>
         </div>
