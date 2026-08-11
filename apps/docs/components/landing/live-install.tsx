@@ -48,7 +48,7 @@ function CopyBtn({
       type="button"
       onClick={copy}
       aria-label={copied ? "Copied" : label}
-      className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white"
+      className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white"
     >
       {copied ? (
         <Check className="size-3.5 text-[color:var(--ds-cyan,#92dbe0)]" aria-hidden />
@@ -142,7 +142,7 @@ export function LiveInstall({ className }: { className?: string }) {
           type="button"
           onClick={copyAll}
           disabled={!done}
-          className="inline-flex h-7 items-center gap-1.5 rounded-md px-2 font-mono text-[10px] tracking-[0.08em] text-white/50 uppercase transition-colors enabled:hover:bg-white/10 enabled:hover:text-white disabled:opacity-30"
+          className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md px-2 font-mono text-[10px] tracking-[0.08em] text-white/50 uppercase transition-colors enabled:hover:bg-white/10 enabled:hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
         >
           {copiedAll ? (
             <>
