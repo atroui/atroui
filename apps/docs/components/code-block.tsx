@@ -46,7 +46,7 @@ export function CodeBlock({
         <button
           type="button"
           onClick={copy}
-          className="inline-flex h-7 items-center gap-1.5 rounded-full border border-border-subtle bg-white/5 px-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+          className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md border border-border-subtle bg-white/5 px-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
         >
           {copied ? <Check className="size-3.5" aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
           {copied ? "Copied" : "Copy"}

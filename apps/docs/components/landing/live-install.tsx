@@ -48,7 +48,7 @@ function CopyBtn({
       type="button"
       onClick={copy}
       aria-label={copied ? "Copied" : label}
-      className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white"
+      className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white"
     >
       {copied ? (
         <Check className="size-3.5 text-[color:var(--ds-cyan,#92dbe0)]" aria-hidden />
@@ -127,14 +127,9 @@ export function LiveInstall({ className }: { className?: string }) {
       ]
         .filter(Boolean)
         .join(" ")}
-      aria-label="Install AtroUI in three lines"
+      aria-label="Install AtroUI"
     >
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-3.5 py-2.5 sm:px-4">
-        <div className="flex items-center gap-1.5" aria-hidden>
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
-        </div>
         <p className="font-mono text-[10px] tracking-[0.14em] text-white/40 uppercase">
           install · live
         </p>
@@ -142,7 +137,7 @@ export function LiveInstall({ className }: { className?: string }) {
           type="button"
           onClick={copyAll}
           disabled={!done}
-          className="inline-flex h-7 items-center gap-1.5 rounded-md px-2 font-mono text-[10px] tracking-[0.08em] text-white/50 uppercase transition-colors enabled:hover:bg-white/10 enabled:hover:text-white disabled:opacity-30"
+          className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md px-2 font-mono text-[10px] tracking-[0.08em] text-white/50 uppercase transition-colors enabled:hover:bg-white/10 enabled:hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
         >
           {copiedAll ? (
             <>
