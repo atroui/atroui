@@ -90,7 +90,7 @@ function StageCopyBtn({ text }: { text: string }) {
       type="button"
       onClick={copy}
       aria-label={copied ? "Copied" : "Copy install command"}
-      className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-[color:var(--ds-cyan,#92dbe0)] transition-colors hover:bg-[color:var(--ds-cyan,#92dbe0)]/15 hover:text-white"
+      className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-[color:var(--ds-cyan,#92dbe0)] transition-colors hover:bg-[color:var(--ds-cyan,#92dbe0)]/15 hover:text-white"
     >
       {copied ? (
         <Check className="size-3.5" aria-hidden />

@@ -41,7 +41,7 @@ function InstallCopyBtn({ text }: { text: string }) {
       type="button"
       onClick={copy}
       aria-label={copied ? "Copied" : "Copy install command"}
-      className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-brand transition-colors hover:bg-brand/15 hover:text-foreground"
+      className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-brand transition-colors hover:bg-brand/15 hover:text-foreground"
     >
       {copied ? (
         <Check className="size-3.5 text-brand" aria-hidden />
