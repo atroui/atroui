@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { CodeBlock } from "@/components/code-block"
 import { DocsExample } from "@/components/docs-example"
 import { DocsPager } from "@/components/docs-pager"
 import { PropsTable, type PropRow } from "@/components/props-table"
@@ -71,6 +70,28 @@ export function ComponentDoc({
     installation ??
     (registryName ? `npx shadcn@latest add @atroui/${registryName}` : null)
 
+  const setupLinks = (
+    <p className="text-[13px] text-muted-foreground">
+      Source lands in your repo. Setup:{" "}
+      <Link href="/docs/installation" className="bam-link">
+        Installation
+      </Link>
+      {" · "}
+      <Link href="/docs/registry" className="bam-link">
+        Registry catalog
+      </Link>
+      {isHostApi ? (
+        <>
+          {" · "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
+          </Link>
+        </>
+      ) : null}
+      .
+    </p>
+  )
+
   return (
     <article
       className={
@@ -108,49 +129,32 @@ export function ComponentDoc({
       </header>
 
       <DocStep n="01" label="Preview">
-        <DocsExample preview={preview} code={code} fullBleed={fullBleed} />
-      </DocStep>
-
-      <DocStep n="02" label="Install">
-        {installCmd ? (
-          <>
-            <CodeBlock language="bash" code={installCmd} />
-            <p className="text-[13px] text-muted-foreground">
-              Source lands in your repo. Setup:{" "}
-              <Link href="/docs/installation" className="bam-link">
-                Installation
-              </Link>
-              {" · "}
-              <Link href="/docs/registry" className="bam-link">
-                Registry catalog
-              </Link>
-              {isHostApi ? (
-                <>
-                  {" · "}
-                  <Link href="/docs/host-api" className="bam-link">
-                    Host APIs
-                  </Link>
-                </>
-              ) : null}
-              .
-            </p>
-          </>
-        ) : (
-          <div className="space-y-2 rounded-2xl border border-border-subtle bg-muted/30 px-4 py-3">
-            <p className="text-[14px] leading-relaxed text-muted-foreground">
-              Not in the CLI registry yet. This page documents the live catalog
-              component. Prefer registry blocks when you want owned source via{" "}
-              <Link href="/docs/registry" className="bam-link">
-                shadcn add @atroui/…
-              </Link>
-              .
-            </p>
-          </div>
-        )}
+        <div className="space-y-3">
+          <DocsExample
+            preview={preview}
+            code={code}
+            fullBleed={fullBleed}
+            installCommand={installCmd ?? undefined}
+          />
+          {installCmd ? (
+            setupLinks
+          ) : (
+            <div className="space-y-2 rounded-xl border border-border-subtle bg-muted/30 px-4 py-3">
+              <p className="text-[14px] leading-relaxed text-muted-foreground">
+                Not in the CLI registry yet. This page documents the live catalog
+                component. Prefer registry blocks when you want owned source via{" "}
+                <Link href="/docs/registry" className="bam-link">
+                  shadcn add @atroui/…
+                </Link>
+                .
+              </p>
+            </div>
+          )}
+        </div>
       </DocStep>
 
       {usage ? (
-        <DocStep n="03" label="Usage">
+        <DocStep n="02" label="Usage">
           <div className="text-[15px] leading-relaxed text-muted-foreground">
             {usage}
           </div>
@@ -158,7 +162,7 @@ export function ComponentDoc({
       ) : null}
 
       {props && props.length > 0 ? (
-        <DocStep n={usage ? "04" : "03"} label="API reference">
+        <DocStep n={usage ? "03" : "02"} label="API reference">
           <PropsTable data={props} />
         </DocStep>
       ) : null}
