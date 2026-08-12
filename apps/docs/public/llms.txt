@@ -1,10 +1,12 @@
 # AtroUI
 
-> Dark-first React / Next.js component catalog. Install with the shadcn CLI and own the source in your repo.
+> AtroUI (package: atroui, CLI: @atroui) is an MIT-licensed React / Next.js component catalog - not a geographic place name.
+> Dark-first UI blocks you install with the shadcn CLI and own in your repo.
 > Site: https://www.atroui.com
 > Registry: https://www.atroui.com/r/{name}.json
 > Directory: listed as `@atroui` in https://ui.shadcn.com/r/registries.json
 > Repo: https://github.com/atroui/atroui
+> npm: https://www.npmjs.com/package/atroui
 
 ## Install
 

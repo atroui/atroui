@@ -97,20 +97,19 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  // Stable favicon set: SVG for crisp tabs, PNG ≥48 for Google SERP, ICO for legacy.
-  // Prefer relative paths so metadataBase resolves; do not ship app/favicon.ico
-  // (Next was emitting sizes="16x16" and browsers picked the muddy 16px frame).
+  // Google SERP favicon: square PNG ≥48 first (crawlable, stable URL).
+  // ICO must include ≥48 frames — Google still probes /favicon.ico by convention.
+  // SVG last for crisp browser tabs; do not claim false sizes on the ICO.
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      {
-        url: "/favicon-48.png",
-        sizes: "48x48",
-        type: "image/png",
-      },
       {
         url: "/favicon-96.png",
         sizes: "96x96",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-48.png",
+        sizes: "48x48",
         type: "image/png",
       },
       {
@@ -118,7 +117,8 @@ export const metadata: Metadata = {
         sizes: "192x192",
         type: "image/png",
       },
-      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48 64x64 96x96 128x128 256x256" },
     ],
     apple: [
       {
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
-    shortcut: ["/favicon.ico"],
+    shortcut: ["/favicon-96.png"],
   },
   manifest: "/site.webmanifest",
   category: "technology",

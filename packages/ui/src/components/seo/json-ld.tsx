@@ -20,6 +20,10 @@ export function SiteGraphJsonLd({ name }: OrgJsonLdProps = {}) {
   const domain = getSiteDomain();
   const orgId = `${siteUrl}#organization`;
   const webId = `${siteUrl}#website`;
+  const appId = `${siteUrl}#software`;
+
+  const entityDescription =
+    "AtroUI is an MIT-licensed React and Next.js component catalog. Install blocks with the shadcn CLI and own the source in your repo; optional Host APIs stay on your keys.";
 
   const data = {
     "@context": "https://schema.org",
@@ -28,7 +32,8 @@ export function SiteGraphJsonLd({ name }: OrgJsonLdProps = {}) {
         "@type": "Organization",
         "@id": orgId,
         name: orgName,
-        alternateName: [domain],
+        legalName: "AtroUI",
+        alternateName: ["atroui", "@atroui", "Atro UI"],
         url: siteUrl,
         logo: {
           "@type": "ImageObject",
@@ -37,22 +42,41 @@ export function SiteGraphJsonLd({ name }: OrgJsonLdProps = {}) {
           height: 192,
         },
         sameAs: [
+          "https://github.com/atroui/atroui",
+          "https://www.npmjs.com/package/atroui",
+          "https://ui.shadcn.com/docs/directory?q=atroui",
           "https://www.iamk.xyz",
           "https://www.makershot.tech",
           "https://x.com/iamk",
-          "https://github.com/atroui/atroui",
-          "https://www.npmjs.com/package/atroui",
         ],
-        description: brand.tagline,
+        description: entityDescription,
+        disambiguatingDescription:
+          "Open-source React / Next.js UI component library and shadcn registry catalog at atroui.com",
+        knowsAbout: [
+          "React",
+          "Next.js",
+          "shadcn/ui",
+          "design systems",
+          "component libraries",
+        ],
+        brand: {
+          "@type": "Brand",
+          name: orgName,
+          alternateName: ["atroui", "@atroui"],
+          url: siteUrl,
+          logo: `${siteUrl}/brand/atroui-mark.svg`,
+        },
       },
       {
         "@type": "WebSite",
         "@id": webId,
         name: orgName,
-        alternateName: [domain],
+        alternateName: ["atroui", domain, "@atroui"],
         url: siteUrl,
         inLanguage: "en-US",
+        description: entityDescription,
         publisher: { "@id": orgId },
+        about: { "@id": appId },
       },
     ],
   };
@@ -311,14 +335,22 @@ export function ThumbnailGeneratorJsonLd() {
 export function SoftwareAppJsonLd() {
   const siteUrl = getSiteUrl();
   const brand = getBrand();
+  const orgId = `${siteUrl}#organization`;
+  const appId = `${siteUrl}#software`;
+  const entityDescription =
+    "AtroUI is an MIT-licensed React and Next.js component catalog. Install blocks with the shadcn CLI and own the source in your repo; optional Host APIs stay on your keys.";
+
   const data = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": appId,
     name: brand.name,
-    alternateName: ["atroui", brand.domain],
+    alternateName: ["atroui", "@atroui", "Atro UI"],
     applicationCategory: "DeveloperApplication",
+    applicationSubCategory: "UI component library",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript",
+    license: "https://opensource.org/licenses/MIT",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -327,14 +359,14 @@ export function SoftwareAppJsonLd() {
     url: siteUrl,
     downloadUrl: "https://www.npmjs.com/package/atroui",
     codeRepository: "https://github.com/atroui/atroui",
-    description: brand.tagline,
+    description: entityDescription,
+    disambiguatingDescription:
+      "Open-source React / Next.js UI component library and shadcn registry catalog at atroui.com",
     keywords:
-      "AtroUI, React component library, Next.js design system, dark UI, Tailwind",
-    provider: {
-      "@type": "Organization",
-      name: brand.name,
-      url: siteUrl,
-    },
+      "AtroUI, atroui, React component library, Next.js, shadcn registry, design system, Host APIs",
+    provider: { "@id": orgId },
+    author: { "@id": orgId },
+    publisher: { "@id": orgId },
   };
   return (
     <script

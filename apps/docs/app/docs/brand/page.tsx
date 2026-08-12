@@ -26,6 +26,29 @@ export default function BrandKitPage() {
       </header>
 
       <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">Name</h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          <strong className="font-medium text-foreground">AtroUI</strong>{" "}
+          (stylized; lowercase package{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+            atroui
+          </code>
+          , CLI namespace{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+            @atroui
+          </code>
+          ) is an open-source software product: an MIT-licensed React and Next.js
+          component catalog and shadcn registry. It is not a place name. Prefer
+          the casing <strong className="font-medium text-foreground">AtroUI</strong>{" "}
+          in prose and link to{" "}
+          <a href="https://www.atroui.com" className="bam-link">
+            www.atroui.com
+          </a>
+          .
+        </p>
+      </section>
+
+      <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Mark</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Interrupted A - open letterform with a floating brand bar (

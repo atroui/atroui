@@ -149,13 +149,14 @@ export const metadata: Metadata = {
           To configure your favicons in a Next.js App Router project using AtroUI specifications, place these in your <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">public/</code> directory:
         </p>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
-          <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/icon.svg</code> — standard scalable icon, used by modern browser tabs.</li>
-          <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/favicon-48.png</code> — 48x48 PNG icon specifically required by Google Search crawler.</li>
-          <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/favicon-96.png</code>, <code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/favicon-192.png</code> — high-dpi assets.</li>
+          <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/favicon-96.png</code> — primary Google SERP candidate (square, ≥48).</li>
+          <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/favicon-48.png</code>, <code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/favicon-192.png</code> — additional PNG sizes.</li>
+          <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/favicon.ico</code> — multi-resolution ICO including ≥48 frames (Google still probes this path).</li>
+          <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/icon.svg</code> — crisp browser tabs.</li>
           <li><code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">/apple-touch-icon.png</code> — 180x180 mobile app tile.</li>
         </ul>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Then, reference them absolutely via relative URLs in your layout metadata:
+          Then, reference them via relative URLs in your layout metadata (PNG before SVG):
         </p>
         <CodeBlock
           language="typescript"
@@ -164,15 +165,16 @@ export const metadata = {
   // ...
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48 64x64 96x96 128x128 256x256" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
+    shortcut: ["/favicon-96.png"],
   },
 }`}
         />

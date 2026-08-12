@@ -21,7 +21,7 @@ export const DEFAULT_BRAND: Brand = {
   email: "hello@iamk.xyz",
   siteUrl: "https://www.atroui.com",
   tagline:
-    "Dark-first React and Next.js component library for production UI",
+    "AtroUI: MIT-licensed React and Next.js component catalog (shadcn registry)",
 };
 
 function readEnv(key: string): string | undefined {
