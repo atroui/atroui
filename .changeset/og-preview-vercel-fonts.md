@@ -2,4 +2,4 @@
 "atroui": patch
 ---
 
-Fix OG text preview on Vercel by packing Inter fonts into the docs generate Host API (correct monorepo outputFileTracingIncludes + apps/docs/lib/og-fonts).
+Fix OG text preview on Vercel by embedding Inter font buffers in the package so `/api/generate` previewOnly no longer depends on serverless filesystem font tracing.
