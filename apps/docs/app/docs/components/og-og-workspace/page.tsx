@@ -33,7 +33,11 @@ export default function Page() {
           (or Google AI keys for freeform prompts) in{" "}
           <strong className="font-medium text-foreground">your</strong> env.
           AtroUI never ships keys. Preview-only downloads work without AI.
-          Live sample elsewhere:{" "}
+          Hosted workspace on this site:{" "}
+          <Link href="/og" className="text-brand underline underline-offset-2">
+            /og
+          </Link>
+          . Live sample elsewhere:{" "}
           <a
             href="https://www.makershot.tech/og"
             target="_blank"

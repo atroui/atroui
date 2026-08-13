@@ -5,6 +5,10 @@ import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
 
 import { trackEvent } from "../../lib/analytics";
+import {
+  briefFromScopeMessage,
+  buildOgHref,
+} from "../../lib/project-brief";
 import type { ScopeMessage } from "../../lib/scope-chat";
 import { cn } from "../../lib/utils";
 
@@ -117,6 +121,11 @@ export function ScopeChat() {
     send(input);
   };
 
+  const lastUser = [...messages].reverse().find((m) => m.role === "user");
+  const draftOgHref = lastUser
+    ? buildOgHref(briefFromScopeMessage(lastUser.content))
+    : null;
+
   return (
     <div className="flex h-[min(560px,70vh)] flex-col border border-border-subtle bg-surface">
       <div className="flex-1 space-y-4 overflow-y-auto p-5">
@@ -174,9 +183,28 @@ export function ScopeChat() {
             <Send className="size-4" />
           </button>
         </div>
-        <p className="mt-2 text-center text-[10px] text-muted-foreground">
-          AI-assisted when configured · rule-based fallback always available
-        </p>
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[10px] text-muted-foreground">
+          <span>AI-assisted when configured · rule-based fallback always available</span>
+          {draftOgHref ? (
+            <>
+              <span aria-hidden>·</span>
+              <Link
+                href={draftOgHref}
+                className="text-brand underline-offset-2 hover:underline"
+                onClick={() => trackEvent("scope_chat_draft_og")}
+              >
+                Draft OG card
+              </Link>
+              <span aria-hidden>·</span>
+              <Link
+                href="/planner"
+                className="text-brand underline-offset-2 hover:underline"
+              >
+                Open planner
+              </Link>
+            </>
+          ) : null}
+        </div>
       </form>
     </div>
   );

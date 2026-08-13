@@ -152,8 +152,8 @@ export const STYLE_PRESETS: Readonly<Record<StyleKey, StylePreset>> = {
 };
 
 export const STYLE_KEYS: readonly StyleKey[] = [
-  "paperQuote",
   "techMinimal",
+  "paperQuote",
   "vibrantLaunch",
   "darkDev",
   "editorial",

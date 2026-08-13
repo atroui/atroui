@@ -46,6 +46,11 @@ export const navigation: NavSection[] = [
         description: "Brand & SEO config",
       },
       {
+        title: "Launch workflow",
+        href: "/docs/guides/launch-workflow",
+        description: "Scope → OG",
+      },
+      {
         title: "Compare",
         href: "/docs/compare",
         description: "vs copy-paste kits",

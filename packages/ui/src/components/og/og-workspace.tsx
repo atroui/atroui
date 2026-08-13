@@ -116,7 +116,7 @@ function OgWorkspaceInner() {
   const [mode, setMode] = useState<Mode>("quick");
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
-  const [style, setStyle] = useState<StyleKey>("paperQuote");
+  const [style, setStyle] = useState<StyleKey>("techMinimal");
   const [prompt, setPrompt] = useState("");
 
   const [status, setStatus] = useState<Status>({ kind: "idle" });

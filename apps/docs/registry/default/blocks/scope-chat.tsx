@@ -1,17 +1,25 @@
 "use client"
 
 import { Bot, Loader2, Send, User } from "lucide-react"
+import Link from "next/link"
 import { useState, type FormEvent } from "react"
 
+import {
+  briefFromScopeMessage,
+  buildOgHref,
+} from "@/lib/project-brief"
 import { cn } from "@/lib/utils"
 
 /**
  * Scope chat UI shell. Wire CONTENT.endpoint to your AI host API.
+ * After a user message, "Draft OG card" prefills @atroui/og-workspace via ProjectBrief.
  */
 const CONTENT = {
   endpoint: "/api/scope",
   placeholder: "Describe the product you want to ship…",
   emptyHint: "Ask for a fixed-scope plan. Host API required for replies.",
+  /** Host route for OG workspace (query prefills Quick mode). */
+  ogPath: "/og",
   maxMessages: 40,
 }
 
@@ -99,26 +107,46 @@ export function ScopeChat() {
       </div>
       <form
         onSubmit={onSubmit}
-        className="flex gap-2 border-t border-border-subtle p-3"
+        className="flex flex-col gap-2 border-t border-border-subtle p-3"
       >
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={CONTENT.placeholder}
-          className="min-w-0 flex-1 rounded-lg border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          className="inline-flex size-10 items-center justify-center rounded-lg bg-brand text-white disabled:opacity-60"
-          aria-label="Send"
-        >
-          {loading ? (
-            <Loader2 className="size-4 animate-spin" />
-          ) : (
-            <Send className="size-4" />
-          )}
-        </button>
+        <div className="flex gap-2">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={CONTENT.placeholder}
+            className="min-w-0 flex-1 rounded-lg border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="inline-flex size-10 items-center justify-center rounded-lg bg-brand text-white disabled:opacity-60"
+            aria-label="Send"
+          >
+            {loading ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <Send className="size-4" />
+            )}
+          </button>
+        </div>
+        {(() => {
+          const lastUser = [...messages].reverse().find((m) => m.role === "user")
+          if (!lastUser) return null
+          const href = buildOgHref(briefFromScopeMessage(lastUser.content), {
+            path: CONTENT.ogPath,
+          })
+          return (
+            <p className="text-center text-[10px] text-muted-foreground">
+              <Link
+                href={href}
+                className="text-brand underline-offset-2 hover:underline"
+              >
+                Draft OG card
+              </Link>{" "}
+              from your last message
+            </p>
+          )
+        })()}
       </form>
     </div>
   )

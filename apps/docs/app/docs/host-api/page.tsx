@@ -42,6 +42,12 @@ export default function HostApiPage() {
           Registry
         </Link>
         <Link
+          href="/docs/guides/launch-workflow"
+          className="ms-cta-ghost"
+        >
+          Launch workflow
+        </Link>
+        <Link
           href="/docs/components/contact-contact-form"
           className="ms-cta-ghost"
         >
