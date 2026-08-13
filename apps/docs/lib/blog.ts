@@ -18,6 +18,85 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "from-scope-to-social-card",
+    title: "From scope to social card",
+    description:
+      "AtroUI launch workflow: one ProjectBrief carries Scope Chat and Project Planner into the OG workspace. Own the UI. Preview without keys. Bring your own Host API keys for AI.",
+    date: "2026-08-13",
+    sections: [
+      {
+        body: [
+          "Most registries ship widgets. You install a hero, a form, an OG maker — and then you retype the same project story into each one.",
+          "That is the gap we closed. Scope Chat, Project Planner, and the OG workspace now share a thin **ProjectBrief**: name, one-liner, audience, pages, tone, and optional OG title/subtitle. Describe the build once. Open a social card with the fields already filled.",
+          "Try it live: [From scope to social card](/docs/guides/launch-workflow) → [OG workspace](/og). Preview downloads work with no AI keys. Generate still needs **your** Host API env — AtroUI never holds secrets.",
+        ],
+      },
+      {
+        heading: "The path",
+        body: [
+          "**Scope Chat** — talk through the project. After a message, **Draft OG card** builds a brief from the last reply and opens Quick mode with title and subtitle prefilled.",
+          "**Project Planner** — pick type, features, budget. On the estimate step, **Preview social card** sends the recommendation into the same OG Quick-mode URL.",
+          "**OG workspace** (`/og` on this site) — accepts `?mode=quick&title=&subtitle=`. Switch styles (Tech minimal first), download a text preview for free, or Generate when your `@atroui/api-generate` route and keys are wired.",
+        ],
+      },
+      {
+        heading: "The brief, not a platform",
+        body: [
+          "Install the type and helpers into your repo:",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest add @atroui/project-brief`,
+          },
+        ],
+      },
+      {
+        body: [
+          "`buildOgHref(brief)` returns a host-relative URL like `/og?mode=quick&title=…&subtitle=…#og-workspace`. You own the `/og` page. We ship one on atroui.com so the guide and planner links have somewhere real to land.",
+          "This is workflow glue, not a new SaaS. No AtroUI backend for the brief. Optional `localStorage` key if you want persistence on the host. Same ownership model as the rest of the catalog: source in your tree, edit `CONTENT`, delete what you do not need.",
+        ],
+      },
+      {
+        heading: "Install what you need",
+        body: [
+          "Only the OG maker:",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest add @atroui/og-workspace
+# AI Generate (optional, BYOK):
+npx shadcn@latest add @atroui/api-generate`,
+          },
+        ],
+      },
+      {
+        body: [
+          "Full launch stack (brief + scope + planner + OG):",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest add @atroui/project-brief
+npx shadcn@latest add @atroui/scope-chat
+npx shadcn@latest add @atroui/project-planner
+npx shadcn@latest add @atroui/og-workspace
+npx shadcn@latest add @atroui/api-scope @atroui/api-generate`,
+          },
+        ],
+      },
+      {
+        heading: "Why this matters",
+        body: [
+          "Indie founders and small studios do not need another dashboard. They need intake → estimate → shareable card without losing the thread.",
+          "Few component catalogs own that vertical slice. The guide is the narrative; the brief is the contract; Host APIs stay BYOK when you want AI behind the text.",
+          "Deep docs: [launch workflow guide](/docs/guides/launch-workflow), [Host APIs](/docs/host-api), [OG workspace](/docs/components/og-og-workspace). Live tool: [/og](/og).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "atroui-in-shadcn-directory",
     title: "AtroUI is now in the official shadcn registry directory",
     description:
