@@ -285,7 +285,8 @@ function OgWorkspaceInner() {
           data.error || `Preview download failed (${resp.status})`,
         );
       }
-      downloadDataUrl(data.imageUrl, `${slugify(title, "og")}-preview.jpg`);
+      const ext = data.imageUrl.startsWith("data:image/png") ? "png" : "jpg";
+      downloadDataUrl(data.imageUrl, `${slugify(title, "og")}-preview.${ext}`);
     } catch (e) {
       setStatus({
         kind: "error",
