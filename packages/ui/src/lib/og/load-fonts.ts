@@ -3,9 +3,12 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 
 /**
- * Load Inter TTFs for Satori. Supports unbundled Node (import.meta.url) and
- * Next.js monorepo builds where webpack rewrites import.meta.url.
- * Avoid createRequire("atroui/package.json") — webpack static-analyzes it and warns.
+ * Load Inter TTFs for Satori.
+ *
+ * On Vercel, fonts must be in the serverless file trace. Prefer:
+ * 1) fonts next to this module (package / traced chunk)
+ * 2) apps/docs/lib/og-fonts (docs Host API, NFT-friendly cwd path)
+ * 3) monorepo / node_modules fallbacks for local dev
  */
 export function loadOgFonts(): { bold: Buffer; medium: Buffer } {
   const bold = readFont("Inter-Bold.ttf")
@@ -16,24 +19,20 @@ export function loadOgFonts(): { bold: Buffer; medium: Buffer } {
 function readFont(filename: string): Buffer {
   const candidates: string[] = []
 
+  // Static relative joins help Node File Trace include the files.
   try {
-    candidates.push(
-      fileURLToPath(new URL(`./fonts/${filename}`, import.meta.url)),
-    )
-  } catch {
-    // ignore
-  }
-
-  try {
-    candidates.push(
-      fileURLToPath(new URL(`../og/fonts/${filename}`, import.meta.url)),
-    )
+    const here = path.dirname(fileURLToPath(import.meta.url))
+    candidates.push(path.join(here, "fonts", filename))
+    candidates.push(path.join(here, "../og/fonts", filename))
   } catch {
     // ignore
   }
 
   const cwd = process.cwd()
   candidates.push(
+    // Docs Host API: apps/docs/lib/og-fonts (traced via assert-docs-og-fonts)
+    path.join(cwd, "lib/og-fonts", filename),
+    path.join(cwd, "apps/docs/lib/og-fonts", filename),
     path.join(cwd, "packages/ui/src/lib/og/fonts", filename),
     path.join(cwd, "../../packages/ui/src/lib/og/fonts", filename),
     path.join(cwd, "../packages/ui/src/lib/og/fonts", filename),
