@@ -1,5 +1,25 @@
 # atroui
 
+## 0.4.2
+
+### Patch Changes
+
+- [#78](https://github.com/atroui/atroui/pull/78) [`ba1d94a`](https://github.com/atroui/atroui/commit/ba1d94a54a998da4faef5e2144a0bce08766312f) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Strengthen homepage Organization / SoftwareApplication JSON-LD (disambiguatingDescription, Brand, sameAs to npm + shadcn directory) so search engines treat AtroUI as a software product entity.
+
+- [#81](https://github.com/atroui/atroui/pull/81) [`0109ba2`](https://github.com/atroui/atroui/commit/0109ba2e230b9f450db1622938a9b83624961c2b) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Fix OG Quick-mode text preview downloads: rasterize Satori overlays with sharp instead of @resvg so Host API `/api/generate` previewOnly no longer 500s under Next.js.
+
+- [#79](https://github.com/atroui/atroui/pull/79) [`4fb7bb6`](https://github.com/atroui/atroui/commit/4fb7bb61cbd5ca8b594b97e71d21f6e0fc210445) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Add ProjectBrief helpers (`buildOgHref`, scope seed) and light Scope Chat / Project Planner links into the OG workspace for the launch workflow.
+
+## 0.4.1
+
+### Patch Changes
+
+- [#76](https://github.com/atroui/atroui/pull/76) [`98c7757`](https://github.com/atroui/atroui/commit/98c7757215dc7965c89b52effef3af82d734ec6b) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - HomeHero OG style chips: Tech first (and default), then Paper, Dark, Editorial.
+
+- [#73](https://github.com/atroui/atroui/pull/73) [`dbe4ce7`](https://github.com/atroui/atroui/commit/dbe4ce77b9075ce52654b48595eb205e1f144609) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Updated the Satori OG Image composer to dynamically render the current project domain (`getBrand().domain`) as a watermark instead of using a hardcoded `"atroui.com"` label.
+
+- [#70](https://github.com/atroui/atroui/pull/70) [`205c24f`](https://github.com/atroui/atroui/commit/205c24fbec9355f482ac3020592f66e367c5f0fb) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - ThemeToggle chrome uses soft-rect radius (`rounded-lg`) instead of full pills, matching docs header consistency.
+
 ## 0.4.0
 
 ### Minor Changes
