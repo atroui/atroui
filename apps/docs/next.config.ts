@@ -14,14 +14,18 @@ const nextConfig: NextConfig = {
     "@resvg/resvg-js-linux-x64-gnu",
     "sharp",
   ],
+  // Globs are relative to outputFileTracingRoot (repo root), NOT apps/docs.
+  // ../../packages/... escapes the root and fonts never land in the lambda.
   outputFileTracingIncludes: {
     "/api/generate": [
-      "./node_modules/atroui/src/lib/og/fonts/**/*",
-      "../../packages/ui/src/lib/og/fonts/**/*",
+      "packages/ui/src/lib/og/fonts/**/*",
+      "apps/docs/lib/og-fonts/**/*",
+      "apps/docs/node_modules/atroui/src/lib/og/fonts/**/*",
     ],
     "/api/thumbnail": [
-      "./node_modules/atroui/src/lib/og/fonts/**/*",
-      "../../packages/ui/src/lib/og/fonts/**/*",
+      "packages/ui/src/lib/og/fonts/**/*",
+      "apps/docs/lib/og-fonts/**/*",
+      "apps/docs/node_modules/atroui/src/lib/og/fonts/**/*",
     ],
   },
   env: {
