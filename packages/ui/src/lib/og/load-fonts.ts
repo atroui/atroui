@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url"
 /**
  * Load Inter TTFs for Satori. Supports unbundled Node (import.meta.url) and
  * Next.js monorepo builds where webpack rewrites import.meta.url.
+ * Avoid createRequire("atroui/package.json") — webpack static-analyzes it and warns.
  */
 export function loadOgFonts(): { bold: Buffer; medium: Buffer } {
   const bold = readFont("Inter-Bold.ttf")
