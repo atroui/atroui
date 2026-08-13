@@ -1,5 +1,15 @@
 # atroui
 
+## 0.4.2
+
+### Patch Changes
+
+- [#78](https://github.com/atroui/atroui/pull/78) [`ba1d94a`](https://github.com/atroui/atroui/commit/ba1d94a54a998da4faef5e2144a0bce08766312f) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Strengthen homepage Organization / SoftwareApplication JSON-LD (disambiguatingDescription, Brand, sameAs to npm + shadcn directory) so search engines treat AtroUI as a software product entity.
+
+- [#81](https://github.com/atroui/atroui/pull/81) [`0109ba2`](https://github.com/atroui/atroui/commit/0109ba2e230b9f450db1622938a9b83624961c2b) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Fix OG Quick-mode text preview downloads: rasterize Satori overlays with sharp instead of @resvg so Host API `/api/generate` previewOnly no longer 500s under Next.js.
+
+- [#79](https://github.com/atroui/atroui/pull/79) [`4fb7bb6`](https://github.com/atroui/atroui/commit/4fb7bb61cbd5ca8b594b97e71d21f6e0fc210445) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Add ProjectBrief helpers (`buildOgHref`, scope seed) and light Scope Chat / Project Planner links into the OG workspace for the launch workflow.
+
 ## 0.4.1
 
 ### Patch Changes
