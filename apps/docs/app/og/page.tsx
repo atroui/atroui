@@ -45,7 +45,7 @@ export default function OgPage() {
             <code className="font-mono text-[10px] text-foreground">
               @atroui/api-generate
             </code>{" "}
-            + your keys —{" "}
+            + your keys.{" "}
             <Link href="/docs/host-api" className="bam-link">
               Host APIs
             </Link>

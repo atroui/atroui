@@ -6,12 +6,24 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   transpilePackages: ["atroui", "@shadergradient/react"],
   poweredByHeader: false,
+  // Monorepo root (not parent ~/package-lock.json) so fonts + native deps resolve.
+  outputFileTracingRoot: path.join(__dirname, "../.."),
   // Native Node addons used by OG/thumbnail compose - do not webpack-bundle.
   serverExternalPackages: [
     "@resvg/resvg-js",
     "@resvg/resvg-js-linux-x64-gnu",
     "sharp",
   ],
+  outputFileTracingIncludes: {
+    "/api/generate": [
+      "./node_modules/atroui/src/lib/og/fonts/**/*",
+      "../../packages/ui/src/lib/og/fonts/**/*",
+    ],
+    "/api/thumbnail": [
+      "./node_modules/atroui/src/lib/og/fonts/**/*",
+      "../../packages/ui/src/lib/og/fonts/**/*",
+    ],
+  },
   env: {
     // Docs site ships the portrait under public/; consumer apps omit this.
     NEXT_PUBLIC_FOUNDER_AVATAR: "/images/founder-portrait.png",

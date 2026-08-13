@@ -2,18 +2,19 @@
  * OG image compositor (Quick mode).
  *
  * Background: FLUX (textless) → sharp polish
- * Text: Satori (Inter glyphs) → resvg PNG
+ * Text: Satori (Inter glyphs) → sharp PNG
  * Output: composite → JPEG
  *
  * IMPORTANT: Thumbnail generation is implemented separately in `src/lib/thumbnail/*`.
  * Keep OG and thumbnail backends isolated so performance and maintenance don’t couple.
+ * OG overlays use sharp (already required) so Next.js Host API routes do not depend on
+ * @resvg/resvg-js native bindings loading correctly under webpack externals.
  */
 
 import {
   InferenceClient,
   InferenceClientProviderApiError,
 } from "@huggingface/inference";
-import { Resvg } from "@resvg/resvg-js";
 import satori from "satori";
 import sharp from "sharp";
 
@@ -413,11 +414,11 @@ async function renderOverlayPng(
     },
   );
 
-  const resvg = new Resvg(svg, {
-    fitTo: { mode: "width", value: OG_WIDTH },
-    background: "rgba(0,0,0,0)",
-  });
-  return Buffer.from(resvg.render().asPng());
+  // sharp rasterizes Satori SVG — avoids @resvg native crashes in Next API routes.
+  return sharp(Buffer.from(svg), { density: 144 })
+    .resize(OG_WIDTH, OG_HEIGHT)
+    .png()
+    .toBuffer();
 }
 
 // ────────────────────────────────────────────────────────────────────────────
