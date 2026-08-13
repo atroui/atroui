@@ -26,17 +26,17 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         body: [
-          "Most registries ship widgets. You install a hero, a form, an OG maker — and then you retype the same project story into each one.",
+          "Most registries ship widgets. You install a hero, a form, an OG maker, and then you retype the same project story into each one.",
           "That is the gap we closed. Scope Chat, Project Planner, and the OG workspace now share a thin **ProjectBrief**: name, one-liner, audience, pages, tone, and optional OG title/subtitle. Describe the build once. Open a social card with the fields already filled.",
-          "Try it live: [From scope to social card](/docs/guides/launch-workflow) → [OG workspace](/og). Preview downloads work with no AI keys. Generate still needs **your** Host API env — AtroUI never holds secrets.",
+          "Try it live: [From scope to social card](/docs/guides/launch-workflow) → [OG workspace](/og). Preview downloads work with no AI keys. Generate still needs **your** Host API env. AtroUI never holds secrets.",
         ],
       },
       {
         heading: "The path",
         body: [
-          "**Scope Chat** — talk through the project. After a message, **Draft OG card** builds a brief from the last reply and opens Quick mode with title and subtitle prefilled.",
-          "**Project Planner** — pick type, features, budget. On the estimate step, **Preview social card** sends the recommendation into the same OG Quick-mode URL.",
-          "**OG workspace** (`/og` on this site) — accepts `?mode=quick&title=&subtitle=`. Switch styles (Tech minimal first), download a text preview for free, or Generate when your `@atroui/api-generate` route and keys are wired.",
+          "**Scope Chat:** talk through the project. After a message, **Draft OG card** builds a brief from the last reply and opens Quick mode with title and subtitle prefilled.",
+          "**Project Planner:** pick type, features, budget. On the estimate step, **Preview social card** sends the recommendation into the same OG Quick-mode URL.",
+          "**OG workspace** (`/og` on this site): accepts `?mode=quick&title=&subtitle=`. Switch styles (Tech minimal first), download a text preview for free, or Generate when your `@atroui/api-generate` route and keys are wired.",
         ],
       },
       {
