@@ -1,6 +1,19 @@
 export { cn } from "./lib/utils"
 export { MEDIA, mediaSrc } from "./lib/media"
 export type { MediaSrc, OgExampleSlug } from "./lib/media"
+export {
+  EMPTY_PROJECT_BRIEF,
+  PROJECT_BRIEF_STORAGE_KEY,
+  briefFromScopeMessage,
+  briefOgSubtitle,
+  briefOgTitle,
+  briefThumbnailTitle,
+  buildOgHref,
+  buildThumbnailHref,
+  isProjectBrief,
+  parseProjectBrief,
+} from "./lib/project-brief"
+export type { ProjectBrief } from "./lib/project-brief"
 
 export * from "./components/analytics/analytics-provider"
 export * from "./components/ar/ar-portfolio"

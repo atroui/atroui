@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { buildOgHref, type ProjectBrief } from "@/lib/project-brief";
 
 type PlannerState = {
   projectType: "mvp" | "full" | "";
@@ -514,11 +515,29 @@ export function ProjectPlanner() {
                 call.
               </p>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
                 <button type="button" onClick={goToContact} className="ms-cta">
                   Continue to contact
                   <ArrowRight className="size-4" aria-hidden />
                 </button>
+                <Link
+                  href={buildOgHref({
+                    name: estimate.service,
+                    oneLiner: estimate.summary,
+                    audience: "",
+                    pages: state.features,
+                    tone: "",
+                    constraints: [
+                      estimate.timeline,
+                      estimate.priceRange,
+                    ].filter(Boolean),
+                    ogTitle: estimate.service,
+                    ogSubtitle: estimate.summary,
+                  } satisfies ProjectBrief)}
+                  className="ms-cta-ghost"
+                >
+                  Preview social card
+                </Link>
                 <Link
                   href={`/services/${estimate.serviceId}`}
                   className="ms-cta-ghost"

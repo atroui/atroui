@@ -34,6 +34,19 @@
       ]
     },
     {
+      "name": "project-brief",
+      "type": "registry:lib",
+      "title": "Project Brief",
+      "description": "Shared ProjectBrief type + OG/thumbnail href helpers for Scope → Planner → social card glue.",
+      "files": [
+        {
+          "path": "registry/default/lib/project-brief.ts",
+          "type": "registry:lib",
+          "target": "lib/project-brief.ts"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -792,7 +805,8 @@
         "next"
       ],
       "registryDependencies": [
-        "@atroui/utils"
+        "@atroui/utils",
+        "@atroui/project-brief"
       ],
       "files": [
         {
@@ -946,7 +960,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@atroui/utils"
+        "@atroui/utils",
+        "@atroui/project-brief"
       ],
       "files": [
         {

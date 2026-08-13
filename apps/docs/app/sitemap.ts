@@ -17,6 +17,8 @@ const staticPaths = [
   "/docs/identity",
   "/docs/compare",
   "/docs/components",
+  "/og",
+  "/planner",
 ] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {

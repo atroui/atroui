@@ -29,7 +29,17 @@ export default function Page() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             XAI_API_KEY
           </code>{" "}
-          enables LLM replies in your app - AtroUI never ships keys.
+          enables LLM replies in your app - AtroUI never ships keys. After a
+          message, use <strong className="font-medium text-foreground">Draft OG card</strong>{" "}
+          (via{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/project-brief
+          </code>
+          ). Guide:{" "}
+          <a href="/docs/guides/launch-workflow" className="bam-link">
+            From scope to social card
+          </a>
+          .
         </>
       }
     />

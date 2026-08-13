@@ -19,7 +19,20 @@ export default function Page() {
       preview={<DemoProjectPlanner />}
       code={'import { ProjectPlanner } from "@/components/blocks/project-planner"\n\n<ProjectPlanner />'}
       fullBleed={true}
-      usage="Fully client-side. Expect host routes like /contact (and /planner) to exist when CTAs navigate."
-    />
+      usage={
+        <>
+          Fully client-side. On the estimate step,{" "}
+          <strong className="font-medium text-foreground">Preview social card</strong>{" "}
+          opens the OG workspace with the recommendation prefilled (
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/project-brief
+          </code>
+          ). Guide:{" "}
+          <a href="/docs/guides/launch-workflow" className="bam-link">
+            From scope to social card
+          </a>
+          .
+        </>
+      }
   )
 }
