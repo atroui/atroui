@@ -138,6 +138,9 @@ npx shadcn@latest add @atroui/home-hero`}
         <Link href="/docs/components" className="ms-cta-ghost">
           Browse components
         </Link>
+        <Link href="/updates" className="ms-cta-ghost">
+          Updates by email
+        </Link>
         <Link href="/blog" className="ms-cta-ghost">
           Blog
         </Link>

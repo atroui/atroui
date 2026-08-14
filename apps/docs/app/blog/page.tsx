@@ -106,7 +106,11 @@ export default function BlogIndexPage() {
         ) : null}
 
         <p className="mt-12 text-base text-muted-foreground">
-          Prefer the catalog?{" "}
+          Want the next major slice in your inbox?{" "}
+          <Link href="/updates" className="bam-link">
+            AtroUI updates
+          </Link>
+          . Prefer the catalog?{" "}
           <Link href="/docs" className="bam-link">
             Read the docs
           </Link>{" "}

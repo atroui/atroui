@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Star } from "lucide-react"
 import { CatalogStage } from "@/components/landing/catalog-stage"
 import { PresenceHero } from "@/components/landing/presence-hero"
+import { UpdatesSignup } from "@/components/updates-signup"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
@@ -73,48 +74,48 @@ export function LandingHero() {
         </div>
       </section>
 
-      <section className="border-t border-white/10">
+      <section
+        className="border-t border-white/10"
+        aria-labelledby="home-band-title"
+      >
         <div className={shell}>
-          <div className="max-w-lg">
-            <p className="ms-stamp">atroui.com</p>
-            <h2 className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl">
-              The home of{" "}
-              <span className="ds-sketch-accent">AtroUI</span>
-            </h2>
-            <p className="ds-lede mt-3 text-neutral-400 sm:mt-4">
-              AtroUI is the React component catalog at{" "}
-              <span className="text-neutral-200">atroui.com</span>. Add it with
-              the{" "}
-              <Link
-                href="/docs/registry"
-                className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
+            <div className="lg:col-span-6">
+              <p className="ms-stamp">atroui.com</p>
+              <h2
+                id="home-band-title"
+                className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl"
               >
-                shadcn registry
-              </Link>{" "}
-              — source in your repo, editable{" "}
-              <code className="break-all rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
-                CONTENT
-              </code>
-              . Built by{" "}
-              <a
-                href="https://www.iamk.xyz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
-              >
-                iamk.xyz
-              </a>{" "}
-              at{" "}
-              <a
-                href="https://www.makershot.tech"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
-              >
-                makershot.tech
-              </a>
-              .
-            </p>
+                The home of{" "}
+                <span className="ds-sketch-accent">AtroUI</span>
+              </h2>
+              <p className="ds-lede mt-3 max-w-md text-neutral-400 sm:mt-4">
+                React catalog at{" "}
+                <span className="text-neutral-200">atroui.com</span>. Add with
+                the{" "}
+                <Link
+                  href="/docs/registry"
+                  className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+                >
+                  shadcn registry
+                </Link>
+                . Source in your repo. When something major ships, we write it
+                in detail.{" "}
+                <Link
+                  href="/updates"
+                  className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+                >
+                  What you get
+                </Link>
+                .
+              </p>
+            </div>
+            <div className="lg:col-span-6">
+              <p className="mb-3 font-mono text-[11px] tracking-[0.14em] text-neutral-500 uppercase">
+                Major updates only
+              </p>
+              <UpdatesSignup source="landing" compact />
+            </div>
           </div>
         </div>
       </section>
@@ -137,6 +138,9 @@ export function LandingHero() {
               <Star className="size-3.5" aria-hidden />
               GitHub
             </a>
+            <Link href="/updates" className="ds-hero-nav-link">
+              Updates
+            </Link>
             <Link href="/docs/registry" className="ds-hero-nav-link">
               Registry
             </Link>

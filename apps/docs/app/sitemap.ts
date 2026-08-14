@@ -19,6 +19,7 @@ const staticPaths = [
   "/docs/components",
   "/og",
   "/planner",
+  "/updates",
 ] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {

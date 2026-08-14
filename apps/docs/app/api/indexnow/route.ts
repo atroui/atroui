@@ -27,6 +27,7 @@ export async function POST(req: Request) {
     `${siteUrl}/docs/identity`,
     `${siteUrl}/docs/compare`,
     `${siteUrl}/docs/components`,
+    `${siteUrl}/updates`,
     ...allNavItems.map((item) => `${siteUrl}${item.href}`),
     ...blogPosts.map((post) => `${siteUrl}/blog/${post.slug}`),
   ]

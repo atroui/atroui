@@ -1,7 +1,9 @@
 import fs from "node:fs"
 import path from "node:path"
 import type { Metadata } from "next"
+import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
+import { UpdatesSignup } from "@/components/updates-signup"
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Changelog",
@@ -158,6 +160,16 @@ export default function ChangelogPage() {
           . Entries are written via Changesets on each PR, then published when
           the Version Packages PR merges.
         </p>
+        <div className="mt-6 max-w-md">
+          <UpdatesSignup source="changelog" compact />
+          <p className="mt-2 text-[12px] text-muted-foreground">
+            Email for major slices only. Patch notes stay here.{" "}
+            <Link href="/updates" className="bam-link">
+              What you get
+            </Link>
+            .
+          </p>
+        </div>
       </header>
 
       <div className="space-y-10">

@@ -98,43 +98,75 @@ export function getContactInbox(): string | null {
   return to || null
 }
 
-export function isResendAudienceConfigured(): boolean {
-  return Boolean(
-    process.env.RESEND_API_KEY?.trim() &&
-      process.env.RESEND_AUDIENCE_ID?.trim(),
+/** Segment ID (new Resend) or legacy Audience ID. Same env for both. */
+export function getResendListId(): string | null {
+  return (
+    process.env.RESEND_SEGMENT_ID?.trim() ||
+    process.env.RESEND_AUDIENCE_ID?.trim() ||
+    null
   )
 }
 
+export function isResendAudienceConfigured(): boolean {
+  return Boolean(process.env.RESEND_API_KEY?.trim() && getResendListId())
+}
+
+function resendErrorMessage(status: number, body: unknown): string {
+  const data = body as { message?: string; error?: string }
+  return data.message || data.error || `Resend error (${status})`
+}
+
+function isDuplicateContact(status: number, message: string): boolean {
+  if (status === 409) return true
+  return /already exists|already been added|duplicate/i.test(message)
+}
+
+/**
+ * Add email to Resend global Contacts and the AtroUI updates segment.
+ * Resend retired Audiences; Segments replace them. We still read
+ * RESEND_AUDIENCE_ID as an alias for the segment UUID.
+ */
 export async function subscribeResendAudience(email: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim()
-  const audienceId = process.env.RESEND_AUDIENCE_ID?.trim()
-  if (!apiKey || !audienceId) {
+  const listId = getResendListId()
+  if (!apiKey || !listId) {
     throw new Error("Resend audience is not configured")
   }
 
-  const res = await fetch(
-    `https://api.resend.com/audiences/${audienceId}/contacts`,
+  const headers = {
+    Authorization: `Bearer ${apiKey}`,
+    "Content-Type": "application/json",
+  }
+
+  const create = await fetch("https://api.resend.com/contacts", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      email,
+      unsubscribed: false,
+      segments: [{ id: listId }],
+    }),
+  })
+
+  if (create.ok) return
+
+  const createBody = await create.json().catch(() => ({}))
+  const createMsg = resendErrorMessage(create.status, createBody)
+  if (isDuplicateContact(create.status, createMsg)) return
+
+  // Legacy Audiences API (pre-Segments dashboard).
+  const legacy = await fetch(
+    `https://api.resend.com/audiences/${listId}/contacts`,
     {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({ email, unsubscribed: false }),
     },
   )
+  if (legacy.ok || legacy.status === 409) return
 
-  if (!res.ok) {
-    const body = (await res.json().catch(() => ({}))) as {
-      message?: string
-      error?: string
-    }
-    // Resend returns 409-ish for duplicates; treat as success for UX.
-    if (res.status === 409) return
-    throw new Error(
-      body.message || body.error || `Resend error (${res.status})`,
-    )
-  }
+  const legacyBody = await legacy.json().catch(() => ({}))
+  throw new Error(resendErrorMessage(legacy.status, legacyBody) || createMsg)
 }
 
 export function decodeAttachment(input: {

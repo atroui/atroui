@@ -8,8 +8,21 @@ import { cn } from "../../lib/utils";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function NewsletterForm({ className }: { className?: string }) {
+export function NewsletterForm({
+  className,
+  source = "form",
+  submitLabel = "Subscribe",
+  successMessage = "You're on the list. Major updates only.",
+  placeholder = "you@company.com",
+}: {
+  className?: string;
+  source?: string;
+  submitLabel?: string;
+  successMessage?: string;
+  placeholder?: string;
+}) {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -21,13 +34,13 @@ export function NewsletterForm({ className }: { className?: string }) {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, honeypot, source }),
       });
       const data = (await res.json()) as { error?: string };
       if (!res.ok) throw new Error(data.error ?? "Failed to subscribe");
       setStatus("success");
       setEmail("");
-      trackEvent("newsletter_subscribe", { source: "form" });
+      trackEvent("newsletter_subscribe", { source });
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong");
@@ -43,7 +56,7 @@ export function NewsletterForm({ className }: { className?: string }) {
         )}
       >
         <CheckCircle2 className="size-4" />
-        <span>You&rsquo;re on the list - thanks!</span>
+        <span>{successMessage}</span>
       </div>
     );
   }
@@ -51,8 +64,20 @@ export function NewsletterForm({ className }: { className?: string }) {
   return (
     <form
       onSubmit={onSubmit}
-      className={cn("flex flex-col gap-2 sm:flex-row", className)}
+      className={cn("flex flex-col gap-2 sm:flex-row sm:flex-wrap", className)}
     >
+      <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+        <label>
+          Company
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+          />
+        </label>
+      </div>
       <div className="relative min-w-0 flex-1">
         <Mail className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
         <input
@@ -60,26 +85,26 @@ export function NewsletterForm({ className }: { className?: string }) {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@company.com"
+          placeholder={placeholder}
           disabled={status === "loading"}
           className={cn(
-            "w-full border border-border-subtle bg-background py-2.5 pr-4 pl-9 text-base text-foreground sm:text-sm",
+            "w-full rounded-lg border border-border-subtle bg-background py-2.5 pr-4 pl-9 text-base text-foreground sm:text-sm",
             "placeholder:text-muted-foreground/60",
             "focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20",
             "disabled:opacity-60",
           )}
-          aria-label="Email for newsletter"
+          aria-label="Email for AtroUI updates"
         />
       </div>
       <button
         type="submit"
         disabled={status === "loading"}
-        className="ms-cta shrink-0 disabled:opacity-60"
+        className="ms-cta shrink-0 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "loading" ? (
           <Loader2 className="size-4 animate-spin" />
         ) : null}
-        Subscribe
+        {submitLabel}
       </button>
       {status === "error" ? (
         <p className="text-xs text-destructive sm:basis-full">{error}</p>

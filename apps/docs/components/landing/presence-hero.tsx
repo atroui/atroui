@@ -31,6 +31,7 @@ const navLinks = [
   { label: "Host APIs", href: "/docs/host-api" },
   { label: "Docs", href: "/docs" },
   { label: "Blog", href: "/blog" },
+  { label: "Updates", href: "/updates" },
 ] as const
 
 const STAGE_COPY: Record<string, string> = {
