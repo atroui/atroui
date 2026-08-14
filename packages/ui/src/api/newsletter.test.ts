@@ -32,6 +32,7 @@ describe("handleNewsletterPost", () => {
     vi.mocked(sendMail).mockClear()
     delete process.env.RESEND_API_KEY
     delete process.env.RESEND_AUDIENCE_ID
+    delete process.env.RESEND_SEGMENT_ID
     delete process.env.CONTACT_EMAIL_TO
     vi.unstubAllGlobals()
   })
@@ -81,8 +82,10 @@ describe("handleNewsletterPost", () => {
     expect(res.status).toBe(200)
     expect(fetchMock).toHaveBeenCalledOnce()
     expect(String(fetchMock.mock.calls[0]?.[0])).toContain(
-      "/audiences/aud_test/contacts",
+      "https://api.resend.com/contacts",
     )
+    const init = fetchMock.mock.calls[0]?.[1] as { body?: string }
+    expect(init.body).toContain("aud_test")
     expect(sendMail).not.toHaveBeenCalled()
   })
 

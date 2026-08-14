@@ -22,6 +22,7 @@ import {
 const newsletterSchema = z.object({
   email: emailSchema,
   honeypot: z.string().optional().default(""),
+  source: z.string().max(64).optional(),
 })
 
 /**
@@ -70,7 +71,7 @@ export async function handleNewsletterPost(req: Request): Promise<Response> {
         from: getDefaultFromAddress(),
         replyTo: data.email,
         subject: `[${brand.name}] Newsletter subscribe`,
-        text: `Email: ${data.email}`,
+        text: `Email: ${data.email}${data.source ? `\nSource: ${data.source}` : ""}`,
       })
     } else {
       return jsonError("Email not configured", 503)

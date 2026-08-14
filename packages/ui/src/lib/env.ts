@@ -10,6 +10,7 @@ const serverEnvSchema = z.object({
   CONTACT_EMAIL_TO: z.string().email().optional(),
   CONTACT_EMAIL_FROM: z.string().optional(),
   RESEND_AUDIENCE_ID: z.string().optional(),
+  RESEND_SEGMENT_ID: z.string().optional(),
   SMTP_HOST: z.string().optional(),
   SMTP_PORT: z.string().optional(),
   SMTP_USER: z.string().email().optional(),

@@ -179,6 +179,9 @@ export default async function BlogPostPage({ params }: Props) {
           <Link href="/blog" className="ms-cta-ghost text-sm">
             All posts
           </Link>
+          <Link href="/updates" className="ms-cta-ghost text-sm">
+            Updates by email
+          </Link>
         </div>
       </div>
     </article>

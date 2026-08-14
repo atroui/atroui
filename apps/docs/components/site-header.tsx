@@ -17,7 +17,7 @@ const primaryNav = [
   { href: "/docs", label: "Docs" },
   { href: "/docs/components", label: "Components" },
   { href: "/blog", label: "Blog" },
-  { href: "/docs/theming", label: "Theming" },
+  { href: "/updates", label: "Updates" },
 ] as const
 
 export function SiteHeader() {

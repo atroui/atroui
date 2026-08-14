@@ -14,6 +14,7 @@ const navLinks = [
   { label: "Host APIs", href: "/docs/host-api" },
   { label: "Docs", href: "/docs" },
   { label: "Blog", href: "/blog" },
+  { label: "Updates", href: "/updates" },
 ] as const
 
 /** Landing mobile nav — quiet chrome; shared OverlayShell for fluidity. */

@@ -57,6 +57,11 @@ export const navigation: NavSection[] = [
       },
       { title: "Changelog", href: "/docs/changelog", description: "Releases" },
       { title: "Blog", href: "/blog", description: "Guides & SEO" },
+      {
+        title: "Updates",
+        href: "/updates",
+        description: "Major AtroUI news by email",
+      },
     ],
   },
   {
