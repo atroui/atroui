@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArticleJsonLd } from "atroui"
+import { BlogThemeAdaptPreview } from "@/components/blog-theme-adapt-preview"
 import { CodeBlock } from "@/components/code-block"
 import { blogPosts, getPost } from "@/lib/blog"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -140,6 +141,12 @@ export default async function BlogPostPage({ params }: Props) {
         </time>
         <p className="blog-lede mt-6">{post.description}</p>
 
+        {post.slug === "adaptive-theme-switch" ? (
+          <div className="mt-10 sm:mt-12">
+            <BlogThemeAdaptPreview />
+          </div>
+        ) : null}
+
         <div className="mt-12 space-y-10 sm:mt-14 sm:space-y-12">
           {post.sections.map((section, i) => (
             <section key={i} className="space-y-4">
@@ -167,6 +174,13 @@ export default async function BlogPostPage({ params }: Props) {
           {post.slug === "host-apis-own-the-ui-bring-your-keys" ? (
             <Link href="/docs/host-api" className="ms-cta text-sm">
               Host APIs docs
+            </Link>
+          ) : post.slug === "adaptive-theme-switch" ? (
+            <Link
+              href="/docs/components/ui-theme-adapt"
+              className="ms-cta text-sm"
+            >
+              Adaptive Theme Switch
             </Link>
           ) : (
             <Link href="/docs/registry" className="ms-cta text-sm">
