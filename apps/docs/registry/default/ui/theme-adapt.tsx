@@ -1,7 +1,7 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { useLayoutEffect, useState } from "react"
 
 import {
   applyCompanionPalette,
@@ -12,9 +12,22 @@ import {
 } from "@/lib/adaptive-theme"
 import { cn } from "@/lib/utils"
 
+function syncCompanion(adapt: boolean, dark: boolean, floor: number) {
+  const root = document.documentElement
+  if (!adapt || !dark) {
+    clearCompanionPalette(root)
+    return false
+  }
+  const light = sampleLightSwatch()
+  if (!light) return false
+  applyCompanionPalette(root, companionDark(light, "adaptive", floor))
+  return true
+}
+
 /**
  * Adaptive light/dark switch.
- * Samples :root light tokens, builds an OKLCH companion, applies it on night.
+ * DAY and NIGHT are separate choices. Night applies an OKLCH companion
+ * from light :root tokens before paint.
  */
 export function ThemeAdapt({
   className,
@@ -30,83 +43,97 @@ export function ThemeAdapt({
   const [mounted, setMounted] = useState(false)
   const [companionOn, setCompanionOn] = useState(false)
   const floor = clampContrast(minContrast)
+  const isDark = mounted && resolvedTheme === "dark"
 
-  useEffect(() => setMounted(true), [])
+  useLayoutEffect(() => {
+    setMounted(true)
+  }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!mounted) return
-    const root = document.documentElement
-
-    const apply = () => {
-      const dark =
-        root.classList.contains("dark") || resolvedTheme === "dark"
-      if (!adapt || !dark) {
-        clearCompanionPalette(root)
-        setCompanionOn(false)
-        return
-      }
-      const light = sampleLightSwatch()
-      if (!light) return
-      applyCompanionPalette(root, companionDark(light, "adaptive", floor))
-      setCompanionOn(true)
-    }
-
-    apply()
-    const obs = new MutationObserver(apply)
-    obs.observe(root, { attributes: true, attributeFilter: ["class"] })
-    return () => {
-      obs.disconnect()
-    }
+    const dark = document.documentElement.classList.contains("dark")
+    setCompanionOn(syncCompanion(adapt, dark, floor))
+    const obs = new MutationObserver(() => {
+      const nowDark = document.documentElement.classList.contains("dark")
+      setCompanionOn(syncCompanion(adapt, nowDark, floor))
+    })
+    obs.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
+    return () => obs.disconnect()
   }, [adapt, floor, mounted, resolvedTheme])
 
-  const isDark = mounted && resolvedTheme === "dark"
-  const next = isDark ? "light" : "dark"
-  const label = mounted
-    ? `Switch to ${next} mode${companionOn ? ". Companion dark from light tokens." : ""}`
-    : "Switch appearance"
+  const choose = (mode: "light" | "dark") => {
+    if (mode === "dark") {
+      const light = sampleLightSwatch()
+      setTheme("dark")
+      if (adapt && light) {
+        applyCompanionPalette(
+          document.documentElement,
+          companionDark(light, "adaptive", floor)
+        )
+        setCompanionOn(true)
+      }
+      return
+    }
+    clearCompanionPalette(document.documentElement)
+    setCompanionOn(false)
+    setTheme("light")
+  }
 
   return (
     <div className={cn("inline-flex flex-col items-stretch gap-1", className)}>
-      <button
-        type="button"
-        aria-label={label}
-        title={label}
-        onClick={() => setTheme(next)}
-        className={cn(
-          "relative isolate flex h-9 w-[8.75rem] overflow-hidden rounded-lg border border-border-subtle",
-          "outline-none focus-visible:ring-2 focus-visible:ring-brand/50",
-          "active:scale-[0.98] motion-reduce:active:scale-100"
-        )}
+      <div
+        role="radiogroup"
+        aria-label="Appearance"
+        className="relative isolate flex h-9 w-40 overflow-hidden rounded-lg border border-border-subtle"
       >
-        <span
-          className="flex w-1/2 items-center justify-center bg-[#efeae1] text-[#161412]"
-          aria-hidden
+        <button
+          type="button"
+          role="radio"
+          aria-checked={!isDark}
+          aria-label="Day mode"
+          onClick={() => choose("light")}
+          className={cn(
+            "flex w-1/2 items-center justify-center bg-[#efeae1] text-[#161412]",
+            "outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand/50"
+          )}
         >
-          <span className="font-mono text-[10px] font-medium tracking-[0.18em]">
+          <span className="font-mono text-[10px] font-medium tracking-[0.1em]">
             DAY
           </span>
-        </span>
-        <span
-          className="flex w-1/2 items-center justify-center bg-[#0e0e0f] text-[#eceae4]"
-          aria-hidden
+        </button>
+        <button
+          type="button"
+          role="radio"
+          aria-checked={isDark}
+          aria-label="Night mode, companion palette from light tokens"
+          onClick={() => choose("dark")}
+          className={cn(
+            "flex w-1/2 items-center justify-center bg-[#0e0e0f] text-[#eceae4]",
+            "outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand/50"
+          )}
         >
-          <span className="font-mono text-[10px] font-medium tracking-[0.18em]">
+          <span className="font-mono text-[10px] font-medium tracking-[0.1em]">
             NIGHT
           </span>
-        </span>
-        <span
-          aria-hidden
-          className={cn(
-            "pointer-events-none absolute top-px bottom-px w-[calc(50%-2px)] rounded-md",
-            "ring-1 ring-brand/80",
-            "transition-[left] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
-            "motion-reduce:transition-none"
-          )}
-          style={{ left: isDark ? "calc(50% + 1px)" : "1px" }}
-        />
-      </button>
+        </button>
+        {mounted ? (
+          <span
+            aria-hidden
+            className={cn(
+              "pointer-events-none absolute top-px bottom-px w-[calc(50%-2px)] rounded-md",
+              "ring-1 ring-brand/80",
+              "transition-[left] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
+              "motion-reduce:transition-none"
+            )}
+            style={{ left: isDark ? "calc(50% + 1px)" : "1px" }}
+          />
+        ) : null}
+      </div>
       {companionOn ? (
-        <p className="max-w-[8.75rem] text-[11px] leading-snug text-muted-foreground">
+        <p className="max-w-40 text-[11px] leading-snug text-muted-foreground">
           Companion from light tokens.
         </p>
       ) : null}
