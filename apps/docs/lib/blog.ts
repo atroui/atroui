@@ -18,6 +18,100 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "adaptive-theme-switch",
+    title: "Why we shipped Adaptive Theme Switch",
+    description:
+      "Naive dark mode crushes designed light palettes. Adaptive Theme Switch builds an OKLCH night companion from your light tokens so muted copy still reads. Own the files. Not a theme engine.",
+    date: "2026-08-20",
+    sections: [
+      {
+        body: [
+          "Most light/dark switches do one job: put `.dark` on `<html>` and hope the stylesheet already knows how to invert. That is fine when you designed both sheets by hand. It fails the moment someone ships a custom light palette — warm paper, quiet gray captions, a brand that was mixed for daylight — and then flips to night.",
+          "The canvas goes black. The caption color does not. `--muted-foreground` that was a tasteful slate on cream becomes unreadable sludge on charcoal. Vital copy disappears. Designers call it “the invert looked fine in Figma.” Engineers call it “dark mode is done.” Readers bounce.",
+          "We built [Adaptive Theme Switch](/docs/components/ui-theme-adapt) because AtroUI already had a [theme toggle](/docs/components/ui-theme-toggle) and it was not enough. A class flip is a mode. A companion is a second design. The catalog should ship the second one when the first one lies. shadcn/ui does not.",
+        ],
+      },
+      {
+        heading: "The problem we kept seeing",
+        body: [
+          "AtroUI is [dark-first](/blog/why-dark-first-design-systems). Our own canvas is near black on purpose. Light is the alternate. That is the right default for product UIs that stay dark for hours.",
+          "Consumers are not us. They install a block, override `:root` for a kiln-warm marketing site or an edition-paper blog, and keep `.dark` as a leftover invert. next-themes does its job. [ThemeProvider](/blog/theme-provider-dark-mode-atroui) does its job. The tokens do not. Gray type that passed WCAG on a light field fails the same ratio on a crushed field.",
+          "The failure is specific. Body ink often survives. **Muted type does not.** Captions, helper text, timestamps, empty states — the copy you need when something is quiet — is the copy that dies. That is the dirty-bathroom problem in color: the chrome looks themed, the corners do not work.",
+        ],
+      },
+      {
+        heading: "What naive dark actually does",
+        body: [
+          "A naive night takes the light background and mixes it toward black. It takes muted ink and mixes it toward that same black. Hue collapses. Contrast collapses. Brand often desaturates into a gray that no longer looks like the product.",
+          "We kept that crush as a teaching column in the preview above. Kiln, Uptime, Dusk, and Edition each show three rooms: the light you designed, the naive invert, and the companion. The muted contrast ratio is live so you can see AA fail and recover on the same swatch.",
+          "The preview is the argument. Switch palettes. Click NIGHT. If you cannot see the crush, you will ship it.",
+        ],
+      },
+      {
+        heading: "What the companion does instead",
+        body: [
+          "DAY and NIGHT are separate radios, not one toggle pretending to be two worlds. DAY is your light sheet. NIGHT samples that light `:root` through the CSSOM — even if `.dark` is already on — and builds an OKLCH companion before paint.",
+          "Keep the hue. Darken the canvas. Raise type until it meets WCAG AA (4.5:1 by default). Keep brand as brand, not as a gray afterthought. Write `--background`, `--foreground`, `--muted-foreground`, `--card`, `--border`, `--brand`, `--primary`, and the nearby surface tokens onto `<html>` with `data-theme-adapt=\"companion\"`. DAY clears those inline properties and you are back on the designed light tokens.",
+          "That is how we practice Family Values in the control: one primary idea (appearance), a sliding indicator instead of a remount, and a caption that appears only when the companion is actually on. No extra chrome for people who never go night.",
+        ],
+      },
+      {
+        heading: "Why publish it as a component",
+        body: [
+          "A helper buried in docs would stay a recipe. A registry item lands in your repo the same way a hero does. You can read it, diff it, delete it, or change the contrast floor.",
+          "Two items, on purpose. `@atroui/adaptive-theme` is the library: parse, OKLCH, sample light tokens, apply and clear. `@atroui/theme-adapt` is the DAY/NIGHT control. The CLI pulls the lib as a registry dependency. You own both files.",
+          "We did not hide this behind a paid theme studio or a hosted palette API. There is no AtroUI server in the loop. The browser already has your CSS. We read it.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest add @atroui/theme-adapt`,
+          },
+        ],
+      },
+      {
+        heading: "What shadcn actually ships",
+        body: [
+          "shadcn/ui is the ownership model we already use: files in your repo, tokens in `:root` and `.dark`, a [class on `<html>`](https://ui.shadcn.com/docs/dark-mode). That is a toggle. You still author both sheets. If you only designed daylight, night is a leftover invert.",
+          "Theme builders in that world emit more static CSS. They do not sample the light tokens you already shipped and raise muted type to AA at runtime. We could not find that control in shadcn’s registry, or in the kits that copy its toggle. So we shipped it as `@atroui/theme-adapt` — same CLI, higher altitude, same as the rest of the catalog.",
+          "This is not a diss. Keep shadcn primitives. Add the companion when the class is not a design. See [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn).",
+        ],
+      },
+      {
+        heading: "How it sits next to Theme Toggle",
+        body: [
+          "`@atroui/theme-toggle` is still the right control when you designed both sheets and only need Light / System / Dark. Compact icon variant: `@atroui/theme-toggle-icon`. Wire `next-themes` with `attribute=\"class\"` as in the [ThemeProvider post](/blog/theme-provider-dark-mode-atroui).",
+          "Reach for ThemeAdapt when a naive invert would hide body copy or flatten a light canvas you actually designed. `adapt={false}` is an escape hatch: same radios, class only, no companion. `minContrast` defaults to 4.5; raise it if your legal copy needs a harder floor.",
+          "atroui.com chrome still uses the old toggle. That is intentional. The catalog default stays the simple switch. Adaptive Theme Switch is for hosts whose light tokens are the product, not a leftover invert.",
+        ],
+        codeBlocks: [
+          {
+            language: "tsx",
+            code: `import { ThemeAdapt } from "@/components/ui/theme-adapt"
+
+<ThemeAdapt />
+{/* class-only: <ThemeAdapt adapt={false} /> */}`,
+          },
+        ],
+      },
+      {
+        heading: "What this is not",
+        body: [
+          "This is not a full theme engine. It does not generate `--brand-hover`, sidebar tokens, or `--primary-foreground`. It does not retint images. It does not offer a System radio — DAY and NIGHT are explicit choices. Colors hardcoded in components stay hardcoded; only CSS variables on the root move.",
+          "We published the honest version. A switch that claims to restyle the universe and then leaves captions crushed is worse than a switch that names its job. The job is: companion night from light tokens, type to AA, brand kept.",
+          "If you need a second designed dark sheet, design one. ThemeAdapt is the bridge for palettes that were born in the light and still have to work at 1 a.m.",
+        ],
+      },
+      {
+        heading: "Install it",
+        body: [
+          "Add the control, keep ThemeProvider in the root layout, then click NIGHT on a page whose `:root` is yours. If muted captions hold, the companion did its job. If a one-off color still vanishes, it was never a token — put it on a variable or leave it as a designed exception.",
+          "Docs: [Adaptive Theme Switch](/docs/components/ui-theme-adapt). Token map: [Theming](/docs/theming). Dark-first argument: [design tokens](/blog/dark-first-design-tokens). Catalog: [Registry](/docs/registry).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "from-scope-to-social-card",
     title: "From scope to social card",
     description:
@@ -944,7 +1038,7 @@ NEXT_PUBLIC_SITE_TAGLINE=Ship faster with Acme`,
           "Distribution: both copy files into your repo via the CLI.",
           "Altitude: atoms and patterns you assemble vs sections and chrome already composed.",
           "Brand: you build chrome from scratch vs getBrand() + NEXT_PUBLIC_SITE_*.",
-          "Theme: often light-first or neutral vs dark-first catalog defaults.",
+          "Theme: often light-first or two static sheets (`:root` / `.dark`) vs dark-first defaults, plus Adaptive Theme Switch when you only designed light.",
           "AI / media tools: usually out of scope vs optional workspaces that expect your /api/*.",
         ],
       },

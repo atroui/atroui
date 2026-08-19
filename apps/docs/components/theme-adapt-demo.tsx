@@ -121,7 +121,7 @@ function MiniSite({
   const passes = mutedRatio >= 4.5
 
   return (
-    <section className="flex min-w-[220px] flex-1 snap-start flex-col">
+    <section className="flex min-w-0 flex-1 flex-col">
       <div className="mb-2 flex items-baseline justify-between gap-2">
         <p className="ms-stamp text-[12px] text-muted-foreground">{STAGES.find((s) => s.id === stage)?.label}</p>
         <p
@@ -134,7 +134,7 @@ function MiniSite({
         </p>
       </div>
       <div
-        className="flex min-h-[220px] flex-col rounded-lg border border-border-subtle p-4 transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+        className="flex min-h-64 flex-col rounded-lg border border-border-subtle p-4 transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] @min-[900px]:min-h-55 motion-reduce:transition-none"
         style={{
           backgroundColor: rgbToCss(c.background),
           color: rgbToCss(c.foreground),
@@ -146,7 +146,7 @@ function MiniSite({
         >
           {palette.kicker}
         </p>
-        <h3 className="ds-display mt-3 text-[28px] leading-none">
+        <h3 className="ds-display mt-3 text-[22px] leading-none @min-[900px]:text-[28px]">
           {palette.headline}
         </h3>
         <p
@@ -174,8 +174,8 @@ export function DemoThemeAdapt() {
   const palette = PALETTES.find((p) => p.id === activeId) ?? PALETTES[0]!
 
   return (
-    <div className="flex w-full flex-col gap-5 p-4 sm:p-5">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div className="@container flex w-full flex-col gap-5 p-4 sm:p-5">
+      <div className="flex flex-col gap-4 @min-[520px]:flex-row @min-[520px]:items-end @min-[520px]:justify-between">
         <div>
           <p className="ms-stamp mb-1 text-[12px]">Palettes</p>
           <div
@@ -213,7 +213,7 @@ export function DemoThemeAdapt() {
         <ThemeAdapt />
       </div>
 
-      <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:overflow-visible">
+      <div className="grid grid-cols-1 gap-3 @min-[360px]:grid-cols-3">
         {STAGES.map((stage) => (
           <MiniSite key={stage.id} palette={palette} stage={stage.id} />
         ))}

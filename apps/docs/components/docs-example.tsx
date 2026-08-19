@@ -14,6 +14,11 @@ type DocsExampleProps = {
   className?: string
   /** Section / page components - render edge-to-edge in a scrollable stage */
   fullBleed?: boolean
+  /**
+   * Grow with content instead of clipping to 70vh.
+   * Blog embeds: keep the reading column, no inner scrollbar.
+   */
+  unclip?: boolean
   /** CLI install line in the stage toolbar (see it → get it). */
   installCommand?: string
 }
@@ -62,6 +67,7 @@ export function DocsExample({
   code,
   className,
   fullBleed,
+  unclip,
   installCommand,
 }: DocsExampleProps) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
@@ -123,10 +129,12 @@ export function DocsExample({
       {tab === "preview" ? (
         <div
           className={cn(
-            "relative overflow-x-auto bg-background",
-            fullBleed
-              ? "max-h-[min(720px,70vh)] overflow-auto"
-              : "flex min-h-50 items-center justify-center p-4 sm:min-h-70 sm:p-8 md:p-10"
+            "relative bg-background",
+            fullBleed && unclip
+              ? "overflow-visible"
+              : fullBleed
+                ? "max-h-[min(720px,70vh)] overflow-auto"
+                : "flex min-h-50 items-center justify-center overflow-x-auto p-4 sm:min-h-70 sm:p-8 md:p-10"
           )}
         >
           <div
