@@ -4,51 +4,17 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
 import {
+  applyCompanionPalette,
   clampContrast,
-  ensureContrast,
-  parseRgb,
-  rgbToCss,
-  type Rgb,
+  clearCompanionPalette,
+  companionDark,
+  sampleLightSwatch,
 } from "../../lib/adaptive-theme"
 import { cn } from "../../lib/utils"
 
-const TOKEN_KEYS = ["--foreground", "--muted-foreground"] as const
-
-function readTokenRgb(token: string): Rgb | null {
-  const probe = document.createElement("span")
-  probe.style.color = `var(${token})`
-  probe.setAttribute("aria-hidden", "true")
-  try {
-    document.documentElement.appendChild(probe)
-    return parseRgb(getComputedStyle(probe).color)
-  } finally {
-    probe.remove()
-  }
-}
-
-function readBackgroundRgb(): Rgb | null {
-  const probe = document.createElement("span")
-  probe.style.backgroundColor = "var(--background)"
-  probe.setAttribute("aria-hidden", "true")
-  try {
-    document.documentElement.appendChild(probe)
-    return parseRgb(getComputedStyle(probe).backgroundColor)
-  } finally {
-    probe.remove()
-  }
-}
-
-function clearOverrides(root: HTMLElement) {
-  for (const key of TOKEN_KEYS) {
-    root.style.removeProperty(key)
-  }
-  root.removeAttribute("data-theme-adapt")
-}
-
 /**
  * Adaptive light/dark switch.
- * Family Values: gradual revelation (note only after a repair),
- * fluidity (hairline frame travels), careful delight (paper vs ink fields).
+ * Samples :root light tokens, builds an OKLCH companion, applies it on night.
  */
 export function ThemeAdapt({
   className,
@@ -56,13 +22,13 @@ export function ThemeAdapt({
   minContrast = 4.5,
 }: {
   className?: string
-  /** Lift --foreground / --muted-foreground to WCAG AA against --background. */
+  /** When true, night mode uses a generated companion instead of only .dark. */
   adapt?: boolean
   minContrast?: number
 }) {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const [repaired, setRepaired] = useState(false)
+  const [companionOn, setCompanionOn] = useState(false)
   const floor = clampContrast(minContrast)
 
   useEffect(() => setMounted(true), [])
@@ -70,28 +36,19 @@ export function ThemeAdapt({
   useEffect(() => {
     if (!mounted) return
     const root = document.documentElement
-    if (!adapt) {
-      clearOverrides(root)
-      setRepaired(false)
-      return
-    }
 
     const apply = () => {
-      clearOverrides(root)
-      const bg = readBackgroundRgb()
-      if (!bg) return
-      let didRepair = false
-      for (const key of TOKEN_KEYS) {
-        const fg = readTokenRgb(key)
-        if (!fg) continue
-        const next = ensureContrast(fg, bg, floor)
-        if (next.repaired) {
-          root.style.setProperty(key, rgbToCss(next.rgb))
-          didRepair = true
-        }
+      const dark =
+        root.classList.contains("dark") || resolvedTheme === "dark"
+      if (!adapt || !dark) {
+        clearCompanionPalette(root)
+        setCompanionOn(false)
+        return
       }
-      if (didRepair) root.setAttribute("data-theme-adapt", "repaired")
-      setRepaired(didRepair)
+      const light = sampleLightSwatch()
+      if (!light) return
+      applyCompanionPalette(root, companionDark(light, "adaptive", floor))
+      setCompanionOn(true)
     }
 
     apply()
@@ -99,14 +56,13 @@ export function ThemeAdapt({
     obs.observe(root, { attributes: true, attributeFilter: ["class"] })
     return () => {
       obs.disconnect()
-      clearOverrides(root)
     }
   }, [adapt, floor, mounted, resolvedTheme])
 
   const isDark = mounted && resolvedTheme === "dark"
   const next = isDark ? "light" : "dark"
   const label = mounted
-    ? `Switch to ${next} mode${repaired ? ". Type contrast was lifted." : ""}`
+    ? `Switch to ${next} mode${companionOn ? ". Companion dark from light tokens." : ""}`
     : "Switch appearance"
 
   return (
@@ -149,9 +105,9 @@ export function ThemeAdapt({
           style={{ left: isDark ? "calc(50% + 1px)" : "1px" }}
         />
       </button>
-      {repaired ? (
+      {companionOn ? (
         <p className="max-w-[8.75rem] text-[11px] leading-snug text-muted-foreground">
-          Type lifted to AA.
+          Companion from light tokens.
         </p>
       ) : null}
     </div>

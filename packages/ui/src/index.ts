@@ -2,16 +2,22 @@ export { cn } from "./lib/utils"
 export { MEDIA, mediaSrc } from "./lib/media"
 export type { MediaSrc, OgExampleSlug } from "./lib/media"
 export {
+  applyCompanionPalette,
   clampContrast,
+  clearCompanionPalette,
   companionDark,
+  companionToCssVars,
   contrastRatio,
   ensureContrast,
+  hueDelta,
   parseHex,
   parseRgb,
   relativeLuminance,
   rgbToCss,
+  rgbToOklch,
+  sampleLightSwatch,
 } from "./lib/adaptive-theme"
-export type { Rgb, ThemeSwatch } from "./lib/adaptive-theme"
+export type { Oklch, Rgb, ThemeSwatch } from "./lib/adaptive-theme"
 
 export {
   EMPTY_PROJECT_BRIEF,

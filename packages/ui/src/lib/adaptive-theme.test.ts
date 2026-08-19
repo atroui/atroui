@@ -3,9 +3,11 @@ import {
   companionDark,
   contrastRatio,
   ensureContrast,
+  hueDelta,
   parseHex,
   parseRgb,
   relativeLuminance,
+  rgbToOklch,
 } from "./adaptive-theme"
 import type { ThemeSwatch } from "./adaptive-theme"
 
@@ -54,7 +56,7 @@ describe("companionDark", () => {
     expect(contrastRatio(naive.muted, naive.background)).toBeLessThan(4.5)
   })
 
-  it("adaptive dark keeps muted type at AA and preserves brand", () => {
+  it("adaptive dark keeps muted type at AA and preserves hue", () => {
     const adaptive = companionDark(warmPaper, "adaptive")
     expect(contrastRatio(adaptive.muted, adaptive.background)).toBeGreaterThanOrEqual(
       4.5
@@ -62,6 +64,14 @@ describe("companionDark", () => {
     expect(contrastRatio(adaptive.foreground, adaptive.background)).toBeGreaterThanOrEqual(
       4.5
     )
-    expect(adaptive.brand).toEqual(warmPaper.brand)
+    expect(
+      hueDelta(
+        rgbToOklch(warmPaper.background).h,
+        rgbToOklch(adaptive.background).h
+      )
+    ).toBeLessThan(12)
+    expect(
+      hueDelta(rgbToOklch(warmPaper.brand).h, rgbToOklch(adaptive.brand).h)
+    ).toBeLessThan(8)
   })
 })

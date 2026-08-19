@@ -22,13 +22,16 @@ export default function Page() {
       }
       fullBleed
       usage="Requires next-themes ThemeProvider. The three-way Light / System / Dark pill is still @atroui/theme-toggle. Use this when a naive invert would hide body copy or flatten a designed light canvas."
-          extra={
+      extra={
         <div className="space-y-3 text-[15px] leading-relaxed text-muted-foreground">
           <p>
-            Read the three columns together. Light is the designed canvas.
-            Naive dark is the usual crush. Adapt keeps brand and lifts muted
-            type to AA. Pick Kiln, Uptime, Dusk, or Edition to see a different
-            light mix take the same path.
+            DAY/NIGHT samples your light{" "}
+            <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px] text-foreground">
+              :root
+            </code>{" "}
+            tokens, builds an OKLCH companion (same hue, darker canvas, type to
+            AA), and writes it onto the page. The three columns still show
+            Light / Naive crush / Adapt for Kiln, Uptime, Dusk, and Edition.
           </p>
         </div>
       }
@@ -43,7 +46,7 @@ export default function Page() {
           name: "adapt",
           type: "boolean",
           default: "true",
-          description: "Lift type tokens after the mode change.",
+          description: "When true, night mode applies a generated companion from light tokens.",
         },
         {
           name: "minContrast",
