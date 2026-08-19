@@ -2,6 +2,24 @@ export { cn } from "./lib/utils"
 export { MEDIA, mediaSrc } from "./lib/media"
 export type { MediaSrc, OgExampleSlug } from "./lib/media"
 export {
+  applyCompanionPalette,
+  clampContrast,
+  clearCompanionPalette,
+  companionDark,
+  companionToCssVars,
+  contrastRatio,
+  ensureContrast,
+  hueDelta,
+  parseHex,
+  parseRgb,
+  relativeLuminance,
+  rgbToCss,
+  rgbToOklch,
+  sampleLightSwatch,
+} from "./lib/adaptive-theme"
+export type { Oklch, Rgb, ThemeSwatch } from "./lib/adaptive-theme"
+
+export {
   EMPTY_PROJECT_BRIEF,
   PROJECT_BRIEF_STORAGE_KEY,
   briefFromScopeMessage,
@@ -65,6 +83,7 @@ export * from "./components/ui/form-select"
 export * from "./components/ui/founder-avatar"
 export * from "./components/ui/prose"
 export * from "./components/ui/textarea"
+export * from "./components/ui/theme-adapt"
 export * from "./components/ui/theme-toggle"
 export * from "./components/ui/theme-toggle-icon"
 export * from "./components/ui/timeline-animation"

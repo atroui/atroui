@@ -190,6 +190,10 @@ npx shadcn@latest add @atroui/site-footer`}
             </code>
             ,{" "}
             <code className="font-mono text-[12px] text-foreground">
+              @atroui/theme-adapt
+            </code>
+            ,{" "}
+            <code className="font-mono text-[12px] text-foreground">
               @atroui/theme-provider
             </code>
             ,{" "}
