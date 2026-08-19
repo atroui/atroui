@@ -32,6 +32,8 @@ export default function Page() {
             tokens, builds an OKLCH companion (same hue, darker canvas, type to
             AA), and writes it onto the page. The three columns still show
             Light / Naive crush / Adapt for Kiln, Uptime, Dusk, and Edition.
+            shadcn/ui ships a class toggle and two token sheets you write by
+            hand — not a runtime companion from light tokens.
           </p>
         </div>
       }

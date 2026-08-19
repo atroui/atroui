@@ -28,7 +28,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           "Most light/dark switches do one job: put `.dark` on `<html>` and hope the stylesheet already knows how to invert. That is fine when you designed both sheets by hand. It fails the moment someone ships a custom light palette — warm paper, quiet gray captions, a brand that was mixed for daylight — and then flips to night.",
           "The canvas goes black. The caption color does not. `--muted-foreground` that was a tasteful slate on cream becomes unreadable sludge on charcoal. Vital copy disappears. Designers call it “the invert looked fine in Figma.” Engineers call it “dark mode is done.” Readers bounce.",
-          "We built [Adaptive Theme Switch](/docs/components/ui-theme-adapt) because AtroUI already had a [theme toggle](/docs/components/ui-theme-toggle) and it was not enough. A class flip is a mode. A companion is a second design. The catalog should ship the second one when the first one lies.",
+          "We built [Adaptive Theme Switch](/docs/components/ui-theme-adapt) because AtroUI already had a [theme toggle](/docs/components/ui-theme-toggle) and it was not enough. A class flip is a mode. A companion is a second design. The catalog should ship the second one when the first one lies. shadcn/ui does not.",
         ],
       },
       {
@@ -67,6 +67,14 @@ export const blogPosts: BlogPost[] = [
             language: "bash",
             code: `npx shadcn@latest add @atroui/theme-adapt`,
           },
+        ],
+      },
+      {
+        heading: "What shadcn actually ships",
+        body: [
+          "shadcn/ui is the ownership model we already use: files in your repo, tokens in `:root` and `.dark`, a [class on `<html>`](https://ui.shadcn.com/docs/dark-mode). That is a toggle. You still author both sheets. If you only designed daylight, night is a leftover invert.",
+          "Theme builders in that world emit more static CSS. They do not sample the light tokens you already shipped and raise muted type to AA at runtime. We could not find that control in shadcn’s registry, or in the kits that copy its toggle. So we shipped it as `@atroui/theme-adapt` — same CLI, higher altitude, same as the rest of the catalog.",
+          "This is not a diss. Keep shadcn primitives. Add the companion when the class is not a design. See [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn).",
         ],
       },
       {
@@ -1030,7 +1038,7 @@ NEXT_PUBLIC_SITE_TAGLINE=Ship faster with Acme`,
           "Distribution: both copy files into your repo via the CLI.",
           "Altitude: atoms and patterns you assemble vs sections and chrome already composed.",
           "Brand: you build chrome from scratch vs getBrand() + NEXT_PUBLIC_SITE_*.",
-          "Theme: often light-first or neutral vs dark-first catalog defaults.",
+          "Theme: often light-first or two static sheets (`:root` / `.dark`) vs dark-first defaults, plus Adaptive Theme Switch when you only designed light.",
           "AI / media tools: usually out of scope vs optional workspaces that expect your /api/*.",
         ],
       },
