@@ -5,17 +5,9 @@ import Link from "next/link"
 import { Menu, Star, X } from "lucide-react"
 import { LogoMark } from "@/components/logo-mark"
 import { OverlayShell } from "@/components/overlay-shell"
+import { primaryNav } from "@/lib/primary-nav"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
-
-const navLinks = [
-  { label: "Catalog", href: "/docs/components" },
-  { label: "Registry", href: "/docs/registry" },
-  { label: "Host APIs", href: "/docs/host-api" },
-  { label: "Docs", href: "/docs" },
-  { label: "Blog", href: "/blog" },
-  { label: "Updates", href: "/updates" },
-] as const
 
 /** Landing mobile nav — quiet chrome; shared OverlayShell for fluidity. */
 export function HeroMobileNav() {
@@ -77,7 +69,7 @@ export function HeroMobileNav() {
         </div>
 
         <nav className="flex flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-3 py-4">
-          {navLinks.map((link) => (
+          {primaryNav.map((link) => (
             <Link
               key={link.href}
               href={link.href}

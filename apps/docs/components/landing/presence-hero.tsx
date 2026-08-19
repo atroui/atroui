@@ -22,17 +22,9 @@ import {
   TransitionLink,
 } from "@/components/view-transitions"
 import { cn } from "@/lib/utils"
+import { primaryNav } from "@/lib/primary-nav"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
-
-const navLinks = [
-  { label: "Catalog", href: "/docs/components" },
-  { label: "Registry", href: "/docs/registry" },
-  { label: "Host APIs", href: "/docs/host-api" },
-  { label: "Docs", href: "/docs" },
-  { label: "Blog", href: "/blog" },
-  { label: "Updates", href: "/updates" },
-] as const
 
 const STAGE_COPY: Record<string, string> = {
   Preparing: "Preparing",
@@ -195,7 +187,7 @@ export function PresenceHero() {
             className="flex items-center gap-8 text-sm font-medium tracking-wide text-white/70 lg:gap-10"
             aria-label="Primary"
           >
-            {navLinks.map((link) => (
+            {primaryNav.map((link) => (
               <TransitionLink
                 key={link.href}
                 href={link.href}

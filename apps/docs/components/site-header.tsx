@@ -10,15 +10,9 @@ import {
   SharedOwnCta,
   TransitionLink,
 } from "@/components/view-transitions"
+import { primaryNav } from "@/lib/primary-nav"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
-
-const primaryNav = [
-  { href: "/docs", label: "Docs" },
-  { href: "/docs/components", label: "Components" },
-  { href: "/blog", label: "Blog" },
-  { href: "/updates", label: "Updates" },
-] as const
 
 export function SiteHeader() {
   return (
