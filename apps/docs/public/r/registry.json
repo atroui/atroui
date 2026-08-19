@@ -87,6 +87,39 @@
       ]
     },
     {
+      "name": "adaptive-theme",
+      "type": "registry:lib",
+      "title": "Adaptive Theme",
+      "description": "Contrast helpers that lift muted type to WCAG AA against the canvas.",
+      "files": [
+        {
+          "path": "registry/default/lib/adaptive-theme.ts",
+          "type": "registry:lib",
+          "target": "lib/adaptive-theme.ts"
+        }
+      ]
+    },
+    {
+      "name": "theme-adapt",
+      "type": "registry:ui",
+      "title": "Adaptive Theme Switch",
+      "description": "Light/dark switch that keeps brand canvases and lifts type that would vanish in the other mode.",
+      "dependencies": [
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/adaptive-theme"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/theme-adapt.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/theme-adapt.tsx"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",

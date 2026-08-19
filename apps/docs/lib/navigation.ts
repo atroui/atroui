@@ -116,6 +116,12 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
+        title: "Adaptive Theme Switch",
+        href: "/docs/components/ui-theme-adapt",
+        description: "Keeps type readable across modes",
+        badge: "registry",
+      },
+      {
         title: "Theme Provider",
         href: "/docs/components/theme-provider",
         description: "next-themes root",

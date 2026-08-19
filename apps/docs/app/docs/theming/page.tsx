@@ -227,7 +227,20 @@ export default function ThemingPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             npx shadcn add @atroui/theme-toggle
           </code>
-          .
+          . If flipping to dark hides muted copy or flattens a designed light
+          palette, use{" "}
+          <Link href="/docs/components/ui-theme-adapt" className="bam-link">
+            Adaptive Theme Switch
+          </Link>{" "}
+          (
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/theme-adapt
+          </code>
+          ) instead. It still uses{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .dark
+          </code>
+          , then lifts type tokens to WCAG AA.
         </p>
         <CodeBlock
           language="tsx"

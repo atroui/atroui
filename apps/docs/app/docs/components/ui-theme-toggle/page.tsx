@@ -19,7 +19,7 @@ export default function Page() {
       preview={<DemoThemeToggle />}
       code={'import { ThemeToggle } from "@/components/ui/theme-toggle"\n\n<ThemeToggle />'}
       fullBleed={false}
-      usage="Requires next-themes ThemeProvider. For a compact sun/moon control in narrow chrome, use @atroui/theme-toggle-icon."
+      usage="Requires next-themes ThemeProvider. Compact sun/moon: @atroui/theme-toggle-icon. If a naive dark mode hides body copy, use @atroui/theme-adapt."
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}

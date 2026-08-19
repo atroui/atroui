@@ -217,6 +217,8 @@ export function DemoFormSelect() {
   )
 }
 
+export { DemoThemeAdapt } from "@/components/theme-adapt-demo"
+
 export function DemoThemeToggle() {
   return <ThemeToggle />
 }
