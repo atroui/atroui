@@ -1,0 +1,497 @@
+{
+  "generatedFrom": "apps/docs/registry.json",
+  "items": [
+    {
+      "name": "utils",
+      "title": "Utils",
+      "description": "cn() helper (clsx + tailwind-merge).",
+      "type": "registry:lib"
+    },
+    {
+      "name": "brand",
+      "title": "Brand",
+      "description": "getBrand() and DEFAULT_BRAND - edit or override with NEXT_PUBLIC_SITE_*.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "project-brief",
+      "title": "Project Brief",
+      "description": "Shared ProjectBrief type + OG/thumbnail href helpers for Scope → Planner → social card glue.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "AtroUI button with CVA variants. Source lands in your project.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "theme-toggle",
+      "title": "Theme Toggle",
+      "description": "Light / system / dark toggle using next-themes.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "description": "Elevated surface with header, content, and footer slots.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "description": "Multi-line text input styled for AtroUI forms.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "form-select",
+      "title": "Form Select",
+      "description": "Accessible select built on Base UI.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "breadcrumbs",
+      "title": "Breadcrumbs",
+      "description": "Path navigation trail for docs and product pages.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "prose",
+      "title": "Prose",
+      "description": "Long-form typography container for articles and MDX.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "fade-in",
+      "title": "Fade In",
+      "description": "Scroll-triggered fade + rise using motion.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "stagger",
+      "title": "Stagger",
+      "description": "Stagger children on scroll with StaggerChild.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "scroll-progress",
+      "title": "Scroll Progress",
+      "description": "Reading-progress bar driven by scroll position.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "logo",
+      "title": "Logo",
+      "description": "Interrupted-A mark and wordmark. Edit the SVG in your repo.",
+      "type": "registry:component"
+    },
+    {
+      "name": "home-hero",
+      "title": "Home Hero",
+      "description": "Docs-matching homepage hero with editable CONTENT (stamp, CTAs, sprint, OG preview panel).",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-who",
+      "title": "Home Who",
+      "description": "Founder / who band with editable CONTENT constants.",
+      "type": "registry:block"
+    },
+    {
+      "name": "site-header",
+      "title": "Site Header",
+      "description": "Sticky site header with editable NAV and CTA.",
+      "type": "registry:block"
+    },
+    {
+      "name": "footer-bold",
+      "title": "Bold Footer",
+      "description": "Bold footer with editable headline, studio links, and socials.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-principle",
+      "title": "Home Principle",
+      "description": "How-we-work principles band with editable CONTENT and PRINCIPLES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-work",
+      "title": "Home Work",
+      "description": "Selected work band with editable PROJECTS list.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-lab",
+      "title": "Home Lab",
+      "description": "Free tools / lab band with editable TOOLS catalog.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-crafts",
+      "title": "Home Crafts",
+      "description": "Capabilities / crafts band with editable CONTENT and CRAFTS (distinct from pricing).",
+      "type": "registry:block"
+    },
+    {
+      "name": "pricing-overview",
+      "title": "Pricing Overview",
+      "description": "Fixed-package pricing band with editable CONTENT and PACKAGES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "feature-grid",
+      "title": "Feature Grid",
+      "description": "Product feature grid with editable CONTENT and FEATURES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "logo-cloud",
+      "title": "Logo Cloud",
+      "description": "Partner / client name strip with editable CONTENT and NAMES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "contextual-cta",
+      "title": "Contextual CTA",
+      "description": "Sticky scroll CTA with editable CONTENT (no analytics wiring).",
+      "type": "registry:block"
+    },
+    {
+      "name": "exit-intent-popup",
+      "title": "Exit Intent Popup",
+      "description": "Exit-intent dialog with editable CONTENT and storage keys.",
+      "type": "registry:block"
+    },
+    {
+      "name": "contact-form",
+      "title": "Contact Form",
+      "description": "Multi-step contact form with editable CONTENT; posts to your API.",
+      "type": "registry:block"
+    },
+    {
+      "name": "site-footer",
+      "title": "Site Footer",
+      "description": "Lighter footer with editable CONTENT and link columns.",
+      "type": "registry:block"
+    },
+    {
+      "name": "faq",
+      "title": "FAQ",
+      "description": "Accordion FAQ with editable CONTENT and ITEMS.",
+      "type": "registry:block"
+    },
+    {
+      "name": "waitlist-form",
+      "title": "Waitlist Form",
+      "description": "Email waitlist form with editable CONTENT; posts to your API.",
+      "type": "registry:block"
+    },
+    {
+      "name": "newsletter-form",
+      "title": "Newsletter Form",
+      "description": "Email newsletter form with editable CONTENT; posts to your API.",
+      "type": "registry:block"
+    },
+    {
+      "name": "calendly-embed",
+      "title": "Calendly Embed",
+      "description": "Theme-aware Calendly iframe with editable CONTENT and email fallback.",
+      "type": "registry:block"
+    },
+    {
+      "name": "made-with-embed",
+      "title": "Made With Embed",
+      "description": "Credit badge + copyable HTML snippet with editable CONTENT.",
+      "type": "registry:block"
+    },
+    {
+      "name": "theme-provider",
+      "title": "Theme Provider",
+      "description": "next-themes wrapper for class-based dark mode.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "mockup-frame",
+      "title": "Mockup Frame",
+      "description": "Browser-frame UI placeholder for case studies.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "timeline-animation",
+      "title": "Timeline Animation",
+      "description": "Scroll-linked sequenced motion for hero timelines.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "founder-avatar",
+      "title": "Founder Avatar",
+      "description": "Circular founder portrait with editable CONTENT src.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "site-url",
+      "title": "Site URL",
+      "description": "getSiteUrl() for metadata and JSON-LD.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "seo",
+      "title": "SEO helpers",
+      "description": "getSiteDomain() helper for structured data.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "analytics",
+      "title": "Analytics",
+      "description": "trackEvent and experiment helpers.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "social-share",
+      "title": "Social Share",
+      "description": "X / LinkedIn / copy-link share bar.",
+      "type": "registry:block"
+    },
+    {
+      "name": "before-after-slider",
+      "title": "Before / After",
+      "description": "Compare wireframe vs shipped UI mockups.",
+      "type": "registry:block"
+    },
+    {
+      "name": "visual-case-study",
+      "title": "Case Study",
+      "description": "Case study band with editable CONTENT and before/after.",
+      "type": "registry:block"
+    },
+    {
+      "name": "ar-portfolio",
+      "title": "AR Portfolio",
+      "description": "model-viewer AR portfolio with editable CONTENT models.",
+      "type": "registry:block"
+    },
+    {
+      "name": "live-dashboard",
+      "title": "Live Dashboard",
+      "description": "Studio status board with editable CONTENT projects.",
+      "type": "registry:block"
+    },
+    {
+      "name": "project-planner",
+      "title": "Project Planner",
+      "description": "Multi-step project scoping planner UI.",
+      "type": "registry:block"
+    },
+    {
+      "name": "testimonial-schema",
+      "title": "Testimonial Schema",
+      "description": "Review JSON-LD with editable CONTENT.",
+      "type": "registry:block"
+    },
+    {
+      "name": "json-ld",
+      "title": "JSON-LD",
+      "description": "Site graph, article, FAQ, and breadcrumb JSON-LD helpers.",
+      "type": "registry:block"
+    },
+    {
+      "name": "analytics-provider",
+      "title": "Analytics Provider",
+      "description": "Plausible / GA loader with trackEvent helpers.",
+      "type": "registry:block"
+    },
+    {
+      "name": "og-live-preview",
+      "title": "OG Live Preview",
+      "description": "CSS OG card preview with editable CONTENT presets.",
+      "type": "registry:block"
+    },
+    {
+      "name": "og-examples",
+      "title": "OG Examples",
+      "description": "OG style gallery with editable CONTENT examples.",
+      "type": "registry:block"
+    },
+    {
+      "name": "og-workspace",
+      "title": "OG Workspace",
+      "description": "OG generator UI shell. Wire CONTENT.endpoint (Host API).",
+      "type": "registry:block"
+    },
+    {
+      "name": "thumbnail-live-preview",
+      "title": "Thumbnail Preview",
+      "description": "CSS thumbnail preview with editable CONTENT.",
+      "type": "registry:block"
+    },
+    {
+      "name": "thumbnail-workspace",
+      "title": "Thumbnail Workspace",
+      "description": "Thumbnail generator UI shell. Wire CONTENT.endpoint (Host API).",
+      "type": "registry:block"
+    },
+    {
+      "name": "scope-chat",
+      "title": "Scope Chat",
+      "description": "AI scoping chat UI. Wire CONTENT.endpoint (Host API).",
+      "type": "registry:block"
+    },
+    {
+      "name": "journal-content",
+      "title": "Journal",
+      "description": "Blog index layout with editable CONTENT posts.",
+      "type": "registry:block"
+    },
+    {
+      "name": "resources-content",
+      "title": "Resources",
+      "description": "Resource library layout with editable CONTENT items.",
+      "type": "registry:block"
+    },
+    {
+      "name": "api-contact",
+      "title": "Contact API",
+      "description": "POST /api/contact - honeypot, rate limit, SMTP via atroui/api/contact.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-waitlist",
+      "title": "Waitlist API",
+      "description": "POST /api/waitlist - Resend audience or SMTP via atroui/api/waitlist.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-newsletter",
+      "title": "Newsletter API",
+      "description": "POST /api/newsletter - Resend audience or SMTP via atroui/api/newsletter.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-generate",
+      "title": "OG Generate API",
+      "description": "POST /api/generate - consumer HF/Google keys via atroui/api/generate. No keys shipped.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-thumbnail",
+      "title": "Thumbnail API",
+      "description": "POST /api/thumbnail - consumer HF/Google/XAI keys via atroui/api/thumbnail. No keys shipped.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-scope",
+      "title": "Scope Chat API",
+      "description": "POST /api/scope - rule-based by default; optional XAI_API_KEY via atroui/api/scope.",
+      "type": "registry:item"
+    },
+    {
+      "name": "count-up",
+      "title": "Count Up",
+      "description": "In-view count-up number with reduced-motion support.",
+      "type": "registry:block"
+    },
+    {
+      "name": "deadline-countdown",
+      "title": "Deadline Countdown",
+      "description": "Days-to-deadline band with segmented progress and CountUp.",
+      "type": "registry:block"
+    },
+    {
+      "name": "currently",
+      "title": "Currently",
+      "description": "Narrow “now” list with editable stamp and items.",
+      "type": "registry:block"
+    },
+    {
+      "name": "project-list",
+      "title": "Project List",
+      "description": "Hairline project list with tags and optional view-all link.",
+      "type": "registry:block"
+    },
+    {
+      "name": "log-preview",
+      "title": "Log Preview",
+      "description": "Recent log entries band with view-all link.",
+      "type": "registry:block"
+    },
+    {
+      "name": "changelog",
+      "title": "Changelog",
+      "description": "Filterable month-grouped changelog list.",
+      "type": "registry:block"
+    },
+    {
+      "name": "command-menu",
+      "title": "Command Menu",
+      "description": "⌘K command palette for nav, posts, connect, and theme.",
+      "type": "registry:block"
+    },
+    {
+      "name": "reveal",
+      "title": "Reveal",
+      "description": "IntersectionObserver reveal using .atro-reveal CSS.",
+      "type": "registry:block"
+    },
+    {
+      "name": "theme-toggle-icon",
+      "title": "Theme Toggle Icon",
+      "description": "Compact sun/moon theme toggle for narrow chrome.",
+      "type": "registry:block"
+    },
+    {
+      "name": "site-header-narrow",
+      "title": "Site Header Narrow",
+      "description": "Sticky 640px personal header with mono nav and theme icon.",
+      "type": "registry:block"
+    },
+    {
+      "name": "site-footer-narrow",
+      "title": "Site Footer Narrow",
+      "description": "Quiet personal footer with tagline and link grid.",
+      "type": "registry:block"
+    },
+    {
+      "name": "social-float",
+      "title": "Social Float",
+      "description": "Fixed social FAB with expandable link tray.",
+      "type": "registry:block"
+    },
+    {
+      "name": "reading-shelf",
+      "title": "Reading Shelf",
+      "description": "Horizontal book-cover shelf for currently reading.",
+      "type": "registry:block"
+    },
+    {
+      "name": "personal-hero",
+      "title": "Personal Hero",
+      "description": "Narrow personal intro with status, lede links, and meta.",
+      "type": "registry:block"
+    },
+    {
+      "name": "resume",
+      "title": "Resume",
+      "description": "Printable resume layout with experience, skills, and projects.",
+      "type": "registry:block"
+    },
+    {
+      "name": "local-clock",
+      "title": "Local Clock",
+      "description": "Timezone-aware local time chip.",
+      "type": "registry:block"
+    },
+    {
+      "name": "weather-chip",
+      "title": "Weather Chip",
+      "description": "Open-Meteo weather chip — no API key required.",
+      "type": "registry:block"
+    },
+    {
+      "name": "stack-list",
+      "title": "Stack List",
+      "description": "Sectioned tools/stack definition list.",
+      "type": "registry:block"
+    }
+  ]
+}

@@ -132,6 +132,9 @@ npx shadcn@latest add @atroui/home-hero`}
         <Link href="/docs/host-api" className="ms-cta-ghost">
           Host APIs
         </Link>
+        <Link href="/docs/mcp" className="ms-cta-ghost">
+          MCP
+        </Link>
         <Link href="/docs/registry" className="ms-cta-ghost">
           Own the UI
         </Link>

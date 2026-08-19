@@ -1,0 +1,58 @@
+{
+  "name": "@atroui/mcp",
+  "version": "0.0.0",
+  "description": "MCP server for the AtroUI registry: search components, install commands, and design skills.",
+  "license": "MIT",
+  "homepage": "https://www.atroui.com/docs/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atroui/atroui.git",
+    "directory": "packages/mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/atroui/atroui/issues"
+  },
+  "keywords": [
+    "atroui",
+    "mcp",
+    "model-context-protocol",
+    "shadcn",
+    "registry"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "atroui-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "skills",
+    "README.md"
+  ],
+  "scripts": {
+    "sync-catalog": "node ./scripts/sync-catalog.mjs",
+    "build": "pnpm sync-catalog && tsc",
+    "prepublishOnly": "pnpm build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "clean": "rm -rf dist .turbo"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@atroui/typescript-config": "workspace:*",
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.20.1",
+    "eslint": "^9.39.5",
+    "globals": "^17.9.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.66.0",
+    "vitest": "^3.2.4"
+  }
+}

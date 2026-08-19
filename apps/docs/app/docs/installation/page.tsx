@@ -99,9 +99,13 @@ npx shadcn@latest add @atroui/site-footer`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @atroui/utils
           </code>
-          , and so on. Full catalog:{" "}
+          , and so on.           Full catalog:{" "}
           <Link href="/docs/registry" className="bam-link">
             Registry
+          </Link>
+          . Agents can search the same catalog via the{" "}
+          <Link href="/docs/mcp" className="bam-link">
+            MCP server
           </Link>
           .
         </p>

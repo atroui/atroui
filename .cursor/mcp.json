@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "atroui": {
+      "command": "node",
+      "args": ["${workspaceFolder}/packages/mcp/dist/index.js"]
+    }
+  }
+}

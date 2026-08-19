@@ -1,0 +1,15 @@
+{
+  "name": "atroui",
+  "version": "0.1.0",
+  "description": "Search the AtroUI registry, copy install commands, and load Family Values / Host API skills.",
+  "author": {
+    "name": "AtroUI"
+  },
+  "homepage": "https://www.atroui.com/docs/mcp",
+  "repository": "https://github.com/atroui/atroui",
+  "license": "MIT",
+  "keywords": ["atroui", "mcp", "shadcn", "registry", "ui"],
+  "logo": "packages/ui/assets/brand/atroui-mark.svg",
+  "mcpServers": "packages/mcp/mcp.json",
+  "skills": "packages/mcp/cursor-skills"
+}

@@ -29,6 +29,11 @@ export const navigation: NavSection[] = [
         description: "shadcn CLI setup",
       },
       {
+        title: "MCP server",
+        href: "/docs/mcp",
+        description: "Agents: catalog + skills",
+      },
+      {
         title: "Host APIs",
         href: "/docs/host-api",
         description: "Forms & AI routes, BYOK",
