@@ -48,7 +48,7 @@ function clearOverrides(root: HTMLElement) {
 /**
  * Adaptive light/dark switch.
  * Family Values: gradual revelation (note only after a repair),
- * fluidity (curtain travels), careful delight (split Aa preview).
+ * fluidity (hairline frame travels), careful delight (paper vs ink fields).
  */
 export function ThemeAdapt({
   className,
@@ -110,50 +110,48 @@ export function ThemeAdapt({
     : "Switch appearance"
 
   return (
-    <div className={cn("inline-flex flex-col items-stretch gap-1.5", className)}>
+    <div className={cn("inline-flex flex-col items-stretch gap-1", className)}>
       <button
         type="button"
         aria-label={label}
         title={label}
         onClick={() => setTheme(next)}
         className={cn(
-          "relative isolate flex h-11 w-[10.25rem] overflow-hidden rounded-lg border border-border-subtle bg-background text-left",
+          "relative isolate flex h-9 w-[8.75rem] overflow-hidden rounded-lg border border-border-subtle",
           "outline-none focus-visible:ring-2 focus-visible:ring-brand/50",
           "active:scale-[0.98] motion-reduce:active:scale-100"
         )}
       >
         <span
-          className="flex w-1/2 flex-col items-center justify-center gap-0.5 bg-[#f3efe6] text-[#1c1915]"
+          className="flex w-1/2 items-center justify-center bg-[#efeae1] text-[#161412]"
           aria-hidden
         >
-          <span className="font-serif text-[15px] leading-none">Aa</span>
-          <span className="text-[9px] font-medium tracking-wide text-[#6b6560]">
-            Light
+          <span className="font-mono text-[10px] font-medium tracking-[0.18em]">
+            DAY
           </span>
         </span>
         <span
-          className="flex w-1/2 flex-col items-center justify-center gap-0.5 bg-[#121212] text-[#eceae4]"
+          className="flex w-1/2 items-center justify-center bg-[#0e0e0f] text-[#eceae4]"
           aria-hidden
         >
-          <span className="font-serif text-[15px] leading-none">Aa</span>
-          <span className="text-[9px] font-medium tracking-wide text-[#a8a29a]">
-            Dark
+          <span className="font-mono text-[10px] font-medium tracking-[0.18em]">
+            NIGHT
           </span>
         </span>
         <span
           aria-hidden
           className={cn(
-            "pointer-events-none absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-md",
-            "border border-brand/70 shadow-[0_0_0_1px_color-mix(in_oklab,var(--brand)_35%,transparent)]",
+            "pointer-events-none absolute top-px bottom-px w-[calc(50%-2px)] rounded-md",
+            "ring-1 ring-brand/80",
             "transition-[left] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]",
             "motion-reduce:transition-none"
           )}
-          style={{ left: isDark ? "calc(50% + 2px)" : "4px" }}
+          style={{ left: isDark ? "calc(50% + 1px)" : "1px" }}
         />
       </button>
       {repaired ? (
-        <p className="max-w-[10.25rem] text-[11px] leading-snug text-muted-foreground">
-          Muted type lifted so copy stays readable.
+        <p className="max-w-[8.75rem] text-[11px] leading-snug text-muted-foreground">
+          Type lifted to AA.
         </p>
       ) : null}
     </div>

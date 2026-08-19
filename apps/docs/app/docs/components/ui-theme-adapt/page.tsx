@@ -22,17 +22,13 @@ export default function Page() {
       }
       fullBleed
       usage="Requires next-themes ThemeProvider. The three-way Light / System / Dark pill is still @atroui/theme-toggle. Use this when a naive invert would hide body copy or flatten a designed light canvas."
-      extra={
+          extra={
         <div className="space-y-3 text-[15px] leading-relaxed text-muted-foreground">
           <p>
-            The split control still flips the host{" "}
-            <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px] text-foreground">
-              .dark
-            </code>{" "}
-            class. AtroUI docs tokens already pass AA, so you may not see
-            “type lifted” on this site. The cards below are the proof: each
-            starts from a real light palette, then Naive dark vs Adapt use
-            the same contrast helpers as the switch.
+            Read the three columns together. Light is the designed canvas.
+            Naive dark is the usual crush. Adapt keeps brand and lifts muted
+            type to AA. Pick Kiln, Uptime, Dusk, or Edition to see a different
+            light mix take the same path.
           </p>
         </div>
       }

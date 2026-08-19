@@ -11,12 +11,15 @@ import {
 } from "atroui/lib/adaptive-theme"
 import { cn } from "@/lib/utils"
 
-type Mode = "light" | "naive" | "adaptive"
+type Stage = "light" | "naive" | "adaptive"
 
 type PaletteDef = {
   id: string
   name: string
-  note: string
+  kicker: string
+  headline: string
+  body: string
+  cta: string
   light: ThemeSwatch
 }
 
@@ -39,8 +42,11 @@ function swatch(hex: {
 const PALETTES: PaletteDef[] = [
   {
     id: "paper",
-    name: "Warm paper",
-    note: "Studio cream. Naive dark greys the terracotta.",
+    name: "Kiln",
+    kicker: "Studio notes",
+    headline: "Cone 6 this Thursday",
+    body: "Hold at peak twenty minutes. The glaze notes sit in muted type. Lose those and the firing is guesswork.",
+    cta: "Open schedule",
     light: swatch({
       background: "#F4F1EA",
       foreground: "#1C1915",
@@ -50,8 +56,11 @@ const PALETTES: PaletteDef[] = [
   },
   {
     id: "mint",
-    name: "Cool SaaS",
-    note: "Mint canvas. Naive dark loses the supporting line.",
+    name: "Uptime",
+    kicker: "Status",
+    headline: "99.98% this week",
+    body: "Incident copy and helper lines are the first to vanish when the canvas goes near-black.",
+    cta: "View incidents",
     light: swatch({
       background: "#E8F4F1",
       foreground: "#12332E",
@@ -61,8 +70,11 @@ const PALETTES: PaletteDef[] = [
   },
   {
     id: "lilac",
-    name: "Dusk lilac",
-    note: "Soft violet brand. Invert flattens the accent.",
+    name: "Dusk",
+    kicker: "Reading list",
+    headline: "Three essays tonight",
+    body: "Captions carry the author. Flatten the violet and the list reads as generic chrome.",
+    cta: "Start with one",
     light: swatch({
       background: "#F3EEF8",
       foreground: "#23182C",
@@ -72,8 +84,11 @@ const PALETTES: PaletteDef[] = [
   },
   {
     id: "ink",
-    name: "Newsprint",
-    note: "High-chroma red on bone. Dark needs the red to stay.",
+    name: "Edition",
+    kicker: "City desk",
+    headline: "6am print run",
+    body: "The red masthead is the identity. Grey it in dark mode and it is any other paper.",
+    cta: "Read the lead",
     light: swatch({
       background: "#F7F4EC",
       foreground: "#1A1A1A",
@@ -83,109 +98,124 @@ const PALETTES: PaletteDef[] = [
   },
 ]
 
-function colorsFor(light: ThemeSwatch, mode: Mode): ThemeSwatch {
-  if (mode === "light") return light
-  return companionDark(light, mode)
+const STAGES: { id: Stage; label: string }[] = [
+  { id: "light", label: "Light" },
+  { id: "naive", label: "Naive dark" },
+  { id: "adaptive", label: "Adapt" },
+]
+
+function colorsFor(light: ThemeSwatch, stage: Stage): ThemeSwatch {
+  if (stage === "light") return light
+  return companionDark(light, stage)
 }
 
-function PaletteCard({ palette }: { palette: PaletteDef }) {
-  const [mode, setMode] = React.useState<Mode>("light")
-  const c = colorsFor(palette.light, mode)
+function MiniSite({
+  palette,
+  stage,
+}: {
+  palette: PaletteDef
+  stage: Stage
+}) {
+  const c = colorsFor(palette.light, stage)
   const mutedRatio = contrastRatio(c.muted, c.background)
   const passes = mutedRatio >= 4.5
 
   return (
-    <article className="overflow-hidden rounded-lg border border-border-subtle">
+    <section className="flex min-w-[220px] flex-1 snap-start flex-col">
+      <div className="mb-2 flex items-baseline justify-between gap-2">
+        <p className="ms-stamp text-[12px] text-muted-foreground">{STAGES.find((s) => s.id === stage)?.label}</p>
+        <p
+          className={cn(
+            "font-mono text-[10px] tabular-nums tracking-tight",
+            passes ? "text-muted-foreground" : "text-brand"
+          )}
+        >
+          {mutedRatio.toFixed(1)}:1 {passes ? "AA" : "fail"}
+        </p>
+      </div>
       <div
-        className="p-4"
+        className="flex min-h-[220px] flex-col rounded-lg border border-border-subtle p-4 transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
         style={{
           backgroundColor: rgbToCss(c.background),
           color: rgbToCss(c.foreground),
         }}
       >
         <p
-          className="text-[11px] font-medium tracking-wide"
+          className="font-mono text-[10px] font-medium tracking-[0.16em] uppercase"
           style={{ color: rgbToCss(c.muted) }}
         >
-          {palette.name}
+          {palette.kicker}
         </p>
-        <p className="mt-1 text-[11px] leading-snug" style={{ color: rgbToCss(c.muted) }}>
-          {palette.note}
-        </p>
-        <p className="mt-1.5 text-[15px] font-medium leading-snug">
-          Scope the launch week
-        </p>
+        <h3 className="ds-display mt-3 text-[28px] leading-none">
+          {palette.headline}
+        </h3>
         <p
-          className="mt-1.5 text-[12.5px] leading-relaxed"
+          className="mt-3 flex-1 text-[13px] leading-relaxed"
           style={{ color: rgbToCss(c.muted) }}
         >
-          Supporting copy, captions, and helper text. This is what naive dark
-          often hides.
+          {palette.body}
         </p>
         <span
-          className="mt-3 inline-flex rounded-md px-2.5 py-1 text-[11px] font-medium"
+          className="mt-4 inline-flex w-fit rounded-lg px-2.5 py-1.5 text-[12px] font-medium"
           style={{
             backgroundColor: rgbToCss(c.brand),
             color: "#fff",
           }}
         >
-          Brand
+          {palette.cta}
         </span>
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border-subtle bg-background px-3 py-2">
-        <div
-          role="radiogroup"
-          aria-label={`${palette.name} appearance`}
-          className="inline-flex overflow-hidden rounded-md border border-border-subtle"
-        >
-          {(
-            [
-              ["light", "Light"],
-              ["naive", "Naive"],
-              ["adaptive", "Adapt"],
-            ] as const
-          ).map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              role="radio"
-              aria-checked={mode === id}
-              onClick={() => setMode(id)}
-              className={cn(
-                "px-2 py-1 text-[11px] text-muted-foreground",
-                mode === id && "bg-primary text-primary-foreground"
-              )}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        <p
-          className={cn(
-            "font-mono text-[10px] tabular-nums",
-            passes ? "text-muted-foreground" : "text-brand"
-          )}
-        >
-          muted {mutedRatio.toFixed(1)}:1 {passes ? "AA" : "fail"}
-        </p>
-      </div>
-    </article>
+    </section>
   )
 }
 
 export function DemoThemeAdapt() {
+  const [activeId, setActiveId] = React.useState(PALETTES[0]!.id)
+  const palette = PALETTES.find((p) => p.id === activeId) ?? PALETTES[0]!
+
   return (
-    <div className="flex w-full flex-col gap-5">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-md text-[13px] leading-relaxed text-muted-foreground">
-          Four designed light palettes. Switch each card to Naive dark vs
-          Adapt. The ratio is live from the same helpers ThemeAdapt uses.
-        </p>
+    <div className="flex w-full flex-col gap-5 p-4 sm:p-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="ms-stamp mb-1 text-[12px]">Palettes</p>
+          <div
+            role="radiogroup"
+            aria-label="Light palette"
+            className="flex flex-wrap gap-1.5"
+          >
+            {PALETTES.map((item) => {
+              const selected = item.id === activeId
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={selected}
+                  onClick={() => setActiveId(item.id)}
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-[13px]",
+                    selected
+                      ? "border-brand/50 bg-brand/10 text-foreground"
+                      : "border-border-subtle text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  <span
+                    className="size-2.5 rounded-[2px]"
+                    style={{ backgroundColor: rgbToCss(item.light.brand) }}
+                    aria-hidden
+                  />
+                  {item.name}
+                </button>
+              )
+            })}
+          </div>
+        </div>
         <ThemeAdapt />
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        {PALETTES.map((palette) => (
-          <PaletteCard key={palette.id} palette={palette} />
+
+      <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:overflow-visible">
+        {STAGES.map((stage) => (
+          <MiniSite key={stage.id} palette={palette} stage={stage.id} />
         ))}
       </div>
     </div>
