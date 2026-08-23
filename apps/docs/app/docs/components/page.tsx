@@ -22,7 +22,12 @@ export default function ComponentsIndexPage() {
         </h1>
         <p className="ds-lede mt-3 max-w-2xl">
           Production UI curated into primitives, blocks, tools, and headless
-          modules. Items tagged CLI install with{" "}
+          modules. For search-intent clusters (forms, OG images, launch), start
+          at{" "}
+          <Link href="/docs/collections" className="bam-link">
+            Collections
+          </Link>
+          . Items tagged CLI install with{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             npx shadcn@latest add @atroui/…
           </code>

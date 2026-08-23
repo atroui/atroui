@@ -51,6 +51,16 @@ export const navigation: NavSection[] = [
         description: "Scope → OG",
       },
       {
+        title: "Collections",
+        href: "/docs/collections",
+        description: "Jobs: forms, OG, launch",
+      },
+      {
+        title: "Glossary",
+        href: "/docs/glossary",
+        description: "Host API, BYOK, registry",
+      },
+      {
         title: "Compare",
         href: "/docs/compare",
         description: "vs copy-paste kits",
@@ -550,6 +560,13 @@ export function findNavContext(href: string) {
     }
   }
   return null
+}
+
+/** Same-section siblings for internal links (pSEO spokes). */
+export function relatedNavItems(href: string, limit = 4): NavItem[] {
+  const ctx = findNavContext(href)
+  if (!ctx) return []
+  return ctx.section.items.filter((item) => item.href !== href).slice(0, limit)
 }
 
 export function findCatalogNeighbors(href: string) {

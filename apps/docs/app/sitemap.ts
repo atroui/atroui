@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 import { allNavItems } from "@/lib/navigation"
 import { blogPosts } from "@/lib/blog"
+import { pseoCollections, pseoGlossary } from "@/lib/pseo"
 
 const siteUrl = "https://www.atroui.com"
 
@@ -17,6 +18,8 @@ const staticPaths = [
   "/docs/identity",
   "/docs/compare",
   "/docs/components",
+  "/docs/collections",
+  "/docs/glossary",
   "/og",
   "/planner",
   "/updates",
@@ -39,6 +42,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
+  const collections = [
+    ...pseoCollections.map((c) => `/docs/collections/${c.slug}`),
+    ...pseoGlossary.map((t) => `/docs/glossary/${t.slug}`),
+  ].map((path) => ({
+    url: `${siteUrl}${path}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }))
+
   const staticEntries = staticPaths.map((path) => ({
     url: path === "/" ? siteUrl : `${siteUrl}${path}`,
     lastModified,
@@ -50,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const byUrl = new Map<string, MetadataRoute.Sitemap[number]>()
   // Lower-priority sources first, so higher-priority staticEntries win on collisions.
-  for (const entry of [...blog, ...docsFromNav, ...staticEntries]) {
+  for (const entry of [...blog, ...docsFromNav, ...collections, ...staticEntries]) {
     byUrl.set(entry.url, entry)
   }
   return Array.from(byUrl.values())

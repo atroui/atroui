@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { DocsExample } from "@/components/docs-example"
 import { DocsPager } from "@/components/docs-pager"
+import { PseoOnPage } from "@/components/pseo-on-page"
 import { PropsTable, type PropRow } from "@/components/props-table"
 import {
   findNavContext,
@@ -168,6 +169,10 @@ export function ComponentDoc({
       ) : null}
 
       {extra}
+
+      {href ? (
+        <PseoOnPage path={href} title={title} registryName={registryName} />
+      ) : null}
 
       {href ? <DocsPager href={href} /> : null}
     </article>
