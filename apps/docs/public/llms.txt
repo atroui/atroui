@@ -26,6 +26,9 @@ npx shadcn@latest add @atroui/home-hero
 - Theming: https://www.atroui.com/docs/theming
 - Brand kit: https://www.atroui.com/docs/brand
 - Compare: https://www.atroui.com/docs/compare
+- Collections: https://www.atroui.com/docs/collections
+- Glossary: https://www.atroui.com/docs/glossary
+- Full catalog (plain text): https://www.atroui.com/llms-full.txt
 - Blog: https://www.atroui.com/blog
 - Changelog: https://www.atroui.com/docs/changelog
 - Components: https://www.atroui.com/docs/components

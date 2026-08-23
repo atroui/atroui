@@ -21,7 +21,15 @@ export default function HostApiPage() {
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           Own the UI in your repo. Borrow the boring API security. Bring your
-          own keys. Walk the trays below — one idea at a time. Essay:{" "}
+          own keys. Walk the trays below — one idea at a time. Related:{" "}
+          <Link href="/docs/collections/nextjs-forms" className="bam-link">
+            Next.js forms
+          </Link>
+          {" · "}
+          <Link href="/docs/glossary/host-api" className="bam-link">
+            Host API glossary
+          </Link>
+          {" · "}
           <Link
             href="/blog/host-apis-own-the-ui-bring-your-keys"
             className="bam-link"
