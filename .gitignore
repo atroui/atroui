@@ -15,6 +15,7 @@ apps/docs/public/INDEX_NOW_KEY.txt
 
 # Local agent skills / product marketing context (not for contributors)
 .agents/
+.cursor/
 skills-lock.json
 .claude/product-marketing.md
 product-marketing-context.md
