@@ -18,6 +18,68 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "opinionated-start-own-the-files",
+    title: "Add the section. Then edit the file.",
+    description:
+      "AtroUI is MIT. You install with the shadcn CLI, the source lands in your repo, and Host APIs use your keys. We pick defaults so the first hour is usable. After that, change whatever you want.",
+    date: "2026-08-24",
+    sections: [
+      {
+        body: [
+          "shadcn/ui will give you a button. You still have to write the hero, the who band, and `/api/contact`.",
+          "That leftover work is what AtroUI is for. You run `npx shadcn add @atroui/home-hero`, then edit `CONTENT` at the top of the file.",
+          "The section is already in git. There is no AtroUI runtime wrapping it.",
+          "`@atroui` is in the [official shadcn directory](https://ui.shadcn.com/docs/directory?q=atroui). You do not paste a registry URL first.",
+          "The catalog, the docs, and the Host API handlers are MIT. There is no trial mode.",
+        ],
+      },
+      {
+        heading: "We pick a few things on purpose",
+        body: [
+          "If every registry ships Radix, Base UI, and three motion stacks, you spend the afternoon choosing infrastructure. We already made those choices.",
+          "Tokens are dark-first. The docs site and most blocks were designed on a black canvas.",
+          "Corners are soft rectangles. We got tired of capsule CTAs.",
+          "Primitives we wrap use [Base UI](https://base-ui.com). Today that is `button` and `form-select`, not a second AtroUI SKU for Radix.",
+          "Motion runs when the UI is going somewhere, like a drawer or a step. It is not scramble text or a glow card as a homepage.",
+          "Forms and OG tools follow the same split. The UI copies in; the route on your Next app calls `atroui/api/contact`.",
+          "Mail and models use your SMTP, Resend, Hugging Face, Gemini, or xAI keys. No env means a 503, not a studio key on atroui.com.",
+          "Longer version: [Host APIs](/blog/host-apis-own-the-ui-bring-your-keys).",
+        ],
+      },
+      {
+        heading: "npm stays for handlers, not for heroes",
+        body: [
+          "Heroes and chrome do not need `npm i atroui`. Add `@atroui/home-hero` and you own the TypeScript in your tree.",
+          "The published package is the boring server path: validation, honeypot, body caps, rate limits, Satori/resvg for images.",
+          "Native addons do not belong in every consumer’s `components/` folder. [Why we split it](/blog/npm-to-shadcn-registry).",
+          "Same CLI as shadcn/ui. Different altitude: atoms vs sections. [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn).",
+        ],
+      },
+      {
+        heading: "Delete it if it is wrong",
+        body: [
+          "The flexibility is git, not a settings panel. Restyle the block, swap the primitive, or fork `app/api/contact/route.ts`.",
+          "We will not publish `@atroui/radix-*` next to `@atroui/base-*` so the catalog looks complete. That is two products. We can staff one.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest init
+npx shadcn@latest add @atroui/home-hero`,
+          },
+        ],
+      },
+      {
+        heading: "Money, later, maybe",
+        body: [
+          "Everything on atroui.com that you can install is free. If we ever charge, it will be because the catalog needs it, not because MIT was bait.",
+          "We will not put your API keys on our servers to make a paid tier work.",
+          "The useful move now is still the install. Form backend: [Host APIs](/docs/host-api). Other kits: [Compare](/docs/compare).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "adaptive-theme-switch",
     title: "Why we shipped Adaptive Theme Switch",
     description:
@@ -26,7 +88,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         body: [
-          "Most light/dark switches do one job: put `.dark` on `<html>` and hope the stylesheet already knows how to invert. That is fine when you designed both sheets by hand. It fails the moment someone ships a custom light palette — warm paper, quiet gray captions, a brand that was mixed for daylight — and then flips to night.",
+          "Most light/dark switches do one job: put `.dark` on `<html>` and hope the stylesheet already knows how to invert. That is fine when you designed both sheets by hand. It fails the moment someone ships a custom light palette (warm paper, quiet gray captions, a brand mixed for daylight) and then flips to night.",
           "The canvas goes black. The caption color does not. `--muted-foreground` that was a tasteful slate on cream becomes unreadable sludge on charcoal. Vital copy disappears. Designers call it “the invert looked fine in Figma.” Engineers call it “dark mode is done.” Readers bounce.",
           "We built [Adaptive Theme Switch](/docs/components/ui-theme-adapt) because AtroUI already had a [theme toggle](/docs/components/ui-theme-toggle) and it was not enough. A class flip is a mode. A companion is a second design. The catalog should ship the second one when the first one lies. shadcn/ui does not.",
         ],
@@ -36,7 +98,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           "AtroUI is [dark-first](/blog/why-dark-first-design-systems). Our own canvas is near black on purpose. Light is the alternate. That is the right default for product UIs that stay dark for hours.",
           "Consumers are not us. They install a block, override `:root` for a kiln-warm marketing site or an edition-paper blog, and keep `.dark` as a leftover invert. next-themes does its job. [ThemeProvider](/blog/theme-provider-dark-mode-atroui) does its job. The tokens do not. Gray type that passed WCAG on a light field fails the same ratio on a crushed field.",
-          "The failure is specific. Body ink often survives. **Muted type does not.** Captions, helper text, timestamps, empty states — the copy you need when something is quiet — is the copy that dies. That is the dirty-bathroom problem in color: the chrome looks themed, the corners do not work.",
+          "The failure is specific. Body ink often survives. **Muted type does not.** Captions, helper text, timestamps, empty states: the copy you need when something is quiet is the copy that dies. That is the dirty-bathroom problem in color: the chrome looks themed, the corners do not work.",
         ],
       },
       {
@@ -50,7 +112,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "What the companion does instead",
         body: [
-          "DAY and NIGHT are separate radios, not one toggle pretending to be two worlds. DAY is your light sheet. NIGHT samples that light `:root` through the CSSOM — even if `.dark` is already on — and builds an OKLCH companion before paint.",
+          "DAY and NIGHT are separate radios, not one toggle pretending to be two worlds. DAY is your light sheet. NIGHT samples that light `:root` through the CSSOM, even if `.dark` is already on, and builds an OKLCH companion before paint.",
           "Keep the hue. Darken the canvas. Raise type until it meets WCAG AA (4.5:1 by default). Keep brand as brand, not as a gray afterthought. Write `--background`, `--foreground`, `--muted-foreground`, `--card`, `--border`, `--brand`, `--primary`, and the nearby surface tokens onto `<html>` with `data-theme-adapt=\"companion\"`. DAY clears those inline properties and you are back on the designed light tokens.",
           "That is how we practice Family Values in the control: one primary idea (appearance), a sliding indicator instead of a remount, and a caption that appears only when the companion is actually on. No extra chrome for people who never go night.",
         ],
@@ -73,7 +135,7 @@ export const blogPosts: BlogPost[] = [
         heading: "What shadcn actually ships",
         body: [
           "shadcn/ui is the ownership model we already use: files in your repo, tokens in `:root` and `.dark`, a [class on `<html>`](https://ui.shadcn.com/docs/dark-mode). That is a toggle. You still author both sheets. If you only designed daylight, night is a leftover invert.",
-          "Theme builders in that world emit more static CSS. They do not sample the light tokens you already shipped and raise muted type to AA at runtime. We could not find that control in shadcn’s registry, or in the kits that copy its toggle. So we shipped it as `@atroui/theme-adapt` — same CLI, higher altitude, same as the rest of the catalog.",
+          "Theme builders in that world emit more static CSS. They do not sample the light tokens you already shipped and raise muted type to AA at runtime. We could not find that control in shadcn’s registry, or in the kits that copy its toggle. So we shipped it as `@atroui/theme-adapt`: same CLI, higher altitude, same as the rest of the catalog.",
           "This is not a diss. Keep shadcn primitives. Add the companion when the class is not a design. See [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn).",
         ],
       },
@@ -97,7 +159,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "What this is not",
         body: [
-          "This is not a full theme engine. It does not generate `--brand-hover`, sidebar tokens, or `--primary-foreground`. It does not retint images. It does not offer a System radio — DAY and NIGHT are explicit choices. Colors hardcoded in components stay hardcoded; only CSS variables on the root move.",
+          "This is not a full theme engine. It does not generate `--brand-hover`, sidebar tokens, or `--primary-foreground`. It does not retint images. It does not offer a System radio. DAY and NIGHT are explicit choices. Colors hardcoded in components stay hardcoded; only CSS variables on the root move.",
           "We published the honest version. A switch that claims to restyle the universe and then leaves captions crushed is worse than a switch that names its job. The job is: companion night from light tokens, type to AA, brand kept.",
           "If you need a second designed dark sheet, design one. ThemeAdapt is the bridge for palettes that were born in the light and still have to work at 1 a.m.",
         ],
@@ -105,7 +167,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Install it",
         body: [
-          "Add the control, keep ThemeProvider in the root layout, then click NIGHT on a page whose `:root` is yours. If muted captions hold, the companion did its job. If a one-off color still vanishes, it was never a token — put it on a variable or leave it as a designed exception.",
+          "Add the control, keep ThemeProvider in the root layout, then click NIGHT on a page whose `:root` is yours. If muted captions hold, the companion did its job. If a one-off color still vanishes, it was never a token. Put it on a variable or leave it as a designed exception.",
           "Docs: [Adaptive Theme Switch](/docs/components/ui-theme-adapt). Token map: [Theming](/docs/theming). Dark-first argument: [design tokens](/blog/dark-first-design-tokens). Catalog: [Registry](/docs/registry).",
         ],
       },

@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         ) : null}
 
-        <div className="mt-12 space-y-10 sm:mt-14 sm:space-y-12">
+        <div className="blog-flow mt-12 space-y-10 sm:mt-14 sm:space-y-12">
           {post.sections.map((section, i) => (
             <section key={i} className="space-y-4">
               {section.heading ? (
