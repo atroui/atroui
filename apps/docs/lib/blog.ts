@@ -18,6 +18,68 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "opinionated-start-own-the-files",
+    title: "Add the section. Then edit the file.",
+    description:
+      "AtroUI is MIT. You install with the shadcn CLI, the source lands in your repo, and Host APIs use your keys. We pick defaults so the first hour is usable. After that, change whatever you want.",
+    date: "2026-08-24",
+    sections: [
+      {
+        body: [
+          "shadcn/ui will give you a button. You still have to write the hero, the who band, and `/api/contact`.",
+          "That leftover work is what AtroUI is for. You run `npx shadcn add @atroui/home-hero`, then edit `CONTENT` at the top of the file.",
+          "The section is already in git. There is no AtroUI runtime wrapping it.",
+          "`@atroui` is in the [official shadcn directory](https://ui.shadcn.com/docs/directory?q=atroui). You do not paste a registry URL first.",
+          "The catalog, the docs, and the Host API handlers are MIT. There is no trial mode.",
+        ],
+      },
+      {
+        heading: "We pick a few things on purpose",
+        body: [
+          "If every registry ships Radix, Base UI, and three motion stacks, you spend the afternoon choosing infrastructure. We already made those choices.",
+          "Tokens are dark-first. The docs site and most blocks were designed on a black canvas.",
+          "Corners are soft rectangles. We got tired of capsule CTAs.",
+          "Primitives we wrap use [Base UI](https://base-ui.com). Today that is `button` and `form-select`, not a second AtroUI SKU for Radix.",
+          "Motion runs when the UI is going somewhere, like a drawer or a step. It is not scramble text or a glow card as a homepage.",
+          "Forms and OG tools follow the same split. The UI copies in; the route on your Next app calls `atroui/api/contact`.",
+          "Mail and models use your SMTP, Resend, Hugging Face, Gemini, or xAI keys. No env means a 503, not a studio key on atroui.com.",
+          "Longer version: [Host APIs](/blog/host-apis-own-the-ui-bring-your-keys).",
+        ],
+      },
+      {
+        heading: "npm stays for handlers, not for heroes",
+        body: [
+          "Heroes and chrome do not need `npm i atroui`. Add `@atroui/home-hero` and you own the TypeScript in your tree.",
+          "The published package is the boring server path: validation, honeypot, body caps, rate limits, Satori/resvg for images.",
+          "Native addons do not belong in every consumer’s `components/` folder. [Why we split it](/blog/npm-to-shadcn-registry).",
+          "Same CLI as shadcn/ui. Different altitude: atoms vs sections. [AtroUI vs shadcn/ui](/blog/atroui-vs-shadcn).",
+        ],
+      },
+      {
+        heading: "Delete it if it is wrong",
+        body: [
+          "The flexibility is git, not a settings panel. Restyle the block, swap the primitive, or fork `app/api/contact/route.ts`.",
+          "We will not publish `@atroui/radix-*` next to `@atroui/base-*` so the catalog looks complete. That is two products. We can staff one.",
+        ],
+        codeBlocks: [
+          {
+            language: "bash",
+            code: `npx shadcn@latest init
+npx shadcn@latest add @atroui/home-hero`,
+          },
+        ],
+      },
+      {
+        heading: "Money, later, maybe",
+        body: [
+          "Everything on atroui.com that you can install is free. If we ever charge, it will be because the catalog needs it, not because MIT was bait.",
+          "We will not put your API keys on our servers to make a paid tier work.",
+          "The useful move now is still the install. Form backend: [Host APIs](/docs/host-api). Other kits: [Compare](/docs/compare).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "adaptive-theme-switch",
     title: "Why we shipped Adaptive Theme Switch",
     description:
