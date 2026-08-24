@@ -69,22 +69,14 @@ export const metadata: Metadata = {
     title: "AtroUI - React Component Library & Dark Design System",
     description:
       "Dark-first React / Next.js component catalog at atroui.com. Add with the shadcn CLI - own the source.",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "AtroUI - React Component Library & Dark Design System",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AtroUI - React Component Library",
     description:
       "Dark-first React / Next.js components at atroui.com. Add with the shadcn CLI.",
+    site: "@iamk",
     creator: "@iamk",
-    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
