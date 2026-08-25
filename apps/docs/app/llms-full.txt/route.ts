@@ -5,7 +5,12 @@ export function GET() {
   const lines = [
     "# AtroUI — full catalog",
     "",
-    "> MIT-licensed React / Next.js component catalog. shadcn CLI. Host APIs are BYOK.",
+    "> Dark-first React / Next.js catalog. Official shadcn namespace @atroui (public directory, no GitHub token).",
+    "> npx shadcn@latest add @atroui/…  Tailwind CSS v4. Own the copied files. MIT.",
+    "> Optional Host APIs (npm i atroui): contact, waitlist, newsletter, OG, thumbnail, scope. BYOK. Not hosted AI. 503 without keys.",
+    "> Host APIs: https://www.atroui.com/docs/host-api",
+    "> Compare: https://www.atroui.com/docs/compare",
+    "> Short index: https://www.atroui.com/llms.txt",
     "> https://www.atroui.com",
     "",
     "## Collections",

@@ -33,7 +33,11 @@ export default function RegistryPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             DEFAULT_BRAND
           </code>{" "}
-          in the installed files to make them yours.
+          in the installed files to make them yours. Tailwind CSS v4.{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui
+          </code>{" "}
+          is public on the shadcn directory. No GitHub token.
         </p>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           Pure UI needs only the CLI. Forms and AI tools that post to{" "}

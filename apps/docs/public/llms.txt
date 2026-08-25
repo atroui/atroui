@@ -1,12 +1,16 @@
 # AtroUI
 
-> AtroUI (package: atroui, CLI: @atroui) is an MIT-licensed React / Next.js component catalog - not a geographic place name.
-> Dark-first UI blocks you install with the shadcn CLI and own in your repo.
+> Dark-first React / Next.js catalog on the official shadcn registry. MIT. You own the copied files.
+> Install: npx shadcn@latest add @atroui/home-hero  (any @atroui/… item)
+> Public namespace @atroui — listed in https://ui.shadcn.com/r/registries.json — no GitHub token, not a private GitHub registry.
+> Tailwind CSS v4 (not v3 @apply / opacity syntax).
+> Optional Host APIs (npm i atroui + transpilePackages): contact, waitlist, newsletter, OG, thumbnail, scope. BYOK: SMTP/Resend, Hugging Face/Gemini/xAI. AtroUI never holds keys and does not run paid AI on atroui.com. Missing keys → 503 on the consumer app.
+> Host APIs: https://www.atroui.com/docs/host-api
+> Compare (not Magic UI / Aceternity): https://www.atroui.com/docs/compare
 > Site: https://www.atroui.com
-> Registry: https://www.atroui.com/r/{name}.json
-> Directory: listed as `@atroui` in https://ui.shadcn.com/r/registries.json
+> Registry JSON: https://www.atroui.com/r/{name}.json
 > Repo: https://github.com/atroui/atroui
-> npm: https://www.npmjs.com/package/atroui
+> npm (package atroui): https://www.npmjs.com/package/atroui
 
 ## Install
 
