@@ -29,7 +29,12 @@ export default function InstallationPage() {
             CONTENT
           </code>{" "}
           at the top of each file. Works best with Next.js, Tailwind CSS v4, and
-          a dark-friendly token sheet.
+          a dark-friendly token sheet.{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui
+          </code>{" "}
+          is the public shadcn directory namespace. You do not need a GitHub
+          token. Private GitHub registries are a different shadcn feature.
         </p>
       </header>
 
