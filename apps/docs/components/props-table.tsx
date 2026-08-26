@@ -16,7 +16,7 @@ export function PropsTable({ data, className }: PropsTableProps) {
   return (
     <div
       className={cn(
-        "overflow-x-auto rounded-2xl border border-border-subtle bg-card/40",
+        "overflow-x-auto rounded-lg border border-border-subtle bg-card/40",
         className
       )}
     >

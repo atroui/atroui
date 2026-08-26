@@ -46,16 +46,16 @@ export default function ComponentsIndexPage() {
 
       {sections.map((section) => (
         <section key={section.title} className="space-y-3">
-          <h2 className="ds-nav-section text-foreground">{section.title}</h2>
-          <ul className="md-glass divide-y divide-border-subtle">
+          <h2 className="ds-eyebrow text-muted-foreground">{section.title}</h2>
+          <ul className="divide-y divide-border-subtle overflow-hidden rounded-lg border border-border-subtle">
             {section.items.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex items-center justify-between gap-3 px-4 py-3.5 transition-colors hover:bg-white/5"
+                  className="flex items-center justify-between gap-3 px-4 py-3.5 transition-colors hover:bg-white/[0.03]"
                 >
                   <span className="min-w-0">
-                    <span className="ds-sketch block text-lg text-foreground">
+                    <span className="block text-[15px] font-medium tracking-tight text-foreground">
                       {item.title}
                     </span>
                     {item.description ? (
@@ -67,9 +67,9 @@ export default function ComponentsIndexPage() {
                   <span className="flex shrink-0 items-center gap-3">
                     {item.badge ? (
                       <span
-                        className={`ds-sketch text-[13px] ${
+                        className={`font-mono text-[10px] tracking-[0.1em] uppercase ${
                           item.badge === "registry" || item.badge === "host-api"
-                            ? "text-brand"
+                            ? "text-brand/90"
                             : "text-muted-foreground"
                         }`}
                       >

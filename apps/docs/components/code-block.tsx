@@ -34,7 +34,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-muted/30 text-foreground",
+        "group relative overflow-hidden rounded-lg bg-muted/30 text-foreground",
         !embedded && "border border-border-subtle",
         className
       )}

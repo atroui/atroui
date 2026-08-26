@@ -88,7 +88,7 @@ export function PseoOnPage({
 
       {overlay ? (
         <section className="space-y-3">
-          <h2 className="ds-headline text-base text-foreground">
+          <h2 className="ds-headline border-b border-border-subtle pb-2 text-[15px] font-medium text-foreground">
             {overlay.job}
           </h2>
           <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -99,14 +99,16 @@ export function PseoOnPage({
 
       {faqs.length > 0 ? (
         <section className="space-y-4">
-          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
-          <dl className="space-y-4">
+          <h2 className="ds-headline border-b border-border-subtle pb-2 text-[15px] font-medium text-foreground">
+            FAQ
+          </h2>
+          <dl className="space-y-5">
             {faqs.map((faq) => (
               <div key={faq.q}>
-                <dt className="text-[14px] font-medium text-foreground">
+                <dt className="text-[15px] font-medium text-foreground">
                   {faq.q}
                 </dt>
-                <dd className="mt-1 text-[14px] leading-relaxed text-muted-foreground">
+                <dd className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">
                   {faq.a}
                 </dd>
               </div>
@@ -134,9 +136,11 @@ export function PseoOnPage({
       ) : null}
 
       {related.length > 0 ? (
-        <nav aria-label="Related components" className="space-y-2">
-          <h2 className="ds-headline text-base text-foreground">Related</h2>
-          <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
+        <nav aria-label="Related components" className="space-y-3">
+          <h2 className="ds-headline border-b border-border-subtle pb-2 text-[15px] font-medium text-foreground">
+            Related
+          </h2>
+          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[14px]">
             {related.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="bam-link">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { FaqJsonLd } from "atroui"
+import { DocsBreadcrumb } from "@/components/docs-breadcrumb"
 import { DocsPageHeader } from "@/components/docs-page-header"
 import { HostApiGuide } from "@/components/host-api-guide"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -33,6 +34,12 @@ export const metadata: Metadata = docsPageMetadata({
 export default function HostApiPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-8">
+      <DocsBreadcrumb
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Host APIs" },
+        ]}
+      />
       <DocsPageHeader
         eyebrow="Getting started"
         title="Host APIs"

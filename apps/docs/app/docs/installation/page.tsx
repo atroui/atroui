@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { FaqJsonLd } from "atroui"
 import { CodeBlock } from "@/components/code-block"
+import { DocsBreadcrumb } from "@/components/docs-breadcrumb"
 import { DocsPageHeader } from "@/components/docs-page-header"
 import { InstallModesMatrix } from "@/components/install-modes-matrix"
 import Link from "next/link"
@@ -19,6 +20,12 @@ export default function InstallationPage() {
 
   return (
     <article className="mx-auto max-w-3xl space-y-10">
+      <DocsBreadcrumb
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Installation" },
+        ]}
+      />
       <DocsPageHeader
         eyebrow="Getting started"
         title="Installation"

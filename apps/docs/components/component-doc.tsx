@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { DocsBreadcrumb } from "@/components/docs-breadcrumb"
 import { DocsExample } from "@/components/docs-example"
 import { DocsPageHeader } from "@/components/docs-page-header"
 import { DocsPager } from "@/components/docs-pager"
@@ -18,13 +19,9 @@ interface ComponentDocProps {
   usage?: React.ReactNode
   extra?: React.ReactNode
   fullBleed?: boolean
-  /** Current docs path - drives kind stamp + prev/next pager */
   href?: string
-  /** Override stamp when href is omitted */
   kind?: DocKind
-  /** Registry item name, e.g. "home-hero" → npx shadcn add @atroui/home-hero */
   registryName?: string
-  /** Override the install command block entirely */
   installation?: string
 }
 
@@ -114,6 +111,14 @@ export function ComponentDoc({
     </>
   )
 
+  const crumbs = href
+    ? [
+        { label: "Docs", href: "/docs" },
+        { label: "Components", href: "/docs/components" },
+        { label: title },
+      ]
+    : []
+
   return (
     <article
       className={
@@ -122,6 +127,8 @@ export function ComponentDoc({
           : "mx-auto w-full max-w-3xl space-y-10 sm:space-y-12"
       }
     >
+      {crumbs.length > 0 ? <DocsBreadcrumb items={crumbs} /> : null}
+
       <DocsPageHeader
         eyebrow={kind}
         title={title}

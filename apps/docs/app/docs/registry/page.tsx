@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { DocsBreadcrumb } from "@/components/docs-breadcrumb"
 import { DocsPageHeader } from "@/components/docs-page-header"
 import { getSiteUrl } from "atroui/lib/site-url"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -17,6 +18,12 @@ export default function RegistryPage() {
 
   return (
     <article className="mx-auto max-w-3xl space-y-10">
+      <DocsBreadcrumb
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Registry" },
+        ]}
+      />
       <DocsPageHeader
         eyebrow="Getting started"
         title="Registry"

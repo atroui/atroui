@@ -24,14 +24,14 @@ export default function CollectionsIndexPage() {
           </>
         }
       />
-      <ul className="md-glass divide-y divide-border-subtle">
+      <ul className="divide-y divide-border-subtle overflow-hidden rounded-lg border border-border-subtle">
         {pseoCollections.map((collection) => (
           <li key={collection.slug}>
             <Link
               href={`/docs/collections/${collection.slug}`}
-              className="block px-4 py-4 transition-colors hover:bg-white/5"
+              className="block px-4 py-4 transition-colors hover:bg-white/[0.03]"
             >
-              <span className="ds-sketch block text-lg text-foreground">
+              <span className="block text-[15px] font-medium tracking-tight text-foreground">
                 {collection.title}
               </span>
               <span className="ds-meta mt-1 block">{collection.description}</span>

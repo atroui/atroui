@@ -24,14 +24,14 @@ export default function GlossaryIndexPage() {
           </>
         }
       />
-      <ul className="md-glass divide-y divide-border-subtle">
+      <ul className="divide-y divide-border-subtle overflow-hidden rounded-lg border border-border-subtle">
         {pseoGlossary.map((term) => (
           <li key={term.slug}>
             <Link
               href={`/docs/glossary/${term.slug}`}
-              className="block px-4 py-4 transition-colors hover:bg-white/5"
+              className="block px-4 py-4 transition-colors hover:bg-white/[0.03]"
             >
-              <span className="ds-sketch block text-lg text-foreground">
+              <span className="block text-[15px] font-medium tracking-tight text-foreground">
                 {term.title}
               </span>
               <span className="ds-meta mt-1 block">{term.description}</span>

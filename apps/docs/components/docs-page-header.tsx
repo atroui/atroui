@@ -23,12 +23,17 @@ export function DocsPageHeader({
   className,
 }: DocsPageHeaderProps) {
   return (
-    <header className={cn("space-y-3 sm:space-y-4", className)}>
+    <header
+      className={cn(
+        "space-y-3 border-b border-border-subtle pb-8 sm:space-y-4 sm:pb-10",
+        className
+      )}
+    >
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
         <p className="ds-eyebrow m-0">{eyebrow}</p>
         {meta}
       </div>
-      <h1 className="ds-headline text-3xl text-foreground sm:text-4xl">
+      <h1 className="ds-headline text-[1.75rem] leading-tight tracking-tight text-foreground sm:text-4xl">
         {title}
       </h1>
       {description ? (
