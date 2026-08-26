@@ -29,7 +29,7 @@ export default function GlossaryIndexPage() {
           <li key={term.slug}>
             <Link
               href={`/docs/glossary/${term.slug}`}
-              className="block px-4 py-4 transition-colors hover:bg-white/[0.03]"
+              className="block px-4 py-4 transition-colors hover:bg-muted/60"
             >
               <span className="block text-[15px] font-medium tracking-tight text-foreground">
                 {term.title}

@@ -37,7 +37,7 @@ function InstallCopyBtn({ text }: { text: string }) {
       setCopied(true)
       window.setTimeout(() => setCopied(false), 1600)
     } catch {
-      /* ignore */
+      /* Clipboard unavailable — the command is still selectable. */
     }
   }
 
@@ -46,10 +46,10 @@ function InstallCopyBtn({ text }: { text: string }) {
       type="button"
       onClick={copy}
       aria-label={copied ? "Copied" : "Copy install command"}
-      className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-white/8 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
+      className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-[var(--radius-sm)] text-muted-foreground transition-colors hover:text-foreground"
     >
       {copied ? (
-        <Check className="size-3.5 text-brand" aria-hidden />
+        <Check className="size-3.5 text-[var(--brand)]" aria-hidden />
       ) : (
         <Copy className="size-3.5" aria-hidden />
       )}
@@ -58,8 +58,8 @@ function InstallCopyBtn({ text }: { text: string }) {
 }
 
 /**
- * Preview / Code — product window for docs.
- * Soft-rect frame, quiet toolbar, shared pill travel (Family Values fluidity).
+ * A specimen mounted for close inspection: the same plate frame as the gallery,
+ * with the source one tab away.
  */
 export function DocsExample({
   preview,
@@ -75,11 +75,11 @@ export function DocsExample({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-border-subtle bg-card text-foreground shadow-[0_0_0_1px_rgba(255,255,255,0.03)]",
+        "overflow-hidden rounded-[var(--radius)] border border-[var(--line)]",
         className
       )}
     >
-      <div className="flex min-w-0 items-center gap-2 border-b border-border-subtle bg-muted/25 px-2">
+      <div className="flex min-w-0 items-center gap-2 border-b border-[var(--line)] px-2">
         <div
           className="relative flex shrink-0 gap-0.5 p-1.5"
           role="tablist"
@@ -93,7 +93,7 @@ export function DocsExample({
               aria-selected={tab === key}
               onClick={() => setTab(key)}
               className={cn(
-                "relative cursor-pointer px-3 py-1.5 text-[13px] font-medium capitalize transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50",
+                "relative cursor-pointer rounded-[var(--radius-sm)] px-3 py-1.5 font-mono text-[11px] tracking-[0.08em] uppercase transition-colors",
                 tab === key
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -102,11 +102,11 @@ export function DocsExample({
               {tab === key && !reduce ? (
                 <motion.span
                   layoutId="docs-example-tab"
-                  className="absolute inset-0 rounded-md bg-white/10"
+                  className="absolute inset-0 rounded-[var(--radius-sm)] bg-muted"
                   transition={revealTween}
                 />
               ) : tab === key ? (
-                <span className="absolute inset-0 rounded-md bg-white/10" />
+                <span className="absolute inset-0 rounded-[var(--radius-sm)] bg-muted" />
               ) : null}
               <span className="relative z-1">{key}</span>
             </button>
@@ -115,14 +115,14 @@ export function DocsExample({
 
         {installCommand ? (
           <div className="ml-auto flex min-w-0 items-center py-1.5 pr-1">
-            <div className="flex min-w-0 items-center gap-1.5 rounded-md border border-border-subtle bg-background/80 py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
+            <div className="flex min-w-0 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--line)] py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
               <span
                 className="hidden shrink-0 font-mono text-[11px] text-muted-foreground sm:inline"
                 aria-hidden
               >
                 $
               </span>
-              <code className="min-w-0 truncate font-mono text-[11px] text-foreground/90 sm:text-[12px]">
+              <code className="min-w-0 truncate font-mono text-[11px] text-foreground sm:text-[12px]">
                 {installCommand}
               </code>
               <InstallCopyBtn text={installCommand} />
@@ -133,8 +133,10 @@ export function DocsExample({
 
       {tab === "preview" ? (
         <div
+          // Marks a region whose headings belong to the specimen, not the page.
+          data-preview=""
           className={cn(
-            "relative bg-background",
+            "relative bg-[var(--plate-ground)]",
             fullBleed && unclip
               ? "overflow-visible"
               : fullBleed
@@ -142,12 +144,7 @@ export function DocsExample({
                 : "flex min-h-52 items-center justify-center overflow-x-auto p-6 sm:min-h-72 sm:p-10 md:p-12"
           )}
         >
-          <div
-            className={cn(
-              "w-full min-w-0",
-              !fullBleed && "flex justify-center"
-            )}
-          >
+          <div className={cn("w-full min-w-0", !fullBleed && "flex justify-center")}>
             {preview}
           </div>
         </div>

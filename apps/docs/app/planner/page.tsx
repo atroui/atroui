@@ -12,13 +12,11 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function PlannerPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <header className="mb-6 max-w-2xl space-y-2">
+    <main className="spec-shell w-full py-12">
+      <header className="mb-8 max-w-2xl">
         <p className="ms-stamp">Tool</p>
-        <h1 className="ds-display text-2xl text-foreground sm:text-3xl">
-          Project planner
-        </h1>
-        <p className="text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+        <h1 className="spec-title mt-3 text-foreground">Project planner</h1>
+        <p className="spec-lede mt-3">
           Part of{" "}
           <Link href="/docs/guides/launch-workflow" className="bam-link">
             From scope to social card
@@ -26,7 +24,7 @@ export default function PlannerPage() {
           .
         </p>
       </header>
-      <div className="overflow-hidden rounded-xl border border-border-subtle">
+      <div className="overflow-hidden rounded-[var(--radius)] border border-[var(--line)]">
         <ProjectPlanner />
       </div>
     </main>

@@ -1,5 +1,3 @@
-import type { ComponentType } from "react";
-
 import { JOURNAL_ARTICLES } from "../content/journal/_registry";
 
 export const ARTICLE_CATEGORIES = [

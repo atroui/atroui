@@ -30,7 +30,7 @@ export default function CollectionsIndexPage() {
           <li key={collection.slug}>
             <Link
               href={`/docs/collections/${collection.slug}`}
-              className="block px-4 py-4 transition-colors hover:bg-white/[0.03]"
+              className="block px-4 py-4 transition-colors hover:bg-muted/60"
             >
               <span className="block text-[15px] font-medium tracking-tight text-foreground">
                 {collection.title}

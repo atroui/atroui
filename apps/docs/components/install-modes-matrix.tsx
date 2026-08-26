@@ -92,8 +92,8 @@ export function InstallModesMatrix({
                 className={cn(
                   "relative px-2 py-3 text-center transition-colors sm:px-3 sm:py-3.5",
                   selected
-                    ? "bg-white/[0.04] text-foreground"
-                    : "text-muted-foreground hover:bg-white/[0.02] hover:text-foreground"
+                    ? "bg-muted text-foreground"
+                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                 )}
               >
                 <span className="block text-[12px] font-medium tracking-tight sm:text-[13px]">

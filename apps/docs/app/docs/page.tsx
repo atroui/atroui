@@ -33,13 +33,13 @@ export default function DocsIntroPage() {
       />
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Quick start</h2>
+        <h2 className="spec-heading text-foreground">Quick start</h2>
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest init
 npx shadcn@latest add @atroui/home-hero`}
         />
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
+        <p className="spec-body text-muted-foreground">
           Full steps:{" "}
           <Link href="/docs/installation" className="bam-link">
             Installation
@@ -52,9 +52,9 @@ npx shadcn@latest add @atroui/home-hero`}
         </p>
       </section>
 
-      <section className="md-glass space-y-3 p-5">
-        <h2 className="ds-headline text-base text-foreground">How the catalog is organized</h2>
-        <ul className="space-y-2 text-[15px] font-light leading-relaxed text-muted-foreground">
+      <section className="md-glass space-y-3 p-6">
+        <h2 className="spec-heading text-foreground">How the catalog is organized</h2>
+        <ul className="spec-body space-y-2 text-muted-foreground">
           <li>
             <span className="font-medium text-foreground">Primitives</span> -
             buttons, forms, motion, logo. Small reusable pieces.
@@ -75,9 +75,9 @@ npx shadcn@latest add @atroui/home-hero`}
         </ul>
       </section>
 
-      <section className="md-glass space-y-3 p-5">
-        <h2 className="ds-headline text-base text-foreground">Own the files</h2>
-        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+      <section className="md-glass space-y-3 p-6">
+        <h2 className="spec-heading text-foreground">Own the files</h2>
+        <p className="spec-body text-muted-foreground">
           Add sections from the{" "}
           <Link href="/docs/registry" className="bam-link">
             Registry
@@ -102,11 +102,9 @@ npx shadcn@latest add @atroui/home-hero`}
         </p>
       </section>
 
-      <section className="md-glass space-y-3 p-5">
-        <h2 className="ds-headline text-base text-foreground">
-          Host APIs &amp; AI tools
-        </h2>
-        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
+      <section className="md-glass space-y-3 p-6">
+        <h2 className="spec-heading text-foreground">Host APIs &amp; AI tools</h2>
+        <p className="spec-body text-muted-foreground">
           Tools tagged Host API (OG workspace, thumbnails, scope chat, forms)
           expect you to wire{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -122,7 +120,7 @@ npx shadcn@latest add @atroui/home-hero`}
             href="https://www.makershot.tech/og"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-brand underline underline-offset-2"
+            className="bam-link"
           >
             makershot.tech/og
           </a>
@@ -130,24 +128,13 @@ npx shadcn@latest add @atroui/home-hero`}
         </p>
       </section>
 
+      {/* One primary action; the sidebar already carries the rest. */}
       <div className="flex flex-wrap gap-3 pt-1">
-        <Link href="/docs/installation" className="ms-cta">
+        <Link href="/docs/installation" className="spec-btn">
           Installation
         </Link>
-        <Link href="/docs/host-api" className="ms-cta-ghost">
-          Host APIs
-        </Link>
-        <Link href="/docs/registry" className="ms-cta-ghost">
-          Own the UI
-        </Link>
-        <Link href="/docs/components" className="ms-cta-ghost">
+        <Link href="/library" className="spec-btn-ghost">
           Browse components
-        </Link>
-        <Link href="/updates" className="ms-cta-ghost">
-          Updates by email
-        </Link>
-        <Link href="/blog" className="ms-cta-ghost">
-          Blog
         </Link>
       </div>
     </article>

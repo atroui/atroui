@@ -52,7 +52,7 @@ function SearchDialog({
         transition={dialogTween}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-2 border-b border-border-subtle px-3 py-2">
+        <div className="flex items-center gap-2 border-b border-[var(--line)] px-3 py-2">
           <Search className="size-4 text-muted-foreground" aria-hidden />
           <input
             autoFocus
@@ -64,7 +64,7 @@ function SearchDialog({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex size-8 items-center justify-center rounded-lg border border-border-subtle text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+            className="inline-flex size-8 items-center justify-center rounded-[var(--radius-sm)] border border-[var(--line)] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             aria-label="Close"
           >
             <X className="size-4" />
@@ -81,7 +81,7 @@ function SearchDialog({
                 key={item.href}
                 type="button"
                 className={cn(
-                  "flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-white/5"
+                  "flex w-full items-center justify-between gap-3 rounded-[var(--radius-sm)] px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-muted"
                 )}
                 onClick={() => onSelect(item)}
               >
@@ -96,9 +96,9 @@ function SearchDialog({
                 {item.badge ? (
                   <span
                     className={cn(
-                      "ds-sketch shrink-0 text-[13px]",
-                      item.badge === "host-api" || item.badge === "registry"
-                        ? "text-brand"
+                      "spec-label shrink-0",
+                      item.badge === "host-api"
+                        ? "text-[var(--brand)]"
                         : "text-muted-foreground"
                     )}
                   >
@@ -162,7 +162,7 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           aria-label="Search documentation"
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="inline-flex size-9 items-center justify-center rounded-lg border border-border-subtle bg-white/5 text-foreground"
+          className="inline-flex size-8 items-center justify-center rounded-[var(--radius-sm)] border border-[var(--line)] text-foreground"
         >
           <Search className="size-4" aria-hidden />
         </button>
@@ -172,11 +172,11 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           onClick={() => setOpen(true)}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="inline-flex h-9 w-full max-w-[min(220px,40vw)] items-center gap-2 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+          className="inline-flex h-8 w-full max-w-[min(200px,40vw)] items-center gap-2 rounded-[var(--radius-sm)] border border-[var(--line)] px-2.5 text-[13px] text-muted-foreground transition-colors hover:border-[var(--line-strong)] hover:text-foreground"
         >
           <Search className="size-3.5 shrink-0" aria-hidden />
           <span className="flex-1 text-left">Search…</span>
-          <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-lg border border-border-subtle bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
+          <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-[4px] border border-[var(--line)] px-1.5 font-mono text-[10px] text-muted-foreground sm:inline-flex">
             ⌘K
           </kbd>
         </button>

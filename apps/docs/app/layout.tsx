@@ -1,26 +1,22 @@
 import type { Metadata, Viewport } from "next"
-import { Caveat, Geist_Mono, Outfit } from "next/font/google"
+import { Inter, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { SiteFrame } from "@/components/site/frame"
 import "atroui/globals.css"
 import "./globals.css"
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-geist",
   display: "swap",
+  axes: ["opsz"],
 })
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
-  display: "swap",
-})
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
   display: "swap",
 })
 
@@ -32,8 +28,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-    { media: "(prefers-color-scheme: light)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: dark)", color: "#212223" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f6f4" },
   ],
 }
 
@@ -129,16 +125,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
+        className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
           <div className="relative min-h-svh bg-background text-foreground">
-            {children}
+            <SiteFrame>{children}</SiteFrame>
           </div>
         </ThemeProvider>
         <Analytics />

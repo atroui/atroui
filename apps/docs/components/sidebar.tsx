@@ -16,9 +16,7 @@ function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
     <span
       className={cn(
         "shrink-0 font-mono text-[9px] tracking-[0.1em] uppercase",
-        badge === "host-api" || badge === "registry"
-          ? "text-brand/90"
-          : "text-muted-foreground"
+        badge === "host-api" ? "text-[var(--brand)]" : "text-muted-foreground/70"
       )}
     >
       {badgeLabel[badge]}
@@ -40,7 +38,7 @@ export function DocsSidebar({ className }: { className?: string }) {
           <div key={section.title}>
             <button
               type="button"
-              className="mb-2.5 flex w-full items-center justify-between px-2 text-left text-[11px] font-medium tracking-[0.14em] text-muted-foreground uppercase transition-colors hover:text-foreground"
+              className="spec-label mb-2.5 flex w-full items-center justify-between px-2 text-left transition-colors hover:text-foreground"
               aria-expanded={!isCollapsed}
               aria-controls={panelId}
               onClick={() =>
@@ -75,10 +73,10 @@ export function DocsSidebar({ className }: { className?: string }) {
                         <Link
                           href={item.href}
                           className={cn(
-                            "relative flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
+                            "relative flex items-center justify-between gap-2 rounded-[var(--radius-sm)] px-3 py-1.5 text-[13px] tracking-[-0.01em] transition-colors",
                             active
-                              ? "bg-white/[0.07] text-foreground before:absolute before:top-1.5 before:bottom-1.5 before:left-0 before:w-0.5 before:rounded-full before:bg-brand"
-                              : "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground"
+                              ? "bg-muted font-medium text-foreground before:absolute before:top-1.5 before:bottom-1.5 before:left-0 before:w-px before:bg-[var(--brand)]"
+                              : "text-muted-foreground hover:text-foreground"
                           )}
                         >
                           <span className="truncate">{item.title}</span>
@@ -113,7 +111,7 @@ export function MobileSidebar() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="inline-flex size-9 items-center justify-center rounded-lg border border-border-subtle bg-white/5 text-foreground"
+        className="inline-flex size-8 items-center justify-center rounded-[var(--radius-sm)] border border-[var(--line)] text-foreground"
       >
         {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
       </button>
@@ -124,7 +122,7 @@ export function MobileSidebar() {
         label="Documentation menu"
         trapFocus
         className="lg:hidden"
-        panelClassName="w-[min(18rem,calc(100vw-2.5rem))] border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5"
+        panelClassName="w-[min(18rem,calc(100vw-2.5rem))] border-[var(--line)] bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] sm:p-5"
       >
         <div className="mb-5 flex items-center justify-between gap-3">
           <Link

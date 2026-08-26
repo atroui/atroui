@@ -72,7 +72,7 @@ export default async function CollectionPage({ params }: Props) {
             <li key={href}>
               <Link
                 href={href}
-                className="block px-4 py-3.5 text-[15px] text-foreground transition-colors hover:bg-white/5"
+                className="block px-4 py-3.5 text-[15px] text-foreground transition-colors hover:bg-muted/60"
               >
                 {labelFor(href)}
               </Link>

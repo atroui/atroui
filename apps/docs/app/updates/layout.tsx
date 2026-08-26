@@ -1,4 +1,3 @@
-import { SiteHeader } from "@/components/site-header"
 import { DocsRouteTransition } from "@/components/view-transitions"
 
 export default function UpdatesLayout({
@@ -6,10 +5,5 @@ export default function UpdatesLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      <SiteHeader />
-      <DocsRouteTransition>{children}</DocsRouteTransition>
-    </>
-  )
+  return <DocsRouteTransition>{children}</DocsRouteTransition>
 }

@@ -34,19 +34,17 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-lg bg-muted/30 text-foreground",
-        !embedded && "border border-border-subtle",
+        "group relative overflow-hidden rounded-[var(--radius)] bg-[var(--plate-ground)] text-foreground",
+        !embedded && "border border-[var(--line)]",
         className
       )}
     >
-      <div className="flex items-center justify-between border-b border-border-subtle bg-white/[0.03] px-4 py-2.5">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
-          {language}
-        </span>
+      <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-2.5">
+        <span className="spec-label">{language}</span>
         <button
           type="button"
           onClick={copy}
-          className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md border border-border-subtle bg-white/5 px-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+          className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--line)] px-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:border-[var(--line-strong)] hover:text-foreground"
         >
           {copied ? <Check className="size-3.5" aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
           {copied ? "Copied" : "Copy"}

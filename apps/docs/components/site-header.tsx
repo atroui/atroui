@@ -1,89 +1,151 @@
 "use client"
 
-import { Github, Star } from "lucide-react"
-import { ThemeToggle } from "atroui"
+import { Github } from "lucide-react"
+import { Suspense } from "react"
+import { usePathname, useSearchParams } from "next/navigation"
+import { ThemeToggleIcon } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
-import {
-  SharedBrand,
-  SharedOwnCta,
-  TransitionLink,
-} from "@/components/view-transitions"
-import { primaryNav } from "@/lib/primary-nav"
+import { AnnounceBar } from "@/components/site/announce-bar"
+import { SharedBrand, TransitionLink } from "@/components/view-transitions"
+import { FAMILY_PARAM } from "@/lib/catalog"
+import { activeNavId, primaryNav } from "@/lib/primary-nav"
+import { cn } from "@/lib/utils"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
-export function SiteHeader() {
+function HeaderNav() {
+  const pathname = usePathname()
+  const params = useSearchParams()
+  const family = params.get(FAMILY_PARAM)
+  const active = activeNavId(pathname, family)
+  const docsOn =
+    pathname.startsWith("/docs") &&
+    !pathname.startsWith("/docs/components") &&
+    !pathname.startsWith("/docs/host-api")
+
   return (
-    <header
-      className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/95 pt-[env(safe-area-inset-top)]"
-      style={{ viewTransitionName: "site-header" }}
-    >
-      <div className="mx-auto flex h-14 max-w-350 items-center gap-2 px-3 sm:gap-3 sm:px-6">
-        <MobileSidebar />
-
-        <SharedBrand>
+    <>
+      <nav aria-label="Primary" className="ml-2 flex items-center gap-0.5">
+        {primaryNav.map((item, index) => (
           <TransitionLink
-            href="/"
-            className="flex min-w-0 items-center gap-2 sm:gap-2.5"
-            aria-label="AtroUI home"
+            key={item.id}
+            href={item.href}
+            transitionTypes={[]}
+            className={cn(
+              "rounded-md px-2.5 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground",
+              active === item.id && "bg-muted font-medium text-foreground",
+              index > 0 && "hidden md:inline-flex"
+            )}
           >
-            <LogoMark className="shrink-0 text-foreground" />
-            <span className="truncate text-[15px] font-medium tracking-tight text-foreground sm:text-[17px]">
-              AtroUI
-            </span>
+            {item.label}
           </TransitionLink>
-        </SharedBrand>
+        ))}
+      </nav>
 
-        <nav
-          aria-label="Primary"
-          className="ml-1 hidden items-center gap-0.5 md:ml-2 md:flex lg:ml-3"
+      <div className="ml-auto flex shrink-0 items-center gap-1.5">
+        <TransitionLink
+          href="/docs"
+          transitionTypes={[]}
+          className={cn(
+            "rounded-md px-2.5 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground",
+            docsOn && "bg-muted font-medium text-foreground"
+          )}
         >
-          {primaryNav.map((item) => (
-            <TransitionLink
-              key={item.href}
-              href={item.href}
-              transitionTypes={[]}
-              className="px-2 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground xl:px-2.5"
-            >
-              {item.label}
-            </TransitionLink>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <div className="md:hidden">
-            <CommandMenu compact />
-          </div>
-          <div className="hidden md:block">
-            <CommandMenu />
-          </div>
-          <ThemeToggle />
-          <a
-            href={GITHUB_REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Star AtroUI on GitHub"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] px-2.5 text-foreground transition-colors hover:bg-white/[0.06] sm:px-3"
-          >
-            <Github className="size-4" aria-hidden />
-            <span className="hidden text-[13px] font-medium sm:inline">
-              Star
-            </span>
-            <Star className="size-3.5 opacity-80" aria-hidden />
-          </a>
-          <SharedOwnCta>
-            <TransitionLink
-              href="/docs/registry"
-              transitionTypes={[]}
-              className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex lg:px-4"
-            >
-              Own the UI
-            </TransitionLink>
-          </SharedOwnCta>
-        </div>
+          Docs
+        </TransitionLink>
+        <CommandMenu compact />
+        <a
+          href={GITHUB_REPO}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="AtroUI on GitHub"
+          className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <Github className="size-4" aria-hidden />
+        </a>
+        <ThemeToggleIcon />
       </div>
-    </header>
+    </>
+  )
+}
+
+function HeaderNavFallback() {
+  return (
+    <>
+      <nav aria-label="Primary" className="ml-2 flex items-center gap-0.5">
+        {primaryNav.map((item, index) => (
+          <TransitionLink
+            key={item.id}
+            href={item.href}
+            transitionTypes={[]}
+            className={cn(
+              "rounded-md px-2.5 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground",
+              index > 0 && "hidden md:inline-flex"
+            )}
+          >
+            {item.label}
+          </TransitionLink>
+        ))}
+      </nav>
+      <div className="ml-auto flex shrink-0 items-center gap-1.5">
+        <TransitionLink
+          href="/docs"
+          transitionTypes={[]}
+          className="rounded-md px-2.5 py-1.5 text-[13px] text-muted-foreground"
+        >
+          Docs
+        </TransitionLink>
+        <CommandMenu compact />
+        <span className="size-8" aria-hidden />
+        <span className="size-8" aria-hidden />
+      </div>
+    </>
+  )
+}
+
+/**
+ * Product map on the left, utilities on the right. CTAs live in the hero.
+ */
+export function SiteHeader({
+  className,
+  showSidebarToggle = false,
+}: {
+  className?: string
+  showSidebarToggle?: boolean
+}) {
+  return (
+    <>
+      <AnnounceBar />
+      <header
+        className={cn(
+          "sticky top-0 z-30 w-full border-b border-[var(--line)] bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur-md",
+          className
+        )}
+        style={{ viewTransitionName: "site-header" }}
+      >
+        <div className="spec-shell flex h-12 items-center gap-3">
+          {showSidebarToggle ? <MobileSidebar /> : null}
+
+          <SharedBrand>
+            <TransitionLink
+              href="/"
+              className="flex min-w-0 items-center gap-2"
+              aria-label="AtroUI home"
+            >
+              <LogoMark className="size-[18px] shrink-0 text-foreground" />
+              <span className="text-[15px] font-medium tracking-[-0.03em] text-foreground">
+                AtroUI
+              </span>
+            </TransitionLink>
+          </SharedBrand>
+
+          <Suspense fallback={<HeaderNavFallback />}>
+            <HeaderNav />
+          </Suspense>
+        </div>
+      </header>
+    </>
   )
 }

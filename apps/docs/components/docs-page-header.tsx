@@ -11,9 +11,8 @@ type DocsPageHeaderProps = {
 }
 
 /**
- * Shared docs page header. Professionalism = Outfit hierarchy, quiet eyebrow.
- * Sketch/stamp voice stays on landing — not every docs H1.
- * Family Values: one idea first (title), depth later on the page.
+ * Docs pages carry the same curatorial voice as the gallery: mono eyebrow,
+ * serif title, one hairline closing the header.
  */
 export function DocsPageHeader({
   eyebrow,
@@ -24,22 +23,15 @@ export function DocsPageHeader({
 }: DocsPageHeaderProps) {
   return (
     <header
-      className={cn(
-        "space-y-3 border-b border-border-subtle pb-8 sm:space-y-4 sm:pb-10",
-        className
-      )}
+      className={cn("border-b border-[var(--line)] pb-5 sm:pb-6", className)}
     >
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-        <p className="ds-eyebrow m-0">{eyebrow}</p>
+        <p className="spec-label m-0">{eyebrow}</p>
         {meta}
       </div>
-      <h1 className="ds-headline text-[1.75rem] leading-tight tracking-tight text-foreground sm:text-4xl">
-        {title}
-      </h1>
+      <h1 className="spec-title mt-3 text-foreground">{title}</h1>
       {description ? (
-        <div className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          {description}
-        </div>
+        <div className="spec-lede mt-4 max-w-2xl">{description}</div>
       ) : null}
     </header>
   )

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { CodeBlock } from "@/components/code-block"
 import { DocsPageHeader } from "@/components/docs-page-header"
-import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({

@@ -9,9 +9,14 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"No tests in docs\"",
+    "test": "playwright test --project=smoke",
+    "test:e2e": "playwright test",
+    "test:smoke": "playwright test --project=smoke --project=smoke-mobile",
+    "test:visual": "playwright test --project=visual",
     "clean": "rm -rf .next .turbo",
-    "registry:build": "pnpm exec shadcn build ./registry.json -o ./public/r"
+    "registry:build": "pnpm exec shadcn build ./registry.json -o ./public/r",
+    "context:search": "node --env-file=.env.local scripts/context-dev-smoke.mts",
+    "context:studio": "node --env-file=.env.local scripts/context-dev-studio.mts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -25,6 +30,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "atroui": "workspace:*",
     "clsx": "^2.1.1",
+    "context.dev": "^2.13.0",
     "framer-motion": "^12.23.0",
     "lucide-react": "^0.525.0",
     "motion": "^12.38.0",
@@ -42,6 +48,7 @@
   "devDependencies": {
     "@atroui/typescript-config": "workspace:*",
     "@eslint/eslintrc": "^3.3.6",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^22.16.0",
     "@types/react": "^19.1.8",

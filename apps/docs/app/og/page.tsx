@@ -16,14 +16,12 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function OgPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-        <div className="max-w-2xl space-y-2">
+    <main className="spec-shell w-full py-12">
+      <header className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-2xl">
           <p className="ms-stamp">Tool</p>
-          <h1 className="ds-display text-2xl text-foreground sm:text-3xl">
-            OG workspace
-          </h1>
-          <p className="text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+          <h1 className="spec-title mt-3 text-foreground">OG workspace</h1>
+          <p className="spec-lede mt-3">
             Prefill from the{" "}
             <Link href="/docs/guides/launch-workflow" className="bam-link">
               launch workflow
@@ -38,9 +36,9 @@ export default function OgPage() {
             .
           </p>
         </div>
-        <div className="flex min-w-0 flex-col gap-1.5 sm:items-end">
+        <div className="flex min-w-0 flex-col gap-2 sm:items-end">
           <InstallCommandChip command={OG_INSTALL} />
-          <p className="max-w-sm text-[11px] leading-relaxed text-muted-foreground sm:text-right">
+          <p className="max-w-sm text-[12px] leading-relaxed text-muted-foreground sm:text-right">
             AI Generate needs{" "}
             <code className="font-mono text-[10px] text-foreground">
               @atroui/api-generate
@@ -55,7 +53,7 @@ export default function OgPage() {
       </header>
       <div
         id="og-workspace"
-        className="overflow-hidden rounded-xl border border-border-subtle"
+        className="overflow-hidden rounded-[var(--radius)] border border-[var(--line)]"
       >
         <Suspense
           fallback={

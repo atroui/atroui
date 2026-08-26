@@ -75,58 +75,66 @@ export default function ThemingPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Fonts</h2>
-        <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Two voices on purpose:
+        <h2 className="spec-heading text-foreground">Fonts</h2>
+        <p className="spec-body text-muted-foreground">
+          Three voices, each with one job. Which typeface you are looking at tells
+          you what kind of surface you are on.
         </p>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
           <li>
-            <strong className="text-foreground">Caveat (sketch)</strong> —
-            brand display, stamps, list titles, nav section rails (
+            <strong className="text-foreground">Instrument Serif</strong> — the
+            curatorial voice. Display sizes, page titles, plate titles (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-display
+              .spec-display
             </code>
             ,{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-sketch
+              .spec-title
+            </code>
+            ). Weight 400 only — authority comes from size and tight tracking.
+          </li>
+          <li>
+            <strong className="text-foreground">Geist</strong> — everything
+            functional: body copy, controls, navigation (
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .spec-lede
             </code>
             ,{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ms-stamp
+              .spec-body
             </code>
             ,{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-nav-section
+              .spec-heading
             </code>
             ).
           </li>
           <li>
-            <strong className="text-foreground">Outfit (calm UI)</strong> —
-            body and supporting copy at{" "}
-            <em className="text-foreground">regular</em> weight — not
-            ultra-light — so it sits quietly under handwriting (
+            <strong className="text-foreground">Geist Mono</strong> — the
+            instrument voice. Uppercase micro-labels, plate numbers, categories,
+            and commands (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-lede
+              .spec-label
             </code>
             ,{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-body
+              .spec-num
             </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-meta
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-headline
-            </code>
-            ).
-          </li>
-          <li>
-            <strong className="text-foreground">Geist Mono</strong> — code /
-            technical precision.
+            ). When you see mono, you are looking at a system surface.
           </li>
         </ul>
+        <p className="spec-body text-muted-foreground">
+          The older{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .ds-*
+          </code>{" "}
+          and{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .ms-*
+          </code>{" "}
+          classes still work — they now map onto these three voices, so installed
+          components pick up the system without edits.
+        </p>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           On the docs host, load Caveat + Outfit in the root layout and expose{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">

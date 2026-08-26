@@ -13,12 +13,12 @@ export const metadata: Metadata = docsPageMetadata({
 export default function UpdatesPage() {
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <header className="space-y-3">
+      <header>
         <p className="ms-stamp">List</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
+        <h1 className="spec-title mt-3 text-foreground">
           Major updates, in detail
         </h1>
-        <p className="max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+        <p className="spec-lede mt-4 max-w-xl">
           The pipeline is long. This list is short. You get the releases that
           change the product: Host APIs, launch workflow, identity, install
           path. Written like the{" "}
@@ -29,8 +29,8 @@ export default function UpdatesPage() {
         </p>
       </header>
 
-      <section className="mt-10 rounded-xl border border-border-subtle bg-card p-5 sm:p-6">
-        <h2 className="ds-headline text-base text-foreground">Subscribe</h2>
+      <section className="mt-10 rounded-[var(--radius)] border border-[var(--line)] p-6">
+        <h2 className="spec-heading text-foreground">Subscribe</h2>
         <div className="mt-4">
           <UpdatesSignup source="updates-page" />
         </div>

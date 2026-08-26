@@ -36,13 +36,9 @@ function DocStep({
 }) {
   return (
     <section className="space-y-4">
-      <div className="flex items-baseline gap-3 border-b border-border-subtle pb-2">
-        <span className="font-mono text-[11px] tabular-nums tracking-wide text-muted-foreground">
-          {n}
-        </span>
-        <h2 className="ds-headline text-[15px] font-medium text-foreground">
-          {label}
-        </h2>
+      <div className="flex items-baseline gap-3 border-b border-[var(--line)] pb-2">
+        <span className="spec-num">{n}</span>
+        <h2 className="spec-heading text-foreground">{label}</h2>
       </div>
       {children}
     </section>
@@ -95,15 +91,11 @@ export function ComponentDoc({
 
   const meta = (
     <>
-      {inRegistry ? (
-        <span className="font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase">
-          CLI
-        </span>
-      ) : null}
+      {inRegistry ? <span className="spec-label">CLI</span> : null}
       {isHostApi ? (
         <Link
           href="/docs/host-api"
-          className="font-mono text-[10px] tracking-[0.12em] text-brand uppercase transition-colors hover:text-brand/80"
+          className="spec-label text-[var(--brand)] transition-opacity hover:opacity-80"
         >
           Host API
         </Link>
@@ -147,7 +139,7 @@ export function ComponentDoc({
           {installCmd ? (
             setupLinks
           ) : (
-            <div className="rounded-lg border border-border-subtle bg-muted/20 px-4 py-3">
+            <div className="rounded-[var(--radius-md)] border border-[var(--line)] px-4 py-3">
               <p className="text-[14px] leading-relaxed text-muted-foreground">
                 Not in the CLI registry yet. This page documents the live catalog
                 component. Prefer registry blocks when you want owned source via{" "}

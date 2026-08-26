@@ -144,7 +144,7 @@ export function DocsTrayStack({
               type="button"
               disabled={atStart}
               onClick={() => goTo(index - 1)}
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
+              className="inline-flex h-9 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--line)] px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-muted disabled:cursor-not-allowed disabled:opacity-35"
             >
               <ChevronLeft className="size-3.5" aria-hidden />
               Back
@@ -153,7 +153,7 @@ export function DocsTrayStack({
               type="button"
               disabled={atEnd}
               onClick={() => goTo(index + 1)}
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
+              className="inline-flex h-9 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--line)] px-3 text-[13px] font-medium text-foreground transition-colors enabled:hover:bg-muted disabled:cursor-not-allowed disabled:opacity-35"
             >
               Next
               <ChevronRight className="size-3.5" aria-hidden />

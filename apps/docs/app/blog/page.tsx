@@ -24,10 +24,11 @@ export default function BlogIndexPage() {
       />
       <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
         <p className="ms-stamp mb-3">Blog</p>
-        <h1 className="ds-display text-[2rem] tracking-tight text-foreground sm:text-4xl">
-          AtroUI <span className="ds-sketch-accent">blog</span>
+        <h1 className="spec-title text-foreground">
+          AtroUI{" "}
+          <span className="spec-serif-italic text-muted-foreground">blog</span>
         </h1>
-        <p className="blog-lede mt-4">
+        <p className="spec-lede mt-4">
           Guides that take you from search to install: Host APIs and BYOK,
           App Router setup, tokens, branding, and how AtroUI compares to other
           kits. Then open the{" "}
@@ -39,29 +40,20 @@ export default function BlogIndexPage() {
 
         {latest ? (
           <section className="mt-14" aria-labelledby="latest-blog-heading">
-            <p className="ms-stamp mb-3">Latest</p>
-            <h2
-              id="latest-blog-heading"
-              className="ds-headline text-lg text-foreground sm:text-xl"
-            >
-              Latest blog
+            <h2 id="latest-blog-heading" className="spec-label text-foreground">
+              Latest
             </h2>
             <Link
               href={`/blog/${latest.slug}`}
-              className="group mt-5 block border-y border-border-subtle py-7 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2"
+              className="group mt-4 block border-y border-[var(--line)] py-7 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2"
             >
-              <time
-                dateTime={latest.date}
-                className="font-mono text-[12px] tracking-wide text-muted-foreground"
-              >
+              <time dateTime={latest.date} className="spec-num">
                 {latest.date}
               </time>
-              <h3 className="ds-display mt-2 text-xl tracking-tight text-foreground group-hover:text-brand sm:text-2xl">
+              <h3 className="spec-title mt-2 text-[1.75rem] text-foreground transition-colors group-hover:text-brand">
                 {latest.title}
               </h3>
-              <p className="blog-lede mt-3 text-[1.0625rem] sm:text-lg">
-                {latest.description}
-              </p>
+              <p className="spec-lede mt-3">{latest.description}</p>
               <span className="mt-5 inline-block text-sm font-medium text-brand">
                 Read post →
               </span>
@@ -71,13 +63,10 @@ export default function BlogIndexPage() {
 
         {older.length > 0 ? (
           <section className="mt-16" aria-labelledby="all-posts-heading">
-            <h2
-              id="all-posts-heading"
-              className="ds-headline text-lg text-foreground sm:text-xl"
-            >
+            <h2 id="all-posts-heading" className="spec-label text-foreground">
               More posts
             </h2>
-            <ul className="mt-6 divide-y divide-border-subtle border-y border-border-subtle">
+            <ul className="mt-4 divide-y divide-[var(--line)] border-y border-[var(--line)]">
               {older.map((post) => (
                 <li key={post.slug}>
                   <Link
@@ -85,17 +74,14 @@ export default function BlogIndexPage() {
                     className="group flex flex-col gap-1 py-6 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
                   >
                     <div>
-                      <h3 className="ds-display text-lg tracking-tight text-foreground group-hover:text-brand sm:text-xl">
+                      <h3 className="spec-heading text-foreground transition-colors group-hover:text-brand">
                         {post.title}
                       </h3>
-                      <p className="mt-1.5 max-w-xl font-[family-name:var(--font-merriweather)] text-[15px] leading-[1.55] text-foreground/65 sm:text-base">
+                      <p className="spec-body mt-1.5 max-w-xl text-muted-foreground">
                         {post.description}
                       </p>
                     </div>
-                    <time
-                      dateTime={post.date}
-                      className="shrink-0 font-mono text-[12px] tracking-wide text-muted-foreground"
-                    >
+                    <time dateTime={post.date} className="spec-num shrink-0">
                       {post.date}
                     </time>
                   </Link>
@@ -105,7 +91,7 @@ export default function BlogIndexPage() {
           </section>
         ) : null}
 
-        <p className="mt-12 text-base text-muted-foreground">
+        <p className="spec-body mt-12 text-muted-foreground">
           Want the next major slice in your inbox?{" "}
           <Link href="/updates" className="bam-link">
             AtroUI updates

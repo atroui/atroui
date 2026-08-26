@@ -1,152 +1,79 @@
 import Link from "next/link"
-import { CatalogStage } from "@/components/landing/catalog-stage"
-import {
-  LandingModuleHeader,
-  LandingPanel,
-  LandingSection,
-} from "@/components/landing/module"
-import { PresenceHero } from "@/components/landing/presence-hero"
-import { UpdatesSignup } from "@/components/updates-signup"
+import { ArrowRight, Send } from "lucide-react"
+import { FamilyCards } from "@/components/site/family-cards"
+import { InstallCommand } from "@/components/catalog/install-command"
+import { catalogCount, featuredCatalog } from "@/lib/catalog"
 
-const GITHUB_REPO = "https://github.com/atroui/atroui"
-
-const inside = [
-  {
-    title: "Registry",
-    body: "shadcn CLI copies source into your repo.",
-    href: "/docs/registry",
-  },
-  {
-    title: "Host APIs",
-    body: "UI + hardened routes. You bring the keys.",
-    href: "/docs/host-api",
-  },
-  {
-    title: "Sections",
-    body: "Dark marketing bands — heroes, who, CTAs. Edit CONTENT.",
-    href: "/docs/collections/dark-marketing",
-  },
-  {
-    title: "Headless",
-    body: "Analytics, JSON-LD, reviews — no visible UI.",
-    href: "/docs/components/seo-json-ld",
-  },
-] as const
-
-/** Server-rendered landing — one job: the component registry. */
+/**
+ * Studio homepage — same beats as a craft portfolio: claim, rows, names, one card.
+ */
 export function LandingHero() {
+  const names = featuredCatalog.slice(0, 11)
+
   return (
-    <div className="dark bg-black text-white">
-      <PresenceHero />
-      <CatalogStage />
+    <main className="wf-home">
+      <h1 className="wf-claim">
+        <span className="wf-swatches" aria-hidden>
+          <span style={{ background: "#7dd3e8" }} />
+          <span style={{ background: "#0eb3c9" }} />
+          <span style={{ background: "#f5a623" }} />
+          <span style={{ background: "#e85aaa" }} />
+          <span style={{ background: "#8b5cf6" }} />
+          <span style={{ background: "#363636" }} />
+        </span>
+        AtroUI
+        <br />
+        Component catalog
+      </h1>
+      <p className="wf-lede">
+        Production sections for Next.js, shipped as source you keep. From heroes
+        and pricing to Host APIs on your keys, the work focuses on files you own,
+        thoughtful defaults, and a catalog you can actually ship. If that
+        resonates, start with a section.
+      </p>
+      <div className="wf-cta-row">
+        <Link href="/library" className="wf-home-btn">
+          Browse components
+        </Link>
+        <Link href="/docs/host-api" className="wf-cta-text">
+          <Send className="size-3.5" aria-hidden />
+          Host APIs
+        </Link>
+      </div>
 
-      <LandingSection>
-        <div className="grid gap-10 md:gap-12 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-5">
-            <LandingModuleHeader
-              stamp="Catalog"
-              title={
-                <>
-                  What you&rsquo;ll{" "}
-                  <span className="ds-sketch-accent">find</span>
-                </>
-              }
-              lede="Landing sections and Host APIs for indie Next.js — not a 50-primitive peer kit."
-            />
-          </div>
+      <hr className="wf-rule" />
 
-          <LandingPanel className="divide-y divide-white/10 lg:col-span-7">
-            <ul>
-              {inside.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.href}
-                    className="group flex flex-col gap-1.5 px-4 py-4 transition-colors hover:bg-white/[0.04] sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
-                  >
-                    <span className="text-[17px] font-medium tracking-tight text-white transition-colors group-hover:text-sky-300 sm:text-lg">
-                      {item.title}
-                    </span>
-                    <span className="ds-meta max-w-prose text-neutral-400 sm:max-w-sm sm:text-right">
-                      {item.body}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </LandingPanel>
+      <h2 className="wf-section-label">Catalog</h2>
+      <FamilyCards />
+
+      <hr className="wf-rule" />
+
+      <h2 className="wf-section-label">On the registry</h2>
+      <div className="wf-names">
+        {names.map((entry) => (
+          <Link key={entry.href} href={entry.href}>
+            {entry.title}
+          </Link>
+        ))}
+        <Link href="/library" className="wf-names-more">
+          Browse all
+          <ArrowRight className="size-3" aria-hidden />
+        </Link>
+      </div>
+
+      <hr className="wf-rule" />
+
+      <div className="wf-statement">
+        <p>
+          Own the files. The CLI copies the source into your project — no
+          package lock-in, no black box.
+        </p>
+        <InstallCommand command="npx shadcn@latest add @atroui/home-hero" />
+        <div className="wf-statement-foot">
+          <span>AtroUI</span>
+          <span>MIT · {catalogCount} on the registry</span>
         </div>
-      </LandingSection>
-
-      <LandingSection labelledBy="home-band-title">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
-          <div className="lg:col-span-6">
-            <LandingModuleHeader
-              stamp="Updates"
-              titleId="home-band-title"
-              title={
-                <>
-                  When the catalog{" "}
-                  <span className="ds-sketch-accent">ships</span>
-                </>
-              }
-              lede={
-                <>
-                  Major registry and Host API notes only — not a marketing drip.
-                  Details live in{" "}
-                  <Link
-                    href="/updates"
-                    className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
-                  >
-                    Updates
-                  </Link>
-                  .
-                </>
-              }
-            />
-          </div>
-          <div className="lg:col-span-6">
-            <LandingPanel className="p-4 sm:p-5">
-              <p className="mb-3 font-mono text-[10px] tracking-[0.14em] text-neutral-500 uppercase">
-                Major updates only
-              </p>
-              <UpdatesSignup source="landing" compact />
-            </LandingPanel>
-          </div>
-        </div>
-      </LandingSection>
-
-      <footer className="border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 md:px-12 lg:px-20 xl:px-24">
-          <p className="ds-meta text-neutral-500">
-            © {new Date().getFullYear()}{" "}
-            <span className="text-sm text-neutral-400">AtroUI</span>
-            {" · "}
-            <a
-              href={GITHUB_REPO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ds-hero-nav-link"
-            >
-              GitHub
-            </a>
-            {" · "}
-            <Link href="/docs/registry" className="ds-hero-nav-link">
-              Registry
-            </Link>
-          </p>
-          <p className="ds-meta text-neutral-600">
-            Built by{" "}
-            <a
-              href="https://www.makershot.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-neutral-500 underline-offset-2 transition-colors hover:text-neutral-300 hover:underline"
-            >
-              Makershot
-            </a>
-          </p>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </main>
   )
 }

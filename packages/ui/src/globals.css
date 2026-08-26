@@ -8,10 +8,20 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =============================================================================
-   AtroUI - Digital Success system
-   Black canvas · electric blue brand · glass surfaces · rounded CTAs
-   Base: hero-digital-success (#92dbe0 / #0b7bff / #3865cf)
-   Typography: Caveat (sketch display) · Outfit (UI / body) · Geist Mono (code)
+   AtroUI — Specimen
+   -----------------------------------------------------------------------------
+   A catalog, not a brochure. The components are the content, so the system's
+   job is to recede: neutral gallery grounds, one hairline weight, and a single
+   chromatic accent (#0b7bff, from the mark) reserved for interaction and live
+   state. Authority comes from an editorial serif at display sizes, never from
+   glow, blur, or gradient.
+
+   Voices
+     Instrument Serif  display / plate titles — the curatorial voice
+     Geist             all functional UI, body, controls
+     Geist Mono        plate numbers, categories, commands — the instrument voice
+
+   Depth is figure/ground and one hairline. There are no decorative shadows.
    ============================================================================= */
 
 @theme inline {
@@ -21,15 +31,17 @@
   --color-surface-raised: var(--surface-raised);
   --color-border-subtle: var(--border-subtle);
 
-  --font-sans: var(--font-outfit);
+  --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
-  --font-sketch: var(--font-caveat);
-  --font-display: var(--font-sketch);
-  --font-heading: var(--font-outfit);
-  --font-body: var(--font-outfit);
-  --font-label: var(--font-outfit);
+  --font-serif: var(--font-instrument-serif);
+  /* Legacy aliases — components authored against the old names inherit the
+     new voice instead of pinning a retired typeface. */
+  --font-sketch: var(--font-instrument-serif);
+  --font-display: var(--font-instrument-serif);
+  --font-heading: var(--font-geist);
+  --font-body: var(--font-geist);
+  --font-label: var(--font-geist-mono);
 
-  /* Hero brand - #0b7bff / #92dbe0 */
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
   --color-brand-dim: var(--brand-dim);
@@ -65,110 +77,130 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-4xl: calc(var(--radius) + 20px);
+
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 :root {
-  --radius: 0.875rem;
+  --radius: 0.75rem;
 
-  --font-outfit: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-geist-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  /* Host should load Caveat (docs layout does). Fallback keeps sketchy intent. */
-  --font-caveat: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-geist: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-geist-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-instrument-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  /* Retired families still referenced by older copies of the registry files. */
+  --font-outfit: var(--font-geist);
+  --font-caveat: var(--font-instrument-serif);
 
-  /* Light alternate - cool neutrals, same brand */
-  --brand: oklch(0.58 0.2 255);
-  --brand-hover: oklch(0.64 0.19 255);
-  --brand-dim: oklch(0.48 0.16 255);
-  --brand-glow: oklch(0.58 0.2 255 / 35%);
+  /* Motion — short and continuous. Nothing springs. */
+  --duration-micro: 140ms;
+  --duration-base: 240ms;
+  --duration-move: 420ms;
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --background: oklch(0.985 0.005 250);
-  --foreground: oklch(0.16 0.02 260);
+  --brand: oklch(0.58 0.19 254);
+  --brand-hover: oklch(0.52 0.19 254);
+  --brand-dim: oklch(0.45 0.15 254);
+  --brand-glow: oklch(0.58 0.19 254 / 22%);
+
+  /* Light gallery — paper ground, ink text */
+  --background: oklch(0.99 0.001 265);
+  --foreground: oklch(0.18 0.008 265);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.16 0.02 260);
+  --card-foreground: oklch(0.18 0.008 265);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.02 260);
-  --primary: oklch(0.16 0.02 260);
+  --popover-foreground: oklch(0.18 0.008 265);
+  --primary: oklch(0.18 0.008 265);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.01 250);
-  --secondary-foreground: oklch(0.22 0.02 260);
-  --muted: oklch(0.955 0.01 250);
-  --muted-foreground: oklch(0.5 0.02 260);
-  --accent: oklch(0.95 0.02 250);
-  --accent-foreground: oklch(0.22 0.02 260);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.015 250);
-  --input: oklch(0.88 0.015 250);
-  --ring: oklch(0.58 0.2 255);
-  --chart-1: oklch(0.7 0.12 220);
-  --chart-2: oklch(0.58 0.2 255);
-  --chart-3: oklch(0.5 0.15 260);
-  --chart-4: oklch(0.45 0.08 250);
-  --chart-5: oklch(0.35 0.04 260);
-  --sidebar: oklch(0.98 0.005 250);
-  --sidebar-foreground: oklch(0.16 0.02 260);
-  --sidebar-primary: oklch(0.58 0.2 255);
+  --secondary: oklch(0.965 0.002 265);
+  --secondary-foreground: oklch(0.24 0.008 265);
+  --muted: oklch(0.965 0.002 265);
+  --muted-foreground: oklch(0.52 0.008 265);
+  --accent: oklch(0.95 0.004 265);
+  --accent-foreground: oklch(0.24 0.008 265);
+  --destructive: oklch(0.58 0.21 27);
+  --border: oklch(0.9 0.004 265);
+  --input: oklch(0.9 0.004 265);
+  --ring: var(--brand);
+  --chart-1: oklch(0.58 0.19 254);
+  --chart-2: oklch(0.68 0.13 220);
+  --chart-3: oklch(0.52 0.1 265);
+  --chart-4: oklch(0.7 0.11 160);
+  --chart-5: oklch(0.62 0.02 265);
+  --sidebar: oklch(0.99 0.001 265);
+  --sidebar-foreground: oklch(0.18 0.008 265);
+  --sidebar-primary: var(--brand);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.95 0.02 250);
-  --sidebar-accent-foreground: oklch(0.22 0.02 260);
-  --sidebar-border: oklch(0.88 0.015 250);
-  --sidebar-ring: oklch(0.58 0.2 255);
+  --sidebar-accent: oklch(0.95 0.004 265);
+  --sidebar-accent-foreground: oklch(0.24 0.008 265);
+  --sidebar-border: oklch(0.9 0.004 265);
+  --sidebar-ring: var(--brand);
 
   --surface: var(--card);
   --surface-raised: var(--secondary);
-  --border-subtle: var(--border);
+  --border-subtle: oklch(0.93 0.004 265);
+
+  /* Gallery-specific: the ground a specimen is mounted on */
+  --plate: oklch(1 0 0);
+  --plate-ground: oklch(0.975 0.002 265);
+  --line: oklch(0.18 0.008 265 / 10%);
+  --line-strong: oklch(0.18 0.008 265 / 20%);
 }
 
 .dark {
-  /* Hero canvas - near black with cool undertone */
-  --brand: oklch(0.62 0.2 255);
-  --brand-hover: oklch(0.72 0.16 230);
-  --brand-dim: oklch(0.5 0.15 260);
-  --brand-glow: oklch(0.62 0.2 255 / 40%);
+  --brand: oklch(0.64 0.18 254);
+  --brand-hover: oklch(0.72 0.15 250);
+  --brand-dim: oklch(0.5 0.16 256);
+  --brand-glow: oklch(0.64 0.18 254 / 26%);
 
-  --background: oklch(0 0 0);
-  --foreground: oklch(0.99 0 0);
-  --card: oklch(0.14 0.015 260);
-  --card-foreground: oklch(0.99 0 0);
-  --popover: oklch(0.14 0.015 260);
-  --popover-foreground: oklch(0.99 0 0);
-  /* Primary CTA = white pill (hero) */
-  --primary: oklch(0.99 0 0);
-  --primary-foreground: oklch(0 0 0);
-  --secondary: oklch(0.22 0.02 260);
-  --secondary-foreground: oklch(0.99 0 0);
-  --muted: oklch(0.18 0.015 260);
-  --muted-foreground: oklch(0.72 0.02 250);
-  --accent: oklch(0.22 0.03 255);
-  --accent-foreground: oklch(0.99 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.62 0.2 255);
-  --chart-1: oklch(0.85 0.07 200);
-  --chart-2: oklch(0.62 0.2 255);
-  --chart-3: oklch(0.55 0.15 260);
-  --chart-4: oklch(0.45 0.08 250);
-  --chart-5: oklch(0.35 0.04 260);
-  --sidebar: oklch(0.08 0.01 260);
-  --sidebar-foreground: oklch(0.99 0 0);
-  --sidebar-primary: oklch(0.62 0.2 255);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.18 0.02 255);
-  --sidebar-accent-foreground: oklch(0.99 0 0);
+  /* Dark gallery — the room lights are down so the work reads */
+  --background: oklch(0.16 0.004 265);
+  --foreground: oklch(0.97 0.002 265);
+  --card: oklch(0.2 0.005 265);
+  --card-foreground: oklch(0.97 0.002 265);
+  --popover: oklch(0.21 0.005 265);
+  --popover-foreground: oklch(0.97 0.002 265);
+  --primary: oklch(0.97 0.002 265);
+  --primary-foreground: oklch(0.16 0.004 265);
+  --secondary: oklch(0.24 0.006 265);
+  --secondary-foreground: oklch(0.97 0.002 265);
+  --muted: oklch(0.23 0.005 265);
+  --muted-foreground: oklch(0.68 0.008 265);
+  --accent: oklch(0.26 0.008 265);
+  --accent-foreground: oklch(0.97 0.002 265);
+  --destructive: oklch(0.66 0.19 25);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: var(--brand);
+  --chart-1: oklch(0.64 0.18 254);
+  --chart-2: oklch(0.75 0.12 215);
+  --chart-3: oklch(0.6 0.12 270);
+  --chart-4: oklch(0.75 0.12 160);
+  --chart-5: oklch(0.6 0.02 265);
+  --sidebar: oklch(0.16 0.004 265);
+  --sidebar-foreground: oklch(0.97 0.002 265);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: oklch(0.16 0.004 265);
+  --sidebar-accent: oklch(0.24 0.006 265);
+  --sidebar-accent-foreground: oklch(0.97 0.002 265);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.62 0.2 255);
+  --sidebar-ring: var(--brand);
 
   --surface: var(--card);
   --surface-raised: var(--secondary);
-  --border-subtle: var(--border);
+  --border-subtle: oklch(1 0 0 / 7%);
+
+  --plate: oklch(0.2 0.005 265);
+  --plate-ground: oklch(0.18 0.004 265);
+  --line: oklch(1 0 0 / 10%);
+  --line-strong: oklch(1 0 0 / 20%);
 }
 
 @layer base {
@@ -178,22 +210,24 @@
   html {
     @apply font-sans;
     overflow-x: clip;
-    scroll-padding-top: 5rem;
-    font-feature-settings: "ss01", "kern";
+    scroll-padding-top: 6rem;
+    font-feature-settings: "kern", "liga", "cv11";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   body {
     @apply bg-background text-foreground;
     overflow-x: clip;
   }
   ::selection {
-    background: color-mix(in oklch, var(--brand) 35%, transparent);
+    background: color-mix(in oklch, var(--brand) 28%, transparent);
     color: var(--foreground);
   }
   :focus-visible {
     outline: 2px solid var(--ring);
-    outline-offset: 3px;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
   h1,
   h2,
@@ -204,307 +238,623 @@
   p {
     text-wrap: pretty;
   }
-  @media (hover: hover) and (pointer: fine) {
-    .ms-cta:hover {
-      filter: brightness(1.05);
-      box-shadow: 0 0 28px var(--brand-glow);
-    }
-  }
 }
 
+/* =============================================================================
+   Typography — the two voices
+   ============================================================================= */
+
 @layer utilities {
-  .ds-display {
-    font-family: var(--font-display);
-    letter-spacing: -0.01em;
-    /* Caveat needs room for ascenders / descenders — tight LH clips glyphs */
-    line-height: 1.25;
+  /* Curatorial voice: editorial serif, optical tightening as size grows. */
+  .spec-display {
+    font-family: var(--font-instrument-serif);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 1.6rem + 5.4vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+  .spec-title {
+    font-family: var(--font-instrument-serif);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+  }
+  .spec-serif-italic {
+    font-family: var(--font-instrument-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  /* Functional voice: grotesque, tight but never condensed. */
+  .spec-heading {
+    font-family: var(--font-geist);
     font-weight: 500;
-    overflow: visible;
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.3;
+    letter-spacing: -0.018em;
+  }
+  .spec-lede {
+    font-family: var(--font-geist);
+    font-weight: 400;
+    font-size: clamp(1rem, 0.96rem + 0.24vw, 1.125rem);
+    line-height: 1.6;
+    letter-spacing: -0.006em;
+    color: var(--muted-foreground);
+  }
+  .spec-body {
+    font-family: var(--font-geist);
+    font-weight: 400;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    letter-spacing: -0.003em;
+  }
+
+  /* Instrument voice: mono micro-labels. Uppercase, wide, quiet. */
+  .spec-label {
+    font-family: var(--font-geist-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    font-feature-settings: "kern";
+  }
+  .spec-num {
+    font-family: var(--font-geist-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    color: color-mix(in oklch, var(--muted-foreground) 70%, transparent);
+  }
+
+  /* ---- Legacy names, new voice -------------------------------------------
+     Registry components still ship these classes. Remapping rather than
+     deleting means the whole catalog inherits Specimen without edits. */
+  .ds-display {
+    font-family: var(--font-instrument-serif);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.028em;
   }
   .ds-display-italic {
-    font-family: var(--font-display);
+    font-family: var(--font-instrument-serif);
     font-style: italic;
-    letter-spacing: -0.01em;
-    font-weight: 500;
-    line-height: 1.25;
-    overflow: visible;
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.028em;
   }
   .ds-headline {
-    font-family: var(--font-heading);
-    letter-spacing: -0.025em;
-    line-height: 1.2;
+    font-family: var(--font-geist);
     font-weight: 500;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
   }
-  /* Explicit sketch voice — brand marks, couplets, chalkboard accents */
   .ds-sketch {
-    font-family: var(--font-sketch);
-    letter-spacing: -0.01em;
-    font-weight: 500;
-    line-height: 1.2;
+    font-family: var(--font-instrument-serif);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
   }
-  /* Quiet Outfit labels that sit under sketch titles */
-  .ds-eyebrow {
-    font-family: var(--font-body);
+  .ds-sketch-accent {
+    font-family: var(--font-instrument-serif);
+    font-style: italic;
+    color: var(--brand);
+  }
+  .ds-eyebrow,
+  .ds-mono-label {
+    font-family: var(--font-geist-mono);
     font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--muted-foreground);
   }
-  /* Supporting copy next to Caveat — regular weight, not ultra-light */
   .ds-lede {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+    font-family: var(--font-geist);
+    font-size: clamp(1rem, 0.96rem + 0.24vw, 1.125rem);
     font-weight: 400;
-    line-height: 1.65;
-    letter-spacing: 0.01em;
+    line-height: 1.6;
+    letter-spacing: -0.006em;
     color: var(--muted-foreground);
   }
   .ds-body {
-    font-family: var(--font-body);
+    font-family: var(--font-geist);
     font-size: 0.9375rem;
     font-weight: 400;
     line-height: 1.65;
-    letter-spacing: 0.005em;
+    letter-spacing: -0.003em;
   }
   .ds-meta {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-family: var(--font-geist);
+    font-size: 0.8125rem;
     font-weight: 400;
     line-height: 1.5;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.002em;
     color: var(--muted-foreground);
   }
-  /* Sidebar / catalog section rails — sketch, bold + brand highlight */
   .ds-nav-section {
-    font-family: var(--font-sketch);
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-    color: color-mix(in oklch, var(--foreground) 70%, var(--brand) 30%);
-    text-shadow: 0 0 18px color-mix(in oklch, var(--brand-glow) 55%, transparent);
-  }
-  .ds-nav-section:hover {
-    color: color-mix(in oklch, var(--foreground) 45%, var(--brand) 55%);
-    text-shadow: 0 0 22px color-mix(in oklch, var(--brand-glow) 70%, transparent);
-  }
-  .ds-mono-label {
-    font-family: var(--font-mono);
+    font-family: var(--font-geist-mono);
     font-size: 0.6875rem;
-    letter-spacing: 0.06em;
+    font-weight: 400;
+    letter-spacing: 0.09em;
+    line-height: 1;
     text-transform: uppercase;
     color: var(--muted-foreground);
   }
   .ds-gradient-text {
-    display: inline-block;
-    /* bg-clip-text + handwriting fonts clip stems/descenders without padding */
-    padding-block: 0.08em 0.18em;
-    line-height: 1.3;
-    vertical-align: baseline;
-    background-image: linear-gradient(
-      90deg,
-      oklch(0.99 0 0),
-      oklch(0.85 0.07 200),
-      oklch(0.62 0.2 255)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
-  /* Prefer this over .ds-gradient-text on Caveat / sketch display — no clip */
-  .ds-sketch-accent {
-    color: color-mix(in oklch, var(--brand-hover) 85%, white);
-    text-shadow: 0 0 18px color-mix(in oklch, var(--brand-glow) 55%, transparent);
+    color: var(--foreground);
   }
   .bam-section-label {
-    font-size: 0.8125rem;
-    font-weight: 500;
+    font-family: var(--font-geist-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
     color: var(--muted-foreground);
   }
-  .bam-link {
+  .bam-link,
+  .ds-hero-nav-link {
     color: var(--foreground);
     text-decoration: underline;
-    text-decoration-color: color-mix(in oklch, var(--brand) 55%, transparent);
-    text-underline-offset: 0.28em;
-    transition: text-decoration-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color var(--duration-micro) var(--ease-out-quint);
   }
   @media (hover: hover) and (pointer: fine) {
-    .bam-link:hover {
+    .bam-link:hover,
+    .ds-hero-nav-link:hover {
       text-decoration-color: var(--brand);
     }
   }
+}
 
-  /* Landing hero nav: small white wavy underline on hover */
-  .ds-hero-nav-link {
-    color: inherit;
-    text-decoration: none;
-    text-underline-offset: 0.32em;
-    text-decoration-thickness: 1.5px;
-    transition:
-      color 180ms cubic-bezier(0.23, 1, 0.32, 1),
-      text-decoration-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+/* =============================================================================
+   The plate — a specimen in a preview card (name under the demo, always)
+   ============================================================================= */
+
+@layer utilities {
+  .plate {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color var(--duration-base) var(--ease-out-quint);
   }
   @media (hover: hover) and (pointer: fine) {
-    .ds-hero-nav-link:hover {
-      color: rgb(255 255 255 / 0.95);
-      text-decoration-line: underline;
-      text-decoration-style: wavy;
-      text-decoration-color: rgb(255 255 255 / 0.9);
+    .plate:hover {
+      border-color: var(--line-strong);
+    }
+  }
+  .plate:focus-within {
+    border-color: var(--brand);
+  }
+
+  /* Where the component actually renders. Isolated so a specimen's own
+     background can differ from the gallery without bleeding out. */
+  .plate-stage {
+    --plate-stage-pad: 1.25rem;
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    height: 16rem;
+    min-height: 16rem;
+    align-items: center;
+    justify-content: center;
+    padding: var(--plate-stage-pad);
+    background: var(--muted);
+    overflow: hidden;
+  }
+  .plate-stage > * {
+    max-width: 100%;
+  }
+  /* Full-bleed specimens (heroes, footers) sit edge to edge and scale down. */
+  .plate-stage-bleed {
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  /* Hover cue that the card opens a preview — name stays in the caption. */
+  .plate-preview {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 2;
+    display: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: color-mix(in oklch, var(--background) 88%, transparent);
+    font-family: var(--font-geist);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .plate-preview {
+      display: block;
+      opacity: 0;
+      transition: opacity var(--duration-micro) var(--ease-out-quint);
+    }
+    .plate:hover .plate-preview,
+    .plate:focus-within .plate-preview {
+      opacity: 1;
+    }
+  }
+  .plate-caption {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    font-family: var(--font-geist);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    color: var(--foreground);
+    border-top: 1px solid var(--line);
+  }
+  .plate-rail {
+    display: none;
+  }
+  .plate-rail-title {
+    font-family: var(--font-geist);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* Holds a specimen so it can be scaled into the tile. Centering both axes
+     means the scale factor lands the specimen flush however tall it is. The
+     transform also becomes the containing block for any fixed chrome inside,
+     which is what keeps sticky headers from escaping to the viewport. */
+  .plate-fit {
+    position: absolute;
+    /* Inset rather than padded so the measured box is exactly the space the
+       specimen may occupy. */
+    inset: var(--plate-stage-pad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .plate-stage-bleed .plate-fit {
+    inset: 0;
+  }
+  .plate-fit-frame {
+    flex: none;
+    transform-origin: center center;
+  }
+  /* Too tall to shrink and stay readable: show the top at legible size and let
+     it fall away, rather than centering and beheading both ends. */
+  .plate-fit-cropped {
+    align-items: flex-start;
+    -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+  }
+  .plate-fit-cropped .plate-fit-frame {
+    transform-origin: top center;
+  }
+}
+
+/* =============================================================================
+   Controls
+   ============================================================================= */
+
+@layer utilities {
+  .spec-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding-inline: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-family: var(--font-geist);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.011em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--duration-micro) var(--ease-out-quint),
+      opacity var(--duration-micro) var(--ease-out-quint);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .spec-btn:hover {
+      opacity: 0.88;
+    }
+  }
+  .spec-btn:active {
+    opacity: 0.78;
+  }
+
+  .spec-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding-inline: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--foreground);
+    font-family: var(--font-geist);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.011em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--duration-micro) var(--ease-out-quint),
+      border-color var(--duration-micro) var(--ease-out-quint);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .spec-btn-ghost:hover {
+      background: var(--muted);
+      border-color: var(--foreground);
     }
   }
 
-  /* Primary CTA — soft rect via --radius (not capsule) */
+  .spec-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 1.875rem;
+    padding-inline: 0.7rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted-foreground);
+    font-family: var(--font-geist-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color var(--duration-micro) var(--ease-out-quint),
+      border-color var(--duration-micro) var(--ease-out-quint),
+      background-color var(--duration-micro) var(--ease-out-quint);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .spec-chip:hover {
+      color: var(--foreground);
+      border-color: var(--line-strong);
+    }
+  }
+  .spec-chip[aria-pressed="true"],
+  .spec-chip[data-active="true"] {
+    color: var(--primary-foreground);
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .spec-field {
+    width: 100%;
+    height: 2.75rem;
+    padding-inline: 2.5rem 0.875rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background: var(--plate);
+    color: var(--foreground);
+    font-family: var(--font-geist);
+    font-size: 0.9375rem;
+    letter-spacing: -0.008em;
+    transition: border-color var(--duration-micro) var(--ease-out-quint);
+  }
+  .spec-field::placeholder {
+    color: var(--muted-foreground);
+  }
+  .spec-field:focus {
+    outline: none;
+    border-color: var(--brand);
+  }
+
+  /* Copyable command. Mono, selectable, no decoration. */
+  .spec-command {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    /* A registry command is longer than a phone is wide. Without this the chip
+       takes its intrinsic width and drags the whole page into horizontal
+       scroll instead of letting the label truncate. */
+    max-width: 100%;
+    min-width: 0;
+    height: 2.5rem;
+    padding-inline: 0.875rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background: var(--muted);
+    color: var(--foreground);
+    font-family: var(--font-geist-mono);
+    font-size: 0.8125rem;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: border-color var(--duration-micro) var(--ease-out-quint);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .spec-command:hover {
+      border-color: var(--line-strong);
+    }
+  }
+
+  /* Hairline rules used to divide gallery sections. */
+  .spec-rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+  .spec-shell {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: max(1.25rem, env(safe-area-inset-left));
+  }
+  @media (min-width: 768px) {
+    .spec-shell {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .spec-shell {
+      padding-inline: 3rem;
+    }
+  }
+
+  /* ---- Legacy control names, new voice ---- */
   .ms-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: var(--radius-lg);
+    height: 2.75rem;
+    padding-inline: 1.25rem;
+    border-radius: var(--radius-md);
     background: var(--primary);
     color: var(--primary-foreground);
+    font-family: var(--font-geist);
     font-size: 0.9375rem;
     font-weight: 500;
-    letter-spacing: -0.01em;
-    padding: 0.85rem 1.6rem;
-    box-shadow: 0 0 20px var(--brand-glow);
-    transition:
-      transform 100ms ease-out,
-      filter 200ms cubic-bezier(0.23, 1, 0.32, 1),
-      box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    letter-spacing: -0.011em;
+    box-shadow: none;
+    transition: opacity var(--duration-micro) var(--ease-out-quint);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .ms-cta:hover {
+      opacity: 0.88;
+    }
   }
   .ms-cta:active {
-    transform: scale(0.97);
+    opacity: 0.78;
   }
-
-  /* Secondary CTA — same radius token */
   .ms-cta-ghost {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid color-mix(in oklch, var(--foreground) 20%, transparent);
-    background: color-mix(in oklch, var(--foreground) 5%, transparent);
+    height: 2.75rem;
+    padding-inline: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--foreground);
+    font-family: var(--font-geist);
     font-size: 0.9375rem;
     font-weight: 500;
-    color: var(--foreground);
-    padding: 0.75rem 1.4rem;
+    letter-spacing: -0.011em;
     transition:
-      background-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
-      border-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+      background-color var(--duration-micro) var(--ease-out-quint),
+      border-color var(--duration-micro) var(--ease-out-quint);
   }
   @media (hover: hover) and (pointer: fine) {
     .ms-cta-ghost:hover {
-      background: color-mix(in oklch, var(--foreground) 10%, transparent);
-      border-color: color-mix(in oklch, var(--foreground) 35%, transparent);
+      background: var(--muted);
+      border-color: var(--foreground);
     }
   }
-
-  .ms-panel {
-    background: color-mix(in oklch, var(--foreground) 4%, transparent);
-    border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
-    border-radius: var(--radius-xl);
-    backdrop-filter: blur(16px);
+  .ms-panel,
+  .md-glass {
+    background: var(--plate);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    backdrop-filter: none;
   }
   .ms-panel-raised {
-    background: color-mix(in oklch, var(--foreground) 6%, transparent);
-    border: 1px solid color-mix(in oklch, var(--foreground) 14%, transparent);
-    border-radius: var(--radius-xl);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 16px 40px -24px color-mix(in oklch, var(--brand) 40%, transparent);
+    background: var(--plate);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    backdrop-filter: none;
+    box-shadow: none;
   }
   .ms-shell-pad {
-    padding-left: max(1.5rem, env(safe-area-inset-left));
-    padding-right: max(1.5rem, env(safe-area-inset-right));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
   }
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     .ms-shell-pad {
       padding-left: max(2rem, env(safe-area-inset-left));
       padding-right: max(2rem, env(safe-area-inset-right));
     }
   }
-
-  /* Soft stamp — sketch handwriting + brand highlight (soft rect, not capsule) */
   .ms-stamp {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    border-radius: var(--radius-md);
-    border: 1px solid color-mix(in oklch, var(--brand) 28%, transparent);
-    background: color-mix(in oklch, var(--brand) 10%, transparent);
-    color: color-mix(in oklch, var(--foreground) 88%, var(--brand) 12%);
-    padding: 0.4rem 0.9rem;
-    font-family: var(--font-sketch);
-    font-size: 1.0625rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    text-transform: none;
-    text-shadow: 0 0 12px color-mix(in oklch, var(--brand-glow) 35%, transparent);
+    gap: 0.5rem;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: var(--muted-foreground);
+    font-family: var(--font-geist-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-shadow: none;
   }
   .ms-stamp::before {
     content: "";
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 0.375rem;
+    height: 0.375rem;
     border-radius: 9999px;
     background: var(--brand);
-    box-shadow: 0 0 8px var(--brand-glow);
+    box-shadow: none;
+    flex-shrink: 0;
   }
   .ms-stamp-brush {
-    border-color: color-mix(in oklch, var(--brand) 35%, transparent);
-    background: color-mix(in oklch, var(--brand) 12%, transparent);
-    color: var(--brand-hover);
+    color: var(--muted-foreground);
   }
   .ms-stamp-brush::before {
     background: var(--brand);
   }
 }
 
+/* =============================================================================
+   Textures and effects — deliberately few
+   ============================================================================= */
+
 @layer utilities {
   .motion-safe-transition {
-    transition-property: transform, opacity, border-color, background-color,
-      color, box-shadow, filter;
-    transition-duration: 220ms;
-    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    transition-property: transform, opacity, border-color, background-color, color;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-out-quint);
   }
   .bg-grain {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     background-size: 240px 240px;
     mix-blend-mode: soft-light;
-    opacity: 0.5;
+    opacity: 0.28;
     pointer-events: none;
   }
   .dark .bg-grain {
     mix-blend-mode: overlay;
-    opacity: 0.35;
+    opacity: 0.2;
   }
   .bg-grid-soft {
     background-image:
-      linear-gradient(
-        to right,
-        color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
-        transparent 1px
-      );
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse at 70% 0%, black 15%, transparent 65%);
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 10%, transparent 70%);
   }
   .bg-dots-soft {
-    background-image: radial-gradient(
-      circle,
-      color-mix(in oklch, var(--foreground) 12%, transparent) 1px,
-      transparent 1px
-    );
-    background-size: 18px 18px;
+    background-image: radial-gradient(circle, var(--line-strong) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
   .bg-hero-fade-bottom {
-    mask-image: linear-gradient(to bottom, black 40%, transparent);
+    mask-image: linear-gradient(to bottom, black 55%, transparent);
   }
   .ds-signature-mark {
     position: relative;
@@ -513,32 +863,17 @@
   .ds-signature-mark::after {
     content: "";
     position: absolute;
-    left: 2%;
-    right: 2%;
-    bottom: -0.06em;
-    height: 0.1em;
+    left: 0;
+    right: 0;
+    bottom: -0.04em;
+    height: 1px;
     background: var(--brand);
-    opacity: 0.65;
-    border-radius: 999px;
-    transform: skewX(-8deg);
   }
-  .ds-elev-card {
-    box-shadow:
-      0 1px 0 0 color-mix(in oklch, var(--foreground) 4%, transparent) inset,
-      0 12px 32px -20px color-mix(in oklch, var(--brand) 25%, transparent);
-  }
-  .ds-elev-pop {
-    box-shadow:
-      0 1px 0 0 color-mix(in oklch, var(--foreground) 5%, transparent) inset,
-      0 20px 48px -24px color-mix(in oklch, var(--brand) 35%, transparent);
-  }
+  /* Elevation is a hairline, not a shadow. */
+  .ds-elev-card,
+  .ds-elev-pop,
   .ds-ring-soft {
-    box-shadow: 0 0 0 1px var(--border-subtle);
-  }
-  .md-glass {
-    background: color-mix(in oklch, var(--background) 88%, var(--foreground));
-    border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
-    border-radius: var(--radius-xl);
+    box-shadow: 0 0 0 1px var(--line);
   }
 }
 
@@ -554,21 +889,19 @@
   background: linear-gradient(
     90deg,
     var(--muted) 25%,
-    color-mix(in oklch, var(--muted-foreground) 18%, var(--muted)) 50%,
+    color-mix(in oklch, var(--muted-foreground) 16%, var(--muted)) 50%,
     var(--muted) 75%
   );
   background-size: 200% 100%;
   animation: og-shimmer 1.4s ease-in-out infinite;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .motion-safe-transition {
     transition-duration: 0.01ms;
   }
   .og-preview-shimmer {
     animation: none;
-  }
-  .ms-cta:active {
-    transform: none;
   }
 }
 
@@ -581,7 +914,7 @@
   transform: translateY(8px);
 }
 .atro-reveal-in {
-  animation: atro-reveal 560ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: atro-reveal 560ms var(--ease-out-quint) forwards;
 }
 @keyframes atro-reveal {
   to {
@@ -594,9 +927,9 @@
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: color-mix(in oklab, var(--background) 55%, transparent);
-  backdrop-filter: blur(6px) saturate(1.1);
-  -webkit-backdrop-filter: blur(6px) saturate(1.1);
+  background: color-mix(in oklab, var(--background) 60%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   animation: atro-cmdk-fade 120ms ease-out;
 }
 [cmdk-dialog] {
@@ -606,21 +939,14 @@
   transform: translateX(-50%);
   z-index: 61;
   width: calc(100% - 32px);
-  max-width: 520px;
-  background: var(--popover, var(--card));
-  color: var(--popover-foreground, var(--card-foreground));
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  box-shadow:
-    0 1px 0 color-mix(in oklab, var(--foreground) 5%, transparent) inset,
-    0 10px 32px -12px color-mix(in oklab, black 30%, transparent);
+  max-width: 560px;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: none;
   overflow: hidden;
-  animation: atro-cmdk-rise 160ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.dark [cmdk-dialog] {
-  box-shadow:
-    0 1px 0 color-mix(in oklab, white 4%, transparent) inset,
-    0 20px 40px -16px rgba(0, 0, 0, 0.6);
+  animation: atro-cmdk-rise 160ms var(--ease-out-quint);
 }
 [cmdk-dialog]:focus-visible,
 [cmdk-dialog]:focus {
@@ -649,8 +975,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
 }
 .cmdk-input {
   flex: 1;
@@ -658,6 +984,7 @@
   border: 0;
   outline: none;
   color: var(--foreground);
+  font-family: var(--font-geist);
   font-size: 14px;
   line-height: 1.4;
   padding: 4px 0;
@@ -669,7 +996,7 @@
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 10.5px;
   color: var(--muted-foreground);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--line);
   background: var(--muted);
   border-radius: 4px;
   padding: 1px 5px;
@@ -680,13 +1007,13 @@
   overflow-y: auto;
   padding: 6px;
   scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: var(--line-strong) transparent;
 }
 .cmdk-list::-webkit-scrollbar {
   width: 8px;
 }
 .cmdk-list::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--line-strong);
   border-radius: 4px;
 }
 
@@ -701,16 +1028,16 @@
   padding: 4px 0;
 }
 .cmdk-group + .cmdk-group {
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--line);
   margin-top: 4px;
   padding-top: 8px;
 }
 .cmdk-group [cmdk-group-heading] {
-  padding: 4px 10px;
+  padding: 6px 10px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 10.5px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   color: var(--muted-foreground);
 }
 
@@ -718,8 +1045,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 10px;
-  border-radius: 6px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
   font-size: 13.5px;
   color: var(--foreground);
   cursor: pointer;

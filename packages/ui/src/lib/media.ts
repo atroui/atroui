@@ -35,7 +35,29 @@ function svgDataUrl(svg: string): string {
   return `data:image/svg+xml,${encodeURIComponent(svg)}`
 }
 
-export const MEDIA = {
+export type OgExampleSlug =
+  | "blog-post-cover"
+  | "product-launch"
+  | "newsletter-issue"
+  | "podcast-episode"
+  | "changelog-release"
+  | "indie-revenue-update"
+  | "open-source-banner"
+  | "webinar-event-promo"
+
+/**
+ * Annotated explicitly rather than inferred: `StaticImageData` comes from
+ * `next/image`, and an inferred shape cannot be named in the emitted
+ * declarations from a consumer's `node_modules` layout.
+ */
+type MediaManifest = {
+  readonly founderPortrait: StaticImageData
+  readonly badge: { readonly atroui: string; readonly makershot: string }
+  readonly brand: { readonly mark: string; readonly markApp: string }
+  readonly examples: Readonly<Record<OgExampleSlug, StaticImageData>>
+}
+
+export const MEDIA: MediaManifest = {
   founderPortrait,
   badge: {
     atroui: svgDataUrl(ATROUI_BADGE_SVG),
@@ -56,6 +78,4 @@ export const MEDIA = {
     "open-source-banner": openSourceBanner,
     "webinar-event-promo": webinarEventPromo,
   },
-} as const
-
-export type OgExampleSlug = keyof typeof MEDIA.examples
+}
