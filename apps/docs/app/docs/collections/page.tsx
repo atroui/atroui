@@ -19,8 +19,9 @@ export default function CollectionsIndexPage() {
         title="Collections"
         description={
           <>
-            Four jobs people actually search for. Each hub links to owned registry
-            blocks — not a thousand thin keyword pages.
+            Four jobs for indie Next.js: forms + Host APIs, OG images, launch
+            workflow, dark marketing sections. Depth in the niche — not a dump of
+            every atom.
           </>
         }
       />

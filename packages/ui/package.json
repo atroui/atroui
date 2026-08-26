@@ -1,7 +1,7 @@
 {
   "name": "atroui",
   "version": "0.4.2",
-  "description": "Dark-first React/Next.js catalog via npx shadcn add @atroui/…. Own the files. Optional Host APIs (BYOK). Tailwind v4. Not hosted AI. https://www.atroui.com",
+  "description": "Dark-first landing sections + Host APIs for indie Next.js via npx shadcn add @atroui/…. Own the files. BYOK. Tailwind v4. Not a primitives peer kit. https://www.atroui.com",
   "license": "MIT",
   "homepage": "https://www.atroui.com",
   "repository": {

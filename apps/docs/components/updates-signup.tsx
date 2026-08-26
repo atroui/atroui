@@ -26,7 +26,7 @@ export function UpdatesSignup({
         source={source}
         submitLabel="Get updates"
         successMessage="You're on the list. We'll write when something major ships."
-        placeholder="you@studio.com"
+        placeholder="you@example.com"
       />
     </div>
   )

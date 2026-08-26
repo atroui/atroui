@@ -2,4 +2,4 @@
 "atroui": patch
 ---
 
-HomeHero accepts optional `content` so hosts can demote studio CTAs without forking the block.
+HomeHero optional `content` (demote studio CTAs / hide founder on hosts). npm description names the landing-section niche + Host APIs.

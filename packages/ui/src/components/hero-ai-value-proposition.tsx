@@ -317,20 +317,22 @@ export function HeroAiValueProposition({
               </Link>
             </TimelineAnimation>
 
-            <TimelineAnimation
-              once
-              animationNum={5}
-              timelineRef={timelineRef}
-              className="flex w-full max-w-xl items-center justify-center gap-3 sm:max-w-none"
-            >
-              <FounderAvatar size="sm" />
-              <div className="text-left text-sm leading-tight">
-                <p className="font-medium text-foreground">
-                  {content.founderName}
-                </p>
-                <p className="text-muted-foreground">{content.founderRole}</p>
-              </div>
-            </TimelineAnimation>
+            {content.founderName ? (
+              <TimelineAnimation
+                once
+                animationNum={5}
+                timelineRef={timelineRef}
+                className="flex w-full max-w-xl items-center justify-center gap-3 sm:max-w-none"
+              >
+                <FounderAvatar size="sm" />
+                <div className="text-left text-sm leading-tight">
+                  <p className="font-medium text-foreground">
+                    {content.founderName}
+                  </p>
+                  <p className="text-muted-foreground">{content.founderRole}</p>
+                </div>
+              </TimelineAnimation>
+            ) : null}
           </div>
         </div>
       </div>

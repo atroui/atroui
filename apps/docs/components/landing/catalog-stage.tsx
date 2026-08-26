@@ -23,9 +23,12 @@ import {
 } from "atroui"
 import { cn } from "@/lib/utils"
 import { easeOutSoft, panelTween } from "@/lib/motion"
-
-const shell =
-  "mx-auto w-full max-w-7xl px-4 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-20 lg:py-20 xl:px-24"
+import {
+  LandingModuleHeader,
+  LandingPanel,
+  LandingPanelToolbar,
+  LandingSection,
+} from "@/components/landing/module"
 
 /** AtroUI.com product chrome — not the studio default CONTENT. */
 const LANDING_HERO_CONTENT: Partial<HomeHeroContent> = {
@@ -37,8 +40,8 @@ const LANDING_HERO_CONTENT: Partial<HomeHeroContent> = {
     "Copy production blocks into your repo with the shadcn CLI. Host APIs for forms and tools — keys stay in your env.",
   primaryCta: { label: "Browse components", href: "/docs/components" },
   secondaryCta: { label: "Host APIs", href: "/docs/host-api" },
-  founderName: "AtroUI",
-  founderRole: "Registry sample — change after shadcn add",
+  founderName: "",
+  founderRole: "",
   sprintTitle: "Install path",
   sprintDay: "2 steps",
   sprintDays: [
@@ -213,85 +216,80 @@ export function CatalogStage() {
   }
 
   return (
-    <section
-      className="border-t border-white/10"
-      aria-labelledby="catalog-stage-title"
-    >
-      <div className={shell}>
-        <div className="flex flex-col gap-8 sm:gap-10">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-xl">
-              <p className="ms-stamp">Live</p>
-              <h2
-                id="catalog-stage-title"
-                className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl"
-              >
-                From the <span className="ds-sketch-accent">registry</span>
-              </h2>
-              <p className="ds-lede mt-3 max-w-md text-neutral-400 sm:mt-4">
-                Real exports{" "}
-                <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
-                  shadcn add @atroui/…
-                </code>{" "}
-                writes into your repo. Host APIs stay on your keys.
-              </p>
-            </div>
-            <Link
-              href="/docs/components"
-              className="ds-hero-nav-link shrink-0 self-start sm:self-auto"
-            >
+    <LandingSection labelledBy="catalog-stage-title">
+      <div className="flex flex-col gap-8 sm:gap-10">
+        <LandingModuleHeader
+          stamp="Live"
+          titleId="catalog-stage-title"
+          title={
+            <>
+              From the <span className="ds-sketch-accent">registry</span>
+            </>
+          }
+          lede={
+            <>
+              Real exports{" "}
+              <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
+                shadcn add @atroui/…
+              </code>{" "}
+              writes into your repo. Host APIs stay on your keys.
+            </>
+          }
+          action={
+            <Link href="/docs/components" className="ds-hero-nav-link">
               View all components →
             </Link>
-          </div>
+          }
+        />
 
-          <div
-            ref={tablistRef}
-            role="tablist"
-            aria-label="Component previews"
-            onKeyDown={onTabListKeyDown}
-            className="flex gap-1 overflow-x-auto overscroll-x-contain pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {CATALOG.map((item) => {
-              const selected = item.id === activeId
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  id={`catalog-tab-${item.id}`}
-                  aria-selected={selected}
-                  aria-controls="catalog-stage-panel"
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActiveId(item.id)}
-                  className={cn(
-                    "relative shrink-0 rounded-lg px-3.5 py-2 text-[13px] font-medium transition-colors",
-                    selected
-                      ? "text-white"
-                      : "text-white/45 hover:text-white/80"
-                  )}
-                >
-                  {selected && !reduce ? (
-                    <motion.span
-                      layoutId="catalog-tab-pill"
-                      className="absolute inset-0 rounded-lg border border-white/12 bg-white/6"
-                      transition={panelTween}
-                    />
-                  ) : selected ? (
-                    <span className="absolute inset-0 rounded-lg border border-white/12 bg-white/6" />
-                  ) : null}
-                  <span className="relative z-10">{item.label}</span>
-                </button>
-              )
-            })}
-          </div>
+        <div
+          ref={tablistRef}
+          role="tablist"
+          aria-label="Component previews"
+          onKeyDown={onTabListKeyDown}
+          className="flex gap-1 overflow-x-auto overscroll-x-contain pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {CATALOG.map((item) => {
+            const selected = item.id === activeId
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                id={`catalog-tab-${item.id}`}
+                aria-selected={selected}
+                aria-controls="catalog-stage-panel"
+                tabIndex={selected ? 0 : -1}
+                onClick={() => setActiveId(item.id)}
+                className={cn(
+                  "relative shrink-0 rounded-lg px-3.5 py-2 text-[13px] font-medium transition-colors",
+                  selected
+                    ? "text-white"
+                    : "text-white/45 hover:text-white/80"
+                )}
+              >
+                {selected && !reduce ? (
+                  <motion.span
+                    layoutId="catalog-tab-pill"
+                    className="absolute inset-0 rounded-lg border border-white/12 bg-white/6"
+                    transition={panelTween}
+                  />
+                ) : selected ? (
+                  <span className="absolute inset-0 rounded-lg border border-white/12 bg-white/6" />
+                ) : null}
+                <span className="relative z-10">{item.label}</span>
+              </button>
+            )
+          })}
+        </div>
 
+        <LandingPanel>
           <div
             id="catalog-stage-panel"
             role="tabpanel"
             aria-labelledby={`catalog-tab-${active.id}`}
-            className="overflow-hidden rounded-xl border border-white/10 bg-white/2"
           >
-            <div className="flex min-w-0 flex-col gap-3 border-b border-white/10 px-3 py-2.5 sm:flex-row sm:items-center sm:gap-4 sm:px-4">
+            <LandingPanelToolbar>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                   <span className="font-mono text-[12px] text-[color:var(--ds-cyan,#92dbe0)]">
@@ -321,7 +319,7 @@ export function CatalogStage() {
                   Docs
                 </Link>
               </div>
-            </div>
+            </LandingPanelToolbar>
 
             <div
               ref={viewportRef}
@@ -354,8 +352,8 @@ export function CatalogStage() {
               </AnimatePresence>
             </div>
           </div>
-        </div>
+        </LandingPanel>
       </div>
-    </section>
+    </LandingSection>
   )
 }

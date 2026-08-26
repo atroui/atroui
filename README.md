@@ -1,6 +1,6 @@
 # AtroUI
 
-Dark-first React / Next.js catalog on the **official shadcn registry**. MIT. You own the copied files.
+Dark-first **landing sections** and Host APIs for indie Next.js — on the **official shadcn registry**. MIT. You own the copied files. Not a 50-primitive peer to shadcn/ui.
 
 ```bash
 npx shadcn@latest add @atroui/home-hero
@@ -10,7 +10,7 @@ Public namespace `@atroui` — listed in [shadcn registries.json](https://ui.sha
 
 Optional **Host APIs** (`npm i atroui` + `transpilePackages`): contact, waitlist, newsletter, OG, thumbnail, scope. **BYOK** (SMTP/Resend, Hugging Face/Gemini/xAI). AtroUI never holds your keys and does not run paid AI on atroui.com. Missing keys → `503` on your app.
 
-Docs: [atroui.com](https://www.atroui.com) · [Installation](https://www.atroui.com/docs/installation) · [Host APIs](https://www.atroui.com/docs/host-api) · [Compare](https://www.atroui.com/docs/compare) · [Registry](https://www.atroui.com/docs/registry)
+Docs: [atroui.com](https://www.atroui.com) · [Installation](https://www.atroui.com/docs/installation) · [Host APIs](https://www.atroui.com/docs/host-api) · [Compare](https://www.atroui.com/docs/compare) · [Collections](https://www.atroui.com/docs/collections) · [Registry](https://www.atroui.com/docs/registry)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![CI](https://github.com/atroui/atroui/actions/workflows/ci.yml/badge.svg)](https://github.com/atroui/atroui/actions/workflows/ci.yml)
@@ -18,10 +18,10 @@ Docs: [atroui.com](https://www.atroui.com) · [Installation](https://www.atroui.
 ## Features
 
 - **Registry (own the files)** - `npx shadcn add @atroui/…` copies source into your repo
-- **Dark-first sections** - heroes, chrome, CTAs with editable `CONTENT`
-- **Primitives** - Button, logo, theme toggle
-- **Tools** - OG workspace, thumbnail, scope (Host APIs, BYOK)
+- **Dark landing sections** - heroes, chrome, CTAs with editable `CONTENT`
+- **Host API forms & tools** - contact, waitlist, OG, thumbnail, scope (BYOK)
 - **Headless** - analytics, JSON-LD, reviews helpers
+- **A few primitives** - Button, logo, theme toggle (supporting, not the pitch)
 
 ## Install
 

@@ -32,11 +32,15 @@ export default function ComparePage() {
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           A{" "}
           <strong className="font-medium text-foreground">
-            production component catalog
+            landing-section catalog
           </strong>{" "}
-          for React / Next.js, delivered the shadcn way: dark-first sections,
-          site chrome, and optional Host API tools that expect your own
-          backends. You add components with the CLI; source lives in your repo.
+          for indie React / Next.js founders: dark-first heroes, site chrome,
+          forms, and optional Host API tools — delivered the shadcn way. You add
+          with the CLI; source lives in your repo. It is{" "}
+          <strong className="font-medium text-foreground">
+            not
+          </strong>{" "}
+          a full app-primitive kit (dialogs, tables, command palettes).
         </p>
       </section>
 
@@ -105,16 +109,16 @@ export default function ComparePage() {
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">When to pick which</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Prefer a blank-slate kit if you want every primitive from scratch.
-          Prefer AtroUI when you want a ready dark catalog with the same
-          copy-into-repo workflow. Start at the{" "}
+          Prefer a blank-slate primitive kit if you want every atom from scratch.
+          Prefer AtroUI when you want dark landing sections + Host APIs with the
+          same copy-into-repo workflow. Start at the{" "}
           <Link href="/docs/registry" className="bam-link">
             registry
+          </Link>{" "}
+          or browse by job in{" "}
+          <Link href="/docs/collections" className="bam-link">
+            Collections
           </Link>
-          . Home:{" "}
-          <a href="https://www.atroui.com" className="bam-link">
-            www.atroui.com
-          </a>
           .
         </p>
       </section>

@@ -19,11 +19,15 @@ export default function DocsIntroPage() {
         title="Introduction"
         description={
           <>
-            AtroUI is the React / Next.js component catalog at{" "}
+            AtroUI is a dark-first catalog of{" "}
+            <strong className="font-medium text-foreground">
+              production landing sections
+            </strong>{" "}
+            and optional Host APIs for indie Next.js — delivered on the shadcn
+            registry at{" "}
             <strong className="font-medium text-foreground">atroui.com</strong>.
-            Dark-first design system: black canvas, electric blue brand, glass
-            surfaces, and rounded CTAs. You install it like shadcn/ui - the CLI
-            copies source into your project.
+            Not a 50-primitive peer to shadcn/ui. The CLI copies source into your
+            project; you own the files.
           </>
         }
       />

@@ -225,7 +225,8 @@ export function PresenceHero() {
             </h1>
 
             <p className="mt-5 max-w-[36ch] text-[1.05rem] leading-relaxed text-neutral-400 sm:mt-6 sm:text-lg">
-              Files land in your repo. Keys stay in yours.
+              Dark landing sections for indie Next.js. Files in your repo. Keys
+              stay in yours.
             </p>
 
             <LiveInstall className="mt-9 w-full sm:mt-10" />

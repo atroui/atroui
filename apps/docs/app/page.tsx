@@ -7,7 +7,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "AtroUI - Own the UI. Borrow the API.",
   description:
-    "AtroUI is an MIT-licensed React and Next.js component catalog. Copy dark-first sections into your repo with the shadcn CLI, plus Host APIs for forms and AI tools. Your keys stay in your env. atroui.com",
+    "Dark-first landing sections and Host APIs for indie Next.js — on the shadcn registry. Copy into your repo. BYOK. MIT. atroui.com",
   path: "/",
 })
 
