@@ -21,8 +21,10 @@ export function DraftingSquare() {
     const v = root.querySelector<HTMLElement>(".wf-tsquare-v")
     if (!frame || frame.hasAttribute("data-wide") || !h || !v) return
 
-    const desktop = window.matchMedia("(min-width: 960px)")
+    const desktop = window.matchMedia("(min-width: 640px)")
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)")
+    const studio = () =>
+      document.documentElement.hasAttribute("data-wf-studio") || desktop.matches
 
     let x = 0
     let y = 0
@@ -45,7 +47,7 @@ export function DraftingSquare() {
     }
 
     const onMove = (event: PointerEvent) => {
-      if (!desktop.matches || !fine.matches) {
+      if (!studio() || !fine.matches) {
         hide()
         return
       }
@@ -67,7 +69,7 @@ export function DraftingSquare() {
     }
 
     const onMedia = () => {
-      if (!desktop.matches || !fine.matches) hide()
+      if (!studio() || !fine.matches) hide()
     }
 
     window.addEventListener("pointermove", onMove, { passive: true })

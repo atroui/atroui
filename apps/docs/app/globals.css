@@ -1136,12 +1136,16 @@ html {
   }
 }
 
-/* Phone / small tablet: 456px reading column, Home pill, no board. */
-@media (max-width: 959px) {
-  .wf-frame:not([data-wide]) .wf-left {
-    display: none;
-  }
+/* Landing defaults to phone chrome. Studio rails opt in at 640px so a
+   missed media query cannot stack the library header on the Home pill. */
+.wf-frame:not([data-wide]) .wf-left,
+.wf-frame:not([data-wide]) .wf-left-mobile,
+.wf-frame:not([data-wide]) .wf-board-fx {
+  display: none;
+}
 
+/* Phone: Home pill, no board. */
+@media (max-width: 639px) {
   .wf-frame:not([data-wide]) .wf-center {
     padding: 1.5rem max(1.25rem, env(safe-area-inset-right))
       max(5rem, calc(4rem + env(safe-area-inset-bottom)))
@@ -1221,7 +1225,7 @@ html {
   }
 }
 
-@media (max-width: 959px) and (max-height: 500px) {
+@media (max-width: 639px) and (max-height: 500px) {
   .wf-frame:not([data-wide]) .wf-landing-pill {
     margin-bottom: 16px;
   }
@@ -1250,8 +1254,19 @@ html {
   }
 }
 
-@media (min-width: 960px) {
-  .wf-landing-pill {
+html[data-wf-studio] .wf-names {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+html[data-wf-studio] .wf-frame:not([data-wide]) .wf-center > .wf-landing-pill,
+html[data-wf-studio] .wf-frame:not([data-wide]) .wf-center > .wf-greet,
+html[data-wf-studio] .wf-frame:not([data-wide]) .wf-center > .wf-home {
+  max-width: none;
+  margin-inline: 0;
+}
+
+html[data-wf-studio] {
+  .wf-frame:not([data-wide]) .wf-landing-pill {
     display: none;
   }
 
@@ -1262,10 +1277,7 @@ html {
   .wf-frame:not([data-wide]) {
     --wf-grid: color-mix(in srgb, var(--color-text-dark) 24%, transparent);
     position: relative;
-    grid-template-columns: minmax(0.5rem, 1fr) 11.5rem 32.5rem 9.5rem minmax(
-        0.5rem,
-        1fr
-      );
+    grid-template-columns: 0 10.5rem minmax(0, 1fr) 8.5rem 0;
     column-gap: 0;
     justify-content: stretch;
     border-top: 1px solid var(--wf-grid);
@@ -1290,7 +1302,7 @@ html {
     flex-direction: column;
     align-items: flex-start;
     height: 100svh;
-    padding: 0 20px 28px;
+    padding: 0 16px 24px;
     border-bottom: 0;
     border-left: 1px solid var(--wf-grid);
     border-right: 1px solid var(--wf-grid);
@@ -1319,7 +1331,7 @@ html {
 
   .wf-frame:not([data-wide]) .wf-center {
     grid-column: 3;
-    padding: 88px 32px 96px;
+    padding: 64px 20px 80px;
     border-right: 1px solid var(--wf-grid);
   }
 
@@ -1349,7 +1361,7 @@ html {
     flex-direction: column;
     align-items: flex-end;
     height: 100svh;
-    padding: 88px 20px 28px;
+    padding: 64px 12px 24px;
     border-right: 1px solid var(--wf-grid);
     text-align: right;
   }
@@ -1500,17 +1512,35 @@ html {
   }
 }
 
+@media (min-width: 960px) {
+  html[data-wf-studio] .wf-frame:not([data-wide]) {
+    grid-template-columns: minmax(0.5rem, 1fr) 11.5rem 32.5rem 9.5rem minmax(
+        0.5rem,
+        1fr
+      );
+  }
+  html[data-wf-studio] .wf-frame:not([data-wide]) .wf-left {
+    padding: 0 20px 28px;
+  }
+  html[data-wf-studio] .wf-frame:not([data-wide]) .wf-center {
+    padding: 88px 32px 96px;
+  }
+  html[data-wf-studio] .wf-frame:not([data-wide]) .wf-right {
+    padding: 88px 20px 28px;
+  }
+}
+
 @media (min-width: 1200px) {
-  .wf-frame:not([data-wide]) {
+  html[data-wf-studio] .wf-frame:not([data-wide]) {
     grid-template-columns: minmax(1.25rem, 1fr) 15.25rem 32.5rem 15.25rem minmax(
         1.25rem,
         1fr
       );
   }
-  .wf-frame:not([data-wide]) .wf-left {
+  html[data-wf-studio] .wf-frame:not([data-wide]) .wf-left {
     padding: 0 28px 28px;
   }
-  .wf-frame:not([data-wide]) .wf-right {
+  html[data-wf-studio] .wf-frame:not([data-wide]) .wf-right {
     padding: 88px 28px 28px;
   }
 }

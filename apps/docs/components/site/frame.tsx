@@ -16,6 +16,7 @@ import {
 import { SharedBrand, TransitionLink } from "@/components/view-transitions"
 import { catalogCount, FAMILY_PARAM } from "@/lib/catalog"
 import { activeNavId, primaryNav } from "@/lib/primary-nav"
+import { studioGreeting, syncStudioViewport } from "@/lib/studio-viewport"
 import { cn } from "@/lib/utils"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
@@ -74,16 +75,14 @@ function StudioGreeting() {
   }, [])
 
   const hour = now?.getHours() ?? 15
-  const greet =
-    hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening"
+  const { greet, evening } = studioGreeting(hour)
   const time = now
     ? now.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
     : ""
-  const evening = hour >= 18
 
   return (
     <p className="wf-greet" suppressHydrationWarning>
-        {evening ? (
+      {evening ? (
         <Moon className="size-3" aria-hidden />
       ) : (
         <Sun className="size-3" aria-hidden />
@@ -144,7 +143,7 @@ function SiteMenu({ variant = "icon" }: { variant?: "icon" | "pill" }) {
         side="left"
         label="Site menu"
         trapFocus
-        className={variant === "pill" ? "min-[960px]:hidden" : "min-[1200px]:hidden"}
+        className={variant === "pill" ? "min-[640px]:hidden" : "min-[1200px]:hidden"}
         panelClassName="w-[min(18rem,calc(100vw-2.5rem))] border-[var(--line)] bg-background p-5 pt-[max(1.25rem,env(safe-area-inset-top))]"
       >
         <div className="mb-6 flex items-center justify-between">
@@ -249,6 +248,12 @@ function FrameInner({ children }: { children: React.ReactNode }) {
     pathname.startsWith("/updates") ||
     pathname.startsWith("/og") ||
     pathname.startsWith("/planner")
+
+  React.useLayoutEffect(() => {
+    syncStudioViewport()
+    window.addEventListener("resize", syncStudioViewport)
+    return () => window.removeEventListener("resize", syncStudioViewport)
+  }, [])
 
   return (
     <div

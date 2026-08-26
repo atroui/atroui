@@ -2,8 +2,10 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Script from "next/script"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteFrame } from "@/components/site/frame"
+import { STUDIO_VIEWPORT_SCRIPT } from "@/lib/studio-viewport"
 import "atroui/globals.css"
 import "./globals.css"
 
@@ -124,6 +126,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Script
+        id="wf-studio-viewport"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: STUDIO_VIEWPORT_SCRIPT }}
+      />
       <body
         className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}
       >
