@@ -110,7 +110,7 @@ function SiteMenu() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="inline-flex size-8 items-center justify-center text-foreground"
+        className="inline-flex size-11 items-center justify-center text-foreground"
       >
         {open ? <X className="size-4" /> : <Menu className="size-4" />}
       </button>
@@ -152,7 +152,7 @@ function SiteMenu() {
 function LeftRail({ active }: { active: ReturnType<typeof activeNavId> }) {
   return (
     <header className="wf-left" style={{ viewTransitionName: "site-header" }}>
-      <div className="flex items-center gap-2 min-[1200px]:block">
+      <div className="flex w-full items-center gap-2 min-[1200px]:block">
         <SiteMenu />
         <SharedBrand>
           <TransitionLink href="/" aria-label="AtroUI home" className="wf-mark">
@@ -164,14 +164,14 @@ function LeftRail({ active }: { active: ReturnType<typeof activeNavId> }) {
             href="/docs"
             transitionTypes={[]}
             className={cn(
-              "text-[13px] text-muted-foreground",
+              "inline-flex h-11 items-center text-[13px] text-muted-foreground",
               active === "docs" && "font-medium text-foreground"
             )}
           >
             Docs
           </TransitionLink>
           <CommandMenu compact />
-          <ThemeToggleIcon />
+          <ThemeToggleIcon className="size-11" />
         </div>
       </div>
 

@@ -162,7 +162,7 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           aria-label="Search documentation"
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="inline-flex size-8 items-center justify-center rounded-[var(--radius-sm)] border border-[var(--line)] text-foreground"
+          className="inline-flex size-11 items-center justify-center rounded-[var(--radius-sm)] border border-[var(--line)] text-foreground"
         >
           <Search className="size-4" aria-hidden />
         </button>

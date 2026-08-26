@@ -292,9 +292,9 @@ html {
   position: sticky;
   top: 0;
   z-index: 30;
-  height: 3rem;
-  padding: 0 1rem;
-  padding-top: env(safe-area-inset-top);
+  height: calc(3rem + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) max(1rem, env(safe-area-inset-right)) 0
+    max(1rem, env(safe-area-inset-left));
   background: var(--color-surface-base);
   border-bottom: 1px solid var(--color-border-subtle);
 }
@@ -815,6 +815,8 @@ html {
 /* =============================================================================
    Landing only — measured against wireframe.co at 1440×900
    Center 456px, greet at 120px, 24px type gaps, 40px CTA, 8px radius.
+   Below 1200 the same 456px reading measure is kept, centered under the
+   sticky bar. Absolute swatches + lede min-height stay desktop-only.
    Other routes keep the wider data-wide frame.
    ============================================================================= */
 
@@ -824,26 +826,25 @@ html {
 
 .wf-home .wf-claim {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .wf-home .wf-swatches {
-  position: absolute;
-  left: 0;
-  top: -18px;
-  margin: 0;
+  display: flex;
+  position: static;
+  width: max-content;
+  margin: 0 0 12px;
   gap: 6px;
 }
 
 .wf-home .wf-lede {
   margin: 0;
   max-width: none;
-  min-height: 120px;
   color: var(--color-text-secondary);
 }
 
 .wf-home .wf-cta-row {
-  margin-top: 40px;
+  margin-top: 28px;
   gap: 12px;
 }
 
@@ -890,7 +891,7 @@ html {
 }
 
 .wf-home .wf-rule {
-  margin: 40px 0;
+  margin: 32px 0;
 }
 
 .wf-home .wf-row {
@@ -903,6 +904,60 @@ html {
   width: 28px;
   height: 28px;
   border-radius: 8px;
+}
+
+.wf-home .wf-statement-foot {
+  flex-wrap: wrap;
+}
+
+/* Phone / tablet: same 456px reading column as desktop, centered under the bar. */
+@media (max-width: 1199px) {
+  .wf-frame:not([data-wide]) .wf-center {
+    padding: 1.5rem max(1.25rem, env(safe-area-inset-right))
+      max(5rem, calc(4rem + env(safe-area-inset-bottom)))
+      max(1.25rem, env(safe-area-inset-left));
+  }
+
+  .wf-frame:not([data-wide]) .wf-center > .wf-greet,
+  .wf-frame:not([data-wide]) .wf-center > .wf-home {
+    max-width: 28.5rem;
+    margin-inline: auto;
+  }
+
+  .wf-frame:not([data-wide]) .wf-greet {
+    margin-bottom: 16px;
+  }
+
+  .wf-home .wf-names a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1199px) {
+  .wf-home .wf-names {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 639px) {
+  .wf-home .wf-claim {
+    margin-bottom: 16px;
+  }
+
+  .wf-home .wf-section-label {
+    margin: 0 0 16px;
+  }
+
+  .wf-home .wf-rule {
+    margin: 28px 0;
+  }
+
+  .wf-home-btn,
+  .wf-home .wf-cta-text {
+    height: 44px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -953,6 +1008,29 @@ html {
 
   .wf-frame:not([data-wide]) .wf-mode {
     margin-top: 16px;
+  }
+
+  .wf-home .wf-claim {
+    margin-bottom: 24px;
+  }
+
+  .wf-home .wf-swatches {
+    position: absolute;
+    left: 0;
+    top: -18px;
+    margin: 0;
+  }
+
+  .wf-home .wf-lede {
+    min-height: 120px;
+  }
+
+  .wf-home .wf-cta-row {
+    margin-top: 40px;
+  }
+
+  .wf-home .wf-rule {
+    margin: 40px 0;
   }
 }
 
