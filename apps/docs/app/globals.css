@@ -431,26 +431,6 @@ html {
   }
 }
 
-.wf-home-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 36px;
-  padding: 0 12px 0 10px;
-  border: 1px solid var(--color-text-dark);
-  border-radius: 8px;
-  background: var(--color-surface-base);
-  color: var(--color-text-dark);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.065px;
-}
-.wf-home-pill:focus-visible {
-  outline: 3px solid var(--color-action-primary);
-  outline-offset: 2px;
-}
-
 .wf-nav-link {
   display: inline-flex;
   align-items: center;
@@ -625,6 +605,24 @@ html {
   height: 10px;
   border-radius: 50%;
   box-shadow: var(--shadow-swatch), var(--shadow-ring);
+}
+
+.wf-swatch-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--swatch, var(--color-text-dark));
+  box-shadow: var(--shadow-swatch), var(--shadow-ring);
+  cursor: pointer;
+}
+.wf-swatch-dot[aria-pressed="true"] {
+  box-shadow: 0 0 0 1.5px var(--color-text-dark);
+}
+.wf-swatch-dot:focus-visible {
+  outline: 3px solid var(--color-action-primary);
+  outline-offset: 2px;
 }
 
 .wf-claim,
@@ -932,75 +930,41 @@ html {
 }
 
 /* =============================================================================
-   Landing only — measured against wireframe.co at 1440×900
-   Center 456px, greet at 120px, 24px type gaps, 40px CTA, 8px radius.
-   Below 1200 the same 456px reading measure is kept, centered under the
-   sticky bar. Absolute swatches + lede min-height stay desktop-only.
-   Other routes keep the wider data-wide frame.
+   Landing only — specimen sheet. Catalog first; three quiet columns from 640.
+   Phone uses the same sticky chrome as /library. Other routes keep data-wide.
+   html[data-wf-studio] may show column rails; it must not set grid tracks
+   (that selector is more specific than these media queries).
    ============================================================================= */
-
-.wf-home {
-  position: relative;
-}
 
 .wf-board-fx {
   display: none;
 }
 
-.wf-home .wf-claim-block {
-  position: relative;
-  margin-bottom: 20px;
+.wf-stamp {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 425;
+  line-height: 18px;
+  letter-spacing: -0.04em;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
 }
 
 .wf-home .wf-claim {
-  position: relative;
   margin-bottom: 0;
 }
 
-.wf-claim-brand,
-.wf-claim-rest {
-  display: block;
-  overflow-wrap: break-word;
-}
-
-.wf-claim-brand {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--color-border-subtle);
-}
-
-.wf-claim-rest {
+.wf-role {
+  margin: 8px 0 0;
+  font-size: 16px;
   font-weight: 500;
-}
-
-.wf-home .wf-swatches {
-  display: flex;
-  position: static;
-  width: max-content;
-  margin: 0 0 12px;
-  gap: 6px;
-}
-
-.wf-swatch-dot {
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--swatch, var(--color-text-dark));
-  box-shadow: var(--shadow-swatch), var(--shadow-ring);
-  cursor: pointer;
-}
-.wf-swatch-dot[aria-pressed="true"] {
-  box-shadow: 0 0 0 1.5px var(--color-text-dark);
-}
-.wf-swatch-dot:focus-visible {
-  outline: 3px solid var(--color-action-primary);
-  outline-offset: 2px;
+  line-height: 24px;
+  letter-spacing: -0.24px;
+  color: var(--color-text-primary);
 }
 
 .wf-home .wf-lede {
-  margin: 0;
+  margin: 12px 0 0;
   max-width: none;
   color: var(--color-text-secondary);
 }
@@ -1124,6 +1088,25 @@ html {
 }
 
 @media (max-width: 639px) {
+  .wf-frame:not([data-wide]) .wf-center {
+    padding: 1.5rem max(1.25rem, env(safe-area-inset-right))
+      max(5rem, calc(4rem + env(safe-area-inset-bottom)))
+      max(1.25rem, env(safe-area-inset-left));
+  }
+
+  .wf-frame:not([data-wide]) .wf-center > .wf-home {
+    max-width: 28.5rem;
+    margin-inline: auto;
+  }
+
+  .wf-home .wf-section-label {
+    margin: 0 0 16px;
+  }
+
+  .wf-home .wf-rule {
+    margin: 28px 0;
+  }
+
   .wf-home .wf-statement {
     padding: 32px 20px 20px;
     border-radius: 14px;
@@ -1133,84 +1116,6 @@ html {
   }
   .wf-home .wf-names {
     margin-bottom: 28px;
-  }
-}
-
-/* Landing defaults to phone chrome. Studio rails opt in at 640px so a
-   missed media query cannot stack the library header on the Home pill. */
-.wf-frame:not([data-wide]) .wf-left,
-.wf-frame:not([data-wide]) .wf-left-mobile,
-.wf-frame:not([data-wide]) .wf-board-fx {
-  display: none;
-}
-
-/* Phone: Home pill, no board. */
-@media (max-width: 639px) {
-  .wf-frame:not([data-wide]) .wf-center {
-    padding: 1.5rem max(1.25rem, env(safe-area-inset-right))
-      max(5rem, calc(4rem + env(safe-area-inset-bottom)))
-      max(1.25rem, env(safe-area-inset-left));
-  }
-
-  .wf-frame:not([data-wide]) .wf-center > .wf-landing-pill,
-  .wf-frame:not([data-wide]) .wf-center > .wf-greet,
-  .wf-frame:not([data-wide]) .wf-center > .wf-home {
-    max-width: 28.5rem;
-    margin-inline: auto;
-  }
-
-  .wf-frame:not([data-wide]) .wf-landing-pill {
-    margin-bottom: 40px;
-  }
-
-  .wf-frame:not([data-wide]) .wf-greet {
-    margin-bottom: 16px;
-  }
-
-  .wf-home .wf-swatches {
-    display: flex;
-    position: static;
-    margin: 0 0 4px;
-    gap: 0;
-  }
-
-  .wf-home .wf-swatch-dot {
-    width: 44px;
-    height: 44px;
-    border-radius: 0;
-    box-shadow: none;
-    background:
-      radial-gradient(circle 5px, var(--swatch) 99%, transparent 100%),
-      radial-gradient(
-        circle 6.5px,
-        transparent 5.25px,
-        color-mix(in srgb, var(--color-text-dark) 45%, transparent) 5.25px,
-        color-mix(in srgb, var(--color-text-dark) 45%, transparent) 6.25px,
-        transparent 6.5px
-      );
-  }
-  .wf-home .wf-swatch-dot[aria-pressed="true"] {
-    box-shadow: none;
-    background:
-      radial-gradient(circle 5px, var(--swatch) 99%, transparent 100%),
-      radial-gradient(
-        circle 8px,
-        transparent 6.5px,
-        var(--color-text-dark) 7px,
-        var(--color-text-dark) 8px,
-        transparent 8.5px
-      );
-  }
-
-  .wf-board-fx,
-  .wf-tsquare,
-  .wf-tsquare-v {
-    display: none;
-  }
-
-  .wf-home-pill {
-    height: 44px;
-    padding: 0 14px 0 12px;
   }
 
   .wf-home-btn,
@@ -1225,45 +1130,14 @@ html {
   }
 }
 
-@media (max-width: 639px) and (max-height: 500px) {
-  .wf-frame:not([data-wide]) .wf-landing-pill {
-    margin-bottom: 16px;
-  }
-  .wf-frame:not([data-wide]) .wf-center {
-    padding-top: 1rem;
-  }
-}
-
 @media (min-width: 640px) {
   .wf-home .wf-names {
     grid-template-columns: 1fr 1fr 1fr;
   }
-}
 
-@media (max-width: 639px) {
-  .wf-home .wf-claim-block {
-    margin-bottom: 16px;
-  }
-
-  .wf-home .wf-section-label {
-    margin: 0 0 16px;
-  }
-
-  .wf-home .wf-rule {
-    margin: 28px 0;
-  }
-}
-
-@media (min-width: 640px) {
-  .wf-frame:not([data-wide]) .wf-center > .wf-landing-pill,
-  .wf-frame:not([data-wide]) .wf-center > .wf-greet,
   .wf-frame:not([data-wide]) .wf-center > .wf-home {
     max-width: none;
     margin-inline: 0;
-  }
-
-  .wf-frame:not([data-wide]) .wf-landing-pill {
-    display: none;
   }
 
   .wf-frame:not([data-wide]) .wf-left-mobile {
@@ -1271,43 +1145,20 @@ html {
   }
 
   .wf-frame:not([data-wide]) {
-    --wf-grid: color-mix(in srgb, var(--color-text-dark) 24%, transparent);
-    position: relative;
-    grid-template-columns: 0 10.5rem minmax(0, 1fr) 8.5rem 0;
-    column-gap: 0;
+    grid-template-columns: 10.5rem minmax(0, 1fr) 8.5rem;
+    column-gap: 1.5rem;
     justify-content: stretch;
-    border-top: 1px solid var(--wf-grid);
-    border-bottom: 1px solid var(--wf-grid);
-  }
-
-  .wf-frame:not([data-wide])::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 64px;
-    z-index: 4;
-    height: 1px;
-    pointer-events: none;
-    background: var(--wf-grid);
+    padding-inline: 1.25rem;
   }
 
   .wf-frame:not([data-wide]) .wf-left {
     display: flex;
-    grid-column: 2;
     flex-direction: column;
     align-items: flex-start;
     height: 100svh;
-    padding: 0 16px 24px;
+    padding: 1.75rem 0 1.5rem;
     border-bottom: 0;
-    border-left: 1px solid var(--wf-grid);
-    border-right: 1px solid var(--wf-grid);
     background: transparent;
-  }
-
-  .wf-frame:not([data-wide]) .wf-left-head {
-    height: 64px;
-    align-items: center;
   }
 
   .wf-frame:not([data-wide]) .wf-left-nav {
@@ -1326,13 +1177,7 @@ html {
   }
 
   .wf-frame:not([data-wide]) .wf-center {
-    grid-column: 3;
-    padding: 64px 20px 80px;
-    border-right: 1px solid var(--wf-grid);
-  }
-
-  .wf-frame:not([data-wide]) .wf-greet {
-    margin-bottom: 24px;
+    padding: 1.75rem 0 5rem;
   }
 
   .wf-frame:not([data-wide]) .wf-left-foot {
@@ -1353,12 +1198,10 @@ html {
 
   .wf-frame:not([data-wide]) .wf-right {
     display: flex;
-    grid-column: 4;
     flex-direction: column;
     align-items: flex-end;
     height: 100svh;
-    padding: 64px 12px 24px;
-    border-right: 1px solid var(--wf-grid);
+    padding: 1.75rem 0 1.5rem;
     text-align: right;
   }
 
@@ -1366,34 +1209,8 @@ html {
     color: var(--color-text-tertiary);
   }
 
-  .wf-frame:not([data-wide]) .wf-follow {
-    margin-top: auto;
-    font-size: 13px;
-    font-weight: 450;
-    color: var(--color-text-secondary);
-  }
-
   .wf-frame:not([data-wide]) .wf-theme-rail {
     margin-top: 16px;
-  }
-
-  .wf-home .wf-claim-block {
-    margin-bottom: 24px;
-  }
-
-  .wf-home .wf-claim-brand {
-    border-bottom-color: var(--wf-grid);
-  }
-
-  .wf-home .wf-swatches {
-    position: absolute;
-    left: 0;
-    top: -18px;
-    margin: 0;
-  }
-
-  .wf-home .wf-lede {
-    min-height: 120px;
   }
 
   .wf-home .wf-cta-row {
@@ -1404,38 +1221,40 @@ html {
     margin: 40px 0;
   }
 
-  /* The board plots itself; static column rules yield to the plot overlay. */
   .wf-frame.wf-board:not([data-wide]) {
-    border-top: 0;
-    border-bottom: 0;
-  }
-  .wf-frame.wf-board:not([data-wide])::before {
-    content: none;
-  }
-  .wf-frame.wf-board:not([data-wide]) .wf-left,
-  .wf-frame.wf-board:not([data-wide]) .wf-center,
-  .wf-frame.wf-board:not([data-wide]) .wf-right {
-    border-left: 0;
-    border-right: 0;
+    --wf-grid: color-mix(in srgb, var(--color-text-dark) 24%, transparent);
+    position: relative;
   }
 
   .wf-frame.wf-board:not([data-wide]) .wf-board-fx {
     display: grid;
     grid-column: 1 / -1;
-    grid-row: 1 / -1;
+    grid-row: 1;
     position: absolute;
     inset: 0;
     z-index: 32;
     grid-template-columns: inherit;
+    column-gap: inherit;
+    justify-content: inherit;
+    padding-inline: inherit;
     pointer-events: none;
   }
 
-  .wf-plot-gutter,
-  .wf-plot-col {
-    min-height: 100%;
+  .wf-frame.wf-board:not([data-wide]) .wf-left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .wf-frame.wf-board:not([data-wide]) .wf-center {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .wf-frame.wf-board:not([data-wide]) .wf-right {
+    grid-column: 3;
+    grid-row: 1;
   }
 
   .wf-plot-col {
+    min-height: 100%;
     transform-origin: top;
     animation: wf-plot-v 0.68s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
@@ -1444,11 +1263,11 @@ html {
     border-right: 1px solid var(--wf-grid);
     animation-delay: 0.05s;
   }
-  .wf-plot-col:nth-child(3) {
+  .wf-plot-col:nth-child(2) {
     border-right: 1px solid var(--wf-grid);
     animation-delay: 0.1s;
   }
-  .wf-plot-col:nth-child(4) {
+  .wf-plot-col:nth-child(3) {
     border-right: 1px solid var(--wf-grid);
     animation-delay: 0.15s;
   }
@@ -1466,10 +1285,6 @@ html {
   }
   .wf-plot-h-top {
     top: 0;
-  }
-  .wf-plot-h-band {
-    top: 64px;
-    animation-delay: 0.12s;
   }
   .wf-plot-h-bot {
     bottom: 0;
@@ -1499,99 +1314,68 @@ html {
     left: 0;
     width: 1px;
   }
-
-  .wf-frame.wf-board:not([data-wide]) .wf-left-nav,
-  .wf-frame.wf-board:not([data-wide]) .wf-left-foot,
-  .wf-frame.wf-board:not([data-wide]) .wf-center > *,
-  .wf-frame.wf-board:not([data-wide]) .wf-right > * {
-    animation: wf-ink 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
-  }
 }
 
-html[data-wf-studio] .wf-frame:not([data-wide]) .wf-landing-pill {
-  display: none;
-}
+/* Scaled-preview rails. Do not set grid-template-columns here. */
 html[data-wf-studio] .wf-frame:not([data-wide]) .wf-left {
   display: flex;
-  grid-column: 2;
   flex-direction: column;
   height: 100svh;
   border-bottom: 0;
   background: transparent;
+}
+html[data-wf-studio] .wf-frame:not([data-wide]) .wf-left-mobile {
+  display: none;
 }
 html[data-wf-studio] .wf-frame:not([data-wide]) .wf-left-nav,
 html[data-wf-studio] .wf-frame:not([data-wide]) .wf-left-foot {
   display: flex;
   flex-direction: column;
 }
-html[data-wf-studio] .wf-frame:not([data-wide]) .wf-center {
-  grid-column: 3;
-}
 html[data-wf-studio] .wf-frame:not([data-wide]) .wf-right {
   display: flex;
-  grid-column: 4;
   flex-direction: column;
   height: 100svh;
 }
 
 @media (min-width: 960px) {
   .wf-frame:not([data-wide]) {
-    grid-template-columns: minmax(0.5rem, 1fr) 11.5rem 32.5rem 9.5rem minmax(
-        0.5rem,
-        1fr
-      );
-  }
-  .wf-frame:not([data-wide]) .wf-left {
-    padding: 0 20px 28px;
-  }
-  .wf-frame:not([data-wide]) .wf-center {
-    padding: 88px 32px 96px;
-  }
-  .wf-frame:not([data-wide]) .wf-right {
-    padding: 88px 20px 28px;
+    grid-template-columns: 12rem 32.5rem 10rem;
+    justify-content: center;
+    column-gap: 3rem;
+    padding-inline: 1.5rem;
   }
 }
 
 @media (min-width: 1200px) {
   .wf-frame:not([data-wide]) {
-    grid-template-columns: minmax(1.25rem, 1fr) 15.25rem 32.5rem 15.25rem minmax(
-        1.25rem,
-        1fr
-      );
-  }
-  .wf-frame:not([data-wide]) .wf-left {
-    padding: 0 28px 28px;
-  }
-  .wf-frame:not([data-wide]) .wf-right {
-    padding: 88px 28px 28px;
+    grid-template-columns: 15.25rem 32.5rem 15.25rem;
   }
 }
 
 /* 27" / QHD: keep a locked measure. Do not stretch the catalog across the desk. */
 @media (min-width: 1600px) {
   .wf-frame:not([data-wide]) {
-    grid-template-columns: minmax(2rem, 1fr) 16rem 36rem 16rem minmax(2rem, 1fr);
+    grid-template-columns: 16rem 36rem 16rem;
   }
 }
 
 @media (min-width: 1920px) {
   .wf-frame:not([data-wide]) {
-    grid-template-columns: minmax(3rem, 1fr) 17rem 38rem 17rem minmax(3rem, 1fr);
+    grid-template-columns: 17rem 38rem 17rem;
   }
-  .wf-frame:not([data-wide]) .wf-left {
-    padding: 0 32px 32px;
+  .wf-frame:not([data-wide]) .wf-left,
+  .wf-frame:not([data-wide]) .wf-right {
+    padding: 2rem 0 2rem;
   }
   .wf-frame:not([data-wide]) .wf-center {
-    padding: 96px 40px 112px;
-  }
-  .wf-frame:not([data-wide]) .wf-right {
-    padding: 96px 32px 32px;
+    padding: 2rem 0 7rem;
   }
 }
 
 @media (min-width: 2400px) {
   .wf-frame:not([data-wide]) {
-    grid-template-columns: minmax(4rem, 1fr) 18rem 42rem 18rem minmax(4rem, 1fr);
+    grid-template-columns: 18rem 42rem 18rem;
   }
 }
 
@@ -1613,25 +1397,11 @@ html[data-wf-studio] .wf-frame:not([data-wide]) .wf-right {
   }
 }
 
-@keyframes wf-ink {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .wf-plot-col,
-  .wf-plot-h,
-  .wf-frame.wf-board:not([data-wide]) .wf-left-nav,
-  .wf-frame.wf-board:not([data-wide]) .wf-left-foot,
-  .wf-frame.wf-board:not([data-wide]) .wf-center > *,
-  .wf-frame.wf-board:not([data-wide]) .wf-right > * {
+  .wf-plot-h {
     animation: none;
     transform: none;
-    opacity: 1;
   }
 
   .wf-home .wf-row .wf-row-mark {

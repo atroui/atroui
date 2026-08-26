@@ -1,22 +1,18 @@
 "use client"
 
 import * as React from "react"
-import { Github, Menu, Moon, Sun, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { OverlayShell } from "@/components/overlay-shell"
 import { DocsSidebar } from "@/components/sidebar"
 import { DraftingSquare } from "@/components/site/drafting-square"
-import {
-  ThemeMenuList,
-  ThemeRail,
-  ThemeTrayButton,
-} from "@/components/site/theme-picker"
+import { ThemeRail, ThemeTrayButton } from "@/components/site/theme-picker"
 import { SharedBrand, TransitionLink } from "@/components/view-transitions"
 import { catalogCount, FAMILY_PARAM } from "@/lib/catalog"
 import { activeNavId, primaryNav } from "@/lib/primary-nav"
-import { studioGreeting, syncStudioViewport } from "@/lib/studio-viewport"
+import { syncStudioViewport } from "@/lib/studio-viewport"
 import { cn } from "@/lib/utils"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
@@ -64,86 +60,35 @@ function NavLinks({
   )
 }
 
-function StudioGreeting() {
-  const [now, setNow] = React.useState<Date | null>(null)
-
-  React.useEffect(() => {
-    const tick = () => setNow(new Date())
-    tick()
-    const id = window.setInterval(tick, 30_000)
-    return () => window.clearInterval(id)
-  }, [])
-
-  const hour = now?.getHours() ?? 15
-  const { greet, evening } = studioGreeting(hour)
-  const time = now
-    ? now.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
-    : ""
-
-  return (
-    <p className="wf-greet" suppressHydrationWarning>
-      {evening ? (
-        <Moon className="size-3" aria-hidden />
-      ) : (
-        <Sun className="size-3" aria-hidden />
-      )}
-      <span>
-        {greet}
-        {time ? ` · ${time}` : ""}
-      </span>
-    </p>
-  )
-}
-
-function SiteMenu({ variant = "icon" }: { variant?: "icon" | "pill" }) {
+function SiteMenu() {
   const [open, setOpen] = React.useState(false)
   const pathname = usePathname()
   const active = useActive()
   const onDocs = pathname.startsWith("/docs")
-  const landing = pathname === "/"
 
   React.useEffect(() => {
     setOpen(false)
   }, [pathname])
 
   return (
-    <div
-      className={cn(
-        variant === "pill"
-          ? "wf-landing-pill"
-          : "wf-left-mobile min-[1200px]:hidden"
-      )}
-    >
-      {variant === "pill" ? (
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          aria-expanded={open}
-          aria-haspopup="dialog"
-          className="wf-home-pill"
-        >
-          {open ? <X className="size-3.5" aria-hidden /> : <Menu className="size-3.5" aria-hidden />}
-          Home
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-haspopup="dialog"
-          className="inline-flex size-11 items-center justify-center text-foreground"
-        >
-          {open ? <X className="size-4" /> : <Menu className="size-4" />}
-        </button>
-      )}
+    <div className="wf-left-mobile min-[1200px]:hidden">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        className="inline-flex size-11 items-center justify-center text-foreground"
+      >
+        {open ? <X className="size-4" /> : <Menu className="size-4" />}
+      </button>
       <OverlayShell
         open={open}
         onClose={() => setOpen(false)}
         side="left"
         label="Site menu"
         trapFocus
-        className={variant === "pill" ? "min-[640px]:hidden" : "min-[1200px]:hidden"}
+        className="min-[1200px]:hidden"
         panelClassName="w-[min(18rem,calc(100vw-2.5rem))] border-[var(--line)] bg-background p-5 pt-[max(1.25rem,env(safe-area-inset-top))]"
       >
         <div className="mb-6 flex items-center justify-between">
@@ -166,16 +111,6 @@ function SiteMenu({ variant = "icon" }: { variant?: "icon" | "pill" }) {
           <div className="mt-8 border-t border-[var(--line)] pt-6">
             <DocsSidebar />
           </div>
-        ) : null}
-        {landing ? (
-          <>
-            <div className="mt-8 border-t border-[var(--line)] pt-6">
-              <ThemeMenuList onPick={() => setOpen(false)} />
-            </div>
-            <div className="mt-6 [&_button]:max-w-none [&_button]:w-full">
-              <CommandMenu />
-            </div>
-          </>
         ) : null}
       </OverlayShell>
     </div>
@@ -223,17 +158,8 @@ function LeftRail({ active }: { active: ReturnType<typeof activeNavId> }) {
 function RightRail() {
   return (
     <aside className="wf-right" aria-label="Utilities">
-      <p className="wf-stat">{catalogCount.toLocaleString()} components</p>
+      <p className="wf-stat">{catalogCount.toLocaleString()} on the registry</p>
       <ThemeRail />
-      <a
-        href={GITHUB_REPO}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="wf-follow"
-      >
-        Follow on
-        <Github className="size-3.5" aria-hidden />
-      </a>
     </aside>
   )
 }
@@ -260,14 +186,10 @@ function FrameInner({ children }: { children: React.ReactNode }) {
       className={cn("wf-frame", !wide && "wf-board")}
       data-wide={wide ? "" : undefined}
     >
-      {wide ? null : <DraftingSquare />}
       <LeftRail active={active} />
-      <div className="wf-center">
-        {wide ? null : <SiteMenu variant="pill" />}
-        <StudioGreeting />
-        {children}
-      </div>
+      <div className="wf-center">{children}</div>
       <RightRail />
+      {wide ? null : <DraftingSquare />}
     </div>
   )
 }
@@ -286,7 +208,7 @@ function FrameFallback({ children }: { children: React.ReactNode }) {
 }
 
 /**
- * Persistent studio frame: left map, center column, right utilities.
+ * Site chrome: map on the left, page in the center, utilities on the right.
  */
 export function SiteFrame({ children }: { children: React.ReactNode }) {
   return (

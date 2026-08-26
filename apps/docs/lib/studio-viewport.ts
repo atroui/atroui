@@ -48,11 +48,3 @@ export const STUDIO_VIEWPORT_SCRIPT = `(function(){
   window.addEventListener("resize", sync);
 })();`
 
-export function studioGreeting(hour: number): {
-  greet: string
-  evening: boolean
-} {
-  if (hour >= 5 && hour < 12) return { greet: "Good morning", evening: false }
-  if (hour >= 12 && hour < 18) return { greet: "Good afternoon", evening: false }
-  return { greet: "Good evening", evening: true }
-}

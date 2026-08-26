@@ -18,7 +18,7 @@ function familyHref(name: string) {
 }
 
 /**
- * Career-row family list — mark, name + role, count.
+ * Registry families — mark, job, count. Deep-links into /library.
  */
 export function FamilyCards() {
   return (

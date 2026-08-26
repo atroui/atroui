@@ -1,18 +1,15 @@
 "use client"
 
 import * as React from "react"
-import { useReducedMotion } from "motion/react"
 
 /**
- * The landing is a drawing board. Hairlines plot on first paint; a crosshair
- * tracks the pointer (desktop + fine pointer only).
+ * Landing hairlines plot on first paint; a crosshair tracks the pointer
+ * (desktop + fine pointer). Overlay is pointer-events none — listen on window.
  */
 export function DraftingSquare() {
-  const reduce = useReducedMotion()
   const rootRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
-    if (reduce) return
     const root = rootRef.current
     if (!root) return
 
@@ -23,6 +20,7 @@ export function DraftingSquare() {
 
     const desktop = window.matchMedia("(min-width: 640px)")
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)")
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)")
     const studio = () =>
       document.documentElement.hasAttribute("data-wf-studio") || desktop.matches
 
@@ -47,7 +45,7 @@ export function DraftingSquare() {
     }
 
     const onMove = (event: PointerEvent) => {
-      if (!studio() || !fine.matches) {
+      if (reduce.matches || !studio() || !fine.matches) {
         hide()
         return
       }
@@ -69,29 +67,28 @@ export function DraftingSquare() {
     }
 
     const onMedia = () => {
-      if (!studio() || !fine.matches) hide()
+      if (reduce.matches || !studio() || !fine.matches) hide()
     }
 
     window.addEventListener("pointermove", onMove, { passive: true })
     desktop.addEventListener("change", onMedia)
     fine.addEventListener("change", onMedia)
+    reduce.addEventListener("change", onMedia)
     return () => {
       if (raf) cancelAnimationFrame(raf)
       window.removeEventListener("pointermove", onMove)
       desktop.removeEventListener("change", onMedia)
       fine.removeEventListener("change", onMedia)
+      reduce.removeEventListener("change", onMedia)
     }
-  }, [reduce])
+  }, [])
 
   return (
     <div ref={rootRef} className="wf-board-fx" aria-hidden>
-      <span className="wf-plot-gutter" />
       <span className="wf-plot-col wf-plot-rail" />
       <span className="wf-plot-col" />
       <span className="wf-plot-col" />
-      <span className="wf-plot-gutter" />
       <span className="wf-plot-h wf-plot-h-top" />
-      <span className="wf-plot-h wf-plot-h-band" />
       <span className="wf-plot-h wf-plot-h-bot" />
       <div className="wf-tsquare" />
       <div className="wf-tsquare-v" />

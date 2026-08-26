@@ -121,7 +121,7 @@ test.describe("navigation", () => {
     if (await bannerDocs.isVisible()) {
       await bannerDocs.click()
     } else {
-      await page.getByRole("button", { name: "Home" }).click()
+      await page.getByRole("button", { name: "Open menu" }).click()
       await page
         .getByRole("dialog", { name: "Site menu" })
         .getByRole("link", { name: "Docs", exact: true })
@@ -132,7 +132,7 @@ test.describe("navigation", () => {
 
   test("landing reaches the library", async ({ page }) => {
     await page.goto("/")
-    await page.getByRole("link", { name: "Browse components" }).first().click()
+    await page.getByRole("link", { name: "Browse the catalog" }).first().click()
     await expect(page).toHaveURL(/\/library/)
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
   })
