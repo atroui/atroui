@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
+import { FaqJsonLd } from "atroui"
 import { CodeBlock } from "@/components/code-block"
 import { InstallModesMatrix } from "@/components/install-modes-matrix"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
+import { getPseoPage } from "@/lib/pseo"
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Installation",
@@ -12,6 +14,8 @@ export const metadata: Metadata = docsPageMetadata({
 })
 
 export default function InstallationPage() {
+  const pseo = getPseoPage("/docs/installation")
+
   return (
     <article className="mx-auto max-w-3xl space-y-10">
       <header>
@@ -300,6 +304,31 @@ pnpm install
 pnpm dev`}
         />
       </section>
+
+      {pseo?.faqs?.length ? (
+        <section className="space-y-4 border-t border-border-subtle pt-8">
+          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
+          <dl className="space-y-5">
+            {pseo.faqs.map((item) => (
+              <div key={item.q}>
+                <dt className="text-[15px] font-medium text-foreground">
+                  {item.q}
+                </dt>
+                <dd className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">
+                  {item.a}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <FaqJsonLd
+            pagePath="/docs/installation"
+            items={pseo.faqs.map((item) => ({
+              question: item.q,
+              answer: item.a,
+            }))}
+          />
+        </section>
+      ) : null}
     </article>
   )
 }
