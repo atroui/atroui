@@ -108,7 +108,13 @@ function SiteMenu({ variant = "icon" }: { variant?: "icon" | "pill" }) {
   }, [pathname])
 
   return (
-    <div className={cn("min-[1200px]:hidden", variant === "pill" && "wf-landing-pill")}>
+    <div
+      className={cn(
+        variant === "pill"
+          ? "wf-landing-pill"
+          : "wf-left-mobile min-[1200px]:hidden"
+      )}
+    >
       {variant === "pill" ? (
         <button
           type="button"
@@ -138,7 +144,7 @@ function SiteMenu({ variant = "icon" }: { variant?: "icon" | "pill" }) {
         side="left"
         label="Site menu"
         trapFocus
-        className="min-[1200px]:hidden"
+        className={variant === "pill" ? "min-[960px]:hidden" : "min-[1200px]:hidden"}
         panelClassName="w-[min(18rem,calc(100vw-2.5rem))] border-[var(--line)] bg-background p-5 pt-[max(1.25rem,env(safe-area-inset-top))]"
       >
         <div className="mb-6 flex items-center justify-between">
@@ -187,7 +193,7 @@ function LeftRail({ active }: { active: ReturnType<typeof activeNavId> }) {
             <LogoMark className="size-8" />
           </TransitionLink>
         </SharedBrand>
-        <div className="ml-auto flex items-center gap-2 min-[1200px]:hidden">
+        <div className="wf-left-mobile ml-auto flex items-center gap-2 min-[1200px]:hidden">
           <TransitionLink
             href="/docs"
             transitionTypes={[]}

@@ -21,7 +21,7 @@ export function DraftingSquare() {
     const v = root.querySelector<HTMLElement>(".wf-tsquare-v")
     if (!frame || frame.hasAttribute("data-wide") || !h || !v) return
 
-    const desktop = window.matchMedia("(min-width: 1200px)")
+    const desktop = window.matchMedia("(min-width: 960px)")
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)")
 
     let x = 0
