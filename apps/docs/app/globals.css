@@ -1511,19 +1511,11 @@ html {
 html[data-wf-studio] .wf-frame:not([data-wide]) .wf-landing-pill {
   display: none;
 }
-html[data-wf-studio] .wf-frame:not([data-wide]) {
-  --wf-grid: color-mix(in srgb, var(--color-text-dark) 24%, transparent);
-  position: relative;
-  grid-template-columns: 0 10.5rem minmax(0, 1fr) 8.5rem 0;
-  column-gap: 0;
-  justify-content: stretch;
-}
 html[data-wf-studio] .wf-frame:not([data-wide]) .wf-left {
   display: flex;
   grid-column: 2;
   flex-direction: column;
   height: 100svh;
-  padding: 0 16px 24px;
   border-bottom: 0;
   background: transparent;
 }
@@ -1572,6 +1564,34 @@ html[data-wf-studio] .wf-frame:not([data-wide]) .wf-right {
   }
   .wf-frame:not([data-wide]) .wf-right {
     padding: 88px 28px 28px;
+  }
+}
+
+/* 27" / QHD: keep a locked measure. Do not stretch the catalog across the desk. */
+@media (min-width: 1600px) {
+  .wf-frame:not([data-wide]) {
+    grid-template-columns: minmax(2rem, 1fr) 16rem 36rem 16rem minmax(2rem, 1fr);
+  }
+}
+
+@media (min-width: 1920px) {
+  .wf-frame:not([data-wide]) {
+    grid-template-columns: minmax(3rem, 1fr) 17rem 38rem 17rem minmax(3rem, 1fr);
+  }
+  .wf-frame:not([data-wide]) .wf-left {
+    padding: 0 32px 32px;
+  }
+  .wf-frame:not([data-wide]) .wf-center {
+    padding: 96px 40px 112px;
+  }
+  .wf-frame:not([data-wide]) .wf-right {
+    padding: 96px 32px 32px;
+  }
+}
+
+@media (min-width: 2400px) {
+  .wf-frame:not([data-wide]) {
+    grid-template-columns: minmax(4rem, 1fr) 18rem 42rem 18rem minmax(4rem, 1fr);
   }
 }
 
