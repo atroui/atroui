@@ -1,20 +1,26 @@
 # AtroUI
 
-**Production React / Next.js component catalog** and dark-first design system.
+Dark-first React / Next.js catalog on the **official shadcn registry**. MIT. You own the copied files.
 
-Docs: [atroui.com](https://www.atroui.com) · Registry: [atroui.com/docs/registry](https://www.atroui.com/docs/registry)
+```bash
+npx shadcn@latest add @atroui/home-hero
+```
 
-Black canvas · electric blue (`#0b7bff` / `#92dbe0`) · glass surfaces · pill CTAs. Primitives, page sections, and host-bound tools extracted from real products - delivered via the **shadcn CLI**.
+Public namespace `@atroui` — listed in [shadcn registries.json](https://ui.shadcn.com/r/registries.json). No GitHub token. Not a private GitHub registry. Best with **Tailwind CSS v4**.
+
+Optional **Host APIs** (`npm i atroui` + `transpilePackages`): contact, waitlist, newsletter, OG, thumbnail, scope. **BYOK** (SMTP/Resend, Hugging Face/Gemini/xAI). AtroUI never holds your keys and does not run paid AI on atroui.com. Missing keys → `503` on your app.
+
+Docs: [atroui.com](https://www.atroui.com) · [Installation](https://www.atroui.com/docs/installation) · [Host APIs](https://www.atroui.com/docs/host-api) · [Compare](https://www.atroui.com/docs/compare) · [Registry](https://www.atroui.com/docs/registry)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![CI](https://github.com/atroui/atroui/actions/workflows/ci.yml/badge.svg)](https://github.com/atroui/atroui/actions/workflows/ci.yml)
 
 ## Features
 
-- **Registry (own the files)** - `npx shadcn add @atroui/home-hero` copies source into your repo
+- **Registry (own the files)** - `npx shadcn add @atroui/…` copies source into your repo
 - **Dark-first sections** - heroes, chrome, CTAs with editable `CONTENT`
 - **Primitives** - Button, logo, theme toggle
-- **Tools** - OG workspace, thumbnail, scope (host APIs)
+- **Tools** - OG workspace, thumbnail, scope (Host APIs, BYOK)
 - **Headless** - analytics, JSON-LD, reviews helpers
 
 ## Install
@@ -24,9 +30,7 @@ npx shadcn@latest init
 npx shadcn@latest add @atroui/home-hero
 ```
 
-Full guide: [atroui.com/docs/installation](https://www.atroui.com/docs/installation) · Catalog: [atroui.com/docs/registry](https://www.atroui.com/docs/registry) · Host APIs: [atroui.com/docs/host-api](https://www.atroui.com/docs/host-api)
-
-Open the installed file and edit `CONTENT` / `DEFAULT_BRAND` at the top - that is the point.
+Open the installed file and edit `CONTENT` / `DEFAULT_BRAND` at the top - that is the point. Tailwind v4 config (`@source`, monorepo scanning) stays in **your** project.
 
 ### Install modes
 

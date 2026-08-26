@@ -1,17 +1,21 @@
 import type { Metadata } from "next"
+import { FaqJsonLd } from "atroui"
 import { CodeBlock } from "@/components/code-block"
 import { InstallModesMatrix } from "@/components/install-modes-matrix"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
+import { getPseoPage } from "@/lib/pseo"
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Installation",
   description:
-    "Add AtroUI with the shadcn CLI. Components copy into your repo so you own the source - same model as shadcn/ui.",
+    "Add AtroUI with the shadcn CLI. You own the copied files. Tailwind v4. Public @atroui. Host APIs optional and BYOK.",
   path: "/docs/installation",
 })
 
 export default function InstallationPage() {
+  const pseo = getPseoPage("/docs/installation")
+
   return (
     <article className="mx-auto max-w-3xl space-y-10">
       <header>
@@ -37,6 +41,47 @@ export default function InstallationPage() {
           token. Private GitHub registries are a different shadcn feature.
         </p>
       </header>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground">
+          What you own after install
+        </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          The shadcn CLI copies component files into{" "}
+          <strong className="font-medium text-foreground">your</strong> repo.
+          Edit them freely. AtroUI does not remote-control those files after
+          install.
+        </p>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Tailwind CSS v4 setup (
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @source
+          </code>
+          , content paths, monorepo scanning) is{" "}
+          <strong className="font-medium text-foreground">your</strong> app
+          configuration. If utility classes are missing after{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            shadcn add
+          </code>
+          , check that Tailwind can see the copied files - that is not an AtroUI
+          Host API issue.
+        </p>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Pure UI needs only the CLI. Forms and AI tools that post to{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/*
+          </code>{" "}
+          also need{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            npm i atroui
+          </code>{" "}
+          and your keys. Boundary and env:{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
+          </Link>
+          .
+        </p>
+      </section>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
@@ -259,6 +304,31 @@ pnpm install
 pnpm dev`}
         />
       </section>
+
+      {pseo?.faqs?.length ? (
+        <section className="space-y-4 border-t border-border-subtle pt-8">
+          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
+          <dl className="space-y-5">
+            {pseo.faqs.map((item) => (
+              <div key={item.q}>
+                <dt className="text-[15px] font-medium text-foreground">
+                  {item.q}
+                </dt>
+                <dd className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">
+                  {item.a}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <FaqJsonLd
+            pagePath="/docs/installation"
+            items={pseo.faqs.map((item) => ({
+              question: item.q,
+              answer: item.a,
+            }))}
+          />
+        </section>
+      ) : null}
     </article>
   )
 }

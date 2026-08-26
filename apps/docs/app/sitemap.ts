@@ -23,6 +23,8 @@ const staticPaths = [
   "/og",
   "/planner",
   "/updates",
+  "/llms.txt",
+  "/llms-full.txt",
 ] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {
