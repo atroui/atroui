@@ -15,9 +15,9 @@ function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   return (
     <span
       className={cn(
-        "ds-sketch shrink-0 text-[13px] leading-none",
+        "shrink-0 font-mono text-[9px] tracking-[0.1em] uppercase",
         badge === "host-api" || badge === "registry"
-          ? "text-brand"
+          ? "text-brand/90"
           : "text-muted-foreground"
       )}
     >
@@ -40,7 +40,7 @@ export function DocsSidebar({ className }: { className?: string }) {
           <div key={section.title}>
             <button
               type="button"
-              className="ds-nav-section mb-2 flex w-full items-center justify-between px-2 transition-[color,text-shadow] duration-150"
+              className="mb-2.5 flex w-full items-center justify-between px-2 text-left text-[11px] font-medium tracking-[0.14em] text-muted-foreground uppercase transition-colors hover:text-foreground"
               aria-expanded={!isCollapsed}
               aria-controls={panelId}
               onClick={() =>
@@ -53,7 +53,7 @@ export function DocsSidebar({ className }: { className?: string }) {
               {section.title}
               <ChevronDown
                 className={cn(
-                  "h-3.5 w-3.5 shrink-0 text-brand/70 transition-transform duration-200",
+                  "h-3.5 w-3.5 shrink-0 text-muted-foreground/70 transition-transform duration-200",
                   isCollapsed && "-rotate-90"
                 )}
               />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { FaqJsonLd } from "atroui"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { InstallModesMatrix } from "@/components/install-modes-matrix"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -18,29 +19,29 @@ export default function InstallationPage() {
 
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Getting started</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Installation
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          AtroUI ships as a{" "}
-          <strong className="font-medium text-foreground">
-            shadcn-compatible registry
-          </strong>
-          . Run the CLI, components land in your project, and you edit{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            CONTENT
-          </code>{" "}
-          at the top of each file. Works best with Next.js, Tailwind CSS v4, and
-          a dark-friendly token sheet.{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @atroui
-          </code>{" "}
-          is the public shadcn directory namespace. You do not need a GitHub
-          token. Private GitHub registries are a different shadcn feature.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Getting started"
+        title="Installation"
+        description={
+          <>
+            AtroUI ships as a{" "}
+            <strong className="font-medium text-foreground">
+              shadcn-compatible registry
+            </strong>
+            . Run the CLI, components land in your project, and you edit{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              CONTENT
+            </code>{" "}
+            at the top of each file. Works best with Next.js, Tailwind CSS v4, and
+            a dark-friendly token sheet.{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              @atroui
+            </code>{" "}
+            is the public shadcn directory namespace. You do not need a GitHub
+            token. Private GitHub registries are a different shadcn feature.
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">

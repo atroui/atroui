@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -13,18 +14,22 @@ export const metadata: Metadata = docsPageMetadata({
 export default function IdentityPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Brand &amp; SEO</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Identity kit
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          AtroUI structures design, brand configuration, and technical SEO as a
-          unified pipeline. Most component registries stop at CSS variables.
-          We provide a complete <strong className="font-medium text-foreground">Brand &amp; SEO Identity Kit</strong> —
-          so when you install headers, footers, JSON-LD, or favicons, they pull from a single source of truth and stay in sync.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Brand & SEO"
+        title="Identity kit"
+        description={
+          <>
+            AtroUI structures design, brand configuration, and technical SEO as a
+            unified pipeline. Most component registries stop at CSS variables.
+            We provide a complete{" "}
+            <strong className="font-medium text-foreground">
+              Brand &amp; SEO Identity Kit
+            </strong>{" "}
+            — so when you install headers, footers, JSON-LD, or favicons, they
+            pull from a single source of truth and stay in sync.
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">1. Core brand config (getBrand)</h2>

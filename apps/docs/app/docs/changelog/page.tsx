@@ -2,6 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import type { Metadata } from "next"
 import Link from "next/link"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { UpdatesSignup } from "@/components/updates-signup"
 
@@ -147,30 +148,30 @@ export default function ChangelogPage() {
 
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Getting started</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Change<span className="ds-sketch-accent">log</span>
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          Released versions of{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui
-          </code>
-          . Entries are written via Changesets on each PR, then published when
-          the Version Packages PR merges.
+      <DocsPageHeader
+        eyebrow="Getting started"
+        title="Changelog"
+        description={
+          <>
+            Released versions of{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              atroui
+            </code>
+            . Entries are written via Changesets on each PR, then published when
+            the Version Packages PR merges.
+          </>
+        }
+      />
+      <div className="max-w-md">
+        <UpdatesSignup source="changelog" compact />
+        <p className="mt-2 text-[12px] text-muted-foreground">
+          Email for major slices only. Patch notes stay here.{" "}
+          <Link href="/updates" className="bam-link">
+            What you get
+          </Link>
+          .
         </p>
-        <div className="mt-6 max-w-md">
-          <UpdatesSignup source="changelog" compact />
-          <p className="mt-2 text-[12px] text-muted-foreground">
-            Email for major slices only. Patch notes stay here.{" "}
-            <Link href="/updates" className="bam-link">
-              What you get
-            </Link>
-            .
-          </p>
-        </div>
-      </header>
+      </div>
 
       <div className="space-y-10">
         {releases.map((release) => (

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { DocsExample } from "@/components/docs-example"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { DocsPager } from "@/components/docs-pager"
 import { PseoOnPage } from "@/components/pseo-on-page"
 import { PropsTable, type PropRow } from "@/components/props-table"
@@ -37,12 +38,14 @@ function DocStep({
   children: React.ReactNode
 }) {
   return (
-    <section className="space-y-3">
-      <div className="flex items-baseline gap-2.5">
-        <span className="font-mono text-[11px] tracking-[0.12em] text-brand/80">
+    <section className="space-y-4">
+      <div className="flex items-baseline gap-3 border-b border-border-subtle pb-2">
+        <span className="font-mono text-[11px] tabular-nums tracking-wide text-muted-foreground">
           {n}
         </span>
-        <h2 className="ds-headline text-base text-foreground">{label}</h2>
+        <h2 className="ds-headline text-[15px] font-medium text-foreground">
+          {label}
+        </h2>
       </div>
       {children}
     </section>
@@ -72,7 +75,7 @@ export function ComponentDoc({
     (registryName ? `npx shadcn@latest add @atroui/${registryName}` : null)
 
   const setupLinks = (
-    <p className="text-[13px] text-muted-foreground">
+    <p className="text-[13px] leading-relaxed text-muted-foreground">
       Source lands in your repo. Setup:{" "}
       <Link href="/docs/installation" className="bam-link">
         Installation
@@ -93,41 +96,38 @@ export function ComponentDoc({
     </p>
   )
 
+  const meta = (
+    <>
+      {inRegistry ? (
+        <span className="font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase">
+          CLI
+        </span>
+      ) : null}
+      {isHostApi ? (
+        <Link
+          href="/docs/host-api"
+          className="font-mono text-[10px] tracking-[0.12em] text-brand uppercase transition-colors hover:text-brand/80"
+        >
+          Host API
+        </Link>
+      ) : null}
+    </>
+  )
+
   return (
     <article
       className={
         fullBleed
-          ? "mx-auto w-full max-w-6xl space-y-8 sm:space-y-10"
-          : "mx-auto w-full max-w-3xl space-y-8 sm:space-y-10"
+          ? "mx-auto w-full max-w-6xl space-y-10 sm:space-y-12"
+          : "mx-auto w-full max-w-3xl space-y-10 sm:space-y-12"
       }
     >
-      <header className="space-y-2 sm:space-y-3">
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="ms-stamp">{kind}</p>
-          {inRegistry ? (
-            <span className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase">
-              CLI registry
-            </span>
-          ) : null}
-          {isHostApi ? (
-            <Link
-              href="/docs/host-api"
-              className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase transition-colors hover:text-brand"
-            >
-              Host API
-            </Link>
-          ) : null}
-        </div>
-        <h1 className="ds-display text-2xl text-foreground sm:text-3xl md:text-4xl">
-          {title}
-        </h1>
-        <p className="max-w-2xl text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
-          {description}
-        </p>
-        <p className="font-mono text-[11px] tracking-[0.1em] text-muted-foreground/70 uppercase">
-          Preview → install → use
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow={kind}
+        title={title}
+        description={description}
+        meta={meta}
+      />
 
       <DocStep n="01" label="Preview">
         <div className="space-y-3">
@@ -140,7 +140,7 @@ export function ComponentDoc({
           {installCmd ? (
             setupLinks
           ) : (
-            <div className="space-y-2 rounded-xl border border-border-subtle bg-muted/30 px-4 py-3">
+            <div className="rounded-lg border border-border-subtle bg-muted/20 px-4 py-3">
               <p className="text-[14px] leading-relaxed text-muted-foreground">
                 Not in the CLI registry yet. This page documents the live catalog
                 component. Prefer registry blocks when you want owned source via{" "}

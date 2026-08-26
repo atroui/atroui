@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { badgeLabel, navigation } from "@/lib/navigation"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -15,33 +16,33 @@ export default function ComponentsIndexPage() {
 
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Library</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Components
-        </h1>
-        <p className="ds-lede mt-3 max-w-2xl">
-          Production UI curated into primitives, blocks, tools, and headless
-          modules. For search-intent clusters (forms, OG images, launch), start
-          at{" "}
-          <Link href="/docs/collections" className="bam-link">
-            Collections
-          </Link>
-          . Items tagged CLI install with{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            npx shadcn@latest add @atroui/…
-          </code>
-          . Items tagged{" "}
-          <Link href="/docs/host-api" className="bam-link">
-            Host API
-          </Link>{" "}
-          need thin{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /api/*
-          </code>{" "}
-          routes plus your own keys.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Library"
+        title="Components"
+        description={
+          <>
+            Production UI curated into primitives, blocks, tools, and headless
+            modules. For search-intent clusters (forms, OG images, launch), start
+            at{" "}
+            <Link href="/docs/collections" className="bam-link">
+              Collections
+            </Link>
+            . Items tagged CLI install with{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              npx shadcn@latest add @atroui/…
+            </code>
+            . Items tagged{" "}
+            <Link href="/docs/host-api" className="bam-link">
+              Host API
+            </Link>{" "}
+            need thin{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              /api/*
+            </code>{" "}
+            routes plus your own keys.
+          </>
+        }
+      />
 
       {sections.map((section) => (
         <section key={section.title} className="space-y-3">

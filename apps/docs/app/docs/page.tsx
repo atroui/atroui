@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -13,19 +14,19 @@ export const metadata: Metadata = docsPageMetadata({
 export default function DocsIntroPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Getting started</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Introduction
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          AtroUI is the React / Next.js component catalog at{" "}
-          <strong className="font-medium text-foreground">atroui.com</strong>.
-          Dark-first design system: black canvas, electric blue brand, glass
-          surfaces, and rounded CTAs. You install it like shadcn/ui - the CLI
-          copies source into your project.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Getting started"
+        title="Introduction"
+        description={
+          <>
+            AtroUI is the React / Next.js component catalog at{" "}
+            <strong className="font-medium text-foreground">atroui.com</strong>.
+            Dark-first design system: black canvas, electric blue brand, glass
+            surfaces, and rounded CTAs. You install it like shadcn/ui - the CLI
+            copies source into your project.
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Quick start</h2>

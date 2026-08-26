@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { FaqJsonLd } from "atroui"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -13,16 +14,16 @@ export const metadata: Metadata = docsPageMetadata({
 export default function ComparePage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Compare</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          <span className="ds-sketch-accent">AtroUI</span> vs copy-paste kits
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Clear differences - not trash talk. Choose the tool that matches how
-          you ship.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Compare"
+        title="AtroUI vs copy-paste kits"
+        description={
+          <>
+            Clear differences - not trash talk. Choose the tool that matches how
+            you ship.
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">

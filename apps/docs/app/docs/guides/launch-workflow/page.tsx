@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { LaunchBriefDemo } from "@/components/launch-brief-demo"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -14,17 +15,17 @@ export const metadata: Metadata = docsPageMetadata({
 export default function LaunchWorkflowGuidePage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Guide</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          From scope to social card
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          One intake conversation becomes a structured brief, which seeds your
-          OG (and thumbnail) workspace — without AtroUI hosting the AI. Own the
-          UI. Borrow the API. Bring your own keys.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Guide"
+        title="From scope to social card"
+        description={
+          <>
+            One intake conversation becomes a structured brief, which seeds your
+            OG (and thumbnail) workspace — without AtroUI hosting the AI. Own the
+            UI. Borrow the API. Bring your own keys.
+          </>
+        }
+      />
 
       <section className="space-y-3">
         <h2 className="ds-headline text-base text-foreground">The path</h2>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -13,17 +14,17 @@ export const metadata: Metadata = docsPageMetadata({
 export default function BrandKitPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Brand</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Brand kit
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Assets and voice for AtroUI - the React / Next.js component library at{" "}
-          <strong className="font-medium text-foreground">atroui.com</strong>.
-          Use these when linking, embedding, or writing about the project.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Brand"
+        title="Brand kit"
+        description={
+          <>
+            Assets and voice for AtroUI - the React / Next.js component library at{" "}
+            <strong className="font-medium text-foreground">atroui.com</strong>.
+            Use these when linking, embedding, or writing about the project.
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Name</h2>

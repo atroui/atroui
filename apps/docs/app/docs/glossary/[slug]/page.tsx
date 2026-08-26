@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { BreadcrumbJsonLd } from "atroui"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { getPseoTerm, pseoGlossary } from "@/lib/pseo"
 
@@ -39,13 +40,11 @@ export default async function GlossaryTermPage({ params }: Props) {
         ]}
       />
 
-      <header>
-        <p className="ms-stamp mb-3">Glossary</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          {term.title}
-        </h1>
-        <p className="ds-lede mt-3 max-w-2xl">{term.description}</p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Glossary"
+        title={term.title}
+        description={term.description}
+      />
 
       <section className="space-y-3">
         <h2 className="ds-headline text-base text-foreground">Definition</h2>

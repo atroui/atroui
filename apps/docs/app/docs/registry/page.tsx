@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { getSiteUrl } from "atroui/lib/site-url"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -16,30 +17,31 @@ export default function RegistryPage() {
 
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Getting started</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Registry
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          AtroUI ships a shadcn-compatible registry. Components are copied into
-          your project so you can edit code, content, and design - the same
-          ownership model as shadcn/ui. Registry items match the docs catalog
-          look; change{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            CONTENT
-          </code>{" "}
-          /{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            DEFAULT_BRAND
-          </code>{" "}
-          in the installed files to make them yours. Tailwind CSS v4.{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @atroui
-          </code>{" "}
-          is public on the shadcn directory. No GitHub token.
-        </p>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+      <DocsPageHeader
+        eyebrow="Getting started"
+        title="Registry"
+        description={
+          <>
+            AtroUI ships a shadcn-compatible registry. Components are copied into
+            your project so you can edit code, content, and design - the same
+            ownership model as shadcn/ui. Registry items match the docs catalog
+            look; change{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              CONTENT
+            </code>{" "}
+            /{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              DEFAULT_BRAND
+            </code>{" "}
+            in the installed files to make them yours. Tailwind CSS v4.{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              @atroui
+            </code>{" "}
+            is public on the shadcn directory. No GitHub token.
+          </>
+        }
+      />
+      <p className="-mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:-mt-6">
           Pure UI needs only the CLI. Forms and AI tools that post to{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             /api/*
@@ -61,8 +63,7 @@ export default function RegistryPage() {
             Installation
           </Link>
           .
-        </p>
-      </header>
+      </p>
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">

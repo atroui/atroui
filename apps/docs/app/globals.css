@@ -12,9 +12,9 @@ html {
 /* Quiet brand wash behind docs chrome — keep opacity low (anti-orb) */
 .md-ambient {
   background-image: radial-gradient(
-    ellipse 70% 40% at 50% -5%,
-    color-mix(in oklch, var(--color-brand) 8%, transparent),
-    transparent 70%
+    ellipse 55% 28% at 50% -8%,
+    color-mix(in oklch, var(--color-brand) 5%, transparent),
+    transparent 72%
   );
 }
 

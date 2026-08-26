@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { BreadcrumbJsonLd, FaqJsonLd } from "atroui"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { allNavItems } from "@/lib/navigation"
 import { getPseoCollection, getPseoPage, pseoCollections } from "@/lib/pseo"
@@ -49,13 +50,11 @@ export default async function CollectionPage({ params }: Props) {
       />
       <FaqJsonLd items={collection.faqs} pagePath={path} />
 
-      <header>
-        <p className="ms-stamp mb-3">Collection</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          {collection.title}
-        </h1>
-        <p className="ds-lede mt-3 max-w-2xl">{collection.intro}</p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Collection"
+        title={collection.title}
+        description={collection.intro}
+      />
 
       <section className="space-y-3">
         <h2 className="ds-headline text-base text-foreground">

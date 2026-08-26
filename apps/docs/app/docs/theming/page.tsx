@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -13,30 +14,30 @@ export const metadata: Metadata = docsPageMetadata({
 export default function ThemingPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Getting started</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Theming
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
-          AtroUI&rsquo;s design system is dark-first: black canvas, brand blue
-          from the hero shader (
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            #0b7bff
-          </code>
-          ),{" "}
-          <strong className="font-medium text-foreground">
-            Caveat sketch display
-          </strong>
-          , Outfit UI, quiet panels, and soft-rect CTAs. After{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            npx shadcn add
-          </code>
-          , tokens live in{" "}
-          <strong className="font-medium text-foreground">your</strong> host
-          CSS (or a theme sheet you copy), not behind a required npm import.
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Getting started"
+        title="Theming"
+        description={
+          <>
+            AtroUI&rsquo;s design system is dark-first: black canvas, brand blue
+            from the hero shader (
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              #0b7bff
+            </code>
+            ),{" "}
+            <strong className="font-medium text-foreground">
+              Caveat sketch display
+            </strong>
+            , Outfit UI, quiet panels, and soft-rect CTAs. After{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              npx shadcn add
+            </code>
+            , tokens live in{" "}
+            <strong className="font-medium text-foreground">your</strong> host
+            CSS (or a theme sheet you copy), not behind a required npm import.
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">CSS variables</h2>

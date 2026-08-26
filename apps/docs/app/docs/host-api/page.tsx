@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { FaqJsonLd } from "atroui"
+import { DocsPageHeader } from "@/components/docs-page-header"
 import { HostApiGuide } from "@/components/host-api-guide"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -32,31 +33,31 @@ export const metadata: Metadata = docsPageMetadata({
 export default function HostApiPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-8">
-      <header>
-        <p className="ms-stamp mb-3">Getting started</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Host APIs
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Own the UI in your repo. Borrow the boring API security. Bring your
-          own keys. Walk the trays below — one idea at a time. Related:{" "}
-          <Link href="/docs/collections/nextjs-forms" className="bam-link">
-            Next.js forms
-          </Link>
-          {" · "}
-          <Link href="/docs/glossary/host-api" className="bam-link">
-            Host API glossary
-          </Link>
-          {" · "}
-          <Link
-            href="/blog/host-apis-own-the-ui-bring-your-keys"
-            className="bam-link"
-          >
-            Host APIs blog post
-          </Link>
-          .
-        </p>
-      </header>
+      <DocsPageHeader
+        eyebrow="Getting started"
+        title="Host APIs"
+        description={
+          <>
+            Own the UI in your repo. Borrow the boring API security. Bring your
+            own keys. Walk the trays below — one idea at a time. Related:{" "}
+            <Link href="/docs/collections/nextjs-forms" className="bam-link">
+              Next.js forms
+            </Link>
+            {" · "}
+            <Link href="/docs/glossary/host-api" className="bam-link">
+              Host API glossary
+            </Link>
+            {" · "}
+            <Link
+              href="/blog/host-apis-own-the-ui-bring-your-keys"
+              className="bam-link"
+            >
+              Host APIs blog post
+            </Link>
+            .
+          </>
+        }
+      />
 
       <HostApiGuide />
 
