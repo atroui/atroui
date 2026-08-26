@@ -2,7 +2,10 @@
 export function syncStudioViewport() {
   if (typeof window === "undefined") return
   const mq = 640
-  const inner = window.innerWidth || 0
+  const inner = Math.max(
+    window.innerWidth || 0,
+    document.documentElement.clientWidth || 0
+  )
   const outer = window.outerWidth || 0
   const scaled =
     inner < mq &&
@@ -26,7 +29,7 @@ export function syncStudioViewport() {
 export const STUDIO_VIEWPORT_SCRIPT = `(function(){
   var MQ = 640;
   function sync() {
-    var inner = window.innerWidth || 0;
+    var inner = Math.max(window.innerWidth || 0, document.documentElement.clientWidth || 0);
     var outer = window.outerWidth || 0;
     var scaled = inner < MQ && outer >= MQ && outer <= 1100 && outer / Math.max(inner, 1) <= 2.2;
     var width = scaled ? outer : inner;
