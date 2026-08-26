@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Send } from "lucide-react"
 import { FamilyCards } from "@/components/site/family-cards"
+import { LogoMark } from "@/components/logo-mark"
 import { InstallCommand } from "@/components/catalog/install-command"
 import { catalogCount, featuredCatalog } from "@/lib/catalog"
 
@@ -61,8 +62,6 @@ export function LandingHero() {
         </Link>
       </div>
 
-      <hr className="wf-rule" />
-
       <div className="wf-statement">
         <p>
           Own the files. The CLI copies the source into your project — no
@@ -70,7 +69,10 @@ export function LandingHero() {
         </p>
         <InstallCommand command="npx shadcn@latest add @atroui/home-hero" />
         <div className="wf-statement-foot">
-          <span>AtroUI</span>
+          <span className="wf-statement-brand">
+            <LogoMark className="size-4" />
+            AtroUI
+          </span>
           <span>MIT · {catalogCount} on the registry</span>
         </div>
       </div>

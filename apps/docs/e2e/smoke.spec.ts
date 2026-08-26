@@ -114,10 +114,19 @@ test.describe("layout containment", () => {
 test.describe("navigation", () => {
   test("landing reaches the docs", async ({ page }) => {
     await page.goto("/")
-    // Header Docs stays visible at every width. A generic `a[href^="/docs"]`
-    // also matches preview-card links into /docs/components/* and can sit
-    // under pointer-events-none specimen chrome, so the click would no-op.
-    await page.getByRole("banner").getByRole("link", { name: "Docs", exact: true }).click()
+    const bannerDocs = page.getByRole("banner").getByRole("link", {
+      name: "Docs",
+      exact: true,
+    })
+    if (await bannerDocs.isVisible()) {
+      await bannerDocs.click()
+    } else {
+      await page.getByRole("button", { name: "Home" }).click()
+      await page
+        .getByRole("dialog", { name: "Site menu" })
+        .getByRole("link", { name: "Docs", exact: true })
+        .click()
+    }
     await expect(page).toHaveURL(/\/docs/)
   })
 

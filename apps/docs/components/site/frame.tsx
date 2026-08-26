@@ -4,7 +4,11 @@ import * as React from "react"
 import { Github, Menu, Moon, Sun, X } from "lucide-react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { LogoMark } from "@/components/logo-mark"
-import { ThemeRail, ThemeTrayButton } from "@/components/site/theme-picker"
+import {
+  ThemeMenuList,
+  ThemeRail,
+  ThemeTrayButton,
+} from "@/components/site/theme-picker"
 import { CommandMenu } from "@/components/command-menu"
 import { OverlayShell } from "@/components/overlay-shell"
 import { DocsSidebar } from "@/components/sidebar"
@@ -91,28 +95,42 @@ function StudioGreeting() {
   )
 }
 
-function SiteMenu() {
+function SiteMenu({ variant = "icon" }: { variant?: "icon" | "pill" }) {
   const [open, setOpen] = React.useState(false)
   const pathname = usePathname()
   const active = useActive()
   const onDocs = pathname.startsWith("/docs")
+  const landing = pathname === "/"
 
   React.useEffect(() => {
     setOpen(false)
   }, [pathname])
 
   return (
-    <div className="min-[1200px]:hidden">
-      <button
-        type="button"
-        onClick={() => setOpen((value) => !value)}
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        aria-haspopup="dialog"
-        className="inline-flex size-11 items-center justify-center text-foreground"
-      >
-        {open ? <X className="size-4" /> : <Menu className="size-4" />}
-      </button>
+    <div className={cn("min-[1200px]:hidden", variant === "pill" && "wf-landing-pill")}>
+      {variant === "pill" ? (
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-haspopup="dialog"
+          className="wf-home-pill"
+        >
+          {open ? <X className="size-3.5" aria-hidden /> : <Menu className="size-3.5" aria-hidden />}
+          Home
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-haspopup="dialog"
+          className="inline-flex size-11 items-center justify-center text-foreground"
+        >
+          {open ? <X className="size-4" /> : <Menu className="size-4" />}
+        </button>
+      )}
       <OverlayShell
         open={open}
         onClose={() => setOpen(false)}
@@ -128,7 +146,7 @@ function SiteMenu() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="inline-flex size-8 items-center justify-center"
+            className="inline-flex size-11 items-center justify-center"
           >
             <X className="size-4" />
           </button>
@@ -143,6 +161,16 @@ function SiteMenu() {
             <DocsSidebar />
           </div>
         ) : null}
+        {landing ? (
+          <>
+            <div className="mt-8 border-t border-[var(--line)] pt-6">
+              <ThemeMenuList onPick={() => setOpen(false)} />
+            </div>
+            <div className="mt-6 [&_button]:max-w-none [&_button]:w-full">
+              <CommandMenu />
+            </div>
+          </>
+        ) : null}
       </OverlayShell>
     </div>
   )
@@ -151,7 +179,7 @@ function SiteMenu() {
 function LeftRail({ active }: { active: ReturnType<typeof activeNavId> }) {
   return (
     <header className="wf-left" style={{ viewTransitionName: "site-header" }}>
-      <div className="flex w-full items-center gap-2 min-[1200px]:block">
+      <div className="wf-left-head flex w-full items-center gap-2">
         <SiteMenu />
         <SharedBrand>
           <TransitionLink href="/" aria-label="AtroUI home" className="wf-mark">
@@ -219,6 +247,7 @@ function FrameInner({ children }: { children: React.ReactNode }) {
     <div className="wf-frame" data-wide={wide ? "" : undefined}>
       <LeftRail active={active} />
       <div className="wf-center">
+        {wide ? null : <SiteMenu variant="pill" />}
         <StudioGreeting />
         {children}
       </div>

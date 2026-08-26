@@ -47,6 +47,49 @@ function ThemeSwatch({
   )
 }
 
+export function ThemeMenuList({ onPick }: { onPick?: () => void }) {
+  const { mounted, active, pick } = useSiteTheme()
+
+  return (
+    <div>
+      <p className="mb-2 text-[12px] font-normal text-muted-foreground">Themes</p>
+      <div className="flex flex-col gap-1">
+        {SITE_THEMES.map((sheet) => {
+          const selected = mounted && active === sheet.id
+          return (
+            <button
+              key={sheet.id}
+              type="button"
+              className={cn(
+                "flex h-11 items-center gap-3 rounded-[8px] px-2 text-left text-[15px]",
+                selected ? "text-foreground" : "text-muted-foreground"
+              )}
+              aria-pressed={selected}
+              onClick={() => {
+                pick(sheet.id)
+                onPick?.()
+              }}
+            >
+              <ThemeSwatch {...sheet.preview} className="wf-theme-swatch-sm" />
+              <span className="min-w-0 flex-1">
+                <span className="block font-medium text-foreground">
+                  {sheet.label}
+                </span>
+                <span className="block text-[12px] text-muted-foreground">
+                  {sheet.hint}
+                </span>
+              </span>
+              {selected ? (
+                <Check className="size-3.5 shrink-0" aria-hidden />
+              ) : null}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export function ThemeRail() {
   const { mounted, active, pick } = useSiteTheme()
 
