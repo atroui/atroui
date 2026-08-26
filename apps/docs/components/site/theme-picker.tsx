@@ -39,7 +39,7 @@ export function ThemeDots({ className }: { className?: string }) {
             key={sheet.id}
             type="button"
             className="wf-swatch-dot"
-            style={{ background: sheet.preview.accent }}
+            style={{ "--swatch": sheet.preview.accent } as React.CSSProperties}
             aria-label={sheet.label}
             title={sheet.label}
             aria-pressed={current}

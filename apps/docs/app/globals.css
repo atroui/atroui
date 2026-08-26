@@ -960,6 +960,7 @@ html {
 .wf-claim-brand,
 .wf-claim-rest {
   display: block;
+  overflow-wrap: break-word;
 }
 
 .wf-claim-brand {
@@ -986,7 +987,7 @@ html {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: var(--color-text-dark);
+  background: var(--swatch, var(--color-text-dark));
   box-shadow: var(--shadow-swatch), var(--shadow-ring);
   cursor: pointer;
 }
@@ -1163,13 +1164,69 @@ html {
   }
 
   .wf-home .wf-swatches {
-    display: none;
+    display: flex;
+    position: static;
+    margin: 0 0 4px;
+    gap: 0;
+  }
+
+  .wf-home .wf-swatch-dot {
+    width: 44px;
+    height: 44px;
+    border-radius: 0;
+    box-shadow: none;
+    background:
+      radial-gradient(circle 5px, var(--swatch) 99%, transparent 100%),
+      radial-gradient(
+        circle 6.5px,
+        transparent 5.25px,
+        color-mix(in srgb, var(--color-text-dark) 45%, transparent) 5.25px,
+        color-mix(in srgb, var(--color-text-dark) 45%, transparent) 6.25px,
+        transparent 6.5px
+      );
+  }
+  .wf-home .wf-swatch-dot[aria-pressed="true"] {
+    box-shadow: none;
+    background:
+      radial-gradient(circle 5px, var(--swatch) 99%, transparent 100%),
+      radial-gradient(
+        circle 8px,
+        transparent 6.5px,
+        var(--color-text-dark) 7px,
+        var(--color-text-dark) 8px,
+        transparent 8.5px
+      );
   }
 
   .wf-board-fx,
   .wf-tsquare,
   .wf-tsquare-v {
     display: none;
+  }
+
+  .wf-home-pill {
+    height: 44px;
+    padding: 0 14px 0 12px;
+  }
+
+  .wf-home-btn,
+  .wf-home .wf-cta-text {
+    height: 44px;
+  }
+
+  .wf-home .wf-names a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1199px) and (max-height: 500px) {
+  .wf-frame:not([data-wide]) .wf-landing-pill {
+    margin-bottom: 16px;
+  }
+  .wf-frame:not([data-wide]) .wf-center {
+    padding-top: 1rem;
   }
 }
 
@@ -1190,17 +1247,6 @@ html {
 
   .wf-home .wf-rule {
     margin: 28px 0;
-  }
-
-  .wf-home-btn,
-  .wf-home .wf-cta-text {
-    height: 44px;
-  }
-
-  .wf-home .wf-names a {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
   }
 }
 
