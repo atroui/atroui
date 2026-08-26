@@ -129,9 +129,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
+          defaultTheme="paper"
+          enableSystem={false}
+          disableTransitionOnChange={false}
+          themes={["paper", "atro", "ink", "dawn", "light", "dark", "system"]}
+          value={{
+            paper: "theme-paper",
+            light: "theme-paper",
+            system: "theme-paper",
+            dawn: "theme-dawn",
+            atro: "theme-atro",
+            dark: "theme-atro",
+            ink: "theme-ink",
+          }}
         >
           <div className="relative min-h-svh bg-background text-foreground">
             <SiteFrame>{children}</SiteFrame>

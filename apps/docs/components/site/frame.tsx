@@ -3,9 +3,8 @@
 import * as React from "react"
 import { Github, Menu, Moon, Sun, X } from "lucide-react"
 import { usePathname, useSearchParams } from "next/navigation"
-import { useTheme } from "next-themes"
-import { ThemeToggleIcon } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
+import { ThemeRail, ThemeTrayButton } from "@/components/site/theme-picker"
 import { CommandMenu } from "@/components/command-menu"
 import { OverlayShell } from "@/components/overlay-shell"
 import { DocsSidebar } from "@/components/sidebar"
@@ -171,7 +170,7 @@ function LeftRail({ active }: { active: ReturnType<typeof activeNavId> }) {
             Docs
           </TransitionLink>
           <CommandMenu compact />
-          <ThemeToggleIcon className="size-11" />
+          <ThemeTrayButton />
         </div>
       </div>
 
@@ -187,36 +186,11 @@ function LeftRail({ active }: { active: ReturnType<typeof activeNavId> }) {
   )
 }
 
-function ModeSwitch() {
-  const { resolvedTheme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
-
-  const isDark = mounted && resolvedTheme === "dark"
-  const next = isDark ? "light" : "dark"
-
-  return (
-    <div className="wf-mode">
-      <span>Mode</span>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={isDark}
-        aria-label={`Switch to ${next} mode`}
-        className="wf-switch"
-        onClick={() => setTheme(next)}
-      >
-        <span className="wf-switch-knob" />
-      </button>
-    </div>
-  )
-}
-
 function RightRail() {
   return (
     <aside className="wf-right" aria-label="Utilities">
       <p className="wf-stat">{catalogCount.toLocaleString()} components</p>
-      <ModeSwitch />
+      <ThemeRail />
       <a
         href={GITHUB_REPO}
         target="_blank"
