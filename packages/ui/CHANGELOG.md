@@ -1,5 +1,21 @@
 # atroui
 
+## 0.5.0
+
+### Minor Changes
+
+- [#87](https://github.com/atroui/atroui/pull/87) [`61c97e6`](https://github.com/atroui/atroui/commit/61c97e6dcf7a4751b5cfdd163c86d34ae10044be) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Add Adaptive Theme Switch: a light/dark control that lifts muted type to WCAG AA so designed palettes stay readable.
+
+### Patch Changes
+
+- [#92](https://github.com/atroui/atroui/pull/92) [`c56efec`](https://github.com/atroui/atroui/commit/c56efec0f93cc4b2027975af92a81f7552cf203b) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Declare `tailwindcss` as a dependency (and peer) so `atroui/globals.css` can resolve `@import "tailwindcss"` in Next/webpack and pnpm workspaces.
+
+- [#86](https://github.com/atroui/atroui/pull/86) [`15e2f4c`](https://github.com/atroui/atroui/commit/15e2f4c17390906770dd16eb8750ea092860f550) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Newsletter subscribe uses Resend global Contacts + Segments (RESEND_SEGMENT_ID or RESEND_AUDIENCE_ID). Form sends honeypot + optional source.
+
+- [#95](https://github.com/atroui/atroui/pull/95) [`edec2df`](https://github.com/atroui/atroui/commit/edec2df6591365b4ad6ac913ed929067e3aaa079) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Clarify the npm package description: public `@atroui` install, Tailwind v4, optional Host APIs with BYOK, not hosted AI.
+
+- Fix OG text preview on Vercel: embed Inter fonts in the package, and serve docs `/api/generate` previewOnly via next/og so live downloads no longer HTML-500 from sharp/satori module init.
+
 ## 0.4.2
 
 ### Patch Changes
