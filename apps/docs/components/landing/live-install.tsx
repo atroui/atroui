@@ -1,8 +1,9 @@
 "use client"
 
 /**
- * Signature — presence-typed install (Honkish presence + Family gradual reveal).
- * One thing breathing. Reduced-motion: all lines instantly.
+ * Install signature — full commands from first paint.
+ * Copy is the conversion; typing that left empty `$` lines undercut the pitch.
+ * Careful delight: caret blink on the last line only (skipped for reduced motion).
  */
 
 import * as React from "react"
@@ -14,19 +15,7 @@ export const INSTALL_LINES = [
   "npx shadcn@latest add @atroui/home-hero",
 ] as const
 
-const CHAR_MS = 22
-const LINE_PAUSE_MS = 420
-const START_DELAY_MS = 480
-
-function CopyBtn({
-  text,
-  label,
-  ready,
-}: {
-  text: string
-  label: string
-  ready: boolean
-}) {
+function CopyBtn({ text, label }: { text: string; label: string }) {
   const [copied, setCopied] = React.useState(false)
 
   async function copy() {
@@ -39,10 +28,6 @@ function CopyBtn({
     }
   }
 
-  if (!ready) {
-    return <span className="inline-block size-7" aria-hidden />
-  }
-
   return (
     <button
       type="button"
@@ -51,7 +36,10 @@ function CopyBtn({
       className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white"
     >
       {copied ? (
-        <Check className="size-3.5 text-[color:var(--ds-cyan,#92dbe0)]" aria-hidden />
+        <Check
+          className="size-3.5 text-[color:var(--ds-cyan,#92dbe0)]"
+          aria-hidden
+        />
       ) : (
         <Copy className="size-3.5" aria-hidden />
       )}
@@ -61,53 +49,7 @@ function CopyBtn({
 
 export function LiveInstall({ className }: { className?: string }) {
   const reduce = useReducedMotion()
-  const [typed, setTyped] = React.useState<string[]>(() =>
-    reduce ? [...INSTALL_LINES] : INSTALL_LINES.map(() => "")
-  )
-  const [activeLine, setActiveLine] = React.useState(0)
-  const [done, setDone] = React.useState(() => Boolean(reduce))
   const [copiedAll, setCopiedAll] = React.useState(false)
-
-  React.useEffect(() => {
-    if (reduce) {
-      setTyped([...INSTALL_LINES])
-      setDone(true)
-      return
-    }
-
-    let cancelled = false
-    let timeoutId: ReturnType<typeof setTimeout> | undefined
-
-    const typeLine = (lineIndex: number, charIndex: number) => {
-      if (cancelled) return
-      const full = INSTALL_LINES[lineIndex]!
-      if (charIndex <= full.length) {
-        setActiveLine(lineIndex)
-        setTyped((prev) => {
-          const next = [...prev]
-          next[lineIndex] = full.slice(0, charIndex)
-          return next
-        })
-        timeoutId = setTimeout(
-          () => typeLine(lineIndex, charIndex + 1),
-          CHAR_MS
-        )
-        return
-      }
-      if (lineIndex < INSTALL_LINES.length - 1) {
-        timeoutId = setTimeout(() => typeLine(lineIndex + 1, 0), LINE_PAUSE_MS)
-      } else {
-        setDone(true)
-      }
-    }
-
-    timeoutId = setTimeout(() => typeLine(0, 0), START_DELAY_MS)
-
-    return () => {
-      cancelled = true
-      if (timeoutId) clearTimeout(timeoutId)
-    }
-  }, [reduce])
 
   async function copyAll() {
     try {
@@ -136,8 +78,7 @@ export function LiveInstall({ className }: { className?: string }) {
         <button
           type="button"
           onClick={copyAll}
-          disabled={!done}
-          className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md px-2 font-mono text-[10px] tracking-[0.08em] text-white/50 uppercase transition-colors enabled:hover:bg-white/10 enabled:hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+          className="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md px-2 font-mono text-[10px] tracking-[0.08em] text-white/50 uppercase transition-colors hover:bg-white/10 hover:text-white"
         >
           {copiedAll ? (
             <>
@@ -155,32 +96,22 @@ export function LiveInstall({ className }: { className?: string }) {
 
       <div className="space-y-2.5 px-3.5 py-4 font-mono text-[12px] leading-relaxed sm:px-4 sm:text-[13px]">
         {INSTALL_LINES.map((full, i) => {
-          const text = typed[i] ?? ""
-          const lineDone = text.length >= full.length
-          const showCursor = !done && activeLine === i
+          const isLast = i === INSTALL_LINES.length - 1
           return (
-            <div
-              key={full}
-              className="flex items-start gap-2"
-              aria-live={i === activeLine ? "polite" : undefined}
-            >
+            <div key={full} className="flex items-start gap-2">
               <span className="shrink-0 select-none text-[color:var(--ds-cyan,#92dbe0)]">
                 $
               </span>
               <p className="min-w-0 flex-1 break-all text-white/90">
-                {text}
-                {showCursor ? (
+                {full}
+                {isLast && !reduce ? (
                   <span
                     className="presence-install-caret ml-px inline-block h-[1.05em] w-[0.55ch] translate-y-[0.12em] bg-[color:var(--ds-cyan,#92dbe0)] align-baseline"
                     aria-hidden
                   />
                 ) : null}
               </p>
-              <CopyBtn
-                text={full}
-                label={`Copy line ${i + 1}`}
-                ready={lineDone}
-              />
+              <CopyBtn text={full} label={`Copy line ${i + 1}`} />
             </div>
           )
         })}

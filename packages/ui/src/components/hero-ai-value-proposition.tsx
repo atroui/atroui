@@ -15,37 +15,88 @@ import { cn } from "../lib/utils";
 /**
  * Studio homepage hero (OG canvas + sprint rail).
  * Registry install: `@atroui/home-hero` (CONTENT clone under components/blocks).
+ * Optional `content` lets hosts (e.g. atroui.com catalog) demote studio CTAs.
  */
 
-const SPRINT_DAYS = [
-  { day: "01", label: "Scope + stack", done: true },
-  { day: "02", label: "Auth + data", done: true },
-  { day: "03", label: "Core flow", done: true },
-  { day: "04", label: "AI feature", done: false, active: true },
-  { day: "05", label: "Polish UI", done: false },
-  { day: "06", label: "Deploy", done: false },
-  { day: "07", label: "Handoff", done: false },
-] as const;
+export type HomeHeroSprintDay = {
+  day: string;
+  label: string;
+  done?: boolean;
+  active?: boolean;
+};
 
-function getHeroStyles(): {
+export type HomeHeroContent = {
+  stamp: string;
+  headlineBefore: string;
+  headlineAccent: string;
+  headlineAfter: string;
+  subhead: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+  founderName: string;
+  founderRole: string;
+  sprintTitle: string;
+  sprintDay: string;
+  sprintDays: HomeHeroSprintDay[];
+  sprintCta: { label: string; href: string };
+  ogTitle: string;
+  ogSubtitle: string;
+  ogHref: string;
+  ogOpenLabel: string;
+  ogGenerateLabel: string;
+  ogPreviewHint: string;
+};
+
+export const DEFAULT_HOME_HERO_CONTENT: HomeHeroContent = {
+  stamp: "One-person studio · May sprints open",
+  headlineBefore: "Stop losing weeks to",
+  headlineAccent: "boilerplate",
+  headlineAfter: ".",
+  subhead:
+    "We ship the product you were going to build next month - this week. Fixed scope. Fixed price. No PMs. No handoffs.",
+  primaryCta: { label: "Start a 7-day MVP sprint", href: "/contact" },
+  secondaryCta: { label: "Try the free OG tool", href: "/og" },
+  founderName: "Koustav",
+  founderRole: "Founder · every line of code",
+  sprintTitle: "7-day sprint",
+  sprintDay: "Day 4 / 7",
+  sprintDays: [
+    { day: "01", label: "Scope + stack", done: true },
+    { day: "02", label: "Auth + data", done: true },
+    { day: "03", label: "Core flow", done: true },
+    { day: "04", label: "AI feature", done: false, active: true },
+    { day: "05", label: "Polish UI", done: false },
+    { day: "06", label: "Deploy", done: false },
+    { day: "07", label: "Handoff", done: false },
+  ],
+  sprintCta: { label: "Book this sprint", href: "/contact?service=mvp-sprint" },
+  ogTitle: "Ship in days,\nnot quarters.",
+  ogSubtitle: "studio + free AI tools",
+  ogHref: "/og",
+  ogOpenLabel: "Open live",
+  ogGenerateLabel: "Generate",
+  ogPreviewHint: "Live CSS preview of the OG tool",
+};
+
+function getHeroStyles(content: HomeHeroContent): {
   key: StyleKey;
   label: string;
   title: string;
   subtitle: string;
 }[] {
-  const studioLine = `${getBrand().name} - studio + free AI tools`;
+  const brandLine = `${getBrand().name} - ${content.ogSubtitle}`;
   return [
     {
       key: "techMinimal",
       label: "Tech",
-      title: "Ship in days,\nnot quarters.",
-      subtitle: studioLine,
+      title: content.ogTitle,
+      subtitle: brandLine,
     },
     {
       key: "paperQuote",
       label: "Paper",
-      title: "Ship in days,\nnot quarters.",
-      subtitle: studioLine,
+      title: content.ogTitle,
+      subtitle: brandLine,
     },
     {
       key: "darkDev",
@@ -62,18 +113,21 @@ function getHeroStyles(): {
   ];
 }
 
-function HeroOgCanvas() {
+function HeroOgCanvas({ content }: { content: HomeHeroContent }) {
   const [styleKey, setStyleKey] = useState<StyleKey>("techMinimal");
-  const heroStyles = getHeroStyles();
+  const heroStyles = getHeroStyles(content);
   const active = heroStyles.find((s) => s.key === styleKey) ?? heroStyles[0]!;
   const preset = STYLE_PRESETS[styleKey];
   const isLight = styleKey === "paperQuote";
+  const styleHref = content.ogHref.includes("?")
+    ? `${content.ogHref}&style=${styleKey}`
+    : `${content.ogHref}?style=${styleKey}`;
 
   return (
     <>
       <div className="border-b border-border-subtle p-3 sm:p-4">
         <Link
-          href={`/og?style=${styleKey}`}
+          href={styleHref}
           className="group relative block overflow-hidden rounded-xl ring-1 ring-border-subtle"
           aria-label={`Open OG Image Generator - ${preset.label}`}
         >
@@ -154,13 +208,10 @@ function HeroOgCanvas() {
         </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <p className="hidden text-xs text-muted-foreground md:block">
-            Live CSS preview of the OG tool
+            {content.ogPreviewHint}
           </p>
-          <Link
-            href={`/og?style=${styleKey}`}
-            className="ms-cta h-10 px-4 text-xs"
-          >
-            Generate
+          <Link href={styleHref} className="ms-cta h-10 px-4 text-xs">
+            {content.ogGenerateLabel}
           </Link>
         </div>
       </div>
@@ -168,11 +219,35 @@ function HeroOgCanvas() {
   );
 }
 
+export type HeroAiValuePropositionProps = {
+  content?: Partial<HomeHeroContent>;
+};
+
 /**
  * Landing hero - bordered editorial frame + live OG workspace mock.
  */
-export function HeroAiValueProposition() {
+export function HeroAiValueProposition({
+  content: contentOverride,
+}: HeroAiValuePropositionProps) {
   const timelineRef = useRef<HTMLDivElement>(null);
+  const content: HomeHeroContent = {
+    ...DEFAULT_HOME_HERO_CONTENT,
+    ...contentOverride,
+    primaryCta: {
+      ...DEFAULT_HOME_HERO_CONTENT.primaryCta,
+      ...contentOverride?.primaryCta,
+    },
+    secondaryCta: {
+      ...DEFAULT_HOME_HERO_CONTENT.secondaryCta,
+      ...contentOverride?.secondaryCta,
+    },
+    sprintCta: {
+      ...DEFAULT_HOME_HERO_CONTENT.sprintCta,
+      ...contentOverride?.sprintCta,
+    },
+    sprintDays:
+      contentOverride?.sprintDays ?? DEFAULT_HOME_HERO_CONTENT.sprintDays,
+  };
 
   return (
     <section
@@ -189,7 +264,7 @@ export function HeroAiValueProposition() {
               timelineRef={timelineRef}
               className="ms-stamp"
             >
-              One-person studio · May sprints open
+              {content.stamp}
             </TimelineAnimation>
 
             <TimelineAnimation
@@ -199,8 +274,11 @@ export function HeroAiValueProposition() {
               timelineRef={timelineRef}
               className="ds-display max-w-4xl text-[2.125rem] leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl"
             >
-              Stop losing weeks to{" "}
-              <span className="ds-display-italic text-brand">boilerplate</span>.
+              {content.headlineBefore}{" "}
+              <span className="ds-display-italic text-brand">
+                {content.headlineAccent}
+              </span>
+              {content.headlineAfter}
             </TimelineAnimation>
 
             <TimelineAnimation
@@ -210,8 +288,7 @@ export function HeroAiValueProposition() {
               timelineRef={timelineRef}
               className="ds-lede max-w-2xl"
             >
-              We ship the product you were going to build next month - this
-              week. Fixed scope. Fixed price. No PMs. No handoffs.
+              {content.subhead}
             </TimelineAnimation>
           </div>
         </article>
@@ -224,12 +301,18 @@ export function HeroAiValueProposition() {
               timelineRef={timelineRef}
               className="flex w-full max-w-xl flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center"
             >
-              <Link href="/contact" className="ms-cta w-full justify-center sm:w-auto">
-                Start a 7-day MVP sprint
+              <Link
+                href={content.primaryCta.href}
+                className="ms-cta w-full justify-center sm:w-auto"
+              >
+                {content.primaryCta.label}
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
-              <Link href="/og" className="ms-cta-ghost w-full justify-center sm:w-auto">
-                Try the free OG tool
+              <Link
+                href={content.secondaryCta.href}
+                className="ms-cta-ghost w-full justify-center sm:w-auto"
+              >
+                {content.secondaryCta.label}
                 <ArrowRight className="size-3.5 opacity-60" aria-hidden />
               </Link>
             </TimelineAnimation>
@@ -242,10 +325,10 @@ export function HeroAiValueProposition() {
             >
               <FounderAvatar size="sm" />
               <div className="text-left text-sm leading-tight">
-                <p className="font-medium text-foreground">Koustav</p>
-                <p className="text-muted-foreground">
-                  Founder · every line of code
+                <p className="font-medium text-foreground">
+                  {content.founderName}
                 </p>
+                <p className="text-muted-foreground">{content.founderRole}</p>
               </div>
             </TimelineAnimation>
           </div>
@@ -273,10 +356,10 @@ export function HeroAiValueProposition() {
                 </div>
               </div>
               <Link
-                href="/og"
+                href={content.ogHref}
                 className="hidden items-center gap-1 text-[11px] font-medium text-brand sm:inline-flex"
               >
-                Open live
+                {content.ogOpenLabel}
                 <ArrowUpRight className="size-3" aria-hidden />
               </Link>
             </div>
@@ -288,7 +371,7 @@ export function HeroAiValueProposition() {
                   animationNum={7}
                   timelineRef={timelineRef}
                 >
-                  <HeroOgCanvas />
+                  <HeroOgCanvas content={content} />
                 </TimelineAnimation>
               </div>
 
@@ -299,13 +382,13 @@ export function HeroAiValueProposition() {
                 className="border-t border-border-subtle lg:border-t-0 lg:border-l"
               >
                 <div className="flex items-center justify-between border-b border-border-subtle px-4 py-3">
-                  <p className="ds-mono-label">7-day sprint</p>
+                  <p className="ds-mono-label">{content.sprintTitle}</p>
                   <span className="text-[11px] tabular-nums text-brand">
-                    Day 4 / 7
+                    {content.sprintDay}
                   </span>
                 </div>
                 <ol className="divide-y divide-border-subtle">
-                  {SPRINT_DAYS.map((row, idx) => (
+                  {content.sprintDays.map((row, idx) => (
                     <TimelineAnimation
                       key={row.day}
                       once
@@ -313,7 +396,7 @@ export function HeroAiValueProposition() {
                       timelineRef={timelineRef}
                       as="li"
                       className={
-                        "active" in row && row.active
+                        row.active
                           ? "flex items-center gap-3 bg-brand/8 px-4 py-3"
                           : "flex items-center gap-3 px-4 py-3"
                       }
@@ -322,7 +405,7 @@ export function HeroAiValueProposition() {
                         className={
                           row.done
                             ? "font-mono text-[11px] tabular-nums text-brand"
-                            : "active" in row && row.active
+                            : row.active
                               ? "font-mono text-[11px] tabular-nums text-foreground"
                               : "font-mono text-[11px] tabular-nums text-muted-foreground/50"
                         }
@@ -331,7 +414,7 @@ export function HeroAiValueProposition() {
                       </span>
                       <span
                         className={
-                          row.done || ("active" in row && row.active)
+                          row.done || row.active
                             ? "text-sm text-foreground"
                             : "text-sm text-muted-foreground/60"
                         }
@@ -343,7 +426,7 @@ export function HeroAiValueProposition() {
                           className="ml-auto size-1.5 rounded-full bg-brand"
                           aria-hidden
                         />
-                      ) : "active" in row && row.active ? (
+                      ) : row.active ? (
                         <span
                           className="ml-auto size-1.5 animate-pulse rounded-full bg-brand"
                           aria-hidden
@@ -354,10 +437,10 @@ export function HeroAiValueProposition() {
                 </ol>
                 <div className="border-t border-border-subtle px-4 py-3">
                   <Link
-                    href="/contact?service=mvp-sprint"
+                    href={content.sprintCta.href}
                     className="group flex items-center justify-between text-sm font-medium text-foreground"
                   >
-                    Book this sprint
+                    {content.sprintCta.label}
                     <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 </div>

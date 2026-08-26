@@ -7,7 +7,7 @@
  * 3. Careful delight: copy feedback on the install line only.
  *
  * Every preview is the real registry export users install — no mocks.
- * Lined up to the claim: Own the UI. Borrow the API.
+ * Proof section (not a second thesis restamp).
  */
 
 import * as React from "react"
@@ -19,12 +19,42 @@ import {
   DeadlineCountdown,
   HomeHero,
   WaitlistForm,
+  type HomeHeroContent,
 } from "atroui"
 import { cn } from "@/lib/utils"
 import { easeOutSoft, panelTween } from "@/lib/motion"
 
 const shell =
   "mx-auto w-full max-w-7xl px-4 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-20 lg:py-20 xl:px-24"
+
+/** AtroUI.com product chrome — not the studio default CONTENT. */
+const LANDING_HERO_CONTENT: Partial<HomeHeroContent> = {
+  stamp: "Sample CONTENT · edit after install",
+  headlineBefore: "Dark-first sections you",
+  headlineAccent: "own",
+  headlineAfter: ".",
+  subhead:
+    "Copy production blocks into your repo with the shadcn CLI. Host APIs for forms and tools — keys stay in your env.",
+  primaryCta: { label: "Browse components", href: "/docs/components" },
+  secondaryCta: { label: "Host APIs", href: "/docs/host-api" },
+  founderName: "AtroUI",
+  founderRole: "Registry sample — change after shadcn add",
+  sprintTitle: "Install path",
+  sprintDay: "2 steps",
+  sprintDays: [
+    { day: "01", label: "shadcn init", done: true },
+    { day: "02", label: "add @atroui/…", done: true, active: false },
+    { day: "03", label: "Edit CONTENT", done: false, active: true },
+    { day: "04", label: "Ship", done: false },
+  ],
+  sprintCta: { label: "Open registry docs", href: "/docs/registry" },
+  ogTitle: "Own the UI.\nBorrow the API.",
+  ogSubtitle: "registry · Host APIs · MIT",
+  ogHref: "/og",
+  ogOpenLabel: "Open workspace",
+  ogGenerateLabel: "Open OG",
+  ogPreviewHint: "OG workspace UI — BYOK Host API",
+}
 
 type CatalogId = "hero" | "countdown" | "contact" | "waitlist"
 
@@ -43,7 +73,7 @@ const CATALOG: CatalogItem[] = [
     label: "Hero",
     registry: "home-hero",
     docs: "/docs/components/home-hero",
-    blurb: "Own the UI — production hero, source in your repo.",
+    blurb: "Production hero — sample CONTENT for atroui.com.",
     command: "npx shadcn@latest add @atroui/home-hero",
   },
   {
@@ -51,7 +81,7 @@ const CATALOG: CatalogItem[] = [
     label: "Countdown",
     registry: "deadline-countdown",
     docs: "/docs/components/deadline-countdown",
-    blurb: "Own the UI — personal kit block, edit CONTENT.",
+    blurb: "Personal kit block — edit CONTENT after install.",
     command: "npx shadcn@latest add @atroui/deadline-countdown",
   },
   {
@@ -59,7 +89,7 @@ const CATALOG: CatalogItem[] = [
     label: "Contact",
     registry: "contact-form",
     docs: "/docs/components/contact-contact-form",
-    blurb: "Borrow the API — form UI + SMTP Host API (BYOK).",
+    blurb: "Form UI + SMTP Host API (BYOK).",
     command: "npx shadcn@latest add @atroui/contact-form",
   },
   {
@@ -67,7 +97,7 @@ const CATALOG: CatalogItem[] = [
     label: "Waitlist",
     registry: "waitlist-form",
     docs: "/docs/components/brand-waitlist-form",
-    blurb: "Borrow the API — waitlist UI + Host API route (BYOK).",
+    blurb: "Waitlist UI + Host API route (BYOK).",
     command: "npx shadcn@latest add @atroui/waitlist-form",
   },
 ]
@@ -104,15 +134,10 @@ function StageCopyBtn({ text }: { text: string }) {
 function renderPreview(id: CatalogId) {
   switch (id) {
     case "hero":
-      // Real `@atroui/home-hero` — same export users install.
-      return <HomeHero />
+      return <HomeHero content={LANDING_HERO_CONTENT} />
     case "countdown":
-      // Real `@atroui/deadline-countdown` — same export users install.
-      return (
-        <DeadlineCountdown className="mx-auto w-full max-w-md" />
-      )
+      return <DeadlineCountdown className="mx-auto w-full max-w-md" />
     case "contact":
-      // Real `@atroui/contact-form` — pair with `@atroui/api-contact` (BYOK).
       return (
         <div className="mx-auto w-full max-w-2xl space-y-3">
           <React.Suspense
@@ -132,7 +157,6 @@ function renderPreview(id: CatalogId) {
         </div>
       )
     case "waitlist":
-      // Real `@atroui/waitlist-form` — pair with `@atroui/api-waitlist` (BYOK).
       return (
         <div className="mx-auto w-full max-w-sm space-y-3">
           <WaitlistForm />
@@ -197,16 +221,15 @@ export function CatalogStage() {
         <div className="flex flex-col gap-8 sm:gap-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-xl">
-              <p className="ms-stamp">The claim</p>
+              <p className="ms-stamp">Live</p>
               <h2
                 id="catalog-stage-title"
                 className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl"
               >
-                Own the UI.{" "}
-                <span className="ds-sketch-accent">Borrow the API.</span>
+                From the <span className="ds-sketch-accent">registry</span>
               </h2>
               <p className="ds-lede mt-3 max-w-md text-neutral-400 sm:mt-4">
-                Live registry blocks — the same exports{" "}
+                Real exports{" "}
                 <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[12px] text-neutral-200">
                   shadcn add @atroui/…
                 </code>{" "}

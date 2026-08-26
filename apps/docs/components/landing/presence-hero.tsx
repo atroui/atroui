@@ -230,20 +230,21 @@ export function PresenceHero() {
 
             <LiveInstall className="mt-9 w-full sm:mt-10" />
 
-            <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
+            {/* One primary CTA; Host APIs demoted to text (install chip is the conversion). */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 sm:mt-9">
               <SharedOwnCta>
                 <TransitionLink
-                  href="/docs/registry"
+                  href="/docs/components"
                   className="inline-flex items-center gap-2.5 rounded-lg bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
                 >
-                  Own the UI
+                  Browse components
                 </TransitionLink>
               </SharedOwnCta>
               <TransitionLink
                 href="/docs/host-api"
-                className="inline-flex items-center rounded-lg border border-white/18 px-6 py-3 text-[15px] font-medium text-white/85 transition hover:border-white/30 hover:text-white sm:px-7 sm:py-3.5 sm:text-base"
+                className="text-[15px] font-medium text-white/55 transition hover:text-white"
               >
-                Host APIs
+                Host APIs →
               </TransitionLink>
             </div>
           </div>
