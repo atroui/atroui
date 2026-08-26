@@ -211,13 +211,17 @@ export const pseoPages: Record<string, PseoPage> = {
     path: "/docs/installation",
     title: "Install AtroUI with the shadcn CLI",
     description:
-      "npx shadcn add @atroui/home-hero copies source into your repo. Do not start with npm i atroui unless you need Host API handlers.",
+      "npx shadcn add @atroui/… copies source into your repo (Tailwind v4). Public @atroui — no GitHub token. Host APIs optional and BYOK.",
     job: "Go from zero to an owned section",
-    body: "AtroUI is in the official shadcn directory. init, then add. transpilePackages is for Host API consumers only.",
+    body: "AtroUI is in the official shadcn directory. init, then add. You own the copied files. Tailwind / monorepo scanning is your project config. transpilePackages is for Host API consumers only.",
     faqs: [
       {
         q: "Why is atroui an npm package at all?",
         a: "So form and AI routes can share validation, honeypot, and rate limits without vendoring native image deps into every copied file.",
+      },
+      {
+        q: "Do I need a GitHub token to install @atroui?",
+        a: "No. @atroui is on the public shadcn directory. Private GitHub registries are a different shadcn feature.",
       },
     ],
   },
