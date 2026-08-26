@@ -4,14 +4,15 @@ import * as React from "react"
 import { Github, Menu, Moon, Sun, X } from "lucide-react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { LogoMark } from "@/components/logo-mark"
+import { CommandMenu } from "@/components/command-menu"
+import { OverlayShell } from "@/components/overlay-shell"
+import { DocsSidebar } from "@/components/sidebar"
+import { DraftingSquare } from "@/components/site/drafting-square"
 import {
   ThemeMenuList,
   ThemeRail,
   ThemeTrayButton,
 } from "@/components/site/theme-picker"
-import { CommandMenu } from "@/components/command-menu"
-import { OverlayShell } from "@/components/overlay-shell"
-import { DocsSidebar } from "@/components/sidebar"
 import { SharedBrand, TransitionLink } from "@/components/view-transitions"
 import { catalogCount, FAMILY_PARAM } from "@/lib/catalog"
 import { activeNavId, primaryNav } from "@/lib/primary-nav"
@@ -244,7 +245,11 @@ function FrameInner({ children }: { children: React.ReactNode }) {
     pathname.startsWith("/planner")
 
   return (
-    <div className="wf-frame" data-wide={wide ? "" : undefined}>
+    <div
+      className={cn("wf-frame", !wide && "wf-board")}
+      data-wide={wide ? "" : undefined}
+    >
+      {wide ? null : <DraftingSquare />}
       <LeftRail active={active} />
       <div className="wf-center">
         {wide ? null : <SiteMenu variant="pill" />}

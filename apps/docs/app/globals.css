@@ -612,6 +612,7 @@ html {
   align-items: center;
   gap: 6px;
   margin: 0 0 var(--space-md);
+  font-variant-numeric: tabular-nums;
 }
 
 .wf-swatches {
@@ -942,9 +943,33 @@ html {
   position: relative;
 }
 
-.wf-home .wf-claim {
+.wf-board-fx {
+  display: none;
+}
+
+.wf-home .wf-claim-block {
   position: relative;
   margin-bottom: 20px;
+}
+
+.wf-home .wf-claim {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.wf-claim-brand,
+.wf-claim-rest {
+  display: block;
+}
+
+.wf-claim-brand {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.wf-claim-rest {
+  font-weight: 500;
 }
 
 .wf-home .wf-swatches {
@@ -953,6 +978,24 @@ html {
   width: max-content;
   margin: 0 0 12px;
   gap: 6px;
+}
+
+.wf-swatch-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-text-dark);
+  box-shadow: var(--shadow-swatch), var(--shadow-ring);
+  cursor: pointer;
+}
+.wf-swatch-dot[aria-pressed="true"] {
+  box-shadow: 0 0 0 1.5px var(--color-text-dark);
+}
+.wf-swatch-dot:focus-visible {
+  outline: 3px solid var(--color-action-primary);
+  outline-offset: 2px;
 }
 
 .wf-home .wf-lede {
@@ -1020,6 +1063,15 @@ html {
   width: 28px;
   height: 28px;
   border-radius: 8px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wf-home .wf-row .wf-row-mark {
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .wf-home .wf-row:hover .wf-row-mark {
+    transform: translateY(-1px);
+  }
 }
 
 .wf-home .wf-statement-foot {
@@ -1113,6 +1165,12 @@ html {
   .wf-home .wf-swatches {
     display: none;
   }
+
+  .wf-board-fx,
+  .wf-tsquare,
+  .wf-tsquare-v {
+    display: none;
+  }
 }
 
 @media (min-width: 640px) {
@@ -1122,7 +1180,7 @@ html {
 }
 
 @media (max-width: 639px) {
-  .wf-home .wf-claim {
+  .wf-home .wf-claim-block {
     margin-bottom: 16px;
   }
 
@@ -1228,8 +1286,12 @@ html {
     margin-top: 16px;
   }
 
-  .wf-home .wf-claim {
+  .wf-home .wf-claim-block {
     margin-bottom: 24px;
+  }
+
+  .wf-home .wf-claim-brand {
+    border-bottom-color: var(--wf-grid);
   }
 
   .wf-home .wf-swatches {
@@ -1249,6 +1311,158 @@ html {
 
   .wf-home .wf-rule {
     margin: 40px 0;
+  }
+
+  /* The board plots itself; static column rules yield to the plot overlay. */
+  .wf-frame.wf-board:not([data-wide]) {
+    border-top: 0;
+    border-bottom: 0;
+  }
+  .wf-frame.wf-board:not([data-wide])::before {
+    content: none;
+  }
+  .wf-frame.wf-board:not([data-wide]) .wf-left,
+  .wf-frame.wf-board:not([data-wide]) .wf-center,
+  .wf-frame.wf-board:not([data-wide]) .wf-right {
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .wf-frame.wf-board:not([data-wide]) .wf-board-fx {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    position: absolute;
+    inset: 0;
+    z-index: 32;
+    grid-template-columns: inherit;
+    pointer-events: none;
+  }
+
+  .wf-plot-gutter,
+  .wf-plot-col {
+    min-height: 100%;
+  }
+
+  .wf-plot-col {
+    transform-origin: top;
+    animation: wf-plot-v 0.68s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .wf-plot-rail {
+    border-left: 1px solid var(--wf-grid);
+    border-right: 1px solid var(--wf-grid);
+    animation-delay: 0.05s;
+  }
+  .wf-plot-col:nth-child(3) {
+    border-right: 1px solid var(--wf-grid);
+    animation-delay: 0.1s;
+  }
+  .wf-plot-col:nth-child(4) {
+    border-right: 1px solid var(--wf-grid);
+    animation-delay: 0.15s;
+  }
+
+  .wf-plot-h {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--wf-grid);
+    transform-origin: left;
+    animation: wf-plot-h 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .wf-plot-h-top {
+    top: 0;
+  }
+  .wf-plot-h-band {
+    top: 64px;
+    animation-delay: 0.12s;
+  }
+  .wf-plot-h-bot {
+    bottom: 0;
+    animation-delay: 0.18s;
+  }
+
+  .wf-tsquare,
+  .wf-tsquare-v {
+    display: block;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    position: absolute;
+    background: color-mix(in srgb, var(--color-text-dark) 52%, transparent);
+    opacity: 0;
+    will-change: transform;
+    transition: opacity 140ms ease;
+  }
+  .wf-tsquare {
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+  }
+  .wf-tsquare-v {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+  }
+
+  .wf-frame.wf-board:not([data-wide]) .wf-left-nav,
+  .wf-frame.wf-board:not([data-wide]) .wf-left-foot,
+  .wf-frame.wf-board:not([data-wide]) .wf-center > *,
+  .wf-frame.wf-board:not([data-wide]) .wf-right > * {
+    animation: wf-ink 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+  }
+}
+
+@keyframes wf-plot-v {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes wf-plot-h {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes wf-ink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-plot-col,
+  .wf-plot-h,
+  .wf-frame.wf-board:not([data-wide]) .wf-left-nav,
+  .wf-frame.wf-board:not([data-wide]) .wf-left-foot,
+  .wf-frame.wf-board:not([data-wide]) .wf-center > *,
+  .wf-frame.wf-board:not([data-wide]) .wf-right > * {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .wf-home .wf-row .wf-row-mark {
+    transition: none;
+  }
+
+  .wf-tsquare,
+  .wf-tsquare-v {
+    transition: none;
   }
 }
 

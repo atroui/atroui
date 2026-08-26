@@ -75,7 +75,7 @@ export const SITE_THEMES: SiteTheme[] = [
     label: "Dawn",
     kind: "light",
     hint: "Paper, blue action",
-    preview: { ground: "#f6f6f4", raised: "#fdfdfc", accent: "#0b7bff" },
+    preview: { ground: "#f6f6f4", raised: "#fdfdfc", accent: "#1d93d2" },
     vars: {
       "--background": "#f6f6f4",
       "--foreground": "#212223",

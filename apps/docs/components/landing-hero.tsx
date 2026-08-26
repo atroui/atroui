@@ -1,8 +1,9 @@
 import Link from "next/link"
 import { ArrowRight, Send } from "lucide-react"
-import { FamilyCards } from "@/components/site/family-cards"
-import { LogoMark } from "@/components/logo-mark"
 import { InstallCommand } from "@/components/catalog/install-command"
+import { LogoMark } from "@/components/logo-mark"
+import { FamilyCards } from "@/components/site/family-cards"
+import { ThemeDots } from "@/components/site/theme-picker"
 import { catalogCount, featuredCatalog } from "@/lib/catalog"
 
 /**
@@ -13,24 +14,17 @@ export function LandingHero() {
 
   return (
     <main className="wf-home">
-      <h1 className="wf-claim">
-        <span className="wf-swatches" aria-hidden>
-          <span style={{ background: "#7dd3e8" }} />
-          <span style={{ background: "#0eb3c9" }} />
-          <span style={{ background: "#f5a623" }} />
-          <span style={{ background: "#e85aaa" }} />
-          <span style={{ background: "#8b5cf6" }} />
-          <span style={{ background: "#363636" }} />
-        </span>
-        AtroUI
-        <br />
-        Component catalog
-      </h1>
+      <div className="wf-claim-block">
+        <ThemeDots />
+        <h1 className="wf-claim">
+          <span className="wf-claim-brand">AtroUI</span>
+          <span className="wf-claim-rest">Component catalog</span>
+        </h1>
+      </div>
       <p className="wf-lede">
-        Production sections for Next.js, shipped as source you keep. From heroes
-        and pricing to Host APIs on your keys, the work focuses on files you own,
-        thoughtful defaults, and a catalog you can actually ship. If that
-        resonates, start with a section.
+        Production sections for Next.js, shipped as source you keep. Heroes,
+        pricing, Host APIs — files you own, defaults already decided, a catalog
+        you can actually ship.
       </p>
       <div className="wf-cta-row">
         <Link href="/library" className="wf-home-btn">

@@ -27,6 +27,30 @@ function useSiteTheme() {
   return { mounted, active, pick }
 }
 
+export function ThemeDots({ className }: { className?: string }) {
+  const { mounted, active, pick } = useSiteTheme()
+
+  return (
+    <span className={cn("wf-swatches", className)}>
+      {SITE_THEMES.map((sheet) => {
+        const current = mounted && active === sheet.id
+        return (
+          <button
+            key={sheet.id}
+            type="button"
+            className="wf-swatch-dot"
+            style={{ background: sheet.preview.accent }}
+            aria-label={sheet.label}
+            title={sheet.label}
+            aria-pressed={current}
+            onClick={() => pick(sheet.id)}
+          />
+        )
+      })}
+    </span>
+  )
+}
+
 function ThemeSwatch({
   ground,
   raised,
