@@ -9,6 +9,10 @@ import {
   DocsTocDropdown,
   type TocItem,
 } from "@/components/docs-toc"
+import {
+  collectDocHeadingsById,
+  tocItemsKey,
+} from "@/lib/docs-headings"
 
 type DocsPageShellProps = {
   children: React.ReactNode
@@ -24,32 +28,32 @@ type DocsPageShellProps = {
   }
 }
 
-function headingsFromRoot(rootId: string): TocItem[] {
-  const root = document.getElementById(rootId)
-  if (!root) return []
-  const next: TocItem[] = []
-  root.querySelectorAll("h2[id], h3[id]").forEach((node) => {
-    const el = node as HTMLElement
-    if (!el.id) return
-    next.push({
-      id: el.id,
-      title: el.textContent?.trim() ?? el.id,
-      depth: el.tagName === "H3" ? 3 : 2,
-    })
-  })
-  return next
-}
-
 function AutoTocPublisher({ rootId }: { rootId: string }) {
   const [items, setItems] = React.useState<TocItem[]>([])
 
   React.useLayoutEffect(() => {
-    setItems(headingsFromRoot(rootId))
-    // Headings can appear after suspense; one frame follow-up is enough.
-    const t = window.setTimeout(() => {
-      setItems(headingsFromRoot(rootId))
-    }, 0)
-    return () => window.clearTimeout(t)
+    function scan() {
+      const next = collectDocHeadingsById(rootId)
+      setItems((prev) => (tocItemsKey(prev) === tocItemsKey(next) ? prev : next))
+    }
+
+    scan()
+    // MDX / suspense may land headings a tick later.
+    const t0 = window.setTimeout(scan, 0)
+    const t1 = window.setTimeout(scan, 100)
+
+    const root = document.getElementById(rootId)
+    let mo: MutationObserver | null = null
+    if (root) {
+      mo = new MutationObserver(scan)
+      mo.observe(root, { childList: true, subtree: true })
+    }
+
+    return () => {
+      window.clearTimeout(t0)
+      window.clearTimeout(t1)
+      mo?.disconnect()
+    }
   }, [rootId])
 
   return <DocsTocPublisher items={items} />

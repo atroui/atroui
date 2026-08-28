@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { DocsPageShell } from "@/components/docs-page-shell"
 import {
   ProductPageHeader,
   ProductPanel,
@@ -19,36 +20,37 @@ export default function ComponentsIndexPage() {
   const sections = navigation.filter((s) => s.title !== "Getting Started")
 
   return (
-    <article className={productArticle}>
-      <ProductPageHeader
-        stamp="Catalog"
-        title={
-          <>
-            Components{" "}
-            <span className="ds-sketch-accent">you install</span>
-          </>
-        }
-        lede={
-          <>
-            Live previews on this site are the same registry exports{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              shadcn add @atroui/…
-            </code>{" "}
-            writes into your repo. For intent clusters (forms, OG, launch), start
-            at{" "}
-            <Link href="/docs/collections" className="bam-link">
-              Collections
-            </Link>
-            .
-          </>
-        }
-      />
+    <DocsPageShell autoTocRootId="components-index">
+      <article id="components-index" className={productArticle}>
+        <ProductPageHeader
+          stamp="Catalog"
+          title={
+            <>
+              Components{" "}
+              <span className="ds-sketch-accent">you install</span>
+            </>
+          }
+          lede={
+            <>
+              Live previews on this site are the same registry exports{" "}
+              <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+                shadcn add @atroui/…
+              </code>{" "}
+              writes into your repo. For intent clusters (forms, OG, launch), start
+              at{" "}
+              <Link href="/docs/collections" className="bam-link">
+                Collections
+              </Link>
+              .
+            </>
+          }
+        />
 
-      {sections.map((section) => (
-        <section key={section.title} className="space-y-3">
-          <h2 className="ds-nav-section text-foreground">{section.title}</h2>
-          <ProductPanel>
-            {section.items.map((item) => (
+        {sections.map((section) => (
+          <section key={section.title} className="space-y-3">
+            <h2 className="ds-nav-section text-foreground">{section.title}</h2>
+            <ProductPanel>
+              {section.items.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -59,7 +61,9 @@ export default function ComponentsIndexPage() {
                       {item.title}
                     </span>
                     {item.description ? (
-                      <span className="ds-meta mt-0.5 block">{item.description}</span>
+                      <span className="ds-meta mt-0.5 block">
+                        {item.description}
+                      </span>
                     ) : null}
                   </span>
                   <span className="flex shrink-0 items-center gap-3">
@@ -79,10 +83,11 @@ export default function ComponentsIndexPage() {
                     </span>
                   </span>
                 </Link>
-            ))}
-          </ProductPanel>
-        </section>
-      ))}
-    </article>
+              ))}
+            </ProductPanel>
+          </section>
+        ))}
+      </article>
+    </DocsPageShell>
   )
 }

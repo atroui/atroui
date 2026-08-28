@@ -90,8 +90,11 @@ export function PseoOnPage({
       ) : null}
 
       {overlay ? (
-        <section id="overview" className={`space-y-3 ${sectionScroll}`}>
-          <h2 className="ds-headline text-base text-foreground">
+        <section className="space-y-3">
+          <h2
+            id="overview"
+            className={`ds-headline text-base text-foreground ${sectionScroll}`}
+          >
             {overlay.job}
           </h2>
           <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -101,8 +104,13 @@ export function PseoOnPage({
       ) : null}
 
       {faqs.length > 0 ? (
-        <section id="faq" className={`space-y-4 ${sectionScroll}`}>
-          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
+        <section className="space-y-4">
+          <h2
+            id="faq"
+            className={`ds-headline text-base text-foreground ${sectionScroll}`}
+          >
+            FAQ
+          </h2>
           <dl className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.q}>
@@ -137,12 +145,13 @@ export function PseoOnPage({
       ) : null}
 
       {related.length > 0 ? (
-        <nav
-          id="related"
-          aria-label="Related components"
-          className={`space-y-2 ${sectionScroll}`}
-        >
-          <h2 className="ds-headline text-base text-foreground">Related</h2>
+        <nav aria-label="Related components" className="space-y-2">
+          <h2
+            id="related"
+            className={`ds-headline text-base text-foreground ${sectionScroll}`}
+          >
+            Related
+          </h2>
           <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
             {related.map((item) => (
               <li key={item.href}>

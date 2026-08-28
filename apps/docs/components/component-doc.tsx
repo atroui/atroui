@@ -47,12 +47,14 @@ function DocStep({
   children: React.ReactNode
 }) {
   return (
-    <section id={id} className={`space-y-3 ${sectionScroll}`}>
-      <div className="flex items-baseline gap-2.5">
+    <section className="space-y-3">
+      <div className={`flex items-baseline gap-2.5 ${sectionScroll}`}>
         <span className="font-mono text-[11px] tracking-[0.12em] text-brand/80">
           {n}
         </span>
-        <h2 className="ds-headline text-base text-foreground">{label}</h2>
+        <h2 id={id} className="ds-headline text-base text-foreground">
+          {label}
+        </h2>
       </div>
       {children}
     </section>

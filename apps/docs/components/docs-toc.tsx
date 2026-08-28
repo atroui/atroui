@@ -6,23 +6,36 @@ import {
   pinDocsShell,
   scrollDocsToId,
 } from "@/components/docs-scroll-lock"
+import {
+  collectDocHeadingsById,
+  tocItemsKey,
+  type TocItem,
+} from "@/lib/docs-headings"
 import { cn } from "@/lib/utils"
 
-export type TocItem = {
-  id: string
-  title: string
-  depth?: 2 | 3
-}
+export type { TocItem }
 
 /** Active TOC item from middle-column scroll (not the window). */
 function useActiveHeading(items: TocItem[]) {
+  const itemsKey = tocItemsKey(items)
   const [activeId, setActiveId] = React.useState<string | null>(
     items[0]?.id ?? null
   )
+  const pinnedId = React.useRef<string | null>(null)
+  const pinUntil = React.useRef(0)
 
   React.useEffect(() => {
+    pinnedId.current = null
+    pinUntil.current = 0
     setActiveId(items[0]?.id ?? null)
-  }, [items])
+  }, [itemsKey]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const selectId = React.useCallback((id: string) => {
+    pinnedId.current = id
+    // Ignore scroll events from scrollDocsToId for a short window.
+    pinUntil.current = performance.now() + 120
+    setActiveId(id)
+  }, [])
 
   React.useEffect(() => {
     if (items.length === 0) return
@@ -31,47 +44,56 @@ function useActiveHeading(items: TocItem[]) {
       document.querySelector<HTMLElement>("[data-slot=docs-scroll]")
     if (!scrollRoot) return
     const pane = scrollRoot
+    const ids = items.map((item) => item.id)
 
-    // Heading whose top has crossed a line near the top of the scroll pane.
-    const OFFSET_PX = 28
     let cancelled = false
     let raf = 0
 
     function readHeadings() {
-      return items
-        .map((item) => document.getElementById(item.id))
+      return ids
+        .map((id) => document.getElementById(id))
         .filter((el): el is HTMLElement => Boolean(el))
     }
 
     function sync(elements: HTMLElement[]) {
       if (cancelled || elements.length === 0) return
+
+      // Active line ~45% down the pane so mid-page sections win on short pages
+      // (heading tops often can't reach a tight top offset).
+      const offset = Math.max(64, Math.round(pane.clientHeight * 0.45))
       const rootTop = pane.getBoundingClientRect().top
       let current = elements[0]?.id ?? null
 
       for (const el of elements) {
         const top = el.getBoundingClientRect().top - rootTop
-        if (top <= OFFSET_PX) current = el.id
+        if (top <= offset) current = el.id
         else break
+      }
+
+      // User clicked a TOC link — keep highlight until they scroll again.
+      if (pinnedId.current) {
+        setActiveId((prev) =>
+          prev === pinnedId.current ? prev : pinnedId.current
+        )
+        return
       }
 
       setActiveId((prev) => (prev === current ? prev : current))
     }
 
-    function onScroll() {
-      sync(readHeadings())
-    }
-
     function onScrollRaf() {
+      if (performance.now() >= pinUntil.current) {
+        pinnedId.current = null
+      }
       cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(onScroll)
+      raf = requestAnimationFrame(() => sync(readHeadings()))
     }
 
-    // Headings may mount a frame after the TOC rail (route transition).
     let tries = 0
     const start = () => {
       if (cancelled) return
       const elements = readHeadings()
-      if (elements.length === 0 && tries < 30) {
+      if (elements.length === 0 && tries < 40) {
         tries += 1
         raf = requestAnimationFrame(start)
         return
@@ -89,19 +111,21 @@ function useActiveHeading(items: TocItem[]) {
       pane.removeEventListener("scroll", onScrollRaf)
       window.removeEventListener("resize", onScrollRaf)
     }
-  }, [items])
+  }, [itemsKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  return activeId
+  return { activeId, selectId }
 }
 
 function TocList({
   items,
   activeId,
   onNavigate,
+  onSelect,
 }: {
   items: TocItem[]
   activeId: string | null
   onNavigate?: () => void
+  onSelect?: (id: string) => void
 }) {
   return (
     <ul className="space-y-2 border-l border-border-subtle text-[13px]">
@@ -112,10 +136,9 @@ function TocList({
             <a
               href={`#${item.id}`}
               onClick={(event) => {
-                // Shell hash router also handles this; preventDefault here so
-                // the document never jumps before the bubble listener runs.
                 event.preventDefault()
-                scrollDocsToId(item.id)
+                onSelect?.(item.id)
+                scrollDocsToId(item.id, "instant")
                 pinDocsShell()
                 history.replaceState(null, "", `#${item.id}`)
                 onNavigate?.()
@@ -141,7 +164,7 @@ function TocList({
 /** Mobile dropdown — shadcn DocsTableOfContents variant="dropdown". */
 export function DocsTocDropdown({ items }: { items: TocItem[] }) {
   const [open, setOpen] = React.useState(false)
-  const activeId = useActiveHeading(items)
+  const { activeId, selectId } = useActiveHeading(items)
   const rootRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
@@ -178,6 +201,7 @@ export function DocsTocDropdown({ items }: { items: TocItem[] }) {
           <TocList
             items={items}
             activeId={activeId}
+            onSelect={selectId}
             onNavigate={() => setOpen(false)}
           />
         </div>
@@ -187,7 +211,7 @@ export function DocsTocDropdown({ items }: { items: TocItem[] }) {
 }
 
 export function DocsToc({ items }: { items: TocItem[] }) {
-  const activeId = useActiveHeading(items)
+  const { activeId, selectId } = useActiveHeading(items)
 
   if (items.length === 0) return null
 
@@ -195,7 +219,7 @@ export function DocsToc({ items }: { items: TocItem[] }) {
     <nav aria-label="On this page" className="px-4 py-6">
       <div className="space-y-3">
         <p className="text-sm font-medium text-foreground">On this page</p>
-        <TocList items={items} activeId={activeId} />
+        <TocList items={items} activeId={activeId} onSelect={selectId} />
       </div>
     </nav>
   )
@@ -205,24 +229,16 @@ export function DocsToc({ items }: { items: TocItem[] }) {
 export function DocsTocAuto({ rootId }: { rootId: string }) {
   const [items, setItems] = React.useState<TocItem[]>([])
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
+    function scan() {
+      setItems(collectDocHeadingsById(rootId))
+    }
+    scan()
     const root = document.getElementById(rootId)
     if (!root) return
-
-    const headings = root.querySelectorAll("h2[id], h3[id]")
-    const next: TocItem[] = []
-
-    headings.forEach((node) => {
-      const el = node as HTMLElement
-      if (!el.id) return
-      next.push({
-        id: el.id,
-        title: el.textContent?.trim() ?? el.id,
-        depth: el.tagName === "H3" ? 3 : 2,
-      })
-    })
-
-    setItems(next)
+    const mo = new MutationObserver(scan)
+    mo.observe(root, { childList: true, subtree: true })
+    return () => mo.disconnect()
   }, [rootId])
 
   return <DocsToc items={items} />
@@ -232,24 +248,16 @@ export function DocsTocAuto({ rootId }: { rootId: string }) {
 export function DocsTocAutoMobile({ rootId }: { rootId: string }) {
   const [items, setItems] = React.useState<TocItem[]>([])
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
+    function scan() {
+      setItems(collectDocHeadingsById(rootId))
+    }
+    scan()
     const root = document.getElementById(rootId)
     if (!root) return
-
-    const headings = root.querySelectorAll("h2[id], h3[id]")
-    const next: TocItem[] = []
-
-    headings.forEach((node) => {
-      const el = node as HTMLElement
-      if (!el.id) return
-      next.push({
-        id: el.id,
-        title: el.textContent?.trim() ?? el.id,
-        depth: el.tagName === "H3" ? 3 : 2,
-      })
-    })
-
-    setItems(next)
+    const mo = new MutationObserver(scan)
+    mo.observe(root, { childList: true, subtree: true })
+    return () => mo.disconnect()
   }, [rootId])
 
   return <DocsTocDropdown items={items} />
