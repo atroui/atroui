@@ -1,0 +1,93 @@
+---
+title: "Introduction"
+description: "Own the UI"
+---
+
+import Link from "next/link"
+import { CodeBlock } from "@/components/code-block"
+import {
+  ProductPageHeader,
+  ProductPanel,
+  ProductPanelLink,
+} from "@/components/product-page"
+
+<ProductPageHeader
+  stamp="Catalog"
+  title={
+    <>
+      Own the UI.{" "}
+      <span className="ds-sketch-accent">Borrow the API.</span>
+    </>
+  }
+  lede={
+    <>
+      Same product as the home page — registry blocks copy into your repo;
+      Host APIs use your keys. Install with{" "}
+      <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+        npx shadcn@latest add @atroui/…
+      </code>
+      , then edit{" "}
+      <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+        CONTENT
+      </code>{" "}
+      at the top of each file.
+    </>
+  }
+  hint="Preview on atroui.com = export you install"
+/>
+
+## Quick start
+
+<CodeBlock
+  language="bash"
+  code={`npx shadcn@latest init
+npx shadcn@latest add @atroui/home-hero`}
+/>
+
+Full steps: [Installation](/docs/installation). Browse live previews: [Components](/docs/components).
+
+## How the catalog is organized
+
+<ProductPanel>
+  <ProductPanelLink
+    href="/docs/components"
+    title="Primitives"
+    description="Buttons, forms, motion, logo — small reusable pieces"
+  />
+  <ProductPanelLink
+    href="/docs/components/home-hero"
+    title="Blocks"
+    description="Heroes, footers, CTAs — production sections via CLI"
+  />
+  <ProductPanelLink
+    href="/docs/host-api"
+    title="Host APIs"
+    description="Forms & AI routes — UI in repo, handlers on your app (BYOK)"
+  />
+  <ProductPanelLink
+    href="/docs/components/og-og-workspace"
+    title="Tools"
+    description="OG workspace, planner, thumbnails — often need env"
+  />
+  <ProductPanelLink
+    href="/docs/components/seo-json-ld"
+    title="Headless"
+    description="Analytics, JSON-LD — no visible UI"
+  />
+</ProductPanel>
+
+<div className="md-glass space-y-3 p-5">
+
+## Own the files
+
+Add sections from the [Registry](/docs/registry). Edit `CONTENT` at the top of each block — no AtroUI runtime wrapping your tree. Compare kits: [AtroUI vs copy-paste](/docs/compare).
+
+</div>
+
+<div className="md-glass space-y-3 p-5">
+
+## Host APIs
+
+Contact, waitlist, OG, and scope chat ship as UI + `app/api/*` handlers you copy. Bring SMTP, Resend, or model keys — no studio keys on atroui.com. [Host API guide](/docs/host-api).
+
+</div>

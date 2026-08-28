@@ -10,7 +10,7 @@ export const docsMdxSlugs = [
   "theming",
   "brand",
   "identity",
-  "guides/launch-workflow",
+  "launch-workflow",
   "compare",
 ] as const
 

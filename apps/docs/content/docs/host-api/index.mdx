@@ -1,0 +1,73 @@
+---
+title: "Host APIs"
+description: "Forms & AI routes, BYOK"
+---
+
+import Link from "next/link"
+import { FaqJsonLd } from "atroui"
+import { HostApiGuide } from "@/components/host-api-guide"
+import { ProductPageHeader } from "@/components/product-page"
+import { hostApiFaqs } from "@/lib/host-api-faqs"
+
+<ProductPageHeader
+  stamp="Catalog"
+  title={
+    <>
+      Host <span className="ds-sketch-accent">APIs</span>
+    </>
+  }
+  lede={
+    <>
+      Own the UI in your repo. Borrow the boring API security. Bring your own
+      keys. Related:{" "}
+      <Link href="/docs/collections/nextjs-forms" className="bam-link">
+        Next.js forms
+      </Link>
+      {" · "}
+      <Link href="/docs/glossary/host-api" className="bam-link">
+        Host API glossary
+      </Link>
+      {" · "}
+      <Link
+        href="/blog/host-apis-own-the-ui-bring-your-keys"
+        className="bam-link"
+      >
+        Host APIs blog post
+      </Link>
+      .
+    </>
+  }
+  hint="Borrow the API — BYOK"
+/>
+
+<HostApiGuide />
+
+<div className="flex flex-wrap gap-3 border-t border-border-subtle pt-6">
+  <Link href="/docs/installation" className="ms-cta">
+    Installation
+  </Link>
+  <Link href="/docs/registry" className="ms-cta-ghost">
+    Registry
+  </Link>
+  <Link href="/docs/launch-workflow" className="ms-cta-ghost">
+    Launch workflow
+  </Link>
+  <Link href="/docs/components/contact-contact-form" className="ms-cta-ghost">
+    Contact form
+  </Link>
+</div>
+
+## FAQ
+
+<dl className="space-y-5">
+  {hostApiFaqs.map((item) => (
+    <div key={item.question}>
+      <dt className="text-[15px] font-medium text-foreground">{item.question}</dt>
+      <dd className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">
+        {item.answer}
+      </dd>
+    </div>
+  ))}
+</dl>
+
+<FaqJsonLd pagePath="/docs/host-api" items={[...hostApiFaqs]} />

@@ -1,12 +1,12 @@
 import type { MDXComponents } from "mdx/types"
-import { docsMdxComponents } from "@/components/docs-mdx"
+import { mdxComponents } from "@/components/docs-mdx"
 
-/**
- * Global MDX components — docs prose + journal content.
- */
-export function useMDXComponents(components: MDXComponents): MDXComponents {
+/** Global MDX map — fumadocs + journal content (shadcn pattern). */
+export function useMDXComponents(
+  components: MDXComponents,
+): MDXComponents {
   return {
-    ...docsMdxComponents,
+    ...mdxComponents,
     ...components,
   }
 }

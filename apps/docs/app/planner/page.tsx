@@ -20,7 +20,7 @@ export default function PlannerPage() {
         lede={
           <>
             Part of{" "}
-            <Link href="/docs/guides/launch-workflow" className="bam-link">
+            <Link href="/docs/launch-workflow" className="bam-link">
               From scope to social card
             </Link>
             . Same launch workflow as the OG workspace on atroui.com.

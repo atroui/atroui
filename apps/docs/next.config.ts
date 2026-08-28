@@ -1,9 +1,13 @@
-import createMDX from "@next/mdx"
+import { createMDX } from "fumadocs-mdx/next"
 import type { NextConfig } from "next"
 import path from "path"
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  typescript: {
+    // fumadocs-mdx generated `.source` types (same as shadcn v4)
+    ignoreBuildErrors: true,
+  },
   transpilePackages: ["atroui", "@shadergradient/react"],
   poweredByHeader: false,
   // Monorepo root (not parent ~/package-lock.json) so fonts + native deps resolve.
@@ -35,11 +39,19 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
     optimizePackageImports: [
-      "atroui",
       "lucide-react",
       "motion",
       "@phosphor-icons/react",
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/docs/guides/launch-workflow",
+        destination: "/docs/launch-workflow",
+        permanent: true,
+      },
+    ]
   },
   async headers() {
     return [
@@ -93,6 +105,7 @@ const nextConfig: NextConfig = {
     ]
   },
   webpack: (config, { isServer }) => {
+    config.resolve ??= {}
     config.resolve.alias = {
       ...config.resolve.alias,
       atroui: path.resolve(__dirname, "../../packages/ui/src"),
@@ -126,18 +139,6 @@ const nextConfig: NextConfig = {
   },
 }
 
-const withMDX = createMDX({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: ["remark-gfm"],
-    rehypePlugins: [
-      "rehype-slug",
-      [
-        "rehype-autolink-headings",
-        { behavior: "wrap", properties: { className: ["heading-anchor"] } },
-      ],
-    ],
-  },
-})
+const withMDX = createMDX()
 
 export default withMDX(nextConfig)

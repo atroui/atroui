@@ -1,0 +1,19 @@
+{
+  "title": "Documentation",
+  "root": true,
+  "pages": [
+    "(root)",
+    "installation",
+    "host-api",
+    "registry",
+    "theming",
+    "brand",
+    "identity",
+    "launch-workflow",
+    "collections",
+    "glossary",
+    "compare",
+    "changelog",
+    "components"
+  ]
+}

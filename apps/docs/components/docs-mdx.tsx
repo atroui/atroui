@@ -11,6 +11,16 @@ import {
 import { DocsPageShell } from "@/components/docs-page-shell"
 import { DocsPager } from "@/components/docs-pager"
 import { cn } from "@/lib/utils"
+import {
+  DocsChangelog,
+  DocsCollectionPage,
+  DocsCollectionsIndex,
+  DocsComponentsIndex,
+  DocsFooterLinks,
+  DocsGlossaryIndex,
+  DocsGlossaryTerm,
+  DocsRegistryPage,
+} from "@/components/docs-hub"
 
 const headingScroll =
   "scroll-mt-[calc(var(--header-height,3.5rem)+0.75rem)]"
@@ -157,7 +167,17 @@ export const docsMdxComponents: MDXComponents = {
   ProductPageHeader,
   DocsProse,
   CodeBlock,
+  DocsComponentsIndex,
+  DocsCollectionsIndex,
+  DocsCollectionPage,
+  DocsGlossaryIndex,
+  DocsGlossaryTerm,
+  DocsChangelog,
+  DocsRegistryPage,
+  DocsFooterLinks,
 }
+
+export { docsMdxComponents as mdxComponents }
 
 type DocsMdxPageProps = {
   href: string

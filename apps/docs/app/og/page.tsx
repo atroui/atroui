@@ -25,7 +25,7 @@ export default function OgPage() {
           lede={
             <>
               Prefill from the{" "}
-              <Link href="/docs/guides/launch-workflow" className="bam-link">
+              <Link href="/docs/launch-workflow" className="bam-link">
                 launch workflow
               </Link>
               . Preview downloads work without AI keys. Component docs:{" "}

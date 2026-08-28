@@ -2,8 +2,20 @@ import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { findDocsNeighbors } from "@/lib/navigation"
 
-export function DocsPager({ href }: { href: string }) {
-  const { prev, next } = findDocsNeighbors(href)
+type PagerLink = { title: string; href: string }
+
+export function DocsPager({
+  href,
+  prev: prevOverride,
+  next: nextOverride,
+}: {
+  href: string
+  prev?: PagerLink | null
+  next?: PagerLink | null
+}) {
+  const fallback = findDocsNeighbors(href)
+  const prev = prevOverride !== undefined ? prevOverride : fallback.prev
+  const next = nextOverride !== undefined ? nextOverride : fallback.next
   if (!prev && !next) return null
 
   return (

@@ -44,7 +44,7 @@ const MDX_HREFS = new Set([
   "/docs/theming",
   "/docs/brand",
   "/docs/identity",
-  "/docs/guides/launch-workflow",
+  "/docs/launch-workflow",
   "/docs/compare",
 ])
 

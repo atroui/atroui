@@ -3,6 +3,8 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"],
+      "@/.source": ["./.source"],
+      "@/.source/*": ["./.source/*"],
       "atroui": ["../../packages/ui/src/index.ts"],
       "atroui/*": ["../../packages/ui/src/*"]
     },

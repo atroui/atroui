@@ -184,7 +184,7 @@ npx shadcn@latest add @atroui/home-hero`,
         body: [
           "Most registries ship widgets. You install a hero, a form, an OG maker, and then you retype the same project story into each one.",
           "That is the gap we closed. Scope Chat, Project Planner, and the OG workspace now share a thin **ProjectBrief**: name, one-liner, audience, pages, tone, and optional OG title/subtitle. Describe the build once. Open a social card with the fields already filled.",
-          "Try it live: [From scope to social card](/docs/guides/launch-workflow) → [OG workspace](/og). Preview downloads work with no AI keys. Generate still needs **your** Host API env. AtroUI never holds secrets.",
+          "Try it live: [From scope to social card](/docs/launch-workflow) → [OG workspace](/og). Preview downloads work with no AI keys. Generate still needs **your** Host API env. AtroUI never holds secrets.",
         ],
       },
       {
@@ -247,7 +247,7 @@ npx shadcn@latest add @atroui/api-scope @atroui/api-generate`,
         body: [
           "Indie founders and small studios do not need another dashboard. They need intake → estimate → shareable card without losing the thread.",
           "Few component catalogs own that vertical slice. The guide is the narrative; the brief is the contract; Host APIs stay BYOK when you want AI behind the text.",
-          "Deep docs: [launch workflow guide](/docs/guides/launch-workflow), [Host APIs](/docs/host-api), [OG workspace](/docs/components/og-og-workspace). Live tool: [/og](/og).",
+          "Deep docs: [launch workflow guide](/docs/launch-workflow), [Host APIs](/docs/host-api), [OG workspace](/docs/components/og-og-workspace). Live tool: [/og](/og).",
         ],
       },
     ],

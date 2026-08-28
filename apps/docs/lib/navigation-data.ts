@@ -44,7 +44,7 @@ export const navigation: NavSection[] = [
       },
       {
         title: "Launch workflow",
-        href: "/docs/guides/launch-workflow",
+        href: "/docs/launch-workflow",
         description: "Scope → OG",
       },
       {

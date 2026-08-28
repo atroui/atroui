@@ -275,7 +275,7 @@ export const pseoCollections: PseoCollection[] = [
       "/docs/components/og-og-workspace",
       "/docs/components/thumbnail-thumbnail-workspace",
       "/docs/components/og-og-live-preview",
-      "/docs/guides/launch-workflow",
+      "/docs/launch-workflow",
     ],
     faqs: [
       {
@@ -291,9 +291,9 @@ export const pseoCollections: PseoCollection[] = [
       "Scope Chat, project planner, and OG/thumbnail workspaces sharing one ProjectBrief. From idea to social card in the consumer Next.js app.",
     intro:
       "The catalog is easy to read as a grid of widgets. This collection is the product bet: one intake conversation becomes a brief, then a card — still BYOK.",
-    why: "The live catalog already has Scope, planner, OG, and `/docs/guides/launch-workflow`. There is no `@atroui/launch-workflow` meta item on master — do not tell people to install it. Traffic on this job decides if we add one later.",
+    why: "The live catalog already has Scope, planner, OG, and `/docs/launch-workflow`. There is no `@atroui/launch-workflow` meta item on master — do not tell people to install it. Traffic on this job decides if we add one later.",
     paths: [
-      "/docs/guides/launch-workflow",
+      "/docs/launch-workflow",
       "/docs/components/scope-scope-chat",
       "/docs/components/planner-project-planner",
       "/docs/components/og-og-workspace",

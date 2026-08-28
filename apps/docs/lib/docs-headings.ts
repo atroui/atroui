@@ -70,3 +70,16 @@ export function collectDocHeadingsById(rootId: string): TocItem[] {
 export function tocItemsKey(items: TocItem[]): string {
   return items.map((t) => `${t.id}:${t.depth ?? 2}`).join("|")
 }
+
+/** Plain text for TOC labels — autolink wrap/MDX can pass anchor elements. */
+export function normalizeTocTitle(title: unknown): string {
+  if (typeof title === "string") return title.trim()
+  if (title == null) return ""
+  if (typeof title === "number" || typeof title === "boolean") return String(title)
+  if (Array.isArray(title)) return title.map(normalizeTocTitle).join("").trim()
+  if (typeof title === "object" && title !== null && "props" in title) {
+    const el = title as { props?: { children?: unknown } }
+    return normalizeTocTitle(el.props?.children)
+  }
+  return String(title).trim()
+}

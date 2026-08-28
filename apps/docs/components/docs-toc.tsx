@@ -8,6 +8,7 @@ import {
 } from "@/components/docs-scroll-lock"
 import {
   collectDocHeadingsById,
+  normalizeTocTitle,
   tocItemsKey,
   type TocItem,
 } from "@/lib/docs-headings"
@@ -152,7 +153,7 @@ function TocList({
               )}
               aria-current={active ? "location" : undefined}
             >
-              {item.title}
+              {normalizeTocTitle(item.title)}
             </a>
           </li>
         )
