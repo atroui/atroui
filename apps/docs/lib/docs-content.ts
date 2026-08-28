@@ -1,8 +1,18 @@
 /**
- * MDX docs content map — slug → content module under `content/docs/`.
- * Remaining guides still use TSX pages but share DocsMdxPage / page tree.
+ * MDX docs content map — slug → module under `content/docs/`.
+ * Changelog / collections / glossary hubs stay TSX (dynamic data).
  */
-export const docsMdxSlugs = ["index", "host-api", "compare"] as const
+export const docsMdxSlugs = [
+  "index",
+  "installation",
+  "host-api",
+  "registry",
+  "theming",
+  "brand",
+  "identity",
+  "guides/launch-workflow",
+  "compare",
+] as const
 
 export type DocsMdxSlug = (typeof docsMdxSlugs)[number]
 

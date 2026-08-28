@@ -38,7 +38,13 @@ const CATALOG_FOLDERS = new Set([
 
 const MDX_HREFS = new Set([
   "/docs",
+  "/docs/installation",
   "/docs/host-api",
+  "/docs/registry",
+  "/docs/theming",
+  "/docs/brand",
+  "/docs/identity",
+  "/docs/guides/launch-workflow",
   "/docs/compare",
 ])
 
