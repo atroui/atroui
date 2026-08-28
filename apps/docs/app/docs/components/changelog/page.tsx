@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoChangelog } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Changelog",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Filterable month-grouped changelog list."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/changelog"
+    <RegistryComponentDoc
       registryName="changelog"
+      href="/docs/components/changelog"
       title="Changelog"
       description="Filterable month-grouped changelog list."
-      preview={<DemoChangelog />}
-      code={'import { Changelog } from "@/components/blocks/changelog"\n\n<Changelog />'}
-      fullBleed={true}
+      fullBleed
       usage="Pass entries and optional tags. Client filter chips included."
+      code={`import { Changelog } from "@/components/blocks/changelog"\n\n<Changelog />`}
     />
   )
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoSocialShare } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Social Share",
@@ -9,21 +8,19 @@ export const metadata: Metadata = componentPageMetadata(
   "Share actions for articles."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="social-share"
       href="/docs/components/journal-social-share"
       title="Social Share"
       description="Share actions for articles."
-      preview={<DemoSocialShare />}
-      code={'import { SocialShare } from "@/components/blocks/social-share"\n\n<SocialShare url="…" title="…" />'}
-      fullBleed={false}
       props={[
     { name: 'url', type: 'string', default: '-', description: 'Share URL.' },
     { name: 'title', type: 'string', default: '-', description: 'Share title.' },
     { name: 'label', type: 'string', default: "'Share'", description: 'Visible label.' },
   ]}
+      code={`import { SocialShare } from "@/components/blocks/social-share"\n\n<SocialShare url="…" title="…" />`}
     />
   )
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoLocalClock } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Local Clock",
@@ -9,17 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "Timezone-aware local time chip."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/local-clock"
+    <RegistryComponentDoc
       registryName="local-clock"
+      href="/docs/components/local-clock"
       title="Local Clock"
       description="Timezone-aware local time chip."
-      preview={<DemoLocalClock />}
-      code={'import { LocalClock } from "@/components/blocks/local-clock"\n\n<LocalClock timezone="America/New_York" timezoneLabel="NYC" />'}
-      fullBleed={false}
       usage="Pass timezone (IANA) and timezoneLabel. Fits in PersonalHero meta."
+      code={`import { LocalClock } from "@/components/blocks/local-clock"\n\n<LocalClock timezone="America/New_York" timezoneLabel="NYC" />`}
     />
   )
 }

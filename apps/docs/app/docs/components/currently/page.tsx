@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoCurrently } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Currently",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Narrow “now” list with editable stamp and items."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/currently"
+    <RegistryComponentDoc
       registryName="currently"
+      href="/docs/components/currently"
       title="Currently"
       description="Narrow “now” list with editable stamp and items."
-      preview={<DemoCurrently />}
-      code={'import { Currently } from "@/components/blocks/currently"\n\n<Currently />'}
-      fullBleed={true}
+      fullBleed
       usage="Swap CONTENT.items for focus / build / read lines."
+      code={`import { Currently } from "@/components/blocks/currently"\n\n<Currently />`}
     />
   )
 }

@@ -1,15 +1,9 @@
-import { SiteHeader } from "@/components/site-header"
-import { DocsRouteTransition } from "@/components/view-transitions"
+import { SiteChrome } from "@/components/app-shell"
 
 export default function UpdatesLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      <SiteHeader />
-      <DocsRouteTransition>{children}</DocsRouteTransition>
-    </>
-  )
+  return <SiteChrome>{children}</SiteChrome>
 }

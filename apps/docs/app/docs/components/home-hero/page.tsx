@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoHomeHero } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Hero",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "AI value-prop homepage hero (OG canvas, sprint rail, CTAs). Install as @atroui/home-hero."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/home-hero"
+    <RegistryComponentDoc
       registryName="home-hero"
+      href="/docs/components/home-hero"
       title="Hero"
       description="AI value-prop homepage hero (OG canvas, sprint rail, CTAs). Install as @atroui/home-hero."
-      preview={<DemoHomeHero />}
-      code={'import { HomeHero } from "@/components/blocks/home-hero"\n\nexport function Example() {\n  return <HomeHero />\n}'}
-      fullBleed={true}
+      fullBleed
       usage="Use once at the top of a marketing homepage. Docs preview uses the studio HeroAiValueProposition; CLI install lands the CONTENT-driven HomeHero clone. Full-bleed section."
+      code={`import { HomeHero } from "@/components/blocks/home-hero"\n\nexport function Example() {\n  return <HomeHero />\n}`}
     />
   )
 }

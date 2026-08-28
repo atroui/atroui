@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoPricingOverview } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Pricing Overview",
@@ -9,16 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "Service pricing overview grid."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/pricing-overview"
+    <RegistryComponentDoc
       registryName="pricing-overview"
+      href="/docs/components/pricing-overview"
       title="Pricing Overview"
       description="Service pricing overview grid."
-      preview={<DemoPricingOverview />}
-      code={'import { PricingOverview } from "@/components/blocks/pricing-overview"\n\n<PricingOverview />'}
-      fullBleed={true}
+      fullBleed
+      code={`import { PricingOverview } from "@/components/blocks/pricing-overview"\n\n<PricingOverview />`}
     />
   )
 }

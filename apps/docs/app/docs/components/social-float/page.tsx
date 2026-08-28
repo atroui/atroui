@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoSocialFloat } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Social Float",
@@ -9,17 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "Fixed social FAB with expandable link tray."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/social-float"
+    <RegistryComponentDoc
       registryName="social-float"
+      href="/docs/components/social-float"
       title="Social Float"
       description="Fixed social FAB with expandable link tray."
-      preview={<DemoSocialFloat />}
-      code={'import { SocialFloat } from "@/components/blocks/social-float"\n\n<SocialFloat />'}
-      fullBleed={false}
       usage="Fixed to the viewport corner. Edit CONTENT.links after install."
+      code={`import { SocialFloat } from "@/components/blocks/social-float"\n\n<SocialFloat />`}
     />
   )
 }

@@ -52,6 +52,9 @@ function navTitle(href: string) {
   return allNavItems.find((item) => item.href === href)?.title ?? href
 }
 
+const sectionScroll =
+  "scroll-mt-[calc(var(--header-height,3.5rem)+0.75rem)]"
+
 export function PseoOnPage({
   path,
   title,
@@ -87,7 +90,7 @@ export function PseoOnPage({
       ) : null}
 
       {overlay ? (
-        <section className="space-y-3">
+        <section id="overview" className={`space-y-3 ${sectionScroll}`}>
           <h2 className="ds-headline text-base text-foreground">
             {overlay.job}
           </h2>
@@ -98,7 +101,7 @@ export function PseoOnPage({
       ) : null}
 
       {faqs.length > 0 ? (
-        <section className="space-y-4">
+        <section id="faq" className={`space-y-4 ${sectionScroll}`}>
           <h2 className="ds-headline text-base text-foreground">FAQ</h2>
           <dl className="space-y-4">
             {faqs.map((faq) => (
@@ -134,7 +137,11 @@ export function PseoOnPage({
       ) : null}
 
       {related.length > 0 ? (
-        <nav aria-label="Related components" className="space-y-2">
+        <nav
+          id="related"
+          aria-label="Related components"
+          className={`space-y-2 ${sectionScroll}`}
+        >
           <h2 className="ds-headline text-base text-foreground">Related</h2>
           <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
             {related.map((item) => (

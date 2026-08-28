@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoOgExamples } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Og Examples",
@@ -9,19 +8,18 @@ export const metadata: Metadata = componentPageMetadata(
   "Gallery of OG style examples with sample 1200×630 thumbnails and remix links."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="og-examples"
       href="/docs/components/og-og-examples"
       title="Og Examples"
       description="Gallery of OG style examples with sample 1200×630 thumbnails and remix links."
-      preview={<DemoOgExamples />}
-      code={'import { OgExamples } from "@/components/blocks/og-examples"\n\n<OgExamples />'}
-      fullBleed={true}
+      fullBleed
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}
+      code={`import { OgExamples } from "@/components/blocks/og-examples"\n\n<OgExamples />`}
     />
   )
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoReveal } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Reveal",
@@ -9,17 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "IntersectionObserver reveal using .atro-reveal CSS."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/reveal"
+    <RegistryComponentDoc
       registryName="reveal"
+      href="/docs/components/reveal"
       title="Reveal"
       description="IntersectionObserver reveal using .atro-reveal CSS."
-      preview={<DemoReveal />}
-      code={'import { Reveal } from "@/components/blocks/reveal"\n\n<Reveal />'}
-      fullBleed={false}
       usage="CSS lives in atroui/globals.css. For motion-based fades, see @atroui/fade-in."
+      code={`import { Reveal } from "@/components/blocks/reveal"\n\n<Reveal />`}
     />
   )
 }

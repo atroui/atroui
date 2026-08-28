@@ -8,32 +8,29 @@ import { getBrand } from "@/lib/brand"
  * After install this file lives in your repo.
  */
 const CONTENT = {
-  stamp: "One-person studio · May sprints open",
+  stamp: "AtroUI · Own the UI",
   headlineBefore: "Stop losing weeks to",
   headlineAccent: "boilerplate",
   headlineAfter: ".",
   subhead:
-    "We ship the product you were going to build next month - this week. Fixed scope. Fixed price. No PMs. No handoffs.",
-  primaryCta: { label: "Start a 7-day MVP sprint", href: "/contact" },
-  secondaryCta: { label: "Try the free OG tool", href: "/og" },
+    "Dark-first components you copy into your repo. Host APIs when you need the boring security - bring your own keys.",
+  primaryCta: { label: "Own the UI", href: "/docs/registry" },
+  secondaryCta: { label: "Browse components", href: "/docs/components" },
   founderName: "Koustav",
   founderRole: "Founder · every line of code",
   founderInitials: "KG",
-  sprintTitle: "7-day sprint",
-  sprintDay: "Day 4 / 7",
+  sprintTitle: "Registry install",
+  sprintDay: "Step 2 / 4",
   sprintDays: [
-    { day: "01", label: "Scope + stack", done: true },
-    { day: "02", label: "Auth + data", done: true },
-    { day: "03", label: "Core flow", done: true },
-    { day: "04", label: "AI feature", done: false, active: true },
-    { day: "05", label: "Polish UI", done: false },
-    { day: "06", label: "Deploy", done: false },
-    { day: "07", label: "Handoff", done: false },
+    { day: "01", label: "Init shadcn", done: true },
+    { day: "02", label: "Add AtroUI", done: false, active: true },
+    { day: "03", label: "Theme tokens", done: false },
+    { day: "04", label: "Ship UI", done: false },
   ],
-  sprintCta: { label: "Book this sprint", href: "/contact?service=mvp-sprint" },
-  ogTitle: "Ship in days,\nnot quarters.",
-  ogSubtitle: "studio + free AI tools",
-  ogHref: "/og",
+  sprintCta: { label: "Read install docs", href: "/docs/installation" },
+  ogTitle: "Own the UI.\nBorrow the API.",
+  ogSubtitle: "registry + Host APIs",
+  ogHref: "/docs/host-api",
 }
 
 export function HomeHero() {

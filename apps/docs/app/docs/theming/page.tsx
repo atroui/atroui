@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { DocsMdxPage } from "@/components/docs-mdx"
 import { CodeBlock } from "@/components/code-block"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -12,7 +13,7 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function ThemingPage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <DocsMdxPage href="/docs/theming" tocRootId="theming-doc">
       <header>
         <p className="ms-stamp mb-3">Getting started</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
@@ -253,6 +254,6 @@ import { ThemeToggle } from "@/components/ui/theme-toggle"
 </ThemeProvider>`}
         />
       </section>
-    </article>
+    </DocsMdxPage>
   )
 }

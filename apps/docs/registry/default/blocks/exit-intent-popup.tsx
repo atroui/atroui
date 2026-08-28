@@ -9,10 +9,10 @@ import { useCallback, useEffect, useRef, useState } from "react"
  */
 const CONTENT = {
   stamp: "Before you go",
-  title: "Free 7-day MVP scoping",
-  body: "Not sure what to build first? Book a no-pressure scoping call - we'll map scope, timeline, and budget in one session.",
-  primaryLabel: "Start free scoping",
-  primaryHref: "/scope",
+  title: "Own the UI before you leave",
+  body: "Not sure which components or Host APIs you need? Browse the catalog and install what fits - source in your repo.",
+  primaryLabel: "Browse components",
+  primaryHref: "/docs/components",
   secondaryLabel: "Maybe later",
   storageKey: "atroui_exit_intent_v1",
   sessionKey: "atroui_exit_intent_session",

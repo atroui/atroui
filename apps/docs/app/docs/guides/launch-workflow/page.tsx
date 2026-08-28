@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { DocsMdxPage } from "@/components/docs-mdx"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
 import { LaunchBriefDemo } from "@/components/launch-brief-demo"
@@ -13,7 +14,7 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function LaunchWorkflowGuidePage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <DocsMdxPage href="/docs/guides/launch-workflow" tocRootId="guides-launch-workflow-doc">
       <header>
         <p className="ms-stamp mb-3">Guide</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
@@ -171,6 +172,6 @@ npx shadcn@latest add @atroui/api-thumbnail`}
           Open /og
         </Link>
       </div>
-    </article>
+    </DocsMdxPage>
   )
 }

@@ -10,6 +10,12 @@ storybook-static
 coverage
 *.tsbuildinfo
 
+# Playwright / visual review artifacts (local only)
+apps/docs/test-results/
+apps/docs/playwright-report/
+apps/docs/blob-report/
+apps/docs/e2e/
+
 # IndexNow verification key - managed via INDEX_NOW_KEY env var, never commit
 apps/docs/public/INDEX_NOW_KEY.txt
 

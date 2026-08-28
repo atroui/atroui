@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoAnalyticsProvider } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Analytics Provider",
@@ -9,15 +8,13 @@ export const metadata: Metadata = componentPageMetadata(
   "Headless analytics + experiment helper. Loads Plausible/GA when env is set; no visible UI."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="analytics-provider"
       href="/docs/components/analytics-analytics-provider"
       title="Analytics Provider"
       description="Headless analytics + experiment helper. Loads Plausible/GA when env is set; no visible UI."
-      preview={<DemoAnalyticsProvider />}
-      code={'import {\n  AnalyticsProvider,\n  trackEvent,\n} from "@/components/blocks/analytics-provider"\n\n<AnalyticsProvider>{children}</AnalyticsProvider>'}
       usage="Mount once in the root layout. Set NEXT_PUBLIC_PLAUSIBLE_DOMAIN and/or NEXT_PUBLIC_GA_ID. Marked Headless in the catalog - pair with ThemeProvider, not a visual section."
       props={[
         {
@@ -27,6 +24,7 @@ export default function Page() {
           description: "App tree to wrap.",
         },
       ]}
+      code={`import {\n  AnalyticsProvider,\n  trackEvent,\n} from "@/components/blocks/analytics-provider"\n\n<AnalyticsProvider>{children}</AnalyticsProvider>`}
     />
   )
 }

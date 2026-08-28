@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoFaqInteractivePreview } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "FAQ",
@@ -9,16 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "Interactive FAQ accordion. Install @atroui/faq for editable CONTENT / ITEMS in your repo."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/faq-interactive-preview"
+    <RegistryComponentDoc
       registryName="faq"
+      href="/docs/components/faq-interactive-preview"
       title="FAQ"
       description="Interactive FAQ accordion. Install @atroui/faq for editable CONTENT / ITEMS in your repo."
-      preview={<DemoFaqInteractivePreview />}
-      code={'import { Faq } from "@/components/blocks/faq"\n\n<Faq />'}
-      fullBleed={true}
+      fullBleed
+      code={`import { Faq } from "@/components/blocks/faq"\n\n<Faq />`}
     />
   )
 }

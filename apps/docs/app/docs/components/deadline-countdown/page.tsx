@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoDeadlineCountdown } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Deadline Countdown",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Days-to-deadline band with segmented progress."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/deadline-countdown"
+    <RegistryComponentDoc
       registryName="deadline-countdown"
+      href="/docs/components/deadline-countdown"
       title="Deadline Countdown"
       description="Days-to-deadline band with segmented progress."
-      preview={<DemoDeadlineCountdown />}
-      code={'import { DeadlineCountdown } from "@/components/blocks/deadline-countdown"\n\n<DeadlineCountdown />'}
-      fullBleed={true}
+      fullBleed
       usage="Edit CONTENT dates after install. Built on CountUp."
+      code={`import { DeadlineCountdown } from "@/components/blocks/deadline-countdown"\n\n<DeadlineCountdown />`}
     />
   )
 }

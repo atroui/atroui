@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoResourcesContent } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Resources Content",
@@ -9,16 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "Resources library content."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="resources-content"
       href="/docs/components/resources-resources-content"
       title="Resources Content"
       description="Resources library content."
-      preview={<DemoResourcesContent />}
-      code={'import { ResourcesContent } from "@/components/blocks/resources-content"\n\n<ResourcesContent />'}
-      fullBleed={true}
+      fullBleed
+      code={`import { ResourcesContent } from "@/components/blocks/resources-content"\n\n<ResourcesContent />`}
     />
   )
 }

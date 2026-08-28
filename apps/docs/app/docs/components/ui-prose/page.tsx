@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoProse } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Prose",
@@ -9,19 +8,17 @@ export const metadata: Metadata = componentPageMetadata(
   "Long-form typography container for articles and MDX."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="prose"
       href="/docs/components/ui-prose"
       title="Prose"
       description="Long-form typography wrapper."
-      preview={<DemoProse />}
-      code={'import { Prose } from "@/components/ui/prose"\n\n<Prose><p>…</p></Prose>'}
-      fullBleed={false}
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}
+      code={`import { Prose } from "@/components/ui/prose"\n\n<Prose><p>…</p></Prose>`}
     />
   )
 }

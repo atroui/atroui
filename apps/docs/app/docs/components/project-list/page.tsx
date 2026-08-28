@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoProjectList } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Project List",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Hairline project list with tags and optional view-all."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/project-list"
+    <RegistryComponentDoc
       registryName="project-list"
+      href="/docs/components/project-list"
       title="Project List"
       description="Hairline project list with tags and optional view-all."
-      preview={<DemoProjectList />}
-      code={'import { ProjectList } from "@/components/blocks/project-list"\n\n<ProjectList />'}
-      fullBleed={true}
+      fullBleed
       usage="Edit PROJECTS after install. Limit controls how many show."
+      code={`import { ProjectList } from "@/components/blocks/project-list"\n\n<ProjectList />`}
     />
   )
 }

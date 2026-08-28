@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoCalendlyEmbed } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Calendly Embed",
@@ -9,16 +8,13 @@ export const metadata: Metadata = componentPageMetadata(
   "Theme-aware Calendly embed with email fallback."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/contact-calendly-embed"
+    <RegistryComponentDoc
       registryName="calendly-embed"
+      href="/docs/components/contact-calendly-embed"
       title="Calendly Embed"
       description="Theme-aware Calendly embed with email fallback."
-      preview={<DemoCalendlyEmbed />}
-      code={'import { CalendlyEmbed } from "@/components/blocks/calendly-embed"\n\n<CalendlyEmbed />'}
-      fullBleed={false}
       usage="Pass url, set CONTENT.url, or NEXT_PUBLIC_CALENDLY_URL. Without a URL, shows email fallback via getBrand()."
       props={[
         {
@@ -28,6 +24,7 @@ export default function Page() {
           description: "Calendly event URL. Falls back to env, then email CTA.",
         },
       ]}
+      code={`import { CalendlyEmbed } from "@/components/blocks/calendly-embed"\n\n<CalendlyEmbed />`}
     />
   )
 }

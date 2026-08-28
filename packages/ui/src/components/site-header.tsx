@@ -11,15 +11,19 @@ import { ThemeToggle } from "./ui/theme-toggle";
 import { getBrand } from "../lib/brand";
 import { cn } from "../lib/utils";
 
+/** Edit after install — defaults match atroui.com product IA. */
 const nav = [
-  { label: "Work", href: "/work" },
-  { label: "Tools", href: "/tools" },
-  { label: "Services", href: "/services" },
-  { label: "Journal", href: "/journal" },
-  { label: "About", href: "/about" },
+  { label: "Docs", href: "/docs" },
+  { label: "Components", href: "/docs/components" },
+  { label: "Host APIs", href: "/docs/host-api" },
+  { label: "Blog", href: "/blog" },
+  { label: "Theming", href: "/docs/theming" },
 ] as const;
 
+const CTA = { label: "Own the UI", href: "/docs/registry" };
+
 function isActive(pathname: string, href: string) {
+  if (href === "/docs") return pathname === "/docs";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
@@ -119,10 +123,10 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <Link
-              href="/contact"
+              href={CTA.href}
               className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex"
             >
-              Hire us
+              {CTA.label}
               <ArrowRight className="size-3.5" aria-hidden />
             </Link>
             <button
@@ -185,11 +189,11 @@ export function SiteHeader() {
                 })}
                 <div className="ms-shell-pad py-4">
                   <Link
-                    href="/contact"
+                    href={CTA.href}
                     onClick={() => setOpen(false)}
                     className="ms-cta w-full justify-center"
                   >
-                    Hire us
+                    {CTA.label}
                     <ArrowRight className="size-4" aria-hidden />
                   </Link>
                 </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoHomeCrafts } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Crafts",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Capabilities band for what you ship — distinct from the Pricing overview rate card."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="home-crafts"
       href="/docs/components/home-crafts"
       title="Crafts"
       description="Capabilities band for what you ship — distinct from the Pricing overview rate card."
-      preview={<DemoHomeCrafts />}
-      code={'import { HomeCrafts } from "@/components/blocks/home-crafts"\n\n<HomeCrafts />'}
-      fullBleed={true}
+      fullBleed
       usage="Homepage section for offerings without prices. Pair with @atroui/pricing-overview when you need a rate card."
+      code={`import { HomeCrafts } from "@/components/blocks/home-crafts"\n\n<HomeCrafts />`}
     />
   )
 }

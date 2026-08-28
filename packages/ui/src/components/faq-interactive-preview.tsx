@@ -96,8 +96,8 @@ export function FaqInteractivePreview() {
               );
             })}
             <div className="ms-shell-pad py-5">
-              <Link href="/contact" className="ms-cta-ghost">
-                Still unsure? Talk to us
+              <Link href="/docs/host-api" className="ms-cta-ghost">
+                Read Host APIs
                 <ArrowRight className="size-3.5" aria-hidden />
               </Link>
             </div>
@@ -160,8 +160,8 @@ export function FaqInteractivePreview() {
                   <p className="leading-relaxed text-muted-foreground">
                     {activeItem.answer}
                   </p>
-                  <Link href="/contact" className="ms-cta-ghost mt-2 inline-flex">
-                    Still unsure? Talk to us
+                  <Link href="/docs/host-api" className="ms-cta-ghost mt-2 inline-flex">
+                    Read Host APIs
                     <ArrowRight className="size-3.5" aria-hidden />
                   </Link>
                 </motion.div>

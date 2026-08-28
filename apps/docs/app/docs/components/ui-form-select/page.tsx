@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoFormSelect } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Form Select",
@@ -9,21 +8,19 @@ export const metadata: Metadata = componentPageMetadata(
   "Accessible select built on Base UI."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="form-select"
       href="/docs/components/ui-form-select"
       title="Form Select"
       description="Accessible select built on Base UI."
-      preview={<DemoFormSelect />}
-      code={'import { FormSelect } from "@/components/ui/form-select"\n\n<FormSelect value={v} onValueChange={setV} options={[…]} />'}
-      fullBleed={false}
       props={[
     { name: 'value', type: 'string', default: '-', description: 'Controlled value.' },
     { name: 'onValueChange', type: '(value: string) => void', default: '-', description: 'Change handler.' },
     { name: 'options', type: '{ value, label }[]', default: '-', description: 'Selectable options.' },
   ]}
+      code={`import { FormSelect } from "@/components/ui/form-select"\n\n<FormSelect value={v} onValueChange={setV} options={[…]} />`}
     />
   )
 }

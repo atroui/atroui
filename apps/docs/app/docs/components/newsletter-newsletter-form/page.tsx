@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoNewsletterForm } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Newsletter Form",
@@ -9,20 +8,18 @@ export const metadata: Metadata = componentPageMetadata(
   "Email capture form."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/newsletter-newsletter-form"
+    <RegistryComponentDoc
       registryName="newsletter-form"
+      href="/docs/components/newsletter-newsletter-form"
       title="Newsletter Form"
       description="Email capture form."
-      preview={<DemoNewsletterForm />}
-      code={'import { NewsletterForm } from "@/components/blocks/newsletter-form"\n\n<NewsletterForm />'}
-      fullBleed={false}
       usage="Posts to /api/newsletter. Install @atroui/api-newsletter (Resend audience or SMTP). See Installation."
       props={[
     { name: 'className', type: 'string', default: '-', description: 'Extra classes.' },
   ]}
+      code={`import { NewsletterForm } from "@/components/blocks/newsletter-form"\n\n<NewsletterForm />`}
     />
   )
 }

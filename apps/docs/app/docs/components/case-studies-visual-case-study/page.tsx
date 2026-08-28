@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoVisualCaseStudy } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Visual Case Study",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Self-contained case-study band - meta, before/after mockup, challenge/solution, metrics, and stack."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="visual-case-study"
       href="/docs/components/case-studies-visual-case-study"
       title="Visual Case Study"
       description="Self-contained case-study band - meta, before/after mockup, challenge/solution, metrics, and stack."
-      preview={<DemoVisualCaseStudy />}
-      code={'import { VisualCaseStudy } from "@/components/blocks/visual-case-study"\n\n<VisualCaseStudy />'}
-      fullBleed={true}
+      fullBleed
       usage="Pass a CaseStudy object (see packages/ui content). mockupVariant drives the BeforeAfterSlider; challenge, solution, results, and technologies render in the narrative + metrics columns."
+      code={`import { VisualCaseStudy } from "@/components/blocks/visual-case-study"\n\n<VisualCaseStudy />`}
     />
   )
 }

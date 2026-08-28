@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoCommandMenu } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Command Menu",
@@ -9,17 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "⌘K command palette for nav, posts, connect, and theme."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/command-menu"
+    <RegistryComponentDoc
       registryName="command-menu"
+      href="/docs/components/command-menu"
       title="Command Menu"
       description="⌘K command palette for nav, posts, connect, and theme."
-      preview={<DemoCommandMenu />}
-      code={'import { CommandMenu } from "@/components/blocks/command-menu"\n\n<CommandMenu />'}
-      fullBleed={false}
       usage="Mount once in the root layout. Opens via ⌘K / Ctrl+K. Requires ThemeProvider for appearance actions."
+      code={`import { CommandMenu } from "@/components/blocks/command-menu"\n\n<CommandMenu />`}
     />
   )
 }

@@ -12,20 +12,21 @@ import { getBrand } from "@/lib/brand"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 
-/** Edit nav labels and hrefs freely after install. */
+/** Edit nav labels and hrefs freely after install. Defaults match AtroUI. */
 const NAV = [
-  { label: "Work", href: "/work" },
-  { label: "Tools", href: "/tools" },
-  { label: "Services", href: "/services" },
-  { label: "Journal", href: "/journal" },
-  { label: "About", href: "/about" },
+  { label: "Docs", href: "/docs" },
+  { label: "Components", href: "/docs/components" },
+  { label: "Host APIs", href: "/docs/host-api" },
+  { label: "Blog", href: "/blog" },
+  { label: "Theming", href: "/docs/theming" },
 ] as const
 
-const CTA = { label: "Hire us", href: "/contact" }
+const CTA = { label: "Own the UI", href: "/docs/registry" }
 
 const panelEase = [0.32, 0.72, 0, 1] as const // easeOutSoft — match apps/docs/lib/motion.ts
 
 function isActive(pathname: string, href: string) {
+  if (href === "/docs") return pathname === "/docs"
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 

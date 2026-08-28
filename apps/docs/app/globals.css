@@ -1,21 +1,115 @@
 @source "../components";
+@source "../content";
 @source "./**/*.{ts,tsx,mdx}";
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height, 3.5rem);
+}
+
+:root {
+  --header-height: 3.5rem;
+  --footer-height: 3.5rem;
+  --sidebar-width-docs: 13rem;
+  --top-spacing: 0px;
+  --product-measure: 48rem;
+  --catalog-cyan: #92dbe0;
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --sidebar-width-docs: 16rem;
+    --top-spacing: 1rem;
+  }
 }
 
 ::selection {
   background: color-mix(in oklab, var(--color-brand) 32%, transparent);
 }
 
-/* Quiet brand wash behind docs chrome — keep opacity low (anti-orb) */
-.md-ambient {
+/*
+ * Product shell (shadcn pattern): token-driven chrome, not landing void paint.
+ * Landing `/` keeps its own black island; docs/blog/tools share this grid.
+ */
+.product-shell {
+  min-height: calc(100svh - var(--header-height));
+  background-color: var(--background);
   background-image: radial-gradient(
     ellipse 70% 40% at 50% -5%,
-    color-mix(in oklch, var(--color-brand) 8%, transparent),
+    color-mix(in oklch, var(--color-brand) 6%, transparent),
     transparent 70%
   );
+}
+
+/* Docs reading room — fill the locked viewport under the header. */
+.product-shell-docs {
+  height: 100%;
+  min-height: 0;
+}
+
+/* Only inner columns scroll — never the document (gutter wheel fix). */
+html.docs-scroll-lock,
+html.docs-scroll-lock body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+html.docs-scroll-lock body > div {
+  height: 100%;
+  overflow: hidden;
+}
+
+.product-main {
+  min-width: 0;
+}
+
+.product-panel a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* List panels — token surfaces (Inside-band rhythm on product routes) */
+.product-panel {
+  border-radius: var(--radius-xl);
+  border: 1px solid color-mix(in oklch, var(--foreground) 10%, transparent);
+  background: color-mix(in oklch, var(--foreground) 3%, var(--background));
+  overflow: hidden;
+}
+
+/* Preview frame — honest token chrome; install chip keeps catalog cyan */
+.catalog-frame {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.catalog-frame-toolbar {
+  border-bottom: 1px solid color-mix(in oklch, var(--foreground) 8%, transparent);
+  background: color-mix(in oklch, var(--foreground) 2%, transparent);
+}
+
+.catalog-install {
+  border: 1px solid color-mix(in oklab, var(--catalog-cyan) 28%, transparent);
+  background: color-mix(in oklab, var(--catalog-cyan) 10%, transparent);
+}
+
+.catalog-install code {
+  color: var(--foreground);
+}
+
+.catalog-install-btn {
+  color: var(--catalog-cyan);
+}
+
+.catalog-install-btn:hover {
+  background: color-mix(in oklab, var(--catalog-cyan) 15%, transparent);
+}
+
+.catalog-slug {
+  color: var(--catalog-cyan);
 }
 
 /* Blog long-form — Merriweather body, Outfit headings, ~65ch measure.

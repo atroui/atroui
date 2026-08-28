@@ -143,15 +143,15 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
           id="exit-intent-title"
           className="ds-headline mt-4 text-2xl text-foreground"
         >
-          Free 7-day MVP scoping
+          Free Host API scoping
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Not sure what to build first? Book a no-pressure scoping call -
-          we&apos;ll map scope, timeline, and budget in one session.
+          Not sure which components or Host APIs you need? Browse the catalog
+          and install what fits - source in your repo.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/scope"
+            href="/docs/components"
             onClick={() => {
               if (preview) return;
               localStorage.setItem(STORAGE_KEY, "converted");
@@ -159,7 +159,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
             }}
             className="ms-cta flex-1 justify-center"
           >
-            Start free scoping
+            Browse components
           </Link>
           <button
             type="button"

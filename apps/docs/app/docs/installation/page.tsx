@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { DocsMdxPage } from "@/components/docs-mdx"
 import { FaqJsonLd } from "atroui"
 import { CodeBlock } from "@/components/code-block"
 import { InstallModesMatrix } from "@/components/install-modes-matrix"
@@ -17,7 +18,7 @@ export default function InstallationPage() {
   const pseo = getPseoPage("/docs/installation")
 
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <DocsMdxPage href="/docs/installation" tocRootId="installation-doc">
       <header>
         <p className="ms-stamp mb-3">Getting started</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
@@ -329,6 +330,6 @@ pnpm dev`}
           />
         </section>
       ) : null}
-    </article>
+    </DocsMdxPage>
   )
 }

@@ -13,8 +13,8 @@ const CONTENT = {
   headlineBefore: "Questions we get",
   headlineAccent: "a lot",
   headlineAfter: ".",
-  ctaLabel: "Still unsure? Talk to us",
-  ctaHref: "/contact",
+  ctaLabel: "Read Host APIs",
+  ctaHref: "/docs/host-api",
 }
 
 const ITEMS = [

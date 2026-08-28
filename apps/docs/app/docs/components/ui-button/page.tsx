@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoButton } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Button",
@@ -9,16 +8,13 @@ export const metadata: Metadata = componentPageMetadata(
   "Primary action control with variants and sizes."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/ui-button"
+    <RegistryComponentDoc
       registryName="button"
+      href="/docs/components/ui-button"
       title="Button"
       description="Primary action control with variants and sizes."
-      preview={<DemoButton />}
-      code={'import { Button } from "@/components/ui/button"\n\n<Button>Continue</Button>\n<Button variant="outline" size="sm">Cancel</Button>'}
-      fullBleed={false}
       usage="Prefer one primary button per view. Use outline/ghost for secondary actions; destructive sparingly."
       props={[
         {
@@ -40,6 +36,7 @@ export default function Page() {
           description: "Disables the button.",
         },
       ]}
+      code={`import { Button } from "@/components/ui/button"\n\n<Button>Continue</Button>\n<Button variant="outline" size="sm">Cancel</Button>`}
     />
   )
 }

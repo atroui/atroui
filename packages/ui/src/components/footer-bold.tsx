@@ -17,7 +17,7 @@ export function BoldFooter() {
           <div className="mb-16 flex w-full flex-col items-start justify-between gap-12 md:mb-20 md:flex-row">
             <div className="max-w-md">
               <h2 className="ds-display mb-6 text-3xl tracking-tight text-pretty text-foreground">
-                Have a project in mind? Let&apos;s ship something this week.
+                Own the UI. Borrow the API.
               </h2>
               <a
                 href={`mailto:${email}`}
@@ -29,37 +29,37 @@ export function BoldFooter() {
 
             <div className="grid grid-cols-2 gap-12 sm:gap-16">
               <div>
-                <p className="ms-stamp mb-4">Studio</p>
+                <p className="ms-stamp mb-4">Product</p>
                 <nav className="flex flex-col gap-1 text-sm">
                   <Link
-                    href="/work"
+                    href="/docs"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    Work
+                    Docs
                   </Link>
                   <Link
-                    href="/tools"
+                    href="/docs/components"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    Tools
+                    Components
                   </Link>
                   <Link
-                    href="/services"
+                    href="/docs/host-api"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    Services
+                    Host APIs
                   </Link>
                   <Link
-                    href="/about"
+                    href="/docs/registry"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    About
+                    Registry
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/docs/theming"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    Contact
+                    Theming
                   </Link>
                 </nav>
               </div>
@@ -67,7 +67,7 @@ export function BoldFooter() {
                 <p className="ms-stamp mb-4">Elsewhere</p>
                 <nav className="flex flex-col gap-1 text-sm">
                   <a
-                    href="https://github.com/KOUSTAV2409"
+                    href="https://github.com/atroui/atroui"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
@@ -82,31 +82,23 @@ export function BoldFooter() {
                   >
                     X / Twitter
                   </a>
-                  <a
-                    href="https://www.iamk.xyz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-10 items-center font-medium hover:text-brand"
-                  >
-                    iamk.xyz
-                  </a>
                   <Link
-                    href="/journal"
+                    href="/blog"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    Journal
+                    Blog
                   </Link>
                   <Link
-                    href="/resources"
+                    href="/docs/brand"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    Resources
+                    Brand kit
                   </Link>
                   <Link
-                    href="/brand"
+                    href="/docs/changelog"
                     className="inline-flex min-h-10 items-center font-medium hover:text-brand"
                   >
-                    Brand & links
+                    Changelog
                   </Link>
                 </nav>
               </div>
@@ -126,7 +118,7 @@ export function BoldFooter() {
               </span>
               <div className="flex items-center gap-6 sm:gap-8">
                 <span className="hidden text-xs text-muted-foreground sm:inline">
-                  West Bengal · Remote
+                  atroui.com
                 </span>
                 <a
                   href="#main"

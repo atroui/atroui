@@ -3,15 +3,17 @@ import Link from "next/link";
 import { getBrand } from "../lib/brand";
 
 const LINKS = [
-  { label: "Work", href: "/work" },
-  { label: "Services", href: "/services" },
-  { label: "Journal", href: "/journal" },
-  { label: "Contact", href: "/contact" },
+  { label: "Docs", href: "/docs" },
+  { label: "Components", href: "/docs/components" },
+  { label: "Host APIs", href: "/docs/host-api" },
+  { label: "Registry", href: "/docs/registry" },
+  { label: "Blog", href: "/blog" },
 ] as const;
 
 const LEGAL = [
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
+  { label: "Theming", href: "/docs/theming" },
+  { label: "Brand kit", href: "/docs/brand" },
+  { label: "Changelog", href: "/docs/changelog" },
 ] as const;
 
 /**
@@ -31,7 +33,8 @@ export function SiteFooter() {
               {name}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Dark-first UI you own in your repo.
+              Dark-first UI you own in your repo. Host APIs when you need the
+              boring security.
             </p>
             <a
               href={`mailto:${email}`}
@@ -54,8 +57,8 @@ export function SiteFooter() {
                 </Link>
               ))}
             </nav>
-            <nav aria-label="Legal" className="flex flex-col gap-2">
-              <p className="ms-stamp mb-1">Legal</p>
+            <nav aria-label="More" className="flex flex-col gap-2">
+              <p className="ms-stamp mb-1">More</p>
               {LEGAL.map((item) => (
                 <Link
                   key={item.href}
@@ -70,7 +73,7 @@ export function SiteFooter() {
         </div>
 
         <p className="mt-12 border-t border-border-subtle pt-6 font-mono text-[11px] text-muted-foreground">
-          © {year} {name}. All rights reserved.
+          © {year} {name}. Own the UI. Borrow the API.
         </p>
       </div>
     </footer>

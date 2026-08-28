@@ -24,23 +24,23 @@ type CTAConfig = {
 };
 
 const SCROLL_CTAS: Record<string, CTAConfig> = {
-  book_call: {
-    id: "book_call",
-    stamp: "Free intro",
-    headline: "Ready to ship?",
-    body: "Book a 15-min intro - no pitch deck.",
-    cta: "Book a call",
-    href: "/contact#book",
-    hideOn: ["/contact"],
+  own_ui: {
+    id: "own_ui",
+    stamp: "Registry",
+    headline: "Own the UI in your repo",
+    body: "Add components with the shadcn CLI. Source you can edit.",
+    cta: "Own the UI",
+    href: "/docs/registry",
+    hideOn: ["/docs/registry"],
   },
-  try_planner: {
-    id: "try_planner",
-    stamp: "2 min",
-    headline: "Not sure which package?",
-    body: "Get an instant recommendation from the planner.",
-    cta: "Try the planner",
-    href: "/planner",
-    hideOn: ["/planner"],
+  host_apis: {
+    id: "host_apis",
+    stamp: "BYOK",
+    headline: "Need forms or AI routes?",
+    body: "Host APIs: hardened handlers, your keys stay in your env.",
+    cta: "Read Host APIs",
+    href: "/docs/host-api",
+    hideOn: ["/docs/host-api"],
   },
 };
 
@@ -64,13 +64,13 @@ export function ContextualCTA({ preview = false }: ContextualCTAProps) {
   const [visible, setVisible] = useState(preview);
   const [dismissed, setDismissed] = useState(false);
   const [ready, setReady] = useState(preview);
-  const [activeCTA, setActiveCTA] = useState<CTAConfig>(SCROLL_CTAS.book_call!);
+  const [activeCTA, setActiveCTA] = useState<CTAConfig>(SCROLL_CTAS.own_ui!);
 
   useEffect(() => {
     if (preview) return;
 
     const variant = getExperimentVariant(CTA_EXPERIMENT);
-    setActiveCTA(SCROLL_CTAS[variant] ?? SCROLL_CTAS.book_call!);
+    setActiveCTA(SCROLL_CTAS[variant] ?? SCROLL_CTAS.own_ui!);
 
     try {
       const raw = sessionStorage.getItem(DISMISS_KEY);

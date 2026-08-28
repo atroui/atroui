@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoTextarea } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Textarea",
@@ -9,20 +8,18 @@ export const metadata: Metadata = componentPageMetadata(
   "Multi-line text input styled for AtroUI forms."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="textarea"
       href="/docs/components/ui-textarea"
       title="Textarea"
       description="Multi-line text input."
-      preview={<DemoTextarea />}
-      code={'import { Textarea } from "@/components/ui/textarea"\n\n<Textarea placeholder="Message" />'}
-      fullBleed={false}
       props={[
     { name: 'placeholder', type: 'string', default: '-', description: 'Hint text.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables input.' },
   ]}
+      code={`import { Textarea } from "@/components/ui/textarea"\n\n<Textarea placeholder="Message" />`}
     />
   )
 }

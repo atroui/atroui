@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoResume } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Resume",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Printable resume layout with experience, skills, and projects."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/resume"
+    <RegistryComponentDoc
       registryName="resume"
+      href="/docs/components/resume"
       title="Resume"
       description="Printable resume layout with experience, skills, and projects."
-      preview={<DemoResume />}
-      code={'import { Resume } from "@/components/blocks/resume"\n\n<Resume />'}
-      fullBleed={true}
+      fullBleed
       usage="Edit CONTENT after install. Print styles hide chrome via .resume-print."
+      code={`import { Resume } from "@/components/blocks/resume"\n\n<Resume />`}
     />
   )
 }

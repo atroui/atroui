@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ProductPageHeader } from "@/components/product-page"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { UpdatesSignup } from "@/components/updates-signup"
 
@@ -12,24 +13,24 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function UpdatesPage() {
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <header className="space-y-3">
-        <p className="ms-stamp">List</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Major updates, in detail
-        </h1>
-        <p className="max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-          The pipeline is long. This list is short. You get the releases that
-          change the product: Host APIs, launch workflow, identity, install
-          path. Written like the{" "}
-          <Link href="/blog" className="bam-link">
-            blog
-          </Link>
-          , not a changelog dump.
-        </p>
-      </header>
+    <main className="mx-auto w-full max-w-2xl space-y-10">
+      <ProductPageHeader
+        stamp="List"
+        title="Major updates, in detail"
+        lede={
+          <>
+            The pipeline is long. This list is short. You get releases that
+            change the product: Host APIs, launch workflow, identity, install
+            path. Written like the{" "}
+            <Link href="/blog" className="bam-link">
+              blog
+            </Link>
+            , not a changelog dump.
+          </>
+        }
+      />
 
-      <section className="mt-10 rounded-xl border border-border-subtle bg-card p-5 sm:p-6">
+      <section className="rounded-xl border border-border-subtle bg-card p-5 sm:p-6">
         <h2 className="ds-headline text-base text-foreground">Subscribe</h2>
         <div className="mt-4">
           <UpdatesSignup source="updates-page" />

@@ -1,7 +1,9 @@
 import Link from "next/link"
 import { Star } from "lucide-react"
+import { CatalogBridge } from "@/components/landing/catalog-bridge"
 import { CatalogStage } from "@/components/landing/catalog-stage"
 import { PresenceHero } from "@/components/landing/presence-hero"
+import { SiteHeader } from "@/components/site-header"
 import { UpdatesSignup } from "@/components/updates-signup"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
@@ -32,12 +34,14 @@ const inside = [
 const shell =
   "mx-auto w-full max-w-7xl px-4 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-20 lg:py-20 xl:px-24"
 
-/** Server-rendered landing shell — hero text paints without waiting on WebGL. */
+/** Server-rendered landing shell — one SiteHeader room (shadcn) + PresenceHero stage. */
 export function LandingHero() {
   return (
     <div className="dark bg-black text-white">
+      <SiteHeader />
       <PresenceHero />
       <CatalogStage />
+      <CatalogBridge />
 
       <section className="border-t border-white/10">
         <div className={shell}>

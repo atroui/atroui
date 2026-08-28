@@ -7,20 +7,23 @@ import { getBrand } from "@/lib/brand"
  * For a louder CTA footer, use @atroui/footer-bold instead.
  */
 const CONTENT = {
-  blurb: "Dark-first UI you own in your repo.",
-  copyrightSuffix: "All rights reserved.",
+  blurb:
+    "Dark-first UI you own in your repo. Host APIs when you need the boring security.",
+  copyrightSuffix: "Own the UI. Borrow the API.",
 }
 
 const LINKS = [
-  { label: "Work", href: "/work" },
-  { label: "Services", href: "/services" },
-  { label: "Journal", href: "/journal" },
-  { label: "Contact", href: "/contact" },
+  { label: "Docs", href: "/docs" },
+  { label: "Components", href: "/docs/components" },
+  { label: "Host APIs", href: "/docs/host-api" },
+  { label: "Registry", href: "/docs/registry" },
+  { label: "Blog", href: "/blog" },
 ]
 
 const LEGAL = [
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
+  { label: "Theming", href: "/docs/theming" },
+  { label: "Brand kit", href: "/docs/brand" },
+  { label: "Changelog", href: "/docs/changelog" },
 ]
 
 export function SiteFooter() {
@@ -61,7 +64,7 @@ export function SiteFooter() {
                 </Link>
               ))}
             </nav>
-            <nav aria-label="Legal" className="flex flex-col gap-2">
+            <nav aria-label="More" className="flex flex-col gap-2">
               <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                 Legal
               </p>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { DocsMdxPage } from "@/components/docs-mdx"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -12,7 +13,7 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function BrandKitPage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <DocsMdxPage href="/docs/brand" tocRootId="brand-doc">
       <header>
         <p className="ms-stamp mb-3">Brand</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
@@ -157,6 +158,6 @@ export default function BrandKitPage() {
           <li>Precise, calm, product-first. Avoid hype and personal bylines on product pages.</li>
         </ul>
       </section>
-    </article>
+    </DocsMdxPage>
   )
 }

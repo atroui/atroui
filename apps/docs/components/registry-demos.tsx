@@ -130,10 +130,10 @@ export function DemoSiteHeader() {
     <div className="w-full bg-background">
       <SiteHeader />
       <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 text-sm text-muted-foreground">
-        Sticky header - AtroUI logo via getBrand(), studio nav routes, theme
-        toggle, and Hire CTA. Links use host paths like{" "}
-        <code className="font-mono text-xs text-foreground">/work</code> and{" "}
-        <code className="font-mono text-xs text-foreground">/contact</code>.
+        Sticky product header — AtroUI logo via getBrand(), Docs / Components /
+        Blog nav, ⌘K search, theme toggle, and Own the UI CTA. Edit{" "}
+        <code className="font-mono text-xs text-foreground">NAV</code> at the top
+        of the block after install.
       </div>
     </div>
   )

@@ -1,30 +1,69 @@
 "use client"
 
 import * as React from "react"
+import {
+  CatalogFrameRoot,
+  CatalogPreviewPane,
+} from "@/components/catalog-frame"
+import { RegistryPreview, hasRegistryDemo } from "@/components/registry-demo-map"
 import { cn } from "@/lib/utils"
 
-interface ComponentPreviewProps {
+type ComponentPreviewProps = {
+  /** Registry item name — shadcn `<ComponentPreview name="…" />` pattern. */
+  name?: string
   title?: string
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
+  fullBleed?: boolean
 }
 
-export function ComponentPreview({ title, children, className }: ComponentPreviewProps) {
+/**
+ * Preview frame for MDX docs. Prefer `name` (registry) over hand-wired children.
+ */
+export function ComponentPreview({
+  name,
+  title,
+  children,
+  className,
+  fullBleed,
+}: ComponentPreviewProps) {
+  if (name) {
+    if (!hasRegistryDemo(name)) {
+      return (
+        <div className="rounded-xl border border-border-subtle px-4 py-8 text-center text-[13px] text-muted-foreground">
+          No demo registered for <code className="font-mono">{name}</code>
+        </div>
+      )
+    }
+    return (
+      <CatalogFrameRoot className={className}>
+        {title ? (
+          <div className="catalog-frame-toolbar px-4 py-2.5 text-[13px] font-medium text-muted-foreground">
+            {title}
+          </div>
+        ) : null}
+        <CatalogPreviewPane fullBleed={fullBleed}>
+          <RegistryPreview name={name} />
+        </CatalogPreviewPane>
+      </CatalogFrameRoot>
+    )
+  }
+
   return (
-    <div className="overflow-hidden border border-border-subtle bg-background">
+    <CatalogFrameRoot className={className}>
       {title ? (
-        <div className="border-b border-border-subtle bg-muted/40 px-4 py-2.5 text-[13px] font-medium text-muted-foreground">
+        <div className="catalog-frame-toolbar px-4 py-2.5 text-[13px] font-medium text-muted-foreground">
           {title}
         </div>
       ) : null}
       <div
         className={cn(
           "flex min-h-[200px] items-center justify-center p-8",
-          className
+          fullBleed && "p-0"
         )}
       >
         {children}
       </div>
-    </div>
+    </CatalogFrameRoot>
   )
 }

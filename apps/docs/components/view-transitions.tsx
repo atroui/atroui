@@ -15,7 +15,18 @@ import { usePathname, useRouter } from "next/navigation"
 import type { ComponentProps } from "react"
 
 function isDocsSurface(path: string) {
-  return path === "/docs" || path.startsWith("/docs/") || path === "/blog" || path.startsWith("/blog/")
+  return (
+    path === "/docs" ||
+    path.startsWith("/docs/") ||
+    path === "/blog" ||
+    path.startsWith("/blog/") ||
+    path === "/updates" ||
+    path.startsWith("/updates/") ||
+    path === "/og" ||
+    path.startsWith("/og/") ||
+    path === "/planner" ||
+    path.startsWith("/planner/")
+  )
 }
 
 function isHome(path: string) {
@@ -104,21 +115,14 @@ export function DocsRouteTransition({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  // Docs room owns scroll — keep route swaps as a soft fade only (no layout morph).
   return (
     <ViewTransition
       key={pathname}
       name="docs-route"
-      share="auto"
-      enter={{
-        "nav-forward": "nav-forward",
-        "nav-back": "nav-back",
-        default: "fade-in",
-      }}
-      exit={{
-        "nav-forward": "nav-forward",
-        "nav-back": "nav-back",
-        default: "fade-out",
-      }}
+      share="none"
+      enter="fade-in"
+      exit="fade-out"
       default="none"
     >
       {children}
@@ -135,7 +139,7 @@ export function SharedBrand({ children }: { children: React.ReactNode }) {
   )
 }
 
-/** Shared primary CTA — landing hero + docs header only. */
+/** Shared primary CTA — SiteHeader only (one name; hero body CTA is local). */
 export function SharedOwnCta({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransition name="atro-own-cta" share="morph" default="none">

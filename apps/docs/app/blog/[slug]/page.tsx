@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }: Props) {
         basePath="/blog"
       />
       {/* ~65ch column — comfortable tracking for Merriweather at 17–18px */}
-      <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
+      <div className="product-prose mx-auto w-full max-w-prose">
         <p className="ms-stamp mb-4">
           <Link href="/blog" className="hover:text-foreground">
             Blog

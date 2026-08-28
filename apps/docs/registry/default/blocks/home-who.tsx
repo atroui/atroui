@@ -9,19 +9,19 @@ import { getBrand } from "@/lib/brand"
  */
 const CONTENT = {
   stamp: "Who",
-  headlineSuffix: "is me.",
-  bio: "Solo founder. Every line of code, every pixel, every email. When you hire the studio, you talk to the person building your thing.",
-  aboutHref: "/about",
-  aboutLabel: "More about the studio",
-  externalHref: "https://example.com",
-  externalLabel: "Website",
+  headlineSuffix: "is yours.",
+  bio: "Built by a solo founder who ships dark-first UI you copy into your repo - plus Host APIs when you need the boring security.",
+  aboutHref: "/docs",
+  aboutLabel: "Read the docs",
+  externalHref: "https://www.iamk.xyz",
+  externalLabel: "iamk.xyz",
   ctaStamp: "Ready when you are",
-  ctaHeadline: "Tell us the shape of your next week.",
+  ctaHeadline: "Own the UI. Borrow the API.",
   ctaBody:
-    "Free 15-minute intro. Two project slots open this quarter. We'll say honestly if we're a fit.",
-  ctaLabel: "Start a project",
-  ctaHref: "/contact",
-  initials: "YO",
+    "Install from the registry. Host APIs when you need forms or AI tools - bring your own keys.",
+  ctaLabel: "Own the UI",
+  ctaHref: "/docs/registry",
+  initials: "AT",
 }
 
 export type HomeWhoProps = {

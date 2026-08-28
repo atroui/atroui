@@ -12,7 +12,6 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Check, Copy } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import {
   ContactForm,
@@ -20,6 +19,12 @@ import {
   HomeHero,
   WaitlistForm,
 } from "atroui"
+import {
+  CatalogDocsLink,
+  CatalogFrameRoot,
+  CatalogMetaToolbar,
+  CatalogPreviewPane,
+} from "@/components/catalog-frame"
 import { cn } from "@/lib/utils"
 import { easeOutSoft, panelTween } from "@/lib/motion"
 
@@ -71,35 +76,6 @@ const CATALOG: CatalogItem[] = [
     command: "npx shadcn@latest add @atroui/waitlist-form",
   },
 ]
-
-function StageCopyBtn({ text }: { text: string }) {
-  const [copied, setCopied] = React.useState(false)
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 1600)
-    } catch {
-      /* ignore */
-    }
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={copy}
-      aria-label={copied ? "Copied" : "Copy install command"}
-      className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-[color:var(--ds-cyan,#92dbe0)] transition-colors hover:bg-[color:var(--ds-cyan,#92dbe0)]/15 hover:text-white"
-    >
-      {copied ? (
-        <Check className="size-3.5" aria-hidden />
-      ) : (
-        <Copy className="size-3.5" aria-hidden />
-      )}
-    </button>
-  )
-}
 
 function renderPreview(id: CatalogId) {
   switch (id) {
@@ -266,50 +242,26 @@ export function CatalogStage() {
             id="catalog-stage-panel"
             role="tabpanel"
             aria-labelledby={`catalog-tab-${active.id}`}
-            className="overflow-hidden rounded-xl border border-white/10 bg-white/2"
           >
-            <div className="flex min-w-0 flex-col gap-3 border-b border-white/10 px-3 py-2.5 sm:flex-row sm:items-center sm:gap-4 sm:px-4">
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <span className="font-mono text-[12px] text-[color:var(--ds-cyan,#92dbe0)]">
-                    {active.registry}
-                  </span>
-                  <span className="text-[12px] text-white/35">·</span>
-                  <span className="text-[12px] text-white/50">{active.blurb}</span>
-                </div>
-              </div>
-              <div className="flex min-w-0 items-center gap-2 sm:ml-auto sm:max-w-[min(100%,28rem)]">
-                <div className="flex min-w-0 flex-1 items-center gap-1.5 rounded-lg border border-[color:var(--ds-cyan,#92dbe0)]/25 bg-[color:var(--ds-cyan,#92dbe0)]/10 py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
-                  <span
-                    className="hidden shrink-0 font-mono text-[12px] font-medium text-[color:var(--ds-cyan,#92dbe0)] sm:inline"
-                    aria-hidden
-                  >
-                    $
-                  </span>
-                  <code className="min-w-0 flex-1 truncate font-mono text-[11px] text-white sm:text-[12px]">
-                    {active.command}
-                  </code>
-                  <StageCopyBtn text={active.command} />
-                </div>
-                <Link
-                  href={active.docs}
-                  className="shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-white/45 transition-colors hover:text-white"
-                >
-                  Docs
-                </Link>
-              </div>
-            </div>
+            <CatalogFrameRoot tone="landing">
+              <CatalogMetaToolbar
+                tone="landing"
+                registrySlug={active.registry}
+                blurb={active.blurb}
+                installCommand={active.command}
+                trailing={<CatalogDocsLink href={active.docs} />}
+              />
 
-            <div
-              ref={viewportRef}
-              className={cn(
-                "relative overflow-y-auto overscroll-contain",
-                STAGE_VIEWPORT,
-                active.id === "hero"
-                  ? "px-0 py-0"
-                  : "flex items-center justify-center px-4 py-8 sm:px-8 sm:py-12"
-              )}
-            >
+              <CatalogPreviewPane
+                tone="landing"
+                viewportRef={viewportRef}
+                viewportClassName={cn(
+                  STAGE_VIEWPORT,
+                  active.id === "hero"
+                    ? "px-0 py-0"
+                    : "flex items-center justify-center px-4 py-8 sm:px-8 sm:py-12"
+                )}
+              >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active.id}
@@ -329,7 +281,8 @@ export function CatalogStage() {
                   {renderPreview(active.id)}
                 </motion.div>
               </AnimatePresence>
-            </div>
+              </CatalogPreviewPane>
+            </CatalogFrameRoot>
           </div>
         </div>
       </div>

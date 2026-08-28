@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoStackList } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Stack List",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Sectioned tools/stack definition list."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/stack-list"
+    <RegistryComponentDoc
       registryName="stack-list"
+      href="/docs/components/stack-list"
       title="Stack List"
       description="Sectioned tools/stack definition list."
-      preview={<DemoStackList />}
-      code={'import { StackList } from "@/components/blocks/stack-list"\n\n<StackList />'}
-      fullBleed={true}
+      fullBleed
       usage="Edit SECTIONS after install for everyday / ship tools."
+      code={`import { StackList } from "@/components/blocks/stack-list"\n\n<StackList />`}
     />
   )
 }

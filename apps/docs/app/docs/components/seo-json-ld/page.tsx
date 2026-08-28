@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoJsonLd } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "JSON-LD",
@@ -9,19 +8,13 @@ export const metadata: Metadata = componentPageMetadata(
   "schema.org helpers for Organization/WebSite, articles, FAQ, breadcrumbs, offers, and tool pages. Headless - emits JSON-LD scripts only."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="json-ld"
       href="/docs/components/seo-json-ld"
       title="JSON-LD"
       description="schema.org helpers for Organization/WebSite, articles, FAQ, breadcrumbs, offers, and tool pages. Headless - emits JSON-LD scripts only."
-      preview={<DemoJsonLd />}
-      code={
-        'import {\n  SiteGraphJsonLd,\n  ArticleJsonLd,\n  FaqJsonLd,\n  BreadcrumbJsonLd,\n} from "@/components/blocks/json-ld"\n\n' +
-        "<SiteGraphJsonLd />\n" +
-        "<ArticleJsonLd title={…} description={…} slug={…} date={…} />"
-      }
       usage="Render in the page (often the root layout or a template). Verify with View Source or Google’s Rich Results Test. Organization name defaults to getBrand().name - pass name to override."
       props={[
         {
@@ -37,6 +30,9 @@ export default function Page() {
           description: "Blog/journal article graph.",
         },
       ]}
+      code={`import {\n  SiteGraphJsonLd,\n  ArticleJsonLd,\n  FaqJsonLd,\n  BreadcrumbJsonLd,\n} from "@/components/blocks/json-ld"\n\n' +
+        "<SiteGraphJsonLd />\n" +
+        "<ArticleJsonLd title={…} description={…} slug={…} date={…} />`}
     />
   )
 }

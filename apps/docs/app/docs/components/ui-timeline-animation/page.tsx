@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoTimelineAnimation } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Timeline Animation",
@@ -9,16 +8,14 @@ export const metadata: Metadata = componentPageMetadata(
   "Sequenced scroll-triggered timeline items."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
+    <RegistryComponentDoc
       registryName="timeline-animation"
       href="/docs/components/ui-timeline-animation"
       title="Timeline Animation"
       description="Sequenced scroll-triggered timeline items."
-      preview={<DemoTimelineAnimation />}
-      code={'import { TimelineAnimation } from "@/components/ui/timeline-animation"\n\n<TimelineAnimation animationNum={0} timelineRef={ref}>…</TimelineAnimation>'}
-      fullBleed={false}
+      code={`import { TimelineAnimation } from "@/components/ui/timeline-animation"\n\n<TimelineAnimation animationNum={0} timelineRef={ref}>…</TimelineAnimation>`}
     />
   )
 }

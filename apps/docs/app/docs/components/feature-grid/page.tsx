@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoFeatureGrid } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Feature Grid",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Product feature grid with editable CONTENT and FEATURES."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/feature-grid"
+    <RegistryComponentDoc
       registryName="feature-grid"
+      href="/docs/components/feature-grid"
       title="Feature Grid"
       description="Product feature grid with editable CONTENT and FEATURES."
-      preview={<DemoFeatureGrid />}
-      code={'import { FeatureGrid } from "@/components/blocks/feature-grid"\n\n<FeatureGrid />'}
-      fullBleed={true}
+      fullBleed
       usage="Landing section below the hero. Edit FEATURES to match your product pillars. Not used on atroui.com homepage."
+      code={`import { FeatureGrid } from "@/components/blocks/feature-grid"\n\n<FeatureGrid />`}
     />
   )
 }

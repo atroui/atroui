@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Suspense } from "react"
 import { OgWorkspace } from "atroui"
 import { InstallCommandChip } from "@/components/install-command-chip"
+import { ProductPageHeader } from "@/components/product-page"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 const OG_INSTALL = "npx shadcn@latest add @atroui/og-workspace"
@@ -16,28 +17,26 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function OgPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-        <div className="max-w-2xl space-y-2">
-          <p className="ms-stamp">Tool</p>
-          <h1 className="ds-display text-2xl text-foreground sm:text-3xl">
-            OG workspace
-          </h1>
-          <p className="text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
-            Prefill from the{" "}
-            <Link href="/docs/guides/launch-workflow" className="bam-link">
-              launch workflow
-            </Link>
-            . Preview downloads work without AI keys. Want only this maker?{" "}
-            <Link
-              href="/docs/components/og-og-workspace"
-              className="bam-link"
-            >
-              Docs
-            </Link>
-            .
-          </p>
-        </div>
+    <main className="mx-auto w-full max-w-6xl space-y-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+        <ProductPageHeader
+          stamp="Tool"
+          title="OG workspace"
+          lede={
+            <>
+              Prefill from the{" "}
+              <Link href="/docs/guides/launch-workflow" className="bam-link">
+                launch workflow
+              </Link>
+              . Preview downloads work without AI keys. Component docs:{" "}
+              <Link href="/docs/components/og-og-workspace" className="bam-link">
+                og-workspace
+              </Link>
+              .
+            </>
+          }
+          className="max-w-2xl"
+        />
         <div className="flex min-w-0 flex-col gap-1.5 sm:items-end">
           <InstallCommandChip command={OG_INSTALL} />
           <p className="max-w-sm text-[11px] leading-relaxed text-muted-foreground sm:text-right">
@@ -52,7 +51,7 @@ export default function OgPage() {
             .
           </p>
         </div>
-      </header>
+      </div>
       <div
         id="og-workspace"
         className="overflow-hidden rounded-xl border border-border-subtle"

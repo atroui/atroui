@@ -1,20 +1,20 @@
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { findCatalogNeighbors } from "@/lib/navigation"
+import { findDocsNeighbors } from "@/lib/navigation"
 
 export function DocsPager({ href }: { href: string }) {
-  const { prev, next } = findCatalogNeighbors(href)
+  const { prev, next } = findDocsNeighbors(href)
   if (!prev && !next) return null
 
   return (
     <nav
-      aria-label="Adjacent components"
+      aria-label="Adjacent docs"
       className="grid gap-3 border-t border-border-subtle pt-8 sm:grid-cols-2 sm:gap-4"
     >
       {prev ? (
         <Link
           href={prev.href}
-          className="group flex min-h-16 items-center gap-3 rounded-2xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
+          className="group flex min-h-16 items-center gap-3 rounded-xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
         >
           <ChevronLeft
             className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand"
@@ -22,7 +22,7 @@ export function DocsPager({ href }: { href: string }) {
           />
           <span className="min-w-0 text-left">
             <span className="ds-meta block">Previous</span>
-            <span className="ds-sketch mt-0.5 block truncate text-lg text-foreground transition-colors group-hover:text-brand">
+            <span className="mt-0.5 block truncate font-medium text-foreground transition-colors group-hover:text-brand">
               {prev.title}
             </span>
           </span>
@@ -33,11 +33,11 @@ export function DocsPager({ href }: { href: string }) {
       {next ? (
         <Link
           href={next.href}
-          className="group flex min-h-16 items-center justify-end gap-3 rounded-2xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
+          className="group flex min-h-16 items-center justify-end gap-3 rounded-xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
         >
           <span className="min-w-0 text-right">
             <span className="ds-meta block">Next</span>
-            <span className="ds-sketch mt-0.5 block truncate text-lg text-foreground transition-colors group-hover:text-brand">
+            <span className="mt-0.5 block truncate font-medium text-foreground transition-colors group-hover:text-brand">
               {next.title}
             </span>
           </span>

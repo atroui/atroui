@@ -10,12 +10,12 @@ import { useEffect, useState } from "react"
  * Simplified vs the docs package demo (no analytics experiment wiring).
  */
 const CONTENT = {
-  stamp: "Free intro",
-  headline: "Ready to ship?",
-  body: "Book a 15-min intro - no pitch deck.",
-  cta: "Book a call",
-  href: "/contact#book",
-  hideOn: ["/contact"],
+  stamp: "Registry",
+  headline: "Own the UI in your repo",
+  body: "Add components with the shadcn CLI. Source you can edit.",
+  cta: "Own the UI",
+  href: "/docs/registry",
+  hideOn: ["/docs/registry"],
   showAtPct: 28,
   hideAtPct: 94,
   dismissKey: "atroui_cta_dismissed",

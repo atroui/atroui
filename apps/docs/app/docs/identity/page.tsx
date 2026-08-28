@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { DocsMdxPage } from "@/components/docs-mdx"
 import { CodeBlock } from "@/components/code-block"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -12,7 +13,7 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function IdentityPage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <DocsMdxPage href="/docs/identity" tocRootId="identity-doc">
       <header>
         <p className="ms-stamp mb-3">Brand &amp; SEO</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
@@ -251,6 +252,6 @@ export default function robots(): MetadataRoute.Robots {
           This boundary ensures your product is immediately indexable on your production URL, with no generic template strings leaking into Google's index.
         </p>
       </section>
-    </article>
+    </DocsMdxPage>
   )
 }

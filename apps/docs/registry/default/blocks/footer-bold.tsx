@@ -7,27 +7,26 @@ import { getBrand } from "@/lib/brand"
  * Defaults match the AtroUI docs Footer Bold demo.
  */
 const CONTENT = {
-  headline: "Have a project in mind? Let's ship something this week.",
+  headline: "Own the UI. Borrow the API.",
   studio: [
-    { label: "Work", href: "/work" },
-    { label: "Tools", href: "/tools" },
-    { label: "Services", href: "/services" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: "Docs", href: "/docs" },
+    { label: "Components", href: "/docs/components" },
+    { label: "Host APIs", href: "/docs/host-api" },
+    { label: "Registry", href: "/docs/registry" },
+    { label: "Theming", href: "/docs/theming" },
   ],
   elsewhere: [
     {
       label: "GitHub",
-      href: "https://github.com/KOUSTAV2409",
+      href: "https://github.com/atroui/atroui",
       external: true,
     },
     { label: "X / Twitter", href: "https://x.com/iamk", external: true },
-    { label: "iamk.xyz", href: "https://www.iamk.xyz", external: true },
-    { label: "Journal", href: "/journal", external: false },
-    { label: "Resources", href: "/resources", external: false },
-    { label: "Brand & links", href: "/brand", external: false },
+    { label: "Blog", href: "/blog", external: false },
+    { label: "Brand kit", href: "/docs/brand", external: false },
+    { label: "Changelog", href: "/docs/changelog", external: false },
   ],
-  location: "West Bengal · Remote",
+  location: "atroui.com",
 }
 
 export function BoldFooter() {
@@ -54,7 +53,7 @@ export function BoldFooter() {
             <div className="grid grid-cols-2 gap-12 sm:gap-16">
               <div>
                 <p className="mb-4 text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
-                  Studio
+                  Product
                 </p>
                 <nav className="flex flex-col gap-1 text-sm">
                   {CONTENT.studio.map((item) => (

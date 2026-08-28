@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoBoldFooter } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Footer Bold",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Bold marketing footer with links and brand mark."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/footer-bold"
+    <RegistryComponentDoc
       registryName="footer-bold"
+      href="/docs/components/footer-bold"
       title="Footer Bold"
       description="Bold marketing footer with links and brand mark."
-      preview={<DemoBoldFooter />}
-      code={'import { BoldFooter } from "@/components/blocks/footer-bold"\n\n<BoldFooter />'}
-      fullBleed={true}
+      fullBleed
       usage="Loud marketing footer with CTA mailto and oversized brand wordmark. For quieter chrome, use @atroui/site-footer."
+      code={`import { BoldFooter } from "@/components/blocks/footer-bold"\n\n<BoldFooter />`}
     />
   )
 }

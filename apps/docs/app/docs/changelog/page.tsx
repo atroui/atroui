@@ -1,6 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 import type { Metadata } from "next"
+import { DocsMdxPage } from "@/components/docs-mdx"
 import Link from "next/link"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { UpdatesSignup } from "@/components/updates-signup"
@@ -146,7 +147,7 @@ export default function ChangelogPage() {
   const releases = loadChangelog()
 
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <DocsMdxPage href="/docs/changelog" tocRootId="changelog-doc">
       <header>
         <p className="ms-stamp mb-3">Getting started</p>
         <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
@@ -182,6 +183,6 @@ export default function ChangelogPage() {
           </section>
         ))}
       </div>
-    </article>
+    </DocsMdxPage>
   )
 }

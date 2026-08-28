@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoReadingShelf } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Reading Shelf",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Horizontal book-cover shelf for currently reading."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/reading-shelf"
+    <RegistryComponentDoc
       registryName="reading-shelf"
+      href="/docs/components/reading-shelf"
       title="Reading Shelf"
       description="Horizontal book-cover shelf for currently reading."
-      preview={<DemoReadingShelf />}
-      code={'import { ReadingShelf } from "@/components/blocks/reading-shelf"\n\n<ReadingShelf />'}
-      fullBleed={true}
+      fullBleed
       usage="Replace BOOKS covers after install. Uses .no-scrollbar for mobile scroll."
+      code={`import { ReadingShelf } from "@/components/blocks/reading-shelf"\n\n<ReadingShelf />`}
     />
   )
 }

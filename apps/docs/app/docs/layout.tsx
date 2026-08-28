@@ -1,11 +1,5 @@
-import { SiteHeader } from "@/components/site-header"
-import { DocsLayoutShell } from "@/components/docs-layout"
+import { DocsShell } from "@/components/app-shell"
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <SiteHeader />
-      <DocsLayoutShell>{children}</DocsLayoutShell>
-    </>
-  )
+  return <DocsShell>{children}</DocsShell>
 }

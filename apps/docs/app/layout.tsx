@@ -3,6 +3,7 @@ import { Caveat, Geist_Mono, Outfit } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { DOCS_SIDEBAR_SCROLL_RESTORE_SCRIPT } from "@/lib/docs-sidebar-scroll"
 import "atroui/globals.css"
 import "./globals.css"
 
@@ -127,7 +128,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="[--header-height:3.5rem] [--footer-height:3.5rem]"
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: DOCS_SIDEBAR_SCROLL_RESTORE_SCRIPT,
+          }}
+        />
+      </head>
       <body
         className={`${outfit.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
       >

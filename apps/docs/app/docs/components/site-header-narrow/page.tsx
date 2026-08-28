@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoSiteHeaderNarrow } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Site Header Narrow",
@@ -9,17 +8,16 @@ export const metadata: Metadata = componentPageMetadata(
   "Sticky 640px personal header with mono nav and theme icon."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/site-header-narrow"
+    <RegistryComponentDoc
       registryName="site-header-narrow"
+      href="/docs/components/site-header-narrow"
       title="Site Header Narrow"
       description="Sticky 640px personal header with mono nav and theme icon."
-      preview={<DemoSiteHeaderNarrow />}
-      code={'import { SiteHeaderNarrow } from "@/components/blocks/site-header-narrow"\n\n<SiteHeaderNarrow />'}
-      fullBleed={true}
+      fullBleed
       usage="Mount once in the personal layout. Uses ThemeToggleIcon. For studio chrome, see @atroui/site-header."
+      code={`import { SiteHeaderNarrow } from "@/components/blocks/site-header-narrow"\n\n<SiteHeaderNarrow />`}
     />
   )
 }

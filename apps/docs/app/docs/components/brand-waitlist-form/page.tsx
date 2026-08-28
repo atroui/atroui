@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoWaitlistForm } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Waitlist Form",
@@ -9,17 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "Brand waitlist signup."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/brand-waitlist-form"
+    <RegistryComponentDoc
       registryName="waitlist-form"
+      href="/docs/components/brand-waitlist-form"
       title="Waitlist Form"
       description="Brand waitlist signup."
-      preview={<DemoWaitlistForm />}
-      code={'import { WaitlistForm } from "@/components/blocks/waitlist-form"\n\n<WaitlistForm />'}
-      fullBleed={false}
       usage="Posts to /api/waitlist. Install @atroui/api-waitlist (Resend audience or SMTP). See Installation."
+      code={`import { WaitlistForm } from "@/components/blocks/waitlist-form"\n\n<WaitlistForm />`}
     />
   )
 }

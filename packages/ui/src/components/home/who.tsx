@@ -21,7 +21,7 @@ export type HomeWhoProps = {
 export function HomeWho({
   brandName,
   email,
-  bio = "Koustav - solo founder. Every line of code, every pixel, every email. When you hire the studio, you talk to the person building your thing. One sprint at a time. Reply same day.",
+  bio = "Built by a solo founder who ships dark-first UI you copy into your repo - plus Host APIs when you need the boring security.",
 }: HomeWhoProps = {}) {
   const brand = getBrand();
   const name = brandName ?? brand.name;
@@ -38,14 +38,14 @@ export function HomeWho({
                 <p className="ms-stamp ms-stamp-brush">Who</p>
                 <h2 className="ds-display mt-3 text-3xl text-foreground sm:text-4xl">
                   {name} is{" "}
-                  <span className="ds-display-italic text-brand">me</span>.
+                  <span className="ds-display-italic text-brand">yours</span>.
                 </h2>
                 <p className="mt-4 max-w-md text-[15px] leading-relaxed text-muted-foreground">
                   {bio}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-4 text-sm">
-                  <Link href="/about" className="bam-link">
-                    More about the studio
+                  <Link href="/docs" className="bam-link">
+                    Read the docs
                   </Link>
                   <a
                     href="https://www.iamk.xyz"
@@ -67,19 +67,19 @@ export function HomeWho({
             <div>
               <p className="ms-stamp">Ready when you are</p>
               <h2 className="ds-headline mt-3 text-2xl text-foreground sm:text-3xl">
-                Tell us the shape of your next week.
+                Own the UI. Borrow the API.
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Free 15-minute intro. Two project slots open this quarter.
-                We&rsquo;ll say honestly if we&rsquo;re a fit.
+                Install from the registry. Host APIs when you need forms or AI
+                tools - bring your own keys.
               </p>
             </div>
             <div className="flex flex-col gap-3">
               <Link
-                href="/contact"
+                href="/docs/registry"
                 className="ms-cta w-full justify-center sm:w-auto sm:justify-start"
               >
-                Start a project
+                Own the UI
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
               <a href={`mailto:${mail}`} className="ms-cta-ghost text-sm">

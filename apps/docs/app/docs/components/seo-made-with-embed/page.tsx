@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoMadeWithEmbed } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Made With Embed",
@@ -9,16 +8,13 @@ export const metadata: Metadata = componentPageMetadata(
   "Credit badge + copyable HTML embed. Defaults to AtroUI branding."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/seo-made-with-embed"
+    <RegistryComponentDoc
       registryName="made-with-embed"
+      href="/docs/components/seo-made-with-embed"
       title="Made With Embed"
       description="Credit badge + copyable HTML embed. Defaults to AtroUI branding."
-      preview={<DemoMadeWithEmbed />}
-      code={'import { MadeWithEmbed } from "@/components/blocks/made-with-embed"\n\n<MadeWithEmbed />\n\n<MadeWithEmbed\n  brandName="Acme"\n  badgeSrc="/badge/acme.svg"\n  href="/tools"\n/>'}
-      fullBleed={false}
       usage="Edit CONTENT.siteOrigin and badgeSrc after install. Host the badge SVG in your public folder."
       props={[
         {
@@ -40,6 +36,7 @@ export default function Page() {
           description: "Alt text and accessible label.",
         },
       ]}
+      code={`import { MadeWithEmbed } from "@/components/blocks/made-with-embed"\n\n<MadeWithEmbed />\n\n<MadeWithEmbed\n  brandName="Acme"\n  badgeSrc="/badge/acme.svg"\n  href="/tools"\n/>`}
     />
   )
 }

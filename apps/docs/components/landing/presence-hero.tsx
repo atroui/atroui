@@ -7,24 +7,15 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from "react"
-import { Github, Star } from "lucide-react"
 import { useReducedMotion } from "motion/react"
 import { LogoMark } from "@/components/logo-mark"
 import {
   HeroDeferredShader,
   type ShaderProgress,
 } from "@/components/landing/hero-deferred-shader"
-import { HeroMobileNav } from "@/components/landing/hero-mobile-nav"
 import { LiveInstall } from "@/components/landing/live-install"
-import {
-  SharedBrand,
-  SharedOwnCta,
-  TransitionLink,
-} from "@/components/view-transitions"
+import { TransitionLink } from "@/components/view-transitions"
 import { cn } from "@/lib/utils"
-import { primaryNav } from "@/lib/primary-nav"
-
-const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 const STAGE_COPY: Record<string, string> = {
   Preparing: "Preparing",
@@ -151,7 +142,7 @@ export function PresenceHero() {
   return (
     <section
       className={cn(
-        "presence-hero relative flex min-h-svh flex-col overflow-hidden bg-black text-white",
+        "presence-hero relative flex min-h-[calc(100svh-3.5rem)] flex-col overflow-hidden bg-black text-white",
         open && "presence-hero--open"
       )}
       aria-busy={!open}
@@ -168,49 +159,10 @@ export function PresenceHero() {
 
       <div
         className={cn(
-          "presence-hero-stage relative z-10 flex min-h-svh flex-col",
+          "presence-hero-stage relative z-10 flex min-h-[calc(100svh-3.5rem)] flex-col",
           !open && "presence-hero-stage--sealed"
         )}
       >
-        <div className="md:hidden">
-          <HeroMobileNav />
-        </div>
-        <header className="relative z-10 hidden items-center justify-between px-8 py-5 md:flex lg:px-12">
-          <SharedBrand>
-            <TransitionLink href="/" className="flex items-center gap-2.5 text-white">
-              <LogoMark className="h-8 w-8 text-white" />
-              <span className="ds-sketch text-2xl tracking-tight">AtroUI</span>
-            </TransitionLink>
-          </SharedBrand>
-
-          <nav
-            className="flex items-center gap-8 text-sm font-medium tracking-wide text-white/70 lg:gap-10"
-            aria-label="Primary"
-          >
-            {primaryNav.map((link) => (
-              <TransitionLink
-                key={link.href}
-                href={link.href}
-                className="ds-hero-nav-link"
-              >
-                {link.label}
-              </TransitionLink>
-            ))}
-          </nav>
-
-          <a
-            href={GITHUB_REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Star AtroUI on GitHub"
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-white/15 bg-white/4 px-3.5 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/8"
-          >
-            <Github className="size-3.5" aria-hidden />
-            Star
-            <Star className="size-3.5 opacity-80" aria-hidden />
-          </a>
-        </header>
-
         <div className="relative z-10 flex grow flex-col justify-center px-5 pb-14 pt-10 sm:px-10 sm:pb-16 md:px-16 lg:px-24">
           <div className="mx-auto flex w-full max-w-3xl flex-col items-start">
             <h1 className="ds-sketch">
@@ -231,14 +183,13 @@ export function PresenceHero() {
             <LiveInstall className="mt-9 w-full sm:mt-10" />
 
             <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-4">
-              <SharedOwnCta>
-                <TransitionLink
-                  href="/docs/registry"
-                  className="inline-flex items-center gap-2.5 rounded-lg bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
-                >
-                  Own the UI
-                </TransitionLink>
-              </SharedOwnCta>
+              {/* SharedOwnCta lives only on SiteHeader — one atro-own-cta name at a time */}
+              <TransitionLink
+                href="/docs/registry"
+                className="inline-flex items-center gap-2.5 rounded-lg bg-white px-6 py-3 text-[15px] font-medium text-black shadow-[0_0_20px_rgba(11,123,255,0.28)] transition hover:bg-white/90 sm:px-7 sm:py-3.5 sm:text-base"
+              >
+                Own the UI
+              </TransitionLink>
               <TransitionLink
                 href="/docs/host-api"
                 className="inline-flex items-center rounded-lg border border-white/18 px-6 py-3 text-[15px] font-medium text-white/85 transition hover:border-white/30 hover:text-white sm:px-7 sm:py-3.5 sm:text-base"

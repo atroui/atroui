@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
-import { ComponentDoc } from "@/components/component-doc"
-import { DemoHomeWork } from "@/components/registry-demos"
+import { RegistryComponentDoc } from "@/components/registry-component-doc"
 
 export const metadata: Metadata = componentPageMetadata(
   "Work",
@@ -9,16 +8,15 @@ export const metadata: Metadata = componentPageMetadata(
   "Selected work section."
 )
 
-export default function Page() {
+export default async function Page() {
   return (
-    <ComponentDoc
-      href="/docs/components/home-work"
+    <RegistryComponentDoc
       registryName="home-work"
+      href="/docs/components/home-work"
       title="Work"
       description="Selected work section."
-      preview={<DemoHomeWork />}
-      code={'import { HomeWork } from "@/components/blocks/home-work"\n\n<HomeWork />'}
-      fullBleed={true}
+      fullBleed
+      code={`import { HomeWork } from "@/components/blocks/home-work"\n\n<HomeWork />`}
     />
   )
 }

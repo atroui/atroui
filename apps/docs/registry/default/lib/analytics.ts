@@ -88,7 +88,7 @@ export function trackEvent(
 
 export const CTA_EXPERIMENT: Experiment = {
   id: "homepage_cta",
-  variants: ["book_call", "try_planner"],
+  variants: ["own_ui", "host_apis"],
   weights: [50, 50],
 };
 
