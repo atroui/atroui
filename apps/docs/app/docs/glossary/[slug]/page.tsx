@@ -6,7 +6,7 @@ import { DocsPageShell } from "@/components/docs-page-shell"
 import {
   ProductPageHeader,
   docSectionHeading,
-  productArticle,
+  productArticleBody,
 } from "@/components/product-page"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { getPseoTerm, pseoGlossary } from "@/lib/pseo"
@@ -37,7 +37,7 @@ export default async function GlossaryTermPage({ params }: Props) {
 
   return (
     <DocsPageShell autoTocRootId="glossary-term">
-      <article id="glossary-term" className={productArticle}>
+      <article id="glossary-term" className={productArticleBody}>
         <BreadcrumbJsonLd
           items={[
             { name: "Docs", path: "/docs" },

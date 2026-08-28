@@ -1,6 +1,12 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
+/** Inner article rhythm when already inside DocsPageShell (shell owns max-width). */
+export const productArticleBody = "product-article w-full space-y-8"
+
+export const productArticleWideBody =
+  "product-article-wide w-full space-y-8 sm:space-y-10"
+
 /** Standard docs column (~65ch prose width in shadcn terms). */
 export const productArticle =
   "product-article mx-auto w-full max-w-3xl space-y-8"
@@ -45,7 +51,7 @@ export function ProductPageHeader({
         {title}
       </h1>
       {lede ? (
-        <div className="ds-lede max-w-2xl text-[15px] leading-relaxed sm:text-base">
+        <div className="docs-prose ds-lede max-w-2xl text-[15px] leading-relaxed sm:text-base">
           {lede}
         </div>
       ) : null}

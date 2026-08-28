@@ -69,6 +69,19 @@ html.docs-scroll-lock body > div {
   color: inherit;
 }
 
+/*
+ * MDX maps text scraps to `p` → we render `.mdx-p` as <span> (inline).
+ * Real markdown paragraphs are direct children of the article — make those block.
+ */
+.product-article > .mdx-p {
+  display: block;
+}
+
+.product-article li .mdx-p,
+.docs-prose .mdx-p {
+  display: inline;
+}
+
 /* List panels — token surfaces (Inside-band rhythm on product routes) */
 .product-panel {
   border-radius: var(--radius-xl);

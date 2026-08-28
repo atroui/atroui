@@ -4,7 +4,7 @@ import { DocsPageShell } from "@/components/docs-page-shell"
 import {
   ProductPageHeader,
   ProductPanel,
-  productArticle,
+  productArticleBody,
 } from "@/components/product-page"
 import { badgeLabel, navigation } from "@/lib/navigation"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -21,7 +21,7 @@ export default function ComponentsIndexPage() {
 
   return (
     <DocsPageShell autoTocRootId="components-index">
-      <article id="components-index" className={productArticle}>
+      <article id="components-index" className={productArticleBody}>
         <ProductPageHeader
           stamp="Catalog"
           title={

@@ -62,6 +62,7 @@ function AutoTocPublisher({ rootId }: { rootId: string }) {
 /**
  * Article measure + publishes TOC to the layout right rail.
  * Scroll is owned by `[data-slot=docs-scroll]` in DocsLayoutShell.
+ * Width lives here once — children should not re-apply max-w-3xl.
  */
 export function DocsPageShell({
   children,

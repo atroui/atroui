@@ -6,8 +6,8 @@ import type { TocItem } from "@/components/docs-toc"
 import { PseoOnPage } from "@/components/pseo-on-page"
 import {
   ProductPageHeader,
-  productArticle,
-  productArticleWide,
+  productArticleBody,
+  productArticleWideBody,
 } from "@/components/product-page"
 import { PropsTable, type PropRow } from "@/components/props-table"
 import {
@@ -163,7 +163,7 @@ export function ComponentDoc({
     </>
   )
 
-  const articleClass = fullBleed ? productArticleWide : productArticle
+  const articleClass = fullBleed ? productArticleWideBody : productArticleBody
 
   return (
     <DocsPageShell

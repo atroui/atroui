@@ -8,7 +8,7 @@ import {
   ProductPanel,
   ProductPanelLink,
   docSectionHeading,
-  productArticle,
+  productArticleBody,
 } from "@/components/product-page"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { allNavItems } from "@/lib/navigation"
@@ -48,7 +48,7 @@ export default async function CollectionPage({ params }: Props) {
 
   return (
     <DocsPageShell autoTocRootId="collection-doc">
-      <article id="collection-doc" className={productArticle}>
+      <article id="collection-doc" className={productArticleBody}>
         <BreadcrumbJsonLd
           items={[
             { name: "Docs", path: "/docs" },

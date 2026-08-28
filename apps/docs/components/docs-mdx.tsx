@@ -6,7 +6,7 @@ import { ComponentPreview } from "@/components/component-preview"
 import {
   ProductPageHeader,
   docSectionHeading,
-  productArticle,
+  productArticleBody,
 } from "@/components/product-page"
 import { DocsPageShell } from "@/components/docs-page-shell"
 import { DocsPager } from "@/components/docs-pager"
@@ -14,6 +14,46 @@ import { cn } from "@/lib/utils"
 
 const headingScroll =
   "scroll-mt-[calc(var(--header-height,3.5rem)+0.75rem)]"
+
+/**
+ * MDX maps markdown paragraphs AND text scraps between JSX tags through `p`.
+ * Those scraps must stay inline — a real <p> stacks every comma on its own line.
+ * Use a span; restore block rhythm only for flow-level siblings via CSS.
+ */
+function MDXParagraph({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"p">) {
+  return (
+    <span
+      className={cn("mdx-p text-[15px] leading-relaxed text-muted-foreground", className)}
+      {...(props as React.ComponentProps<"span">)}
+    >
+      {children}
+    </span>
+  )
+}
+MDXParagraph.displayName = "MDXParagraph"
+
+/** Explicit prose block when you need a styled container around mixed JSX. */
+export function DocsProse({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      className={cn(
+        "docs-prose text-[15px] leading-relaxed text-muted-foreground",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
 
 /** MDX component map for docs prose (shadcn MDX surface). */
 export const docsMdxComponents: MDXComponents = {
@@ -39,15 +79,7 @@ export const docsMdxComponents: MDXComponents = {
       {...props}
     />
   ),
-  p: ({ className, ...props }) => (
-    <p
-      className={cn(
-        "text-[15px] leading-relaxed text-muted-foreground",
-        className
-      )}
-      {...props}
-    />
-  ),
+  p: MDXParagraph,
   a: ({ className, href, ...props }) => {
     const external = href?.startsWith("http")
     const classes = cn("bam-link", className)
@@ -83,6 +115,15 @@ export const docsMdxComponents: MDXComponents = {
       {...props}
     />
   ),
+  li: ({ className, ...props }) => (
+    <li className={cn("leading-relaxed", className)} {...props} />
+  ),
+  strong: ({ className, ...props }) => (
+    <strong className={cn("font-medium text-foreground", className)} {...props} />
+  ),
+  em: ({ className, ...props }) => (
+    <em className={cn("text-foreground", className)} {...props} />
+  ),
   code: ({ className, children, ...props }) => {
     const text = String(children)
     // Fenced blocks are handled by pre > code; inline only here.
@@ -114,6 +155,7 @@ export const docsMdxComponents: MDXComponents = {
   },
   ComponentPreview,
   ProductPageHeader,
+  DocsProse,
   CodeBlock,
 }
 
@@ -134,7 +176,7 @@ export function DocsMdxPage({
 }: DocsMdxPageProps) {
   return (
     <DocsPageShell autoTocRootId={tocRootId}>
-      <article id={tocRootId} className={cn(productArticle, className)}>
+      <article id={tocRootId} className={cn(productArticleBody, className)}>
         {children}
         <DocsPager href={href} />
       </article>
