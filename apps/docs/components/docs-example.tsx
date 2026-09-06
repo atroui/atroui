@@ -130,6 +130,7 @@ export function DocsExample({
       {tab === "preview" ? (
         fullBleed ? (
           <div
+            data-toc-skip
             className={cn(
               "relative bg-background",
               unclip ? "overflow-visible" : "max-h-[min(720px,70vh)] overflow-auto"
@@ -138,7 +139,7 @@ export function DocsExample({
             <div className="w-full min-w-0">{preview}</div>
           </div>
         ) : (
-          <div className="atro-preview-canvas relative">
+          <div data-toc-skip className="atro-preview-canvas relative">
             <ResizablePreview>{preview}</ResizablePreview>
           </div>
         )
