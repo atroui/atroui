@@ -1,4 +1,5 @@
 import { Merriweather } from "next/font/google"
+import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { DocsRouteTransition } from "@/components/view-transitions"
 
@@ -17,6 +18,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
       <div className={merriweather.variable}>
         <DocsRouteTransition>{children}</DocsRouteTransition>
       </div>
+      <SiteFooter />
     </>
   )
 }
