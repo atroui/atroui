@@ -109,7 +109,7 @@ export function ComponentGallery() {
 
       {filtered.length === 0 ? (
         <div className="rounded-xl border border-border-subtle bg-white/[0.02] px-6 py-16 text-center">
-          <p className="ds-sketch text-xl text-foreground">No matches</p>
+          <p className="text-base font-semibold text-foreground">No matches</p>
           <p className="ds-meta mt-1">
             Nothing for “{query}”. Try a different term or clear the filter.
           </p>
