@@ -3,6 +3,8 @@ import Link from "next/link"
 import { Suspense } from "react"
 import { OgWorkspace } from "atroui"
 import { InstallCommandChip } from "@/components/install-command-chip"
+import { SiteFooter } from "@/components/site-footer"
+import { SiteHeader } from "@/components/site-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 const OG_INSTALL = "npx shadcn@latest add @atroui/og-workspace"
@@ -16,7 +18,9 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function OgPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+    <>
+      <SiteHeader />
+      <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
       <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div className="max-w-2xl space-y-2">
           <p className="ms-stamp">Tool</p>
@@ -67,6 +71,8 @@ export default function OgPage() {
           <OgWorkspace />
         </Suspense>
       </div>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   )
 }

@@ -211,6 +211,67 @@ html {
   }
 }
 
+/* Live-component marquee — signature landing showcase.
+   Two tracks scroll in opposite directions; pause on hover; edges masked. */
+.atro-marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+.atro-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: atro-marquee-scroll var(--marquee-duration, 60s) linear infinite;
+  will-change: transform;
+}
+.atro-marquee-track--reverse {
+  animation-direction: reverse;
+}
+.atro-marquee:hover .atro-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes atro-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* Track holds the tile set twice; shift by half for a seamless loop. */
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.atro-marquee-tile {
+  position: relative;
+  width: 18rem;
+  height: 11rem;
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .atro-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .atro-marquee-viewport {
+    overflow-x: auto;
+  }
+  .atro-marquee-track {
+    animation: none;
+  }
+}
+
 ::selection {
   background: color-mix(in oklab, var(--color-brand) 32%, transparent);
 }

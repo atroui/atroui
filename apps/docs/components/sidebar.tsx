@@ -74,10 +74,11 @@ export function DocsSidebar({ className }: { className?: string }) {
                       <li key={item.href}>
                         <Link
                           href={item.href}
+                          aria-current={active ? "page" : undefined}
                           className={cn(
                             "flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
                             active
-                              ? "bg-white/10 text-foreground"
+                              ? "bg-brand/10 text-foreground shadow-[inset_2px_0_0_var(--brand)]"
                               : "text-muted-foreground hover:bg-white/4 hover:text-foreground"
                           )}
                         >

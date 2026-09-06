@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react"
 import posthog from "posthog-js"
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "@/components/code-block"
+import { ResizablePreview } from "@/components/resizable-preview"
 import { revealTween } from "@/lib/motion"
 
 type DocsExampleProps = {
@@ -127,25 +128,20 @@ export function DocsExample({
       </div>
 
       {tab === "preview" ? (
-        <div
-          className={cn(
-            "relative bg-background",
-            fullBleed && unclip
-              ? "overflow-visible"
-              : fullBleed
-                ? "max-h-[min(720px,70vh)] overflow-auto"
-                : "flex min-h-50 items-center justify-center overflow-x-auto p-4 sm:min-h-70 sm:p-8 md:p-10"
-          )}
-        >
+        fullBleed ? (
           <div
             className={cn(
-              "w-full min-w-0",
-              !fullBleed && "flex justify-center"
+              "relative bg-background",
+              unclip ? "overflow-visible" : "max-h-[min(720px,70vh)] overflow-auto"
             )}
           >
-            {preview}
+            <div className="w-full min-w-0">{preview}</div>
           </div>
-        </div>
+        ) : (
+          <div className="atro-preview-canvas relative">
+            <ResizablePreview>{preview}</ResizablePreview>
+          </div>
+        )
       ) : (
         <CodeBlock code={code} embedded className="border-0" />
       )}
