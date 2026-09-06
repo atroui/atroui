@@ -1,105 +1,20 @@
-import { ArrowRight, Github, Star } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { AtroHero } from "@/components/landing/hero"
 import { CategoryGallery } from "@/components/landing/category-gallery"
 import { FeatureBento } from "@/components/landing/feature-bento"
 import { HeroShowcase } from "@/components/landing/hero-showcase"
 import { HowItWorks } from "@/components/landing/how-it-works"
-import { LiveMarquee } from "@/components/landing/live-marquee"
 import { SiteFooter } from "@/components/site-footer"
 import { UpdatesSignup } from "@/components/updates-signup"
 import { TransitionLink } from "@/components/view-transitions"
-import { catalogNavItems } from "@/lib/navigation"
 
-const GITHUB_REPO = "https://github.com/atroui/atroui"
-
-const trust = [
-  "MIT licensed",
-  "Tailwind v4",
-  "shadcn registry",
-  `${catalogNavItems.length}+ components`,
-  "Own the source",
-]
-
-/** Landing — rebuilt from scratch: centered hero + live marquee, then a
+/** Landing — ui-layouts "AI Infrastructure" hero adapted for AtroUI, then a
  *  guided descent through how-it-works, a live showcase, features, catalog,
  *  and a closing CTA. One unified, dark-first product surface. */
 export function LandingHero() {
   return (
     <>
-      <section className="atro-hero-canvas relative overflow-hidden border-b border-border-subtle">
-        <div className="atro-aurora" aria-hidden>
-          <div className="atro-aurora-beam" />
-        </div>
-        <div className="atro-shell pb-12 pt-16 text-center lg:pt-24">
-          <div className="mx-auto flex max-w-3xl flex-col items-center">
-            <TransitionLink
-              href="/docs/components"
-              transitionTypes={[]}
-              className="group inline-flex items-center gap-2 rounded-full border border-border-subtle bg-white/[0.04] py-1 pl-1 pr-3 text-[13px] text-muted-foreground backdrop-blur-sm transition-colors hover:border-brand/40 hover:text-foreground"
-            >
-              <span className="rounded-full bg-brand/15 px-2 py-0.5 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-brand">
-                New
-              </span>
-              {catalogNavItems.length} live components on the shadcn registry
-              <ArrowRight
-                className="size-3.5 transition-transform group-hover:translate-x-0.5"
-                aria-hidden
-              />
-            </TransitionLink>
-
-            <h1 className="ds-headline mt-6 text-[clamp(2.75rem,8vw,5rem)] leading-[1.0] text-foreground">
-              Own the UI.{" "}
-              <span className="ds-sketch atro-shimmer">Borrow the API.</span>
-            </h1>
-
-            <p className="ds-lede mt-6 max-w-xl">
-              {catalogNavItems.length}+ production sections on the official
-              shadcn registry. The source lands in your repo; your keys stay in
-              your env. No lock-in, no black boxes.
-            </p>
-
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-              <TransitionLink
-                href="/docs/components"
-                transitionTypes={[]}
-                className="ms-cta h-11 px-5"
-              >
-                Browse components
-                <ArrowRight className="size-4" aria-hidden />
-              </TransitionLink>
-              <TransitionLink
-                href="/docs"
-                transitionTypes={[]}
-                className="ms-cta-ghost h-11 px-5"
-              >
-                Read the docs
-              </TransitionLink>
-              <a
-                href={GITHUB_REPO}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] px-4 text-sm font-medium text-foreground transition-colors hover:bg-white/[0.06]"
-                aria-label="Star AtroUI on GitHub"
-              >
-                <Github className="size-4" aria-hidden />
-                Star
-                <Star className="size-3.5 opacity-80" aria-hidden />
-              </a>
-            </div>
-
-            <ul className="mt-8 flex flex-wrap justify-center gap-2">
-              {trust.map((item) => (
-                <li key={item} className="atro-chip">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="pb-16 lg:pb-20">
-          <LiveMarquee />
-        </div>
-      </section>
+      <AtroHero />
 
       <HowItWorks />
 
