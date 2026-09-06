@@ -297,33 +297,60 @@ html {
   content: "";
   position: absolute;
   border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.5;
+  filter: blur(64px);
+  opacity: 0.72;
   will-change: transform;
 }
 .atro-aurora::before {
-  width: 46rem;
-  height: 34rem;
-  top: -14rem;
-  left: 8%;
+  width: 48rem;
+  height: 36rem;
+  top: -15rem;
+  left: 6%;
   background: radial-gradient(
     circle at 30% 30%,
-    color-mix(in oklch, var(--brand) 60%, transparent),
-    transparent 62%
-  );
-  animation: atro-aurora-a 22s ease-in-out infinite alternate;
-}
-.atro-aurora::after {
-  width: 40rem;
-  height: 30rem;
-  top: -12rem;
-  right: 4%;
-  background: radial-gradient(
-    circle at 60% 40%,
-    color-mix(in oklch, var(--brand-hover) 55%, transparent),
+    color-mix(in oklch, var(--brand) 82%, transparent),
     transparent 60%
   );
-  animation: atro-aurora-b 26s ease-in-out infinite alternate;
+  animation: atro-aurora-a 18s ease-in-out infinite alternate;
+}
+.atro-aurora::after {
+  width: 42rem;
+  height: 32rem;
+  top: -12rem;
+  right: 2%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    color-mix(in oklch, var(--brand-hover) 78%, transparent),
+    transparent 58%
+  );
+  animation: atro-aurora-b 21s ease-in-out infinite alternate;
+}
+/* Slowly sweeping conic beam — the clearly-in-motion light */
+.atro-aurora-beam {
+  position: absolute;
+  left: 50%;
+  top: -40rem;
+  width: 80rem;
+  height: 80rem;
+  margin-left: -40rem;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    color-mix(in oklch, var(--brand) 45%, transparent) 24deg,
+    transparent 60deg,
+    transparent 300deg,
+    color-mix(in oklch, var(--brand-hover) 38%, transparent) 336deg,
+    transparent 360deg
+  );
+  filter: blur(30px);
+  opacity: 0.5;
+  will-change: transform;
+  animation: atro-aurora-spin 28s linear infinite;
+}
+@keyframes atro-aurora-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes atro-aurora-a {
   0% {
@@ -342,26 +369,32 @@ html {
   }
 }
 
-/* Shimmer gradient headline — a slow sheen sweeps the accent word */
+/* Shimmer gradient headline — a bright sheen sweeps across the accent word */
 .atro-shimmer {
   background: linear-gradient(
     100deg,
-    var(--brand-hover) 0%,
-    color-mix(in oklch, var(--brand-hover) 60%, white) 30%,
-    var(--brand) 50%,
-    color-mix(in oklch, var(--brand-hover) 60%, white) 70%,
-    var(--brand-hover) 100%
+    var(--brand) 0%,
+    var(--brand-hover) 34%,
+    #ffffff 50%,
+    var(--brand-hover) 66%,
+    var(--brand) 100%
   );
-  background-size: 200% 100%;
+  background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   padding-block: 0.06em 0.16em;
-  animation: atro-shimmer-sweep 6s linear infinite;
+  filter: drop-shadow(
+    0 0 22px color-mix(in oklch, var(--brand-glow) 60%, transparent)
+  );
+  animation: atro-shimmer-sweep 4.2s linear infinite;
 }
 @keyframes atro-shimmer-sweep {
-  to {
-    background-position: -200% 0;
+  0% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -150% 0;
   }
 }
 
@@ -381,20 +414,34 @@ html {
   inset: 0;
   z-index: 1;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 2px;
   background: conic-gradient(
     from var(--atro-angle),
     transparent 0%,
-    var(--brand) 12%,
-    color-mix(in oklch, var(--brand-hover) 70%, white) 20%,
-    transparent 34%
+    var(--brand) 8%,
+    #ffffff 16%,
+    var(--brand-hover) 24%,
+    transparent 40%
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: atro-beam-spin 5.5s linear infinite;
+  filter: drop-shadow(
+    0 0 10px color-mix(in oklch, var(--brand-glow) 70%, transparent)
+  );
+  animation: atro-beam-spin 4s linear infinite;
+  pointer-events: none;
+}
+/* Soft brand halo bloom just outside the beamed panel */
+.atro-beam::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 60px -12px color-mix(in oklch, var(--brand-glow) 80%, transparent);
   pointer-events: none;
 }
 @keyframes atro-beam-spin {
@@ -405,7 +452,8 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .atro-aurora::before,
-  .atro-aurora::after {
+  .atro-aurora::after,
+  .atro-aurora-beam {
     animation: none;
   }
   .atro-shimmer {

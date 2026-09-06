@@ -26,7 +26,9 @@ export function LandingHero() {
   return (
     <>
       <section className="atro-hero-canvas relative overflow-hidden border-b border-border-subtle">
-        <div className="atro-aurora" aria-hidden />
+        <div className="atro-aurora" aria-hidden>
+          <div className="atro-aurora-beam" />
+        </div>
         <div className="atro-shell pb-12 pt-16 text-center lg:pt-24">
           <div className="mx-auto flex max-w-3xl flex-col items-center">
             <TransitionLink
