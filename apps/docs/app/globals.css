@@ -272,6 +272,152 @@ html {
   }
 }
 
+/* ==========================================================================
+   Wow layer — animated aurora, shimmer headline, rotating border beam.
+   Intentional, dark-first, brand-tinted. Transform/opacity only; all motion
+   collapses to a calm static state under prefers-reduced-motion.
+   ========================================================================== */
+
+/* Animated aurora — slow drifting brand light behind the hero */
+.atro-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, black 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 80% at 50% 0%,
+    black 30%,
+    transparent 78%
+  );
+}
+.atro-aurora::before,
+.atro-aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+  will-change: transform;
+}
+.atro-aurora::before {
+  width: 46rem;
+  height: 34rem;
+  top: -14rem;
+  left: 8%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    color-mix(in oklch, var(--brand) 60%, transparent),
+    transparent 62%
+  );
+  animation: atro-aurora-a 22s ease-in-out infinite alternate;
+}
+.atro-aurora::after {
+  width: 40rem;
+  height: 30rem;
+  top: -12rem;
+  right: 4%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    color-mix(in oklch, var(--brand-hover) 55%, transparent),
+    transparent 60%
+  );
+  animation: atro-aurora-b 26s ease-in-out infinite alternate;
+}
+@keyframes atro-aurora-a {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(10%, 6%, 0) scale(1.15);
+  }
+}
+@keyframes atro-aurora-b {
+  0% {
+    transform: translate3d(6%, 0, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-8%, 8%, 0) scale(0.95);
+  }
+}
+
+/* Shimmer gradient headline — a slow sheen sweeps the accent word */
+.atro-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--brand-hover) 0%,
+    color-mix(in oklch, var(--brand-hover) 60%, white) 30%,
+    var(--brand) 50%,
+    color-mix(in oklch, var(--brand-hover) 60%, white) 70%,
+    var(--brand-hover) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-block: 0.06em 0.16em;
+  animation: atro-shimmer-sweep 6s linear infinite;
+}
+@keyframes atro-shimmer-sweep {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Rotating conic border-beam around a panel */
+@property --atro-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.atro-beam {
+  position: relative;
+  border-radius: var(--radius-xl);
+}
+.atro-beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--atro-angle),
+    transparent 0%,
+    var(--brand) 12%,
+    color-mix(in oklch, var(--brand-hover) 70%, white) 20%,
+    transparent 34%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: atro-beam-spin 5.5s linear infinite;
+  pointer-events: none;
+}
+@keyframes atro-beam-spin {
+  to {
+    --atro-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atro-aurora::before,
+  .atro-aurora::after {
+    animation: none;
+  }
+  .atro-shimmer {
+    animation: none;
+    background-position: 50% 0;
+  }
+  .atro-beam::before {
+    animation: none;
+    background: none;
+  }
+}
+
 ::selection {
   background: color-mix(in oklab, var(--color-brand) 32%, transparent);
 }

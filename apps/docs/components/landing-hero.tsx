@@ -26,15 +26,27 @@ export function LandingHero() {
   return (
     <>
       <section className="atro-hero-canvas relative overflow-hidden border-b border-border-subtle">
+        <div className="atro-aurora" aria-hidden />
         <div className="atro-shell pb-12 pt-16 text-center lg:pt-24">
           <div className="mx-auto flex max-w-3xl flex-col items-center">
-            <p className="ms-stamp">Dark-first React &amp; Next.js catalog</p>
+            <TransitionLink
+              href="/docs/components"
+              transitionTypes={[]}
+              className="group inline-flex items-center gap-2 rounded-full border border-border-subtle bg-white/[0.04] py-1 pl-1 pr-3 text-[13px] text-muted-foreground backdrop-blur-sm transition-colors hover:border-brand/40 hover:text-foreground"
+            >
+              <span className="rounded-full bg-brand/15 px-2 py-0.5 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-brand">
+                New
+              </span>
+              {catalogNavItems.length} live components on the shadcn registry
+              <ArrowRight
+                className="size-3.5 transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </TransitionLink>
 
             <h1 className="ds-headline mt-6 text-[clamp(2.75rem,8vw,5rem)] leading-[1.0] text-foreground">
               Own the UI.{" "}
-              <span className="ds-sketch ds-sketch-accent">
-                Borrow the API.
-              </span>
+              <span className="ds-sketch atro-shimmer">Borrow the API.</span>
             </h1>
 
             <p className="ds-lede mt-6 max-w-xl">
@@ -102,7 +114,7 @@ export function LandingHero() {
               the source the CLI writes into your repo.
             </p>
           </div>
-          <div className="mx-auto max-w-3xl">
+          <div className="atro-beam mx-auto max-w-3xl">
             <HeroShowcase />
           </div>
         </div>
