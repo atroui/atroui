@@ -5,8 +5,572 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ==========================================================================
+   Redesign 2026 — unified product surface
+   Intentional material over orb-soup: one anchored glow, a hairline grid,
+   soft-rect tiles that lift on hover. All motion respects reduced-motion.
+   ========================================================================== */
+
+/* Section rhythm — consistent vertical cadence across the marketing surface */
+.atro-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .atro-shell {
+    padding-inline: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .atro-shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Hero backdrop — a single anchored brand glow + faint mapped grid.
+   Not a blur-orb identity: it sits behind content and fades out fast. */
+.atro-hero-canvas {
+  position: relative;
+  isolation: isolate;
+}
+.atro-hero-canvas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(
+      60% 50% at 78% 8%,
+      color-mix(in oklch, var(--brand) 22%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 40% at 6% 0%,
+      color-mix(in oklch, var(--brand-dim) 16%, transparent),
+      transparent 68%
+    );
+  opacity: 0.9;
+}
+.atro-hero-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% -10%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 70% at 50% -10%,
+    black 20%,
+    transparent 75%
+  );
+}
+
+/* Soft-rect tile — the core catalog / feature surface */
+.atro-tile {
+  position: relative;
+  display: flex;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--foreground) 3%, transparent);
+  overflow: hidden;
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.atro-tile::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklch, var(--foreground) 22%, transparent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-tile:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklch, var(--brand) 45%, transparent);
+    background: color-mix(in oklch, var(--foreground) 5%, transparent);
+    box-shadow:
+      0 1px 0 0 color-mix(in oklch, var(--foreground) 6%, transparent) inset,
+      0 22px 48px -28px color-mix(in oklch, var(--brand) 55%, transparent);
+  }
+  .atro-tile:hover::after {
+    opacity: 1;
+  }
+  .atro-tile:hover .atro-tile-arrow {
+    transform: translateX(3px);
+    color: var(--brand);
+  }
+}
+.atro-tile-arrow {
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Small category / meta chip */
+.atro-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--foreground) 4%, transparent);
+  padding: 0.2rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.atro-chip-brand {
+  border-color: color-mix(in oklch, var(--brand) 40%, transparent);
+  background: color-mix(in oklch, var(--brand) 12%, transparent);
+  color: color-mix(in oklch, var(--brand-hover) 80%, white);
+}
+
+/* Browser-frame mockup for the hero live preview */
+.atro-frame {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--background) 82%, var(--foreground));
+  box-shadow:
+    0 1px 0 0 color-mix(in oklch, var(--foreground) 6%, transparent) inset,
+    0 40px 80px -48px color-mix(in oklch, var(--brand) 50%, transparent);
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atro-tile,
+  .atro-tile-arrow {
+    transition: none;
+  }
+}
+
+/* Gallery preview canvas — scaled live component thumbnail (Mobbin-style) */
+.atro-preview-canvas {
+  background-color: color-mix(in oklch, var(--background) 92%, var(--foreground));
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklch, var(--foreground) 9%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+/* Fade the clipped bottom so tall previews read as thumbnails, not cut-offs */
+.atro-preview-veil {
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    color-mix(in oklch, var(--background) 55%, transparent) 100%
+  );
+}
+.atro-preview-skeleton {
+  background: linear-gradient(
+    100deg,
+    color-mix(in oklch, var(--foreground) 4%, transparent) 30%,
+    color-mix(in oklch, var(--foreground) 9%, transparent) 50%,
+    color-mix(in oklch, var(--foreground) 4%, transparent) 70%
+  );
+  background-size: 200% 100%;
+  animation: atro-skeleton 1.4s ease-in-out infinite;
+}
+@keyframes atro-skeleton {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atro-preview-skeleton {
+    animation: none;
+  }
+}
+
+/* Live-component marquee — signature landing showcase.
+   Two tracks scroll in opposite directions; pause on hover; edges masked. */
+.atro-marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+.atro-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: atro-marquee-scroll var(--marquee-duration, 60s) linear infinite;
+  will-change: transform;
+}
+.atro-marquee-track--reverse {
+  animation-direction: reverse;
+}
+.atro-marquee:hover .atro-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes atro-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* Track holds the tile set twice; shift by half for a seamless loop. */
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.atro-marquee-tile {
+  position: relative;
+  width: 18rem;
+  height: 11rem;
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .atro-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .atro-marquee-viewport {
+    overflow-x: auto;
+  }
+  .atro-marquee-track {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Wow layer — animated aurora, shimmer headline, rotating border beam.
+   Intentional, dark-first, brand-tinted. Transform/opacity only; all motion
+   collapses to a calm static state under prefers-reduced-motion.
+   ========================================================================== */
+
+/* Animated aurora — slow drifting brand light behind the hero */
+.atro-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, black 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 80% at 50% 0%,
+    black 30%,
+    transparent 78%
+  );
+}
+.atro-aurora::before,
+.atro-aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  opacity: 0.72;
+  will-change: transform;
+}
+.atro-aurora::before {
+  width: 48rem;
+  height: 36rem;
+  top: -15rem;
+  left: 6%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    color-mix(in oklch, var(--brand) 82%, transparent),
+    transparent 60%
+  );
+  animation: atro-aurora-a 18s ease-in-out infinite alternate;
+}
+.atro-aurora::after {
+  width: 42rem;
+  height: 32rem;
+  top: -12rem;
+  right: 2%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    color-mix(in oklch, var(--brand-hover) 78%, transparent),
+    transparent 58%
+  );
+  animation: atro-aurora-b 21s ease-in-out infinite alternate;
+}
+/* Slowly sweeping conic beam — the clearly-in-motion light */
+.atro-aurora-beam {
+  position: absolute;
+  left: 50%;
+  top: -40rem;
+  width: 80rem;
+  height: 80rem;
+  margin-left: -40rem;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    color-mix(in oklch, var(--brand) 45%, transparent) 24deg,
+    transparent 60deg,
+    transparent 300deg,
+    color-mix(in oklch, var(--brand-hover) 38%, transparent) 336deg,
+    transparent 360deg
+  );
+  filter: blur(30px);
+  opacity: 0.5;
+  will-change: transform;
+  animation: atro-aurora-spin 28s linear infinite;
+}
+@keyframes atro-aurora-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes atro-aurora-a {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(10%, 6%, 0) scale(1.15);
+  }
+}
+@keyframes atro-aurora-b {
+  0% {
+    transform: translate3d(6%, 0, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-8%, 8%, 0) scale(0.95);
+  }
+}
+
+/* Shimmer gradient headline — a bright sheen sweeps across the accent word */
+.atro-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--brand) 0%,
+    var(--brand-hover) 34%,
+    #ffffff 50%,
+    var(--brand-hover) 66%,
+    var(--brand) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-block: 0.06em 0.16em;
+  filter: drop-shadow(
+    0 0 22px color-mix(in oklch, var(--brand-glow) 60%, transparent)
+  );
+  animation: atro-shimmer-sweep 4.2s linear infinite;
+}
+@keyframes atro-shimmer-sweep {
+  0% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -150% 0;
+  }
+}
+
+/* Rotating conic border-beam around a panel.
+   A large conic gradient spins behind an opaque inset child; only the 2px
+   padding gap reveals it, so a bright light travels around the edge. */
+.atro-beam {
+  position: relative;
+  border-radius: var(--radius-xl);
+  padding: 2px;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 0 70px -20px color-mix(in oklch, var(--brand-glow) 85%, transparent);
+}
+.atro-beam::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 220%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    var(--brand) 300deg,
+    #ffffff 324deg,
+    var(--brand-hover) 348deg,
+    transparent 360deg
+  );
+  animation: atro-beam-spin 4.5s linear infinite;
+  pointer-events: none;
+}
+.atro-beam > * {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(var(--radius-xl) - 2px);
+}
+@keyframes atro-beam-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atro-aurora::before,
+  .atro-aurora::after,
+  .atro-aurora-beam {
+    animation: none;
+  }
+  .atro-shimmer {
+    animation: none;
+    background-position: 50% 0;
+  }
+  .atro-beam::before {
+    animation: none;
+  }
+}
+
 ::selection {
   background: color-mix(in oklab, var(--color-brand) 32%, transparent);
+}
+
+/* ==========================================================================
+   Docs reading surface — professional documentation typography.
+   Scoped to .docs-prose so it never touches component-doc / marketing pages.
+   ========================================================================== */
+.docs-prose {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: color-mix(in oklch, var(--foreground) 82%, transparent);
+}
+.docs-prose > * + * {
+  margin-top: 1.1rem;
+}
+.docs-prose h2 {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--foreground);
+  margin-top: 3rem;
+  padding-top: 0.25rem;
+  scroll-margin-top: 5rem;
+}
+.docs-prose h3 {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  margin-top: 2rem;
+  scroll-margin-top: 5rem;
+}
+.docs-prose h2 + p,
+.docs-prose h3 + p,
+.docs-prose h2 + ul,
+.docs-prose h3 + ul {
+  margin-top: 0.75rem;
+}
+.docs-prose p {
+  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+}
+.docs-prose strong {
+  font-weight: 600;
+  color: var(--foreground);
+}
+.docs-prose a:not(.bam-link):not(.ms-cta):not(.ms-cta-ghost) {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--brand) 55%, transparent);
+  text-underline-offset: 0.24em;
+  transition: text-decoration-color 180ms ease;
+}
+.docs-prose a:not(.bam-link):hover {
+  text-decoration-color: var(--brand);
+}
+.docs-prose ul,
+.docs-prose ol {
+  padding-left: 1.25rem;
+  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+}
+.docs-prose ul {
+  list-style: none;
+  padding-left: 0;
+}
+.docs-prose ul > li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+.docs-prose ul > li + li,
+.docs-prose ol > li + li {
+  margin-top: 0.5rem;
+}
+.docs-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.7em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--brand) 70%, transparent);
+}
+.docs-prose ol {
+  list-style: decimal;
+}
+.docs-prose :not(pre) > code {
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  padding: 0.12em 0.42em;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: var(--foreground);
+}
+.docs-prose hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin-block: 2.5rem;
+}
+
+/* Callout / admonition */
+.docs-callout {
+  display: flex;
+  gap: 0.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  border-left: 2px solid color-mix(in oklch, var(--brand) 60%, transparent);
+  background: color-mix(in oklch, var(--brand) 6%, transparent);
+  padding: 1rem 1.15rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: color-mix(in oklch, var(--foreground) 82%, transparent);
 }
 
 /* Quiet brand wash behind docs chrome — keep opacity low (anti-orb) */

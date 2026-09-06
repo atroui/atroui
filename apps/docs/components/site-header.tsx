@@ -5,22 +5,22 @@ import { ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
+import { SiteNav } from "@/components/site-nav"
 import {
   SharedBrand,
   SharedOwnCta,
   TransitionLink,
 } from "@/components/view-transitions"
-import { primaryNav } from "@/lib/primary-nav"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 export function SiteHeader() {
   return (
     <header
-      className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/95 pt-[env(safe-area-inset-top)]"
+      className="sticky top-0 z-40 w-full px-3 pt-[max(1rem,env(safe-area-inset-top))] sm:px-4"
       style={{ viewTransitionName: "site-header" }}
     >
-      <div className="mx-auto flex h-14 max-w-350 items-center gap-2 px-3 sm:gap-3 sm:px-6">
+      <div className="mx-auto flex h-12 max-w-5xl items-center gap-2 rounded-2xl border border-border-subtle bg-background/70 px-2.5 shadow-[0_10px_30px_-16px_rgba(0,0,0,0.7)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 sm:gap-3 sm:px-3">
         <MobileSidebar />
 
         <SharedBrand>
@@ -36,21 +36,7 @@ export function SiteHeader() {
           </TransitionLink>
         </SharedBrand>
 
-        <nav
-          aria-label="Primary"
-          className="ml-1 hidden items-center gap-0.5 md:ml-2 md:flex lg:ml-3"
-        >
-          {primaryNav.map((item) => (
-            <TransitionLink
-              key={item.href}
-              href={item.href}
-              transitionTypes={[]}
-              className="px-2 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground xl:px-2.5"
-            >
-              {item.label}
-            </TransitionLink>
-          ))}
-        </nav>
+        <SiteNav />
 
         <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           <div className="md:hidden">

@@ -1,168 +1,102 @@
-import Link from "next/link"
-import { Star } from "lucide-react"
-import { CatalogStage } from "@/components/landing/catalog-stage"
-import { PresenceHero } from "@/components/landing/presence-hero"
+import { ArrowRight } from "lucide-react"
+import { AtroHero } from "@/components/landing/hero"
+import { CategoryGallery } from "@/components/landing/category-gallery"
+import { FeatureBento } from "@/components/landing/feature-bento"
+import { HeroShowcase } from "@/components/landing/hero-showcase"
+import { HowItWorks } from "@/components/landing/how-it-works"
+import { SiteFooter } from "@/components/site-footer"
 import { UpdatesSignup } from "@/components/updates-signup"
+import { TransitionLink } from "@/components/view-transitions"
 
-const GITHUB_REPO = "https://github.com/atroui/atroui"
-
-const inside = [
-  {
-    title: "Registry",
-    body: "shadcn CLI copies source into your repo.",
-    href: "/docs/registry",
-  },
-  {
-    title: "Host APIs",
-    body: "UI + hardened routes. You bring the keys.",
-    href: "/docs/host-api",
-  },
-  {
-    title: "Blocks",
-    body: "Home bands, site chrome, CTAs - edit CONTENT at the top.",
-    href: "/docs/components/home-who",
-  },
-  {
-    title: "Headless",
-    body: "Analytics, JSON-LD, reviews - no visible UI.",
-    href: "/docs/components/seo-json-ld",
-  },
-] as const
-
-const shell =
-  "mx-auto w-full max-w-7xl px-4 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-20 lg:py-20 xl:px-24"
-
-/** Server-rendered landing shell — hero text paints without waiting on WebGL. */
+/** Landing — ui-layouts "AI Infrastructure" hero adapted for AtroUI, then a
+ *  guided descent through how-it-works, a live showcase, features, catalog,
+ *  and a closing CTA. One unified, dark-first product surface. */
 export function LandingHero() {
   return (
-    <div className="dark bg-black text-white">
-      <PresenceHero />
-      <CatalogStage />
+    <>
+      <AtroHero />
 
-      <section className="border-t border-white/10">
-        <div className={shell}>
-          <div className="grid gap-10 md:gap-12 lg:grid-cols-12 lg:gap-10">
-            <div className="lg:col-span-5">
-              <p className="ms-stamp">Inside</p>
-              <h2 className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
-                What you&rsquo;ll{" "}
-                <span className="ds-sketch-accent">find</span>
-              </h2>
-              <p className="ds-lede mt-3 max-w-sm text-neutral-300 sm:mt-4">
-                Registry, Host APIs, blocks, and headless tools — one catalog.
-              </p>
-            </div>
+      <HowItWorks />
 
-            <ul className="divide-y divide-white/10 overflow-hidden rounded-xl border border-white/10 bg-white/3 lg:col-span-7">
-              {inside.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.href}
-                    className="group flex flex-col gap-1.5 px-4 py-4 transition-colors hover:bg-white/4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 sm:px-5 sm:py-5"
-                  >
-                    <span className="ds-sketch text-xl text-white transition-colors group-hover:text-sky-300 sm:text-2xl">
-                      {item.title}
-                    </span>
-                    <span className="ds-meta max-w-prose text-neutral-400 sm:max-w-sm sm:text-right">
-                      {item.body}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      {/* Live showcase */}
+      <section className="border-t border-border-subtle">
+        <div className="atro-shell py-16 lg:py-24">
+          <div className="mx-auto mb-10 max-w-2xl text-center">
+            <p className="ms-stamp mx-auto w-fit">See it live</p>
+            <h2 className="ds-headline mt-5 text-3xl text-foreground sm:text-4xl md:text-[2.75rem]">
+              Real components, <span className="ds-sketch-accent">running</span>
+            </h2>
+            <p className="ds-lede mx-auto mt-4 max-w-xl">
+              Switch blocks and copy the exact install command. Every preview is
+              the source the CLI writes into your repo.
+            </p>
+          </div>
+          <div className="atro-beam mx-auto max-w-3xl">
+            <HeroShowcase />
           </div>
         </div>
       </section>
 
-      <section
-        className="border-t border-white/10"
-        aria-labelledby="home-band-title"
-      >
-        <div className={shell}>
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
-            <div className="lg:col-span-6">
-              <p className="ms-stamp">atroui.com</p>
-              <h2
-                id="home-band-title"
-                className="ds-display mt-4 text-2xl leading-snug sm:mt-5 sm:text-3xl md:text-4xl"
-              >
-                The home of{" "}
-                <span className="ds-sketch-accent">AtroUI</span>
+      <FeatureBento />
+
+      <CategoryGallery />
+
+      {/* Closing CTA */}
+      <section className="border-t border-border-subtle">
+        <div className="atro-shell py-16 lg:py-24">
+          <div className="atro-tile relative overflow-hidden p-10 text-center sm:p-14 lg:p-20">
+            <div className="mx-auto max-w-2xl">
+              <h2 className="ds-headline text-3xl text-foreground sm:text-4xl md:text-5xl">
+                Ship your next page <span className="ds-sketch-accent">today</span>
               </h2>
-              <p className="ds-lede mt-3 max-w-md text-neutral-400 sm:mt-4">
-                React catalog at{" "}
-                <span className="text-neutral-200">atroui.com</span>. Add with
-                the{" "}
-                <Link
-                  href="/docs/registry"
-                  className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+              <p className="ds-lede mx-auto mt-4 max-w-lg">
+                Copy a block, edit the content, deploy. That&rsquo;s the whole
+                workflow.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <TransitionLink
+                  href="/docs/components"
+                  transitionTypes={[]}
+                  className="ms-cta h-11 px-5"
                 >
-                  shadcn registry
-                </Link>
-                . Source in your repo. When something major ships, we write it
-                in detail.{" "}
-                <Link
-                  href="/updates"
-                  className="text-sky-300/90 underline underline-offset-2 hover:text-sky-200"
+                  Browse components
+                  <ArrowRight className="size-4" aria-hidden />
+                </TransitionLink>
+                <TransitionLink
+                  href="/docs/installation"
+                  transitionTypes={[]}
+                  className="ms-cta-ghost h-11 px-5"
                 >
-                  What you get
-                </Link>
-                .
+                  Installation guide
+                </TransitionLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Updates */}
+      <section className="border-t border-border-subtle">
+        <div className="atro-shell py-16 lg:py-24">
+          <div className="atro-tile grid gap-10 p-8 sm:p-10 lg:grid-cols-2 lg:items-center lg:gap-14 lg:p-14">
+            <div>
+              <p className="ms-stamp">Stay in the loop</p>
+              <h2 className="ds-headline mt-5 text-2xl text-foreground sm:text-3xl md:text-4xl">
+                Major updates, <span className="ds-sketch-accent">only</span>
+              </h2>
+              <p className="ds-lede mt-4 max-w-md">
+                We write when something ships that changes how you install or
+                build with AtroUI. Same voice as the blog. Unsubscribe anytime.
               </p>
             </div>
-            <div className="lg:col-span-6">
-              <p className="mb-3 font-mono text-[11px] tracking-[0.14em] text-neutral-500 uppercase">
-                Major updates only
-              </p>
+            <div>
               <UpdatesSignup source="landing" compact />
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 md:px-12 lg:px-20 xl:px-24">
-          <p className="ds-meta text-neutral-500">
-            © {new Date().getFullYear()}{" "}
-            <span className="ds-sketch text-sm text-neutral-400">AtroUI</span>
-            {" · "}atroui.com — React component library
-          </p>
-          <div className="ds-meta flex flex-wrap items-center gap-x-4 gap-y-2 text-neutral-500">
-            <a
-              href={GITHUB_REPO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ds-hero-nav-link inline-flex items-center gap-1.5"
-              aria-label="Star AtroUI on GitHub"
-            >
-              <Star className="size-3.5" aria-hidden />
-              GitHub
-            </a>
-            <Link href="/updates" className="ds-hero-nav-link">
-              Updates
-            </Link>
-            <Link href="/docs/registry" className="ds-hero-nav-link">
-              Registry
-            </Link>
-            <a
-              href="https://www.iamk.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ds-hero-nav-link"
-            >
-              iamk.xyz
-            </a>
-            <a
-              href="https://www.makershot.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ds-hero-nav-link"
-            >
-              makershot.tech
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <SiteFooter />
+    </>
   )
 }

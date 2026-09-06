@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ProjectPlanner } from "atroui"
+import { SiteFooter } from "@/components/site-footer"
+import { SiteHeader } from "@/components/site-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -12,7 +14,9 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function PlannerPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+    <>
+      <SiteHeader />
+      <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
       <header className="mb-6 max-w-2xl space-y-2">
         <p className="ms-stamp">Tool</p>
         <h1 className="ds-display text-2xl text-foreground sm:text-3xl">
@@ -29,6 +33,8 @@ export default function PlannerPage() {
       <div className="overflow-hidden rounded-xl border border-border-subtle">
         <ProjectPlanner />
       </div>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   )
 }

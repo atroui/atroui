@@ -1,90 +1,41 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { badgeLabel, navigation } from "@/lib/navigation"
+import { ComponentGallery } from "@/components/gallery/component-gallery"
+import { catalogNavItems } from "@/lib/navigation"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Components",
   description:
-    "Browse the AtroUI component catalog - primitives, blocks, tools, and headless SEO modules for React and Next.js.",
+    "Browse the AtroUI component catalog - live previews of primitives, blocks, tools, and headless SEO modules for React and Next.js.",
   path: "/docs/components",
 })
 
 export default function ComponentsIndexPage() {
-  const sections = navigation.filter((s) => s.title !== "Getting Started")
-
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Library</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Components
+    <div className="mx-auto max-w-6xl">
+      <header className="mb-8">
+        <p className="ms-stamp mb-3">
+          Library · {catalogNavItems.length} components
+        </p>
+        <h1 className="ds-headline text-3xl text-foreground sm:text-4xl md:text-5xl">
+          Every block, live
         </h1>
-        <p className="ds-lede mt-3 max-w-2xl">
-          Production UI curated into primitives, blocks, tools, and headless
-          modules. For search-intent clusters (forms, OG images, launch), start
-          at{" "}
-          <Link href="/docs/collections" className="bam-link">
-            Collections
-          </Link>
-          . Items tagged CLI install with{" "}
+        <p className="ds-lede mt-4 max-w-2xl">
+          Real, running previews — not screenshots. Search or filter, then open
+          any component to copy it in with{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             npx shadcn@latest add @atroui/…
           </code>
-          . Items tagged{" "}
+          . Host&nbsp;API items pair with thin{" "}
           <Link href="/docs/host-api" className="bam-link">
-            Host API
-          </Link>{" "}
-          need thin{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             /api/*
-          </code>{" "}
-          routes plus your own keys.
+          </Link>{" "}
+          routes and your own keys.
         </p>
       </header>
 
-      {sections.map((section) => (
-        <section key={section.title} className="space-y-3">
-          <h2 className="ds-nav-section text-foreground">{section.title}</h2>
-          <ul className="md-glass divide-y divide-border-subtle">
-            {section.items.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="flex items-center justify-between gap-3 px-4 py-3.5 transition-colors hover:bg-white/5"
-                >
-                  <span className="min-w-0">
-                    <span className="ds-sketch block text-lg text-foreground">
-                      {item.title}
-                    </span>
-                    {item.description ? (
-                      <span className="ds-meta mt-0.5 block">
-                        {item.description}
-                      </span>
-                    ) : null}
-                  </span>
-                  <span className="flex shrink-0 items-center gap-3">
-                    {item.badge ? (
-                      <span
-                        className={`ds-sketch text-[13px] ${
-                          item.badge === "registry" || item.badge === "host-api"
-                            ? "text-brand"
-                            : "text-muted-foreground"
-                        }`}
-                      >
-                        {badgeLabel[item.badge]}
-                      </span>
-                    ) : null}
-                    <span className="text-muted-foreground" aria-hidden>
-                      →
-                    </span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
-    </article>
+      <ComponentGallery />
+    </div>
   )
 }
