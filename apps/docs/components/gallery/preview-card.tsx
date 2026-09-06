@@ -91,9 +91,13 @@ export function PreviewCard({ item }: { item: NavItem }) {
 
       <div className="flex items-center justify-between gap-3 p-4">
         <div className="min-w-0">
-          <p className="ds-sketch text-lg text-foreground">{item.title}</p>
+          <p className="truncate text-sm font-semibold tracking-tight text-foreground">
+            {item.title}
+          </p>
           {item.description ? (
-            <p className="ds-meta mt-0.5 truncate">{item.description}</p>
+            <p className="mt-0.5 truncate text-[12px] text-muted-foreground">
+              {item.description}
+            </p>
           ) : null}
         </div>
         <div className="flex shrink-0 items-center gap-2">

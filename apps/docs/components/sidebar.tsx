@@ -15,10 +15,10 @@ function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   return (
     <span
       className={cn(
-        "ds-sketch shrink-0 text-[13px] leading-none",
+        "shrink-0 font-mono text-[9.5px] font-medium uppercase leading-none tracking-[0.08em]",
         badge === "host-api" || badge === "registry"
-          ? "text-brand"
-          : "text-muted-foreground"
+          ? "text-brand/80"
+          : "text-muted-foreground/60"
       )}
     >
       {badgeLabel[badge]}
@@ -32,7 +32,7 @@ export function DocsSidebar({ className }: { className?: string }) {
   const reduce = useReducedMotion()
 
   return (
-    <nav className={cn("space-y-6", className)}>
+    <nav className={cn("space-y-5", className)}>
       {navigation.map((section) => {
         const isCollapsed = collapsed[section.title]
         const panelId = `docs-nav-${section.title.toLowerCase().replace(/\s+/g, "-")}`
@@ -40,7 +40,7 @@ export function DocsSidebar({ className }: { className?: string }) {
           <div key={section.title}>
             <button
               type="button"
-              className="ds-nav-section mb-2 flex w-full items-center justify-between px-2 transition-[color,text-shadow] duration-150"
+              className="mb-1.5 flex w-full items-center justify-between rounded-md px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.09em] text-muted-foreground/90 transition-colors hover:text-foreground"
               aria-expanded={!isCollapsed}
               aria-controls={panelId}
               onClick={() =>
@@ -53,7 +53,7 @@ export function DocsSidebar({ className }: { className?: string }) {
               {section.title}
               <ChevronDown
                 className={cn(
-                  "h-3.5 w-3.5 shrink-0 text-brand/70 transition-transform duration-200",
+                  "size-3 shrink-0 text-muted-foreground/50 transition-transform duration-200",
                   isCollapsed && "-rotate-90"
                 )}
               />
@@ -76,10 +76,10 @@ export function DocsSidebar({ className }: { className?: string }) {
                           href={item.href}
                           aria-current={active ? "page" : undefined}
                           className={cn(
-                            "flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
+                            "flex items-center justify-between gap-2 rounded-md px-2.5 py-1.5 text-[13px] transition-colors",
                             active
-                              ? "bg-brand/10 text-foreground shadow-[inset_2px_0_0_var(--brand)]"
-                              : "text-muted-foreground hover:bg-white/4 hover:text-foreground"
+                              ? "bg-brand/10 font-medium text-foreground shadow-[inset_2px_0_0_var(--brand)]"
+                              : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
                           )}
                         >
                           <span className="truncate">{item.title}</span>

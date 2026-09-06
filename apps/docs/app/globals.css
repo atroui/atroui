@@ -573,6 +573,59 @@ html {
   color: color-mix(in oklch, var(--foreground) 82%, transparent);
 }
 
+/* Docs chrome should read as professional documentation, not marketing.
+   Neutralize the handwritten display / stamp voice in page headers and body,
+   but restore the real component voice inside live previews ([data-toc-skip]). */
+[data-docs-content] .ds-display {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+[data-docs-content] .ms-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  text-shadow: none;
+}
+[data-docs-content] .ms-stamp::before {
+  width: 0.35rem;
+  height: 0.35rem;
+}
+[data-docs-content] [data-toc-skip] .ds-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+[data-docs-content] [data-toc-skip] .ms-stamp {
+  border: 1px solid color-mix(in oklch, var(--brand) 28%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklch, var(--brand) 10%, transparent);
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-sketch);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: color-mix(in oklch, var(--foreground) 88%, var(--brand) 12%);
+  text-shadow: 0 0 12px color-mix(in oklch, var(--brand-glow) 35%, transparent);
+}
+[data-docs-content] [data-toc-skip] .ms-stamp::before {
+  width: 0.4rem;
+  height: 0.4rem;
+}
+
 /* Quiet brand wash behind docs chrome — keep opacity low (anti-orb) */
 .md-ambient {
   background-image: radial-gradient(

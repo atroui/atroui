@@ -101,31 +101,30 @@ export function ComponentDoc({
           : "mx-auto w-full max-w-3xl space-y-8 sm:space-y-10"
       }
     >
-      <header className="space-y-2 sm:space-y-3">
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="ms-stamp">{kind}</p>
+      <header className="space-y-3 border-b border-border-subtle pb-6">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center rounded-md border border-border-subtle bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+            {kind}
+          </span>
           {inRegistry ? (
-            <span className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase">
+            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-brand/80">
               CLI registry
             </span>
           ) : null}
           {isHostApi ? (
             <Link
               href="/docs/host-api"
-              className="font-mono text-[10px] tracking-[0.14em] text-brand/80 uppercase transition-colors hover:text-brand"
+              className="font-mono text-[10px] uppercase tracking-[0.12em] text-brand/80 transition-colors hover:text-brand"
             >
               Host API
             </Link>
           ) : null}
         </div>
-        <h1 className="ds-display text-2xl text-foreground sm:text-3xl md:text-4xl">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
           {title}
         </h1>
-        <p className="max-w-2xl text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+        <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           {description}
-        </p>
-        <p className="font-mono text-[11px] tracking-[0.1em] text-muted-foreground/70 uppercase">
-          Preview → install → use
         </p>
       </header>
 
