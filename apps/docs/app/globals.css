@@ -398,55 +398,46 @@ html {
   }
 }
 
-/* Rotating conic border-beam around a panel */
-@property --atro-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
+/* Rotating conic border-beam around a panel.
+   A large conic gradient spins behind an opaque inset child; only the 2px
+   padding gap reveals it, so a bright light travels around the edge. */
 .atro-beam {
   position: relative;
   border-radius: var(--radius-xl);
+  padding: 2px;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 0 70px -20px color-mix(in oklch, var(--brand-glow) 85%, transparent);
 }
 .atro-beam::before {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: inherit;
-  padding: 2px;
+  left: 50%;
+  top: 50%;
+  width: 220%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  z-index: 0;
   background: conic-gradient(
-    from var(--atro-angle),
-    transparent 0%,
-    var(--brand) 8%,
-    #ffffff 16%,
-    var(--brand-hover) 24%,
-    transparent 40%
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    var(--brand) 300deg,
+    #ffffff 324deg,
+    var(--brand-hover) 348deg,
+    transparent 360deg
   );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  filter: drop-shadow(
-    0 0 10px color-mix(in oklch, var(--brand-glow) 70%, transparent)
-  );
-  animation: atro-beam-spin 4s linear infinite;
+  animation: atro-beam-spin 4.5s linear infinite;
   pointer-events: none;
 }
-/* Soft brand halo bloom just outside the beamed panel */
-.atro-beam::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: 0;
-  border-radius: inherit;
-  box-shadow: 0 0 60px -12px color-mix(in oklch, var(--brand-glow) 80%, transparent);
-  pointer-events: none;
+.atro-beam > * {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(var(--radius-xl) - 2px);
 }
 @keyframes atro-beam-spin {
   to {
-    --atro-angle: 360deg;
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -462,7 +453,6 @@ html {
   }
   .atro-beam::before {
     animation: none;
-    background: none;
   }
 }
 
