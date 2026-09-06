@@ -17,10 +17,10 @@ const GITHUB_REPO = "https://github.com/atroui/atroui"
 export function SiteHeader() {
   return (
     <header
-      className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/80 pt-[env(safe-area-inset-top)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/70"
+      className="sticky top-0 z-40 w-full px-3 pt-[max(1rem,env(safe-area-inset-top))] sm:px-4"
       style={{ viewTransitionName: "site-header" }}
     >
-      <div className="mx-auto flex h-14 max-w-350 items-center gap-2 px-3 sm:gap-3 sm:px-6">
+      <div className="mx-auto flex h-12 max-w-5xl items-center gap-2 rounded-2xl border border-border-subtle bg-background/70 px-2.5 shadow-[0_10px_30px_-16px_rgba(0,0,0,0.7)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 sm:gap-3 sm:px-3">
         <MobileSidebar />
 
         <SharedBrand>

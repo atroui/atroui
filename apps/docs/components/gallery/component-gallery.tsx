@@ -39,7 +39,7 @@ export function ComponentGallery() {
 
   return (
     <div className="space-y-6">
-      <div className="sticky top-14 z-30 -mx-4 border-b border-border-subtle bg-background/80 px-4 py-3 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div className="sticky top-16 z-30 -mx-4 border-b border-border-subtle bg-background/80 px-4 py-3 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
           <div className="relative w-full lg:max-w-xs">
             <Search

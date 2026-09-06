@@ -54,7 +54,7 @@ export function AtroHero() {
   return (
     <section
       ref={timelineRef}
-      className="relative flex min-h-[calc(100svh-3.5rem)] w-full flex-col overflow-hidden bg-black text-white"
+      className="relative flex min-h-[calc(100svh-4rem)] w-full flex-col overflow-hidden bg-black text-white"
     >
       {showShader ? (
         <div className="landing-hero-shader pointer-events-none absolute inset-0" aria-hidden>
