@@ -20,6 +20,11 @@ export function ComponentGallery() {
   const [active, setActive] = React.useState("All")
   const [query, setQuery] = React.useState("")
 
+  React.useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("category")
+    if (param && categories.includes(param)) setActive(param)
+  }, [])
+
   const filtered = React.useMemo(() => {
     const q = query.trim().toLowerCase()
     return allEntries.filter(({ category, item }) => {
