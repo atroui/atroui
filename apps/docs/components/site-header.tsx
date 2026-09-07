@@ -1,36 +1,40 @@
 "use client"
 
-import { Github, Star } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { Github } from "lucide-react"
 import { ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
 import { SiteNav } from "@/components/site-nav"
-import {
-  SharedBrand,
-  SharedOwnCta,
-  TransitionLink,
-} from "@/components/view-transitions"
+import { SharedBrand, TransitionLink } from "@/components/view-transitions"
+import { cn } from "@/lib/utils"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 export function SiteHeader() {
+  const pathname = usePathname()
+  const landing = pathname === "/"
+
   return (
     <header
-      className="sticky top-0 z-40 w-full px-3 pt-[max(1rem,env(safe-area-inset-top))] sm:px-4"
+      className={cn(
+        "sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70",
+        landing ? "border-white/[0.06]" : "border-border-subtle"
+      )}
       style={{ viewTransitionName: "site-header" }}
     >
-      <div className="mx-auto flex h-12 max-w-5xl items-center gap-2 rounded-2xl border border-border-subtle bg-background/70 px-2.5 shadow-[0_10px_30px_-16px_rgba(0,0,0,0.7)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 sm:gap-3 sm:px-3">
+      <div className="atro-shell flex h-14 items-center gap-3">
         <MobileSidebar />
 
         <SharedBrand>
           <TransitionLink
             href="/"
-            className="flex min-w-0 items-center gap-2 sm:gap-2.5"
+            className="flex min-w-0 items-center gap-2"
             aria-label="AtroUI home"
           >
-            <LogoMark className="shrink-0 text-foreground" />
-            <span className="truncate text-[15px] font-medium tracking-tight text-foreground sm:text-[17px]">
+            <LogoMark className="size-5 shrink-0 text-foreground" />
+            <span className="text-[15px] font-medium tracking-[-0.02em] text-foreground">
               AtroUI
             </span>
           </TransitionLink>
@@ -38,36 +42,36 @@ export function SiteHeader() {
 
         <SiteNav />
 
-        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <div className="md:hidden">
-            <CommandMenu compact />
-          </div>
+        <div className="ml-auto flex shrink-0 items-center gap-2">
           <div className="hidden md:block">
             <CommandMenu />
+          </div>
+          <div className="md:hidden">
+            <CommandMenu compact />
           </div>
           <ThemeToggle />
           <a
             href={GITHUB_REPO}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Star AtroUI on GitHub"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] px-2.5 text-foreground transition-colors hover:bg-white/[0.06] sm:px-3"
+            aria-label="GitHub"
+            className="hidden h-9 items-center gap-1.5 rounded-md px-2.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
           >
             <Github className="size-4" aria-hidden />
-            <span className="hidden text-[13px] font-medium sm:inline">
-              Star
-            </span>
-            <Star className="size-3.5 opacity-80" aria-hidden />
+            GitHub
           </a>
-          <SharedOwnCta>
-            <TransitionLink
-              href="/docs/registry"
-              transitionTypes={[]}
-              className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex lg:px-4"
-            >
-              Own the UI
-            </TransitionLink>
-          </SharedOwnCta>
+          <TransitionLink
+            href="/docs/components"
+            transitionTypes={[]}
+            className={cn(
+              "hidden h-9 items-center rounded-md px-3.5 text-[13px] font-medium md:inline-flex",
+              landing
+                ? "bg-white text-black hover:opacity-90"
+                : "ms-cta h-9 px-3.5 text-sm"
+            )}
+          >
+            Browse
+          </TransitionLink>
         </div>
       </div>
     </header>

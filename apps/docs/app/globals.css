@@ -29,8 +29,7 @@ html {
   }
 }
 
-/* Hero backdrop — a single anchored brand glow + faint mapped grid.
-   Not a blur-orb identity: it sits behind content and fades out fast. */
+/* Hero backdrop — hairline grid + whisper of brand. Product UI carries the room. */
 .atro-hero-canvas {
   position: relative;
   isolation: isolate;
@@ -40,18 +39,12 @@ html {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background:
-    radial-gradient(
-      60% 50% at 78% 8%,
-      color-mix(in oklch, var(--brand) 22%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      45% 40% at 6% 0%,
-      color-mix(in oklch, var(--brand-dim) 16%, transparent),
-      transparent 68%
-    );
-  opacity: 0.9;
+  background: radial-gradient(
+    ellipse 55% 45% at 50% -8%,
+    color-mix(in oklch, var(--brand) 8%, transparent),
+    transparent 72%
+  );
+  opacity: 1;
 }
 .atro-hero-canvas::after {
   content: "";
@@ -61,20 +54,20 @@ html {
   background-image:
     linear-gradient(
       to right,
-      color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+      color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
       transparent 1px
     ),
     linear-gradient(
       to bottom,
-      color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+      color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
       transparent 1px
     );
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% -10%, black 20%, transparent 75%);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 95% 75% at 50% 0%, black 15%, transparent 78%);
   -webkit-mask-image: radial-gradient(
-    ellipse 90% 70% at 50% -10%,
-    black 20%,
-    transparent 75%
+    ellipse 95% 75% at 50% 0%,
+    black 15%,
+    transparent 78%
   );
 }
 
@@ -109,12 +102,10 @@ html {
 }
 @media (hover: hover) and (pointer: fine) {
   .atro-tile:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in oklch, var(--brand) 45%, transparent);
-    background: color-mix(in oklch, var(--foreground) 5%, transparent);
-    box-shadow:
-      0 1px 0 0 color-mix(in oklch, var(--foreground) 6%, transparent) inset,
-      0 22px 48px -28px color-mix(in oklch, var(--brand) 55%, transparent);
+    border-color: color-mix(in oklch, var(--foreground) 22%, transparent);
+    background: color-mix(in oklch, var(--foreground) 4.5%, transparent);
+    box-shadow: none;
+    transform: none;
   }
   .atro-tile:hover::after {
     opacity: 1;
@@ -151,14 +142,24 @@ html {
   color: color-mix(in oklch, var(--brand-hover) 80%, white);
 }
 
-/* Browser-frame mockup for the hero live preview */
+/* Browser-frame mockup — flat product stage (Zed-style: UI is the visual) */
 .atro-frame {
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
-  background: color-mix(in oklch, var(--background) 82%, var(--foreground));
+  background: color-mix(in oklch, var(--background) 96%, var(--foreground));
   box-shadow:
-    0 1px 0 0 color-mix(in oklch, var(--foreground) 6%, transparent) inset,
-    0 40px 80px -48px color-mix(in oklch, var(--brand) 50%, transparent);
+    0 0 0 1px color-mix(in oklch, var(--foreground) 4%, transparent) inset,
+    0 24px 64px -48px color-mix(in oklch, var(--foreground) 35%, transparent);
+  overflow: hidden;
+}
+
+/* Static product wrapper — no spinning border beam */
+.atro-product-stage {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--background) 98%, var(--foreground));
+  box-shadow: 0 32px 80px -56px color-mix(in oklch, var(--foreground) 45%, transparent);
   overflow: hidden;
 }
 
@@ -626,178 +627,737 @@ html {
   }
 }
 
+.atro-showcase-stage {
+  position: relative;
+  isolation: isolate;
+}
+
 /* ==========================================================================
-   Presence hero — gate then open (industry WebGL pattern)
-   Opaque gate + real progress while sphere warms; one fade into finished hero.
-   #000000 · #0b7bff · #92dbe0 · #3865cf
+   Zed discipline — flat chrome, product-first landing, quiet CTAs
    ========================================================================== */
 
-.presence-hero {
-  --ds-cyan: #92dbe0;
-  --ds-brand: #0b7bff;
-  --ds-ink: #3865cf;
-  --ds-void: #000000;
-  --presence-ease: cubic-bezier(0.32, 0.72, 0, 1);
-  background: var(--ds-void);
+.atro-announce {
+  border-bottom: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--foreground) 2%, var(--background));
+}
+.atro-announce-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-block: 0.65rem;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+.atro-announce-inner a {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-announce-inner a:hover {
+    color: var(--brand-hover);
+  }
 }
 
-.presence-hero-void {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      ellipse 70% 55% at 72% 48%,
-      color-mix(in srgb, var(--ds-brand) 12%, transparent) 0%,
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 40% 35% at 12% 78%,
-      color-mix(in srgb, var(--ds-ink) 10%, transparent) 0%,
-      transparent 70%
-    ),
-    var(--ds-void);
+.atro-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.35rem, 5.5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  text-wrap: balance;
 }
 
-.presence-hero-brand {
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 36px color-mix(in srgb, var(--ds-brand) 22%, transparent);
+.atro-pillar-grid {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--border-subtle);
+}
+@media (min-width: 640px) {
+  .atro-pillar-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.atro-pillar {
+  background: var(--background);
+  padding: 1.25rem 1.35rem;
+}
+.atro-pillar-label {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+.atro-pillar-body {
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
 }
 
-.presence-install-caret {
-  animation: presence-caret-blink 1s steps(1, end) infinite;
+.atro-quote-grid {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .atro-quote-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .atro-quote-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.atro-quote {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--foreground) 2%, transparent);
+  padding: 1.35rem 1.4rem;
+}
+.atro-quote-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: color-mix(in oklch, var(--foreground) 88%, transparent);
+}
+.atro-quote-meta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.atro-quote-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+.atro-quote-role {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
 }
 
-/* Sphere at full underpainting while warming under the gate */
+.atro-letter {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--foreground) 2.5%, transparent);
+  padding: 2rem 1.75rem;
+}
+@media (min-width: 640px) {
+  .atro-letter {
+    padding: 2.5rem 2.25rem;
+  }
+}
+.atro-letter-body {
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: color-mix(in oklch, var(--foreground) 82%, transparent);
+}
+.atro-letter-body p + p {
+  margin-top: 1rem;
+}
+.atro-letter-sign {
+  margin-top: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+/* Landing CTAs — quieter glow on marketing surface */
+.atro-landing .ms-cta {
+  box-shadow: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-landing .ms-cta:hover {
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--brand) 35%, transparent);
+    filter: none;
+  }
+}
+
+/* Consistent section rhythm — Zed keeps vertical cadence tight and predictable */
+.atro-section {
+  border-top: 1px solid var(--border-subtle);
+}
+.atro-section-inner {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  padding-block: 4rem;
+}
+@media (min-width: 640px) {
+  .atro-section-inner {
+    padding-inline: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .atro-section-inner {
+    padding-inline: 2.5rem;
+    padding-block: 5rem;
+  }
+}
+
+/* Hero product block — demo + pillars read as one unit */
+.atro-hero-product .atro-frame {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+  box-shadow: none;
+}
+.atro-hero-product .atro-pillar-grid {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.atro-platform-note {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  letter-spacing: 0.01em;
+}
+
+.atro-avatar {
+  display: inline-flex;
+  size: 2.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--foreground) 4%, transparent);
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--foreground);
+}
+
+/* Zed "Just Works" — vertical tabs + content panel */
+.atro-just-works {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 768px) {
+  .atro-just-works {
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+.atro-just-works-tabs {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.25rem;
+}
+@media (min-width: 768px) {
+  .atro-just-works-tabs {
+    flex-direction: column;
+    overflow: visible;
+    border-bottom: none;
+    border-right: 1px solid var(--border-subtle);
+    padding-bottom: 0;
+    padding-right: 1.25rem;
+  }
+}
+.atro-just-works-tab {
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--muted-foreground);
+  transition: color 160ms ease;
+}
+@media (min-width: 768px) {
+  .atro-just-works-tab {
+    padding: 0.5rem 0;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-just-works-tab:hover {
+    color: var(--foreground);
+  }
+}
+.atro-just-works-tab[aria-selected="true"] {
+  color: var(--foreground);
+}
+@media (min-width: 768px) {
+  .atro-just-works-tab[aria-selected="true"]::before {
+    content: "";
+    position: absolute;
+    left: -1.25rem;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 2px;
+    background: var(--brand);
+    border-radius: 1px;
+  }
+}
+.atro-just-works-panel {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--foreground) 2%, transparent);
+  padding: 1.5rem;
+}
+@media (min-width: 640px) {
+  .atro-just-works-panel {
+    padding: 1.75rem 2rem;
+  }
+}
+
+/* Extensions-style catalog list */
+.atro-eco-list {
+  margin-top: 2.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.atro-eco-row {
+  display: grid;
+  gap: 0.35rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1rem 1.15rem;
+  text-decoration: none;
+  transition: background-color 160ms ease;
+}
+@media (min-width: 640px) {
+  .atro-eco-row {
+    grid-template-columns: 9rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.85rem 1.25rem;
+  }
+}
+.atro-eco-row:last-child {
+  border-bottom: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-eco-row:hover {
+    background: color-mix(in oklch, var(--foreground) 3%, transparent);
+  }
+}
+.atro-eco-name {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+.atro-eco-desc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.atro-eco-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+
+/* Secondary features — Zed "Helix Mode" density */
+.atro-care-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.atro-care-chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.85rem;
+  text-decoration: none;
+  min-width: 9rem;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-care-chip:hover {
+    background: color-mix(in oklch, var(--foreground) 3%, transparent);
+    border-color: color-mix(in oklch, var(--foreground) 18%, transparent);
+  }
+}
+.atro-care-chip-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+.atro-care-chip-desc {
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+/* Blog cards — "The latest from Zed" */
+.atro-blog-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 768px) {
+  .atro-blog-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.atro-blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  transition: background-color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-blog-card:hover {
+    background: color-mix(in oklch, var(--foreground) 3%, transparent);
+  }
+}
+.atro-blog-card-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+.atro-blog-card-desc {
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.atro-blog-card-meta {
+  margin-top: auto;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* Final CTA band — Zed "Daily drive with Zed" */
+.atro-final-cta {
+  border-top: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--foreground) 2.5%, var(--background));
+}
+.atro-final-cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding-block: 3.5rem;
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .atro-final-cta-inner {
+    padding-block: 4.5rem;
+  }
+}
+.atro-final-cta-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--foreground);
+}
+.atro-final-cta-lede {
+  max-width: 28rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.atro-section-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1rem;
+}
+.atro-section-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-section-link:hover {
+    color: var(--foreground);
+  }
+}
+
+.atro-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+}
+
+/* =============================================================================
+   Landing surface — Zed-clean system (scoped to .atro-landing)
+   Soft dark · Inter · minimal chrome · product demo carries the page
+   ============================================================================= */
+
+.atro-landing {
+  --landing-bg: #0a0a0a;
+  --landing-fg: #ededed;
+  --landing-muted: #8a8a8a;
+  --landing-border: rgba(255, 255, 255, 0.08);
+  --landing-surface: #111111;
+  --landing-demo-bg: #0f0f0f;
+
+  --background: var(--landing-bg);
+  --foreground: var(--landing-fg);
+  --card: var(--landing-surface);
+  --muted-foreground: var(--landing-muted);
+  --border-subtle: var(--landing-border);
+  --primary: #ffffff;
+  --primary-foreground: #0a0a0a;
+  --popover: #141414;
+
+  background-color: var(--landing-bg);
+  color: var(--landing-fg);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv01", "cv02", "ss01";
+}
+
+.atro-landing .atro-hero-canvas::before,
+.atro-landing .atro-hero-canvas::after {
+  display: none;
+}
+
+.atro-landing .atro-hero-title {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.65rem, 6.5vw, 4.35rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.atro-landing .atro-hero-lede {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 400;
+  color: var(--landing-muted);
+}
+
+.atro-landing .atro-platform-note {
+  font-size: 0.8125rem;
+  color: var(--landing-muted);
+}
+
+.atro-landing .zed-btn {
+  display: inline-flex;
+  height: 2.5rem;
+  min-width: 10.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  padding-inline: 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0a0a0a;
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-landing .zed-btn:hover {
+    opacity: 0.9;
+  }
+}
+
+.atro-landing .zed-btn-ghost {
+  display: inline-flex;
+  height: 2.5rem;
+  min-width: 10.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--landing-border);
+  background: transparent;
+  padding-inline: 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--landing-fg);
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-landing .zed-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.atro-landing .landing-demo-frame {
+  border-radius: 0.75rem;
+  border: 1px solid var(--landing-border);
+  background: var(--landing-surface);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 32px 64px -48px rgba(0, 0, 0, 0.9);
+}
+
+.atro-landing .landing-demo-viewport {
+  background: var(--landing-demo-bg);
+}
+
+.atro-landing .landing-demo-scale {
+  transform: scale(0.92);
+}
+
+.atro-landing .atro-frame {
+  border-radius: 0.75rem;
+  border: 1px solid var(--landing-border);
+  background: var(--landing-surface);
+  box-shadow: 0 32px 64px -48px rgba(0, 0, 0, 0.85);
+}
+
+.atro-landing .atro-section {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.atro-landing .atro-section-inner {
+  padding-block: 4.5rem;
+}
+
+.atro-landing .ds-headline,
+.atro-landing .atro-final-cta-title {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.035em;
+}
+
+.atro-landing .ds-eyebrow {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--landing-muted);
+}
+
+.atro-landing .ds-lede,
+.atro-landing .ds-body,
+.atro-landing .atro-final-cta-lede {
+  color: var(--landing-muted);
+}
+
+.atro-landing .atro-quote {
+  border: none;
+  background: transparent;
+  padding: 0;
+  gap: 1.25rem;
+}
+
+.atro-landing .atro-quote-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: color-mix(in oklch, var(--landing-fg) 88%, transparent);
+}
+
+.atro-landing .atro-just-works-panel,
+.atro-landing .atro-eco-list,
+.atro-landing .atro-letter,
+.atro-landing .atro-blog-card {
+  border-color: var(--landing-border);
+  background: color-mix(in oklch, var(--landing-fg) 2%, transparent);
+}
+
+.atro-landing .atro-care-chip {
+  border-color: var(--landing-border);
+  background: transparent;
+}
+
+.atro-landing .atro-pillar-grid {
+  border-color: var(--landing-border);
+  background: var(--landing-border);
+}
+
+.atro-landing .atro-pillar {
+  background: var(--landing-surface);
+}
+
+.atro-landing .atro-announce {
+  border-color: var(--landing-border);
+  background: var(--landing-bg);
+}
+
+.atro-landing .ms-cta,
+.atro-landing .zed-btn {
+  box-shadow: none;
+}
+
+.atro-landing .ms-cta-ghost {
+  border-color: var(--landing-border);
+  background: transparent;
+}
+
+.atro-landing .atro-avatar {
+  border-color: var(--landing-border);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+.atro-landing footer {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.atro-landing footer .atro-chip {
+  border-color: var(--landing-border);
+  background: transparent;
+  color: var(--landing-muted);
+}
+
+/* Optional WebGL sphere — subtle underpainting on .atro-hero-canvas */
 .landing-hero-shader {
-  opacity: 0.42;
+  opacity: 0.38;
   mask-image: radial-gradient(
-    ellipse 95% 90% at 55% 48%,
-    black 30%,
-    transparent 88%
+    ellipse 85% 80% at 72% 42%,
+    black 25%,
+    transparent 85%
   );
 }
 
 @media (max-width: 768px) {
   .landing-hero-shader {
+    opacity: 0.28;
     mask-image: radial-gradient(
-      ellipse 120% 100% at 50% 55%,
-      black 28%,
-      transparent 92%
+      ellipse 100% 90% at 50% 50%,
+      black 22%,
+      transparent 90%
     );
   }
 }
 
-/* Seal interactions / a11y under the gate (hero is already painted underneath) */
-.presence-hero-stage--sealed {
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Gate — solid black; soft enter, longer open fade */
-.presence-gate {
-  background: var(--ds-void);
-  opacity: 1;
-  transition: opacity 1.05s var(--presence-ease);
-}
-
-.presence-gate--out {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.presence-gate-inner {
-  animation: presence-gate-in 0.7s var(--presence-ease) both;
-}
-
-.presence-gate--out .presence-gate-inner {
-  animation: presence-gate-leave 0.85s var(--presence-ease) both;
-}
-
-.presence-gate-brand {
-  filter: drop-shadow(0 0 28px color-mix(in srgb, var(--ds-brand) 28%, transparent));
-}
-
-.presence-gate-track {
-  transform: translateZ(0);
-}
-
-.presence-gate-fill {
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: left center;
-  will-change: transform;
-  backface-visibility: hidden;
-  box-shadow: 0 0 14px color-mix(in srgb, var(--ds-cyan) 40%, transparent);
-}
-
-.presence-gate-label {
-  animation: presence-gate-label-in 0.35s var(--presence-ease) both;
-}
-
-@keyframes presence-gate-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 10px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes presence-gate-leave {
-  from {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(0, -6px, 0);
-  }
-}
-
-@keyframes presence-gate-label-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 4px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes presence-caret-blink {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .presence-install-caret,
-  .presence-gate,
-  .presence-gate-inner,
-  .presence-gate-label {
-    animation: none !important;
-    transition: none !important;
-  }
-
   .landing-hero-shader {
     display: none;
-  }
-
-  .presence-gate {
-    display: none;
-  }
-
-  .presence-install-caret {
-    opacity: 1;
   }
 }
 

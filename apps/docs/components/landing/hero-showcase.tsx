@@ -1,15 +1,13 @@
 "use client"
 
 /**
- * Hero showcase — one live block at a time inside a product frame.
- * Family Values: gradual revelation (tabs), fluidity (shared pill + crossfade),
- * careful delight (copy feedback on the install line). Every preview is the
- * real registry export a developer installs — no mockups.
+ * Product demo — live registry blocks in a Zed-clean frame.
+ * `clean` mode: no faux browser chrome, underline tabs, neutral preview canvas.
  */
 
 import * as React from "react"
 import Link from "next/link"
-import { ArrowUpRight, Check, Copy } from "lucide-react"
+import { Check, Copy } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import {
   FeatureGrid,
@@ -18,7 +16,7 @@ import {
   WaitlistForm,
 } from "atroui"
 import { cn } from "@/lib/utils"
-import { easeOutSoft, panelTween } from "@/lib/motion"
+import { easeOutSoft } from "@/lib/motion"
 
 type ShowcaseId = "hero" | "pricing" | "features" | "waitlist"
 
@@ -31,10 +29,34 @@ type ShowcaseItem = {
 }
 
 const ITEMS: ShowcaseItem[] = [
-  { id: "hero", label: "Hero", registry: "home-hero", docs: "/docs/components/home-hero", contain: false },
-  { id: "pricing", label: "Pricing", registry: "pricing-overview", docs: "/docs/components/pricing-overview", contain: false },
-  { id: "features", label: "Features", registry: "feature-grid", docs: "/docs/components/feature-grid", contain: false },
-  { id: "waitlist", label: "Waitlist", registry: "waitlist-form", docs: "/docs/components/brand-waitlist-form", contain: true },
+  {
+    id: "waitlist",
+    label: "Waitlist",
+    registry: "waitlist-form",
+    docs: "/docs/components/brand-waitlist-form",
+    contain: true,
+  },
+  {
+    id: "pricing",
+    label: "Pricing",
+    registry: "pricing-overview",
+    docs: "/docs/components/pricing-overview",
+    contain: false,
+  },
+  {
+    id: "features",
+    label: "Features",
+    registry: "feature-grid",
+    docs: "/docs/components/feature-grid",
+    contain: false,
+  },
+  {
+    id: "hero",
+    label: "Hero",
+    registry: "home-hero",
+    docs: "/docs/components/home-hero",
+    contain: false,
+  },
 ]
 
 function renderPreview(id: ShowcaseId) {
@@ -52,9 +74,15 @@ function renderPreview(id: ShowcaseId) {
   }
 }
 
-export function HeroShowcase() {
+export function HeroShowcase({
+  prominent = false,
+  clean = false,
+}: {
+  prominent?: boolean
+  clean?: boolean
+}) {
   const reduce = useReducedMotion()
-  const [activeId, setActiveId] = React.useState<ShowcaseId>("hero")
+  const [activeId, setActiveId] = React.useState<ShowcaseId>("waitlist")
   const active = ITEMS.find((item) => item.id === activeId) ?? ITEMS[0]!
   const command = `npx shadcn@latest add @atroui/${active.registry}`
   const [copied, setCopied] = React.useState(false)
@@ -76,28 +104,16 @@ export function HeroShowcase() {
   }
 
   return (
-    <div className="atro-frame w-full">
-      {/* Frame chrome */}
-      <div className="flex items-center gap-3 border-b border-border-subtle px-4 py-3">
-        <div className="flex items-center gap-1.5" aria-hidden>
-          <span className="size-2.5 rounded-full bg-foreground/15" />
-          <span className="size-2.5 rounded-full bg-foreground/15" />
-          <span className="size-2.5 rounded-full bg-foreground/15" />
-        </div>
-        <div className="mx-auto hidden items-center gap-2 rounded-md border border-border-subtle bg-background/50 px-3 py-1 sm:flex">
-          <span className="size-1.5 rounded-full bg-brand" aria-hidden />
-          <span className="font-mono text-[11px] text-muted-foreground">
-            atroui.com/preview
-          </span>
-        </div>
-        <span className="atro-chip-brand atro-chip ml-auto sm:ml-0">Live</span>
-      </div>
-
-      {/* Tabs */}
+    <div className={cn("atro-frame w-full", clean && "landing-demo-frame")}>
       <div
         role="tablist"
         aria-label="Component previews"
-        className="flex gap-1 overflow-x-auto border-b border-border-subtle px-2 py-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className={cn(
+          "flex gap-0 overflow-x-auto px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          clean
+            ? "gap-6 border-b border-border-subtle"
+            : "gap-1 border-b border-border-subtle px-2 py-2"
+        )}
       >
         {ITEMS.map((item) => {
           const selected = item.id === activeId
@@ -109,20 +125,21 @@ export function HeroShowcase() {
               aria-selected={selected}
               onClick={() => setActiveId(item.id)}
               className={cn(
-                "relative shrink-0 cursor-pointer rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors",
-                selected
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                "relative shrink-0 cursor-pointer transition-colors",
+                clean
+                  ? "border-b-2 py-3.5 text-[13px] font-medium"
+                  : "rounded-md px-3 py-1.5 text-[13px] font-medium",
+                clean && selected
+                  ? "border-foreground text-foreground"
+                  : clean
+                    ? "border-transparent text-muted-foreground hover:text-foreground"
+                    : selected
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
               )}
             >
-              {selected && !reduce ? (
-                <motion.span
-                  layoutId="hero-showcase-pill"
-                  className="absolute inset-0 rounded-md border border-border-subtle bg-white/[0.06]"
-                  transition={panelTween}
-                />
-              ) : selected ? (
-                <span className="absolute inset-0 rounded-md border border-border-subtle bg-white/[0.06]" />
+              {!clean && selected ? (
+                <span className="absolute inset-0 rounded-md border border-border-subtle bg-foreground/[0.04]" />
               ) : null}
               <span className="relative z-10">{item.label}</span>
             </button>
@@ -130,54 +147,64 @@ export function HeroShowcase() {
         })}
       </div>
 
-      {/* Live viewport */}
       <div
         ref={viewportRef}
         className={cn(
-          "relative h-[22rem] overflow-y-auto overscroll-contain bg-background sm:h-[26rem]",
-          active.contain && "flex items-center justify-center p-6"
+          "relative overflow-y-auto overscroll-contain",
+          clean ? "landing-demo-viewport" : "bg-background",
+          prominent
+            ? clean
+              ? "h-[22rem] sm:h-[28rem] lg:h-[32rem]"
+              : "h-[24rem] sm:h-[30rem] lg:h-[34rem]"
+            : "h-[22rem] sm:h-[26rem]",
+          active.contain && "flex items-center justify-center"
         )}
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={active.id}
-            initial={reduce ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -8 }}
-            transition={reduce ? { duration: 0 } : { duration: 0.24, ease: easeOutSoft }}
-            className={cn("w-full", active.contain && "max-w-sm")}
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduce ? undefined : { opacity: 0 }}
+            transition={reduce ? { duration: 0 } : { duration: 0.2, ease: easeOutSoft }}
+            className={cn(
+              "w-full",
+              clean && !active.contain && "landing-demo-scale origin-top",
+              active.contain && "max-w-md px-6 py-8"
+            )}
           >
             {renderPreview(active.id)}
           </motion.div>
         </AnimatePresence>
+        {clean ? (
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--landing-demo-bg,#111)] to-transparent"
+            aria-hidden
+          />
+        ) : null}
       </div>
 
-      {/* Install strip */}
-      <div className="flex items-center gap-2 border-t border-border-subtle px-3 py-2.5">
-        <span className="shrink-0 font-mono text-[12px] text-brand" aria-hidden>
-          $
-        </span>
-        <code className="min-w-0 flex-1 truncate font-mono text-[11px] text-foreground sm:text-[12px]">
+      <div className="flex items-center gap-2 border-t border-border-subtle px-4 py-3">
+        <code className="min-w-0 flex-1 truncate font-mono text-[12px] text-muted-foreground">
           {command}
         </code>
         <button
           type="button"
           onClick={copyCommand}
           aria-label={copied ? "Copied" : "Copy install command"}
-          className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+          className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.05] hover:text-foreground"
         >
           {copied ? (
-            <Check className="size-3.5 text-brand" aria-hidden />
+            <Check className="size-3.5 text-foreground" aria-hidden />
           ) : (
             <Copy className="size-3.5" aria-hidden />
           )}
         </button>
         <Link
           href={active.docs}
-          className="inline-flex shrink-0 items-center gap-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground"
+          className="shrink-0 text-[12px] text-muted-foreground transition-colors hover:text-foreground"
         >
-          Docs
-          <ArrowUpRight className="size-3" aria-hidden />
+          Docs →
         </Link>
       </div>
     </div>

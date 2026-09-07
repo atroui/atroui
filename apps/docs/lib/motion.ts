@@ -3,8 +3,24 @@
  * Use these instead of one-off springs that overshoot on web chrome.
  */
 
+import type { Variants } from "motion/react"
+
 export const easeOutExpo = [0.16, 1, 0.3, 1] as const
 export const easeOutSoft = [0.32, 0.72, 0, 1] as const
+
+/** Landing hero / section blur-in stagger (TimelineAnimation). */
+export const revealBlur: Variants = {
+  visible: (i: number) => ({
+    filter: "blur(0px)",
+    y: 0,
+    opacity: 1,
+    transition: { delay: i * 0.12, duration: 0.5, ease: easeOutExpo },
+  }),
+  hidden: { filter: "blur(12px)", y: 12, opacity: 0 },
+}
+
+/** Stagger step between sequential landing reveals (ms). */
+export const landingStaggerMs = 120
 
 /** Overlay / drawer panel slide */
 export const panelTween = {

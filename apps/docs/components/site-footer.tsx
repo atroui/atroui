@@ -73,8 +73,8 @@ export function SiteFooter() {
               className="inline-flex items-center gap-2.5"
               aria-label="AtroUI home"
             >
-              <LogoMark className="size-7 text-foreground" />
-              <span className="ds-sketch text-2xl tracking-tight text-foreground">
+              <LogoMark className="size-6 text-foreground" />
+              <span className="text-lg font-medium tracking-[-0.02em] text-foreground">
                 AtroUI
               </span>
             </Link>
@@ -116,9 +116,7 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-border-subtle pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="ds-meta">
-            © {new Date().getFullYear()}{" "}
-            <span className="ds-sketch text-sm text-foreground">AtroUI</span>
-            {" · "}atroui.com
+            © {new Date().getFullYear()} AtroUI · atroui.com
           </p>
           <div className="ds-meta flex flex-wrap items-center gap-x-5 gap-y-2">
             <a

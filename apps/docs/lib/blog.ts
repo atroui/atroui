@@ -1377,6 +1377,16 @@ export function getLatestPost(): BlogPost | undefined {
   })[0]
 }
 
+export function getRecentPosts(limit = 3): BlogPost[] {
+  return [...blogPosts]
+    .sort((a, b) => {
+      const byDate = b.date.localeCompare(a.date)
+      if (byDate !== 0) return byDate
+      return blogPosts.indexOf(a) - blogPosts.indexOf(b)
+    })
+    .slice(0, limit)
+}
+
 export function getOlderPosts(): BlogPost[] {
   const latest = getLatestPost()
   if (!latest) return []
