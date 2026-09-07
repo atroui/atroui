@@ -25,8 +25,10 @@ export default function Error({
         </span>
       </span>
 
-      <p className="ms-stamp">Error</p>
-      <h1 className="ds-display text-3xl sm:text-4xl">Stroke slipped</h1>
+      <p className="ds-mono-label">Error</p>
+      <h1 className="ds-headline text-3xl tracking-tight sm:text-4xl">
+        Stroke slipped
+      </h1>
       <p className="max-w-[36ch] text-[15px] leading-relaxed text-muted-foreground">
         This section failed to render. Retry the paint, or step back to the
         catalog.
@@ -37,13 +39,13 @@ export default function Error({
         </p>
       ) : null}
       <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-        <button type="button" onClick={reset} className="ms-cta text-sm">
+        <button type="button" onClick={reset} className="atro-btn">
           Try again
         </button>
-        <Link href="/docs/components" className="ms-cta-ghost text-sm">
+        <Link href="/docs/components" className="atro-btn-ghost">
           Components
         </Link>
-        <Link href="/" className="ms-cta-ghost text-sm">
+        <Link href="/" className="atro-btn-ghost">
           Home
         </Link>
       </div>

@@ -40,7 +40,7 @@ export default async function CollectionPage({ params }: Props) {
   const path = `/docs/collections/${collection.slug}`
 
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <BreadcrumbJsonLd
         items={[
           { name: "Docs", path: "/docs" },
@@ -51,7 +51,7 @@ export default async function CollectionPage({ params }: Props) {
       <FaqJsonLd items={collection.faqs} pagePath={path} />
 
       <DocsArticleHeader
-        stamp="Collection"
+        eyebrow="Collection"
         title={collection.title}
         lede={collection.intro}
       />

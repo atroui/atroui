@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { DocsArticleHeader } from "@/components/docs/docs-article-header"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { UpdatesSignup } from "@/components/updates-signup"
 
@@ -12,24 +13,24 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function UpdatesPage() {
   return (
-    <main className="mx-auto w-full max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
-      <header className="space-y-3">
-        <p className="ms-stamp">Updates</p>
-        <h1 className="ds-display text-[2rem] tracking-tight text-foreground sm:text-4xl">
-          Major updates, in detail
-        </h1>
-        <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-          The pipeline is long. This list is short. You get the releases that
-          change the product: Host APIs, launch workflow, identity, install
-          path. Written like the{" "}
-          <Link href="/blog" className="bam-link">
-            blog
-          </Link>
-          , not a changelog dump.
-        </p>
-      </header>
+    <main className="atro-essay">
+      <DocsArticleHeader
+        eyebrow="Updates"
+        title="Major updates, in detail"
+        lede={
+          <>
+            The pipeline is long. This list is short. You get the releases that
+            change the product: Host APIs, launch workflow, identity, install
+            path. Written like the{" "}
+            <Link href="/blog" className="bam-link">
+              blog
+            </Link>
+            , not a changelog dump.
+          </>
+        }
+      />
 
-      <section className="mt-10 border-t border-border-subtle pt-8">
+      <section className="mt-10">
         <h2 className="ds-headline text-base text-foreground">Subscribe</h2>
         <p className="mt-2 text-[14px] text-muted-foreground">
           Letters when a major slice ships — not a weekly drip.

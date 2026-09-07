@@ -14,9 +14,9 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function BrandKitPage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <DocsArticleHeader
-        stamp="Brand"
+        eyebrow="Brand"
         title="Brand kit"
         lede={
           <>

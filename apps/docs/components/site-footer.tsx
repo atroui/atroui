@@ -7,6 +7,7 @@ const NPM_URL = "https://www.npmjs.com/package/atroui"
 
 type FooterLink = { label: string; href: string; external?: boolean }
 
+/** Product map — Zed footer IA: Product · Resources · Tools · Company */
 const columns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: "Product",
@@ -21,7 +22,7 @@ const columns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: "Resources",
     links: [
-      { label: "Introduction", href: "/docs" },
+      { label: "Getting Started", href: "/docs" },
       { label: "Installation", href: "/docs/installation" },
       { label: "Launch workflow", href: "/docs/guides/launch-workflow" },
       { label: "Compare", href: "/docs/compare" },
@@ -29,14 +30,21 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     ],
   },
   {
-    heading: "More",
+    heading: "Tools",
+    links: [
+      { label: "OG workspace", href: "/og" },
+      { label: "Project planner", href: "/planner" },
+      { label: "Identity kit", href: "/docs/identity" },
+      { label: "Brand kit", href: "/docs/brand" },
+    ],
+  },
+  {
+    heading: "Company",
     links: [
       { label: "Blog", href: "/blog" },
       { label: "Updates", href: "/updates" },
-      { label: "OG workspace", href: "/og" },
-      { label: "Project planner", href: "/planner" },
-      { label: "Brand kit", href: "/docs/brand" },
       { label: "Glossary", href: "/docs/glossary" },
+      { label: "GitHub", href: GITHUB_REPO, external: true },
       { label: "npm · atroui", href: NPM_URL, external: true },
     ],
   },
@@ -69,7 +77,7 @@ export function SiteFooter() {
     <footer className="relative border-t border-border-subtle bg-background">
       <div className="atro-shell py-14 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <Link
               href="/"
               className="inline-flex items-center gap-2.5"
@@ -82,29 +90,20 @@ export function SiteFooter() {
             </Link>
             <p className="ds-body mt-4 max-w-xs text-muted-foreground">
               Dark-first React &amp; Next.js catalog on the official shadcn
-              registry. Own the source in your repo. Bring your own keys for
-              Host APIs.
+              registry. Own the source. Bring your own keys.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-2.5">
-              <Link
-                href="/docs/components"
-                className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-foreground px-3.5 text-[13px] font-medium text-background transition-opacity hover:opacity-90"
-              >
-                Browse components
-              </Link>
-              <a
-                href={GITHUB_REPO}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] px-3 text-[13px] font-medium text-foreground transition-colors hover:bg-white/[0.06]"
-              >
-                <Github className="size-4" aria-hidden />
-                GitHub
-              </a>
-            </div>
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="atro-btn-ghost mt-6 inline-flex"
+            >
+              <Github className="size-4" aria-hidden />
+              GitHub
+            </a>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
             {columns.map((column) => (
               <nav key={column.heading} aria-label={column.heading}>
                 <h3 className="ds-mono-label mb-3.5">{column.heading}</h3>

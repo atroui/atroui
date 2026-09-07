@@ -14,8 +14,7 @@ function slugify(text: string) {
     .replace(/(^-|-$)/g, "")
 }
 
-/** "On this page" — derived from the rendered content headings, with scroll-spy.
- *  Skips headings inside live previews ([data-toc-skip]). */
+/** Page TOC — Zed theme/page-toc energy. */
 export function DocsToc() {
   const pathname = usePathname()
   const [headings, setHeadings] = React.useState<Heading[]>([])
@@ -52,25 +51,23 @@ export function DocsToc() {
         { rootMargin: "-88px 0px -70% 0px", threshold: 0 }
       )
       nodes.forEach((n) => observer?.observe(n))
-      if (items[0] && !active) setActive(items[0].id)
+      if (items[0]) setActive(items[0].id)
     }
 
-    // Wait a frame so route-transition content is mounted before scanning.
     raf = requestAnimationFrame(() => requestAnimationFrame(scan))
 
     return () => {
       cancelAnimationFrame(raf)
       observer?.disconnect()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   if (headings.length < 2) return null
 
   return (
-    <nav aria-label="On this page" className="text-sm">
-      <p className="ds-mono-label mb-3">On this page</p>
-      <ul className="space-y-1 border-l border-border-subtle">
+    <nav aria-label="On this page" className="text-[13px]">
+      <p className="docs-book-nav-heading !px-0">On this page</p>
+      <ul className="mt-2 space-y-0.5 border-l border-border-subtle">
         {headings.map((h) => (
           <li key={h.id}>
             <a
@@ -84,10 +81,10 @@ export function DocsToc() {
                 setActive(h.id)
               }}
               className={cn(
-                "-ml-px block border-l-2 py-1 pl-3 text-[13px] leading-snug transition-colors",
-                h.level === 3 && "pl-6",
+                "-ml-px block border-l py-1 pl-3 leading-snug transition-colors",
+                h.level === 3 && "pl-5",
                 active === h.id
-                  ? "border-brand text-foreground"
+                  ? "border-[color:var(--docs-link)] text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground"
               )}
             >

@@ -1,15 +1,17 @@
 import { ArrowRight, Github } from "lucide-react"
 import { RegistryWorkspaceDemo } from "@/components/landing/registry-workspace-demo"
-import { LandingPillars } from "@/components/landing/landing-pillars"
 import { LandingReveal } from "@/components/landing/landing-reveal"
 import { TransitionLink } from "@/components/view-transitions"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
+/**
+ * Hero budget (Zed): H1 + lede + CTAs + ONE product visual. No second pitch.
+ */
 export function AtroHero() {
   return (
     <section className="atro-hero-canvas relative w-full bg-background text-foreground">
-      <div className="atro-shell relative z-10 pb-10 pt-10 sm:pb-12 sm:pt-12 lg:pb-14">
+      <div className="atro-shell relative z-10 pb-8 pt-10 sm:pb-10 sm:pt-12 lg:pb-12">
         <LandingReveal className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h1 className="atro-hero-title">
             Own the UI.
@@ -26,7 +28,7 @@ export function AtroHero() {
             <TransitionLink
               href="/docs/components"
               transitionTypes={[]}
-              className="zed-btn"
+              className="atro-btn"
             >
               Browse components
               <ArrowRight className="size-4" aria-hidden />
@@ -35,7 +37,7 @@ export function AtroHero() {
               href={GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
-              className="zed-btn-ghost"
+              className="atro-btn-ghost"
             >
               <Github className="size-4" aria-hidden />
               View source
@@ -47,9 +49,11 @@ export function AtroHero() {
           </p>
         </LandingReveal>
 
-        <LandingReveal delay={0.08} className="atro-hero-product mx-auto mt-8 w-full max-w-5xl lg:mt-9">
+        <LandingReveal
+          delay={0.08}
+          className="atro-hero-product mx-auto mt-8 w-full max-w-5xl lg:mt-9"
+        >
           <RegistryWorkspaceDemo className="w-full" />
-          <LandingPillars attached />
         </LandingReveal>
       </div>
     </section>

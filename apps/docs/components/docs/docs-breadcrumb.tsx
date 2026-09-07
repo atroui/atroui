@@ -10,9 +10,9 @@ export function DocsBreadcrumb() {
   const pathname = usePathname()
   if (!pathname || pathname === "/docs") {
     return (
-      <nav aria-label="Breadcrumb" className="mb-6">
-        <ol className="flex items-center gap-1.5 text-[13px] text-muted-foreground">
-          <li className="font-medium text-foreground">Docs</li>
+      <nav aria-label="Breadcrumb" className="mb-8">
+        <ol className="flex items-center gap-1.5 font-mono text-[11px] tracking-wide text-muted-foreground">
+          <li className="text-foreground/80">Docs</li>
         </ol>
       </nav>
     )
@@ -23,8 +23,8 @@ export function DocsBreadcrumb() {
   const title = ctx?.item.title
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-1.5 text-[13px] text-muted-foreground">
+    <nav aria-label="Breadcrumb" className="mb-8">
+      <ol className="flex flex-wrap items-center gap-1.5 font-mono text-[11px] tracking-wide text-muted-foreground">
         <li>
           <Link href="/docs" className="transition-colors hover:text-foreground">
             Docs
@@ -32,14 +32,14 @@ export function DocsBreadcrumb() {
         </li>
         {section ? (
           <>
-            <ChevronRight className="size-3.5 opacity-60" aria-hidden />
+            <ChevronRight className="size-3 opacity-50" aria-hidden />
             <li>{section}</li>
           </>
         ) : null}
         {title ? (
           <>
-            <ChevronRight className="size-3.5 opacity-60" aria-hidden />
-            <li className="font-medium text-foreground">{title}</li>
+            <ChevronRight className="size-3 opacity-50" aria-hidden />
+            <li className="text-foreground/80">{title}</li>
           </>
         ) : null}
       </ol>

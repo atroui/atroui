@@ -49,7 +49,7 @@ export function DocsTrayStack({
       )}
     >
       <div className="flex items-center justify-between gap-3 border-b border-border-subtle px-4 py-3 sm:px-5">
-        <p className="ms-stamp">Guide</p>
+        <p className="ds-mono-label">Guide</p>
         <p className="font-mono text-[11px] tabular-nums tracking-[0.12em] text-muted-foreground">
           {String(index + 1).padStart(2, "0")}
           <span className="text-muted-foreground/50"> / </span>

@@ -516,7 +516,7 @@ export function ProjectPlanner() {
               </p>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-                <button type="button" onClick={goToContact} className="ms-cta">
+                <button type="button" onClick={goToContact} className="atro-btn">
                   Continue to contact
                   <ArrowRight className="size-4" aria-hidden />
                 </button>
@@ -534,13 +534,13 @@ export function ProjectPlanner() {
                     ogTitle: estimate.service,
                     ogSubtitle: estimate.summary,
                   } satisfies ProjectBrief)}
-                  className="ms-cta-ghost"
+                  className="atro-btn-ghost"
                 >
                   Preview social card
                 </Link>
                 <Link
                   href={`/services/${estimate.serviceId}`}
-                  className="ms-cta-ghost"
+                  className="atro-btn-ghost"
                 >
                   View service details
                 </Link>
@@ -563,7 +563,7 @@ export function ProjectPlanner() {
                 type="button"
                 onClick={() => setStep((s) => s + 1)}
                 disabled={!canNext()}
-                className="ms-cta min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50"
+                className="atro-btn min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span

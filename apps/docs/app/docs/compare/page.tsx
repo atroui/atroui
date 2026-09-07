@@ -14,12 +14,12 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function ComparePage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <DocsArticleHeader
-        stamp="Compare"
+        eyebrow="Compare"
         title={
           <>
-            <span className="ds-sketch-accent">AtroUI</span> vs copy-paste kits
+            AtroUI vs copy-paste kits
           </>
         }
         lede={
@@ -125,13 +125,13 @@ export default function ComparePage() {
       </section>
 
       <div className="flex flex-wrap gap-3 pt-2">
-        <Link href="/docs/registry" className="ms-cta">
+        <Link href="/docs/registry" className="atro-btn">
           Own the UI
         </Link>
-        <Link href="/docs/installation" className="ms-cta-ghost">
+        <Link href="/docs/installation" className="atro-btn-ghost">
           Installation
         </Link>
-        <Link href="/blog/atroui-vs-shadcn" className="ms-cta-ghost">
+        <Link href="/blog/atroui-vs-shadcn" className="atro-btn-ghost">
           AtroUI vs shadcn/ui
         </Link>
       </div>

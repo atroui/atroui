@@ -33,9 +33,9 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function HostApiPage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-8">
+    <article className="space-y-8">
       <DocsArticleHeader
-        stamp="Getting started"
+        eyebrow="Getting started"
         title="Host APIs"
         lede={
           <>
@@ -63,21 +63,21 @@ export default function HostApiPage() {
       <HostApiGuide />
 
       <div className="flex flex-wrap gap-3 border-t border-border-subtle pt-6">
-        <Link href="/docs/installation" className="ms-cta">
+        <Link href="/docs/installation" className="atro-btn">
           Installation
         </Link>
-        <Link href="/docs/registry" className="ms-cta-ghost">
+        <Link href="/docs/registry" className="atro-btn-ghost">
           Registry
         </Link>
         <Link
           href="/docs/guides/launch-workflow"
-          className="ms-cta-ghost"
+          className="atro-btn-ghost"
         >
           Launch workflow
         </Link>
         <Link
           href="/docs/components/contact-contact-form"
-          className="ms-cta-ghost"
+          className="atro-btn-ghost"
         >
           Contact form
         </Link>

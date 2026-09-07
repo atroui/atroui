@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 
-export type JustWorksProofId = "registry" | "host-api" | "blocks" | "identity"
+export type JustWorksProofId = "registry" | "host-api" | "blocks" | "tools"
 
 /** Static proof UI per Just Works tab — demonstrates, does not decorate. */
 export function JustWorksProof({
@@ -15,7 +15,7 @@ export function JustWorksProof({
       {id === "registry" ? <RegistryProof /> : null}
       {id === "host-api" ? <HostApiProof /> : null}
       {id === "blocks" ? <BlocksProof /> : null}
-      {id === "identity" ? <IdentityProof /> : null}
+      {id === "tools" ? <ToolsProof /> : null}
     </div>
   )
 }
@@ -82,24 +82,24 @@ function BlocksProof() {
   )
 }
 
-function IdentityProof() {
+function ToolsProof() {
   return (
     <>
       <div className="jw-proof-bar">
-        <span className="jw-proof-label">brand.ts</span>
+        <span className="jw-proof-label">atroui.com</span>
       </div>
       <div className="jw-proof-body jw-proof-mono">
         <p>
-          <span className="jw-proof-key">export const brand</span> = {"{"}
+          <span className="jw-proof-hl">/og</span>
+          <span className="jw-proof-dim"> · OG workspace</span>
         </p>
-        <p className="pl-3">
-          name: <span className="jw-proof-str">"Acme"</span>,
+        <p className="mt-2">
+          <span className="jw-proof-hl">/planner</span>
+          <span className="jw-proof-dim"> · Project planner</span>
         </p>
-        <p className="pl-3">
-          url: <span className="jw-proof-str">"https://acme.dev"</span>,
+        <p className="jw-proof-dim mt-3 text-[0.6875rem]">
+          Live tools → same blocks via shadcn add
         </p>
-        <p>{"}"}</p>
-        <p className="mt-3 jw-proof-dim text-[0.6875rem]">+ JSON-LD · sitemap · OG defaults</p>
       </div>
     </>
   )

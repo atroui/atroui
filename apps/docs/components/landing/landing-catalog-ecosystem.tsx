@@ -3,22 +3,32 @@ import { ArrowUpRight } from "lucide-react"
 import { LandingSectionHeader } from "@/components/landing/landing-section-header"
 import { catalogNavItems, navigation } from "@/lib/navigation"
 
+const SECTION_HREF: Record<string, string> = {
+  Primitives: "/docs/components?category=Primitives",
+  Blocks: "/docs/components?category=Blocks",
+  Indie: "/docs/components?category=Indie",
+  Tools: "/og",
+  Headless: "/docs/components?category=Headless",
+  More: "/docs/changelog",
+}
+
 const blurbs: Record<string, string> = {
   Primitives: "Buttons, cards, inputs, theme controls",
   Blocks: "Marketing sections and page chrome",
   Indie: "Personal-site kit — projects, resume, clocks",
-  Tools: "OG images, thumbnails, planner workspaces",
+  Tools: "OG workspace & project planner — live tools",
   Headless: "Analytics and structured-data helpers",
+  More: "Compare, changelog, blog, updates",
 }
 
 const CARE_CHIPS = [
   { label: "Dark-first tokens", href: "/docs/theming" },
-  { label: "View transitions", href: "/docs/components/motion-fade-in" },
-  { label: "JSON-LD helpers", href: "/docs/components/seo-json-ld" },
+  { label: "OG workspace", href: "/og" },
+  { label: "Project planner", href: "/planner" },
   { label: "Collections", href: "/docs/collections" },
 ] as const
 
-/** Zed ecosystem band — dense list + quiet secondary chips (care folded in). */
+/** Catalog band — each family deep-links to its real surface. */
 export function LandingCatalogEcosystem() {
   const sections = navigation.filter((s) => s.title !== "Getting Started")
   const total = catalogNavItems.length
@@ -34,7 +44,7 @@ export function LandingCatalogEcosystem() {
           action={
             <Link
               href="/docs/components"
-              className="zed-btn-ghost h-9 px-3.5 text-sm"
+              className="atro-btn-ghost"
             >
               View all
               <ArrowUpRight className="size-3.5" aria-hidden />
@@ -46,13 +56,20 @@ export function LandingCatalogEcosystem() {
           {sections.map((section) => (
             <Link
               key={section.title}
-              href="/docs/components"
+              href={
+                SECTION_HREF[section.title] ??
+                `/docs/components?category=${encodeURIComponent(section.title)}`
+              }
               className="atro-eco-row"
             >
               <span className="atro-eco-name">{section.title}</span>
-              <span className="atro-eco-desc">{blurbs[section.title]}</span>
+              <span className="atro-eco-desc">
+                {blurbs[section.title] ?? section.items[0]?.description}
+              </span>
               <span className="atro-eco-count">
-                {section.items.length} blocks
+                {section.title === "Tools"
+                  ? "2 live"
+                  : `${section.items.length} blocks`}
               </span>
             </Link>
           ))}

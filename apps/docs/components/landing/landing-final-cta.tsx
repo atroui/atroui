@@ -14,7 +14,7 @@ export function LandingFinalCta() {
             <TransitionLink
               href="/docs/components"
               transitionTypes={[]}
-              className="zed-btn"
+              className="atro-btn"
             >
               Browse components
               <ArrowRight className="size-4" aria-hidden />
@@ -22,7 +22,7 @@ export function LandingFinalCta() {
             <TransitionLink
               href="/docs/installation"
               transitionTypes={[]}
-              className="zed-btn-ghost"
+              className="atro-btn-ghost"
             >
               Installation
             </TransitionLink>

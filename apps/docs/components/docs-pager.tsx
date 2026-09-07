@@ -6,9 +6,7 @@ import {
   findMoreNeighbors,
 } from "@/lib/navigation"
 
-/**
- * Quiet hairline prev/next — catalog, Getting Started, or More (docs-only).
- */
+/** Chapter prev/next — Zed nav-chapters energy. */
 export function DocsPager({
   href,
   kind = "catalog",
@@ -24,30 +22,31 @@ export function DocsPager({
         : findCatalogNeighbors(href)
   if (!prev && !next) return null
 
-  const aria =
-    kind === "guides"
-      ? "Adjacent guides"
-      : kind === "more"
-        ? "Adjacent pages"
-        : "Adjacent components"
-
   return (
     <nav
-      aria-label={aria}
-      className="mt-12 grid gap-6 border-t border-border-subtle pt-8 sm:grid-cols-2"
+      aria-label={
+        kind === "guides"
+          ? "Adjacent guides"
+          : kind === "more"
+            ? "Adjacent pages"
+            : "Adjacent components"
+      }
+      className="docs-book-pager"
     >
       {prev ? (
         <Link
           href={prev.href}
-          className="group flex min-w-0 items-center gap-2 text-left transition-colors"
+          className="group flex min-w-0 items-center gap-2 text-left"
         >
           <ChevronLeft
-            className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
+            className="size-4 shrink-0 text-muted-foreground group-hover:text-foreground"
             aria-hidden
           />
           <span className="min-w-0">
-            <span className="ds-meta block">Previous</span>
-            <span className="mt-0.5 block truncate text-[15px] font-medium tracking-[-0.01em] text-foreground">
+            <span className="block font-mono text-[10px] tracking-wide text-muted-foreground uppercase">
+              Previous
+            </span>
+            <span className="mt-0.5 block truncate text-[14px] text-foreground">
               {prev.title}
             </span>
           </span>
@@ -58,16 +57,18 @@ export function DocsPager({
       {next ? (
         <Link
           href={next.href}
-          className="group flex min-w-0 items-center justify-end gap-2 text-right transition-colors sm:col-start-2"
+          className="group flex min-w-0 items-center justify-end gap-2 text-right sm:col-start-2"
         >
           <span className="min-w-0">
-            <span className="ds-meta block">Next</span>
-            <span className="mt-0.5 block truncate text-[15px] font-medium tracking-[-0.01em] text-foreground">
+            <span className="block font-mono text-[10px] tracking-wide text-muted-foreground uppercase">
+              Next
+            </span>
+            <span className="mt-0.5 block truncate text-[14px] text-foreground">
               {next.title}
             </span>
           </span>
           <ChevronRight
-            className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
+            className="size-4 shrink-0 text-muted-foreground group-hover:text-foreground"
             aria-hidden
           />
         </Link>

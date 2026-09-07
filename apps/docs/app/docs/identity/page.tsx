@@ -14,9 +14,9 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function IdentityPage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <DocsArticleHeader
-        stamp="Brand & SEO"
+        eyebrow="Brand & SEO"
         title="Identity kit"
         lede={
           <>

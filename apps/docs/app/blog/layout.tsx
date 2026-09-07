@@ -1,23 +1,16 @@
-import { Merriweather } from "next/font/google"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { DocsRouteTransition } from "@/components/view-transitions"
 
-/** Screen-optimized serif for long-form posts — paired with Outfit headings. */
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-merriweather",
-  display: "swap",
-})
-
+/**
+ * Blog essay room — same product chrome as marketing; Outfit body (not Merriweather).
+ * Measure ~740px Zed blog column via .atro-essay.
+ */
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <div className={merriweather.variable}>
-        <DocsRouteTransition>{children}</DocsRouteTransition>
-      </div>
+      <DocsRouteTransition>{children}</DocsRouteTransition>
       <SiteFooter />
     </>
   )

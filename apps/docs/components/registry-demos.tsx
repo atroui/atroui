@@ -305,7 +305,7 @@ export function DemoFadeIn() {
       <button
         type="button"
         onClick={() => setKey((k) => k + 1)}
-        className="ms-cta-ghost self-center border border-border-subtle px-3 py-1.5 text-sm"
+        className="atro-btn-ghost self-center"
       >
         Replay
       </button>
@@ -330,7 +330,7 @@ export function DemoStagger() {
       <button
         type="button"
         onClick={() => setKey((k) => k + 1)}
-        className="ms-cta-ghost self-center border border-border-subtle px-3 py-1.5 text-sm"
+        className="atro-btn-ghost self-center"
       >
         Replay
       </button>
@@ -516,7 +516,7 @@ export function DemoAnalyticsProvider() {
       </ul>
       <button
         type="button"
-        className="ms-cta-ghost border border-border-subtle px-3 py-1.5 text-sm"
+        className="atro-btn-ghost"
         onClick={() =>
           trackEvent("docs_demo_click", { source: "analytics-provider-docs" })
         }

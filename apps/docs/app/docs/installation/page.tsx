@@ -19,9 +19,9 @@ export default function InstallationPage() {
   const pseo = getPseoPage("/docs/installation")
 
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <DocsArticleHeader
-        stamp="Getting started"
+        eyebrow="Getting started"
         title="Installation"
         lede={
           <>

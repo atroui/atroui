@@ -1,14 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowUpRight, Info } from "lucide-react"
+import { Info } from "lucide-react"
 import { CodeBlock } from "@/components/code-block"
 import { DocsPager } from "@/components/docs-pager"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
-  title: "Introduction",
+  title: "Getting Started",
   description:
-    "AtroUI is a dark-first React / Next.js component catalog at atroui.com. Add components with the shadcn CLI and own the source in your repo.",
+    "AtroUI is a dark-first React / Next.js component catalog. Add components with the shadcn CLI and own the source in your repo.",
   path: "/docs",
 })
 
@@ -35,39 +35,29 @@ const nextSteps = [
   },
 ]
 
+/**
+ * Docs home — Zed Getting Started shape: title, lede, numbered quick start, calm next links.
+ */
 export default function DocsIntroPage() {
   return (
-    <article className="mx-auto max-w-3xl">
-      <header className="border-b border-border-subtle pb-8">
-        <p className="ds-mono-label mb-3">Getting Started</p>
-        <h1 className="ds-headline text-3xl text-foreground sm:text-4xl">
-          Introduction
-        </h1>
-        <p className="ds-lede mt-4 max-w-2xl">
+    <article className="docs-book-article">
+      <header className="docs-book-header">
+        <h1 className="docs-book-title">Getting Started</h1>
+        <p className="docs-book-lede">
           AtroUI is a dark-first React &amp; Next.js component catalog on the
           official shadcn registry. Add components with the CLI and own the
           source in your repo — no dependency to wrap, no lock-in.
         </p>
       </header>
 
-      <div className="docs-prose mt-8">
+      <div className="docs-prose">
         <h2 id="what-is-atroui">What is AtroUI?</h2>
         <p>
           AtroUI is a curated catalog of production-ready sections and
-          primitives, published to the official{" "}
-          <Link href="/docs/registry" className="bam-link">
-            shadcn registry
-          </Link>{" "}
-          under the <code>@atroui</code> namespace. It ships a coherent
-          dark-first design system — a black canvas, an electric-blue brand,
-          glass surfaces, and soft-rect CTAs — tuned for{" "}
-          <strong>Tailwind CSS v4</strong>.
-        </p>
-        <p>
-          Unlike a component <em>library</em> you install as a dependency, the
-          CLI copies real source files into your project. You read them, edit
-          them, and ship them. AtroUI never sits between your app and the
-          runtime.
+          primitives, published under the <code>@atroui</code> namespace. Unlike
+          a component library you install as a dependency, the CLI copies real
+          source files into your project. You read them, edit them, and ship
+          them.
         </p>
 
         <h2 id="quick-start">Quick start</h2>
@@ -81,36 +71,32 @@ export default function DocsIntroPage() {
 npx shadcn@latest add @atroui/home-hero`}
         />
         <div className="docs-callout">
-          <Info className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
+          <Info
+            className="mt-0.5 size-4 shrink-0 text-muted-foreground"
+            aria-hidden
+          />
           <p className="m-0">
-            AtroUI is best with Tailwind v4. If you are on a fresh Next.js app,
-            run <code>init</code> first so tokens and aliases resolve. Full
-            steps live in the{" "}
+            Best with Tailwind v4. On a fresh Next.js app, run <code>init</code>{" "}
+            first so tokens and aliases resolve. Full steps:{" "}
             <Link href="/docs/installation" className="bam-link">
               Installation
-            </Link>{" "}
-            guide.
+            </Link>
+            .
           </p>
         </div>
 
-        <h2 id="how-the-catalog-is-organized">How the catalog is organized</h2>
-        <p>
-          The catalog is grouped into four families so you always know where to
-          look:
-        </p>
+        <h2 id="catalog">How the catalog is organized</h2>
         <ul>
           <li>
-            <strong>Primitives</strong> — buttons, forms, motion, logo. Small
-            reusable pieces.
+            <strong>Primitives</strong> — buttons, forms, motion, logo.
           </li>
           <li>
             <strong>Blocks</strong> — heroes, footers, pricing, FAQ, forms.
-            Production-shaped page sections; prefer items tagged{" "}
-            <code>CLI</code> in the sidebar.
+            Prefer items tagged <code>CLI</code>.
           </li>
           <li>
-            <strong>Tools</strong> — OG images, thumbnails, planners. These
-            often pair with your own Host API routes.
+            <strong>Tools</strong> — OG images, thumbnails, planners. Often pair
+            with Host API routes.
           </li>
           <li>
             <strong>Headless</strong> — analytics and structured data with no
@@ -121,49 +107,44 @@ npx shadcn@latest add @atroui/home-hero`}
         <h2 id="own-the-files">Own the files</h2>
         <p>
           Every installed block exposes a <code>CONTENT</code> /{" "}
-          <code>DEFAULT_BRAND</code> object at the top of the file — edit those,
-          or set <code>NEXT_PUBLIC_SITE_*</code> env vars. Logos, headers,
-          footers, and mail defaults stay coherent through a single{" "}
-          <code>getBrand()</code> helper, so rebranding is one change, not
-          fifty.
+          <code>DEFAULT_BRAND</code> object at the top of the file. Logos,
+          headers, footers, and mail defaults stay coherent through{" "}
+          <code>getBrand()</code> — one change, not fifty.
         </p>
 
         <h2 id="host-apis">Host APIs &amp; AI tools</h2>
         <p>
-          Blocks tagged <strong>Host API</strong> (OG workspace, thumbnails,
-          scope chat, contact and waitlist forms) expect you to wire{" "}
-          <code>/api/*</code> routes with your own keys. This documentation site
-          never spends shared LLM or image tokens. See the{" "}
+          Blocks tagged <strong>Host API</strong> expect thin{" "}
+          <code>/api/*</code> routes with your own keys. This site never spends
+          shared LLM or image tokens. See{" "}
           <Link href="/docs/host-api" className="bam-link">
             Host APIs
-          </Link>{" "}
-          guide for the BYOK setup.
+          </Link>
+          .
         </p>
 
         <h2 id="next-steps">Next steps</h2>
         <p>Pick your path:</p>
       </div>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+      <ul className="mt-4 divide-y divide-border-subtle border-y border-border-subtle">
         {nextSteps.map((step) => (
-          <Link
-            key={step.href}
-            href={step.href}
-            className="atro-tile group flex-col p-5"
-          >
-            <div className="flex items-center justify-between">
-              <span className="ds-sketch text-lg text-foreground">
+          <li key={step.href}>
+            <Link
+              href={step.href}
+              className="group flex flex-col gap-0.5 py-3.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+            >
+              <span className="text-[15px] font-medium text-foreground">
                 {step.title}
               </span>
-              <ArrowUpRight
-                className="atro-tile-arrow size-4 text-muted-foreground"
-                aria-hidden
-              />
-            </div>
-            <p className="ds-meta mt-1">{step.body}</p>
-          </Link>
+              <span className="text-[13px] text-muted-foreground sm:text-right">
+                {step.body}
+              </span>
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
+
       <DocsPager href="/docs" kind="guides" />
     </article>
   )

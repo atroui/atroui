@@ -76,6 +76,8 @@
 
 :root {
   --radius: 0.875rem;
+  /* Header chrome (search / theme / Browse) — tighter than tile --radius */
+  --atro-control-radius: 0.375rem;
 
   --font-outfit: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-geist-mono:
@@ -207,6 +209,8 @@
   @media (hover: hover) and (pointer: fine) {
     .ms-cta:hover {
       filter: brightness(1.05);
+    }
+    .ms-cta--glow:hover {
       box-shadow: 0 0 28px var(--brand-glow);
     }
   }
@@ -275,19 +279,18 @@
     letter-spacing: 0.02em;
     color: var(--muted-foreground);
   }
-  /* Sidebar / catalog section rails — sketch, bold + brand highlight */
+  /* Sidebar / catalog section rails — quiet mono (product room, not sketch glow) */
   .ds-nav-section {
-    font-family: var(--font-sketch);
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     line-height: 1.2;
-    color: color-mix(in oklch, var(--foreground) 70%, var(--brand) 30%);
-    text-shadow: 0 0 18px color-mix(in oklch, var(--brand-glow) 55%, transparent);
+    text-transform: uppercase;
+    color: var(--muted-foreground);
   }
   .ds-nav-section:hover {
-    color: color-mix(in oklch, var(--foreground) 45%, var(--brand) 55%);
-    text-shadow: 0 0 22px color-mix(in oklch, var(--brand-glow) 70%, transparent);
+    color: var(--foreground);
   }
   .ds-mono-label {
     font-family: var(--font-mono);
@@ -317,7 +320,6 @@
   /* Prefer this over .ds-gradient-text on Caveat / sketch display — no clip */
   .ds-sketch-accent {
     color: color-mix(in oklch, var(--brand-hover) 85%, white);
-    text-shadow: 0 0 18px color-mix(in oklch, var(--brand-glow) 55%, transparent);
   }
   .bam-section-label {
     font-size: 0.8125rem;
@@ -356,7 +358,7 @@
     }
   }
 
-  /* Primary CTA — soft rect via --radius (not capsule) */
+  /* Primary CTA — soft rect, flat (Zed product room). Opt-in glow: .ms-cta--glow */
   .ms-cta {
     display: inline-flex;
     align-items: center;
@@ -369,11 +371,14 @@
     font-weight: 500;
     letter-spacing: -0.01em;
     padding: 0.85rem 1.6rem;
-    box-shadow: 0 0 20px var(--brand-glow);
+    box-shadow: none;
     transition:
       transform 100ms ease-out,
       filter 200ms cubic-bezier(0.23, 1, 0.32, 1),
       box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .ms-cta--glow {
+    box-shadow: 0 0 20px var(--brand-glow);
   }
   .ms-cta:active {
     transform: scale(0.97);
@@ -427,30 +432,30 @@
     }
   }
 
-  /* Soft stamp — sketch handwriting + brand highlight (soft rect, not capsule) */
+  /* Brand stamp — soft rect. Prefer ds-mono-label for product chrome. */
   .ms-stamp {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
     border-radius: var(--radius-md);
-    border: 1px solid color-mix(in oklch, var(--brand) 28%, transparent);
-    background: color-mix(in oklch, var(--brand) 10%, transparent);
-    color: color-mix(in oklch, var(--foreground) 88%, var(--brand) 12%);
-    padding: 0.4rem 0.9rem;
-    font-family: var(--font-sketch);
-    font-size: 1.0625rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    text-transform: none;
-    text-shadow: 0 0 12px color-mix(in oklch, var(--brand-glow) 35%, transparent);
+    border: 1px solid color-mix(in oklch, var(--foreground) 14%, transparent);
+    background: color-mix(in oklch, var(--foreground) 4%, transparent);
+    color: var(--muted-foreground);
+    padding: 0.35rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-shadow: none;
   }
   .ms-stamp::before {
     content: "";
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 0.35rem;
+    height: 0.35rem;
     border-radius: 9999px;
     background: var(--brand);
-    box-shadow: 0 0 8px var(--brand-glow);
+    box-shadow: none;
   }
   .ms-stamp-brush {
     border-color: color-mix(in oklch, var(--brand) 35%, transparent);

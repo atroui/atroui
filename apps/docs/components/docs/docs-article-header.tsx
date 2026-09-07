@@ -2,30 +2,26 @@ import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
 /**
- * Shared docs page header — quiet mono stamp + product H1 (Zed-flat, no Caveat).
+ * Zed-style page title: large serif H1 + light rule + lede.
+ * No marketing stamp. Optional eyebrow for section path only.
  */
 export function DocsArticleHeader({
-  stamp,
   title,
   lede,
   className,
+  eyebrow,
 }: {
-  stamp: string
   title: ReactNode
   lede?: ReactNode
   className?: string
+  /** Quiet path label above the title (e.g. Primitives) — not a badge. */
+  eyebrow?: ReactNode
 }) {
   return (
-    <header className={cn("border-b border-border-subtle pb-8", className)}>
-      <p className="ds-mono-label mb-3">{stamp}</p>
-      <h1 className="ds-headline text-3xl tracking-tight text-foreground sm:text-4xl">
-        {title}
-      </h1>
-      {lede ? (
-        <div className="ds-lede mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground [&_code]:rounded-md [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[12px] [&_code]:text-foreground [&_strong]:font-medium [&_strong]:text-foreground">
-          {lede}
-        </div>
-      ) : null}
+    <header className={cn("docs-book-header", className)}>
+      {eyebrow ? <p className="docs-book-eyebrow">{eyebrow}</p> : null}
+      <h1 className="docs-book-title">{title}</h1>
+      {lede ? <div className="docs-book-lede">{lede}</div> : null}
     </header>
   )
 }

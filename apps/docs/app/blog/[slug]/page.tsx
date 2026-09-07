@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { ArticleJsonLd } from "atroui"
 import { BlogThemeAdaptPreview } from "@/components/blog-theme-adapt-preview"
 import { CodeBlock } from "@/components/code-block"
+import { DocsArticleHeader } from "@/components/docs/docs-article-header"
 import { blogPosts, getPost } from "@/lib/blog"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -124,22 +125,16 @@ export default async function BlogPostPage({ params }: Props) {
         basePath="/blog"
       />
       {/* ~65ch column — comfortable tracking for Merriweather at 17–18px */}
-      <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
-        <p className="ms-stamp mb-4">
-          <Link href="/blog" className="hover:text-foreground">
-            Blog
-          </Link>
-        </p>
-        <h1 className="ds-display text-[1.85rem] tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem]">
-          {post.title}
-        </h1>
-        <time
-          dateTime={post.date}
-          className="mt-4 block font-mono text-[13px] tracking-wide text-muted-foreground"
-        >
-          {post.date}
-        </time>
-        <p className="blog-lede mt-6">{post.description}</p>
+      <div className="atro-essay">
+        <DocsArticleHeader
+          eyebrow={
+            <Link href="/blog" className="transition-colors hover:text-foreground">
+              Blog
+            </Link>
+          }
+          title={post.title}
+          lede={post.description}
+        />
 
         {post.slug === "adaptive-theme-switch" ? (
           <div className="mt-10 sm:mt-12">
@@ -147,7 +142,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         ) : null}
 
-        <div className="blog-flow mt-12 space-y-10 sm:mt-14 sm:space-y-12">
+        <div className="blog-flow mt-10 space-y-10 sm:mt-12 sm:space-y-12">
           {post.sections.map((section, i) => (
             <section key={i} className="space-y-4">
               {section.heading ? (
@@ -172,28 +167,28 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="mt-16 flex flex-wrap gap-3 border-t border-border-subtle pt-10">
           {post.slug === "host-apis-own-the-ui-bring-your-keys" ? (
-            <Link href="/docs/host-api" className="ms-cta text-sm">
+            <Link href="/docs/host-api" className="atro-btn">
               Host APIs docs
             </Link>
           ) : post.slug === "adaptive-theme-switch" ? (
             <Link
               href="/docs/components/ui-theme-adapt"
-              className="ms-cta text-sm"
+              className="atro-btn"
             >
               Adaptive Theme Switch
             </Link>
           ) : (
-            <Link href="/docs/registry" className="ms-cta text-sm">
+            <Link href="/docs/registry" className="atro-btn">
               Own the UI
             </Link>
           )}
-          <Link href="/docs" className="ms-cta-ghost text-sm">
+          <Link href="/docs" className="atro-btn-ghost">
             Docs
           </Link>
-          <Link href="/blog" className="ms-cta-ghost text-sm">
+          <Link href="/blog" className="atro-btn-ghost">
             All posts
           </Link>
-          <Link href="/updates" className="ms-cta-ghost text-sm">
+          <Link href="/updates" className="atro-btn-ghost">
             Updates by email
           </Link>
         </div>

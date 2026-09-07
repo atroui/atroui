@@ -14,9 +14,9 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function CollectionsIndexPage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <DocsArticleHeader
-        stamp="Programmatic catalog"
+        eyebrow="Programmatic catalog"
         title="Collections"
         lede={
           <>
@@ -25,14 +25,14 @@ export default function CollectionsIndexPage() {
           </>
         }
       />
-      <ul className="md-glass divide-y divide-border-subtle">
+      <ul className="divide-y divide-border-subtle border-y border-border-subtle">
         {pseoCollections.map((collection) => (
           <li key={collection.slug}>
             <Link
               href={`/docs/collections/${collection.slug}`}
-              className="block px-4 py-4 transition-colors hover:bg-white/5"
+              className="block py-4 transition-colors hover:bg-muted/30"
             >
-              <span className="ds-sketch block text-lg text-foreground">
+              <span className="ds-headline block text-lg text-foreground">
                 {collection.title}
               </span>
               <span className="ds-meta mt-1 block">{collection.description}</span>

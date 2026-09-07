@@ -37,7 +37,7 @@ export function InstallCommandChip({
   return (
     <div
       className={cn(
-        "flex min-w-0 max-w-full items-center gap-1.5 rounded-lg border border-brand/25 bg-brand/10 py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3",
+        "flex min-w-0 max-w-full items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3",
         className,
       )}
     >

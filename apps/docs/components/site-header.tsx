@@ -8,24 +8,24 @@ import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
 import { SiteNav } from "@/components/site-nav"
 import { SharedBrand, TransitionLink } from "@/components/view-transitions"
-import { cn } from "@/lib/utils"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
+/**
+ * One product chrome — Zed sticky bar grammar, AtroUI dark room.
+ * Docs mobile chapter nav only on /docs/**.
+ */
 export function SiteHeader() {
   const pathname = usePathname()
-  const landing = pathname === "/"
+  const onDocs = pathname?.startsWith("/docs") ?? false
 
   return (
     <header
-      className={cn(
-        "sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70",
-        landing ? "border-white/[0.06]" : "border-border-subtle"
-      )}
+      className="sticky top-0 z-40 border-b border-border-subtle bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70"
       style={{ viewTransitionName: "site-header" }}
     >
       <div className="atro-shell flex h-14 items-center gap-3">
-        <MobileSidebar />
+        {onDocs ? <MobileSidebar /> : null}
 
         <SharedBrand>
           <TransitionLink
@@ -43,23 +43,19 @@ export function SiteHeader() {
         <SiteNav />
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
-          {!landing ? (
-            <>
-              <div className="hidden md:block">
-                <CommandMenu />
-              </div>
-              <div className="md:hidden">
-                <CommandMenu compact />
-              </div>
-            </>
-          ) : null}
-          {!landing ? <ThemeToggle /> : null}
+          <div className="hidden md:block">
+            <CommandMenu />
+          </div>
+          <div className="md:hidden">
+            <CommandMenu compact />
+          </div>
+          <ThemeToggle />
           <a
             href={GITHUB_REPO}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hidden h-9 items-center gap-1.5 rounded-md px-2.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+            className="hidden h-9 items-center gap-1.5 rounded-[var(--atro-control-radius)] px-2.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
           >
             <Github className="size-4" aria-hidden />
             GitHub
@@ -67,7 +63,7 @@ export function SiteHeader() {
           <TransitionLink
             href="/docs/components"
             transitionTypes={[]}
-            className="hidden h-9 items-center rounded-md bg-foreground px-3.5 text-[13px] font-medium text-background transition-opacity hover:opacity-90 md:inline-flex"
+            className="atro-btn hidden md:inline-flex"
           >
             Browse
           </TransitionLink>

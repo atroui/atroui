@@ -22,7 +22,7 @@ export const navigation: NavSection[] = [
   {
     title: "Getting Started",
     items: [
-      { title: "Introduction", href: "/docs", description: "Overview" },
+      { title: "Getting Started", href: "/docs", description: "Overview" },
       {
         title: "Installation",
         href: "/docs/installation",

@@ -69,7 +69,7 @@ export default function Page() {
           </p>
           <Link
             href="https://www.makershot.tech/og"
-            className="ms-cta mt-2 inline-flex w-fit"
+            className="atro-btn mt-2 inline-flex w-fit"
             target="_blank"
             rel="noopener noreferrer"
           >

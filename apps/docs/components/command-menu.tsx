@@ -45,7 +45,7 @@ function SearchDialog({
         aria-modal="true"
         aria-label="Search documentation"
         tabIndex={-1}
-        className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-border-subtle bg-card shadow-[0_24px_64px_-20px_color-mix(in_oklch,var(--color-brand)_35%,transparent)]"
+        className="relative w-full max-w-lg overflow-hidden rounded-xl border border-border-subtle bg-card shadow-[0_24px_48px_-24px_rgba(0,0,0,0.65)]"
         initial={reduce ? false : { opacity: 0, y: 10, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 6, scale: 0.98 }}
@@ -64,7 +64,7 @@ function SearchDialog({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex size-8 items-center justify-center rounded-lg border border-border-subtle text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+            className="inline-flex size-8 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
             aria-label="Close"
           >
             <X className="size-4" />
@@ -162,7 +162,7 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           aria-label="Search documentation"
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="inline-flex size-9 items-center justify-center rounded-lg border border-border-subtle bg-white/5 text-foreground"
+          className="inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle bg-white/5 text-foreground"
         >
           <Search className="size-4" aria-hidden />
         </button>
@@ -172,11 +172,11 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           onClick={() => setOpen(true)}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="inline-flex h-9 w-full max-w-[min(220px,40vw)] items-center gap-2 rounded-lg border border-border-subtle bg-white/5 px-3 text-[13px] text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+          className="inline-flex h-9 w-full max-w-[min(220px,40vw)] items-center gap-2 rounded-[var(--atro-control-radius)] border border-border-subtle bg-white/5 px-3 text-[13px] text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
         >
           <Search className="size-3.5 shrink-0" aria-hidden />
           <span className="flex-1 text-left">Search…</span>
-          <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-lg border border-border-subtle bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
+          <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-[0.25rem] border border-border-subtle bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
             ⌘K
           </kbd>
         </button>

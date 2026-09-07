@@ -148,9 +148,9 @@ export default function ChangelogPage() {
   const releases = loadChangelog()
 
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <DocsArticleHeader
-        stamp="Releases"
+        eyebrow="Releases"
         title="Changelog"
         lede={
           <>
@@ -174,7 +174,7 @@ export default function ChangelogPage() {
       <div className="space-y-10">
         {releases.map((release) => (
           <section key={release.version} className="space-y-4">
-            <h2 className="ds-sketch text-2xl text-foreground sm:text-3xl">
+            <h2 className="ds-headline text-2xl tracking-tight text-foreground sm:text-3xl">
               {release.version}
             </h2>
             <ChangelogBody body={release.body} />

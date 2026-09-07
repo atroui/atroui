@@ -15,9 +15,9 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function LaunchWorkflowGuidePage() {
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <DocsArticleHeader
-        stamp="Guide"
+        eyebrow="Guide"
         title="From scope to social card"
         lede={
           <>
@@ -163,13 +163,13 @@ npx shadcn@latest add @atroui/api-thumbnail`}
       </section>
 
       <div className="flex flex-wrap gap-3 border-t border-border-subtle pt-6">
-        <Link href="/docs/host-api" className="ms-cta">
+        <Link href="/docs/host-api" className="atro-btn">
           Host APIs
         </Link>
-        <Link href="/docs/registry" className="ms-cta-ghost">
+        <Link href="/docs/registry" className="atro-btn-ghost">
           Registry
         </Link>
-        <Link href="/og" className="ms-cta-ghost">
+        <Link href="/og" className="atro-btn-ghost">
           Open /og
         </Link>
       </div>

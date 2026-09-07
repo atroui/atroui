@@ -13,19 +13,17 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function ComponentsIndexPage() {
   return (
-    <div className="mx-auto max-w-6xl">
-      <header className="mb-8">
-        <p className="ds-mono-label mb-3">
-          Library · {catalogNavItems.length} components
+    <div className="docs-book-wide">
+      <header className="docs-book-header">
+        <p className="docs-book-eyebrow">
+          Catalog · {catalogNavItems.length} components
         </p>
-        <h1 className="ds-headline text-3xl text-foreground sm:text-4xl md:text-5xl">
-          Every block, live
-        </h1>
-        <p className="ds-lede mt-4 max-w-2xl">
-          Real, running previews — not screenshots. Search or filter, then open
-          any component to copy it in with{" "}
-          <code>npx shadcn@latest add @atroui/…</code>. Host&nbsp;API items pair
-          with thin{" "}
+        <h1 className="docs-book-title">Components</h1>
+        <p className="docs-book-lede">
+          Live previews — not screenshots. Search or filter, then open a
+          component to install with{" "}
+          <code>npx shadcn@latest add @atroui/…</code>. Host API items pair with
+          thin{" "}
           <Link href="/docs/host-api" className="bam-link">
             /api/*
           </Link>{" "}

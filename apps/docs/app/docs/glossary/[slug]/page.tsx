@@ -31,7 +31,7 @@ export default async function GlossaryTermPage({ params }: Props) {
   const path = `/docs/glossary/${term.slug}`
 
   return (
-    <article className="mx-auto max-w-3xl space-y-10">
+    <article className="space-y-10">
       <BreadcrumbJsonLd
         items={[
           { name: "Docs", path: "/docs" },
@@ -41,7 +41,7 @@ export default async function GlossaryTermPage({ params }: Props) {
       />
 
       <DocsArticleHeader
-        stamp="Glossary"
+        eyebrow="Glossary"
         title={term.title}
         lede={term.description}
       />

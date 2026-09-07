@@ -111,7 +111,7 @@ export function DocsExample({
 
         {installCommand ? (
           <div className="ml-auto flex min-w-0 items-center py-1 pr-1 sm:pr-1.5">
-            <div className="flex min-w-0 items-center gap-1.5 rounded-lg border border-brand/25 bg-brand/10 py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
+            <div className="flex min-w-0 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
               <span
                 className="hidden shrink-0 font-mono text-[12px] font-medium text-brand sm:inline"
                 aria-hidden
