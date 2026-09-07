@@ -1,5 +1,5 @@
 import { ArrowRight, Github } from "lucide-react"
-import { HeroShowcase } from "@/components/landing/hero-showcase"
+import { RegistryWorkspaceDemo } from "@/components/landing/registry-workspace-demo"
 import { LandingPillars } from "@/components/landing/landing-pillars"
 import { LandingReveal } from "@/components/landing/landing-reveal"
 import { TransitionLink } from "@/components/view-transitions"
@@ -9,7 +9,7 @@ const GITHUB_REPO = "https://github.com/atroui/atroui"
 export function AtroHero() {
   return (
     <section className="atro-hero-canvas relative w-full bg-background text-foreground">
-      <div className="atro-shell relative z-10 pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24">
+      <div className="atro-shell relative z-10 pb-10 pt-10 sm:pb-12 sm:pt-12 lg:pb-14">
         <LandingReveal className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h1 className="atro-hero-title">
             Own the UI.
@@ -17,12 +17,12 @@ export function AtroHero() {
             Borrow the API.
           </h1>
 
-          <p className="atro-hero-lede mt-5 max-w-lg">
-            A minimal component catalog for production React apps. Copy real
-            source through the shadcn CLI — wire Host APIs with your keys.
+          <p className="atro-hero-lede mt-4 max-w-lg">
+            A minimal React catalog for production apps. Copy source with shadcn —
+            wire Host APIs with your keys.
           </p>
 
-          <div className="mt-8 flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center sm:justify-center">
+          <div className="mt-6 flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center sm:justify-center">
             <TransitionLink
               href="/docs/components"
               transitionTypes={[]}
@@ -42,13 +42,13 @@ export function AtroHero() {
             </a>
           </div>
 
-          <p className="atro-platform-note mt-5">
+          <p className="atro-platform-note mt-4">
             Available for React 19, Next.js 15, and Tailwind v4
           </p>
         </LandingReveal>
 
-        <LandingReveal delay={0.08} className="atro-hero-product mx-auto mt-12 w-full max-w-5xl lg:mt-14">
-          <HeroShowcase prominent clean />
+        <LandingReveal delay={0.08} className="atro-hero-product mx-auto mt-8 w-full max-w-5xl lg:mt-9">
+          <RegistryWorkspaceDemo className="w-full" />
           <LandingPillars attached />
         </LandingReveal>
       </div>

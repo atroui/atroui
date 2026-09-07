@@ -78,7 +78,7 @@ export function DocsSidebar({ className }: { className?: string }) {
                           className={cn(
                             "flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
                             active
-                              ? "bg-brand/10 text-foreground shadow-[inset_2px_0_0_var(--brand)]"
+                              ? "bg-white/[0.04] text-foreground shadow-[inset_2px_0_0_color-mix(in_oklch,var(--foreground)_55%,transparent)]"
                               : "text-muted-foreground hover:bg-white/4 hover:text-foreground"
                           )}
                         >

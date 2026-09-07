@@ -1,28 +1,53 @@
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { findCatalogNeighbors } from "@/lib/navigation"
+import {
+  findCatalogNeighbors,
+  findGuideNeighbors,
+  findMoreNeighbors,
+} from "@/lib/navigation"
 
-export function DocsPager({ href }: { href: string }) {
-  const { prev, next } = findCatalogNeighbors(href)
+/**
+ * Quiet hairline prev/next — catalog, Getting Started, or More (docs-only).
+ */
+export function DocsPager({
+  href,
+  kind = "catalog",
+}: {
+  href: string
+  kind?: "catalog" | "guides" | "more"
+}) {
+  const { prev, next } =
+    kind === "guides"
+      ? findGuideNeighbors(href)
+      : kind === "more"
+        ? findMoreNeighbors(href)
+        : findCatalogNeighbors(href)
   if (!prev && !next) return null
+
+  const aria =
+    kind === "guides"
+      ? "Adjacent guides"
+      : kind === "more"
+        ? "Adjacent pages"
+        : "Adjacent components"
 
   return (
     <nav
-      aria-label="Adjacent components"
-      className="grid gap-3 border-t border-border-subtle pt-8 sm:grid-cols-2 sm:gap-4"
+      aria-label={aria}
+      className="mt-12 grid gap-6 border-t border-border-subtle pt-8 sm:grid-cols-2"
     >
       {prev ? (
         <Link
           href={prev.href}
-          className="group flex min-h-16 items-center gap-3 rounded-2xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
+          className="group flex min-w-0 items-center gap-2 text-left transition-colors"
         >
           <ChevronLeft
-            className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand"
+            className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
             aria-hidden
           />
-          <span className="min-w-0 text-left">
+          <span className="min-w-0">
             <span className="ds-meta block">Previous</span>
-            <span className="ds-sketch mt-0.5 block truncate text-lg text-foreground transition-colors group-hover:text-brand">
+            <span className="mt-0.5 block truncate text-[15px] font-medium tracking-[-0.01em] text-foreground">
               {prev.title}
             </span>
           </span>
@@ -33,16 +58,16 @@ export function DocsPager({ href }: { href: string }) {
       {next ? (
         <Link
           href={next.href}
-          className="group flex min-h-16 items-center justify-end gap-3 rounded-2xl border border-border-subtle bg-white/2 px-4 py-3 transition-colors hover:border-brand/35 hover:bg-white/5"
+          className="group flex min-w-0 items-center justify-end gap-2 text-right transition-colors sm:col-start-2"
         >
-          <span className="min-w-0 text-right">
+          <span className="min-w-0">
             <span className="ds-meta block">Next</span>
-            <span className="ds-sketch mt-0.5 block truncate text-lg text-foreground transition-colors group-hover:text-brand">
+            <span className="mt-0.5 block truncate text-[15px] font-medium tracking-[-0.01em] text-foreground">
               {next.title}
             </span>
           </span>
           <ChevronRight
-            className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand"
+            className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
             aria-hidden
           />
         </Link>

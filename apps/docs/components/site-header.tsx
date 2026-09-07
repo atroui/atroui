@@ -43,13 +43,17 @@ export function SiteHeader() {
         <SiteNav />
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
-          <div className="hidden md:block">
-            <CommandMenu />
-          </div>
-          <div className="md:hidden">
-            <CommandMenu compact />
-          </div>
-          <ThemeToggle />
+          {!landing ? (
+            <>
+              <div className="hidden md:block">
+                <CommandMenu />
+              </div>
+              <div className="md:hidden">
+                <CommandMenu compact />
+              </div>
+            </>
+          ) : null}
+          {!landing ? <ThemeToggle /> : null}
           <a
             href={GITHUB_REPO}
             target="_blank"
@@ -63,12 +67,7 @@ export function SiteHeader() {
           <TransitionLink
             href="/docs/components"
             transitionTypes={[]}
-            className={cn(
-              "hidden h-9 items-center rounded-md px-3.5 text-[13px] font-medium md:inline-flex",
-              landing
-                ? "bg-white text-black hover:opacity-90"
-                : "ms-cta h-9 px-3.5 text-sm"
-            )}
+            className="hidden h-9 items-center rounded-md bg-foreground px-3.5 text-[13px] font-medium text-background transition-opacity hover:opacity-90 md:inline-flex"
           >
             Browse
           </TransitionLink>

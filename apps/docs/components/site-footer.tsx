@@ -33,6 +33,8 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "Blog", href: "/blog" },
       { label: "Updates", href: "/updates" },
+      { label: "OG workspace", href: "/og" },
+      { label: "Project planner", href: "/planner" },
       { label: "Brand kit", href: "/docs/brand" },
       { label: "Glossary", href: "/docs/glossary" },
       { label: "npm · atroui", href: NPM_URL, external: true },
@@ -84,6 +86,12 @@ export function SiteFooter() {
               Host APIs.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-2.5">
+              <Link
+                href="/docs/components"
+                className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-foreground px-3.5 text-[13px] font-medium text-background transition-opacity hover:opacity-90"
+              >
+                Browse components
+              </Link>
               <a
                 href={GITHUB_REPO}
                 target="_blank"
@@ -93,8 +101,6 @@ export function SiteFooter() {
                 <Github className="size-4" aria-hidden />
                 GitHub
               </a>
-              <span className="atro-chip">MIT licensed</span>
-              <span className="atro-chip">Tailwind v4</span>
             </div>
           </div>
 

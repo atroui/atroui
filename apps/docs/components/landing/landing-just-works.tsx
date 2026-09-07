@@ -1,15 +1,20 @@
 "use client"
 
 /**
- * Zed "Just Works" — tabbed feature panel. One idea at a time; no bento soup.
+ * Zed "Just Works" — horizontal tabs + proof stage (text + UI mock).
  */
 
 import * as React from "react"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import {
+  JustWorksProof,
+  type JustWorksProofId,
+} from "@/components/landing/just-works-proof"
 import { LandingSectionHeader } from "@/components/landing/landing-section-header"
+import { cn } from "@/lib/utils"
 
-type FeatureId = "registry" | "host-api" | "blocks" | "identity"
+type FeatureId = JustWorksProofId
 
 const FEATURES: {
   id: FeatureId
@@ -21,33 +26,33 @@ const FEATURES: {
 }[] = [
   {
     id: "registry",
-    tab: "shadcn registry",
-    title: "Install like any other registry block",
-    body: "npx shadcn add @atroui/… copies TypeScript into your repo. No private CDN, no runtime wrapper — you own every line from the first commit.",
+    tab: "Registry",
+    title: "Install like any other shadcn block",
+    body: "npx shadcn add @atroui/… copies TypeScript into your repo. No private CDN — you own every line from the first commit.",
     href: "/docs/registry",
     cta: "Registry guide",
   },
   {
     id: "host-api",
     tab: "Host APIs",
-    title: "Server routes that use your keys",
-    body: "Contact, waitlist, newsletter, OG, thumbnail, and scope handlers ship as hardened Next.js routes. Wire Resend, SMTP, or model providers once in your env.",
+    title: "Server routes on your keys",
+    body: "Waitlist, contact, newsletter, OG, and scope handlers ship as Next.js routes. Wire Resend or SMTP once in your env.",
     href: "/docs/host-api",
     cta: "Host API docs",
   },
   {
     id: "blocks",
-    tab: "Production blocks",
+    tab: "Blocks",
     title: "Sections, not atoms",
-    body: "Heroes, pricing, footers, and page chrome land ready to edit. Change CONTENT at the top of the file — the structure is already production-shaped.",
+    body: "Heroes, pricing, and page chrome land ready to edit. Change CONTENT at the top — the structure is already production-shaped.",
     href: "/docs/components",
     cta: "Browse blocks",
   },
   {
     id: "identity",
-    tab: "Identity kit",
+    tab: "Identity",
     title: "Brand and SEO in one config",
-    body: "getBrand(), JSON-LD helpers, sitemap utilities, and favicon patterns — so your install stays on-brand without a second design pass.",
+    body: "getBrand(), JSON-LD helpers, and sitemap utilities keep every install on-brand without a second design pass.",
     href: "/docs/identity",
     cta: "Identity kit",
   },
@@ -62,39 +67,35 @@ export function LandingJustWorks() {
       <div className="atro-section-inner">
         <LandingSectionHeader
           variant="product"
+          align="center"
           title="AtroUI Just Works"
-          lede="Powerful out of the box — registry install, owned source, Host APIs on your keys. It only gets better as the catalog grows."
+          lede="Registry install, owned source, Host APIs on your keys."
         />
-        <div className="atro-section-links">
-          <Link href="/docs/changelog" className="atro-section-link">
-            View changelog →
-          </Link>
-          <Link href="/docs/installation" className="atro-section-link">
-            Installation →
-          </Link>
+
+        <div
+          role="tablist"
+          aria-label="Product features"
+          className="atro-jw-tabs"
+        >
+          {FEATURES.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              role="tab"
+              aria-selected={item.id === active}
+              onClick={() => setActive(item.id)}
+              className={cn(
+                "atro-jw-tab",
+                item.id === active && "atro-jw-tab--active"
+              )}
+            >
+              {item.tab}
+            </button>
+          ))}
         </div>
 
-        <div className="atro-just-works">
-          <div
-            role="tablist"
-            aria-label="Product features"
-            className="atro-just-works-tabs"
-          >
-            {FEATURES.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                role="tab"
-                aria-selected={item.id === active}
-                onClick={() => setActive(item.id)}
-                className="atro-just-works-tab"
-              >
-                {item.tab}
-              </button>
-            ))}
-          </div>
-
-          <div role="tabpanel" className="atro-just-works-panel">
+        <div role="tabpanel" className="atro-jw-stage">
+          <div className="atro-jw-copy">
             <h3 className="ds-headline text-xl text-foreground">{feature.title}</h3>
             <p className="ds-body mt-3 max-w-prose text-muted-foreground">
               {feature.body}
@@ -107,6 +108,7 @@ export function LandingJustWorks() {
               <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </div>
+          <JustWorksProof id={active} />
         </div>
       </div>
     </section>

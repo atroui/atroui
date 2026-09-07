@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsPager } from "@/components/docs-pager"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { pseoCollections } from "@/lib/pseo"
 
@@ -13,16 +15,16 @@ export const metadata: Metadata = docsPageMetadata({
 export default function CollectionsIndexPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Programmatic catalog</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Collections
-        </h1>
-        <p className="ds-lede mt-3 max-w-2xl">
-          Four jobs people actually search for. Each hub links to owned registry
-          blocks — not a thousand thin keyword pages.
-        </p>
-      </header>
+      <DocsArticleHeader
+        stamp="Programmatic catalog"
+        title="Collections"
+        lede={
+          <>
+            Four jobs people actually search for. Each hub links to owned registry
+            blocks — not a thousand thin keyword pages.
+          </>
+        }
+      />
       <ul className="md-glass divide-y divide-border-subtle">
         {pseoCollections.map((collection) => (
           <li key={collection.slug}>
@@ -38,6 +40,7 @@ export default function CollectionsIndexPage() {
           </li>
         ))}
       </ul>
+      <DocsPager href="/docs/collections" kind="guides" />
     </article>
   )
 }

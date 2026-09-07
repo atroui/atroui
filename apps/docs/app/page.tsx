@@ -14,13 +14,13 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function HomePage() {
   return (
-    <>
+    <div className="atro-landing">
       <SiteHeader />
       <DirectionalPage>
         <SiteGraphJsonLd />
         <SoftwareAppJsonLd />
         <LandingHero />
       </DirectionalPage>
-    </>
+    </div>
   )
 }

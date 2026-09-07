@@ -6,7 +6,7 @@ import { DocsRouteTransition } from "@/components/view-transitions"
 
 export function DocsLayoutShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="md-ambient flex min-h-[calc(100svh-4rem)] flex-col bg-background">
+    <div className="flex min-h-[calc(100svh-4rem)] flex-col bg-background">
       <div className="mx-auto flex w-full max-w-350 flex-1">
         <aside className="sticky top-16 hidden h-[calc(100svh-4rem)] w-52 shrink-0 overflow-y-auto overscroll-contain border-r border-border-subtle px-2 py-6 lg:block xl:w-64 xl:px-3 xl:py-8">
           <DocsSidebar />

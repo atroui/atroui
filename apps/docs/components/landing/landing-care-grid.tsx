@@ -41,8 +41,9 @@ export function LandingCareGrid() {
       <div className="atro-section-inner">
         <LandingSectionHeader
           variant="product"
+          align="center"
           title="Built with care"
-          lede="Every surface in the catalog shares tokens, motion, and install conventions. Anything less isn't worth shipping."
+          lede="Shared tokens, motion, and install conventions across every block."
         />
         <div className="atro-care-grid">
           {CARE_ITEMS.map((item) => (

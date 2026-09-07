@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsPager } from "@/components/docs-pager"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -13,17 +15,17 @@ export const metadata: Metadata = docsPageMetadata({
 export default function BrandKitPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Brand</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Brand kit
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Assets and voice for AtroUI - the React / Next.js component library at{" "}
-          <strong className="font-medium text-foreground">atroui.com</strong>.
-          Use these when linking, embedding, or writing about the project.
-        </p>
-      </header>
+      <DocsArticleHeader
+        stamp="Brand"
+        title="Brand kit"
+        lede={
+          <>
+            Assets and voice for AtroUI - the React / Next.js component library at{" "}
+            <strong>atroui.com</strong>. Use these when linking, embedding, or
+            writing about the project.
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">Name</h2>
@@ -157,6 +159,7 @@ export default function BrandKitPage() {
           <li>Precise, calm, product-first. Avoid hype and personal bylines on product pages.</li>
         </ul>
       </section>
+      <DocsPager href="/docs/brand" kind="guides" />
     </article>
   )
 }

@@ -1,15 +1,15 @@
 const PILLARS = [
   {
     label: "Own the source",
-    body: "Every block copies into your repo. Edit CONTENT, not node_modules.",
+    body: "Blocks copy into your repo. Edit CONTENT, not node_modules.",
   },
   {
     label: "Host APIs",
-    body: "Forms, AI tools, and OG routes run on your keys — hardened handlers included.",
+    body: "Forms, AI tools, and OG routes on your keys — handlers included.",
   },
   {
     label: "shadcn native",
-    body: "Official directory entry. Same CLI, same workflow your team already uses.",
+    body: "Official directory entry. Same CLI your team already uses.",
   },
 ] as const
 

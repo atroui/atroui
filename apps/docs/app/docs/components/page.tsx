@@ -15,7 +15,7 @@ export default function ComponentsIndexPage() {
   return (
     <div className="mx-auto max-w-6xl">
       <header className="mb-8">
-        <p className="ms-stamp mb-3">
+        <p className="ds-mono-label mb-3">
           Library · {catalogNavItems.length} components
         </p>
         <h1 className="ds-headline text-3xl text-foreground sm:text-4xl md:text-5xl">
@@ -24,10 +24,8 @@ export default function ComponentsIndexPage() {
         <p className="ds-lede mt-4 max-w-2xl">
           Real, running previews — not screenshots. Search or filter, then open
           any component to copy it in with{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            npx shadcn@latest add @atroui/…
-          </code>
-          . Host&nbsp;API items pair with thin{" "}
+          <code>npx shadcn@latest add @atroui/…</code>. Host&nbsp;API items pair
+          with thin{" "}
           <Link href="/docs/host-api" className="bam-link">
             /api/*
           </Link>{" "}

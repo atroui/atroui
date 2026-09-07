@@ -11,7 +11,7 @@ function formatDate(iso: string) {
   })
 }
 
-/** Zed "The latest from Zed" — three recent posts, minimal cards. */
+/** Zed “The latest” — hairline list, same rhythm as /blog (no card soup). */
 export function LandingBlog() {
   const posts = getRecentPosts(3)
 
@@ -20,34 +20,41 @@ export function LandingBlog() {
       <div className="atro-section-inner">
         <LandingSectionHeader
           variant="product"
+          align="left"
           title="The latest from AtroUI"
-          lede="Announcements, registry notes, and essays on owning the UI."
+          lede="Registry notes and Host API guides."
           action={
-            <Link href="/blog" className="atro-section-link mt-1 inline-flex items-center gap-1">
+            <Link
+              href="/blog"
+              className="atro-section-link mt-1 inline-flex items-center gap-1"
+            >
               View blog
               <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           }
         />
 
-        <div className="atro-blog-grid">
+        <ul className="atro-blog-list">
           {posts.map((post, i) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="atro-blog-card"
-            >
-              {i === 0 ? (
-                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-brand">
-                  Newest
-                </span>
-              ) : null}
-              <span className="atro-blog-card-title">{post.title}</span>
-              <span className="atro-blog-card-desc">{post.description}</span>
-              <span className="atro-blog-card-meta">{formatDate(post.date)}</span>
-            </Link>
+            <li key={post.slug}>
+              <Link href={`/blog/${post.slug}`} className="atro-blog-row">
+                <div className="atro-blog-row-main">
+                  {i === 0 ? (
+                    <span className="atro-blog-newest">Newest</span>
+                  ) : null}
+                  <span className="atro-blog-row-title">{post.title}</span>
+                  <span className="atro-blog-row-desc">{post.description}</span>
+                </div>
+                <time
+                  className="atro-blog-row-date"
+                  dateTime={post.date}
+                >
+                  {formatDate(post.date)}
+                </time>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )

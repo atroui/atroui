@@ -18,6 +18,7 @@ import {
   DemoCalendlyEmbed,
   DemoCard,
   DemoChangelog,
+  DemoCommandMenuGallery,
   DemoContactForm,
   DemoContextualCta,
   DemoCountUp,
@@ -62,6 +63,7 @@ import {
   DemoSiteFooterNarrow,
   DemoSiteHeader,
   DemoSiteHeaderNarrow,
+  DemoSocialFloatGallery,
   DemoSocialShare,
   DemoStackList,
   DemoStagger,
@@ -144,6 +146,8 @@ export const previewRegistry: Record<string, ComponentType> = {
   "/docs/components/local-clock": DemoLocalClock,
   "/docs/components/weather-chip": DemoWeatherChip,
   "/docs/components/stack-list": DemoStackList,
+  "/docs/components/command-menu": DemoCommandMenuGallery,
+  "/docs/components/social-float": DemoSocialFloatGallery,
 
   // Tools
   "/docs/components/og-og-examples": DemoOgExamples,

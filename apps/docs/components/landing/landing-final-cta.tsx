@@ -6,10 +6,9 @@ export function LandingFinalCta() {
     <section className="atro-final-cta" aria-label="Get started">
       <div className="atro-shell">
         <div className="atro-final-cta-inner">
-          <h2 className="atro-final-cta-title">Ship with AtroUI</h2>
+          <h2 className="atro-final-cta-title">Daily drive with AtroUI</h2>
           <p className="atro-final-cta-lede">
-            Copy production blocks into your repo today. Your keys, your brand,
-            your deploy pipeline.
+            Copy blocks you own. Wire APIs with your keys. Ship on your stack.
           </p>
           <div className="flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center sm:justify-center">
             <TransitionLink

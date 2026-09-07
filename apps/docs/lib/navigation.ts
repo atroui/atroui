@@ -60,6 +60,11 @@ export const navigation: NavSection[] = [
         href: "/docs/glossary",
         description: "Host API, BYOK, registry",
       },
+    ],
+  },
+  {
+    title: "More",
+    items: [
       {
         title: "Compare",
         href: "/docs/compare",
@@ -530,7 +535,10 @@ export const navigation: NavSection[] = [
 export const allNavItems = navigation.flatMap((section) => section.items)
 
 export const catalogNavItems = navigation
-  .filter((section) => section.title !== "Getting Started")
+  .filter(
+    (section) =>
+      section.title !== "Getting Started" && section.title !== "More"
+  )
   .flatMap((section) => section.items)
 
 export const badgeLabel: Record<NonNullable<NavItem["badge"]>, string> = {
@@ -541,7 +549,9 @@ export const badgeLabel: Record<NonNullable<NavItem["badge"]>, string> = {
 
 export type DocKind = "Primitive" | "Block" | "Tool" | "Headless"
 
-const sectionKind: Record<string, DocKind> = {
+const sectionKind: Record<string, DocKind | undefined> = {
+  "Getting Started": undefined,
+  More: undefined,
   Primitives: "Primitive",
   Blocks: "Block",
   Indie: "Block",
@@ -576,5 +586,31 @@ export function findCatalogNeighbors(href: string) {
     prev: index > 0 ? catalogNavItems[index - 1]! : null,
     next:
       index < catalogNavItems.length - 1 ? catalogNavItems[index + 1]! : null,
+  }
+}
+
+/** Prev/next within Getting Started (guides), not the full catalog dump. */
+export function findGuideNeighbors(href: string) {
+  const section = navigation.find((s) => s.title === "Getting Started")
+  if (!section) return { prev: null, next: null }
+  const index = section.items.findIndex((item) => item.href === href)
+  if (index === -1) return { prev: null, next: null }
+  return {
+    prev: index > 0 ? section.items[index - 1]! : null,
+    next:
+      index < section.items.length - 1 ? section.items[index + 1]! : null,
+  }
+}
+
+/** Prev/next within More — docs routes only (skip Blog / Updates exits). */
+export function findMoreNeighbors(href: string) {
+  const section = navigation.find((s) => s.title === "More")
+  if (!section) return { prev: null, next: null }
+  const items = section.items.filter((item) => item.href.startsWith("/docs/"))
+  const index = items.findIndex((item) => item.href === href)
+  if (index === -1) return { prev: null, next: null }
+  return {
+    prev: index > 0 ? items[index - 1]! : null,
+    next: index < items.length - 1 ? items[index + 1]! : null,
   }
 }

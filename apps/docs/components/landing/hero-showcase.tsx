@@ -1,8 +1,8 @@
 "use client"
 
 /**
- * Product demo — live registry blocks in a Zed-clean frame.
- * `clean` mode: no faux browser chrome, underline tabs, neutral preview canvas.
+ * Legacy product demo — docs embeds live atroui package previews.
+ * Landing hero uses RegistryWorkspaceDemo (real registry source + blocks).
  */
 
 import * as React from "react"
@@ -76,10 +76,8 @@ function renderPreview(id: ShowcaseId) {
 
 export function HeroShowcase({
   prominent = false,
-  clean = false,
 }: {
   prominent?: boolean
-  clean?: boolean
 }) {
   const reduce = useReducedMotion()
   const [activeId, setActiveId] = React.useState<ShowcaseId>("waitlist")
@@ -104,16 +102,11 @@ export function HeroShowcase({
   }
 
   return (
-    <div className={cn("atro-frame w-full", clean && "landing-demo-frame")}>
+    <div className={cn("atro-frame w-full")}>
       <div
         role="tablist"
         aria-label="Component previews"
-        className={cn(
-          "flex gap-0 overflow-x-auto px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          clean
-            ? "gap-6 border-b border-border-subtle"
-            : "gap-1 border-b border-border-subtle px-2 py-2"
-        )}
+        className="flex gap-0 overflow-x-auto gap-1 border-b border-border-subtle px-2 py-2 px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {ITEMS.map((item) => {
           const selected = item.id === activeId
@@ -125,20 +118,13 @@ export function HeroShowcase({
               aria-selected={selected}
               onClick={() => setActiveId(item.id)}
               className={cn(
-                "relative shrink-0 cursor-pointer transition-colors",
-                clean
-                  ? "border-b-2 py-3.5 text-[13px] font-medium"
-                  : "rounded-md px-3 py-1.5 text-[13px] font-medium",
-                clean && selected
-                  ? "border-foreground text-foreground"
-                  : clean
-                    ? "border-transparent text-muted-foreground hover:text-foreground"
-                    : selected
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                "relative shrink-0 cursor-pointer rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors",
+                selected
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               )}
             >
-              {!clean && selected ? (
+              {selected ? (
                 <span className="absolute inset-0 rounded-md border border-border-subtle bg-foreground/[0.04]" />
               ) : null}
               <span className="relative z-10">{item.label}</span>
@@ -150,12 +136,9 @@ export function HeroShowcase({
       <div
         ref={viewportRef}
         className={cn(
-          "relative overflow-y-auto overscroll-contain",
-          clean ? "landing-demo-viewport" : "bg-background",
+          "relative overflow-y-auto overscroll-contain bg-background",
           prominent
-            ? clean
-              ? "h-[22rem] sm:h-[28rem] lg:h-[32rem]"
-              : "h-[24rem] sm:h-[30rem] lg:h-[34rem]"
+            ? "h-[24rem] sm:h-[30rem] lg:h-[34rem]"
             : "h-[22rem] sm:h-[26rem]",
           active.contain && "flex items-center justify-center"
         )}
@@ -169,19 +152,12 @@ export function HeroShowcase({
             transition={reduce ? { duration: 0 } : { duration: 0.2, ease: easeOutSoft }}
             className={cn(
               "w-full",
-              clean && !active.contain && "landing-demo-scale origin-top",
               active.contain && "max-w-md px-6 py-8"
             )}
           >
             {renderPreview(active.id)}
           </motion.div>
         </AnimatePresence>
-        {clean ? (
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--landing-demo-bg,#111)] to-transparent"
-            aria-hidden
-          />
-        ) : null}
       </div>
 
       <div className="flex items-center gap-2 border-t border-border-subtle px-4 py-3">

@@ -14,7 +14,6 @@ import {
   CardTitle,
   Changelog,
   CommandMenu,
-  ContactForm,
   ContextualCTA,
   CountUp,
   Currently,
@@ -70,7 +69,6 @@ import {
   TimelineAnimation,
   UiMockupFrame,
   VisualCaseStudy,
-  WaitlistForm,
   WeatherChip,
   ArPortfolio,
   JournalContent,
@@ -82,6 +80,8 @@ import {
   mediaSrc,
 } from "atroui"
 import { TESTIMONIALS } from "atroui/content/testimonials"
+import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
+import { ContactForm as RegistryContactForm } from "../registry/default/blocks/contact-form"
 
 /** Live canvas demos - one per documented component where a useful preview exists. */
 
@@ -425,7 +425,11 @@ export function DemoNewsletterForm() {
 }
 
 export function DemoWaitlistForm() {
-  return <WaitlistForm />
+  return (
+    <div className="mx-auto w-full max-w-md">
+      <WaitlistStagePreview />
+    </div>
+  )
 }
 
 export function DemoSocialShare() {
@@ -620,8 +624,8 @@ export function DemoSiteFooter() {
 
 export function DemoContactForm() {
   return (
-    <div className="w-full max-h-[560px] overflow-auto rounded-xl border border-border-subtle bg-background p-4">
-      <ContactForm />
+    <div className="mx-auto w-full max-w-xl">
+      <RegistryContactForm />
     </div>
   )
 }
@@ -853,6 +857,31 @@ export function DemoCommandMenu() {
   )
 }
 
+/** Contained gallery thumb — no portal (⌘K is for the live docs page). */
+export function DemoCommandMenuGallery() {
+  return (
+    <div className="flex h-full items-center justify-center bg-background p-4">
+      <div className="w-full max-w-[14rem] overflow-hidden rounded-lg border border-border-subtle bg-card shadow-sm">
+        <div className="flex items-center gap-2 border-b border-border-subtle px-2.5 py-2">
+          <span className="flex-1 truncate font-mono text-[10px] text-muted-foreground">
+            Search docs…
+          </span>
+          <kbd className="rounded border border-border-subtle px-1 font-mono text-[9px] text-muted-foreground">
+            ⌘K
+          </kbd>
+        </div>
+        <ul className="space-y-0.5 p-1.5 font-mono text-[10px] text-foreground">
+          <li className="rounded-md bg-white/[0.06] px-2 py-1.5">Home</li>
+          <li className="rounded-md px-2 py-1.5 text-muted-foreground">
+            Components
+          </li>
+          <li className="rounded-md px-2 py-1.5 text-muted-foreground">Blog</li>
+        </ul>
+      </div>
+    </div>
+  )
+}
+
 export function DemoReveal() {
   return (
     <div className="mx-auto w-full max-w-md">
@@ -909,6 +938,32 @@ export function DemoSocialFloat() {
         Social float mounts fixed to the viewport — open the FAB in the corner.
       </p>
       <SocialFloat />
+    </div>
+  )
+}
+
+/** Contained gallery thumb — in-frame FAB + links (no fixed portal). */
+export function DemoSocialFloatGallery() {
+  return (
+    <div className="relative h-full overflow-hidden bg-background">
+      <div className="absolute inset-x-0 top-4 px-3 text-center font-mono text-[9px] text-muted-foreground">
+        Connect
+      </div>
+      <div className="absolute bottom-3 right-3 flex flex-col items-end gap-1.5">
+        <div className="flex flex-col gap-1 rounded-lg border border-border-subtle bg-card p-1.5 shadow-sm">
+          {["Email", "GitHub", "X"].map((label) => (
+            <span
+              key={label}
+              className="rounded-md px-2 py-1 font-mono text-[9px] text-foreground"
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+        <span className="flex size-8 items-center justify-center rounded-full border border-border-subtle bg-foreground text-[11px] font-medium text-background">
+          +
+        </span>
+      </div>
     </div>
   )
 }

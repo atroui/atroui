@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
+import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsPager } from "@/components/docs-pager"
 import { getSiteUrl } from "atroui/lib/site-url"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
@@ -16,53 +18,31 @@ export default function RegistryPage() {
 
   return (
     <article className="mx-auto max-w-3xl space-y-10">
-      <header>
-        <p className="ms-stamp mb-3">Getting started</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
-          Registry
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          AtroUI ships a shadcn-compatible registry. Components are copied into
-          your project so you can edit code, content, and design - the same
-          ownership model as shadcn/ui. Registry items match the docs catalog
-          look; change{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            CONTENT
-          </code>{" "}
-          /{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            DEFAULT_BRAND
-          </code>{" "}
-          in the installed files to make them yours. Tailwind CSS v4.{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @atroui
-          </code>{" "}
-          is public on the shadcn directory. No GitHub token.
-        </p>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Pure UI needs only the CLI. Forms and AI tools that post to{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /api/*
-          </code>{" "}
-          also need{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            npm i atroui
-          </code>{" "}
-          +{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            transpilePackages
-          </code>
-          . Same three-row matrix:{" "}
-          <Link href="/docs/host-api" className="bam-link">
-            Host APIs
-          </Link>{" "}
-          ·{" "}
-          <Link href="/docs/installation" className="bam-link">
-            Installation
-          </Link>
-          .
-        </p>
-      </header>
+      <DocsArticleHeader
+        stamp="Getting started"
+        title="Registry"
+        lede={
+          <>
+            AtroUI ships a shadcn-compatible registry. Components are copied into
+            your project so you can edit code, content, and design - the same
+            ownership model as shadcn/ui. Change <code>CONTENT</code> /{" "}
+            <code>DEFAULT_BRAND</code> in the installed files to make them yours.
+            Tailwind CSS v4. <code>@atroui</code> is public on the shadcn
+            directory. No GitHub token. Pure UI needs only the CLI. Forms and AI
+            tools that post to <code>/api/*</code> also need{" "}
+            <code>npm i atroui</code> + <code>transpilePackages</code>. Same
+            three-row matrix:{" "}
+            <Link href="/docs/host-api" className="bam-link">
+              Host APIs
+            </Link>{" "}
+            ·{" "}
+            <Link href="/docs/installation" className="bam-link">
+              Installation
+            </Link>
+            .
+          </>
+        }
+      />
 
       <section className="space-y-4">
         <h2 className="ds-headline text-base text-foreground">
@@ -494,6 +474,7 @@ npx shadcn@latest add @atroui/site-footer`}
           }).replace(/</g, "\\u003c")
         }}
       />
+      <DocsPager href="/docs/registry" kind="guides" />
     </article>
   )
 }

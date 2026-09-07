@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowUpRight, Info } from "lucide-react"
 import { CodeBlock } from "@/components/code-block"
+import { DocsPager } from "@/components/docs-pager"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -163,6 +164,7 @@ npx shadcn@latest add @atroui/home-hero`}
           </Link>
         ))}
       </div>
+      <DocsPager href="/docs" kind="guides" />
     </article>
   )
 }

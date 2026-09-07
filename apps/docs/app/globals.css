@@ -804,14 +804,16 @@ html {
   }
 }
 
-/* Hero product block — demo + pillars read as one unit */
-.atro-hero-product .atro-frame {
+/* Hero product block — demo + pillars as one signature unit */
+.atro-hero-product .atro-frame,
+.atro-hero-product .rw-shell {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom: none;
-  box-shadow: none;
 }
-.atro-hero-product .atro-pillar-grid {
+.atro-hero-product .atro-pillar-grid,
+.atro-hero-product .atro-pillar-grid--attached {
+  margin-top: 0;
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -840,7 +842,154 @@ html {
   color: var(--foreground);
 }
 
-/* Zed "Just Works" — vertical tabs + content panel */
+/* Trust strip — factual proof, no placeholder quotes */
+.atro-trust-title {
+  margin-inline: auto;
+  max-width: 36rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: var(--foreground);
+}
+.atro-trust-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.75rem;
+}
+@media (min-width: 768px) {
+  .atro-trust-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+}
+.atro-trust-item-title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+.atro-trust-item-body {
+  margin-top: 0.45rem;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+/* Zed "Just Works" — horizontal tabs + proof stage */
+.atro-jw-tabs {
+  display: flex;
+  gap: 0;
+  margin-top: 2.25rem;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border-subtle);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.atro-jw-tabs::-webkit-scrollbar {
+  display: none;
+}
+.atro-jw-tab {
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0.85rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--muted-foreground);
+  transition: color 160ms ease;
+}
+@media (min-width: 640px) {
+  .atro-jw-tab {
+    padding-inline: 1.25rem;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-jw-tab:hover {
+    color: var(--foreground);
+  }
+}
+.atro-jw-tab--active {
+  color: var(--foreground);
+}
+.atro-jw-tab--active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0.75rem;
+  bottom: -1px;
+  height: 2px;
+  background: var(--foreground);
+  border-radius: 1px 1px 0 0;
+}
+.atro-jw-stage {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 1.75rem;
+}
+@media (min-width: 900px) {
+  .atro-jw-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 2rem;
+    align-items: start;
+  }
+}
+.jw-proof {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: rgba(0, 0, 0, 0.25);
+}
+.jw-proof-bar {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.5rem 0.85rem;
+}
+.jw-proof-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--muted-foreground);
+}
+.jw-proof-body {
+  padding: 1rem 0.85rem 1.15rem;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: color-mix(in oklch, var(--foreground) 85%, transparent);
+}
+.jw-proof-mono {
+  font-family: var(--font-mono);
+}
+.jw-proof-dim {
+  color: var(--muted-foreground);
+}
+.jw-proof-ok {
+  margin-top: 0.35rem;
+  color: color-mix(in oklch, var(--foreground) 72%, #86efac);
+}
+.jw-proof-key {
+  color: #7dd3fc;
+}
+.jw-proof-val {
+  color: var(--foreground);
+}
+.jw-proof-mask {
+  color: color-mix(in oklch, var(--foreground) 70%, transparent);
+}
+.jw-proof-hl {
+  color: #c4b5fd;
+}
+.jw-proof-str {
+  color: #86efac;
+}
+
+.atro-section-links--center {
+  justify-content: center;
+}
+
+/* Legacy vertical just-works — kept for docs previews if referenced */
 .atro-just-works {
   display: grid;
   gap: 1.5rem;
@@ -1005,7 +1154,71 @@ html {
   color: var(--muted-foreground);
 }
 
-/* Blog cards — "The latest from Zed" */
+/* Blog list — Zed “The latest” hairline rows (not card soup) */
+.atro-blog-list {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.atro-blog-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+@media (min-width: 640px) {
+  .atro-blog-row {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+}
+.atro-blog-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+.atro-blog-newest {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.atro-blog-row-title {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+.atro-blog-row-desc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.atro-blog-row-date {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+@media (hover: hover) and (pointer: fine) {
+  .atro-blog-row:hover .atro-blog-row-title {
+    color: color-mix(in oklch, var(--foreground) 82%, var(--brand));
+  }
+}
+
+/* Legacy blog cards (unused on landing; keep for safety) */
 .atro-blog-grid {
   display: grid;
   gap: 1rem;
@@ -1044,7 +1257,7 @@ html {
   line-height: 1.55;
   color: var(--muted-foreground);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1148,7 +1361,7 @@ html {
 
 .atro-landing .atro-hero-title {
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(2.65rem, 6.5vw, 4.35rem);
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 1.04;
@@ -1156,8 +1369,8 @@ html {
 }
 
 .atro-landing .atro-hero-lede {
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.6;
   font-weight: 400;
   color: var(--landing-muted);
 }
@@ -1243,14 +1456,140 @@ html {
   border-color: rgba(255, 255, 255, 0.06);
 }
 
-.atro-landing .atro-section-inner {
-  padding-block: 4.5rem;
+.atro-landing .atro-shell {
+  max-width: 68rem;
 }
 
+.atro-landing .atro-section-inner {
+  max-width: 68rem;
+  padding-block: 2rem;
+}
+@media (min-width: 1024px) {
+  .atro-landing .atro-section-inner {
+    padding-block: 2.25rem;
+  }
+}
+
+/* Compact Zed cadence — denser trust / features / footer bands */
+.atro-landing .atro-trust-grid {
+  gap: 1.25rem 1.75rem;
+  margin-top: 1.75rem;
+}
+@media (min-width: 768px) {
+  .atro-landing .atro-trust-grid {
+    gap: 1.5rem 2rem;
+  }
+}
+
+.atro-landing .atro-trust-title {
+  font-size: clamp(1.125rem, 2.4vw, 1.5rem);
+}
+
+.atro-landing .atro-jw-tabs {
+  margin-top: 1.25rem;
+}
+.atro-landing .atro-jw-tab {
+  padding-block: 0.55rem;
+}
+.atro-landing .atro-jw-stage {
+  gap: 1.15rem;
+  margin-top: 1.1rem;
+}
+.atro-landing .jw-proof-body {
+  padding: 0.85rem 0.75rem 1rem;
+}
+
+.atro-landing .atro-eco-list {
+  margin-top: 1.25rem;
+}
+.atro-landing .atro-eco-row {
+  padding-block: 0.65rem;
+}
+
+.atro-landing .atro-care-grid {
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.atro-landing .atro-care-grid--inline {
+  margin-top: 0.85rem;
+}
+.atro-landing .atro-care-chip {
+  padding: 0.55rem 0.75rem;
+  min-width: 0;
+}
+
+.atro-landing .atro-letter {
+  margin-top: 1.25rem;
+  padding: 1.35rem 1.25rem;
+}
+@media (min-width: 640px) {
+  .atro-landing .atro-letter {
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+.atro-landing .atro-blog-grid {
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+@media (min-width: 768px) {
+  .atro-landing .atro-blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.atro-landing .atro-blog-card {
+  padding: 1rem 1.1rem;
+}
+
+.atro-landing .atro-final-cta-inner {
+  gap: 1rem;
+  padding-block: 2.5rem;
+}
+@media (min-width: 640px) {
+  .atro-landing .atro-final-cta-inner {
+    padding-block: 3rem;
+  }
+}
+
+.atro-landing .atro-section-links {
+  margin-top: 0.75rem;
+}
+
+.atro-landing .atro-pillar {
+  padding: 0.85rem 1.1rem;
+}
+
+.atro-landing footer .atro-shell {
+  padding-block: 2.5rem;
+}
+@media (min-width: 1024px) {
+  .atro-landing footer .atro-shell {
+    padding-block: 2.75rem;
+  }
+}
+.atro-landing footer .mt-12 {
+  margin-top: 2rem;
+}
+
+.atro-landing .atro-trust-title,
 .atro-landing .ds-headline,
 .atro-landing .atro-final-cta-title {
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.035em;
+}
+
+.atro-landing .atro-jw-tab--active::after {
+  background: var(--landing-fg);
+}
+
+.atro-landing .jw-proof {
+  border-color: var(--landing-border);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.atro-landing .atro-jw-tab[aria-selected="true"]::before,
+.atro-landing .atro-just-works-tab[aria-selected="true"]::before {
+  background: var(--landing-fg);
 }
 
 .atro-landing .ds-eyebrow {
@@ -1328,10 +1667,1000 @@ html {
   border-color: rgba(255, 255, 255, 0.06);
 }
 
+.atro-landing footer .ds-mono-label,
+.atro-landing footer .ds-body,
+.atro-landing footer .ds-meta {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
 .atro-landing footer .atro-chip {
   border-color: var(--landing-border);
   background: transparent;
   color: var(--landing-muted);
+}
+
+/* Zed-unified public chrome — header + nav on landing share landing tokens */
+.atro-landing > header {
+  background: color-mix(in oklch, var(--landing-bg) 92%, transparent);
+  border-color: rgba(255, 255, 255, 0.06);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+.atro-landing .atro-announce-inner a:hover {
+  color: var(--landing-fg);
+}
+
+/* Registry workspace mock — signature hero artifact */
+.rw-shell {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: left;
+}
+
+.rw-shell--prominent .rw-body {
+  min-height: 18rem;
+}
+
+@media (min-width: 1024px) {
+  .rw-shell--prominent .rw-body {
+    min-height: 22rem;
+  }
+}
+
+.rw-topbar-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--landing-fg);
+}
+
+.rw-body--workspace {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 768px) {
+  .rw-body--workspace {
+    grid-template-columns: 11.5rem minmax(0, 1fr);
+  }
+}
+
+.rw-main--split {
+  min-width: 0;
+}
+
+.rw-split {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 14rem;
+}
+
+@media (min-width: 900px) {
+  .rw-split {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    min-height: 18rem;
+  }
+}
+
+.rw-code--real {
+  max-height: 18rem;
+  border-bottom: 1px solid var(--landing-border);
+}
+
+@media (min-width: 900px) {
+  .rw-code--real {
+    max-height: none;
+    border-bottom: none;
+    border-right: 1px solid var(--landing-border);
+  }
+}
+
+.rw-code-line--content {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.rw-code-line--content .rw-code-gutter {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.rw-live-preview {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  min-height: 12rem;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.rw-live-preview-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+  border-bottom: 1px solid var(--landing-border);
+  padding: 0.45rem 0.65rem;
+}
+
+.rw-live-preview-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--landing-muted);
+}
+
+.rw-live-preview-note {
+  font-size: 0.625rem;
+  color: color-mix(in oklch, var(--landing-muted) 85%, transparent);
+}
+
+.rw-live-preview-viewport {
+  position: relative;
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.rw-live-preview-scale {
+  transform-origin: top center;
+}
+
+.rw-preview-root {
+  width: 100%;
+  min-height: 100%;
+}
+
+.rw-preview-root--contain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.rw-preview-root--contain > * {
+  width: 100%;
+  max-width: 22rem;
+}
+
+.rw-live-preview-scale:has(.rw-preview-root:not(.rw-preview-root--contain)) {
+  transform: scale(0.44);
+  width: 228%;
+  margin-inline: -64%;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .rw-live-preview-scale:has(.rw-preview-root:not(.rw-preview-root--contain)) {
+    transform: scale(0.5);
+    width: 200%;
+    margin-inline: -50%;
+  }
+}
+
+.rw-preview-root:not(.rw-preview-root--contain) {
+  min-height: 28rem;
+}
+
+.rw-host--inline {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--landing-border);
+  border-left: none;
+}
+
+@media (min-width: 768px) {
+  .rw-host--inline {
+    grid-column: 2;
+  }
+}
+
+.rw-host-inline {
+  display: grid;
+  gap: 0.55rem;
+}
+
+@media (min-width: 640px) {
+  .rw-host-inline {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+  .rw-host-inline .rw-host-note {
+    grid-column: 1 / -1;
+  }
+}
+
+.rw-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--landing-border);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.75rem;
+  color: var(--landing-muted);
+}
+
+.rw-search {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--landing-border);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.35rem 0.55rem;
+}
+
+.rw-topbar-meta {
+  shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: color-mix(in oklch, var(--landing-muted) 90%, transparent);
+}
+
+.rw-body {
+  display: grid;
+  min-height: 16rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 768px) {
+  .rw-body {
+    grid-template-columns: 11.5rem minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .rw-body {
+    grid-template-columns: 12rem minmax(0, 1fr) 11.5rem;
+  }
+}
+
+.rw-sidebar,
+.rw-host {
+  border-bottom: 1px solid var(--landing-border);
+  padding: 0.75rem 0.65rem;
+}
+
+@media (min-width: 768px) {
+  .rw-sidebar {
+    border-bottom: none;
+    border-right: 1px solid var(--landing-border);
+  }
+}
+
+@media (min-width: 1024px) {
+  .rw-host {
+    border-bottom: none;
+    border-left: 1px solid var(--landing-border);
+  }
+}
+
+@media (max-width: 1023px) {
+  .rw-host {
+    grid-column: 1 / -1;
+  }
+}
+
+.rw-panel-label {
+  margin-bottom: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--landing-muted);
+}
+
+.rw-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.rw-list-item {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 0.375rem;
+  border: none;
+  background: transparent;
+  padding: 0.4rem 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: color-mix(in oklch, var(--landing-fg) 72%, transparent);
+  text-align: left;
+  transition:
+    background-color 140ms ease,
+    color 140ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rw-list-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--landing-fg);
+  }
+}
+
+.rw-list-item--active {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--landing-fg);
+}
+
+.rw-list-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  shrink: 0;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.rw-list-item--active .rw-list-dot {
+  background: var(--landing-fg);
+}
+
+.rw-main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.rw-editor-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--landing-border);
+  padding: 0.45rem 0.75rem;
+}
+
+.rw-file-tab {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--landing-muted);
+}
+
+.rw-file-tab--active {
+  color: var(--landing-fg);
+}
+
+.rw-docs-link {
+  shrink: 0;
+  font-size: 0.75rem;
+  color: var(--landing-muted);
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rw-docs-link:hover {
+    color: var(--landing-fg);
+  }
+}
+
+.rw-editor {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 640px) {
+  .rw-editor {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+}
+
+.rw-code {
+  margin: 0;
+  overflow: auto;
+  border-bottom: 1px solid var(--landing-border);
+  padding: 0.65rem 0.5rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 640px) {
+  .rw-code {
+    border-bottom: none;
+    border-right: 1px solid var(--landing-border);
+  }
+}
+
+.rw-code-line {
+  display: flex;
+  gap: 0.65rem;
+  white-space: pre;
+}
+
+.rw-code-gutter {
+  width: 1.25rem;
+  shrink: 0;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.22);
+  user-select: none;
+}
+
+.rw-code-plain {
+  color: color-mix(in oklch, var(--landing-fg) 78%, transparent);
+}
+
+.rw-code-kw {
+  color: #c4b5fd;
+}
+
+.rw-code-str {
+  color: #86efac;
+}
+
+.rw-code-cmt {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.rw-code-fn {
+  color: #7dd3fc;
+}
+
+.rw-code-var {
+  color: color-mix(in oklch, var(--landing-fg) 88%, transparent);
+}
+
+.rw-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.rw-preview-card {
+  width: 100%;
+  max-width: 14rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--landing-border);
+  background: var(--landing-surface);
+  padding: 0.85rem;
+}
+
+.rw-preview-field {
+  height: 2rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--landing-border);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.45rem 0.55rem;
+  font-size: 0.75rem;
+  color: var(--landing-muted);
+}
+
+.rw-preview-cta {
+  margin-top: 0.5rem;
+  display: flex;
+  height: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  background: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #0a0a0a;
+}
+
+.rw-host-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.rw-host-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.rw-host-key {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--landing-muted);
+}
+
+.rw-host-mask,
+.rw-host-val {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--landing-fg);
+}
+
+.rw-host-note {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--landing-muted);
+}
+
+.rw-host-empty {
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--landing-muted);
+}
+
+.rw-terminal {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-top: 1px solid var(--landing-border);
+  padding: 0.65rem 0.85rem;
+}
+
+.rw-term-prompt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--landing-muted);
+}
+
+.rw-term-cmd {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: color-mix(in oklch, var(--landing-fg) 82%, transparent);
+}
+
+.rw-term-copy {
+  display: inline-flex;
+  size: 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  shrink: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--landing-muted);
+  transition:
+    background-color 140ms ease,
+    color 140ms ease;
+}
+
+/* Registry workspace v6 — fixed scroll preview + blurred code glimpse */
+.atro-landing .rw-shell {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: left;
+  isolation: isolate;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 36px 72px -44px rgba(0, 0, 0, 0.92),
+    0 0 80px -48px rgba(11, 123, 255, 0.22);
+}
+
+.atro-landing .rw-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--landing-border);
+  background: color-mix(in oklch, var(--landing-fg) 3%, transparent);
+  padding-inline-end: 0.55rem;
+}
+
+.atro-landing .rw-tabs {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.atro-landing .rw-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.atro-landing .rw-tab {
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--landing-muted);
+  transition: color 160ms ease;
+}
+.atro-landing .rw-tab:hover {
+  color: color-mix(in oklch, var(--landing-fg) 78%, transparent);
+}
+.atro-landing .rw-tab--active {
+  color: var(--landing-fg);
+}
+.atro-landing .rw-tab-ink {
+  position: absolute;
+  inset-inline: 0.55rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--landing-fg);
+}
+
+.atro-landing .rw-tab-docs {
+  flex-shrink: 0;
+  padding: 0.55rem 0.35rem;
+  font-size: 0.75rem;
+  color: var(--landing-muted);
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+.atro-landing .rw-tab-docs:hover {
+  color: var(--landing-fg);
+}
+
+.atro-landing .rw-body {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--landing-border);
+  background:
+    radial-gradient(
+      90% 60% at 50% -8%,
+      color-mix(in oklch, #0b7bff 12%, transparent),
+      transparent 52%
+    ),
+    var(--background);
+}
+
+/* Fixed-height preview — component stays full size; scroll if taller */
+.atro-landing .rw-preview-pane {
+  --color-brand: #0b7bff;
+}
+
+.atro-landing .rw-preview-stack {
+  position: relative;
+}
+
+.atro-landing .rw-viewport {
+  height: 16rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--landing-fg) 28%, transparent)
+    transparent;
+}
+@media (min-width: 768px) {
+  .atro-landing .rw-viewport {
+    height: 19rem;
+  }
+}
+.atro-landing .rw-viewport::-webkit-scrollbar {
+  width: 8px;
+}
+.atro-landing .rw-viewport::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--landing-fg) 22%, transparent);
+}
+.atro-landing .rw-viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.atro-landing .rw-viewport--hug {
+  height: auto !important;
+  min-height: 0;
+  max-height: 19rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1.25rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  scrollbar-gutter: auto;
+}
+@media (min-width: 768px) {
+  .atro-landing .rw-viewport--hug {
+    height: auto !important;
+    max-height: 19rem;
+  }
+}
+
+.atro-landing .rw-viewport--fit {
+  height: 16rem;
+  padding: 0.85rem 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .atro-landing .rw-viewport--fit {
+    height: 20rem;
+  }
+}
+
+.atro-landing .rw-viewport-track {
+  overflow: hidden;
+}
+
+.atro-landing .rw-stage-scaler {
+  will-change: transform;
+}
+
+/* Waitlist stage board — landing + docs (Preview = install) */
+.rw-waitlist-board {
+  border: 1px solid var(--landing-border, var(--border-subtle));
+  border-radius: 0.65rem;
+  background: color-mix(
+    in oklch,
+    var(--landing-fg, var(--foreground)) 2.5%,
+    var(--background)
+  );
+  padding: 1.35rem 1.25rem 1.25rem;
+}
+.rw-waitlist-board-head {
+  margin-bottom: 1.15rem;
+}
+.rw-waitlist-board-stamp {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--landing-muted, var(--muted-foreground));
+}
+.rw-waitlist-board-title {
+  margin: 0.45rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  color: var(--landing-fg, var(--foreground));
+}
+.rw-waitlist-board-lede {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--landing-muted, var(--muted-foreground));
+}
+
+.atro-landing .rw-preview-slot[data-registry-preview="waitlist-form"] {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* Contact — component already has its own border; don't double-frame */
+.atro-landing .rw-preview-slot[data-registry-preview="contact-form"] {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.atro-landing .rw-preview-missing {
+  margin: 0;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--landing-muted);
+}
+.atro-landing .rw-preview-missing code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--landing-fg);
+}
+
+/* Code glimpse — 2–4 lines + blur + expand */
+.atro-landing .rw-code-pane {
+  border-top: 1px solid var(--landing-border);
+  background: color-mix(in oklch, var(--landing-fg) 2%, transparent);
+}
+
+.atro-landing .rw-code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 0.7rem;
+  border-bottom: 1px solid color-mix(in oklch, var(--landing-fg) 6%, transparent);
+}
+
+.atro-landing .rw-code-meta {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.atro-landing .rw-code-glyph {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  color: color-mix(in oklch, #0b7bff 70%, var(--landing-muted));
+}
+
+.atro-landing .rw-code-file {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--landing-muted);
+}
+
+.atro-landing .rw-code-expand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  border: 1px solid var(--landing-border);
+  border-radius: 0.4rem;
+  background: transparent;
+  padding: 0.22rem 0.45rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--landing-muted);
+  transition:
+    color 140ms ease,
+    border-color 140ms ease,
+    background-color 140ms ease;
+}
+.atro-landing .rw-code-expand:hover {
+  border-color: color-mix(in oklch, var(--landing-fg) 22%, transparent);
+  color: var(--landing-fg);
+  background: color-mix(in oklch, var(--landing-fg) 4%, transparent);
+}
+
+.atro-landing .rw-glimpse {
+  position: relative;
+  overflow: hidden;
+}
+
+.atro-landing .rw-glimpse-code,
+.atro-landing .rw-code-full .rw-glimpse-code {
+  margin: 0;
+  padding: 0.45rem 0.7rem 2.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+}
+.atro-landing .rw-code-full .rw-glimpse-code {
+  padding-bottom: 0.75rem;
+}
+
+.atro-landing .rw-glimpse-veil {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2.75rem;
+  background: linear-gradient(
+    to top,
+    color-mix(in oklch, var(--background) 92%, transparent) 10%,
+    transparent 100%
+  );
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  mask-image: linear-gradient(to top, black 20%, transparent 95%);
+  -webkit-mask-image: linear-gradient(to top, black 20%, transparent 95%);
+}
+
+.atro-landing .rw-glimpse-cta {
+  position: absolute;
+  left: 50%;
+  bottom: 0.45rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transform: translateX(-50%);
+  cursor: pointer;
+  border: 1px solid color-mix(in oklch, var(--landing-fg) 16%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--landing-surface) 88%, transparent);
+  padding: 0.28rem 0.7rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--landing-fg);
+  box-shadow: 0 8px 24px -16px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease;
+}
+.atro-landing .rw-glimpse-cta:hover {
+  border-color: color-mix(in oklch, #0b7bff 45%, var(--landing-border));
+  background: color-mix(in oklch, var(--landing-surface) 96%, #0b7bff);
+}
+
+.atro-landing .rw-code-full {
+  overflow: hidden;
+  border-top: 1px solid color-mix(in oklch, var(--landing-fg) 6%, transparent);
+}
+.atro-landing .rw-code-full .rw-glimpse-code {
+  max-height: 11rem;
+  overflow: auto;
+  padding-bottom: 0.75rem;
+  scrollbar-width: thin;
+}
+
+.atro-landing .rw-code-more {
+  margin: 0;
+  padding: 0 0.7rem 0.65rem;
+  font-size: 0.625rem;
+  color: var(--landing-muted);
+}
+
+.atro-landing .rw-source-line {
+  display: flex;
+  gap: 0.75rem;
+  white-space: pre;
+  color: color-mix(in oklch, var(--landing-fg) 82%, transparent);
+}
+
+.atro-landing .rw-source-line--hl {
+  margin-inline: -0.3rem;
+  padding-inline: 0.3rem;
+  border-radius: 0.25rem;
+  background: color-mix(in oklch, #0b7bff 12%, transparent);
+}
+
+.atro-landing .rw-source-gutter {
+  width: 1.4rem;
+  flex-shrink: 0;
+  text-align: right;
+  color: color-mix(in oklch, var(--landing-fg) 28%, transparent);
+  user-select: none;
+}
+
+.atro-landing .rw-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem 0.65rem;
+  background: color-mix(in oklch, var(--landing-fg) 2.5%, transparent);
+}
+@media (min-width: 640px) {
+  .atro-landing .rw-foot {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.atro-landing .rw-host-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.atro-landing .rw-host-chip {
+  border-radius: 0.3rem;
+  border: 1px solid var(--landing-border);
+  padding: 0.2rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--landing-muted);
+}
+
+.atro-landing .rw-foot .rw-terminal {
+  border-top: none;
+  padding: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 /* Optional WebGL sphere — subtle underpainting on .atro-hero-canvas */

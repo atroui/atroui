@@ -12,13 +12,13 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function UpdatesPage() {
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <main className="mx-auto w-full max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
       <header className="space-y-3">
-        <p className="ms-stamp">List</p>
-        <h1 className="ds-display text-3xl text-foreground sm:text-4xl">
+        <p className="ms-stamp">Updates</p>
+        <h1 className="ds-display text-[2rem] tracking-tight text-foreground sm:text-4xl">
           Major updates, in detail
         </h1>
-        <p className="max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+        <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
           The pipeline is long. This list is short. You get the releases that
           change the product: Host APIs, launch workflow, identity, install
           path. Written like the{" "}
@@ -29,9 +29,12 @@ export default function UpdatesPage() {
         </p>
       </header>
 
-      <section className="mt-10 rounded-xl border border-border-subtle bg-card p-5 sm:p-6">
+      <section className="mt-10 border-t border-border-subtle pt-8">
         <h2 className="ds-headline text-base text-foreground">Subscribe</h2>
-        <div className="mt-4">
+        <p className="mt-2 text-[14px] text-muted-foreground">
+          Letters when a major slice ships — not a weekly drip.
+        </p>
+        <div className="mt-5">
           <UpdatesSignup source="updates-page" />
         </div>
       </section>
@@ -39,8 +42,13 @@ export default function UpdatesPage() {
       <section className="mt-10 space-y-4">
         <h2 className="ds-headline text-base text-foreground">What you get</h2>
         <ul className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-muted-foreground">
-          <li>A letter when a major slice ships, with why it matters and how to install it.</li>
-          <li>Links to the live tools and the long-form post. One primary path.</li>
+          <li>
+            A letter when a major slice ships, with why it matters and how to
+            install it.
+          </li>
+          <li>
+            Links to the live tools and the long-form post. One primary path.
+          </li>
           <li>
             The same BYOK rule: AtroUI never holds your keys. This list is
             Resend on our Host API, not a third-party drip product.
@@ -49,7 +57,9 @@ export default function UpdatesPage() {
       </section>
 
       <section className="mt-8 space-y-4">
-        <h2 className="ds-headline text-base text-foreground">What you don&apos;t</h2>
+        <h2 className="ds-headline text-base text-foreground">
+          What you don&apos;t
+        </h2>
         <ul className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-muted-foreground">
           <li>Weekly recaps, growth experiments, or Plus/Studio pitches.</li>
           <li>Patch noise. Those stay on GitHub releases and the changelog.</li>

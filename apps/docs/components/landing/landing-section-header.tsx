@@ -36,14 +36,15 @@ export function LandingSectionHeader({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4",
-        action && "sm:flex-row sm:items-end sm:justify-between",
+        "flex flex-col gap-3",
+        action && !centered && "w-full sm:flex-row sm:items-start sm:justify-between",
+        action && centered && "sm:flex-row sm:items-end sm:justify-between",
         centered && "mx-auto max-w-2xl text-center",
-        !centered && "max-w-2xl",
+        !centered && !action && "max-w-2xl",
         className
       )}
     >
-      <div className={cn(centered && "mx-auto")}>
+      <div className={cn(centered && "mx-auto", !centered && "max-w-2xl")}>
         {showStamp ? (
           <p className={cn("ms-stamp", centered && "mx-auto w-fit")}>{stamp}</p>
         ) : null}
@@ -53,22 +54,30 @@ export function LandingSectionHeader({
         <h2
           className={cn(
             "ds-headline text-foreground",
-            showStamp || showEyebrow ? "mt-5" : "mt-0",
-            centered
-              ? "text-3xl sm:text-4xl md:text-[2.75rem]"
-              : "text-3xl sm:text-4xl md:text-[2.75rem]"
+            showStamp || showEyebrow ? "mt-3" : "mt-0",
+            "text-[1.4rem] leading-snug sm:text-[1.55rem] md:text-[1.65rem]"
           )}
         >
           {title}
         </h2>
         {lede ? (
-          <p className={cn("ds-lede mt-4", centered ? "mx-auto max-w-xl" : "max-w-xl")}>
+          <p
+            className={cn(
+              "ds-lede mt-2 text-[0.9375rem] leading-relaxed",
+              centered ? "mx-auto max-w-xl" : "max-w-xl"
+            )}
+          >
             {lede}
           </p>
         ) : null}
       </div>
       {action ? (
-        <div className={cn("shrink-0", centered ? "mx-auto" : "self-start sm:self-auto")}>
+        <div
+          className={cn(
+            "shrink-0",
+            centered ? "mx-auto" : "self-start sm:self-auto"
+          )}
+        >
           {action}
         </div>
       ) : null}
