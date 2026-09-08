@@ -45,7 +45,7 @@ function SearchDialog({
         aria-modal="true"
         aria-label="Search documentation"
         tabIndex={-1}
-        className="relative w-full max-w-lg overflow-hidden rounded-xl border border-border-subtle bg-card shadow-[0_24px_48px_-24px_rgba(0,0,0,0.65)]"
+        className="relative w-full max-w-lg overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card shadow-[0_24px_48px_-24px_rgba(0,0,0,0.65)]"
         initial={reduce ? false : { opacity: 0, y: 10, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 6, scale: 0.98 }}
@@ -86,7 +86,7 @@ function SearchDialog({
                 key={item.href}
                 type="button"
                 className={cn(
-                  "flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-white/5"
+                  "flex w-full items-center justify-between gap-3 rounded-[var(--atro-control-radius)] px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-white/5"
                 )}
                 onClick={() => onSelect(item)}
               >

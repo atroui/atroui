@@ -309,6 +309,36 @@ export function DemoTextarea() {
   return <Textarea placeholder="Write a message…" className="max-w-md" />
 }
 
+export function DemoTextareaInvalid() {
+  return (
+    <div className="w-full max-w-md space-y-1.5 text-left">
+      <label htmlFor="demo-textarea-notes" className="text-sm font-medium">
+        Release notes
+      </label>
+      <Textarea
+        id="demo-textarea-notes"
+        aria-invalid
+        aria-describedby="demo-textarea-notes-error"
+        defaultValue="Ship it"
+      />
+      <p id="demo-textarea-notes-error" className="text-sm text-destructive">
+        Add at least 20 characters.
+      </p>
+    </div>
+  )
+}
+
+export function DemoTextareaAutoSize() {
+  return (
+    <Textarea
+      className="max-h-40 max-w-md overflow-y-auto"
+      defaultValue={
+        "Review notes\n\n- Tighten the empty state copy\n- Keep the caret blink on search\n- Drop the second CTA in the tray"
+      }
+    />
+  )
+}
+
 export function DemoFormSelect() {
   const [value, setValue] = React.useState("")
   return (
