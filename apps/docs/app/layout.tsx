@@ -1,16 +1,10 @@
 import type { Metadata, Viewport } from "next"
-import { Caveat, Geist_Mono, Inter, Outfit } from "next/font/google"
+import { Caveat, Geist_Mono, Outfit } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import "atroui/globals.css"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -135,7 +129,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${outfit.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
+        className={`${outfit.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }: Props) {
         date={post.date}
         basePath="/blog"
       />
-      {/* ~65ch column — comfortable tracking for Merriweather at 17–18px */}
+      {/* ~65ch column — comfortable tracking for Outfit body at 17–18px */}
       <div className="atro-essay">
         <DocsArticleHeader
           eyebrow={

@@ -2,22 +2,26 @@ import { Github } from "lucide-react"
 import { ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
-import { SiteNav } from "@/components/site-nav"
+import { MobileSidebar } from "@/components/sidebar"
 import { SharedBrand, TransitionLink } from "@/components/view-transitions"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 /**
- * Marketing shell chrome — Zed sticky bar + Components · Docs · Blog megas.
- * Docs book uses DocsHeader instead (dual-shell).
+ * Docs book header — Zed's index.hbs bar, not the storefront nav.
+ * Same sticky/blur chrome and shared `site-header` transition name as
+ * SiteHeader so the bar holds its place across the shell swap; the Components ·
+ * Docs · Blog megas stay on marketing routes so the book room reads quiet.
  */
-export function SiteHeader() {
+export function DocsHeader() {
   return (
     <header
       className="sticky top-0 z-40 border-b border-border-subtle bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70"
       style={{ viewTransitionName: "site-header" }}
     >
       <div className="atro-shell flex h-14 items-center gap-3">
+        <MobileSidebar />
+
         <SharedBrand>
           <TransitionLink
             href="/"
@@ -30,8 +34,6 @@ export function SiteHeader() {
             </span>
           </TransitionLink>
         </SharedBrand>
-
-        <SiteNav />
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
           <div className="hidden md:block">
@@ -46,10 +48,9 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hidden h-9 items-center gap-1.5 rounded-[var(--atro-control-radius)] px-2.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+            className="hidden size-9 items-center justify-center rounded-[var(--atro-control-radius)] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
           >
             <Github className="size-4" aria-hidden />
-            GitHub
           </a>
           <TransitionLink
             href="/docs/components"

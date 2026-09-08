@@ -1,25 +1,20 @@
-import { IBM_Plex_Serif } from "next/font/google"
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
 import { DocsLayoutShell } from "@/components/docs-layout"
+import { DocsExitFooter } from "@/components/docs/docs-exit-footer"
+import { DocsHeader } from "@/components/docs/docs-header"
 
 /**
  * Docs book room — Zed/mdBook spine + shared site chrome.
- * Serif titles for reading class; Outfit body via root; SiteFooter closes the room.
+ * One type stack with the rest of the site (Outfit via root). The book gets its
+ * own sparse header and a thin exit strip below the chapter pager; the nav megas
+ * and the mega sitemap are marketing-only (Zed dual-shell: docs.zed.dev keeps
+ * the book, zed.dev keeps the storefront).
  */
-const docsSerif = IBM_Plex_Serif({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-docs-serif",
-  display: "swap",
-})
-
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`docs-book ${docsSerif.variable}`}>
-      <SiteHeader />
+    <div className="docs-book">
+      <DocsHeader />
       <DocsLayoutShell>{children}</DocsLayoutShell>
-      <SiteFooter />
+      <DocsExitFooter />
     </div>
   )
 }

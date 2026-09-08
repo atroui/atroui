@@ -9,6 +9,8 @@ export type NavItem = {
 export type NavSection = {
   title: string
   items: NavItem[]
+  /** Label used in the Components mega + footer, when "Tools" would collide with the tool rooms. */
+  megaLabel?: string
 }
 
 /**
@@ -456,6 +458,7 @@ export const navigation: NavSection[] = [
   },
   {
     title: "Tools",
+    megaLabel: "Tool blocks",
     items: [
       {
         title: "OG Examples",
@@ -534,12 +537,32 @@ export const navigation: NavSection[] = [
 
 export const allNavItems = navigation.flatMap((section) => section.items)
 
-export const catalogNavItems = navigation
-  .filter(
-    (section) =>
-      section.title !== "Getting Started" && section.title !== "More"
-  )
-  .flatMap((section) => section.items)
+/** Catalog sections only — the one taxonomy behind the Components mega and footer. */
+export const catalogSections = navigation.filter(
+  (section) => section.title !== "Getting Started" && section.title !== "More"
+)
+
+export const catalogNavItems = catalogSections.flatMap(
+  (section) => section.items
+)
+
+/**
+ * Tool rooms — running apps, not catalog entries. Live under Components in the
+ * nav mega and in the footer Tools column so there is a single map.
+ */
+export const toolApps: { title: string; href: string; description: string }[] =
+  [
+    {
+      title: "OG workspace",
+      href: "/og",
+      description: "Generate social cards in the browser",
+    },
+    {
+      title: "Project planner",
+      href: "/planner",
+      description: "Scope a build, hand off to OG",
+    },
+  ]
 
 export const badgeLabel: Record<NonNullable<NavItem["badge"]>, string> = {
   "host-api": "Host API",

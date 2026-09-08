@@ -30,7 +30,7 @@ const FEATURES: {
     title: "Install like any other shadcn block",
     body: "npx shadcn add @atroui/… copies TypeScript into your repo. No private CDN — you own every line from the first commit.",
     href: "/docs/registry",
-    cta: "Learn More",
+    cta: "Registry docs",
   },
   {
     id: "host-api",
@@ -38,7 +38,7 @@ const FEATURES: {
     title: "Server routes on your keys",
     body: "Waitlist, contact, newsletter, OG, and scope handlers ship as Next.js routes. Wire Resend or SMTP once in your env.",
     href: "/docs/host-api",
-    cta: "Learn More",
+    cta: "Host API docs",
   },
   {
     id: "blocks",
@@ -46,7 +46,7 @@ const FEATURES: {
     title: "Sections, not atoms",
     body: "Heroes, pricing, and page chrome land ready to edit. Change CONTENT at the top — the structure is already production-shaped.",
     href: "/docs/components?category=Blocks",
-    cta: "Learn More",
+    cta: "Browse blocks",
   },
   {
     id: "tools",
@@ -54,7 +54,7 @@ const FEATURES: {
     title: "Live workspaces, not just docs",
     body: "OG workspace and Project planner run on this site. Scope a build, generate a social card — then install the same blocks into your repo.",
     href: "/og",
-    cta: "Learn More",
+    cta: "Open the OG workspace",
   },
 ]
 
@@ -100,10 +100,7 @@ export function LandingJustWorks() {
             <p className="ds-body mt-3 max-w-prose text-muted-foreground">
               {feature.body}
             </p>
-            <Link
-              href={feature.href}
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-            >
+            <Link href={feature.href} className="atro-btn-ghost mt-5">
               {feature.cta}
               <ArrowRight className="size-3.5" aria-hidden />
             </Link>

@@ -2,8 +2,9 @@ import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
 /**
- * Zed-style page title: large serif H1 + light rule + lede.
- * No marketing stamp. Optional eyebrow for section path only.
+ * Shared arrival header — docs, essays, and tool rooms all land the same way:
+ * large Outfit H1 + light rule + lede. No marketing stamp.
+ * Optional eyebrow for section path only.
  */
 export function DocsArticleHeader({
   title,

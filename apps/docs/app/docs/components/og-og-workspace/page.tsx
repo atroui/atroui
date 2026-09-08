@@ -16,7 +16,7 @@ export default function Page() {
       registryName="og-workspace"
       href="/docs/components/og-og-workspace"
       title="Next.js OG Image Workspace (Satori + BYOK)"
-      description="An interactive, client-side Open Graph social card workspace UI for Next.js powered by Satori, tailwindcss, and AI prompt overrides."
+      description="An interactive, client-side Open Graph social card workspace UI for Next.js powered by Satori, tailwindcss, and AI prompt overrides. Running live on this site at /og."
       preview={<DemoOgWorkspace />}
       code={'import { OgWorkspace } from "@/components/blocks/og-workspace"\n\n<OgWorkspace />'}
       fullBleed={true}
@@ -32,48 +32,29 @@ export default function Page() {
           </code>{" "}
           (or Google AI keys for freeform prompts) in{" "}
           <strong className="font-medium text-foreground">your</strong> env.
-          AtroUI never ships keys. Preview-only downloads work without AI.
-          Hosted workspace on this site:{" "}
+          AtroUI never ships keys. Preview-only downloads work without AI. The
+          live workspace runs on this site at{" "}
           <Link href="/og" className="text-brand underline underline-offset-2">
             /og
           </Link>
-          . Live sample elsewhere:{" "}
-          <a
-            href="https://www.makershot.tech/og"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand underline underline-offset-2"
-          >
-            makershot.tech/og
-          </a>
           .
         </>
       }
       extra={
         <section className="md-glass space-y-2 p-5">
           <h2 className="ds-headline text-base text-foreground">
-            Live demo elsewhere
+            Try it before you install
           </h2>
           <p className="text-[15px] leading-relaxed text-muted-foreground">
-            Sample outputs and the hybrid FLUX + Satori pipeline are running in
-            production at{" "}
-            <a
-              href="https://www.makershot.tech/og"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand underline underline-offset-2"
-            >
-              https://www.makershot.tech/og
-            </a>
-            . This page is UI + integration docs only.
+            The hybrid FLUX + Satori pipeline runs here on atroui.com at{" "}
+            <Link href="/og" className="text-brand underline underline-offset-2">
+              /og
+            </Link>
+            . Generate a card, download it, then run the install command above
+            to own the same source in your repo.
           </p>
-          <Link
-            href="https://www.makershot.tech/og"
-            className="atro-btn mt-2 inline-flex w-fit"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open live OG tool
+          <Link href="/og" className="atro-btn mt-2 inline-flex w-fit">
+            Open the OG workspace
           </Link>
         </section>
       }

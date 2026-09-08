@@ -1,41 +1,47 @@
 import Link from "next/link"
 import { Github } from "lucide-react"
 import { LogoMark } from "@/components/logo-mark"
+import { catalogSections, toolApps } from "@/lib/navigation"
 
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 const NPM_URL = "https://www.npmjs.com/package/atroui"
 
 type FooterLink = { label: string; href: string; external?: boolean }
 
-/** Product map — Zed footer IA: Product · Resources · Tools · Company */
+/**
+ * Same spine as the nav — Components · Docs · Blog — expanded into columns.
+ * Catalog categories and tool rooms come from `navigation.ts` so the footer
+ * can never drift into a second taxonomy.
+ */
 const columns: { heading: string; links: FooterLink[] }[] = [
   {
-    heading: "Product",
+    heading: "Components",
     links: [
-      { label: "Components", href: "/docs/components" },
-      { label: "Registry", href: "/docs/registry" },
-      { label: "Host APIs", href: "/docs/host-api" },
-      { label: "Theming", href: "/docs/theming" },
-      { label: "Collections", href: "/docs/collections" },
+      { label: "Gallery", href: "/docs/components" },
+      ...catalogSections.map((section) => ({
+        label: section.megaLabel ?? section.title,
+        href: `/docs/components?category=${encodeURIComponent(section.title)}`,
+      })),
     ],
   },
   {
-    heading: "Resources",
+    heading: "Docs",
     links: [
       { label: "Getting Started", href: "/docs" },
       { label: "Installation", href: "/docs/installation" },
-      { label: "Launch workflow", href: "/docs/guides/launch-workflow" },
+      { label: "Registry", href: "/docs/registry" },
+      { label: "Host APIs", href: "/docs/host-api" },
+      { label: "Theming", href: "/docs/theming" },
       { label: "Compare", href: "/docs/compare" },
-      { label: "Changelog", href: "/docs/changelog" },
+      { label: "Glossary", href: "/docs/glossary" },
     ],
   },
   {
     heading: "Tools",
     links: [
-      { label: "OG workspace", href: "/og" },
-      { label: "Project planner", href: "/planner" },
-      { label: "Identity kit", href: "/docs/identity" },
-      { label: "Brand kit", href: "/docs/brand" },
+      ...toolApps.map((tool) => ({ label: tool.title, href: tool.href })),
+      { label: "Launch workflow", href: "/docs/guides/launch-workflow" },
+      { label: "Collections", href: "/docs/collections" },
     ],
   },
   {
@@ -43,7 +49,9 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "Blog", href: "/blog" },
       { label: "Updates", href: "/updates" },
-      { label: "Glossary", href: "/docs/glossary" },
+      { label: "Changelog", href: "/docs/changelog" },
+      { label: "Brand kit", href: "/docs/brand" },
+      { label: "Identity kit", href: "/docs/identity" },
       { label: "GitHub", href: GITHUB_REPO, external: true },
       { label: "npm · atroui", href: NPM_URL, external: true },
     ],
@@ -72,6 +80,10 @@ function FooterAnchor({ link }: { link: FooterLink }) {
   )
 }
 
+/**
+ * Marketing-shell only: landing, blog, updates, tool rooms. Docs rooms
+ * (`/docs/**`) close with their own exit footer — never this mega map.
+ */
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-border-subtle bg-background">

@@ -4,100 +4,121 @@ import * as React from "react"
 import { usePathname } from "next/navigation"
 import { ChevronDown } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import { navigation } from "@/lib/navigation"
+import { catalogSections, toolApps } from "@/lib/navigation"
 import { TransitionLink } from "@/components/view-transitions"
 import { dialogTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 /**
- * Product / Resources IA — Zed grammar for a registry product.
- * Product → Components mega + Tools. Resources → Docs + Blog.
+ * One IA spine — Components · Docs · Blog.
+ * Components owns the catalog and the tool rooms, Docs owns the reading spine,
+ * Blog owns news. Megas reveal depth only on intent (gradual revelation).
  */
+type MenuId = "components" | "docs"
+
 type NavItem = {
   href: string
   label: string
-  menu?: "components" | "product" | "resources"
+  menu?: MenuId
 }
 
 const items: NavItem[] = [
-  { href: "/docs/components", label: "Product", menu: "product" },
-  { href: "/docs", label: "Resources", menu: "resources" },
   { href: "/docs/components", label: "Components", menu: "components" },
+  { href: "/docs", label: "Docs", menu: "docs" },
+  { href: "/blog", label: "Blog" },
 ]
 
-const categories = navigation
-  .filter(
-    (s) =>
-      s.title !== "Getting Started" && s.title !== "More"
-  )
-  .map((s) => ({
-    title: s.title,
-    count: s.items.length,
-    sample: s.items.slice(0, 3).map((i) => i.title),
-  }))
+const categories = catalogSections.map((section) => ({
+  title: section.megaLabel ?? section.title,
+  href: `/docs/components?category=${encodeURIComponent(section.title)}`,
+  count: section.items.length,
+  sample: section.items.slice(0, 3).map((item) => item.title),
+}))
 
-function isActive(pathname: string, href: string, label: string) {
-  if (label === "Product") {
+const docsGroups = [
+  {
+    heading: "Start",
+    links: [
+      { href: "/docs", title: "Getting Started", body: "What AtroUI is" },
+      {
+        href: "/docs/installation",
+        title: "Installation",
+        body: "shadcn CLI setup",
+      },
+      {
+        href: "/docs/registry",
+        title: "Registry",
+        body: "Own source via shadcn add @atroui/…",
+      },
+      {
+        href: "/docs/host-api",
+        title: "Host APIs",
+        body: "Forms & AI routes on your keys",
+      },
+      {
+        href: "/docs/theming",
+        title: "Theming",
+        body: "Dark-first tokens you control",
+      },
+    ],
+  },
+  {
+    heading: "Reference",
+    links: [
+      {
+        href: "/docs/guides/launch-workflow",
+        title: "Launch workflow",
+        body: "Scope → social card",
+      },
+      {
+        href: "/docs/collections",
+        title: "Collections",
+        body: "Jobs: forms, OG, launch",
+      },
+      {
+        href: "/docs/compare",
+        title: "Compare",
+        body: "vs copy-paste kits",
+      },
+      { href: "/docs/brand", title: "Brand kit", body: "Logo & voice" },
+      { href: "/docs/changelog", title: "Changelog", body: "Releases" },
+    ],
+  },
+] as const
+
+function isActive(pathname: string, label: string) {
+  if (label === "Components") {
     return (
       pathname.startsWith("/docs/components") ||
-      pathname.startsWith("/docs/registry") ||
-      pathname.startsWith("/docs/host-api") ||
-      pathname === "/og" ||
-      pathname === "/planner"
+      toolApps.some(
+        (tool) =>
+          pathname === tool.href || pathname.startsWith(`${tool.href}/`)
+      )
     )
   }
-  if (label === "Resources") {
+  if (label === "Docs") {
     return (
       pathname === "/docs" ||
-      pathname.startsWith("/docs/installation") ||
-      pathname.startsWith("/docs/changelog") ||
-      pathname.startsWith("/blog") ||
-      pathname.startsWith("/updates") ||
       (pathname.startsWith("/docs/") &&
-        !pathname.startsWith("/docs/components") &&
-        !pathname.startsWith("/docs/registry") &&
-        !pathname.startsWith("/docs/host-api"))
+        !pathname.startsWith("/docs/components"))
     )
   }
-  if (href === "/docs/components") return pathname.startsWith("/docs/components")
-  return pathname === href || pathname.startsWith(`${href}/`)
+  if (label === "Blog") {
+    return pathname.startsWith("/blog") || pathname.startsWith("/updates")
+  }
+  return false
 }
 
-function ProductMenu({ onNavigate }: { onNavigate: () => void }) {
+function MenuSurface({
+  id,
+  width,
+  children,
+}: {
+  id: string
+  width: string
+  children: React.ReactNode
+}) {
   const reduce = useReducedMotion()
-  const links = [
-    {
-      href: "/docs/registry",
-      title: "Registry",
-      body: "Own source via shadcn add @atroui/…",
-    },
-    {
-      href: "/docs/host-api",
-      title: "Host APIs",
-      body: "Forms & AI routes on your keys",
-    },
-    {
-      href: "/docs/components",
-      title: "Components",
-      body: "Live gallery of primitives & blocks",
-    },
-    {
-      href: "/og",
-      title: "OG workspace",
-      body: "Generate social cards in the browser",
-    },
-    {
-      href: "/planner",
-      title: "Project planner",
-      body: "Scope a build, hand off to OG",
-    },
-    {
-      href: "/docs/theming",
-      title: "Theming",
-      body: "Dark-first tokens you control",
-    },
-  ] as const
-
   return (
     <motion.div
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 6 }}
@@ -106,90 +127,59 @@ function ProductMenu({ onNavigate }: { onNavigate: () => void }) {
       transition={dialogTween}
       className="absolute left-0 top-full z-50 pt-3"
     >
-      <div className="w-[28rem] overflow-hidden rounded-xl border border-border-subtle bg-popover/98 p-2 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)] backdrop-blur-xl">
-        <div className="grid grid-cols-2 gap-1">
-          {links.map((link) => (
-            <TransitionLink
-              key={link.href}
-              href={link.href}
-              transitionTypes={[]}
-              onClick={onNavigate}
-              className="rounded-lg border border-transparent p-3 transition-colors hover:border-border-subtle hover:bg-white/[0.04]"
-            >
-              <span className="text-[13px] font-medium text-foreground">
-                {link.title}
-              </span>
-              <p className="ds-meta mt-1">{link.body}</p>
-            </TransitionLink>
-          ))}
-        </div>
+      <div
+        id={id}
+        className={cn(
+          "overflow-hidden rounded-xl border border-border-subtle bg-popover/98 p-2 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)] backdrop-blur-xl",
+          width
+        )}
+      >
+        {children}
       </div>
     </motion.div>
   )
 }
 
-function ResourcesMenu({ onNavigate }: { onNavigate: () => void }) {
-  const reduce = useReducedMotion()
-  const links = [
-    { href: "/docs", title: "Getting Started", body: "What AtroUI is" },
-    { href: "/docs/installation", title: "Installation", body: "CLI setup" },
-    {
-      href: "/docs/guides/launch-workflow",
-      title: "Launch workflow",
-      body: "Scope → social card",
-    },
-    { href: "/blog", title: "Blog", body: "Guides & essays" },
-    { href: "/docs/changelog", title: "Changelog", body: "Releases" },
-    { href: "/updates", title: "Updates", body: "Major news by email" },
-  ] as const
-
+function MenuLink({
+  href,
+  title,
+  body,
+  onNavigate,
+}: {
+  href: string
+  title: string
+  body: string
+  onNavigate: () => void
+}) {
   return (
-    <motion.div
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={reduce ? { opacity: 0 } : { opacity: 0, y: 4 }}
-      transition={dialogTween}
-      className="absolute left-0 top-full z-50 pt-3"
+    <TransitionLink
+      href={href}
+      transitionTypes={[]}
+      onClick={onNavigate}
+      className="rounded-lg border border-transparent p-3 transition-colors hover:border-border-subtle hover:bg-white/[0.04]"
     >
-      <div className="w-[26rem] overflow-hidden rounded-xl border border-border-subtle bg-popover/98 p-2 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)] backdrop-blur-xl">
-        <div className="grid grid-cols-2 gap-1">
-          {links.map((link) => (
-            <TransitionLink
-              key={link.href}
-              href={link.href}
-              transitionTypes={[]}
-              onClick={onNavigate}
-              className="rounded-lg border border-transparent p-3 transition-colors hover:border-border-subtle hover:bg-white/[0.04]"
-            >
-              <span className="text-[13px] font-medium text-foreground">
-                {link.title}
-              </span>
-              <p className="ds-meta mt-1">{link.body}</p>
-            </TransitionLink>
-          ))}
-        </div>
-      </div>
-    </motion.div>
+      <span className="text-[13px] font-medium text-foreground">{title}</span>
+      <p className="ds-meta mt-1">{body}</p>
+    </TransitionLink>
   )
 }
 
-function ComponentsMenu({ onNavigate }: { onNavigate: () => void }) {
-  const reduce = useReducedMotion()
+function ComponentsMenu({
+  id,
+  onNavigate,
+}: {
+  id: string
+  onNavigate: () => void
+}) {
   return (
-    <motion.div
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={reduce ? { opacity: 0 } : { opacity: 0, y: 4 }}
-      transition={dialogTween}
-      className="absolute left-0 top-full z-50 pt-3"
-    >
-      <div className="w-[40rem] overflow-hidden rounded-xl border border-border-subtle bg-popover/98 p-2 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)] backdrop-blur-xl">
-        <div className="grid grid-cols-3 gap-1.5">
+    <MenuSurface id={id} width="w-[42rem]">
+      <div className="grid grid-cols-[11rem_1fr] gap-2">
+        <div className="flex flex-col gap-2">
           <TransitionLink
             href="/docs/components"
             transitionTypes={[]}
             onClick={onNavigate}
-            className="col-span-1 row-span-2 flex flex-col justify-between rounded-lg border border-border-subtle bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]"
+            className="flex flex-1 flex-col justify-between rounded-lg border border-border-subtle bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]"
           >
             <div>
               <p className="text-lg font-medium tracking-[-0.02em] text-foreground">
@@ -204,45 +194,106 @@ function ComponentsMenu({ onNavigate }: { onNavigate: () => void }) {
             </span>
           </TransitionLink>
 
-          {categories.map((cat) => (
-            <TransitionLink
-              key={cat.title}
-              href={`/docs/components?category=${encodeURIComponent(cat.title)}`}
-              transitionTypes={[]}
-              onClick={onNavigate}
-              className="group rounded-lg border border-transparent p-3 transition-colors hover:border-border-subtle hover:bg-white/[0.04]"
-            >
-              <div className="flex items-baseline justify-between gap-2">
-                <span className="text-base font-medium tracking-[-0.01em] text-foreground">
-                  {cat.title}
-                </span>
-                <span className="font-mono text-[11px] text-muted-foreground">
-                  {cat.count}
-                </span>
-              </div>
-              <p className="ds-meta mt-1 truncate">{cat.sample.join(" · ")}</p>
-            </TransitionLink>
-          ))}
+          <div className="rounded-lg border border-border-subtle p-2">
+            <h3 className="ds-mono-label mb-1.5 px-1">Tools</h3>
+            <div className="flex flex-col">
+              {toolApps.map((tool) => (
+                <TransitionLink
+                  key={tool.href}
+                  href={tool.href}
+                  transitionTypes={[]}
+                  onClick={onNavigate}
+                  className="rounded-md px-1 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
+                >
+                  {tool.title}
+                </TransitionLink>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="ds-mono-label mb-1.5 px-3 pt-2">Catalog</h3>
+          {/* Odd catalog count: let the last card fill the row instead of leaving a hole. */}
+          <div className="grid grid-cols-2 gap-1 [&>a:last-child:nth-child(odd)]:col-span-2">
+            {categories.map((category) => (
+              <TransitionLink
+                key={category.title}
+                href={category.href}
+                transitionTypes={[]}
+                onClick={onNavigate}
+                className="rounded-lg border border-transparent p-3 transition-colors hover:border-border-subtle hover:bg-white/[0.04]"
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-base font-medium tracking-[-0.01em] text-foreground">
+                    {category.title}
+                  </span>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    {category.count}
+                  </span>
+                </div>
+                <p className="ds-meta mt-1 truncate">
+                  {category.sample.join(" · ")}
+                </p>
+              </TransitionLink>
+            ))}
+          </div>
         </div>
       </div>
-    </motion.div>
+    </MenuSurface>
+  )
+}
+
+function DocsMenu({ id, onNavigate }: { id: string; onNavigate: () => void }) {
+  return (
+    <MenuSurface id={id} width="w-[30rem]">
+      <div className="grid grid-cols-2 gap-2">
+        {docsGroups.map((group) => (
+          <div key={group.heading}>
+            <h3 className="ds-mono-label mb-1.5 px-3 pt-2">{group.heading}</h3>
+            <div className="flex flex-col">
+              {group.links.map((link) => (
+                <MenuLink
+                  key={link.href}
+                  href={link.href}
+                  title={link.title}
+                  body={link.body}
+                  onNavigate={onNavigate}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </MenuSurface>
   )
 }
 
 export function SiteNav() {
   const pathname = usePathname() || "/"
-  const [openMenu, setOpenMenu] = React.useState<string | null>(null)
+  const [openMenu, setOpenMenu] = React.useState<MenuId | null>(null)
   const closeTimer = React.useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined
   )
 
-  function show(id: string) {
+  React.useEffect(
+    () => () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current)
+    },
+    []
+  )
+
+  function show(id: MenuId) {
     if (closeTimer.current) clearTimeout(closeTimer.current)
     setOpenMenu(id)
   }
   function scheduleClose() {
     if (closeTimer.current) clearTimeout(closeTimer.current)
     closeTimer.current = setTimeout(() => setOpenMenu(null), 120)
+  }
+  function close() {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setOpenMenu(null)
   }
 
   return (
@@ -251,23 +302,29 @@ export function SiteNav() {
       className="relative ml-1 hidden items-center md:ml-2 md:flex lg:ml-3"
     >
       {items.map((item) => {
-        const active = isActive(pathname, item.href, item.label)
-        const menuId = item.menu ?? item.label
+        const active = isActive(pathname, item.label)
 
         if (item.menu) {
-          const isOpen = openMenu === item.menu
+          const menu = item.menu
+          const isOpen = openMenu === menu
+          const menuId = `site-nav-${menu}`
           return (
             <div
               key={item.label}
               className="relative"
-              onMouseEnter={() => show(item.menu!)}
+              onMouseEnter={() => show(menu)}
               onMouseLeave={scheduleClose}
+              onKeyDown={(event) => {
+                if (event.key === "Escape" && isOpen) close()
+              }}
             >
               <TransitionLink
                 href={item.href}
                 transitionTypes={[]}
                 aria-expanded={isOpen}
-                onFocus={() => show(item.menu!)}
+                aria-controls={isOpen ? menuId : undefined}
+                aria-current={pathname === item.href ? "page" : undefined}
+                onFocus={() => show(menu)}
                 className={cn(
                   "relative flex items-center gap-1 px-2.5 py-1.5 text-[13px] font-medium transition-colors xl:px-3",
                   active
@@ -294,18 +351,14 @@ export function SiteNav() {
               <AnimatePresence>
                 {isOpen ? (
                   <div
-                    onMouseEnter={() => show(item.menu!)}
+                    onMouseEnter={() => show(menu)}
                     onMouseLeave={scheduleClose}
                   >
-                    {item.menu === "product" ? (
-                      <ProductMenu onNavigate={() => setOpenMenu(null)} />
-                    ) : null}
-                    {item.menu === "resources" ? (
-                      <ResourcesMenu onNavigate={() => setOpenMenu(null)} />
-                    ) : null}
-                    {item.menu === "components" ? (
-                      <ComponentsMenu onNavigate={() => setOpenMenu(null)} />
-                    ) : null}
+                    {menu === "components" ? (
+                      <ComponentsMenu id={menuId} onNavigate={close} />
+                    ) : (
+                      <DocsMenu id={menuId} onNavigate={close} />
+                    )}
                   </div>
                 ) : null}
               </AnimatePresence>
@@ -315,9 +368,10 @@ export function SiteNav() {
 
         return (
           <TransitionLink
-            key={menuId}
+            key={item.label}
             href={item.href}
             transitionTypes={[]}
+            aria-current={pathname === item.href ? "page" : undefined}
             className={cn(
               "relative block px-2.5 py-1.5 text-[13px] font-medium transition-colors xl:px-3",
               active

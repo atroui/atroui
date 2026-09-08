@@ -21,7 +21,11 @@ export default function Page() {
       fullBleed={true}
       usage={
         <>
-          Fully client-side. On the estimate step,{" "}
+          The live planner runs on this site at{" "}
+          <a href="/planner" className="bam-link">
+            /planner
+          </a>
+          . Fully client-side. On the estimate step,{" "}
           <strong className="font-medium text-foreground">Preview social card</strong>{" "}
           opens the OG workspace with the recommendation prefilled (
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">

@@ -1,11 +1,12 @@
 import type { ReactNode } from "react"
+import { DocsArticleHeader } from "@/components/docs/docs-article-header"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { cn } from "@/lib/utils"
 
 /**
- * Tool room — Zed feature-page energy: short header + framed product stage.
- * Used by /og and /planner.
+ * Tool room — same arrival as a docs page (quiet eyebrow, Outfit title + rule)
+ * followed by the framed product stage. Used by /og and /planner.
  */
 export function ToolRoom({
   eyebrow = "Tool",
@@ -33,22 +34,19 @@ export function ToolRoom({
           className
         )}
       >
-        <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-          <div className="max-w-2xl space-y-2">
-            <p className="docs-book-eyebrow !mb-0">{eyebrow}</p>
-            <h1 className="ds-headline text-2xl tracking-tight text-foreground sm:text-3xl">
-              {title}
-            </h1>
-            <div className="text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
-              {lede}
-            </div>
-          </div>
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+          <DocsArticleHeader
+            className="!mb-0 min-w-0 max-w-2xl flex-1"
+            eyebrow={eyebrow}
+            title={title}
+            lede={lede}
+          />
           {meta ? (
             <div className="flex min-w-0 flex-col gap-1.5 sm:items-end">
               {meta}
             </div>
           ) : null}
-        </header>
+        </div>
         <div className="overflow-hidden rounded-lg border border-border-subtle">
           {children}
         </div>
