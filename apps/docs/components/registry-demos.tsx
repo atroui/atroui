@@ -79,6 +79,7 @@ import {
   MEDIA,
   mediaSrc,
 } from "atroui"
+import { ArrowRight, Plus, Settings2, Trash2 } from "lucide-react"
 import { TESTIMONIALS } from "atroui/content/testimonials"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 import { ContactForm as RegistryContactForm } from "../registry/default/blocks/contact-form"
@@ -157,6 +158,44 @@ export function DemoButton() {
         <Button size="lg">Large</Button>
         <Button disabled>Disabled</Button>
       </div>
+    </div>
+  )
+}
+
+export function DemoButtonWithIcon() {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      <Button>
+        <Plus data-icon="inline-start" />
+        New project
+      </Button>
+      <Button variant="outline">
+        Continue
+        <ArrowRight data-icon="inline-end" />
+      </Button>
+      <Button variant="destructive">
+        <Trash2 data-icon="inline-start" />
+        Delete
+      </Button>
+    </div>
+  )
+}
+
+export function DemoButtonIconOnly() {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      <Button size="icon-xs" variant="ghost" aria-label="Settings">
+        <Settings2 />
+      </Button>
+      <Button size="icon-sm" variant="outline" aria-label="Settings">
+        <Settings2 />
+      </Button>
+      <Button size="icon" variant="secondary" aria-label="Settings">
+        <Settings2 />
+      </Button>
+      <Button size="icon-lg" aria-label="Add item">
+        <Plus />
+      </Button>
     </div>
   )
 }

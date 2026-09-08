@@ -516,16 +516,33 @@ html {
   line-height: 1.35;
   color: var(--muted-foreground);
   text-decoration: none;
-  transition: color 140ms ease, background-color 140ms ease;
+  transition: color 140ms ease, background-color 140ms ease,
+    box-shadow 140ms ease;
 }
 .docs-book-nav-link:hover {
   color: var(--docs-fg-strong);
   background: color-mix(in oklch, var(--foreground) 4%, transparent);
 }
+.docs-book-nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+/* Active = your place in the book: strong text + hairline rule, no brand wash. */
 .docs-book-nav-link-active {
-  color: var(--docs-link);
-  background: color-mix(in oklch, var(--brand) 10%, transparent);
+  color: var(--docs-fg-strong);
+  background: color-mix(in oklch, var(--foreground) 3%, transparent);
+  box-shadow: inset 2px 0 0 var(--brand);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   font-weight: 500;
+}
+.docs-book-nav-link-active .docs-book-badge {
+  color: var(--docs-fg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-book-nav-link {
+    transition: none;
+  }
 }
 .docs-book-badge {
   flex-shrink: 0;
@@ -711,6 +728,127 @@ html {
 .docs-book article.space-y-10 > section + section,
 .docs-book article.space-y-8 > section + section {
   margin-top: 2rem;
+}
+
+/* Pseo appendix — after the API reference the page is done. Overlay copy, FAQ,
+   and related links sit below a hairline as a footnote, not another chapter. */
+.pseo-appendix {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--docs-border);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.pseo-appendix-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.pseo-appendix-note {
+  border-left: 1px solid var(--docs-border);
+  padding-left: 0.875rem;
+}
+.pseo-appendix-note-title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+}
+.pseo-appendix-note-body,
+.pseo-appendix-collections {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.pseo-appendix-note-body {
+  margin-top: 0.25rem;
+}
+
+/* FAQ behind one quiet disclosure — closed by default, JSON-LD unaffected. */
+.pseo-appendix-faq > summary {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  transition: color 140ms ease;
+}
+.pseo-appendix-faq > summary::-webkit-details-marker {
+  display: none;
+}
+.pseo-appendix-faq > summary:hover {
+  color: var(--docs-fg-strong);
+}
+.pseo-appendix-faq > summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+.pseo-appendix-faq-count {
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in oklch, var(--muted-foreground) 65%, transparent);
+}
+.pseo-appendix-faq-chevron {
+  width: 0.3125rem;
+  height: 0.3125rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-1px) rotate(45deg);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pseo-appendix-faq[open] > summary .pseo-appendix-faq-chevron {
+  transform: translateY(-1px) rotate(-135deg);
+}
+.pseo-appendix-faq-list {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-left: 1px solid var(--docs-border);
+  padding-left: 0.875rem;
+}
+.pseo-appendix-faq-list dt {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+}
+.pseo-appendix-faq-list dd {
+  margin-top: 0.2rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+/* Related — mono label inline with the links, denser than a nav section. */
+.pseo-appendix-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.6rem;
+}
+.pseo-appendix-row ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pseo-appendix-faq > summary,
+  .pseo-appendix-faq-chevron {
+    transition: none;
+  }
 }
 
 /* Pager — chapter prev/next */

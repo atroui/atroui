@@ -10,6 +10,21 @@ import {
   type DocKind,
 } from "@/lib/navigation"
 
+export interface DocExample {
+  title: string
+  tip?: string
+  preview: React.ReactNode
+  code: string
+}
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+}
+
 interface ComponentDocProps {
   title: string
   description: string
@@ -17,6 +32,8 @@ interface ComponentDocProps {
   code: string
   props?: PropRow[]
   usage?: React.ReactNode
+  /** Depth on demand: one focused variant per example, revealed after Usage. */
+  examples?: DocExample[]
   extra?: React.ReactNode
   fullBleed?: boolean
   href?: string
@@ -32,6 +49,7 @@ export function ComponentDoc({
   code,
   props,
   usage,
+  examples,
   extra,
   fullBleed,
   href,
@@ -125,6 +143,20 @@ export function ComponentDoc({
           {code.trim() ? <CodeBlock code={code} language="tsx" /> : null}
         </section>
       ) : null}
+
+      {examples?.map((example) => (
+        <section key={example.title} className="space-y-3">
+          <h2 className="docs-section-title" id={slugify(example.title)}>
+            {example.title}
+          </h2>
+          {example.tip ? (
+            <p className="text-[14px] leading-relaxed text-muted-foreground">
+              {example.tip}
+            </p>
+          ) : null}
+          <DocsExample preview={example.preview} code={example.code} />
+        </section>
+      ))}
 
       {props && props.length > 0 ? (
         <section className="space-y-3">
