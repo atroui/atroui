@@ -4,9 +4,7 @@ export function LandingLetter() {
     <section className="atro-section">
       <div className="atro-section-inner">
         <p className="ds-eyebrow">A letter</p>
-        <h2 className="ds-headline mt-3 text-2xl text-foreground sm:text-3xl">
-          From the team
-        </h2>
+        <h2 className="atro-section-title mt-3">From the team</h2>
         <div className="atro-letter max-w-3xl">
           <div className="atro-letter-body">
             <p>

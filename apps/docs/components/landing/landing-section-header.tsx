@@ -53,9 +53,8 @@ export function LandingSectionHeader({
         ) : null}
         <h2
           className={cn(
-            "ds-headline text-foreground",
-            showStamp || showEyebrow ? "mt-3" : "mt-0",
-            "text-[1.4rem] leading-snug sm:text-[1.55rem] md:text-[1.65rem]"
+            "atro-section-title",
+            showStamp || showEyebrow ? "mt-3" : "mt-0"
           )}
         >
           {title}
@@ -63,7 +62,7 @@ export function LandingSectionHeader({
         {lede ? (
           <p
             className={cn(
-              "ds-lede mt-2 text-[0.9375rem] leading-relaxed",
+              "ds-lede mt-2 !text-[0.9375rem] leading-relaxed",
               centered ? "mx-auto max-w-xl" : "max-w-xl"
             )}
           >

@@ -166,10 +166,10 @@ export function LandingJustWorks() {
                 }
                 transition={reduce ? { duration: 0 } : swapTween}
               >
-                <h3 className="ds-headline text-xl text-foreground">
+                <h3 className="ds-headline text-foreground">
                   {feature.title}
                 </h3>
-                <p className="ds-body mt-3 max-w-prose text-muted-foreground">
+                <p className="ds-body mt-3 max-w-prose">
                   {feature.body}
                 </p>
                 <Link href={feature.href} className="atro-btn-ghost mt-5">
