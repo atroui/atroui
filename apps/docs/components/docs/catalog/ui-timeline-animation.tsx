@@ -1,0 +1,17 @@
+import { ComponentDoc } from "@/components/component-doc"
+import { DemoTimelineAnimation } from "@/components/registry-demos"
+
+
+export function UiTimelineAnimationDoc() {
+  return (
+    <ComponentDoc
+      registryName="timeline-animation"
+      href="/docs/components/ui-timeline-animation"
+      title="Timeline Animation"
+      description="Sequenced scroll-triggered timeline items."
+      preview={<DemoTimelineAnimation />}
+      code={'import { TimelineAnimation } from "@/components/ui/timeline-animation"\n\n<TimelineAnimation animationNum={0} timelineRef={ref}>…</TimelineAnimation>'}
+      fullBleed={false}
+    />
+  )
+}

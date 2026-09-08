@@ -1,4 +1,4 @@
-import createMDX from "@next/mdx"
+import { createMDX } from "fumadocs-mdx/next"
 import type { NextConfig } from "next"
 import path from "path"
 
@@ -126,18 +126,6 @@ const nextConfig: NextConfig = {
   },
 }
 
-const withMDX = createMDX({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: ["remark-gfm"],
-    rehypePlugins: [
-      "rehype-slug",
-      [
-        "rehype-autolink-headings",
-        { behavior: "wrap", properties: { className: ["heading-anchor"] } },
-      ],
-    ],
-  },
-})
+const withMDX = createMDX()
 
 export default withMDX(nextConfig)

@@ -7,10 +7,19 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { Search, X } from "lucide-react"
 import posthog from "posthog-js"
 import { cn } from "@/lib/utils"
-import { badgeLabel, allNavItems } from "@/lib/navigation"
+import { badgeLabel, allNavItems, type NavItem } from "@/lib/navigation"
 import { useFocusTrap } from "@/lib/use-focus-trap"
 import { useBodyScrollLock } from "@/hooks/use-body-scroll-lock"
 import { dialogTween, fadeTween } from "@/lib/motion"
+
+type SearchHit = NavItem & { source?: "nav" | "mdx" }
+
+type FumaHit = {
+  id: string
+  url: string
+  type: "page" | "heading" | "text"
+  content: string
+}
 
 function SearchDialog({
   query,
@@ -21,9 +30,9 @@ function SearchDialog({
 }: {
   query: string
   setQuery: (q: string) => void
-  results: typeof allNavItems
+  results: SearchHit[]
   onClose: () => void
-  onSelect: (item: (typeof allNavItems)[number]) => void
+  onSelect: (item: SearchHit) => void
 }) {
   const panelRef = React.useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
@@ -83,7 +92,7 @@ function SearchDialog({
           ) : (
             results.map((item) => (
               <button
-                key={item.href}
+                key={`${item.source ?? "nav"}:${item.href}`}
                 type="button"
                 className={cn(
                   "flex w-full items-center justify-between gap-3 rounded-[var(--atro-control-radius)] px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-white/5"
@@ -119,10 +128,32 @@ function SearchDialog({
   )
 }
 
+function mergeSearchResults(
+  navHits: SearchHit[],
+  fumaHits: FumaHit[]
+): SearchHit[] {
+  const seen = new Set(navHits.map((h) => h.href))
+  const extras: SearchHit[] = []
+  for (const hit of fumaHits) {
+    if (hit.type !== "page" && hit.type !== "heading") continue
+    const href = hit.url.split("#")[0] ?? hit.url
+    if (!href || seen.has(href)) continue
+    seen.add(href)
+    extras.push({
+      title: hit.content,
+      href,
+      description: hit.type === "heading" ? "In guides" : undefined,
+      source: "mdx",
+    })
+  }
+  return [...navHits, ...extras].slice(0, 24)
+}
+
 export function CommandMenu({ compact }: { compact?: boolean }) {
   const [open, setOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
   const [query, setQuery] = React.useState("")
+  const [fumaHits, setFumaHits] = React.useState<FumaHit[]>([])
   const router = useRouter()
   const pathname = usePathname()
 
@@ -146,17 +177,47 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
     setOpen(false)
   }, [pathname])
 
+  React.useEffect(() => {
+    const q = query.trim()
+    if (!open || q.length < 2) {
+      setFumaHits([])
+      return
+    }
+    const controller = new AbortController()
+    const timer = window.setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `/api/search?query=${encodeURIComponent(q)}`,
+          { signal: controller.signal }
+        )
+        if (!res.ok) return
+        const data = (await res.json()) as FumaHit[]
+        setFumaHits(Array.isArray(data) ? data : [])
+      } catch {
+        /* abort or network — keep nav hits */
+      }
+    }, 180)
+    return () => {
+      controller.abort()
+      window.clearTimeout(timer)
+    }
+  }, [query, open])
+
   useBodyScrollLock(open)
 
   const q = query.toLowerCase().trim()
-  const results = allNavItems.filter((item) => {
-    if (!q) return true
-    return (
-      item.title.toLowerCase().includes(q) ||
-      item.description?.toLowerCase().includes(q) ||
-      item.href.toLowerCase().includes(q)
-    )
-  })
+  const navHits: SearchHit[] = allNavItems
+    .filter((item) => {
+      if (!q) return true
+      return (
+        item.title.toLowerCase().includes(q) ||
+        item.description?.toLowerCase().includes(q) ||
+        item.href.toLowerCase().includes(q)
+      )
+    })
+    .map((item) => ({ ...item, source: "nav" as const }))
+
+  const results = q ? mergeSearchResults(navHits, fumaHits) : navHits
 
   return (
     <>
@@ -199,7 +260,7 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
                   onSelect={(item) => {
                     posthog.capture("documentation_search_result_selected", {
                       destination: item.href,
-                      result_type: item.badge ?? "page",
+                      result_type: item.badge ?? item.source ?? "page",
                     })
                     setOpen(false)
                     router.push(item.href)

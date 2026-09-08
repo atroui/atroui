@@ -1,8 +1,11 @@
 {
   "extends": "@atroui/typescript-config/nextjs.json",
   "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
     "paths": {
       "@/*": ["./*"],
+      "@/.source": ["./.source/index.ts"],
       "atroui": ["../../packages/ui/src/index.ts"],
       "atroui/*": ["../../packages/ui/src/*"]
     },
@@ -15,7 +18,8 @@
     "types/**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".source/**/*.ts"
   ],
   "exclude": ["node_modules", "registry"]
 }

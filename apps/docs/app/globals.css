@@ -1,4 +1,5 @@
 @source "../components";
+@source "../content";
 @source "./**/*.{ts,tsx,mdx}";
 
 html {
@@ -638,9 +639,10 @@ html {
   color: var(--docs-link);
 }
 
-/* Page title — quiet chapter arrival (Merriweather, not marketing display) */
+/* Page title — quiet chapter arrival (Merriweather, not marketing display).
+   Vertical gap comes from the article stack (space-y-*), not a second margin. */
 .docs-book-header {
-  margin-bottom: 1.75rem;
+  margin-bottom: 0;
 }
 .docs-book-eyebrow {
   margin: 0 0 0.65rem;
@@ -805,8 +807,27 @@ html {
   margin-top: 0;
 }
 .docs-book article.space-y-10 > section + section,
-.docs-book article.space-y-8 > section + section {
+.docs-book article.space-y-8 > section + section,
+.docs-book article.space-y-6 > section + section {
   margin-top: 2rem;
+}
+
+/* Hub list rows (glossary / collections / similar indexes) — book ink, not storefront ds-* */
+.docs-book .docs-hub-title {
+  display: block;
+  font-family: var(--docs-title-font);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--docs-fg-strong);
+}
+.docs-book .docs-hub-meta {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
 }
 /* Long copy on guide pages: one body ink (overrides text-muted-foreground) */
 .docs-book article > section > p,
@@ -3305,5 +3326,36 @@ html {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
   }
+}
+
+/* Fumadocs MDX primitives — map fd tokens to Atro Mira (keep Atro book chrome) */
+.docs-book {
+  --color-fd-background: var(--background);
+  --color-fd-foreground: var(--foreground);
+  --color-fd-muted: var(--muted);
+  --color-fd-muted-foreground: var(--muted-foreground);
+  --color-fd-popover: var(--popover);
+  --color-fd-popover-foreground: var(--popover-foreground);
+  --color-fd-card: var(--card);
+  --color-fd-card-foreground: var(--card-foreground);
+  --color-fd-border: var(--border);
+  --color-fd-primary: var(--primary);
+  --color-fd-primary-foreground: var(--primary-foreground);
+  --color-fd-secondary: var(--secondary);
+  --color-fd-secondary-foreground: var(--secondary-foreground);
+  --color-fd-accent: var(--accent);
+  --color-fd-accent-foreground: var(--accent-foreground);
+  --color-fd-ring: var(--ring);
+}
+
+.docs-mdx a.bam-link,
+.docs-mdx a:not([class]) {
+  color: var(--brand);
+  text-underline-offset: 0.2em;
+}
+
+.docs-mdx :is(h1, h2, h3, h4) .heading-anchor {
+  color: inherit;
+  text-decoration: none;
 }
 
