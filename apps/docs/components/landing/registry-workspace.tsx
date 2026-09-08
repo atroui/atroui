@@ -18,7 +18,6 @@ import type {
 import { extractSourceExcerpt } from "@/lib/registry-workspace-utils"
 import { cn } from "@/lib/utils"
 import { easeOutExpo, easeOutSoft } from "@/lib/motion"
-import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 
 const GLIMPSE_LINES = 3
 const EXPANDED_LINES = 22
@@ -72,10 +71,13 @@ function PreviewCanvas({
         return
       }
 
+      // fold: shrink only when the stage is narrower than designWidth;
+      // otherwise fill the viewport so full-bleed blocks aren't letterboxed.
+      const scale = Math.min(ow / designWidth, 1)
       setLayout({
-        scale: Math.min(ow / designWidth, 1),
+        scale,
         innerHeight: ih,
-        innerWidth: designWidth,
+        innerWidth: scale < 1 ? designWidth : ow,
       })
     }
 
@@ -191,15 +193,17 @@ export function RegistryWorkspace({
   previews,
   hero,
   pricing,
+  principle,
   children,
   className,
 }: {
   blocks: RegistryWorkspaceBlock[]
-  /** Optional overrides for hero/pricing (or tests). */
+  /** Optional overrides for hero/pricing/principle (or tests). */
   previews?: Partial<Record<RegistryWorkspaceBlockId, React.ReactNode>>
   /** RSC slots for server-rendered registry sections. */
   hero?: React.ReactNode
   pricing?: React.ReactNode
+  principle?: React.ReactNode
   children?: React.ReactNode
   className?: string
 }) {
@@ -207,21 +211,15 @@ export function RegistryWorkspace({
   const slotMap = React.useMemo(() => {
     const fromSlots: Partial<Record<RegistryWorkspaceBlockId, React.ReactNode>> =
       {
+        ...(principle != null ? { principle } : {}),
         ...(hero != null ? { hero } : {}),
         ...(pricing != null ? { pricing } : {}),
         ...previews,
       }
     return collectPreviews(fromSlots, children)
-  }, [previews, hero, pricing, children])
+  }, [previews, principle, hero, pricing, children])
 
-  // Stable form instances — one mount for the lifetime of the workspace.
-  const formPreviews = React.useMemo(
-    () => ({
-      waitlist: <WaitlistStagePreview />,
-    }),
-    []
-  )
-
+  // Stable RSC/client slots — one mount per block for the workspace lifetime.
   const [activeId, setActiveId] =
     React.useState<RegistryWorkspaceBlockId>("hero")
   const [expanded, setExpanded] = React.useState(false)
@@ -247,7 +245,6 @@ export function RegistryWorkspace({
   }
 
   function panelPreview(id: RegistryWorkspaceBlockId): React.ReactNode {
-    if (id === "waitlist") return formPreviews.waitlist
     return slotMap.get(id) ?? null
   }
 

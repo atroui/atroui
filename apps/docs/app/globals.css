@@ -3529,7 +3529,7 @@ a.docs-changelog-hash:hover {
   color: var(--landing-muted, var(--muted-foreground));
 }
 
-.atro-landing .rw-preview-slot[data-registry-preview="waitlist-form"] {
+.atro-landing .rw-preview-slot[data-registry-preview="home-principle"] {
   width: 100%;
   border: none;
   background: transparent;

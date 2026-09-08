@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 
-export type RegistryWorkspaceBlockId = "waitlist" | "hero" | "pricing"
+export type RegistryWorkspaceBlockId = "principle" | "hero" | "pricing"
 
 export type PreviewStrategy = "contain" | "fold" | "fit"
 
@@ -26,18 +26,12 @@ export type RegistryWorkspaceBlock = {
 
 const BLOCKS: Omit<RegistryWorkspaceBlock, "source">[] = [
   {
-    id: "waitlist",
-    label: "Waitlist",
-    registry: "waitlist-form",
-    docs: "/docs/components/brand-waitlist-form",
-    target: "components/blocks/waitlist-form.tsx",
-    // Section-framed form — fit into the stage.
-    preview: { strategy: "fit", designWidth: 420, excerptMaxLines: 3 },
-    host: {
-      env: "RESEND_API_KEY",
-      route: "POST /api/waitlist",
-      note: "Handler copies into app/api/waitlist — wire Resend once.",
-    },
+    id: "principle",
+    label: "Principle",
+    registry: "home-principle",
+    docs: "/docs/components/home-principle",
+    target: "components/blocks/home-principle.tsx",
+    preview: { strategy: "fold", designWidth: 900, excerptMaxLines: 3 },
   },
   {
     id: "hero",
