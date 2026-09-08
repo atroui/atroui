@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CodeBlock } from "@/components/code-block"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
 import { DocsExample } from "@/components/docs-example"
 import { DocsPager } from "@/components/docs-pager"
@@ -113,12 +114,15 @@ export function ComponentDoc({
         </section>
       ) : null}
 
-      {usage ? (
+      {code.trim() || usage ? (
         <section className="space-y-3">
           <h2 className="docs-section-title" id="usage">
             Usage
           </h2>
-          <div className="docs-prose !mt-0 text-[15px]">{usage}</div>
+          {usage ? (
+            <div className="docs-prose !mt-0 text-[15px]">{usage}</div>
+          ) : null}
+          {code.trim() ? <CodeBlock code={code} language="tsx" /> : null}
         </section>
       ) : null}
 

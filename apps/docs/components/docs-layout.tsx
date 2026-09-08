@@ -1,3 +1,4 @@
+import { DocsPageFade } from "@/components/docs/docs-page-fade"
 import { DocsToc } from "@/components/docs/docs-toc"
 import { DocsSidebar } from "@/components/sidebar"
 import { DocsRouteTransition } from "@/components/view-transitions"
@@ -18,7 +19,9 @@ export function DocsLayoutShell({ children }: { children: React.ReactNode }) {
       <div className="docs-book-page">
         <main className="docs-book-main">
           <div data-docs-content>
-            <DocsRouteTransition>{children}</DocsRouteTransition>
+            <DocsRouteTransition>
+              <DocsPageFade>{children}</DocsPageFade>
+            </DocsRouteTransition>
           </div>
         </main>
 

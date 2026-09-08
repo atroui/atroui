@@ -15,9 +15,9 @@ export default function Error({
   }, [error])
 
   return (
-    <main className="relative mx-auto flex min-h-[60svh] max-w-lg flex-col items-center justify-center gap-4 overflow-hidden px-6 py-20 text-center">
+    <main className="relative isolate mx-auto flex min-h-[60svh] max-w-lg flex-col items-center justify-center gap-4 overflow-hidden px-6 py-20 text-center">
       <span
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.1]"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]"
         aria-hidden
       >
         <span className="ds-sketch absolute top-[20%] right-[14%] rotate-[10deg] text-[6rem] leading-none text-brand">
@@ -26,7 +26,7 @@ export default function Error({
       </span>
 
       <p className="ds-mono-label">Error</p>
-      <h1 className="ds-headline text-3xl tracking-tight sm:text-4xl">
+      <h1 className="ds-headline text-2xl tracking-tight sm:text-3xl">
         Stroke slipped
       </h1>
       <p className="max-w-[36ch] text-[15px] leading-relaxed text-muted-foreground">

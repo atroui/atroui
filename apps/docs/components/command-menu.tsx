@@ -72,9 +72,14 @@ function SearchDialog({
         </div>
         <div className="max-h-72 overflow-y-auto p-1.5">
           {results.length === 0 ? (
-            <p className="px-2 py-8 text-center text-sm text-muted-foreground">
-              No results.
-            </p>
+            <motion.p
+              className="px-2 py-8 text-center font-mono text-[12px] tracking-wide text-muted-foreground/70"
+              initial={reduce ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={fadeTween}
+            >
+              Nothing matches. Try a shorter word.
+            </motion.p>
           ) : (
             results.map((item) => (
               <button
