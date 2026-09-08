@@ -554,6 +554,37 @@ export function DemoStagger() {
   )
 }
 
+export function DemoStaggerSlow() {
+  const [key, setKey] = React.useState(0)
+
+  return (
+    <div className="flex w-full max-w-md flex-col items-stretch gap-4">
+      <Stagger
+        key={key}
+        preview
+        delay={0.15}
+        stagger={0.18}
+        className="flex flex-col gap-2 text-left"
+      >
+        {["Hold", "Then", "Cascade"].map((item) => (
+          <StaggerChild key={item} y={22}>
+            <div className="rounded-lg border border-border-subtle bg-card px-4 py-2.5 text-sm text-foreground">
+              {item}
+            </div>
+          </StaggerChild>
+        ))}
+      </Stagger>
+      <button
+        type="button"
+        onClick={() => setKey((k) => k + 1)}
+        className="atro-btn-ghost self-center"
+      >
+        Replay
+      </button>
+    </div>
+  )
+}
+
 export function DemoScrollProgress() {
   const containerRef = React.useRef<HTMLDivElement>(null)
 
