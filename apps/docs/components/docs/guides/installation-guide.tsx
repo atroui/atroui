@@ -124,7 +124,7 @@ export function InstallationGuide() {
           .
         </p>
         <CodeBlock
-          language="bash"
+          language="dotenv"
           code={`NEXT_PUBLIC_SITE_NAME=Acme
 NEXT_PUBLIC_SITE_DOMAIN=acme.test
 NEXT_PUBLIC_SITE_EMAIL=hello@acme.test
@@ -173,7 +173,7 @@ npx shadcn@latest add @atroui/contact-form @atroui/api-contact`}
           . Example mail vars:
         </p>
         <CodeBlock
-          language="bash"
+          language="dotenv"
           code={`CONTACT_EMAIL_TO=hello@acme.test
 SMTP_USER=…
 SMTP_PASSWORD=…
@@ -225,9 +225,6 @@ RESEND_AUDIENCE_ID=…`}
         <h2 className="docs-section-title" id="install-modes">
           Install modes
         </h2>
-        <p className="leading-relaxed">
-          Registry UI vs package Host APIs — when each path applies:
-        </p>
         <InstallModesMatrix showCanonicalLink />
         <p className="leading-relaxed">
           Why we split them:{" "}

@@ -945,6 +945,30 @@ html {
   line-height: 1.45;
   color: var(--muted-foreground);
 }
+
+/* Shared CodeBlock — Shiki dual-theme tokens over our panel chrome */
+.docs-codeblock .shiki {
+  background: transparent !important;
+}
+.docs-codeblock .shiki code {
+  display: grid;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  counter-reset: none;
+}
+.docs-codeblock .shiki .line {
+  min-height: 1.35em;
+}
+.docs-codeblock .shiki,
+.docs-codeblock .shiki span {
+  color: var(--shiki-light);
+  background-color: transparent !important;
+}
+.dark .docs-codeblock .shiki,
+.dark .docs-codeblock .shiki span {
+  color: var(--shiki-dark);
+}
 .docs-changelog-release {
   display: flex;
   flex-direction: column;
