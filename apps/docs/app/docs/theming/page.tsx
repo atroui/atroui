@@ -8,7 +8,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Theming",
   description:
-    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, Caveat sketch display + Outfit UI. Customize host CSS and @atroui/brand.",
+    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, Outfit display + UI with opt-in Caveat sketch. Customize host CSS and @atroui/brand.",
   path: "/docs/theming",
 })
 
@@ -22,8 +22,8 @@ export default function ThemingPage() {
           <>
             AtroUI&rsquo;s design system is dark-first: black canvas, brand blue
             from the hero shader (<code>#0b7bff</code>),{" "}
-            <strong>Caveat sketch display</strong>, Outfit UI, quiet panels, and
-            soft-rect CTAs. After <code>npx shadcn add</code>, tokens live in{" "}
+            <strong>Outfit display and UI</strong> with opt-in Caveat sketch,
+            quiet panels, and soft-rect CTAs. After <code>npx shadcn add</code>, tokens live in{" "}
             <strong>your</strong> host CSS (or a theme sheet you copy), not
             behind a required npm import.
           </>
@@ -72,30 +72,18 @@ export default function ThemingPage() {
         </p>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
           <li>
-            <strong className="text-foreground">Caveat (sketch)</strong> —
-            brand display, stamps, list titles, nav section rails (
+            <strong className="text-foreground">Outfit (display + UI)</strong> —
+            page titles, section headings, body and supporting copy at{" "}
+            <em className="text-foreground">regular</em> weight — not
+            ultra-light (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-display
             </code>
             ,{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-sketch
+              .ds-headline
             </code>
             ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ms-stamp
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-nav-section
-            </code>
-            ).
-          </li>
-          <li>
-            <strong className="text-foreground">Outfit (calm UI)</strong> —
-            body and supporting copy at{" "}
-            <em className="text-foreground">regular</em> weight — not
-            ultra-light — so it sits quietly under handwriting (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-lede
             </code>
@@ -107,15 +95,36 @@ export default function ThemingPage() {
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-meta
             </code>
+            ).
+          </li>
+          <li>
+            <strong className="text-foreground">Caveat (opt-in sketch)</strong> —
+            never the default. Reach for it deliberately on brand marks and
+            chalkboard accents (
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-sketch
+            </code>
             ,{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-headline
+              .ds-sketch-accent
             </code>
             ).
           </li>
           <li>
-            <strong className="text-foreground">Geist Mono</strong> — code /
-            technical precision.
+            <strong className="text-foreground">Geist Mono</strong> — code,
+            stamps, and section rails (
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ms-stamp
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-nav-section
+            </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-mono-label
+            </code>
+            ).
           </li>
         </ul>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
@@ -132,10 +141,10 @@ export default function ThemingPage() {
         <CodeBlock
           language="css"
           code={`/* Token map (already in atroui globals) */
---font-sketch: var(--font-caveat);
---font-display: var(--font-sketch); /* page titles, brand marks */
 --font-heading: var(--font-outfit); /* section h2 */
---font-sans: var(--font-outfit);    /* body / UI */`}
+--font-display: var(--font-heading); /* page titles */
+--font-sans: var(--font-outfit);    /* body / UI */
+--font-sketch: var(--font-caveat);  /* opt-in: .ds-sketch only */`}
         />
       </section>
 

@@ -7,6 +7,7 @@ import {
   Breadcrumbs,
   Button,
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -79,7 +80,13 @@ import {
   MEDIA,
   mediaSrc,
 } from "atroui"
-import { ArrowRight, Plus, Settings2, Trash2 } from "lucide-react"
+import {
+  ArrowRight,
+  MoreHorizontal,
+  Plus,
+  Settings2,
+  Trash2,
+} from "lucide-react"
 import { TESTIMONIALS } from "atroui/content/testimonials"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 import { ContactForm as RegistryContactForm } from "../registry/default/blocks/contact-form"
@@ -230,6 +237,69 @@ export function DemoCard() {
             Same primitives - compose with tokens, not one-off styles.
           </p>
         </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+export function DemoCardFooterActions() {
+  return (
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Deploy preview</CardTitle>
+        <CardDescription>atroui-docs · main</CardDescription>
+        <CardAction>
+          <Button size="icon-sm" variant="ghost" aria-label="Deploy options">
+            <MoreHorizontal />
+          </Button>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">
+          Build finished in 42s. No checks failed.
+        </p>
+      </CardContent>
+      <CardFooter className="justify-between">
+        <span className="text-xs text-muted-foreground">2 minutes ago</span>
+        <div className="flex gap-2">
+          <Button size="sm" variant="ghost">
+            Logs
+          </Button>
+          <Button size="sm">Visit</Button>
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
+
+export function DemoCardCompactMedia() {
+  return (
+    <div className="flex flex-wrap items-start justify-center gap-4">
+      <Card size="sm" className="w-full max-w-[240px]">
+        <img
+          src="/examples/product-launch.png"
+          alt=""
+          width={1200}
+          height={630}
+          className="aspect-2/1 w-full object-cover"
+        />
+        <CardHeader>
+          <CardTitle>Product launch</CardTitle>
+          <CardDescription>Shipped Sep 2</CardDescription>
+        </CardHeader>
+      </Card>
+      <Card size="sm" className="w-full max-w-[240px]">
+        <img
+          src="/examples/changelog-release.png"
+          alt=""
+          width={1200}
+          height={630}
+          className="aspect-2/1 w-full object-cover"
+        />
+        <CardHeader>
+          <CardTitle>Changelog 0.4</CardTitle>
+          <CardDescription>Shipped Aug 28</CardDescription>
+        </CardHeader>
       </Card>
     </div>
   )

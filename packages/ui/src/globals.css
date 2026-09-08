@@ -11,7 +11,7 @@
    AtroUI - Digital Success system
    Black canvas · electric blue brand · glass surfaces · rounded CTAs
    Base: hero-digital-success (#92dbe0 / #0b7bff / #3865cf)
-   Typography: Caveat (sketch display) · Outfit (UI / body) · Geist Mono (code)
+   Typography: Outfit display+UI · Caveat opt-in sketch · Geist Mono
    ============================================================================= */
 
 @theme inline {
@@ -23,11 +23,12 @@
 
   --font-sans: var(--font-outfit);
   --font-mono: var(--font-geist-mono);
-  --font-sketch: var(--font-caveat);
-  --font-display: var(--font-sketch);
   --font-heading: var(--font-outfit);
+  --font-display: var(--font-heading);
   --font-body: var(--font-outfit);
   --font-label: var(--font-outfit);
+  /* Opt-in only — .ds-sketch and sketch accents. Never the default display. */
+  --font-sketch: var(--font-caveat);
 
   /* Hero brand - #0b7bff / #92dbe0 */
   --color-brand: var(--brand);
@@ -220,7 +221,8 @@
   .ds-display {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
-    /* Caveat needs room for ascenders / descenders — tight LH clips glyphs */
+    /* LH/overflow kept generous so a host that repoints --font-display at a
+       handwriting face still has room for ascenders / descenders. */
     line-height: 1.25;
     font-weight: 500;
     overflow: visible;

@@ -12,6 +12,20 @@ import posthog from "posthog-js"
 import { easeOutExpo } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
+/** First copy of a session is the earned moment; later ones stay quiet. */
+const EARNED_STORAGE_KEY = "atro-install-copied"
+
+function claimFirstCopyOfSession() {
+  try {
+    if (sessionStorage.getItem(EARNED_STORAGE_KEY) === "1") return false
+    sessionStorage.setItem(EARNED_STORAGE_KEY, "1")
+    return true
+  } catch {
+    // Private mode / storage disabled — treat every copy as a repeat.
+    return false
+  }
+}
+
 export function InstallCommandChip({
   command,
   className,
@@ -20,7 +34,20 @@ export function InstallCommandChip({
   className?: string
 }) {
   const [copied, setCopied] = React.useState(false)
+  const [pulse, setPulse] = React.useState(false)
   const reduce = useReducedMotion()
+  const timers = React.useRef<number[]>([])
+
+  React.useEffect(
+    () => () => {
+      for (const id of timers.current) window.clearTimeout(id)
+    },
+    [],
+  )
+
+  function later(fn: () => void, ms: number) {
+    timers.current.push(window.setTimeout(fn, ms))
+  }
 
   async function copy() {
     try {
@@ -31,7 +58,11 @@ export function InstallCommandChip({
         kind: "install",
       })
       setCopied(true)
-      window.setTimeout(() => setCopied(false), 1600)
+      later(() => setCopied(false), 1600)
+      if (!reduce && claimFirstCopyOfSession()) {
+        setPulse(true)
+        later(() => setPulse(false), 200)
+      }
     } catch {
       /* ignore */
     }
@@ -40,11 +71,24 @@ export function InstallCommandChip({
   return (
     <div
       className={cn(
-        "flex min-w-0 max-w-full items-center gap-1.5 rounded-lg border bg-white/[0.03] py-1 pr-1 pl-2.5 transition-colors duration-200 sm:gap-2 sm:pl-3",
-        copied ? "border-brand/40" : "border-border-subtle",
+        "relative flex min-w-0 max-w-full items-center gap-1.5 rounded-lg border bg-white/[0.03] py-1 pr-1 pl-2.5 transition-colors duration-200 sm:gap-2 sm:pl-3",
+        pulse
+          ? "border-brand/60"
+          : copied
+            ? "border-brand/40"
+            : "border-border-subtle",
         className,
       )}
     >
+      {pulse ? (
+        <motion.span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-brand/45"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 0.2, times: [0, 0.4, 1], ease: easeOutExpo }}
+        />
+      ) : null}
       <span
         className="hidden shrink-0 font-mono text-[12px] font-medium text-brand sm:inline"
         aria-hidden
