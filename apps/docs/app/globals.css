@@ -4,6 +4,11 @@
 html {
   scroll-behavior: smooth;
 }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 
 /* ==========================================================================
    Redesign 2026 — unified product surface
@@ -37,7 +42,7 @@ html {
      essays (/blog, /updates), and tool rooms (/og, /planner), so they resolve
      here too. .docs-book narrows them again for the reading room. */
   --docs-title-font: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  --docs-fg: color-mix(in oklch, var(--foreground) 72%, transparent);
+  --docs-fg: color-mix(in oklch, var(--foreground) 88%, transparent);
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
 }
@@ -377,7 +382,7 @@ html {
   --docs-content-max: 43.125rem; /* 690px — Zed measure */
   --docs-toc-width: 12.5rem;
   --docs-title-font: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  --docs-fg: color-mix(in oklch, var(--foreground) 72%, transparent);
+  --docs-fg: color-mix(in oklch, var(--foreground) 88%, transparent);
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
   --docs-sidebar-bg: color-mix(in oklch, var(--foreground) 2%, var(--background));
@@ -421,16 +426,16 @@ html {
 .docs-book-main {
   min-width: 0;
   flex: 1;
-  padding: 2rem 1.25rem 4rem;
+  padding: 1.5rem 1.25rem 3rem;
 }
 @media (min-width: 640px) {
   .docs-book-main {
-    padding: 2.5rem 2rem 5rem;
+    padding: 2rem 2rem 3.5rem;
   }
 }
 @media (min-width: 1024px) {
   .docs-book-main {
-    padding: 2.75rem 2.5rem 5rem;
+    padding: 2rem 2.5rem 3.5rem;
   }
 }
 
@@ -529,16 +534,16 @@ html {
   padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--docs-border, var(--border-subtle));
   font-family: var(--docs-title-font);
-  font-size: clamp(1.85rem, 1.5rem + 1.4vw, 2.35rem);
+  font-size: clamp(1.5rem, 1.35rem + 0.8vw, 1.75rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: var(--docs-fg-strong);
 }
 .docs-book-lede {
-  margin-top: 1.1rem;
+  margin-top: 0.85rem;
   max-width: 40rem;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1.65;
   color: var(--docs-fg, var(--muted-foreground));
 }
@@ -1048,7 +1053,7 @@ html {
   width: 100%;
   max-width: 80rem;
   padding-inline: 1.25rem;
-  padding-block: 4rem;
+  padding-block: 2.5rem;
 }
 @media (min-width: 640px) {
   .atro-section-inner {
@@ -1058,7 +1063,7 @@ html {
 @media (min-width: 1024px) {
   .atro-section-inner {
     padding-inline: 2.5rem;
-    padding-block: 5rem;
+    padding-block: 3.25rem;
   }
 }
 
@@ -1609,7 +1614,7 @@ html {
 
 .atro-landing .atro-hero-title {
   font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 1.04;

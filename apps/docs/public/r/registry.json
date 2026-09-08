@@ -73,6 +73,7 @@
       "description": "Light / system / dark toggle using next-themes.",
       "dependencies": [
         "lucide-react",
+        "motion",
         "next-themes"
       ],
       "registryDependencies": [

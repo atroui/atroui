@@ -1,6 +1,7 @@
 "use client"
 
 import { Monitor, Moon, Sun } from "lucide-react"
+import { motion, useReducedMotion } from "motion/react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
@@ -14,9 +15,19 @@ const OPTIONS = [
 
 type ThemeId = (typeof OPTIONS)[number]["id"]
 
+/** Active segment indicator — inset radius accounts for the 1px control border. */
+const PILL_CLASS =
+  "absolute inset-0 rounded-[calc(var(--atro-control-radius)-1px)] bg-primary"
+
+const PILL_TWEEN = {
+  duration: 0.24,
+  ease: [0.32, 0.72, 0, 1],
+} as const
+
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
     setMounted(true)
@@ -72,12 +83,25 @@ export function ThemeToggle({ className }: { className?: string }) {
               title={title}
               onClick={() => setTheme(id)}
               className={cn(
-                "inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
-                isActive && "bg-primary text-primary-foreground",
+                "relative inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
+                isActive && "text-primary-foreground",
                 !isActive && "hover:bg-white/10 hover:text-foreground"
               )}
             >
-              <Icon className="size-3.5" strokeWidth={2} />
+              {isActive &&
+                (reduce ? (
+                  <span className={PILL_CLASS} aria-hidden />
+                ) : (
+                  <motion.span
+                    // Withheld until mounted so the hydration correction from
+                    // "system" to the stored theme snaps instead of sliding.
+                    layoutId={mounted ? "atro-theme-pill" : undefined}
+                    className={PILL_CLASS}
+                    transition={PILL_TWEEN}
+                    aria-hidden
+                  />
+                ))}
+              <Icon className="relative size-3.5" strokeWidth={2} />
             </button>
           )
         })}

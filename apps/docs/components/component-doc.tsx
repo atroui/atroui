@@ -47,7 +47,7 @@ export function ComponentDoc({
     (registryName ? `npx shadcn@latest add @atroui/${registryName}` : null)
 
   return (
-    <article className={fullBleed ? "docs-book-wide space-y-10" : "space-y-10"}>
+    <article className={fullBleed ? "docs-book-wide space-y-6" : "space-y-6"}>
       <DocsArticleHeader
         eyebrow={
           <>
@@ -70,7 +70,28 @@ export function ComponentDoc({
           fullBleed={fullBleed}
           installCommand={installCmd ?? undefined}
         />
-        {installCmd ? (
+        {installCmd ? null : (
+          <p className="text-[14px] leading-relaxed text-muted-foreground">
+            Not in the CLI registry yet. Prefer registry blocks when you want
+            owned source via{" "}
+            <Link href="/docs/registry" className="bam-link">
+              shadcn add @atroui/…
+            </Link>
+            .
+          </p>
+        )}
+      </section>
+
+      {installCmd ? (
+        <section className="space-y-3">
+          <h2 className="docs-section-title" id="installation">
+            Installation
+          </h2>
+          <pre className="overflow-x-auto rounded-lg border border-border-subtle bg-white/[0.03] px-3 py-2.5">
+            <code className="font-mono text-[12px] text-foreground sm:text-[13px]">
+              {installCmd}
+            </code>
+          </pre>
           <p className="text-[13px] text-muted-foreground">
             Source lands in your repo.{" "}
             <Link href="/docs/installation" className="bam-link">
@@ -89,17 +110,8 @@ export function ComponentDoc({
               </>
             ) : null}
           </p>
-        ) : (
-          <p className="text-[14px] leading-relaxed text-muted-foreground">
-            Not in the CLI registry yet. Prefer registry blocks when you want
-            owned source via{" "}
-            <Link href="/docs/registry" className="bam-link">
-              shadcn add @atroui/…
-            </Link>
-            .
-          </p>
-        )}
-      </section>
+        </section>
+      ) : null}
 
       {usage ? (
         <section className="space-y-3">

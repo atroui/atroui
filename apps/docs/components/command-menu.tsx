@@ -59,7 +59,7 @@ function SearchDialog({
             placeholder="Search components…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="h-10 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+            className="h-10 flex-1 bg-transparent text-sm text-foreground caret-brand outline-none placeholder:text-muted-foreground"
           />
           <button
             type="button"

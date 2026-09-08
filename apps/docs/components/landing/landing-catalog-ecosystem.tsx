@@ -21,13 +21,6 @@ const blurbs: Record<string, string> = {
   More: "Compare, changelog, blog, updates",
 }
 
-const CARE_CHIPS = [
-  { label: "Dark-first tokens", href: "/docs/theming" },
-  { label: "OG workspace", href: "/og" },
-  { label: "Project planner", href: "/planner" },
-  { label: "Collections", href: "/docs/collections" },
-] as const
-
 /** Catalog band — each family deep-links to its real surface. */
 export function LandingCatalogEcosystem() {
   const sections = navigation.filter((s) => s.title !== "Getting Started")
@@ -71,14 +64,6 @@ export function LandingCatalogEcosystem() {
                   ? "2 live"
                   : `${section.items.length} blocks`}
               </span>
-            </Link>
-          ))}
-        </div>
-
-        <div className="atro-care-grid atro-care-grid--inline">
-          {CARE_CHIPS.map((item) => (
-            <Link key={item.label} href={item.href} className="atro-care-chip">
-              <span className="atro-care-chip-label">{item.label}</span>
             </Link>
           ))}
         </div>
