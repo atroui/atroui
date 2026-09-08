@@ -874,6 +874,208 @@ html {
   color: var(--docs-fg-strong);
 }
 
+/* Changelog timeline — version → category badges on a rail → hash + note + PR */
+.docs-changelog {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+/* Compact follow strip under the arrival header (email + X as peer exits) */
+.docs-book article.space-y-10 > .docs-book-header + .docs-changelog-follow {
+  margin-top: 1.15rem;
+}
+.docs-changelog-follow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-width: 40rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--atro-panel-radius, 0.5rem);
+  border: 1px solid var(--docs-border, var(--border-subtle));
+  background: color-mix(in oklch, var(--foreground) 2%, transparent);
+}
+.docs-changelog-follow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+.docs-changelog-follow-form {
+  flex: 1 1 14rem;
+  min-width: 0;
+  gap: 0.5rem !important;
+}
+.docs-changelog-follow-form input[type="email"] {
+  padding-block: 0.5rem;
+  font-size: 0.8125rem;
+}
+.docs-changelog-follow-form .ms-cta {
+  min-height: 2rem;
+  padding-inline: 0.85rem;
+  font-size: 0.75rem;
+}
+.docs-changelog-follow-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2rem;
+  padding: 0 0.85rem;
+  border-radius: var(--atro-control-radius, 0.375rem);
+  border: 1px solid var(--docs-border, var(--border-subtle));
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--docs-fg-strong);
+  text-decoration: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+.docs-changelog-follow-x:hover {
+  border-color: color-mix(in oklch, var(--brand) 35%, var(--docs-border, var(--border-subtle)));
+  background: color-mix(in oklch, var(--brand) 6%, transparent);
+}
+.docs-changelog-follow-x:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.docs-changelog-follow-meta {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+.docs-changelog-release {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+.docs-changelog-version {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+  scroll-margin-top: 5rem;
+}
+.docs-changelog-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+.docs-changelog-category {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  column-gap: 0.9rem;
+  align-items: start;
+}
+.docs-changelog-rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.1rem;
+}
+.docs-changelog-category:not(:last-child) .docs-changelog-rail::after {
+  content: "";
+  position: absolute;
+  top: 1.7rem;
+  bottom: calc(-1.35rem - 0.15rem);
+  left: 50%;
+  width: 1px;
+  background: var(--docs-border, var(--border-subtle));
+  transform: translateX(-50%);
+}
+.docs-changelog-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: white;
+  box-shadow: 0 0 0 3px var(--background);
+}
+.docs-changelog-badge--feature {
+  background: color-mix(in oklch, var(--brand) 88%, black);
+}
+.docs-changelog-badge--fix {
+  background: oklch(0.52 0.14 250);
+}
+.docs-changelog-badge--breaking {
+  background: oklch(0.52 0.19 25);
+}
+.docs-changelog-category-title {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--docs-fg-strong);
+}
+.docs-changelog-entries {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.docs-changelog-entry {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--docs-fg);
+}
+.docs-changelog-hash {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+a.docs-changelog-hash:hover {
+  color: var(--docs-fg-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.docs-changelog-sep {
+  color: var(--muted-foreground);
+}
+.docs-changelog-desc {
+  color: var(--docs-fg);
+}
+.docs-changelog-ref {
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.docs-changelog-pr {
+  color: var(--docs-link);
+  text-decoration: none;
+}
+.docs-changelog-pr:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.docs-changelog-inline-code {
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+  border-radius: 0.3rem;
+  border: 1px solid var(--docs-border, var(--border-subtle));
+  background: color-mix(in oklch, var(--brand) 8%, transparent);
+  padding: 0.05rem 0.3rem;
+  color: var(--docs-fg-strong);
+}
+
+@media (max-width: 640px) {
+  .docs-changelog-ref {
+    white-space: normal;
+  }
+}
+
 /* Hub list rows (glossary / collections / similar indexes) — book ink, not storefront ds-* */
 .docs-book .docs-hub-title {
   display: block;
