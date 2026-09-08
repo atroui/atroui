@@ -1098,6 +1098,22 @@ export function DemoReveal() {
   )
 }
 
+export function DemoRevealStaggered() {
+  return (
+    <div className="mx-auto flex w-full max-w-md flex-col gap-3">
+      <Reveal className="rounded-xl border border-border-subtle bg-card px-5 py-4 text-sm text-foreground">
+        First in
+      </Reveal>
+      <Reveal
+        delay={160}
+        className="rounded-xl border border-border-subtle bg-card px-5 py-4 text-sm text-foreground"
+      >
+        Follows at 160ms
+      </Reveal>
+    </div>
+  )
+}
+
 export function DemoThemeToggleIcon() {
   return (
     <div className="mx-auto flex w-fit items-center gap-3 rounded-lg border border-border-subtle bg-background px-4 py-3">
@@ -1202,6 +1218,14 @@ export function DemoLocalClock() {
   return (
     <div className="flex justify-center py-6">
       <LocalClock timezone="America/New_York" timezoneLabel="NYC" />
+    </div>
+  )
+}
+
+export function DemoLocalClockLondon() {
+  return (
+    <div className="flex justify-center py-6">
+      <LocalClock timezone="Europe/London" timezoneLabel="LON" />
     </div>
   )
 }

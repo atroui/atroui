@@ -99,8 +99,8 @@ export default function ThemingPage() {
           </li>
           <li>
             <strong className="text-foreground">Caveat (opt-in sketch)</strong> —
-            never the default. Reach for it deliberately on brand marks and
-            chalkboard accents (
+            never the default display face. Reach for it on brand marks,
+            chalkboard accents, and display accent words (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-sketch
             </code>
@@ -108,7 +108,12 @@ export default function ThemingPage() {
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-sketch-accent
             </code>
-            ).
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-display-italic
+            </code>
+            — Outfit has no italic, so accent spans use sketch rather than a
+            fake oblique).
           </li>
           <li>
             <strong className="text-foreground">Geist Mono</strong> — code,
