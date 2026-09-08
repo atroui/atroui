@@ -10,7 +10,7 @@ import { DocsRouteTransition } from "@/components/view-transitions"
 
 /**
  * Docs reading frame:
- * sticky chapter spine · content measure · soft TOC satellite (xl+).
+ * sticky chapter spine · content measure · right rail (always reserved at xl).
  * Mid breakpoints get an On-this-page disclosure above the chapter.
  */
 export function DocsLayoutShell({ children }: { children: React.ReactNode }) {

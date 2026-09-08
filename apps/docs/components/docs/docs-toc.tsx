@@ -231,18 +231,27 @@ export function DocsTocMobile() {
   )
 }
 
-/** xl+ soft satellite hanging in leftover space. */
+/**
+ * xl+ right rail — always reserved so the measure keeps two walls.
+ * Populates when the page has real headings; stays empty (not absent) otherwise.
+ */
 export function DocsTocRail() {
   const { headings, active } = useDocsToc()
-  if (!shouldShowDocsToc(headings)) return null
+  const show = shouldShowDocsToc(headings)
 
   return (
-    <aside className="docs-book-toc" aria-label="On this page">
+    <aside
+      className="docs-book-toc"
+      aria-label={show ? "On this page" : undefined}
+      aria-hidden={show ? undefined : true}
+    >
       <div className="docs-book-toc-sticky docs-scroll-quiet">
-        <nav className="docs-book-toc-nav">
-          <p className="docs-book-nav-heading !px-0">On this page</p>
-          <TocLinkList headings={headings} active={active} />
-        </nav>
+        {show ? (
+          <nav className="docs-book-toc-nav">
+            <p className="docs-book-nav-heading !px-0">On this page</p>
+            <TocLinkList headings={headings} active={active} />
+          </nav>
+        ) : null}
       </div>
     </aside>
   )

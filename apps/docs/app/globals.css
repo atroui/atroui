@@ -548,7 +548,7 @@ html {
   }
 }
 
-/* TOC rail with wall — hang in leftover space. */
+/* TOC rail with wall — always reserved at xl so both sides of main match. */
 .docs-book-toc {
   display: none;
   width: var(--docs-toc-width);
@@ -1242,6 +1242,45 @@ a.docs-changelog-hash:hover {
   line-height: 1.5;
   color: var(--muted-foreground);
 }
+
+/* Collection / hub kit lists — book index, not glass card */
+.docs-book .docs-kit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block: 1px solid var(--docs-border);
+}
+.docs-book .docs-kit-list > li + li {
+  border-top: 1px solid var(--docs-border);
+}
+.docs-book .docs-kit-row {
+  display: block;
+  padding: 1rem 0.15rem;
+  text-decoration: none;
+  transition: background-color 140ms ease;
+}
+.docs-book .docs-kit-row:hover {
+  background: color-mix(in oklch, var(--foreground) 3%, transparent);
+}
+.docs-book .docs-kit-row:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.docs-book .docs-kit-row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.docs-book .docs-kit-row-head .docs-hub-title {
+  min-width: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-book .docs-kit-row {
+    transition: none;
+  }
+}
+
 /* Long copy on guide pages: one body ink (overrides text-muted-foreground) */
 .docs-book article > section > p,
 .docs-book article > section > ul,

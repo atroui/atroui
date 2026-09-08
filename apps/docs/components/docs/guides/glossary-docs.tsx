@@ -18,12 +18,12 @@ export function GlossaryIndexPage() {
           </>
         }
       />
-      <ul className="divide-y divide-border-subtle border-y border-border-subtle">
+      <ul className="docs-kit-list">
         {pseoGlossary.map((term) => (
           <li key={term.slug}>
             <Link
               href={`/docs/glossary/${term.slug}`}
-              className="block py-4 transition-colors hover:bg-muted/30"
+              className="docs-kit-row"
             >
               <span className="docs-hub-title">{term.title}</span>
               <span className="docs-hub-meta">{term.description}</span>
