@@ -23,7 +23,14 @@ const blurbs: Record<string, string> = {
 
 /** Catalog band — each family deep-links to its real surface. */
 export function LandingCatalogEcosystem() {
-  const sections = navigation.filter((s) => s.title !== "Getting Started")
+  const sections = navigation.filter(
+    (s) =>
+      s.title !== "Getting Started" &&
+      s.title !== "Setup" &&
+      s.title !== "Kits" &&
+      s.title !== "Reference" &&
+      s.title !== "More"
+  )
   const total = catalogNavItems.length
 
   return (

@@ -39,49 +39,53 @@ const docsGroups = [
   {
     heading: "Start",
     links: [
-      { href: "/docs", title: "Getting Started", body: "What AtroUI is" },
+      {
+        href: "/docs",
+        title: "Getting Started",
+        body: "First-hour Quick Start",
+      },
       {
         href: "/docs/installation",
         title: "Installation",
-        body: "shadcn CLI setup",
+        body: "Init, add, troubleshoot",
       },
       {
-        href: "/docs/registry",
-        title: "Registry",
-        body: "Own source via shadcn add @atroui/…",
-      },
-      {
-        href: "/docs/host-api",
-        title: "Host APIs",
-        body: "Forms & AI routes on your keys",
-      },
-      {
-        href: "/docs/theming",
-        title: "Theming",
-        body: "Dark-first tokens you control",
-      },
-    ],
-  },
-  {
-    heading: "Reference",
-    links: [
-      {
-        href: "/docs/guides/launch-workflow",
-        title: "Launch workflow",
-        body: "Scope → social card",
+        href: "/docs/migrate",
+        title: "Coming from…",
+        body: "shadcn, npm atroui, kits",
       },
       {
         href: "/docs/collections",
         title: "Collections",
         body: "Jobs: forms, OG, launch",
       },
+    ],
+  },
+  {
+    heading: "Setup & kits",
+    links: [
       {
-        href: "/docs/compare",
-        title: "Compare",
-        body: "vs copy-paste kits",
+        href: "/docs/registry",
+        title: "Registry",
+        body: "Own source via shadcn add",
+      },
+      {
+        href: "/docs/theming",
+        title: "Theming",
+        body: "Dark-first tokens you control",
+      },
+      {
+        href: "/docs/host-api",
+        title: "Host APIs",
+        body: "Forms & AI routes on your keys",
       },
       { href: "/docs/brand", title: "Brand kit", body: "Logo & voice" },
-      { href: "/docs/changelog", title: "Changelog", body: "Releases" },
+      {
+        href: "/docs/guides/launch-workflow",
+        title: "Launch workflow",
+        body: "Scope → social card",
+      },
+      { href: "/docs/compare", title: "Compare", body: "vs copy-paste kits" },
     ],
   },
 ] as const

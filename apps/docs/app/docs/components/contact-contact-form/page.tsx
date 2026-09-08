@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 import { componentPageMetadata } from "@/lib/docs-metadata"
+import Link from "next/link"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoContactForm } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "Hardened Next.js Contact Form with SMTP API",
+  "Contact Form",
   "/docs/components/contact-contact-form",
-  "A secure, production-ready React contact form component for Next.js with a matching SMTP and Resend backend API route."
+  "Production contact form with honeypot and a matching /api/contact Host route."
 )
 
 export default function Page() {
@@ -17,9 +18,43 @@ export default function Page() {
       title="Contact Form"
       description="Production contact form with honeypot, validation, and a matching /api/contact Host route (SMTP or Resend)."
       preview={<DemoContactForm />}
-      code={'import { ContactForm } from "@/components/blocks/contact-form"\n\n<ContactForm />'}
+      code={`import { ContactForm } from "@/components/blocks/contact-form"
+
+<ContactForm />`}
       fullBleed={true}
-      usage="Posts to /api/contact. Install @atroui/api-contact for the route, or import handleContactPost from atroui/api/contact. Set SMTP_* and CONTACT_EMAIL_TO (see .env.example)."
+      usage={
+        <>
+          Posts to{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /api/contact
+          </code>
+          . Install{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/api-contact
+          </code>{" "}
+          with the form (or call{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            handleContactPost
+          </code>{" "}
+          from{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui/api/contact
+          </code>
+          ). Set{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            SMTP_*
+          </code>{" "}
+          and{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            CONTACT_EMAIL_TO
+          </code>{" "}
+          — details in{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
+          </Link>
+          .
+        </>
+      }
     />
   )
 }

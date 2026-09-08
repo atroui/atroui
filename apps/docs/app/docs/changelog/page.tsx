@@ -182,7 +182,7 @@ export default function ChangelogPage() {
         ))}
       </div>
 
-      <DocsPager href="/docs/changelog" kind="more" />
+      <DocsPager href="/docs/changelog" kind="guides" />
     </article>
   )
 }

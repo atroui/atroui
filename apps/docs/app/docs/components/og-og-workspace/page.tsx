@@ -5,9 +5,9 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoOgWorkspace } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "Next.js OG Image Workspace (Satori + BYOK)",
+  "OG Workspace",
   "/docs/components/og-og-workspace",
-  "An interactive, client-side Open Graph social card workspace UI for Next.js powered by Satori, tailwindcss, and AI prompt overrides."
+  "Client-side Open Graph card workspace (Satori + optional AI). Live at /og."
 )
 
 export default function Page() {
@@ -18,26 +18,27 @@ export default function Page() {
       title="OG Workspace"
       description="Client-side Open Graph card workspace (Satori + optional AI). Live on this site at /og."
       preview={<DemoOgWorkspace />}
-      code={'import { OgWorkspace } from "@/components/blocks/og-workspace"\n\n<OgWorkspace />'}
+      code={`import { OgWorkspace } from "@/components/blocks/og-workspace"
+
+<OgWorkspace />`}
       fullBleed={true}
       usage={
         <>
-          Install{" "}
+          Try the live room at{" "}
+          <Link href="/og" className="bam-link">
+            /og
+          </Link>{" "}
+          before installing. For AI generation in your app, also add{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @atroui/api-generate
           </code>{" "}
-          and set{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            HUGGINGFACE_API_KEY
-          </code>{" "}
-          (or Google AI keys for freeform prompts) in{" "}
-          <strong className="font-medium text-foreground">your</strong> env.
-          AtroUI never ships keys. Preview-only downloads work without AI. The
-          live workspace runs on this site at{" "}
-          <Link href="/og" className="text-brand underline underline-offset-2">
-            /og
+          and set keys in{" "}
+          <strong className="font-medium text-foreground">your</strong> env
+          (see{" "}
+          <Link href="/docs/host-api" className="bam-link">
+            Host APIs
           </Link>
-          .
+          ). Preview-only downloads work without AI.
         </>
       }
       extra={
@@ -46,12 +47,8 @@ export default function Page() {
             Try it before you install
           </h2>
           <p className="text-[15px] leading-relaxed text-muted-foreground">
-            The hybrid FLUX + Satori pipeline runs here on atroui.com at{" "}
-            <Link href="/og" className="text-brand underline underline-offset-2">
-              /og
-            </Link>
-            . Generate a card, download it, then run the install command above
-            to own the same source in your repo.
+            Generate a card on this site, download it, then run the install
+            command above to own the same source in your repo.
           </p>
           <Link href="/og" className="atro-btn mt-2 inline-flex w-fit">
             Open the OG workspace

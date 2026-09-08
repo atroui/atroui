@@ -11,7 +11,7 @@ import { getPseoPage } from "@/lib/pseo"
 export const metadata: Metadata = docsPageMetadata({
   title: "Installation",
   description:
-    "Add AtroUI with the shadcn CLI. You own the copied files. Tailwind v4. Public @atroui. Host APIs optional and BYOK.",
+    "Init shadcn, add @atroui blocks, and troubleshoot Tailwind / Host API setup.",
   path: "/docs/installation",
 })
 
@@ -25,79 +25,54 @@ export default function InstallationPage() {
         title="Installation"
         lede={
           <>
-            AtroUI ships as a{" "}
-            <strong>shadcn-compatible registry</strong>. Run the CLI, components
-            land in your project, and you edit <code>CONTENT</code> at the top of
-            each file. Works best with Next.js, Tailwind CSS v4, and a
-            dark-friendly token sheet. <code>@atroui</code> is the public shadcn
-            directory namespace. You do not need a GitHub token. Private GitHub
-            registries are a different shadcn feature.
+            Prerequisites, the happy path (<code>init</code> →{" "}
+            <code>add @atroui/…</code>), what lands in your repo, and how to fix
+            the usual failures. Best with Next.js and Tailwind CSS v4.
           </>
         }
       />
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          What you own after install
+        <h2 className="ds-headline text-base text-foreground" id="prerequisites">
+          1. Prerequisites
         </h2>
+        <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
+          <li>
+            <strong className="text-foreground">Next.js</strong> app (App Router
+            preferred)
+          </li>
+          <li>
+            <strong className="text-foreground">Tailwind CSS v4</strong> — not
+            v3 <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">@apply</code>{" "}
+            / opacity syntax
+          </li>
+          <li>
+            A{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              components.json
+            </code>{" "}
+            from shadcn init (next step if missing)
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground" id="init">
+          2. Init shadcn
+        </h2>
+        <CodeBlock language="bash" code={`npx shadcn@latest init`} />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          The shadcn CLI copies component files into{" "}
-          <strong className="font-medium text-foreground">your</strong> repo.
-          Edit them freely. AtroUI does not remote-control those files after
-          install.
-        </p>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Tailwind CSS v4 setup (
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @source
-          </code>
-          , content paths, monorepo scanning) is{" "}
-          <strong className="font-medium text-foreground">your</strong> app
-          configuration. If utility classes are missing after{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            shadcn add
-          </code>
-          , check that Tailwind can see the copied files - that is not an AtroUI
-          Host API issue.
-        </p>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Pure UI needs only the CLI. Forms and AI tools that post to{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            /api/*
-          </code>{" "}
-          also need{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            npm i atroui
-          </code>{" "}
-          and your keys. Boundary and env:{" "}
-          <Link href="/docs/host-api" className="bam-link">
-            Host APIs
+          Dark-first tokens that match the catalog:{" "}
+          <Link href="/docs/theming" className="bam-link">
+            Theming
           </Link>
           .
         </p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          1. Init shadcn (if needed)
-        </h2>
-        <CodeBlock language="bash" code={`npx shadcn@latest init`} />
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          You need a{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            components.json
-          </code>{" "}
-          in the app. See the{" "}
-          <Link href="/docs/theming" className="bam-link">
-            Theming
-          </Link>{" "}
-          guide for dark-first tokens that match the catalog.
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          2. Add a component
+        <h2 className="ds-headline text-base text-foreground" id="add">
+          3. Add a component
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -116,26 +91,39 @@ export default function InstallationPage() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             registry add
           </code>{" "}
-          step. The CLI resolves the namespace and can write it into{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            components.json
-          </code>{" "}
-          for you.
+          URL step.
         </p>
         <CodeBlock
           language="bash"
-          code={`npx shadcn@latest add @atroui/home-hero
-npx shadcn@latest add @atroui/site-header
+          code={`npx shadcn@latest add @atroui/home-hero`}
+        />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Add more when you need them:
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`npx shadcn@latest add @atroui/site-header
 npx shadcn@latest add @atroui/faq
 npx shadcn@latest add @atroui/site-footer`}
         />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="ds-headline text-base text-foreground" id="what-landed">
+          4. What landed in the repo
+        </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Source files land under your aliases (for example{" "}
+          The CLI copies source into{" "}
+          <strong className="font-medium text-foreground">your</strong> project
+          (for example{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             components/blocks/home-hero.tsx
           </code>
-          ). Open the file and edit the constants at the top. Dependencies
-          resolve as{" "}
+          ). Edit the{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            CONTENT
+          </code>{" "}
+          object at the top. Dependencies resolve as{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @atroui/brand
           </code>
@@ -143,49 +131,60 @@ npx shadcn@latest add @atroui/site-footer`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @atroui/utils
           </code>
-          , and so on. Full catalog:{" "}
+          , and so on. Full map:{" "}
           <Link href="/docs/registry" className="bam-link">
             Registry
           </Link>
           .
         </p>
+        <CodeBlock
+          language="bash"
+          code={`NEXT_PUBLIC_SITE_NAME=Acme
+NEXT_PUBLIC_SITE_DOMAIN=acme.test
+NEXT_PUBLIC_SITE_EMAIL=hello@acme.test
+NEXT_PUBLIC_SITE_URL=https://acme.test`}
+        />
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Optional brand env after adding{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/brand
+          </code>
+          . Or edit{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            DEFAULT_BRAND
+          </code>{" "}
+          in the copied file.
+        </p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
-          3. Forms + Host APIs
+        <h2 className="ds-headline text-base text-foreground" id="host-api">
+          5. When you also need <code>npm i atroui</code>
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Contact, waitlist, and newsletter UIs post to{" "}
+          Pure UI stops at step 3. Forms and AI tools that post to{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             /api/*
-          </code>
-          . Install the matching route handlers (they call{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            atroui/api/*
           </code>{" "}
-          with honeypot checks, body caps, and in-memory rate limits):
+          need the package,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            transpilePackages: [&quot;atroui&quot;]
+          </code>
+          , matching route handlers, and your keys:
         </p>
         <CodeBlock
           language="bash"
           code={`npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
 
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact
-npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
-npx shadcn@latest add @atroui/newsletter-form @atroui/api-newsletter`}
+npx shadcn@latest add @atroui/contact-form @atroui/api-contact`}
         />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Then set mail env (SMTP and/or Resend). Full Host API guide (env,
-          security defaults, rate limits):{" "}
+          Env, security defaults, rate limits:{" "}
           <Link href="/docs/host-api" className="bam-link">
             Host APIs
           </Link>
-          . See also{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            .env.example
-          </code>{" "}
-          in the repo.
+          . Example mail vars:
         </p>
         <CodeBlock
           language="bash"
@@ -199,49 +198,66 @@ RESEND_AUDIENCE_ID=…`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Brand overrides</h2>
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          After adding{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            @atroui/brand
-          </code>
-          , edit{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            DEFAULT_BRAND
-          </code>{" "}
-          or set{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            NEXT_PUBLIC_SITE_*
-          </code>{" "}
-          in the host:
-        </p>
-        <CodeBlock
-          language="bash"
-          code={`NEXT_PUBLIC_SITE_NAME=Acme
-NEXT_PUBLIC_SITE_DOMAIN=acme.test
-NEXT_PUBLIC_SITE_EMAIL=hello@acme.test
-NEXT_PUBLIC_SITE_URL=https://acme.test`}
-        />
+        <h2 className="ds-headline text-base text-foreground" id="troubleshooting">
+          6. Troubleshooting
+        </h2>
+        <ul className="list-disc space-y-3 pl-5 text-[15px] text-muted-foreground">
+          <li>
+            <strong className="text-foreground">Utilities missing after add</strong>{" "}
+            — Tailwind cannot see the copied files. Check{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              @source
+            </code>{" "}
+            / content paths. This is host config, not a Host API failure.
+          </li>
+          <li>
+            <strong className="text-foreground">
+              <code className="font-mono text-[12px]">503</code> on form or AI
+              routes
+            </strong>{" "}
+            — missing keys in{" "}
+            <strong className="text-foreground">your</strong> env. Preview-only
+            OG downloads and rule-based scope replies work without keys; full
+            generation does not. See{" "}
+            <Link href="/docs/host-api" className="bam-link">
+              Host APIs
+            </Link>
+            .
+          </li>
+          <li>
+            <strong className="text-foreground">Wrong Tailwind major</strong> —
+            AtroUI targets v4. Do not mix v3 opacity /{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              @apply
+            </code>{" "}
+            habits into the copied files.
+          </li>
+        </ul>
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
+        <h2 className="ds-headline text-base text-foreground" id="install-modes">
           Install modes
         </h2>
+        <p className="text-[15px] leading-relaxed text-muted-foreground">
+          Registry UI vs package Host APIs — when each path applies:
+        </p>
         <InstallModesMatrix showCanonicalLink />
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Why we split registry UI from the package:{" "}
+          Why we split them:{" "}
           <Link href="/blog/npm-to-shadcn-registry" className="bam-link">
-            npm → shadcn registry migration
+            npm → shadcn registry
           </Link>
           .
         </p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Host-bound tools</h2>
+        <h2 className="ds-headline text-base text-foreground" id="host-bound-tools">
+          Host-bound tools (optional)
+        </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Forms and AI tool routes ship as thin{" "}
+          OG, thumbnail, and scope chat ship as thin{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             app/api/*/route.ts
           </code>{" "}
@@ -249,42 +265,21 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui/api/*
           </code>
-          . AtroUI never ships API keys and does not run paid AI on atroui.com -
-          you set keys in{" "}
-          <strong className="font-medium text-foreground">your</strong> env.
+          . AtroUI never ships keys.
         </p>
         <CodeBlock
           language="bash"
-          code={`npm i atroui
-# next.config.ts → transpilePackages: ["atroui"]
-
-npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
+          code={`npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
 npx shadcn@latest add @atroui/thumbnail-workspace @atroui/api-thumbnail
 npx shadcn@latest add @atroui/scope-chat @atroui/api-scope
 
 # Your keys only (examples):
-HUGGINGFACE_API_KEY=…
-# GEMINI_API_KEY=…          # optional freeform / Pro image
-# XAI_API_KEY=…             # optional scope LLM + thumbnail Pro pipeline`}
+HUGGINGFACE_API_KEY=…`}
         />
-        <p className="text-[15px] leading-relaxed text-muted-foreground">
-          Preview-only OG/thumbnail downloads and rule-based scope replies work
-          without keys. Full AI generation returns{" "}
-          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            503
-          </code>{" "}
-          until you configure providers. Marked{" "}
-          <span className="font-medium text-foreground">Host API</span> in the
-          sidebar — details on{" "}
-          <Link href="/docs/host-api" className="bam-link">
-            Host APIs
-          </Link>
-          .
-        </p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
+        <h2 className="ds-headline text-base text-foreground" id="clone">
           Clone the monorepo
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { componentPageMetadata } from "@/lib/docs-metadata"
 import { ComponentDoc } from "@/components/component-doc"
 import { DemoFadeIn, DemoFadeInDelayed } from "@/components/registry-demos"
@@ -24,7 +25,19 @@ export default function Page() {
 {/* Docs preview (skips IntersectionObserver) */}
 <FadeIn preview>Content</FadeIn>`}
       fullBleed={false}
-      usage="Use on page sections that should rise into place. Pass preview in docs canvases so the stage is never stuck at opacity 0. Prefer @atroui/reveal when you want CSS-only IntersectionObserver with no motion dependency."
+      usage={
+        <>
+          Wrap page sections that should rise into place on scroll. Pass{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            preview
+          </code>{" "}
+          in docs canvases so the stage is never stuck at opacity 0. Prefer{" "}
+          <Link href="/docs/components/reveal" className="bam-link">
+            Reveal
+          </Link>{" "}
+          when you want CSS-only IntersectionObserver with no motion dependency.
+        </>
+      }
       examples={[
         {
           title: "Delay and travel",
@@ -60,7 +73,8 @@ export default function Page() {
           name: "preview",
           type: "boolean",
           default: "false",
-          description: "Animate on mount (docs stages) instead of waiting for scroll.",
+          description:
+            "Animate on mount (docs stages) instead of waiting for scroll.",
         },
       ]}
     />

@@ -24,8 +24,12 @@ export default function ComparePage() {
         }
         lede={
           <>
-            Clear differences - not trash talk. Choose the tool that matches how
-            you ship.
+            Choose the tool that matches how you ship. Task paths if you already
+            have a stack:{" "}
+            <Link href="/docs/migrate" className="bam-link">
+              Coming from…
+            </Link>
+            .
           </>
         }
       />
@@ -154,7 +158,7 @@ export default function ComparePage() {
         ]}
       />
 
-      <DocsPager href="/docs/compare" kind="more" />
+      <DocsPager href="/docs/compare" kind="guides" />
     </article>
   )
 }

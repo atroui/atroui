@@ -17,11 +17,13 @@ export default function Page() {
       title="Hero"
       description="CONTENT-driven homepage hero. Install as @atroui/home-hero."
       preview={<HomeHero />}
-      code={
-        'import { HomeHero } from "@/components/blocks/home-hero"\n\nexport function Example() {\n  return <HomeHero />\n}'
-      }
+      code={`import { HomeHero } from "@/components/blocks/home-hero"
+
+export function Example() {
+  return <HomeHero />
+}`}
       fullBleed={true}
-      usage="Use once at the top of a marketing homepage. Preview is the same registry source the CLI copies into your repo. Full-bleed section."
+      usage="Mount once at the top of a marketing homepage. After install, edit the CONTENT object at the top of the file — do not fork props for every string. Full-bleed section; pair with site header chrome above it."
     />
   )
 }

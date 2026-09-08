@@ -14,33 +14,63 @@ export type NavSection = {
 }
 
 /**
- * Curated catalog - not a filesystem dump.
- * Primitives → reusable bits
- * Blocks → marketing / page modules (prefer CLI registry)
- * Tools → need host APIs or env to run fully
- * Headless → no visible UI
+ * Curated catalog — not a filesystem dump.
+ * Guide spine (Getting Started → Setup → Kits → Reference) then
+ * Primitives / Blocks / Tools / Headless.
  */
+/** Guide spine sections — pager walks these in order (not the catalog dump). */
+export const GUIDE_SECTION_TITLES = [
+  "Getting Started",
+  "Setup",
+  "Kits",
+  "Reference",
+] as const
+
 export const navigation: NavSection[] = [
   {
     title: "Getting Started",
     items: [
-      { title: "Getting Started", href: "/docs", description: "Overview" },
+      {
+        title: "Getting Started",
+        href: "/docs",
+        description: "First-hour Quick Start",
+      },
       {
         title: "Installation",
         href: "/docs/installation",
-        description: "shadcn CLI setup",
+        description: "Init, add, troubleshoot",
       },
       {
-        title: "Host APIs",
-        href: "/docs/host-api",
-        description: "Forms & AI routes, BYOK",
+        title: "Coming from…",
+        href: "/docs/migrate",
+        description: "shadcn, npm atroui, kits",
       },
+      {
+        title: "Collections",
+        href: "/docs/collections",
+        description: "Jobs: forms, OG, launch",
+      },
+    ],
+  },
+  {
+    title: "Setup",
+    items: [
       {
         title: "Registry",
         href: "/docs/registry",
         description: "Own components in your repo",
       },
       { title: "Theming", href: "/docs/theming", description: "Tokens" },
+      {
+        title: "Host APIs",
+        href: "/docs/host-api",
+        description: "Forms & AI routes, BYOK",
+      },
+    ],
+  },
+  {
+    title: "Kits",
+    items: [
       { title: "Brand kit", href: "/docs/brand", description: "Logo & voice" },
       {
         title: "Identity kit",
@@ -52,27 +82,27 @@ export const navigation: NavSection[] = [
         href: "/docs/guides/launch-workflow",
         description: "Scope → OG",
       },
-      {
-        title: "Collections",
-        href: "/docs/collections",
-        description: "Jobs: forms, OG, launch",
-      },
+    ],
+  },
+  {
+    title: "Reference",
+    items: [
       {
         title: "Glossary",
         href: "/docs/glossary",
         description: "Host API, BYOK, registry",
       },
-    ],
-  },
-  {
-    title: "More",
-    items: [
       {
         title: "Compare",
         href: "/docs/compare",
         description: "vs copy-paste kits",
       },
       { title: "Changelog", href: "/docs/changelog", description: "Releases" },
+    ],
+  },
+  {
+    title: "More",
+    items: [
       { title: "Blog", href: "/blog", description: "Guides & SEO" },
       {
         title: "Updates",
@@ -537,9 +567,11 @@ export const navigation: NavSection[] = [
 
 export const allNavItems = navigation.flatMap((section) => section.items)
 
+const NON_CATALOG = new Set<string>([...GUIDE_SECTION_TITLES, "More"])
+
 /** Catalog sections only — the one taxonomy behind the Components mega and footer. */
 export const catalogSections = navigation.filter(
-  (section) => section.title !== "Getting Started" && section.title !== "More"
+  (section) => !NON_CATALOG.has(section.title)
 )
 
 export const catalogNavItems = catalogSections.flatMap(
@@ -574,6 +606,9 @@ export type DocKind = "Primitive" | "Block" | "Tool" | "Headless"
 
 const sectionKind: Record<string, DocKind | undefined> = {
   "Getting Started": undefined,
+  Setup: undefined,
+  Kits: undefined,
+  Reference: undefined,
   More: undefined,
   Primitives: "Primitive",
   Blocks: "Block",
@@ -612,16 +647,22 @@ export function findCatalogNeighbors(href: string) {
   }
 }
 
-/** Prev/next within Getting Started (guides), not the full catalog dump. */
+/** Flat guide spine: Getting Started → Setup → Kits → Reference. */
+export function guideNavItems(): NavItem[] {
+  return GUIDE_SECTION_TITLES.flatMap((title) => {
+    const section = navigation.find((s) => s.title === title)
+    return section?.items ?? []
+  })
+}
+
+/** Prev/next across the guide spine, not the catalog dump. */
 export function findGuideNeighbors(href: string) {
-  const section = navigation.find((s) => s.title === "Getting Started")
-  if (!section) return { prev: null, next: null }
-  const index = section.items.findIndex((item) => item.href === href)
+  const items = guideNavItems()
+  const index = items.findIndex((item) => item.href === href)
   if (index === -1) return { prev: null, next: null }
   return {
-    prev: index > 0 ? section.items[index - 1]! : null,
-    next:
-      index < section.items.length - 1 ? section.items[index + 1]! : null,
+    prev: index > 0 ? items[index - 1]! : null,
+    next: index < items.length - 1 ? items[index + 1]! : null,
   }
 }
 

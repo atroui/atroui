@@ -21,13 +21,16 @@ export default function Page() {
       title="Button"
       description="Primary action control with variants and sizes."
       preview={<DemoButton />}
-      code={'import { Button } from "@/components/ui/button"\n\n<Button>Continue</Button>\n<Button variant="outline" size="sm">Cancel</Button>'}
+      code={`import { Button } from "@/components/ui/button"
+
+<Button>Continue</Button>
+<Button variant="outline" size="sm">Cancel</Button>`}
       fullBleed={false}
-      usage="Keep one primary button per view. Use outline or ghost for the actions beside it, and destructive only when the action removes data."
+      usage="Use for the primary action in a view. Keep one default (filled) button per surface; put secondary actions on outline or ghost. Reach for destructive only when the click removes data."
       examples={[
         {
           title: "With icon",
-          tip: "Mark the icon with data-icon=\"inline-start\" or \"inline-end\" so the button tightens the padding on that side.",
+          tip: 'Mark the icon with data-icon="inline-start" or "inline-end" so the button tightens padding on that side.',
           preview: <DemoButtonWithIcon />,
           code: `import { ArrowRight, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -65,15 +68,21 @@ import { Button } from "@/components/ui/button"
         },
         {
           name: "size",
-          type: "'default' | 'xs' | 'sm' | 'lg' | 'icon' | …",
+          type: "'default' | 'xs' | 'sm' | 'lg' | 'icon' | 'icon-xs' | 'icon-sm' | 'icon-lg'",
           default: "'default'",
-          description: "Control size.",
+          description: "Control size, including square icon sizes.",
         },
         {
           name: "disabled",
           type: "boolean",
           default: "false",
           description: "Disables the button.",
+        },
+        {
+          name: "asChild",
+          type: "boolean",
+          default: "false",
+          description: "Render as child (e.g. Next.js Link) via Slot.",
         },
       ]}
     />

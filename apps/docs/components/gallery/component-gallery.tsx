@@ -6,7 +6,14 @@ import { navigation } from "@/lib/navigation"
 import { PreviewCard } from "@/components/gallery/preview-card"
 import { cn } from "@/lib/utils"
 
-const sections = navigation.filter((s) => s.title !== "Getting Started")
+const sections = navigation.filter(
+  (s) =>
+    s.title !== "Getting Started" &&
+    s.title !== "Setup" &&
+    s.title !== "Kits" &&
+    s.title !== "Reference" &&
+    s.title !== "More"
+)
 
 type Entry = { category: string; item: (typeof sections)[number]["items"][number] }
 
