@@ -67,7 +67,7 @@ export function ScopeChat() {
   }
 
   return (
-    <div className="flex min-h-[420px] flex-col overflow-hidden rounded-2xl border border-border-subtle bg-card/40">
+    <div className="flex min-h-[420px] flex-col overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/40">
       <div className="border-b border-border-subtle px-4 py-3">
         <p className="ms-stamp">Scope chat</p>
         <p className="mt-1 text-xs text-muted-foreground">{CONTENT.emptyHint}</p>

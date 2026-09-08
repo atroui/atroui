@@ -26,7 +26,6 @@ import {
   FeatureGrid,
   FormSelect,
   FounderAvatar,
-  HeroAiValueProposition,
   HomeCrafts,
   HomeLab,
   HomePrinciple,
@@ -90,11 +89,13 @@ import {
 import { TESTIMONIALS } from "atroui/content/testimonials"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 import { ContactStagePreview } from "@/components/registry/contact-stage-preview"
+import { HomeHero } from "../registry/default/blocks/home-hero"
 
 /** Live canvas demos - one per documented component where a useful preview exists. */
 
 export function DemoHomeHero() {
-  return <HeroAiValueProposition />
+  // Same `@atroui/home-hero` source users install — not the npm `HomeHero` alias.
+  return <HomeHero />
 }
 
 export function DemoHomeCrafts() {
@@ -879,7 +880,7 @@ export function DemoContactForm() {
 
 export function DemoCalendlyEmbed() {
   return (
-    <div className="w-full max-w-lg overflow-hidden rounded-2xl border border-border-subtle bg-card/40">
+    <div className="w-full max-w-lg overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/40">
       <CalendlyEmbed />
     </div>
   )
@@ -887,7 +888,7 @@ export function DemoCalendlyEmbed() {
 
 export function DemoArPortfolio() {
   return (
-    <div className="w-full max-h-[640px] overflow-auto rounded-2xl border border-border-subtle bg-background p-5 sm:p-8">
+    <div className="w-full max-h-[640px] overflow-auto rounded-[var(--atro-panel-radius)] border border-border-subtle bg-background p-5 sm:p-8">
       <ArPortfolio />
     </div>
   )

@@ -14,12 +14,10 @@ import * as React from "react"
 import Link from "next/link"
 import { Check, Copy } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import {
-  DeadlineCountdown,
-  HomeHero,
-  WaitlistForm,
-} from "atroui"
+import { DeadlineCountdown } from "atroui"
 import { ContactForm } from "../../registry/default/blocks/contact-form"
+import { HomeHero } from "../../registry/default/blocks/home-hero"
+import { WaitlistForm } from "../../registry/default/blocks/waitlist-form"
 import { cn } from "@/lib/utils"
 import { easeOutSoft, panelTween } from "@/lib/motion"
 

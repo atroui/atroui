@@ -146,7 +146,7 @@ export function DeadlineCountdown({
           <div className="flex items-baseline gap-3">
             <CountUp
               value={daysRemaining}
-              className="text-5xl font-medium tracking-tight tabular-nums text-[var(--color-brand,#6d28d9)] sm:text-6xl"
+              className="text-5xl font-medium tracking-tight tabular-nums text-brand sm:text-6xl"
             />
             <div className="pb-1 sm:pb-2">
               <div className="text-[13px] font-medium text-foreground">
@@ -183,7 +183,7 @@ export function DeadlineCountdown({
                   className={
                     "h-[6px] flex-1 rounded-[1px] transition-colors duration-300 " +
                     (filled
-                      ? "bg-[var(--color-brand,#6d28d9)]"
+                      ? "bg-brand"
                       : "bg-border-subtle")
                   }
                 />

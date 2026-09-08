@@ -9,9 +9,9 @@
 
 /* =============================================================================
    AtroUI design tokens
-   Dark-first · violet primary (hue ~277) · soft-rect CTAs
+   Mira (shadcn) light + dark · violet primary (hue ~277) · soft-rect CTAs
    Typography: Merriweather headings · DM Sans UI · Caveat sketch · Geist Mono
-   (matches shadcn Mira + Indigo + Zinc theme preset)
+   Brand / surface aliases are derived from Mira — never a second palette.
    ============================================================================= */
 
 @theme inline {
@@ -76,8 +76,8 @@
 }
 
 :root {
+  /* Mira (shadcn) — light. Do not fork these values in the docs app. */
   --radius: 0.45rem;
-  /* Controls follow theme radius — no separate fork that fights --radius */
   --atro-control-radius: var(--radius);
 
   --font-merriweather: "Merriweather", ui-serif, Georgia, serif;
@@ -89,12 +89,6 @@
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   /* Host should load Caveat (docs layout does). Fallback keeps sketchy intent. */
   --font-caveat: "Caveat", "Segoe Print", "Bradley Hand", cursive;
-
-  /* Brand tracks primary (violet) so accents / links stay coherent */
-  --brand: oklch(0.457 0.24 277.023);
-  --brand-hover: oklch(0.511 0.262 276.966);
-  --brand-dim: oklch(0.398 0.195 277.366);
-  --brand-glow: oklch(0.457 0.24 277.023 / 35%);
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -128,17 +122,20 @@
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
 
+  /* Atro aliases — derived from Mira only, never a second palette */
+  --brand: var(--primary);
+  --brand-hover: var(--sidebar-primary);
+  --brand-dim: var(--chart-5);
+  --brand-glow: color-mix(in oklch, var(--primary) 35%, transparent);
   --surface: var(--card);
   --surface-raised: var(--secondary);
   --border-subtle: var(--border);
+
+  color-scheme: light;
 }
 
 .dark {
-  --brand: oklch(0.585 0.233 277.117);
-  --brand-hover: oklch(0.785 0.115 274.713);
-  --brand-dim: oklch(0.398 0.195 277.366);
-  --brand-glow: oklch(0.585 0.233 277.117 / 40%);
-
+  /* Mira (shadcn) — dark. Same lock as :root. */
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
@@ -171,9 +168,16 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
 
+  /* Accents use sidebar-primary on dark so links stay readable on the canvas */
+  --brand: var(--sidebar-primary);
+  --brand-hover: var(--chart-1);
+  --brand-dim: var(--primary);
+  --brand-glow: color-mix(in oklch, var(--sidebar-primary) 40%, transparent);
   --surface: var(--card);
   --surface-raised: var(--secondary);
   --border-subtle: var(--border);
+
+  color-scheme: dark;
 }
 
 @layer base {
@@ -606,7 +610,7 @@
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: color-mix(in oklab, var(--background) 55%, transparent);
+  background: color-mix(in oklch, var(--background) 55%, transparent);
   backdrop-filter: blur(6px) saturate(1.1);
   -webkit-backdrop-filter: blur(6px) saturate(1.1);
   animation: atro-cmdk-fade 120ms ease-out;
@@ -624,15 +628,15 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow:
-    0 1px 0 color-mix(in oklab, var(--foreground) 5%, transparent) inset,
-    0 10px 32px -12px color-mix(in oklab, black 30%, transparent);
+    0 1px 0 color-mix(in oklch, var(--foreground) 5%, transparent) inset,
+    0 10px 32px -12px color-mix(in oklch, var(--foreground) 28%, transparent);
   overflow: hidden;
   animation: atro-cmdk-rise 160ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .dark [cmdk-dialog] {
   box-shadow:
-    0 1px 0 color-mix(in oklab, white 4%, transparent) inset,
-    0 20px 40px -16px rgba(0, 0, 0, 0.6);
+    0 1px 0 color-mix(in oklch, var(--foreground) 6%, transparent) inset,
+    0 20px 40px -16px color-mix(in oklch, var(--foreground) 40%, transparent);
 }
 [cmdk-dialog]:focus-visible,
 [cmdk-dialog]:focus {

@@ -12,7 +12,7 @@ export function BrandLogoDoc() {
       preview={<DemoLogo />}
       code={'import { LogoMark, LogoWordmark } from "@/components/brand/logo"\n\n<LogoMark />\n<LogoWordmark />\n<LogoWordmark name="Acme" />'}
       fullBleed={false}
-      usage="Mark uses currentColor for the A; the crossbar uses --color-brand (#6d28d9). Static assets: /brand/atroui-mark.svg and /brand/atroui-mark-app.svg. Pass title or name to override the label."
+      usage="Mark uses currentColor for the A; the crossbar uses --color-brand / --brand. Static assets: /brand/atroui-mark.svg and /brand/atroui-mark-app.svg. Pass title or name to override the label."
       props={[
         {
           name: "title",

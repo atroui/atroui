@@ -73,6 +73,7 @@ export function DocsExample({
 }: DocsExampleProps) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
   const reduce = useReducedMotion()
+  const tabInkId = React.useId()
 
   return (
     <div
@@ -81,7 +82,7 @@ export function DocsExample({
         className
       )}
     >
-      <div className="flex min-w-0 items-center gap-2 border-b border-border-subtle bg-white/2 px-1.5">
+      <div className="flex min-w-0 items-center gap-2 border-b border-border-subtle bg-foreground/[0.02] px-1.5">
         <div className="relative flex shrink-0 gap-0.5 p-1.5">
           {(["preview", "code"] as const).map((key) => (
             <button
@@ -97,12 +98,12 @@ export function DocsExample({
             >
               {tab === key && !reduce ? (
                 <motion.span
-                  layoutId="docs-example-tab"
-                  className="absolute inset-0 rounded-md bg-white/10"
+                  layoutId={tabInkId}
+                  className="absolute inset-0 rounded-md bg-foreground/10"
                   transition={revealTween}
                 />
               ) : tab === key ? (
-                <span className="absolute inset-0 rounded-md bg-white/10" />
+                <span className="absolute inset-0 rounded-md bg-foreground/10" />
               ) : null}
               <span className="relative z-1">{key}</span>
             </button>
@@ -111,7 +112,7 @@ export function DocsExample({
 
         {installCommand ? (
           <div className="ml-auto flex min-w-0 items-center py-1 pr-1 sm:pr-1.5">
-            <div className="flex min-w-0 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
+            <div className="flex min-w-0 items-center gap-1.5 rounded-lg border border-border-subtle bg-foreground/[0.03] py-1 pr-1 pl-2.5 sm:gap-2 sm:pl-3">
               <span
                 className="hidden shrink-0 font-mono text-[12px] font-medium text-brand sm:inline"
                 aria-hidden

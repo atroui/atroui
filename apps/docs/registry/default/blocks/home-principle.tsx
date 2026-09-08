@@ -32,13 +32,13 @@ const PRINCIPLES = [
 
 const toneText = {
   ok: "text-emerald-700 dark:text-emerald-400",
-  brand: "text-[var(--color-brand,#6d28d9)]",
+  brand: "text-brand",
   warm: "text-amber-800 dark:text-amber-400",
 } as const
 
 const toneDot = {
   ok: "bg-emerald-700 dark:bg-emerald-400",
-  brand: "bg-[var(--color-brand,#6d28d9)]",
+  brand: "bg-brand",
   warm: "bg-amber-800 dark:bg-amber-400",
 } as const
 
@@ -53,7 +53,7 @@ export function HomePrinciple() {
             </p>
             <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#6d28d9)]">
+              <span className="italic text-brand">
                 {CONTENT.headlineAccent}
               </span>
               {CONTENT.headlineAfter}

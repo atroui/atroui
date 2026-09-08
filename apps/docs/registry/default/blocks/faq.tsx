@@ -60,7 +60,7 @@ export function Faq() {
           </p>
           <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
             {CONTENT.headlineBefore}{" "}
-            <span className="italic text-[var(--color-brand,#6d28d9)]">
+            <span className="italic text-brand">
               {CONTENT.headlineAccent}
             </span>
             {CONTENT.headlineAfter}
@@ -87,7 +87,7 @@ export function Faq() {
                     <ChevronDown
                       className={`mt-1 size-4 shrink-0 text-muted-foreground transition-transform ${
                         open
-                          ? "rotate-180 text-[var(--color-brand,#6d28d9)]"
+                          ? "rotate-180 text-brand"
                           : ""
                       }`}
                       aria-hidden

@@ -1,763 +1,305 @@
-"use client";
+"use client"
 
-import {
-  AlertCircle,
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  CheckCircle2,
-  Loader2,
-  Paperclip,
-  Send,
-  X,
-} from "lucide-react";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useState, type FormEvent } from "react";
+import { ArrowUpRight, Check, Loader2 } from "lucide-react"
+import { useId, useState, type FormEvent } from "react"
 
-import { trackEvent } from "../../lib/analytics";
-import { getBrand } from "../../lib/brand";
-import { cn } from "../../lib/utils";
-
-const PROJECT_TYPES = [
-  {
-    id: "mvp-sprint",
-    label: "7-Day MVP Sprint",
-    hint: "Ship one core workflow · from $4,800",
-  },
-  {
-    id: "ai-integration",
-    label: "AI Feature",
-    hint: "Drop AI into an existing product · from $2,400",
-  },
-  {
-    id: "design-system",
-    label: "Design System",
-    hint: "Tokens, components, docs · from $3,600",
-  },
-  {
-    id: "full-stack-build",
-    label: "Full-Stack Build",
-    hint: "Longer engagement · scoped after a call",
-  },
-  {
-    id: "other",
-    label: "Something else",
-    hint: "Describe it in the note below",
-  },
-] as const;
-
-const BUDGETS = [
-  { id: "<2k", label: "Under $2k" },
-  { id: "2k-5k", label: "$2k - $5k" },
-  { id: "5k-10k", label: "$5k - $10k" },
-  { id: "10k+", label: "$10k+" },
-  { id: "unsure", label: "Not sure yet" },
-] as const;
-
-const TIMELINES = [
-  { id: "asap", label: "ASAP · 1-2 weeks" },
-  { id: "1-month", label: "Within a month" },
-  { id: "flexible", label: "Flexible" },
-  { id: "unsure", label: "Not sure yet" },
-] as const;
-
-/** Editorial step labels - short, not CRM-speak */
-const STEPS = [
-  { id: "who", label: "Who", title: "Who should we reply to?" },
-  { id: "what", label: "What", title: "What are we scoping?" },
-  { id: "when", label: "When", title: "Timing & extras" },
-  { id: "send", label: "Send", title: "Look right?" },
-] as const;
-
-const MAX_FILE_BYTES = 5 * 1024 * 1024;
-const ACCEPTED_TYPES = ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.md";
-
-type Status =
-  | { kind: "idle" }
-  | { kind: "submitting" }
-  | { kind: "success" }
-  | { kind: "error"; message: string };
-
-type Attachment = {
-  name: string;
-  mime: string;
-  data: string;
-};
-
-function labelOf(
-  options: readonly { id: string; label: string }[],
-  id: string,
-) {
-  return options.find((o) => o.id === id)?.label ?? id;
+/**
+ * Letter-sheet contact form — keep in sync with registry
+ * `apps/docs/registry/default/blocks/contact-form.tsx` (`@atroui/contact-form`).
+ * Install surface is the registry copy; this npm export mirrors it for Host API demos.
+ *
+ * Payload: name, email, company?, message, honeypot → `handleContactPost`.
+ */
+const CONTENT = {
+  stamp: "Contact",
+  headline: "Write us.",
+  lede: "One note. We answer within a business day.",
+  labelName: "Name",
+  labelEmail: "Email",
+  labelCompany: "Company",
+  labelMessage: "Message",
+  companyHint: "optional",
+  placeholderMessage: "What are you building?",
+  submitLabel: "Send",
+  sendingLabel: "Sending",
+  successTitle: "Sent.",
+  successBody: "We'll reply within one business day.",
+  footnote: "Posts to your /api/contact · keys stay on your host",
+  endpoint: "/api/contact",
 }
 
-function ChoiceChip({
-  pressed,
-  onClick,
-  disabled,
-  children,
-  className,
-}: {
-  pressed: boolean;
-  onClick: () => void;
-  disabled?: boolean;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={pressed}
-      disabled={disabled}
-      className={cn(
-        "border px-3.5 py-2.5 text-left text-sm transition-[border-color,background-color,color,transform] duration-200",
-        "active:scale-[0.99] disabled:pointer-events-none disabled:opacity-50",
-        pressed
-          ? "border-brand bg-brand/8 text-foreground"
-          : "border-border-subtle bg-background text-muted-foreground hover:border-border hover:text-foreground",
-        className,
-      )}
-    >
-      {children}
-    </button>
-  );
-}
+type Field = "name" | "email" | "company" | "message"
 
-function ContactFormInner() {
-  const search = useSearchParams();
-  const serviceParam = search.get("service");
-  const configParam = search.get("config");
+const fieldClass =
+  "w-full border-0 bg-transparent px-0 py-2.5 text-[0.9375rem] leading-snug text-foreground outline-none placeholder:text-muted-foreground/55 disabled:opacity-60"
+const labelClass =
+  "font-mono text-[10.5px] font-medium tracking-[0.14em] text-muted-foreground uppercase"
 
-  const initialProjectType = useMemo(() => {
-    if (!serviceParam) return "";
-    return PROJECT_TYPES.find((p) => p.id === serviceParam)?.id ?? "";
-  }, [serviceParam]);
-
-  const [step, setStep] = useState(0);
+export function ContactForm() {
+  const uid = useId()
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle")
+  const [error, setError] = useState("")
+  const [focused, setFocused] = useState<Field | null>(null)
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
-    projectType: initialProjectType,
-    budget: "",
-    timeline: "",
-    message: "",
-    config: configParam ?? "",
+    body: "",
     honeypot: "",
-  });
-  const [attachment, setAttachment] = useState<Attachment | null>(null);
-  const [fileError, setFileError] = useState("");
-  const [status, setStatus] = useState<Status>({ kind: "idle" });
+  })
 
-  useEffect(() => {
-    if (initialProjectType && !form.projectType) {
-      setForm((f) => ({ ...f, projectType: initialProjectType }));
-    }
-    if (configParam && !form.config) {
-      setForm((f) => ({ ...f, config: configParam }));
-    }
-  }, [initialProjectType, configParam]);
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    if (!form.name.trim() || !form.email.trim() || !form.body.trim()) return
 
-  const onFile = async (file: File | null) => {
-    setFileError("");
-    if (!file) {
-      setAttachment(null);
-      return;
-    }
-    if (file.size > MAX_FILE_BYTES) {
-      setFileError("File too large (max 5 MB).");
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      const base64 = result.split(",")[1] ?? "";
-      setAttachment({ name: file.name, mime: file.type, data: base64 });
-      trackEvent("contact_attachment_added", { name: file.name });
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const canNext = () => {
-    if (step === 0) return !!form.name.trim() && !!form.email.trim();
-    if (step === 1) return !!form.message.trim();
-    return true;
-  };
-
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (step < STEPS.length - 1) {
-      if (!canNext()) return;
-      setStep((s) => s + 1);
-      return;
-    }
-
-    setStatus({ kind: "submitting" });
-    trackEvent("contact_form_submit", {
-      project_type: form.projectType || "unknown",
-    });
-
+    setStatus("loading")
+    setError("")
     try {
-      const resp = await fetch("/api/contact", {
+      const response = await fetch(CONTENT.endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...form,
-          attachmentName: attachment?.name,
-          attachmentMime: attachment?.mime,
-          attachmentData: attachment?.data,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim(),
+          message: form.body.trim(),
+          honeypot: form.honeypot,
         }),
-      });
-      const data = (await resp.json().catch(() => ({}))) as {
-        ok?: boolean;
-        error?: string;
-      };
-      if (!resp.ok || data.error)
-        throw new Error(data.error || `Request failed (${resp.status})`);
-      setStatus({ kind: "success" });
-      trackEvent("contact_form_success");
+      })
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string
+      }
+      if (!response.ok) throw new Error(data.error || "Something went wrong")
+      setStatus("success")
+      setForm({ name: "", email: "", company: "", body: "", honeypot: "" })
+      setFocused(null)
     } catch (err) {
-      setStatus({
-        kind: "error",
-        message:
-          err instanceof Error
-            ? err.message
-            : "Something went wrong. Please try again.",
-      });
+      setStatus("error")
+      setError(err instanceof Error ? err.message : "Failed to send message")
     }
-  };
-
-  if (status.kind === "success") {
-    return (
-      <div className="flex flex-col gap-6" role="status">
-        <div className="flex size-10 items-center justify-center border border-border-subtle bg-background text-brand">
-          <CheckCircle2 className="size-5" aria-hidden />
-        </div>
-        <div>
-          <p className="ms-stamp">Sent</p>
-          <h3 className="ds-headline mt-3 text-xl text-foreground sm:text-2xl">
-            Got it - talk soon.
-          </h3>
-          <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Koustav reads every brief himself and replies within one business
-            day. Prefer live?{" "}
-            <Link href="#book" className="bam-link">
-              Book 15 minutes
-            </Link>
-            .
-          </p>
-        </div>
-        <a
-          href={`mailto:${getBrand().email}`}
-          className="ms-cta-ghost w-fit text-sm"
-        >
-          Or email {getBrand().email}
-        </a>
-      </div>
-    );
   }
 
-  const disabled = status.kind === "submitting";
-  const current = STEPS[step]!;
+  if (status === "success") {
+    return (
+      <section
+        className="relative overflow-hidden rounded-[var(--atro-panel-radius,0.5rem)] border border-border-subtle bg-background px-5 py-8 sm:px-7 sm:py-9"
+        aria-live="polite"
+      >
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--brand)] to-transparent opacity-70"
+          aria-hidden
+        />
+        <div className="flex size-9 items-center justify-center rounded-full border border-border-subtle text-foreground">
+          <Check className="size-4" aria-hidden />
+        </div>
+        <h2 className="mt-5 text-2xl font-medium tracking-tight text-foreground">
+          {CONTENT.successTitle}
+        </h2>
+        <p className="mt-2 max-w-[28ch] text-sm leading-relaxed text-muted-foreground">
+          {CONTENT.successBody}
+        </p>
+      </section>
+    )
+  }
+
+  const toLine = form.email.trim() || form.name.trim() || "—"
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="relative flex flex-col gap-8"
-      noValidate
-    >
+    <section className="relative overflow-hidden rounded-[var(--atro-panel-radius,0.5rem)] border border-border-subtle bg-background">
       <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--brand)] to-transparent opacity-60"
         aria-hidden
-        className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
-      >
+      />
+
+      <header className="border-b border-border-subtle px-5 pt-5 pb-4 sm:px-7 sm:pt-6 sm:pb-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className={labelClass}>{CONTENT.stamp}</p>
+          <p
+            className="min-w-0 truncate font-mono text-[10.5px] tracking-[0.06em] text-muted-foreground"
+            aria-hidden={toLine === "—"}
+          >
+            <span className="text-muted-foreground/70">To</span>{" "}
+            <span className="text-foreground/80">{toLine}</span>
+          </p>
+        </div>
+        <h2 className="mt-3 text-[1.65rem] leading-[1.15] font-medium tracking-tight text-foreground sm:text-[1.85rem]">
+          {CONTENT.headline}
+        </h2>
+        <p className="mt-1.5 max-w-[36ch] text-sm leading-relaxed text-muted-foreground">
+          {CONTENT.lede}
+        </p>
+      </header>
+
+      <form onSubmit={handleSubmit} className="px-5 pt-5 pb-5 sm:px-7 sm:pb-6">
         <input
           type="text"
+          name="company_website"
+          value={form.honeypot}
+          onChange={(e) =>
+            setForm((f) => ({ ...f, honeypot: e.target.value }))
+          }
+          className="hidden"
           tabIndex={-1}
           autoComplete="off"
-          value={form.honeypot}
-          onChange={(e) => setForm({ ...form, honeypot: e.target.value })}
+          aria-hidden
         />
-      </div>
 
-      {/* Editorial step index */}
-      <nav aria-label="Brief steps">
-        <ol className="flex flex-wrap items-center gap-x-1 gap-y-2">
-          {STEPS.map((s, i) => {
-            const done = i < step;
-            const active = i === step;
-            return (
-              <li key={s.id} className="flex items-center gap-1">
-                {i > 0 ? (
-                  <span
-                    aria-hidden
-                    className="mx-1.5 h-px w-4 bg-border-subtle sm:w-6"
-                  />
-                ) : null}
-                <span
-                  className={cn(
-                    "inline-flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase",
-                    active && "text-foreground",
-                    done && "text-brand",
-                    !active && !done && "text-muted-foreground",
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "inline-flex size-5 items-center justify-center border text-[10px] tabular-nums",
-                      active && "border-brand bg-brand/10 text-brand",
-                      done && "border-brand/40 text-brand",
-                      !active && !done && "border-border-subtle",
-                    )}
-                    aria-hidden
-                  >
-                    {done ? <Check className="size-3" /> : String(i + 1)}
-                  </span>
-                  <span className={cn(!active && "hidden sm:inline")}>
-                    {s.label}
-                  </span>
-                </span>
-              </li>
-            );
-          })}
-        </ol>
-        <div className="mt-5 border-t border-border-subtle pt-5">
-          <p className="ds-mono-label">
-            {String(step + 1).padStart(2, "0")} /{" "}
-            {String(STEPS.length).padStart(2, "0")}
-          </p>
-          <h3 className="ds-headline mt-2 text-lg text-foreground sm:text-xl">
-            {current.title}
-          </h3>
-        </div>
-      </nav>
-
-      {step === 0 ? (
-        <fieldset className="grid grid-cols-1 gap-5 border-0 p-0 sm:grid-cols-2">
-          <legend className="sr-only">About you</legend>
-          <Field
-            label="Name"
-            required
-            htmlFor="contact-name"
-            hint="First name is fine."
+        <div className="grid gap-0 sm:grid-cols-2">
+          <label
+            htmlFor={`${uid}-name`}
+            className="group block border-b border-border-subtle py-1 sm:pr-4"
+            data-focused={focused === "name" ? "" : undefined}
           >
+            <span
+              className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
+            >
+              {CONTENT.labelName}
+            </span>
             <input
-              id="contact-name"
-              type="text"
+              id={`${uid}-name`}
               required
+              name="name"
               autoComplete="name"
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              disabled={disabled}
-              className={fieldInput}
-              placeholder="Koustav"
+              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+              onFocus={() => setFocused("name")}
+              onBlur={() => setFocused((f) => (f === "name" ? null : f))}
+              disabled={status === "loading"}
+              className={fieldClass}
             />
-          </Field>
-          <Field
-            label="Email"
-            required
-            htmlFor="contact-email"
-            hint="Reply lands here within one business day."
+            <span
+              className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+              aria-hidden
+            />
+          </label>
+
+          <label
+            htmlFor={`${uid}-email`}
+            className="group block border-b border-border-subtle py-1 sm:border-l sm:border-l-border-subtle sm:pl-4"
+            data-focused={focused === "email" ? "" : undefined}
           >
+            <span
+              className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
+            >
+              {CONTENT.labelEmail}
+            </span>
             <input
-              id="contact-email"
-              type="email"
+              id={`${uid}-email`}
               required
+              type="email"
+              name="email"
               autoComplete="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              disabled={disabled}
-              className={fieldInput}
-              placeholder="you@company.com"
+              onChange={(e) =>
+                setForm((f) => ({ ...f, email: e.target.value }))
+              }
+              onFocus={() => setFocused("email")}
+              onBlur={() => setFocused((f) => (f === "email" ? null : f))}
+              disabled={status === "loading"}
+              className={fieldClass}
             />
-          </Field>
-          <Field
-            label="Company"
-            htmlFor="contact-company"
-            className="sm:col-span-2"
-            hint="Optional - solo founders usually skip this."
-          >
-            <input
-              id="contact-company"
-              type="text"
-              autoComplete="organization"
-              value={form.company}
-              onChange={(e) => setForm({ ...form, company: e.target.value })}
-              disabled={disabled}
-              className={fieldInput}
-              placeholder="Studio or company"
+            <span
+              className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+              aria-hidden
             />
-          </Field>
-        </fieldset>
-      ) : null}
-
-      {step === 1 ? (
-        <fieldset className="flex flex-col gap-7 border-0 p-0">
-          <legend className="sr-only">Project</legend>
-
-          <div className="flex flex-col gap-3">
-            <p className="text-xs font-medium text-foreground">
-              Engagement{" "}
-              <span className="font-normal text-muted-foreground">
-                - pick closest, or skip
-              </span>
-            </p>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {PROJECT_TYPES.map((p) => (
-                <ChoiceChip
-                  key={p.id}
-                  pressed={form.projectType === p.id}
-                  disabled={disabled}
-                  onClick={() =>
-                    setForm((f) => ({
-                      ...f,
-                      projectType: f.projectType === p.id ? "" : p.id,
-                    }))
-                  }
-                  className="flex flex-col gap-1"
-                >
-                  <span className="font-medium text-foreground">{p.label}</span>
-                  <span className="text-[11px] leading-snug text-muted-foreground">
-                    {p.hint}
-                  </span>
-                </ChoiceChip>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <p className="text-xs font-medium text-foreground">
-              Budget ballpark{" "}
-              <span className="font-normal text-muted-foreground">
-                - honest range helps scope
-              </span>
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {BUDGETS.map((b) => (
-                <ChoiceChip
-                  key={b.id}
-                  pressed={form.budget === b.id}
-                  disabled={disabled}
-                  onClick={() =>
-                    setForm((f) => ({
-                      ...f,
-                      budget: f.budget === b.id ? "" : b.id,
-                    }))
-                  }
-                >
-                  {b.label}
-                </ChoiceChip>
-              ))}
-            </div>
-          </div>
-
-          <Field
-            label="The brief"
-            required
-            htmlFor="contact-message"
-            hint="What success looks like, hard constraints, and what we should not assume."
-          >
-            <textarea
-              id="contact-message"
-              required
-              rows={6}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              disabled={disabled}
-              className={cn(fieldInput, "min-h-32 resize-y leading-relaxed")}
-              placeholder="e.g. Need auth + one AI workflow shipped in a week for a waitlist of indie founders…"
-            />
-          </Field>
-        </fieldset>
-      ) : null}
-
-      {step === 2 ? (
-        <fieldset className="flex flex-col gap-7 border-0 p-0">
-          <legend className="sr-only">Timing and extras</legend>
-
-          <div className="flex flex-col gap-3">
-            <p className="text-xs font-medium text-foreground">
-              When do you want to start?
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {TIMELINES.map((t) => (
-                <ChoiceChip
-                  key={t.id}
-                  pressed={form.timeline === t.id}
-                  disabled={disabled}
-                  onClick={() =>
-                    setForm((f) => ({
-                      ...f,
-                      timeline: f.timeline === t.id ? "" : t.id,
-                    }))
-                  }
-                >
-                  {t.label}
-                </ChoiceChip>
-              ))}
-            </div>
-          </div>
-
-          <Field
-            label="Attach a brief"
-            htmlFor="contact-file"
-            hint="Optional. PDF, DOC, TXT, or image - max 5 MB."
-          >
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="contact-file"
-                className={cn(
-                  "flex cursor-pointer items-center gap-3 border border-dashed border-border-subtle bg-background px-4 py-5 transition-colors",
-                  "hover:border-border hover:bg-muted/20 active:scale-[0.99]",
-                  disabled && "pointer-events-none opacity-60",
-                )}
-              >
-                <Paperclip
-                  className="size-4 shrink-0 text-muted-foreground"
-                  aria-hidden
-                />
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm text-foreground">
-                    {attachment ? attachment.name : "Drop or choose a file"}
-                  </span>
-                  {!attachment ? (
-                    <span className="mt-0.5 block text-[11px] text-muted-foreground">
-                      Specs, Loom notes, Figma export - whatever clarifies.
-                    </span>
-                  ) : null}
-                </span>
-                <input
-                  id="contact-file"
-                  type="file"
-                  accept={ACCEPTED_TYPES}
-                  className="sr-only"
-                  disabled={disabled}
-                  onChange={(e) => onFile(e.target.files?.[0] ?? null)}
-                />
-              </label>
-              {attachment ? (
-                <button
-                  type="button"
-                  onClick={() => setAttachment(null)}
-                  className="inline-flex w-fit items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <X className="size-3" aria-hidden />
-                  Remove file
-                </button>
-              ) : null}
-              {fileError ? (
-                <p className="text-xs text-destructive" role="alert">
-                  {fileError}
-                </p>
-              ) : null}
-            </div>
-          </Field>
-        </fieldset>
-      ) : null}
-
-      {step === 3 ? (
-        <div className="divide-y divide-border-subtle border-y border-border-subtle">
-          <ReviewRow
-            label="Name"
-            value={form.name}
-            onEdit={() => setStep(0)}
-          />
-          <ReviewRow
-            label="Email"
-            value={form.email}
-            onEdit={() => setStep(0)}
-          />
-          {form.company ? (
-            <ReviewRow
-              label="Company"
-              value={form.company}
-              onEdit={() => setStep(0)}
-            />
-          ) : null}
-          <ReviewRow
-            label="Engagement"
-            value={
-              form.projectType
-                ? labelOf(PROJECT_TYPES, form.projectType)
-                : "Not specified"
-            }
-            onEdit={() => setStep(1)}
-          />
-          <ReviewRow
-            label="Budget"
-            value={
-              form.budget ? labelOf(BUDGETS, form.budget) : "Not specified"
-            }
-            onEdit={() => setStep(1)}
-          />
-          <ReviewRow
-            label="Timeline"
-            value={
-              form.timeline
-                ? labelOf(TIMELINES, form.timeline)
-                : "Not specified"
-            }
-            onEdit={() => setStep(2)}
-          />
-          <ReviewRow
-            label="Brief"
-            value={form.message}
-            onEdit={() => setStep(1)}
-          />
-          {attachment ? (
-            <ReviewRow
-              label="File"
-              value={attachment.name}
-              onEdit={() => setStep(2)}
-            />
-          ) : null}
+          </label>
         </div>
-      ) : null}
 
-      {status.kind === "error" ? (
-        <div
-          role="alert"
-          className="flex items-start gap-3 border border-destructive/25 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+        <label
+          htmlFor={`${uid}-company`}
+          className="group block border-b border-border-subtle py-1"
+          data-focused={focused === "company" ? "" : undefined}
         >
-          <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />
-          <div>
-            <p className="font-medium">Couldn&rsquo;t send</p>
-            <p className="mt-0.5 opacity-90">{status.message}</p>
-            <a
-              href={`mailto:${getBrand().email}`}
-              className="mt-2 inline-block underline underline-offset-2"
-            >
-              Email us instead
-            </a>
-          </div>
-        </div>
-      ) : null}
-
-      <div className="flex flex-col gap-3 border-t border-border-subtle pt-5 sm:flex-row sm:items-center sm:justify-between">
-        {step > 0 ? (
-          <button
-            type="button"
-            onClick={() => setStep((s) => s - 1)}
-            className="inline-flex min-h-10 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground active:scale-[0.98]"
+          <span
+            className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
           >
-            <ArrowLeft className="size-3.5" aria-hidden />
-            Back
-          </button>
-        ) : (
-          <p className="text-xs text-muted-foreground">
-            No pitch deck. Honest fit check.
-          </p>
-        )}
-        <button
-          type="submit"
-          disabled={disabled || (step < STEPS.length - 1 && !canNext())}
-          className="ms-cta ml-auto disabled:pointer-events-none disabled:opacity-50"
-        >
-          {disabled ? (
-            <Loader2 className="size-4 animate-spin" aria-hidden />
-          ) : step < STEPS.length - 1 ? (
-            <ArrowRight className="size-4" aria-hidden />
-          ) : (
-            <Send className="size-4" aria-hidden />
-          )}
-          {disabled
-            ? "Sending…"
-            : step < STEPS.length - 1
-              ? "Continue"
-              : "Send brief"}
-        </button>
-      </div>
-    </form>
-  );
-}
-
-function ReviewRow({
-  label,
-  value,
-  onEdit,
-}: {
-  label: string;
-  value: string;
-  onEdit: () => void;
-}) {
-  return (
-    <div className="grid grid-cols-1 gap-2 py-4 sm:grid-cols-12 sm:gap-4">
-      <span className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase sm:col-span-3">
-        {label}
-      </span>
-      <span className="whitespace-pre-wrap text-sm text-foreground sm:col-span-7">
-        {value}
-      </span>
-      <button
-        type="button"
-        onClick={onEdit}
-        className="justify-self-start text-xs font-medium text-muted-foreground underline-offset-2 transition-colors hover:text-brand hover:underline sm:col-span-2 sm:justify-self-end"
-      >
-        Edit
-      </button>
-    </div>
-  );
-}
-
-const fieldInput = cn(
-  "w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base text-foreground sm:text-sm",
-  "placeholder:text-muted-foreground/60",
-  "transition-[border-color,box-shadow] duration-200",
-  "focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20",
-  "disabled:cursor-not-allowed disabled:opacity-60",
-);
-
-function Field({
-  label,
-  required = false,
-  htmlFor,
-  hint,
-  className,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  htmlFor?: string;
-  hint?: string;
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className={cn("flex flex-col gap-2", className)}>
-      <label htmlFor={htmlFor} className="text-xs font-medium text-foreground">
-        {label}
-        {required ? (
-          <span className="ml-1 text-muted-foreground" aria-hidden>
-            *
+            {CONTENT.labelCompany}{" "}
+            <span className="tracking-normal text-muted-foreground/60 normal-case">
+              · {CONTENT.companyHint}
+            </span>
           </span>
+          <input
+            id={`${uid}-company`}
+            name="company"
+            autoComplete="organization"
+            value={form.company}
+            onChange={(e) =>
+              setForm((f) => ({ ...f, company: e.target.value }))
+            }
+            onFocus={() => setFocused("company")}
+            onBlur={() => setFocused((f) => (f === "company" ? null : f))}
+            disabled={status === "loading"}
+            className={fieldClass}
+          />
+          <span
+            className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+            aria-hidden
+          />
+        </label>
+
+        <label
+          htmlFor={`${uid}-message`}
+          className="group block border-b border-border-subtle py-1"
+          data-focused={focused === "message" ? "" : undefined}
+        >
+          <span
+            className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
+          >
+            {CONTENT.labelMessage}
+          </span>
+          <textarea
+            id={`${uid}-message`}
+            required
+            name="message"
+            rows={4}
+            placeholder={CONTENT.placeholderMessage}
+            value={form.body}
+            onChange={(e) => setForm((f) => ({ ...f, body: e.target.value }))}
+            onFocus={() => setFocused("message")}
+            onBlur={() => setFocused((f) => (f === "message" ? null : f))}
+            disabled={status === "loading"}
+            className={`${fieldClass} min-h-[6.5rem] resize-y text-[1.02rem] leading-relaxed`}
+          />
+          <span
+            className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+            aria-hidden
+          />
+        </label>
+
+        {status === "error" ? (
+          <p
+            className="mt-4 text-sm text-red-600 dark:text-red-400"
+            role="alert"
+          >
+            {error}
+          </p>
         ) : null}
-      </label>
-      {children}
-      {hint ? <p className="text-[11px] text-muted-foreground">{hint}</p> : null}
-    </div>
-  );
-}
 
-function FormSkeleton() {
-  return (
-    <div className="flex flex-col gap-5" aria-hidden>
-      <div className="h-5 w-48 bg-muted/60" />
-      <div className="h-px bg-border-subtle" />
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div className="h-16 bg-muted/60" />
-        <div className="h-16 bg-muted/60" />
-      </div>
-      <div className="h-32 bg-muted/60" />
-      <div className="h-10 w-36 self-end bg-muted/60" />
-    </div>
-  );
-}
-
-export function ContactForm() {
-  return (
-    <Suspense fallback={<FormSkeleton />}>
-      <ContactFormInner />
-    </Suspense>
-  );
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <p className="max-w-[28ch] font-mono text-[10.5px] leading-relaxed tracking-[0.04em] text-muted-foreground">
+            {CONTENT.footnote}
+          </p>
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-[var(--atro-control-radius,0.375rem)] bg-foreground px-4 text-sm font-medium text-background transition-[opacity,transform] duration-150 enabled:hover:opacity-90 enabled:active:scale-[0.98] disabled:opacity-55 motion-reduce:transition-none motion-reduce:active:scale-100"
+          >
+            {status === "loading" ? (
+              <>
+                <Loader2 className="size-3.5 animate-spin" aria-hidden />
+                {CONTENT.sendingLabel}
+              </>
+            ) : (
+              <>
+                {CONTENT.submitLabel}
+                <ArrowUpRight className="size-3.5" aria-hidden />
+              </>
+            )}
+          </button>
+        </div>
+      </form>
+    </section>
+  )
 }

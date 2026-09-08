@@ -12,8 +12,9 @@ export function ThemingGuide() {
         title="Theming"
         lede={
           <>
-            Dark-first tokens on a cool charcoal canvas. Primary and{" "}
-            <code>--brand</code> share one violet.{" "}
+            Mira tokens (shadcn) for light and dark. Primary is violet;{" "}
+            <code>--brand</code> aliases <code>--primary</code> in light and{" "}
+            <code>--sidebar-primary</code> in dark so accents stay readable.{" "}
             <strong>Merriweather</strong> for headings,{" "}
             <strong>DM Sans</strong> for UI and body, opt-in Caveat sketch.
             After <code>npx shadcn add</code>, tokens live in{" "}
@@ -35,21 +36,23 @@ export function ThemingGuide() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             .dark
           </code>
-          . Default brand is violet{" "}
+          . Default brand tracks Mira{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            #6d28d9
+            --primary
           </code>{" "}
           (
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            oklch(0.457 0.24 277)
+            oklch(0.457 0.24 277.023)
           </code>
-          ). Override brand or neutrals to restyle without rewriting components.
-          Site chrome CTAs (<code>.atro-btn</code>, <code>.ms-cta</code>) and
-          shadcn <code>Button</code> all read <code>--primary</code>.
+          {" "}
+          in light). Override Mira variables to restyle without rewriting
+          components. Site chrome CTAs (<code>.atro-btn</code>,{" "}
+          <code>.ms-cta</code>) and shadcn <code>Button</code> all read{" "}
+          <code>--primary</code>.
         </p>
         <CodeBlock
           language="css"
-          code={`.dark {\n  --background: oklch(0.141 0.005 285.823);\n  --foreground: oklch(0.985 0 0);\n  --primary: oklch(0.398 0.195 277.366);\n  --primary-foreground: oklch(0.962 0.018 272.314);\n  --brand: oklch(0.585 0.233 277.117);\n  --font-sans: var(--font-dm-sans);\n}`}
+          code={`:root {\n  --background: oklch(1 0 0);\n  --foreground: oklch(0.141 0.005 285.823);\n  --primary: oklch(0.457 0.24 277.023);\n  --radius: 0.45rem;\n}\n\n.dark {\n  --background: oklch(0.141 0.005 285.823);\n  --foreground: oklch(0.985 0 0);\n  --primary: oklch(0.398 0.195 277.366);\n  --card: oklch(0.21 0.006 285.885);\n}`}
         />
         <p className="leading-relaxed">
           The docs host and Host API consumers can still import{" "}

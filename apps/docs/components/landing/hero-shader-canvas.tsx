@@ -5,6 +5,7 @@ import {
   Suspense,
   useEffect,
   useRef,
+  useState,
   type ReactNode,
 } from "react"
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react"
@@ -13,6 +14,28 @@ export type ShaderProgress = {
   /** 0–1 */
   value: number
   label: string
+}
+
+/** Fallbacks match Mira `--brand` when CSS vars are unavailable. */
+const BRAND_FALLBACK = {
+  soft: "#c4b5fd",
+  mid: "#8b5cf6",
+  deep: "#6d28d9",
+}
+
+function readBrandShaderColors(el: HTMLElement | null) {
+  if (!el || typeof window === "undefined") return BRAND_FALLBACK
+  const brand = getComputedStyle(el).getPropertyValue("--brand").trim()
+  if (!brand) return BRAND_FALLBACK
+  // ShaderGradient expects parseable colors; hex `--brand` is safest.
+  if (brand.startsWith("#")) {
+    return {
+      soft: BRAND_FALLBACK.soft,
+      mid: BRAND_FALLBACK.mid,
+      deep: brand,
+    }
+  }
+  return BRAND_FALLBACK
 }
 
 class ShaderErrorBoundary extends Component<
@@ -38,6 +61,7 @@ class ShaderErrorBoundary extends Component<
 /**
  * Digital Success sphere. Warms under the gate; onReady after settled paint frames.
  * Callbacks are ref-stable — progress updates must not restart the paint loop.
+ * Deep stop follows `--brand` when it is a hex token.
  */
 export function HeroShaderCanvas({
   pixelDensity = 1,
@@ -54,6 +78,11 @@ export function HeroShaderCanvas({
   const onProgressRef = useRef(onProgress)
   onReadyRef.current = onReady
   onProgressRef.current = onProgress
+  const [colors, setColors] = useState(BRAND_FALLBACK)
+
+  useEffect(() => {
+    setColors(readBrandShaderColors(rootRef.current))
+  }, [])
 
   useEffect(() => {
     const root = rootRef.current
@@ -86,7 +115,6 @@ export function HeroShaderCanvas({
         if (!reportedFrame && painted >= 2) {
           reportedFrame = true
           onProgressRef.current?.({ value: 0.88, label: "First frame" })
-          // Don't rely only on more rAFs — open shortly after first real frame
           afterFrameTimer = window.setTimeout(finish, 180)
         }
         if (painted >= 3) {
@@ -106,7 +134,6 @@ export function HeroShaderCanvas({
       window.clearTimeout(failsafe)
       if (afterFrameTimer !== undefined) window.clearTimeout(afterFrameTimer)
     }
-    // Mount once — never rebind when parent progress re-renders
   }, [])
 
   const failShader = () => {
@@ -149,9 +176,9 @@ export function HeroShaderCanvas({
               rotationX={0}
               rotationY={130}
               rotationZ={70}
-              color1="#c4b5fd"
-              color2="#8b5cf6"
-              color3="#6d28d9"
+              color1={colors.soft}
+              color2={colors.mid}
+              color3={colors.deep}
               reflection={0.4}
               cAzimuthAngle={270}
               cPolarAngle={180}

@@ -54,7 +54,7 @@ export function BeforeAfterSlider({
     <div
       ref={containerRef}
       className={cn(
-        "relative aspect-[16/9] overflow-hidden rounded-2xl border border-border-subtle bg-muted p-3 sm:p-4 select-none touch-none",
+        "relative aspect-[16/9] overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-muted p-3 sm:p-4 select-none touch-none",
         className
       )}
       onPointerMove={onPointerMove}

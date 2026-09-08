@@ -99,7 +99,7 @@ export function PricingLead() {
             </p>
             <h2 className="mt-3 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#6d28d9)]">
+              <span className="italic text-brand">
                 {CONTENT.headlineAccent}
               </span>
             </h2>
@@ -140,7 +140,7 @@ export function PricingLead() {
                       className="flex items-start gap-2 text-sm text-foreground/90"
                     >
                       <Check
-                        className="mt-0.5 size-3.5 shrink-0 text-[var(--color-brand,#6d28d9)]"
+                        className="mt-0.5 size-3.5 shrink-0 text-brand"
                         strokeWidth={2.5}
                         aria-hidden
                       />
@@ -197,7 +197,7 @@ export function PricingOverview() {
             </p>
             <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#6d28d9)]">
+              <span className="italic text-brand">
                 {CONTENT.headlineAccent}
               </span>
             </h2>
@@ -238,7 +238,7 @@ export function PricingOverview() {
                       className="flex items-start gap-2 text-sm text-foreground/90"
                     >
                       <Check
-                        className="mt-0.5 size-3.5 shrink-0 text-[var(--color-brand,#6d28d9)]"
+                        className="mt-0.5 size-3.5 shrink-0 text-brand"
                         strokeWidth={2.5}
                         aria-hidden
                       />

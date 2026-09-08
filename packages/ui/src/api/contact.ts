@@ -35,7 +35,8 @@ const contactSchema = z.object({
 
 /**
  * POST /api/contact handler.
- * Expects JSON from AtroUI ContactForm (incl. optional base64 attachment).
+ * Letter-sheet ContactForm sends: name, email, company?, message, honeypot.
+ * Optional legacy fields (projectType, budget, timeline, attachment*) still accepted.
  */
 export async function handleContactPost(req: Request): Promise<Response> {
   if (req.method !== "POST") {

@@ -57,7 +57,7 @@ export function HomeWho({
                 </p>
                 <h2 className="mt-3 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
                   {name}{" "}
-                  <span className="italic text-[var(--color-brand,#6d28d9)]">
+                  <span className="italic text-brand">
                     {CONTENT.headlineSuffix}
                   </span>
                 </h2>
