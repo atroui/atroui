@@ -6,7 +6,12 @@
  */
 
 import * as React from "react"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  useReducedMotion,
+} from "motion/react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { panelTween } from "@/lib/motion"
@@ -17,6 +22,22 @@ export type DocsTrayStep = {
   children: React.ReactNode
 }
 
+const INK_CLASS =
+  "absolute inset-x-2 bottom-1 h-px bg-brand md:inset-y-2 md:right-auto md:bottom-auto md:left-0 md:h-auto md:w-0.5 md:rounded-full"
+
+/** One ink for the rail — it travels chapter to chapter instead of remounting. */
+function ChapterInk({ reduce }: { reduce: boolean | null }) {
+  if (reduce) return <span aria-hidden className={INK_CLASS} />
+  return (
+    <motion.span
+      aria-hidden
+      layoutId="docs-tray-ink"
+      transition={panelTween}
+      className={INK_CLASS}
+    />
+  )
+}
+
 export function DocsTrayStack({
   steps,
   className,
@@ -25,6 +46,8 @@ export function DocsTrayStack({
   className?: string
 }) {
   const reduce = useReducedMotion()
+  // Scope the rail ink per instance so two trays on one page don't share one bar.
+  const inkScope = React.useId()
   const [index, setIndex] = React.useState(0)
   const directionRef = React.useRef(0)
   const step = steps[index]
@@ -62,41 +85,38 @@ export function DocsTrayStack({
           aria-label="Guide chapters"
           className="border-b border-border-subtle md:border-r md:border-b-0 md:self-stretch"
         >
-          <ul className="flex gap-1 overflow-x-auto px-2 py-2 md:h-full md:flex-col md:gap-0 md:overflow-y-auto md:px-0 md:py-3">
-            {steps.map((s, i) => {
-              const active = i === index
-              return (
-                <li key={s.title} className="shrink-0 md:w-full">
-                  <button
-                    type="button"
-                    aria-current={active ? "step" : undefined}
-                    onClick={() => goTo(i)}
-                    className={cn(
-                      "relative w-full px-3 py-2 text-left transition-colors md:px-4 md:py-2.5",
-                      active
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    {active ? (
-                      <span
-                        aria-hidden
-                        className="absolute inset-x-2 bottom-1 h-px bg-brand md:inset-y-2 md:right-auto md:bottom-auto md:left-0 md:h-auto md:w-0.5 md:rounded-full"
-                      />
-                    ) : null}
-                    <span className="flex items-baseline gap-2">
-                      <span className="font-mono text-[10px] tabular-nums tracking-wider text-muted-foreground/70">
-                        {String(i + 1).padStart(2, "0")}
+          <LayoutGroup id={inkScope}>
+            <ul className="flex gap-1 overflow-x-auto px-2 py-2 md:h-full md:flex-col md:gap-0 md:overflow-y-auto md:px-0 md:py-3">
+              {steps.map((s, i) => {
+                const active = i === index
+                return (
+                  <li key={s.title} className="shrink-0 md:w-full">
+                    <button
+                      type="button"
+                      aria-current={active ? "step" : undefined}
+                      onClick={() => goTo(i)}
+                      className={cn(
+                        "relative w-full px-3 py-2 text-left transition-colors md:px-4 md:py-2.5",
+                        active
+                          ? "text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      {active ? <ChapterInk reduce={reduce} /> : null}
+                      <span className="flex items-baseline gap-2">
+                        <span className="font-mono text-[10px] tabular-nums tracking-wider text-muted-foreground/70">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-[13px] font-medium tracking-tight">
+                          {s.title}
+                        </span>
                       </span>
-                      <span className="text-[13px] font-medium tracking-tight">
-                        {s.title}
-                      </span>
-                    </span>
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </LayoutGroup>
         </nav>
 
         {/* Fixed stage: chapters swap inside; shell size stays put */}

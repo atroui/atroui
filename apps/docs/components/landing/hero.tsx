@@ -1,4 +1,5 @@
 import { ArrowRight, Github } from "lucide-react"
+import { LandingPillars } from "@/components/landing/landing-pillars"
 import { RegistryWorkspaceDemo } from "@/components/landing/registry-workspace-demo"
 import { LandingReveal } from "@/components/landing/landing-reveal"
 import { TransitionLink } from "@/components/view-transitions"
@@ -6,7 +7,8 @@ import { TransitionLink } from "@/components/view-transitions"
 const GITHUB_REPO = "https://github.com/atroui/atroui"
 
 /**
- * Hero budget (Zed): H1 + lede + CTAs + ONE product visual. No second pitch.
+ * Hero budget (Zed): H1 + lede + CTAs + ONE product visual — the demo and the
+ * pillar strip are a single attached unit, not two bands. No second pitch.
  */
 export function AtroHero() {
   return (
@@ -54,6 +56,7 @@ export function AtroHero() {
           className="atro-hero-product mx-auto mt-8 w-full max-w-5xl lg:mt-9"
         >
           <RegistryWorkspaceDemo className="w-full" />
+          <LandingPillars attached />
         </LandingReveal>
       </div>
     </section>

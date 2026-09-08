@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { catalogSections, toolApps } from "@/lib/navigation"
 import { TransitionLink } from "@/components/view-transitions"
-import { dialogTween } from "@/lib/motion"
+import { dialogTween, revealTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 /**
@@ -107,6 +107,21 @@ function isActive(pathname: string, label: string) {
     return pathname.startsWith("/blog") || pathname.startsWith("/updates")
   }
   return false
+}
+
+const RULE_CLASS = "absolute inset-x-2.5 -bottom-px h-px bg-foreground/70"
+
+/** One ink for the whole spine — it travels between Components/Docs/Blog. */
+function ActiveRule({ reduce }: { reduce: boolean | null }) {
+  if (reduce) return <span className={RULE_CLASS} aria-hidden />
+  return (
+    <motion.span
+      layoutId="site-nav-rule"
+      transition={revealTween}
+      className={RULE_CLASS}
+      aria-hidden
+    />
+  )
 }
 
 function MenuSurface({
@@ -271,6 +286,7 @@ function DocsMenu({ id, onNavigate }: { id: string; onNavigate: () => void }) {
 
 export function SiteNav() {
   const pathname = usePathname() || "/"
+  const reduce = useReducedMotion()
   const [openMenu, setOpenMenu] = React.useState<MenuId | null>(null)
   const closeTimer = React.useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined
@@ -340,12 +356,7 @@ export function SiteNav() {
                   )}
                   aria-hidden
                 />
-                {active ? (
-                  <span
-                    className="absolute inset-x-2.5 -bottom-px h-px bg-foreground/70"
-                    aria-hidden
-                  />
-                ) : null}
+                {active ? <ActiveRule reduce={reduce} /> : null}
               </TransitionLink>
 
               <AnimatePresence>
@@ -380,12 +391,7 @@ export function SiteNav() {
             )}
           >
             {item.label}
-            {active ? (
-              <span
-                className="absolute inset-x-2.5 -bottom-px h-px bg-foreground/70"
-                aria-hidden
-              />
-            ) : null}
+            {active ? <ActiveRule reduce={reduce} /> : null}
           </TransitionLink>
         )
       })}

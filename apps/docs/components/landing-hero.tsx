@@ -4,27 +4,18 @@ import { LandingBlog } from "@/components/landing/landing-blog"
 import { LandingCatalogEcosystem } from "@/components/landing/landing-catalog-ecosystem"
 import { LandingFinalCta } from "@/components/landing/landing-final-cta"
 import { LandingJustWorks } from "@/components/landing/landing-just-works"
-import { LandingPillars } from "@/components/landing/landing-pillars"
 import { LandingReveal } from "@/components/landing/landing-reveal"
 import { SiteFooter } from "@/components/site-footer"
 
 /**
  * Landing — Zed product spine:
- * announce → hero (one product visual) → pillars → just works → catalog → blog → close → footer
+ * announce → hero (product visual + attached pillars) → just works → catalog → blog → close → footer
  */
 export function LandingHero() {
   return (
     <>
       <LandingAnnouncement />
       <AtroHero />
-
-      <LandingReveal>
-        <section className="atro-section !pt-0">
-          <div className="atro-section-inner">
-            <LandingPillars />
-          </div>
-        </section>
-      </LandingReveal>
 
       <LandingReveal>
         <LandingJustWorks />

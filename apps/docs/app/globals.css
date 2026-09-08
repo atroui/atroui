@@ -381,9 +381,9 @@ html {
    Scoped under .docs-book (see app/docs/layout.tsx)
    ========================================================================== */
 .docs-book {
-  --docs-sidebar-width: 17.5rem; /* 280px */
+  --docs-sidebar-width: 14rem; /* 224px */
   --docs-content-max: 43.125rem; /* 690px — Zed measure */
-  --docs-toc-width: 12.5rem;
+  --docs-toc-width: 11.5rem;
   --docs-title-font: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
   --docs-fg: color-mix(in oklch, var(--foreground) 88%, transparent);
   --docs-fg-strong: var(--foreground);
@@ -1228,12 +1228,20 @@ html {
   }
 }
 
-/* Hero product block — demo + pillars as one signature unit */
+/* Hero product block — demo + pillars as one signature unit.
+   The demo frame keeps its bottom border; that hairline is the seam the
+   pillar strip hangs off. Selectors must out-specify
+   `.atro-landing .landing-demo-frame`, which sets `border` + `border-radius`
+   shorthands later in this file. */
+.atro-landing .atro-hero-product {
+  border-radius: var(--atro-panel-radius);
+  box-shadow: 0 32px 64px -48px rgba(0, 0, 0, 0.9);
+}
 .atro-hero-product .atro-frame,
-.atro-hero-product .rw-shell {
+.atro-hero-product .rw-shell.landing-demo-frame {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 .atro-hero-product .atro-pillar-grid,
 .atro-hero-product .atro-pillar-grid--attached {
