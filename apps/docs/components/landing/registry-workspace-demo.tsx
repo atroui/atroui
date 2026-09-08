@@ -5,8 +5,8 @@ import { PricingOverview } from "../../registry/default/blocks/pricing-overview"
 
 /**
  * Live registry previews — same components as `npx shadcn add @atroui/…`.
- * Server sections (hero/pricing) pass as RSC slots; waitlist/contact are
- * owned inside the client workspace so tab switches always show real forms.
+ * Server sections (hero/pricing) pass as RSC slots; waitlist is owned
+ * inside the client workspace so tab switches always show the real form.
  */
 export function RegistryWorkspaceDemo({ className }: { className?: string }) {
   const blocks = getRegistryWorkspaceBlocks()

@@ -18,7 +18,6 @@ import type {
 import { extractSourceExcerpt } from "@/lib/registry-workspace-utils"
 import { cn } from "@/lib/utils"
 import { easeOutExpo, easeOutSoft } from "@/lib/motion"
-import { ContactForm } from "../../registry/default/blocks/contact-form"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 
 const GLIMPSE_LINES = 3
@@ -219,7 +218,6 @@ export function RegistryWorkspace({
   const formPreviews = React.useMemo(
     () => ({
       waitlist: <WaitlistStagePreview />,
-      contact: <ContactForm />,
     }),
     []
   )
@@ -250,7 +248,6 @@ export function RegistryWorkspace({
 
   function panelPreview(id: RegistryWorkspaceBlockId): React.ReactNode {
     if (id === "waitlist") return formPreviews.waitlist
-    if (id === "contact") return formPreviews.contact
     return slotMap.get(id) ?? null
   }
 

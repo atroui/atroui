@@ -10,16 +10,16 @@ const CONTENT = {
   presets: {
     paperQuote: {
       previewGradient:
-        "linear-gradient(145deg, #0a0a0a 0%, #111827 45%, #6d28d922 100%)",
+        "linear-gradient(145deg, var(--background) 0%, var(--card) 45%, color-mix(in oklch, var(--brand) 22%, transparent) 100%)",
       safeZone: "lowerThird" as const,
-      palette: { title: "#fafafa", subtitle: "#a3a3a3" },
+      palette: { title: "var(--foreground)", subtitle: "var(--muted-foreground)" },
       typography: { titleSizeMax: 72, subtitleSizeMax: 28, titleWeight: 700 },
     },
     boldSplit: {
       previewGradient:
-        "linear-gradient(90deg, #6d28d9 0%, #6d28d9 42%, #0a0a0a 42%)",
+        "linear-gradient(90deg, var(--brand) 0%, var(--brand) 42%, var(--background) 42%)",
       safeZone: "center" as const,
-      palette: { title: "#fafafa", subtitle: "#e5e5e5" },
+      palette: { title: "var(--foreground)", subtitle: "var(--muted-foreground)" },
       typography: { titleSizeMax: 64, subtitleSizeMax: 24, titleWeight: 700 },
     },
   },

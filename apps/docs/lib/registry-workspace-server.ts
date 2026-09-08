@@ -1,11 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 
-export type RegistryWorkspaceBlockId =
-  | "waitlist"
-  | "hero"
-  | "pricing"
-  | "contact"
+export type RegistryWorkspaceBlockId = "waitlist" | "hero" | "pricing"
 
 export type PreviewStrategy = "contain" | "fold" | "fit"
 
@@ -35,7 +31,7 @@ const BLOCKS: Omit<RegistryWorkspaceBlock, "source">[] = [
     registry: "waitlist-form",
     docs: "/docs/components/brand-waitlist-form",
     target: "components/blocks/waitlist-form.tsx",
-    // Section-framed form — fit into the stage like Contact.
+    // Section-framed form — fit into the stage.
     preview: { strategy: "fit", designWidth: 420, excerptMaxLines: 3 },
     host: {
       env: "RESEND_API_KEY",
@@ -58,20 +54,6 @@ const BLOCKS: Omit<RegistryWorkspaceBlock, "source">[] = [
     docs: "/docs/components/pricing-overview",
     target: "components/blocks/pricing-overview.tsx",
     preview: { strategy: "fold", designWidth: 900, excerptMaxLines: 3 },
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    registry: "contact-form",
-    docs: "/docs/components/contact-contact-form",
-    target: "components/blocks/contact-form.tsx",
-    // Tall multi-step — scale to fit so Name/Email/Continue stay on stage.
-    preview: { strategy: "fit", designWidth: 560, excerptMaxLines: 3 },
-    host: {
-      env: "SMTP_URL",
-      route: "POST /api/contact",
-      note: "Multi-step form posts to your contact Host API route.",
-    },
   },
 ]
 

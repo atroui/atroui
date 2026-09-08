@@ -1,425 +1,303 @@
 "use client"
 
-import { ArrowLeft, ArrowRight, Check, Loader2, Send } from "lucide-react"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import { useState, type FormEvent } from "react"
+import { ArrowUpRight, Check, Loader2 } from "lucide-react"
+import { useId, useState, type FormEvent } from "react"
 
 /**
- * Edit CONTENT / PROJECT_TYPES to match your studio intake.
- * Posts JSON to CONTENT.endpoint (wire your own API route).
- * Steps reveal one at a time (Family: gradual revelation + fluid travel).
+ * Edit CONTENT to change copy and API endpoint.
+ * Wire CONTENT.endpoint to `@atroui/api-contact` (SMTP or Resend, BYOK).
+ * Payload: name, email, company?, message, honeypot.
+ *
+ * Family Values: gradual revelation (focus lights one line),
+ * fluidity (underline travels), careful delight (address line fills as you type).
  */
 const CONTENT = {
   stamp: "Contact",
-  headline: "Tell us what you want to ship.",
-  lede: "Four short steps. We reply within one business day.",
-  endpoint: "/api/contact",
-  successTitle: "Got it.",
-  successBody: "We'll reply within one business day.",
+  headline: "Write us.",
+  lede: "One note. We answer within a business day.",
+  labelName: "Name",
+  labelEmail: "Email",
+  labelCompany: "Company",
+  labelMessage: "Message",
+  companyHint: "optional",
+  placeholderMessage: "What are you building?",
   submitLabel: "Send",
+  sendingLabel: "Sending",
+  successTitle: "Sent.",
+  successBody: "We'll reply within one business day.",
+  footnote: "Posts to your /api/contact · keys stay on your host",
+  endpoint: "/api/contact",
 }
 
-const PROJECT_TYPES = [
-  { id: "mvp-sprint", label: "7-Day MVP Sprint", hint: "from $4,800" },
-  { id: "ai-integration", label: "AI Feature", hint: "from $2,400" },
-  { id: "design-system", label: "Design System", hint: "from $3,600" },
-  { id: "other", label: "Something else", hint: "Describe it below" },
-] as const
+type Field = "name" | "email" | "company" | "message"
 
-const BUDGETS = [
-  { id: "<2k", label: "Under $2k" },
-  { id: "2k-5k", label: "$2k - $5k" },
-  { id: "5k-10k", label: "$5k - $10k" },
-  { id: "10k+", label: "$10k+" },
-  { id: "unsure", label: "Not sure yet" },
-] as const
-
-const TIMELINES = [
-  { id: "asap", label: "ASAP · 1-2 weeks" },
-  { id: "1-month", label: "Within a month" },
-  { id: "flexible", label: "Flexible" },
-  { id: "unsure", label: "Not sure yet" },
-] as const
-
-const STEPS = [
-  { id: "who", label: "Who", title: "Who should we reply to?" },
-  { id: "what", label: "What", title: "What are we scoping?" },
-  { id: "when", label: "When", title: "Timing & budget" },
-  { id: "send", label: "Send", title: "Look right?" },
-] as const
-
-type Status =
-  | { kind: "idle" }
-  | { kind: "submitting" }
-  | { kind: "success" }
-  | { kind: "error"; message: string }
-
-function Chip({
-  pressed,
-  onClick,
-  disabled,
-  children,
-}: {
-  pressed: boolean
-  onClick: () => void
-  disabled?: boolean
-  children: React.ReactNode
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={pressed}
-      disabled={disabled}
-      className={
-        pressed
-          ? "border border-[var(--color-brand,#6d28d9)] bg-[var(--color-brand,#6d28d9)]/10 px-3.5 py-2.5 text-left text-sm text-foreground"
-          : "border border-border-subtle bg-background px-3.5 py-2.5 text-left text-sm text-muted-foreground hover:border-border hover:text-foreground"
-      }
-    >
-      {children}
-    </button>
-  )
-}
+const fieldClass =
+  "w-full border-0 bg-transparent px-0 py-2.5 text-[0.9375rem] leading-snug text-foreground outline-none placeholder:text-muted-foreground/55 disabled:opacity-60"
+const labelClass =
+  "font-mono text-[10.5px] font-medium tracking-[0.14em] text-muted-foreground uppercase"
 
 export function ContactForm() {
-  const reduce = useReducedMotion()
-  const [step, setStep] = useState(0)
-  const [status, setStatus] = useState<Status>({ kind: "idle" })
+  const uid = useId()
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle")
+  const [error, setError] = useState("")
+  const [focused, setFocused] = useState<Field | null>(null)
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
-    projectType: "",
-    budget: "",
-    timeline: "",
-    message: "",
+    body: "",
     honeypot: "",
   })
 
-  const canNext = () => {
-    if (step === 0) return !!form.name.trim() && !!form.email.trim()
-    if (step === 1) return !!form.message.trim()
-    return true
-  }
-
-  const onSubmit = async (e: FormEvent) => {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    if (step < STEPS.length - 1) {
-      if (!canNext()) return
-      setStep((s) => s + 1)
-      return
-    }
+    if (!form.name.trim() || !form.email.trim() || !form.body.trim()) return
 
-    setStatus({ kind: "submitting" })
+    setStatus("loading")
+    setError("")
     try {
-      const res = await fetch(CONTENT.endpoint, {
+      const response = await fetch(CONTENT.endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim(),
+          message: form.body.trim(),
+          honeypot: form.honeypot,
+        }),
       })
-      if (!res.ok) {
-        const data = (await res.json().catch(() => null)) as {
-          error?: string
-        } | null
-        throw new Error(data?.error ?? "Something went wrong. Try again.")
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string
       }
-      setStatus({ kind: "success" })
+      if (!response.ok) throw new Error(data.error || "Something went wrong")
+      setStatus("success")
+      setForm({ name: "", email: "", company: "", body: "", honeypot: "" })
+      setFocused(null)
     } catch (err) {
-      setStatus({
-        kind: "error",
-        message: err instanceof Error ? err.message : "Request failed.",
-      })
+      setStatus("error")
+      setError(err instanceof Error ? err.message : "Failed to send message")
     }
   }
 
-  if (status.kind === "success") {
+  if (status === "success") {
     return (
-      <motion.section
-        className="border border-border-subtle p-6 sm:p-8"
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
+      <section
+        className="relative overflow-hidden rounded-[var(--atro-panel-radius,0.5rem)] border border-border-subtle bg-background px-5 py-8 sm:px-7 sm:py-9"
+        aria-live="polite"
       >
-        <div className="flex size-10 items-center justify-center rounded-full bg-[var(--color-brand,#6d28d9)]/15 text-[var(--color-brand,#6d28d9)]">
-          <Check className="size-5" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--brand)] to-transparent opacity-70"
+          aria-hidden
+        />
+        <div className="flex size-9 items-center justify-center rounded-full border border-border-subtle text-foreground">
+          <Check className="size-4" aria-hidden />
         </div>
-        <h2 className="mt-4 text-2xl font-medium text-foreground">
+        <h2 className="mt-5 text-2xl font-medium tracking-tight text-foreground">
           {CONTENT.successTitle}
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground">{CONTENT.successBody}</p>
-      </motion.section>
+        <p className="mt-2 max-w-[28ch] text-sm leading-relaxed text-muted-foreground">
+          {CONTENT.successBody}
+        </p>
+      </section>
     )
   }
 
-  const current = STEPS[step]!
+  const toLine = form.email.trim() || form.name.trim() || "—"
 
   return (
-    <section className="border border-border-subtle">
-      <div className="border-b border-border-subtle px-6 py-6 sm:px-8">
-        <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
-          {CONTENT.stamp}
-        </p>
-        <h2 className="mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+    <section className="relative overflow-hidden rounded-[var(--atro-panel-radius,0.5rem)] border border-border-subtle bg-background">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--brand)] to-transparent opacity-60"
+        aria-hidden
+      />
+
+      <header className="border-b border-border-subtle px-5 pt-5 pb-4 sm:px-7 sm:pt-6 sm:pb-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className={labelClass}>{CONTENT.stamp}</p>
+          <p
+            className="min-w-0 truncate font-mono text-[10.5px] tracking-[0.06em] text-muted-foreground"
+            aria-hidden={toLine === "—"}
+          >
+            <span className="text-muted-foreground/70">To</span>{" "}
+            <span className="text-foreground/80">{toLine}</span>
+          </p>
+        </div>
+        <h2 className="mt-3 text-[1.65rem] leading-[1.15] font-medium tracking-tight text-foreground sm:text-[1.85rem]">
           {CONTENT.headline}
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground">{CONTENT.lede}</p>
-        <ol className="mt-6 flex flex-wrap gap-2" aria-label="Form progress">
-          {STEPS.map((s, i) => (
-            <li
-              key={s.id}
-              className={
-                i === step
-                  ? "text-xs font-medium text-foreground"
-                  : i < step
-                    ? "text-xs text-[var(--color-brand,#6d28d9)]"
-                    : "text-xs text-muted-foreground"
-              }
-            >
-              {String(i + 1).padStart(2, "0")} {s.label}
-              {i < STEPS.length - 1 ? (
-                <span className="mx-2 text-border-subtle" aria-hidden>
-                  /
-                </span>
-              ) : null}
-            </li>
-          ))}
-        </ol>
-      </div>
+        <p className="mt-1.5 max-w-[36ch] text-sm leading-relaxed text-muted-foreground">
+          {CONTENT.lede}
+        </p>
+      </header>
 
-      <form onSubmit={onSubmit} className="space-y-6 p-6 sm:p-8">
+      <form onSubmit={handleSubmit} className="px-5 pt-5 pb-5 sm:px-7 sm:pb-6">
         <input
           type="text"
           name="company_website"
           value={form.honeypot}
-          onChange={(e) => setForm((f) => ({ ...f, honeypot: e.target.value }))}
+          onChange={(e) =>
+            setForm((f) => ({ ...f, honeypot: e.target.value }))
+          }
           className="hidden"
           tabIndex={-1}
           autoComplete="off"
           aria-hidden
         />
 
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={current.id}
-            initial={reduce ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
-            className="space-y-6"
-            style={{ minHeight: 160 + step * 24 }}
+        <div className="grid gap-0 sm:grid-cols-2">
+          <label
+            htmlFor={`${uid}-name`}
+            className="group block border-b border-border-subtle py-1 sm:pr-4"
+            data-focused={focused === "name" ? "" : undefined}
           >
-            <div>
-              <h3 className="text-lg font-medium text-foreground">
-                {current.title}
-              </h3>
-            </div>
+            <span
+              className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
+            >
+              {CONTENT.labelName}
+            </span>
+            <input
+              id={`${uid}-name`}
+              required
+              name="name"
+              autoComplete="name"
+              value={form.name}
+              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+              onFocus={() => setFocused("name")}
+              onBlur={() => setFocused((f) => (f === "name" ? null : f))}
+              disabled={status === "loading"}
+              className={fieldClass}
+            />
+            <span
+              className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+              aria-hidden
+            />
+          </label>
 
-            {step === 0 ? (
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block space-y-1.5 sm:col-span-1">
-              <span className="text-xs font-medium text-muted-foreground">
-                Name
-              </span>
-              <input
-                required
-                value={form.name}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, name: e.target.value }))
-                }
-                className="h-11 w-full border border-border-subtle bg-background px-3 text-sm outline-none focus:border-foreground"
-              />
-            </label>
-            <label className="block space-y-1.5 sm:col-span-1">
-              <span className="text-xs font-medium text-muted-foreground">
-                Email
-              </span>
-              <input
-                required
-                type="email"
-                value={form.email}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, email: e.target.value }))
-                }
-                className="h-11 w-full border border-border-subtle bg-background px-3 text-sm outline-none focus:border-foreground"
-              />
-            </label>
-            <label className="block space-y-1.5 sm:col-span-2">
-              <span className="text-xs font-medium text-muted-foreground">
-                Company (optional)
-              </span>
-              <input
-                value={form.company}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, company: e.target.value }))
-                }
-                className="h-11 w-full border border-border-subtle bg-background px-3 text-sm outline-none focus:border-foreground"
-              />
-            </label>
-          </div>
-            ) : null}
+          <label
+            htmlFor={`${uid}-email`}
+            className="group block border-b border-border-subtle py-1 sm:border-l sm:border-l-border-subtle sm:pl-4"
+            data-focused={focused === "email" ? "" : undefined}
+          >
+            <span
+              className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
+            >
+              {CONTENT.labelEmail}
+            </span>
+            <input
+              id={`${uid}-email`}
+              required
+              type="email"
+              name="email"
+              autoComplete="email"
+              value={form.email}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, email: e.target.value }))
+              }
+              onFocus={() => setFocused("email")}
+              onBlur={() => setFocused((f) => (f === "email" ? null : f))}
+              disabled={status === "loading"}
+              className={fieldClass}
+            />
+            <span
+              className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+              aria-hidden
+            />
+          </label>
+        </div>
 
-            {step === 1 ? (
-          <div className="space-y-4">
-            <div>
-              <p className="mb-2 text-xs font-medium text-muted-foreground">
-                Project type
-              </p>
-              <div className="grid gap-2 sm:grid-cols-2">
-                {PROJECT_TYPES.map((p) => (
-                  <Chip
-                    key={p.id}
-                    pressed={form.projectType === p.id}
-                    onClick={() =>
-                      setForm((f) => ({ ...f, projectType: p.id }))
-                    }
-                  >
-                    <span className="block font-medium text-foreground">
-                      {p.label}
-                    </span>
-                    <span className="mt-0.5 block text-xs text-muted-foreground">
-                      {p.hint}
-                    </span>
-                  </Chip>
-                ))}
-              </div>
-            </div>
-            <label className="block space-y-1.5">
-              <span className="text-xs font-medium text-muted-foreground">
-                What do you want to ship?
-              </span>
-              <textarea
-                required
-                rows={4}
-                value={form.message}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, message: e.target.value }))
-                }
-                className="w-full border border-border-subtle bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground"
-              />
-            </label>
-          </div>
-            ) : null}
+        <label
+          htmlFor={`${uid}-company`}
+          className="group block border-b border-border-subtle py-1"
+          data-focused={focused === "company" ? "" : undefined}
+        >
+          <span
+            className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
+          >
+            {CONTENT.labelCompany}{" "}
+            <span className="tracking-normal text-muted-foreground/60 normal-case">
+              · {CONTENT.companyHint}
+            </span>
+          </span>
+          <input
+            id={`${uid}-company`}
+            name="company"
+            autoComplete="organization"
+            value={form.company}
+            onChange={(e) =>
+              setForm((f) => ({ ...f, company: e.target.value }))
+            }
+            onFocus={() => setFocused("company")}
+            onBlur={() => setFocused((f) => (f === "company" ? null : f))}
+            disabled={status === "loading"}
+            className={fieldClass}
+          />
+          <span
+            className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+            aria-hidden
+          />
+        </label>
 
-            {step === 2 ? (
-          <div className="space-y-4">
-            <div>
-              <p className="mb-2 text-xs font-medium text-muted-foreground">
-                Budget
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {BUDGETS.map((b) => (
-                  <Chip
-                    key={b.id}
-                    pressed={form.budget === b.id}
-                    onClick={() => setForm((f) => ({ ...f, budget: b.id }))}
-                  >
-                    {b.label}
-                  </Chip>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="mb-2 text-xs font-medium text-muted-foreground">
-                Timeline
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {TIMELINES.map((t) => (
-                  <Chip
-                    key={t.id}
-                    pressed={form.timeline === t.id}
-                    onClick={() => setForm((f) => ({ ...f, timeline: t.id }))}
-                  >
-                    {t.label}
-                  </Chip>
-                ))}
-              </div>
-            </div>
-          </div>
-            ) : null}
+        <label
+          htmlFor={`${uid}-message`}
+          className="group block border-b border-border-subtle py-1"
+          data-focused={focused === "message" ? "" : undefined}
+        >
+          <span
+            className={`${labelClass} transition-colors duration-150 group-data-[focused]:text-foreground`}
+          >
+            {CONTENT.labelMessage}
+          </span>
+          <textarea
+            id={`${uid}-message`}
+            required
+            name="message"
+            rows={4}
+            placeholder={CONTENT.placeholderMessage}
+            value={form.body}
+            onChange={(e) => setForm((f) => ({ ...f, body: e.target.value }))}
+            onFocus={() => setFocused("message")}
+            onBlur={() => setFocused((f) => (f === "message" ? null : f))}
+            disabled={status === "loading"}
+            className={`${fieldClass} min-h-[6.5rem] resize-y text-[1.02rem] leading-relaxed`}
+          />
+          <span
+            className="block h-px origin-left scale-x-0 bg-[var(--brand)] transition-transform duration-200 ease-out group-data-[focused]:scale-x-100 motion-reduce:transition-none"
+            aria-hidden
+          />
+        </label>
 
-            {step === 3 ? (
-          <dl className="space-y-3 text-sm">
-            <div className="flex justify-between gap-4 border-b border-border-subtle pb-2">
-              <dt className="text-muted-foreground">Name</dt>
-              <dd className="font-medium text-foreground">{form.name}</dd>
-            </div>
-            <div className="flex justify-between gap-4 border-b border-border-subtle pb-2">
-              <dt className="text-muted-foreground">Email</dt>
-              <dd className="font-medium text-foreground">{form.email}</dd>
-            </div>
-            <div className="flex justify-between gap-4 border-b border-border-subtle pb-2">
-              <dt className="text-muted-foreground">Project</dt>
-              <dd className="font-medium text-foreground">
-                {PROJECT_TYPES.find((p) => p.id === form.projectType)?.label ??
-                  "Not set"}
-              </dd>
-            </div>
-            <div className="border-b border-border-subtle pb-2">
-              <dt className="text-muted-foreground">Note</dt>
-              <dd className="mt-1 text-foreground">{form.message}</dd>
-            </div>
-          </dl>
-            ) : null}
-          </motion.div>
-        </AnimatePresence>
-
-        {status.kind === "error" ? (
-          <p className="text-sm text-red-600 dark:text-red-400" role="alert">
-            {status.message}
+        {status === "error" ? (
+          <p
+            className="mt-4 text-sm text-red-600 dark:text-red-400"
+            role="alert"
+          >
+            {error}
           </p>
         ) : null}
 
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-          <button
-            type="button"
-            disabled={step === 0 || status.kind === "submitting"}
-            onClick={() => setStep((s) => Math.max(0, s - 1))}
-            className="inline-flex h-10 items-center gap-1.5 px-3 text-sm font-medium text-muted-foreground disabled:opacity-40"
-          >
-            <ArrowLeft className="size-3.5" aria-hidden />
-            Back
-          </button>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <p className="max-w-[28ch] font-mono text-[10.5px] leading-relaxed tracking-[0.04em] text-muted-foreground">
+            {CONTENT.footnote}
+          </p>
           <button
             type="submit"
-            disabled={
-              status.kind === "submitting" || (step < 3 && !canNext())
-            }
-            className="inline-flex h-11 min-w-[7.5rem] items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50"
+            disabled={status === "loading"}
+            className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-[var(--atro-control-radius,0.375rem)] bg-foreground px-4 text-sm font-medium text-background transition-[opacity,transform] duration-150 enabled:hover:opacity-90 enabled:active:scale-[0.98] disabled:opacity-55 motion-reduce:transition-none motion-reduce:active:scale-100"
           >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={
-                  status.kind === "submitting"
-                    ? "submitting"
-                    : step === 3
-                      ? "send"
-                      : "continue"
-                }
-                className="inline-flex items-center gap-2"
-                initial={reduce ? false : { opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -4 }}
-                transition={{ duration: 0.16 }}
-              >
-                {status.kind === "submitting" ? (
-                  <>
-                    <Loader2 className="size-4 animate-spin" aria-hidden />
-                    Sending…
-                  </>
-                ) : step === 3 ? (
-                  <>
-                    {CONTENT.submitLabel}
-                    <Send className="size-3.5" aria-hidden />
-                  </>
-                ) : (
-                  <>
-                    Continue
-                    <ArrowRight className="size-3.5" aria-hidden />
-                  </>
-                )}
-              </motion.span>
-            </AnimatePresence>
+            {status === "loading" ? (
+              <>
+                <Loader2 className="size-3.5 animate-spin" aria-hidden />
+                {CONTENT.sendingLabel}
+              </>
+            ) : (
+              <>
+                {CONTENT.submitLabel}
+                <ArrowUpRight className="size-3.5" aria-hidden />
+              </>
+            )}
           </button>
         </div>
       </form>

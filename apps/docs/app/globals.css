@@ -350,8 +350,14 @@ html {
   }
 }
 
-/* Gallery preview canvas — scaled live component thumbnail (Mobbin-style) */
+/* Gallery / docs preview stage — one room for fullBleed and compact previews. */
+.docs-example-stage,
 .atro-preview-canvas {
+  background-color: var(--background);
+  background-image: none;
+}
+/* Optional thumbnail grain — gallery cards only (not docs ComponentDoc stage). */
+.atro-preview-canvas.atro-preview-canvas--grain {
   background-color: color-mix(in oklch, var(--background) 92%, var(--foreground));
   background-image: radial-gradient(
     circle,
@@ -3524,14 +3530,6 @@ a.docs-changelog-hash:hover {
 }
 
 .atro-landing .rw-preview-slot[data-registry-preview="waitlist-form"] {
-  width: 100%;
-  border: none;
-  background: transparent;
-  padding: 0;
-}
-
-/* Contact — component already has its own border; don't double-frame */
-.atro-landing .rw-preview-slot[data-registry-preview="contact-form"] {
   width: 100%;
   border: none;
   background: transparent;

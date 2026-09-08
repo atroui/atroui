@@ -68,7 +68,7 @@ export function PreviewCard({ item }: { item: NavItem }) {
     <div className="atro-tile group relative flex-col">
       <div
         ref={ref}
-        className="atro-preview-canvas relative h-56 w-full overflow-hidden border-b border-border-subtle"
+        className="atro-preview-canvas atro-preview-canvas--grain relative h-56 w-full overflow-hidden border-b border-border-subtle"
         aria-hidden
       >
         {Demo ? (

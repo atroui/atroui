@@ -77,7 +77,7 @@ export function DocsExample({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card text-foreground",
+        "overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-background text-foreground",
         className
       )}
     >
@@ -128,21 +128,23 @@ export function DocsExample({
       </div>
 
       {tab === "preview" ? (
-        fullBleed ? (
-          <div
-            data-toc-skip
-            className={cn(
-              "relative bg-background",
-              unclip ? "overflow-visible" : "max-h-[min(720px,70vh)] overflow-auto"
-            )}
-          >
+        <div
+          data-toc-skip
+          className={cn(
+            "docs-example-stage relative",
+            fullBleed
+              ? unclip
+                ? "overflow-visible"
+                : "max-h-[min(720px,70vh)] overflow-auto"
+              : "atro-preview-canvas"
+          )}
+        >
+          {fullBleed ? (
             <div className="w-full min-w-0">{preview}</div>
-          </div>
-        ) : (
-          <div data-toc-skip className="atro-preview-canvas relative">
+          ) : (
             <ResizablePreview>{preview}</ResizablePreview>
-          </div>
-        )
+          )}
+        </div>
       ) : (
         <CodeBlock code={code} embedded className="border-0" />
       )}

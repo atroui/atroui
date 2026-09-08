@@ -15,11 +15,11 @@ import Link from "next/link"
 import { Check, Copy } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import {
-  ContactForm,
   DeadlineCountdown,
   HomeHero,
   WaitlistForm,
 } from "atroui"
+import { ContactForm } from "../../registry/default/blocks/contact-form"
 import { cn } from "@/lib/utils"
 import { easeOutSoft, panelTween } from "@/lib/motion"
 
@@ -114,16 +114,8 @@ function renderPreview(id: CatalogId) {
     case "contact":
       // Real `@atroui/contact-form` — pair with `@atroui/api-contact` (BYOK).
       return (
-        <div className="mx-auto w-full max-w-2xl space-y-3">
-          <React.Suspense
-            fallback={
-              <p className="font-mono text-[12px] text-muted-foreground">
-                Loading contact form…
-              </p>
-            }
-          >
-            <ContactForm />
-          </React.Suspense>
+        <div className="mx-auto w-full max-w-md space-y-3">
+          <ContactForm />
           <p className="font-mono text-[11px] text-muted-foreground">
             Pair with{" "}
             <span className="text-foreground">@atroui/api-contact</span> — SMTP

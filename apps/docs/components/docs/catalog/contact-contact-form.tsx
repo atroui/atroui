@@ -9,7 +9,7 @@ export function ContactContactFormDoc() {
       href="/docs/components/contact-contact-form"
       registryName="contact-form"
       title="Contact Form"
-      description="Production contact form with honeypot, validation, and a matching /api/contact Host route (SMTP or Resend)."
+      description="Letter-sheet contact form with honeypot — posts to your /api/contact Host route (SMTP or Resend)."
       preview={<DemoContactForm />}
       code={`import { ContactForm } from "@/components/blocks/contact-form"
 

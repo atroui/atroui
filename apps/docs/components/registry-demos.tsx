@@ -89,7 +89,7 @@ import {
 } from "lucide-react"
 import { TESTIMONIALS } from "atroui/content/testimonials"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
-import { ContactForm as RegistryContactForm } from "../registry/default/blocks/contact-form"
+import { ContactStagePreview } from "@/components/registry/contact-stage-preview"
 
 /** Live canvas demos - one per documented component where a useful preview exists. */
 
@@ -871,8 +871,8 @@ export function DemoSiteFooter() {
 
 export function DemoContactForm() {
   return (
-    <div className="mx-auto w-full max-w-xl">
-      <RegistryContactForm />
+    <div className="mx-auto w-full max-w-md">
+      <ContactStagePreview />
     </div>
   )
 }

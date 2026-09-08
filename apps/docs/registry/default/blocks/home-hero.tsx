@@ -172,7 +172,7 @@ export function HomeHero() {
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px]">
               <div className="min-w-0 border-b border-border-subtle p-4 lg:border-b-0 lg:border-r">
-                <div className="flex aspect-[1200/630] flex-col justify-end rounded-xl bg-gradient-to-br from-[#0a0a0a] via-[#111827] to-[#6d28d9]/30 p-6 ring-1 ring-border-subtle">
+                <div className="flex aspect-[1200/630] flex-col justify-end rounded-xl bg-gradient-to-br from-background via-card to-[color-mix(in_oklch,var(--brand)_30%,transparent)] p-6 ring-1 ring-border-subtle">
                   <p className="whitespace-pre-line text-2xl font-medium tracking-tight text-white sm:text-3xl">
                     {CONTENT.ogTitle}
                   </p>

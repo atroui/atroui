@@ -504,10 +504,9 @@
       "name": "contact-form",
       "type": "registry:block",
       "title": "Contact Form",
-      "description": "Multi-step contact form with editable CONTENT; posts to your API.",
+      "description": "Letter-sheet contact form (name, email, message, honeypot) that posts to your /api/contact Host API.",
       "dependencies": [
-        "lucide-react",
-        "motion"
+        "lucide-react"
       ],
       "files": [
         {
