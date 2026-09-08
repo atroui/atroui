@@ -13,21 +13,19 @@ export function ThemingGuide() {
         lede={
           <>
             Dark-first tokens on a cool charcoal canvas. Primary and{" "}
-            <code>--brand</code> share the same violet (
-            <code>#6d28d9</code> /{" "}
-            <code>oklch(0.457 0.24 277)</code>).{" "}
+            <code>--brand</code> share one violet.{" "}
             <strong>Merriweather</strong> for headings,{" "}
-            <strong>DM Sans</strong> for UI and body, opt-in Caveat
-            sketch, soft-rect CTAs via <code>--radius</code>. After{" "}
-            <code>npx shadcn add</code>, tokens live in{" "}
-            <strong>your</strong> host CSS (or a theme sheet you copy), not
-            behind a required npm import.
+            <strong>DM Sans</strong> for UI and body, opt-in Caveat sketch.
+            After <code>npx shadcn add</code>, tokens live in{" "}
+            <strong>your</strong> host CSS — not behind a required npm import.
           </>
         }
       />
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">CSS variables</h2>
+        <h2 className="docs-section-title" id="css-variables">
+          CSS variables
+        </h2>
         <p className="leading-relaxed">
           Light and dark themes live under{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -37,7 +35,15 @@ export function ThemingGuide() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             .dark
           </code>
-          . Override brand or neutrals to restyle without rewriting components.
+          . Default brand is violet{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            #6d28d9
+          </code>{" "}
+          (
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            oklch(0.457 0.24 277)
+          </code>
+          ). Override brand or neutrals to restyle without rewriting components.
           Site chrome CTAs (<code>.atro-btn</code>, <code>.ms-cta</code>) and
           shadcn <code>Button</code> all read <code>--primary</code>.
         </p>
@@ -64,79 +70,49 @@ export function ThemingGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Fonts</h2>
+        <h2 className="docs-section-title" id="fonts">
+          Fonts
+        </h2>
         <p className="leading-relaxed">
           Same pairing as the shadcn Mira + Indigo preset:
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong className="text-foreground">Merriweather (headings)</strong>{" "}
-            — page titles, section H2s, display accents (
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-display
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-headline
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-display-italic
-            </code>
-            ). Bold weight; true italic for accent words.
+            <strong className="text-foreground">Merriweather</strong> — headings,
+            page titles, section H2s, display accents
           </li>
           <li>
-            <strong className="text-foreground">DM Sans (base / UI)</strong> —
-            body, ledes, labels, buttons, chrome (
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-lede
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-body
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-meta
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-eyebrow
-            </code>
-            ).
+            <strong className="text-foreground">DM Sans</strong> — body, ledes,
+            labels, buttons, chrome
           </li>
           <li>
-            <strong className="text-foreground">Caveat (opt-in sketch)</strong> —
-            never the default display face. Brand marks and chalkboard accents (
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-sketch
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-sketch-accent
-            </code>
-            ).
+            <strong className="text-foreground">Caveat</strong> — opt-in sketch
+            only; never the default display face
           </li>
           <li>
             <strong className="text-foreground">Geist Mono</strong> — code,
-            stamps, and section rails (
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ms-stamp
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-nav-section
-            </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-mono-label
-            </code>
-            ).
+            stamps, and section rails
           </li>
         </ul>
         <p className="leading-relaxed">
-          On the docs host, load Merriweather + DM Sans + Caveat + Geist Mono in
-          the root layout and expose{" "}
+          Utility classes:{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .ds-display
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .ds-headline
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .ds-sketch
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            .ms-stamp
+          </code>
+          . On the docs host, load the four families in the root layout and
+          expose{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             --font-merriweather
           </code>
@@ -165,7 +141,9 @@ export function ThemingGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Radius</h2>
+        <h2 className="docs-section-title" id="radius">
+          Radius
+        </h2>
         <p className="leading-relaxed">
           One knob. CTAs, stamps, and panels use{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -200,7 +178,9 @@ export function ThemingGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Site brand</h2>
+        <h2 className="docs-section-title" id="site-brand">
+          Site brand
+        </h2>
         <p className="leading-relaxed">
           Chrome strings (name, domain, email, site URL) come from{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -230,7 +210,9 @@ export function ThemingGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Dark mode</h2>
+        <h2 className="docs-section-title" id="dark-mode">
+          Dark mode
+        </h2>
         <p className="leading-relaxed">
           Use{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">

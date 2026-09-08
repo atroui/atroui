@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsRegistryMap } from "@/components/docs/docs-registry-map"
 import { DocsPager } from "@/components/docs-pager"
 import { getSiteUrl } from "atroui/lib/site-url"
 
@@ -15,21 +16,17 @@ export function RegistryGuide() {
         title="Registry"
         lede={
           <>
-            AtroUI ships a shadcn-compatible registry. Components are copied into
-            your project so you can edit code, content, and design - the same
-            ownership model as shadcn/ui. Change <code>CONTENT</code> /{" "}
-            <code>DEFAULT_BRAND</code> in the installed files to make them yours.
-            Tailwind CSS v4. <code>@atroui</code> is public on the shadcn
-            directory. No GitHub token. Pure UI needs only the CLI. Forms and AI
-            tools that post to <code>/api/*</code> also need{" "}
-            <code>npm i atroui</code> + <code>transpilePackages</code>. Same
-            three-row matrix:{" "}
-            <Link href="/docs/host-api" className="bam-link">
-              Host APIs
-            </Link>{" "}
-            ·{" "}
+            Components copy into your project so you own the source — same model
+            as shadcn/ui. Edit <code>CONTENT</code> / <code>DEFAULT_BRAND</code>{" "}
+            in the installed files. Pure UI needs only the CLI; forms and AI
+            routes that post to <code>/api/*</code> also need{" "}
+            <code>npm i atroui</code>. See{" "}
             <Link href="/docs/installation" className="bam-link">
               Installation
+            </Link>{" "}
+            and{" "}
+            <Link href="/docs/host-api" className="bam-link">
+              Host APIs
             </Link>
             .
           </>
@@ -37,8 +34,8 @@ export function RegistryGuide() {
       />
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">
-          1. Init shadcn (if needed)
+        <h2 className="docs-section-title" id="init">
+          Init shadcn
         </h2>
         <CodeBlock language="bash" code={`npx shadcn@latest init`} />
         <p className="leading-relaxed">
@@ -55,8 +52,8 @@ export function RegistryGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">
-          2. Add a component
+        <h2 className="docs-section-title" id="add">
+          Add a component
         </h2>
         <p className="leading-relaxed">
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -80,17 +77,14 @@ export function RegistryGuide() {
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest add @atroui/home-hero
-npx shadcn@latest add @atroui/site-header
-npx shadcn@latest add @atroui/faq
-npx shadcn@latest add @atroui/waitlist-form
-npx shadcn@latest add @atroui/site-footer`}
+npx shadcn@latest add @atroui/site-header`}
         />
         <p className="leading-relaxed">
-          Source files land under your aliases (for example{" "}
+          Source lands under your aliases (for example{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             components/blocks/home-hero.tsx
           </code>
-          ). Open the file and edit the{" "}
+          ). Edit{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             CONTENT
           </code>{" "}
@@ -98,7 +92,7 @@ npx shadcn@latest add @atroui/site-footer`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             NAV
           </code>{" "}
-          constants at the top - that is the point. Dependencies resolve as{" "}
+          at the top of the file. Dependencies resolve as{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @atroui/brand
           </code>
@@ -106,287 +100,28 @@ npx shadcn@latest add @atroui/site-footer`}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             @atroui/utils
           </code>
-          , etc. (not bare names on the default shadcn registry).
+          , and so on — not bare names on the default shadcn registry.
         </p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Catalog</h2>
-        <ul className="list-disc space-y-2 pl-5">
-          <li>
-            Libs:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/utils
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/brand
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/site-url
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/seo
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/analytics
-            </code>
-          </li>
-          <li>
-            UI:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/button
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/card
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/textarea
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/form-select
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/breadcrumbs
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/prose
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/theme-toggle
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/theme-adapt
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/theme-provider
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/logo
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/mockup-frame
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/timeline-animation
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/founder-avatar
-            </code>
-          </li>
-          <li>
-            Motion:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/fade-in
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/stagger
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/scroll-progress
-            </code>
-          </li>
-          <li>
-            Chrome:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/site-header
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/site-footer
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/footer-bold
-            </code>
-          </li>
-          <li>
-            Home:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/home-hero
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/home-who
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/home-principle
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/home-work
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/home-lab
-            </code>
-          </li>
-          <li>
-            Convert:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/pricing-overview
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/faq
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/contextual-cta
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/exit-intent-popup
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/contact-form
-            </code>
-          </li>
-          <li>
-            Capture:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/waitlist-form
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/newsletter-form
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/calendly-embed
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/made-with-embed
-            </code>
-          </li>
-          <li>
-            Content &amp; share:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/social-share
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/journal-content
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/resources-content
-            </code>
-          </li>
-          <li>
-            Case study &amp; studio:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/before-after-slider
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/visual-case-study
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/ar-portfolio
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/live-dashboard
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/project-planner
-            </code>
-          </li>
-          <li>
-            SEO &amp; analytics:{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/json-ld
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/testimonial-schema
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/analytics-provider
-            </code>
-          </li>
-          <li>
-            Tools (OG / thumbnail / scope):{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/og-live-preview
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/og-examples
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/og-workspace
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/thumbnail-live-preview
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/thumbnail-workspace
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/scope-chat
-            </code>
-          </li>
-          <li>
-            <Link href="/docs/host-api" className="bam-link">
-              Host APIs
-            </Link>{" "}
-            (forms + AI routes):{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/api-contact
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/api-waitlist
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/api-newsletter
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/api-generate
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/api-thumbnail
-            </code>
-            ,{" "}
-            <code className="font-mono text-[12px] text-foreground">
-              @atroui/api-scope
-            </code>
-          </li>
-        </ul>
+        <h2 className="docs-section-title" id="catalog">
+          What you can add
+        </h2>
         <p className="leading-relaxed">
-          Browse the catalog JSON at{" "}
+          Names resolve as{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            {"@atroui/<name>"}
+          </code>
+          . Prefer the{" "}
+          <Link href="/docs/components" className="bam-link">
+            components gallery
+          </Link>{" "}
+          for live previews; the map below is the shape of the registry.
+        </p>
+        <DocsRegistryMap />
+        <p className="leading-relaxed">
+          Machine-readable index:{" "}
           <a
             href="/r/registry.json"
             className="bam-link"
@@ -400,7 +135,7 @@ npx shadcn@latest add @atroui/site-footer`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">
+        <h2 className="docs-section-title" id="next-steps">
           Next steps
         </h2>
         <p className="leading-relaxed">

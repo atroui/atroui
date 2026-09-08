@@ -27,7 +27,7 @@ export function CompareGuide() {
       />
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">
+        <h2 className="docs-section-title" id="what-atroui-is">
           What AtroUI is
         </h2>
         <p className="leading-relaxed">
@@ -42,7 +42,7 @@ export function CompareGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">
+        <h2 className="docs-section-title" id="what-copy-paste-kits-optimize-for">
           What copy-paste kits optimize for
         </h2>
         <p className="leading-relaxed">
@@ -56,7 +56,9 @@ export function CompareGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Where AtroUI differs</h2>
+        <h2 className="docs-section-title" id="where-atroui-differs">
+          Where AtroUI differs
+        </h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>
             <strong className="text-foreground">Same ownership model</strong> -{" "}
@@ -104,7 +106,9 @@ export function CompareGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">When to pick which</h2>
+        <h2 className="docs-section-title" id="when-to-pick-which">
+          When to pick which
+        </h2>
         <p className="leading-relaxed">
           Prefer a blank-slate kit if you want every primitive from scratch.
           Prefer AtroUI when you want a ready dark catalog with the same

@@ -17,16 +17,15 @@ export function InstallationGuide() {
         title="Installation"
         lede={
           <>
-            Prerequisites, the happy path (<code>init</code> →{" "}
-            <code>add @atroui/…</code>), what lands in your repo, and how to fix
-            the usual failures. Best with Next.js and Tailwind CSS v4.
+            Init shadcn, add an <code>@atroui/…</code> block, then edit the
+            source in your repo. Built for Next.js and Tailwind CSS v4.
           </>
         }
       />
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="prerequisites">
-          1. Prerequisites
+          Prerequisites
         </h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>
@@ -50,7 +49,7 @@ export function InstallationGuide() {
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="init">
-          2. Init shadcn
+          Init shadcn
         </h2>
         <CodeBlock language="bash" code={`npx shadcn@latest init`} />
         <p className="leading-relaxed">
@@ -64,7 +63,7 @@ export function InstallationGuide() {
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="add">
-          3. Add a component
+          Add a component
         </h2>
         <p className="leading-relaxed">
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -90,19 +89,14 @@ export function InstallationGuide() {
           code={`npx shadcn@latest add @atroui/home-hero`}
         />
         <p className="leading-relaxed">
-          Add more when you need them:
+          Add more when you need them — header, FAQ, footer, and so on — each as
+          its own <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">@atroui/…</code> name.
         </p>
-        <CodeBlock
-          language="bash"
-          code={`npx shadcn@latest add @atroui/site-header
-npx shadcn@latest add @atroui/faq
-npx shadcn@latest add @atroui/site-footer`}
-        />
       </section>
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="what-landed">
-          4. What landed in the repo
+          What landed in the repo
         </h2>
         <p className="leading-relaxed">
           The CLI copies source into{" "}
@@ -151,10 +145,10 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="host-api">
-          5. When you also need <code>npm i atroui</code>
+          When you need the npm package
         </h2>
         <p className="leading-relaxed">
-          Pure UI stops at step 3. Forms and AI tools that post to{" "}
+          Pure UI stops after <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">add</code>. Forms and AI tools that post to{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             /api/*
           </code>{" "}
@@ -191,7 +185,7 @@ RESEND_AUDIENCE_ID=…`}
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="troubleshooting">
-          6. Troubleshooting
+          Troubleshooting
         </h2>
         <ul className="list-disc space-y-3 pl-5">
           <li>
@@ -288,7 +282,9 @@ pnpm dev`}
 
       {pseo?.faqs?.length ? (
         <section className="space-y-4 border-t border-border-subtle pt-8">
-          <h2 className="docs-section-title">FAQ</h2>
+          <h2 className="docs-section-title" id="faq">
+            FAQ
+          </h2>
           <dl className="space-y-5">
             {pseo.faqs.map((item) => (
               <div key={item.q}>

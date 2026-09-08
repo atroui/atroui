@@ -52,11 +52,13 @@ export function DocsToc() {
         root.querySelectorAll<HTMLElement>("h2, h3")
       ).filter((n) => !n.closest("[data-toc-skip]") && n.textContent?.trim())
 
+      // Read ids only — never write them. Mutating the DOM before/during
+      // sibling hydration (MDX islands) causes React hydration mismatches.
       const items: Heading[] = nodes.map((n) => {
         const text = n.textContent || ""
-        if (!n.id) n.id = slugify(text)
+        const id = n.id || slugify(text)
         return {
-          id: n.id,
+          id,
           text,
           level: n.tagName === "H3" ? 3 : 2,
           boilerplate: isBoilerplate(n, text),
@@ -73,8 +75,13 @@ export function DocsToc() {
         },
         { rootMargin: "-88px 0px -70% 0px", threshold: 0 }
       )
-      nodes.forEach((n) => observer?.observe(n))
-      if (items[0]) setActive(items[0].id)
+      nodes.forEach((n) => {
+        if (n.id) observer?.observe(n)
+      })
+      const firstWithId = items.find((item) =>
+        nodes.some((n) => n.id === item.id)
+      )
+      if (firstWithId) setActive(firstWithId.id)
     }
 
     raf = requestAnimationFrame(() => requestAnimationFrame(scan))

@@ -664,11 +664,13 @@ html {
   line-height: 1.2;
   color: var(--docs-fg-strong);
 }
+/* Lede sits under the title rule at body weight — H2 owns the next beat.
+   (Don't let the lede read as a second outline fighting the first chapter.) */
 .docs-book-lede {
-  margin-top: 0.9rem;
-  max-width: 40rem;
-  font-size: 1rem;
-  line-height: 1.65;
+  margin-top: 0.85rem;
+  max-width: 38rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
   color: var(--docs-fg);
 }
 .docs-book-lede a {
@@ -806,10 +808,70 @@ html {
 .docs-book article section > h2.docs-section-title {
   margin-top: 0;
 }
+/* Extra air after arrival so lede → first H2 is a chapter turn, not a stack */
+.docs-book article.space-y-10 > .docs-book-header + section,
+.docs-book article.space-y-8 > .docs-book-header + section {
+  margin-top: 2.75rem;
+}
 .docs-book article.space-y-10 > section + section,
 .docs-book article.space-y-8 > section + section,
 .docs-book article.space-y-6 > section + section {
-  margin-top: 2rem;
+  margin-top: 2.25rem;
+}
+
+/* Registry family map — wrap chips, one @atroui/ legend in prose */
+.docs-registry-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+}
+.docs-registry-map-row {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0.4rem 1rem;
+  align-items: start;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--docs-border, var(--border-subtle));
+}
+.docs-registry-map-row:first-child {
+  padding-top: 0.15rem;
+}
+.docs-registry-map-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0.15rem;
+}
+@media (max-width: 640px) {
+  .docs-registry-map-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+.docs-registry-map dt {
+  margin: 0;
+  padding-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.docs-registry-map dd {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.docs-registry-map dd code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  border-radius: 0.3rem;
+  border: 1px solid var(--docs-border, var(--border-subtle));
+  background: color-mix(in oklch, var(--foreground) 2.5%, transparent);
+  padding: 0.15rem 0.4rem;
+  color: var(--docs-fg-strong);
 }
 
 /* Hub list rows (glossary / collections / similar indexes) — book ink, not storefront ds-* */

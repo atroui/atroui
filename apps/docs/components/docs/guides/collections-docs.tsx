@@ -73,12 +73,16 @@ export function CollectionDoc({ slug }: { slug: string }) {
       />
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Why this grouping</h2>
+        <h2 className="docs-section-title" id="why-this-grouping">
+          Why this grouping
+        </h2>
         <p className="leading-relaxed">{collection.why}</p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Install these</h2>
+        <h2 className="docs-section-title" id="install-these">
+          Install these
+        </h2>
         <ul className="md-glass divide-y divide-border-subtle">
           {collection.paths.map((href) => (
             <li key={href}>
@@ -95,7 +99,9 @@ export function CollectionDoc({ slug }: { slug: string }) {
 
       {collection.faqs.length > 0 ? (
         <section className="space-y-4">
-          <h2 className="docs-section-title">FAQ</h2>
+          <h2 className="docs-section-title" id="faq">
+            FAQ
+          </h2>
           <dl className="space-y-4">
             {collection.faqs.map((faq) => (
               <div key={faq.q}>

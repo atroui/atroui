@@ -20,7 +20,9 @@ export function BrandGuide() {
       />
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Name</h2>
+        <h2 className="docs-section-title" id="name">
+          Name
+        </h2>
         <p className="leading-relaxed">
           <strong className="font-medium text-foreground">AtroUI</strong>{" "}
           (stylized; lowercase package{" "}
@@ -43,7 +45,9 @@ export function BrandGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Mark</h2>
+        <h2 className="docs-section-title" id="mark">
+          Mark
+        </h2>
         <p className="leading-relaxed">
           Interrupted A - open letterform with a floating brand bar (
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
@@ -82,7 +86,7 @@ export function BrandGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">
+        <h2 className="docs-section-title" id="made-with-badge">
           Made with badge
         </h2>
         <p className="leading-relaxed">
@@ -112,7 +116,9 @@ export function BrandGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Colors</h2>
+        <h2 className="docs-section-title" id="colors">
+          Colors
+        </h2>
         <ul className="grid gap-3 sm:grid-cols-3">
           {[
             { name: "Canvas", hex: "#1c1c1f" },
@@ -134,7 +140,9 @@ export function BrandGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Voice</h2>
+        <h2 className="docs-section-title" id="voice">
+          Voice
+        </h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>
             Say <strong className="text-foreground">AtroUI</strong>,{" "}

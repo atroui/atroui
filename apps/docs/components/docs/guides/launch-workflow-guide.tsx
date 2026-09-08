@@ -21,7 +21,9 @@ export function LaunchWorkflowGuide() {
       />
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">The path</h2>
+        <h2 className="docs-section-title" id="the-path">
+          The path
+        </h2>
         <ol className="list-decimal space-y-2 pl-5 leading-relaxed">
           <li>
             <Link
@@ -70,7 +72,7 @@ export function LaunchWorkflowGuide() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">
+        <h2 className="docs-section-title" id="shared-brief">
           Shared brief
         </h2>
         <p className="leading-relaxed">
@@ -112,12 +114,16 @@ window.location.href = buildOgHref(brief)`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Try it</h2>
+        <h2 className="docs-section-title" id="try-it">
+          Try it
+        </h2>
         <LaunchBriefDemo />
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Install checklist</h2>
+        <h2 className="docs-section-title" id="install-checklist">
+          Install checklist
+        </h2>
         <CodeBlock
           language="bash"
           code={`# Brief helpers (always)

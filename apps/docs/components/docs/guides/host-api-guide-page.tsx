@@ -76,7 +76,9 @@ export function HostApiGuidePage() {
       </div>
 
       <section className="space-y-4 border-t border-border-subtle pt-8">
-        <h2 className="docs-section-title">FAQ</h2>
+        <h2 className="docs-section-title" id="faq">
+          FAQ
+        </h2>
         <dl className="space-y-5">
           {HOST_API_FAQS.map((item) => (
             <div key={item.question}>

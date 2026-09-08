@@ -59,17 +59,23 @@ export function GlossaryTermDoc({ slug }: { slug: string }) {
       />
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Definition</h2>
+        <h2 className="docs-section-title" id="definition">
+          Definition
+        </h2>
         <p className="leading-relaxed">{term.definition}</p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title">Why it matters</h2>
+        <h2 className="docs-section-title" id="why-it-matters">
+          Why it matters
+        </h2>
         <p className="leading-relaxed">{term.whyItMatters}</p>
       </section>
 
       <nav className="space-y-2" aria-label="Related">
-        <h2 className="docs-section-title">Related</h2>
+        <h2 className="docs-section-title" id="related">
+          Related
+        </h2>
         <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
           {term.relatedPaths.map((item) => (
             <li key={item.href}>
