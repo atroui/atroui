@@ -12,15 +12,22 @@ const GITHUB_REPO = "https://github.com/atroui/atroui"
  * Same sticky/blur chrome and shared `site-header` transition name as
  * SiteHeader so the bar holds its place across the shell swap; the Components ·
  * Docs · Blog megas stay on marketing routes so the book room reads quiet.
+ *
+ * Tool rooms (/og, /planner) pass `showChapterNav={false}` — they have no
+ * chapter tree, so the sidebar trigger would open an empty drawer.
  */
-export function DocsHeader() {
+export function DocsHeader({
+  showChapterNav = true,
+}: {
+  showChapterNav?: boolean
+}) {
   return (
     <header
       className="sticky top-0 z-40 border-b border-border-subtle bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70"
       style={{ viewTransitionName: "site-header" }}
     >
       <div className="atro-shell flex h-14 items-center gap-3">
-        <MobileSidebar />
+        {showChapterNav ? <MobileSidebar /> : null}
 
         <SharedBrand>
           <TransitionLink

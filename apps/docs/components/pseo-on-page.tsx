@@ -88,7 +88,10 @@ export function PseoOnPage({
 
       {overlay ? (
         <section className="space-y-3">
-          <h2 className="ds-headline text-base text-foreground">
+          <h2
+            data-toc-boilerplate
+            className="ds-headline text-base text-foreground"
+          >
             {overlay.job}
           </h2>
           <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -99,7 +102,12 @@ export function PseoOnPage({
 
       {faqs.length > 0 ? (
         <section className="space-y-4">
-          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
+          <h2
+            data-toc-boilerplate
+            className="ds-headline text-base text-foreground"
+          >
+            FAQ
+          </h2>
           <dl className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.q}>
@@ -135,7 +143,12 @@ export function PseoOnPage({
 
       {related.length > 0 ? (
         <nav aria-label="Related components" className="space-y-2">
-          <h2 className="ds-headline text-base text-foreground">Related</h2>
+          <h2
+            data-toc-boilerplate
+            className="ds-headline text-base text-foreground"
+          >
+            Related
+          </h2>
           <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
             {related.map((item) => (
               <li key={item.href}>

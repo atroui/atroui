@@ -4,7 +4,28 @@ import * as React from "react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 
-type Heading = { id: string; text: string; level: 2 | 3 }
+type Heading = { id: string; text: string; level: 2 | 3; boilerplate: boolean }
+
+/**
+ * Scaffolding every component page repeats. A TOC listing only these is a
+ * table of contents for the template, not for the page.
+ */
+const BOILERPLATE_HEADINGS = new Set([
+  "preview",
+  "installation",
+  "usage",
+  "api reference",
+  "faq",
+  "related",
+  "related components",
+])
+
+function isBoilerplate(node: HTMLElement, text: string) {
+  return (
+    node.hasAttribute("data-toc-boilerplate") ||
+    BOILERPLATE_HEADINGS.has(text.trim().toLowerCase())
+  )
+}
 
 function slugify(text: string) {
   return text
@@ -32,11 +53,13 @@ export function DocsToc() {
       ).filter((n) => !n.closest("[data-toc-skip]") && n.textContent?.trim())
 
       const items: Heading[] = nodes.map((n) => {
-        if (!n.id) n.id = slugify(n.textContent || "")
+        const text = n.textContent || ""
+        if (!n.id) n.id = slugify(text)
         return {
           id: n.id,
-          text: n.textContent || "",
+          text,
           level: n.tagName === "H3" ? 3 : 2,
+          boilerplate: isBoilerplate(n, text),
         }
       })
       setHeadings(items)
@@ -63,6 +86,9 @@ export function DocsToc() {
   }, [pathname])
 
   if (headings.length < 2) return null
+
+  const sections = headings.filter((h) => h.level === 2)
+  if (sections.length > 0 && sections.every((h) => h.boilerplate)) return null
 
   return (
     <nav aria-label="On this page" className="text-[13px]">

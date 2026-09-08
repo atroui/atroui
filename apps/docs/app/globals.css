@@ -38,6 +38,9 @@ html {
 :root {
   --atro-control-radius: 0.375rem; /* matches header Browse */
   --atro-control-height: 2.25rem;
+  /* One radius for the product stage chrome — tool room, docs example frame,
+     landing demo frame. Cards keep --radius-lg; controls keep the value above. */
+  --atro-panel-radius: 0.5rem;
   /* Arrival tokens — the .docs-book-* header classes are shared by docs,
      essays (/blog, /updates), and tool rooms (/og, /planner), so they resolve
      here too. .docs-book narrows them again for the reading room. */
@@ -238,7 +241,7 @@ html {
 
 /* Browser-frame mockup — flat product stage (Zed-style: UI is the visual) */
 .atro-frame {
-  border-radius: var(--radius-lg);
+  border-radius: var(--atro-panel-radius);
   border: 1px solid var(--border-subtle);
   background: color-mix(in oklch, var(--background) 96%, var(--foreground));
   box-shadow:
@@ -250,7 +253,7 @@ html {
 /* Static product wrapper — no spinning border beam */
 .atro-product-stage {
   width: 100%;
-  border-radius: var(--radius-lg);
+  border-radius: var(--atro-panel-radius);
   border: 1px solid var(--border-subtle);
   background: color-mix(in oklch, var(--background) 98%, var(--foreground));
   box-shadow: 0 32px 80px -56px color-mix(in oklch, var(--foreground) 45%, transparent);
@@ -474,6 +477,23 @@ html {
   text-transform: uppercase;
   color: var(--muted-foreground);
 }
+.docs-book-nav-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-block: 0.15rem;
+  border-radius: 0.375rem;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 140ms ease;
+}
+.docs-book-nav-toggle:hover {
+  color: var(--docs-fg-strong);
+}
 .docs-book-nav-list {
   list-style: none;
   margin: 0;
@@ -481,6 +501,9 @@ html {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+}
+.docs-book-nav-list[hidden] {
+  display: none;
 }
 .docs-book-nav-link {
   display: flex;
@@ -1180,8 +1203,7 @@ html {
 .atro-jw-tab--active {
   color: var(--foreground);
 }
-.atro-jw-tab--active::after {
-  content: "";
+.atro-jw-tab-ink {
   position: absolute;
   inset-inline: 0.75rem;
   bottom: -1px;
@@ -1193,6 +1215,15 @@ html {
   display: grid;
   gap: 1.75rem;
   margin-top: 1.75rem;
+}
+/* Exiting + entering panels share one cell so the stage crossfades without collapsing. */
+.atro-jw-swap {
+  display: grid;
+  min-width: 0;
+}
+.atro-jw-swap > * {
+  grid-area: 1 / 1;
+  min-width: 0;
 }
 @media (min-width: 900px) {
   .atro-jw-stage {
@@ -1635,7 +1666,7 @@ html {
 
 /* zed-btn aliases atro-btn globally — no landing size/radius fork */
 .atro-landing .landing-demo-frame {
-  border-radius: 0.75rem;
+  border-radius: var(--atro-panel-radius);
   border: 1px solid var(--landing-border);
   background: var(--landing-surface);
   box-shadow:
@@ -1652,7 +1683,7 @@ html {
 }
 
 .atro-landing .atro-frame {
-  border-radius: 0.75rem;
+  border-radius: var(--atro-panel-radius);
   border: 1px solid var(--landing-border);
   background: var(--landing-surface);
   box-shadow: 0 32px 64px -48px rgba(0, 0, 0, 0.85);
@@ -1784,7 +1815,7 @@ html {
   letter-spacing: -0.035em;
 }
 
-.atro-landing .atro-jw-tab--active::after {
+.atro-landing .atro-jw-tab-ink {
   background: var(--landing-fg);
 }
 

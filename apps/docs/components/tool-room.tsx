@@ -1,12 +1,15 @@
 import type { ReactNode } from "react"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsHeader } from "@/components/docs/docs-header"
 import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
 import { cn } from "@/lib/utils"
 
 /**
  * Tool room — same arrival as a docs page (quiet eyebrow, Outfit title + rule)
  * followed by the framed product stage. Used by /og and /planner.
+ *
+ * Wears the docs bar without the chapter nav so the room reads as one app; the
+ * marketing megas would make the header and the article header look like two.
  */
 export function ToolRoom({
   eyebrow = "Tool",
@@ -27,7 +30,7 @@ export function ToolRoom({
 }) {
   return (
     <>
-      <SiteHeader />
+      <DocsHeader showChapterNav={false} />
       <main
         className={cn(
           "mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8",
@@ -47,7 +50,7 @@ export function ToolRoom({
             </div>
           ) : null}
         </div>
-        <div className="overflow-hidden rounded-lg border border-border-subtle">
+        <div className="overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle">
           {children}
         </div>
         {exit}

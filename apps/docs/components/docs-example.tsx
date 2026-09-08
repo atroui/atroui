@@ -77,7 +77,7 @@ export function DocsExample({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border-subtle bg-card text-foreground",
+        "overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card text-foreground",
         className
       )}
     >

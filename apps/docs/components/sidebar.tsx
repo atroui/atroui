@@ -3,11 +3,46 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { ChevronRight, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LogoMark } from "@/components/logo-mark"
 import { OverlayShell } from "@/components/overlay-shell"
 import { badgeLabel, navigation, type NavItem } from "@/lib/navigation"
+
+const COLLAPSE_STORAGE_KEY = "docs-sidebar-collapsed"
+
+type CollapsedMap = Record<string, boolean>
+
+/** Section owning the current route — longest matching item href wins over /docs. */
+function activeSectionTitle(pathname: string) {
+  let best: { title: string; length: number } | null = null
+  for (const section of navigation) {
+    for (const item of section.items) {
+      const match =
+        pathname === item.href || pathname.startsWith(`${item.href}/`)
+      if (match && (!best || item.href.length > best.length)) {
+        best = { title: section.title, length: item.href.length }
+      }
+    }
+  }
+  return best?.title ?? navigation[0]!.title
+}
+
+function readCollapsed(): CollapsedMap | null {
+  try {
+    const raw = sessionStorage.getItem(COLLAPSE_STORAGE_KEY)
+    if (!raw) return null
+    const parsed: unknown = JSON.parse(raw)
+    if (!parsed || typeof parsed !== "object") return null
+    const map: CollapsedMap = {}
+    for (const [key, value] of Object.entries(parsed)) {
+      if (typeof value === "boolean") map[key] = value
+    }
+    return map
+  } catch {
+    return null
+  }
+}
 
 function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   return (
@@ -24,37 +59,85 @@ function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   )
 }
 
-/** Chapter nav — always expanded, Zed/mdBook calm. */
+/** Chapter nav — active chapter open, the rest folded away. Zed/mdBook calm. */
 export function DocsSidebar({ className }: { className?: string }) {
   const pathname = usePathname()
+  const activeTitle = activeSectionTitle(pathname)
+  const listIdPrefix = React.useId()
+  const [collapsed, setCollapsed] = React.useState<CollapsedMap>({})
+
+  React.useEffect(() => {
+    const stored = readCollapsed()
+    if (stored) setCollapsed(stored)
+  }, [])
+
+  // The chapter you are reading is never folded shut.
+  React.useEffect(() => {
+    setCollapsed((prev) =>
+      prev[activeTitle] ? { ...prev, [activeTitle]: false } : prev
+    )
+  }, [activeTitle])
+
+  const isOpen = (title: string) =>
+    title in collapsed ? !collapsed[title] : title === activeTitle
+
+  const toggleSection = (title: string) => {
+    const next = { ...collapsed, [title]: isOpen(title) }
+    setCollapsed(next)
+    try {
+      sessionStorage.setItem(COLLAPSE_STORAGE_KEY, JSON.stringify(next))
+    } catch {
+      // Private mode / storage disabled — in-memory state still works.
+    }
+  }
 
   return (
     <nav className={cn("docs-book-nav", className)}>
-      {navigation.map((section) => (
-        <div key={section.title} className="docs-book-nav-section">
-          <p className="docs-book-nav-heading">{section.title}</p>
-          <ul className="docs-book-nav-list">
-            {section.items.map((item) => {
-              const active = pathname === item.href
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "docs-book-nav-link",
-                      active && "docs-book-nav-link-active"
-                    )}
-                  >
-                    <span className="truncate">{item.title}</span>
-                    {item.badge ? <NavBadge badge={item.badge} /> : null}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      ))}
+      {navigation.map((section) => {
+        const open = isOpen(section.title)
+        const listId = `${listIdPrefix}-${section.title.replace(/\s+/g, "-")}`
+
+        return (
+          <div key={section.title} className="docs-book-nav-section">
+            <button
+              type="button"
+              onClick={() => toggleSection(section.title)}
+              aria-expanded={open}
+              aria-controls={listId}
+              className="docs-book-nav-heading docs-book-nav-toggle"
+            >
+              <span className="truncate">{section.title}</span>
+              <ChevronRight
+                aria-hidden
+                className={cn(
+                  "size-3 shrink-0 transition-transform duration-150 motion-reduce:transition-none",
+                  open && "rotate-90"
+                )}
+              />
+            </button>
+            <ul id={listId} hidden={!open} className="docs-book-nav-list">
+              {section.items.map((item) => {
+                const active = pathname === item.href
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "docs-book-nav-link",
+                        active && "docs-book-nav-link-active"
+                      )}
+                    >
+                      <span className="truncate">{item.title}</span>
+                      {item.badge ? <NavBadge badge={item.badge} /> : null}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )
+      })}
     </nav>
   )
 }
