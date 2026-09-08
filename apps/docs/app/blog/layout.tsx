@@ -3,8 +3,8 @@ import { SiteHeader } from "@/components/site-header"
 import { DocsRouteTransition } from "@/components/view-transitions"
 
 /**
- * Blog essay room — same product chrome as marketing; DM Sans body (Merriweather for titles).
- * Measure ~740px Zed blog column via .atro-essay.
+ * Blog room — SiteHeader/Footer + route fade.
+ * Index uses `.blog-index`; posts use `.blog-essay` (ledger continuity).
  */
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (

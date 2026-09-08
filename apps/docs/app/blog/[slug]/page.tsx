@@ -5,11 +5,45 @@ import { notFound } from "next/navigation"
 import { ArticleJsonLd } from "atroui"
 import { BlogThemeAdaptPreview } from "@/components/blog-theme-adapt-preview"
 import { CodeBlock } from "@/components/code-block"
-import { DocsArticleHeader } from "@/components/docs/docs-article-header"
-import { blogPosts, getPost } from "@/lib/blog"
+import { blogPosts, getPost, type BlogPost } from "@/lib/blog"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 type Props = { params: Promise<{ slug: string }> }
+
+/** “April 21, 2020” — rauchg meta line. */
+function formatEssayDate(iso: string) {
+  const d = new Date(`${iso}T12:00:00`)
+  if (Number.isNaN(d.getTime())) return iso
+  return d.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })
+}
+
+function keepReading(slug: string, limit = 3): BlogPost[] {
+  return [...blogPosts]
+    .filter((p) => p.slug !== slug)
+    .sort((a, b) => {
+      const byDate = b.date.localeCompare(a.date)
+      if (byDate !== 0) return byDate
+      return blogPosts.indexOf(a) - blogPosts.indexOf(b)
+    })
+    .slice(0, limit)
+}
+
+function primaryExit(post: BlogPost): { href: string; label: string } {
+  if (post.slug === "host-apis-own-the-ui-bring-your-keys") {
+    return { href: "/docs/host-api", label: "Host APIs docs" }
+  }
+  if (post.slug === "adaptive-theme-switch") {
+    return {
+      href: "/docs/components/ui-theme-adapt",
+      label: "Adaptive Theme Switch",
+    }
+  }
+  return { href: "/docs/registry", label: "Own the UI" }
+}
 
 /** Render paragraphs with [links](/path), `inline code`, and **bold**. */
 function RichParagraph({ text }: { text: string }) {
@@ -53,7 +87,7 @@ function RichParagraph({ text }: { text: string }) {
           <a
             key={key++}
             href={href}
-            className="bam-link"
+            className="blog-essay-a"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -62,23 +96,20 @@ function RichParagraph({ text }: { text: string }) {
         )
       } else {
         parts.push(
-          <Link key={key++} href={href} className="bam-link">
+          <Link key={key++} href={href} className="blog-essay-a">
             {label}
           </Link>
         )
       }
     } else if (match[3] !== undefined) {
       parts.push(
-        <code
-          key={key++}
-          className="rounded-md border border-border-subtle bg-muted px-1.5 py-0.5 font-mono text-[0.875em] text-foreground"
-        >
+        <code key={key++} className="blog-essay-code">
           {match[3]}
         </code>
       )
     } else if (match[4] !== undefined) {
       parts.push(
-        <strong key={key++} className="font-semibold text-foreground">
+        <strong key={key++} className="blog-essay-strong">
           {match[4]}
         </strong>
       )
@@ -90,7 +121,7 @@ function RichParagraph({ text }: { text: string }) {
     pushText(text.slice(last))
   }
 
-  return <p className="blog-prose">{parts}</p>
+  return <p className="blog-essay-p">{parts}</p>
 }
 
 export function generateStaticParams() {
@@ -115,6 +146,9 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPost(slug)
   if (!post) notFound()
 
+  const exit = primaryExit(post)
+  const more = keepReading(post.slug, 3)
+
   return (
     <article className="bg-background text-foreground">
       <ArticleJsonLd
@@ -124,30 +158,49 @@ export default async function BlogPostPage({ params }: Props) {
         date={post.date}
         basePath="/blog"
       />
-      {/* ~65ch column — comfortable tracking for DM Sans body at 17–18px */}
-      <div className="atro-essay">
-        <DocsArticleHeader
-          eyebrow={
-            <Link href="/blog" className="transition-colors hover:text-foreground">
-              Blog
+
+      {/*
+        End-to-end from https://rauchg.com/2020/vercel:
+        max-w-2xl · H1 first (text-2xl bold mb-1) · mono meta · body my-5 ·
+        H2 bold my-8 · no dek · quiet sign-off.
+      */}
+      <div className="blog-essay">
+        <header className="blog-essay-mast">
+          <h1 className="blog-essay-title">{post.title}</h1>
+          <p className="blog-essay-meta">
+            <Link href="/blog" className="blog-essay-meta-link">
+              AtroUI
             </Link>
-          }
-          title={post.title}
-          lede={post.description}
-        />
+            <span className="blog-essay-meta-sep" aria-hidden>
+              |
+            </span>
+            <time dateTime={post.date}>{formatEssayDate(post.date)}</time>
+          </p>
+        </header>
 
         {post.slug === "adaptive-theme-switch" ? (
-          <div className="mt-10 sm:mt-12">
+          <div className="blog-essay-embed">
             <BlogThemeAdaptPreview />
           </div>
         ) : null}
 
-        <div className="blog-flow mt-10 space-y-10 sm:mt-12 sm:space-y-12">
+        <div className="blog-essay-body">
           {post.sections.map((section, i) => (
-            <section key={i} className="space-y-4">
+            <section key={i}>
               {section.heading ? (
-                <h2 className="ds-headline text-xl tracking-tight text-foreground sm:text-2xl">
-                  {section.heading}
+                <h2
+                  id={`essay-h-${post.slug}-${i}`}
+                  className="blog-essay-h2"
+                >
+                  <a
+                    href={`#essay-h-${post.slug}-${i}`}
+                    className="blog-essay-h2-anchor"
+                  >
+                    <span className="blog-essay-h2-hash" aria-hidden>
+                      #
+                    </span>
+                    {section.heading}
+                  </a>
                 </h2>
               ) : null}
               {section.body.map((para, j) => (
@@ -158,40 +211,47 @@ export default async function BlogPostPage({ params }: Props) {
                   key={k}
                   language={block.language}
                   code={block.code}
-                  className="mt-3"
+                  className="blog-essay-codeblock"
                 />
               ))}
             </section>
           ))}
         </div>
 
-        <div className="mt-16 flex flex-wrap gap-3 border-t border-border-subtle pt-10">
-          {post.slug === "host-apis-own-the-ui-bring-your-keys" ? (
-            <Link href="/docs/host-api" className="atro-btn">
-              Host APIs docs
+        <footer className="blog-essay-foot">
+          <p className="blog-essay-sign">
+            AtroUI
+            <span className="blog-essay-meta-sep" aria-hidden>
+              ·
+            </span>
+            <Link href={exit.href} className="blog-essay-a">
+              {exit.label}
             </Link>
-          ) : post.slug === "adaptive-theme-switch" ? (
-            <Link
-              href="/docs/components/ui-theme-adapt"
-              className="atro-btn"
-            >
-              Adaptive Theme Switch
+            <span className="blog-essay-meta-sep" aria-hidden>
+              ·
+            </span>
+            <Link href="/blog" className="blog-essay-a">
+              Blog
             </Link>
-          ) : (
-            <Link href="/docs/registry" className="atro-btn">
-              Own the UI
-            </Link>
-          )}
-          <Link href="/docs" className="atro-btn-ghost">
-            Docs
-          </Link>
-          <Link href="/blog" className="atro-btn-ghost">
-            All posts
-          </Link>
-          <Link href="/updates" className="atro-btn-ghost">
-            Updates by email
-          </Link>
-        </div>
+          </p>
+
+          {more.length > 0 ? (
+            <nav className="blog-essay-more" aria-label="More essays">
+              <ul className="blog-essay-more-list">
+                {more.map((item) => (
+                  <li key={item.slug}>
+                    <Link
+                      href={`/blog/${item.slug}`}
+                      className="blog-essay-more-link"
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ) : null}
+        </footer>
       </div>
     </article>
   )
