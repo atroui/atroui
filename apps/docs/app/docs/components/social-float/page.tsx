@@ -19,7 +19,7 @@ export default function Page() {
       preview={<DemoSocialFloat />}
       code={'import { SocialFloat } from "@/components/blocks/social-float"\n\n<SocialFloat />'}
       fullBleed={false}
-      usage="Fixed to the viewport corner. Edit CONTENT.links after install."
+      usage="Mount once near the root layout — it is position:fixed to a corner. Edit CONTENT.links after install; keep the tray to a handful of destinations."
     />
   )
 }

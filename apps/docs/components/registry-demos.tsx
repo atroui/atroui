@@ -500,6 +500,35 @@ export function DemoFadeIn() {
   )
 }
 
+export function DemoFadeInDelayed() {
+  const [key, setKey] = React.useState(0)
+
+  return (
+    <div className="flex w-full max-w-md flex-col items-stretch gap-4">
+      <FadeIn
+        key={key}
+        preview
+        delay={0.35}
+        y={24}
+        className="rounded-xl border border-border-subtle bg-card px-6 py-5 text-sm text-foreground shadow-sm"
+      >
+        <p className="ms-stamp mb-2">delay · y</p>
+        <p className="font-medium">Arrives later, from farther</p>
+        <p className="mt-1 text-muted-foreground">
+          delay is seconds; y is the starting translateY in px.
+        </p>
+      </FadeIn>
+      <button
+        type="button"
+        onClick={() => setKey((k) => k + 1)}
+        className="atro-btn-ghost self-center"
+      >
+        Replay
+      </button>
+    </div>
+  )
+}
+
 export function DemoStagger() {
   const [key, setKey] = React.useState(0)
 
@@ -1234,6 +1263,14 @@ export function DemoWeatherChip() {
   return (
     <div className="flex justify-center py-6">
       <WeatherChip lat={40.7128} lon={-74.006} label="NYC" />
+    </div>
+  )
+}
+
+export function DemoWeatherChipLondon() {
+  return (
+    <div className="flex justify-center py-6">
+      <WeatherChip lat={51.5074} lon={-0.1278} label="LON" />
     </div>
   )
 }
