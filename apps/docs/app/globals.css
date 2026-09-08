@@ -1306,6 +1306,100 @@ a.docs-changelog-hash:hover {
   }
 }
 
+/* Guide FAQ appendix — quieter than a chapter H2; answers on demand */
+.docs-faq {
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--docs-border, var(--border-subtle));
+}
+.docs-faq-heading {
+  margin: 0 0 0.85rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  scroll-margin-top: 5rem;
+}
+.docs-faq-count {
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in oklch, var(--muted-foreground) 65%, transparent);
+}
+.docs-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.docs-faq-item {
+  border-radius: var(--atro-control-radius, 0.375rem);
+}
+.docs-faq-summary {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0.65rem 0.15rem;
+  text-align: left;
+  color: var(--docs-fg-strong);
+  transition: color 140ms ease;
+}
+.docs-faq-summary:hover {
+  color: var(--docs-link);
+}
+.docs-faq-summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+.docs-faq-chevron {
+  flex-shrink: 0;
+  width: 0.35rem;
+  height: 0.35rem;
+  margin-top: 0.45rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-1px) rotate(-45deg);
+  opacity: 0.55;
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 140ms ease;
+}
+.docs-faq-item--open > .docs-faq-summary .docs-faq-chevron {
+  transform: translateY(-1px) rotate(45deg);
+  opacity: 0.85;
+}
+.docs-faq-q {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+}
+.docs-faq-panel {
+  overflow: hidden;
+}
+.docs-faq-a {
+  margin: 0;
+  padding: 0 0.15rem 0.85rem 1.15rem;
+  max-width: 38rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--docs-fg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-faq-chevron,
+  .docs-faq-summary {
+    transition: none;
+  }
+}
+
 /* Pager — chapter prev/next */
 .docs-book .docs-book-pager {
   margin-top: 3rem;

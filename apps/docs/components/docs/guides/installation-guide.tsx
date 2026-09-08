@@ -1,6 +1,6 @@
-import { FaqJsonLd } from "atroui"
 import { CodeBlock } from "@/components/code-block"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsFaq } from "@/components/docs/docs-faq"
 import { DocsPager } from "@/components/docs-pager"
 import { InstallModesMatrix } from "@/components/install-modes-matrix"
 import Link from "next/link"
@@ -278,30 +278,7 @@ pnpm dev`}
       </section>
 
       {pseo?.faqs?.length ? (
-        <section className="space-y-4 border-t border-border-subtle pt-8">
-          <h2 className="docs-section-title" id="faq">
-            FAQ
-          </h2>
-          <dl className="space-y-5">
-            {pseo.faqs.map((item) => (
-              <div key={item.q}>
-                <dt className="text-[15px] font-medium text-foreground">
-                  {item.q}
-                </dt>
-                <dd className="mt-1.5 text-[15px] leading-relaxed">
-                  {item.a}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <FaqJsonLd
-            pagePath="/docs/installation"
-            items={pseo.faqs.map((item) => ({
-              question: item.q,
-              answer: item.a,
-            }))}
-          />
-        </section>
+        <DocsFaq pagePath="/docs/installation" items={pseo.faqs} />
       ) : null}
       <DocsPager href="/docs/installation" kind="guides" />
     </article>

@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { BreadcrumbJsonLd, FaqJsonLd } from "atroui"
+import { BreadcrumbJsonLd } from "atroui"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsFaq } from "@/components/docs/docs-faq"
 import { DocsPager } from "@/components/docs-pager"
 import { allNavItems } from "@/lib/navigation"
 import {
@@ -64,7 +65,6 @@ export function CollectionDoc({ slug }: { slug: string }) {
           { name: collection.title, path },
         ]}
       />
-      <FaqJsonLd items={collection.faqs} pagePath={path} />
 
       <DocsArticleHeader
         eyebrow="Collection"
@@ -97,23 +97,7 @@ export function CollectionDoc({ slug }: { slug: string }) {
         </ul>
       </section>
 
-      {collection.faqs.length > 0 ? (
-        <section className="space-y-4">
-          <h2 className="docs-section-title" id="faq">
-            FAQ
-          </h2>
-          <dl className="space-y-4">
-            {collection.faqs.map((faq) => (
-              <div key={faq.q}>
-                <dt className="text-[15px] font-medium text-foreground">
-                  {faq.q}
-                </dt>
-                <dd className="mt-1.5 leading-relaxed">{faq.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      ) : null}
+      <DocsFaq pagePath={path} items={collection.faqs} />
 
       <DocsPager href={path} kind="collections" />
     </article>

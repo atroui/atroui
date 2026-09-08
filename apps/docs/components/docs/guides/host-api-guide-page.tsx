@@ -1,24 +1,21 @@
 import Link from "next/link"
-import { FaqJsonLd } from "atroui"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { DocsFaq } from "@/components/docs/docs-faq"
 import { DocsPager } from "@/components/docs-pager"
 import { HostApiGuide } from "@/components/host-api-guide"
 
 const HOST_API_FAQS = [
   {
-    question: "What is an AtroUI Host API?",
-    answer:
-      "A Host API is a thin Next.js App Router API route running on your own server that delegates processing to secure, pre-hardened validation and security handlers inside the local atroui npm package.",
+    q: "What is an AtroUI Host API?",
+    a: "A Host API is a thin Next.js App Router API route running on your own server that delegates processing to secure, pre-hardened validation and security handlers inside the local atroui npm package.",
   },
   {
-    question: "Does AtroUI host any of my AI or SMTP keys?",
-    answer:
-      "No. AtroUI operates under a strict Bring Your Own Keys (BYOK) model. All secret tokens, API keys, and SMTP server passwords remain in your local environment variables and are never transmitted to AtroUI's documentation hosts.",
+    q: "Does AtroUI host any of my AI or SMTP keys?",
+    a: "No. AtroUI operates under a strict Bring Your Own Keys (BYOK) model. All secret tokens, API keys, and SMTP server passwords remain in your local environment variables and are never transmitted to AtroUI's documentation hosts.",
   },
   {
-    question: "How are Host APIs secured against spam and abuse?",
-    answer:
-      "Every handler includes out-of-the-box production-ready safeguards: sliding-window rate limits (in-memory or Upstash Redis REST/Vercel KV), automatic honeypot spam fields, payload size capping (8 MB request size limit), and attachment filters.",
+    q: "How are Host APIs secured against spam and abuse?",
+    a: "Every handler includes out-of-the-box production-ready safeguards: sliding-window rate limits (in-memory or Upstash Redis REST/Vercel KV), automatic honeypot spam fields, payload size capping (8 MB request size limit), and attachment filters.",
   },
 ] as const
 
@@ -75,24 +72,7 @@ export function HostApiGuidePage() {
         </Link>
       </div>
 
-      <section className="space-y-4 border-t border-border-subtle pt-8">
-        <h2 className="docs-section-title" id="faq">
-          FAQ
-        </h2>
-        <dl className="space-y-5">
-          {HOST_API_FAQS.map((item) => (
-            <div key={item.question}>
-              <dt className="text-[15px] font-medium text-foreground">
-                {item.question}
-              </dt>
-              <dd className="mt-1.5 text-[15px] leading-relaxed">
-                {item.answer}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <FaqJsonLd pagePath="/docs/host-api" items={[...HOST_API_FAQS]} />
-      </section>
+      <DocsFaq pagePath="/docs/host-api" items={[...HOST_API_FAQS]} />
       <DocsPager href="/docs/host-api" kind="guides" />
     </article>
   )
