@@ -61,19 +61,23 @@ export function getBrand() {
           Schema.org structured data
         </h2>
         <p className="leading-relaxed">
-          Google and other search engines utilize Schema.org JSON-LD to display rich snippets, star-ratings, and nest directories in the SERP. AtroUI offers headless schema components that automatically read from your brand config. Install the schema package:
+          Google and other search engines utilize Schema.org JSON-LD to display rich snippets, star-ratings, and nest directories in the SERP. AtroUI ships headless schema helpers on the{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            atroui
+          </code>{" "}
+          package that read from your brand config:
         </p>
         <CodeBlock
           language="bash"
-          code="npx shadcn@latest add @atroui/json-ld"
+          code="npm i atroui"
         />
         <p className="leading-relaxed">
-          This registers headless script blocks inside your component catalog. Combine them within your root App Router layout or individual page files:
+          Import them in your root App Router layout or individual page files:
         </p>
         <CodeBlock
           language="tsx"
           code={`// app/layout.tsx
-import { SiteGraphJsonLd } from "@/components/seo/json-ld"
+import { SiteGraphJsonLd } from "atroui"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -92,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CodeBlock
           language="tsx"
           code={`// app/blog/[slug]/page.tsx
-import { ArticleJsonLd } from "@/components/seo/json-ld"
+import { ArticleJsonLd } from "atroui"
 
 export default function BlogPost({ post }) {
   return (

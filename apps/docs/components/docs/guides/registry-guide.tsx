@@ -176,8 +176,8 @@ npx shadcn@latest add @atroui/site-header`}
               {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "Contact Form Component with SMTP API",
-                "url": `${siteUrl}/docs/components/contact-contact-form`
+                "name": "Waitlist Form Component with Host API",
+                "url": `${siteUrl}/docs/components/brand-waitlist-form`
               },
               {
                 "@type": "ListItem",

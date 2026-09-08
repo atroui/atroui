@@ -142,7 +142,7 @@ npx shadcn@latest add @atroui/home-hero`,
       {
         heading: "How it sits next to Theme Toggle",
         body: [
-          "`@atroui/theme-toggle` is still the right control when you designed both sheets and only need Light / System / Dark. Compact icon variant: `@atroui/theme-toggle-icon`. Wire `next-themes` with `attribute=\"class\"` as in the [ThemeProvider post](/blog/theme-provider-dark-mode-atroui).",
+          "`@atroui/theme-toggle` is still the right control when you designed both sheets and only need Light / System / Dark. Wire `next-themes` with `attribute=\"class\"` as in the [ThemeProvider post](/blog/theme-provider-dark-mode-atroui).",
           "Reach for ThemeAdapt when a naive invert would hide body copy or flatten a light canvas you actually designed. `adapt={false}` is an escape hatch: same radios, class only, no companion. `minContrast` defaults to 4.5; raise it if your legal copy needs a harder floor.",
           "atroui.com chrome still uses the old toggle. That is intentional. The catalog default stays the simple switch. Adaptive Theme Switch is for hosts whose light tokens are the product, not a leftover invert.",
         ],
@@ -388,17 +388,16 @@ npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
         heading: "Why a second kit",
         body: [
           "Studio Blocks assume a wide editorial frame: border-x shells, loud CTAs, package pricing. Portfolio sites often want the opposite: ~640px reading width, quiet hairlines, status rows, and tools that feel like a personal homepage.",
-          "Shipping both styles is intentional. [Site Header](/docs/components/site-header) and [Site Header Narrow](/docs/components/site-header-narrow) are different products. Same for footer and theme toggle. Pick the language that matches the site you are shipping.",
-          "In the docs sidebar the kit lives under **Indie**. Component IDs stay stable (`@atroui/personal-hero`, `@atroui/command-menu`, and so on).",
+          "Shipping both styles is intentional. [Site Header](/docs/components/site-header) and [Site Footer](/docs/components/site-footer) stay the studio chrome language. Indie surfaces use a narrower reading column and quieter stamps — pick the altitude that matches the site you are shipping.",
+          "In the docs sidebar the remaining kit lives under **Indie**. Component IDs stay stable (`@atroui/personal-hero`, `@atroui/command-menu`, and so on).",
         ],
       },
       {
         heading: "What shipped in Indie",
         body: [
-          "**Chrome and motion:** `@atroui/site-header-narrow`, `@atroui/site-footer-narrow`, `@atroui/theme-toggle-icon`, `@atroui/reveal` (CSS IntersectionObserver reveal, no motion dependency).",
-          "**Home surfaces:** `@atroui/personal-hero` (optional circular portrait), `@atroui/currently`, `@atroui/project-list`, `@atroui/reading-shelf`, `@atroui/stack-list`.",
-          "**Ship in public:** `@atroui/log-preview`, `@atroui/changelog` (tag filters, month groups).",
-          "**Tools:** `@atroui/command-menu` (cmdk, ⌘K), `@atroui/social-float`, `@atroui/deadline-countdown` + `@atroui/count-up`, `@atroui/local-clock`, `@atroui/weather-chip` (Open-Meteo, no API key), `@atroui/resume`.",
+          "**Home surfaces:** `@atroui/personal-hero` (optional circular portrait), `@atroui/project-list`.",
+          "**Ship in public:** `@atroui/changelog` (tag filters, month groups).",
+          "**Tools:** `@atroui/command-menu` (cmdk, ⌘K), `@atroui/deadline-countdown` + `@atroui/count-up`, `@atroui/local-clock`, `@atroui/weather-chip` (Open-Meteo, no API key), `@atroui/resume`.",
           "Browse the full list under [Indie](/docs/components/personal-hero) in the docs nav, or start from any item above.",
         ],
       },
@@ -419,11 +418,8 @@ npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
         codeBlocks: [
           {
             language: "bash",
-            code: `# Indie chrome
-npx shadcn@latest add @atroui/site-header-narrow @atroui/site-footer-narrow
-
-# Homepage slice
-npx shadcn@latest add @atroui/personal-hero @atroui/currently @atroui/project-list
+            code: `# Homepage slice
+npx shadcn@latest add @atroui/personal-hero @atroui/project-list
 
 # Command palette (needs cmdk)
 npx shadcn@latest add @atroui/command-menu
@@ -491,7 +487,7 @@ npx shadcn@latest add @atroui/home-crafts @atroui/feature-grid`,
       },
       {
         body: [
-          "**UI:** registry items like `@atroui/contact-form` or `@atroui/og-workspace`. The CLI copies source into your repo. You edit `CONTENT`, rebrand, and delete what you do not need.",
+          "**UI:** registry items like `@atroui/waitlist-form` or `@atroui/og-workspace`. The CLI copies source into your repo. You edit `CONTENT`, rebrand, and delete what you do not need. For contact, keep your own form UI and add `@atroui/api-contact` for the POST handler.",
           "**Route stub:** `@atroui/api-contact` (and siblings) drop a thin App Router file that forwards `POST` to the package handler.",
           "**Handler:** `atroui/api/contact|waitlist|newsletter|generate|thumbnail|scope`. Shared validation, honeypot, body caps, rate limits, and mail or AI wiring. You upgrade this with npm instead of re-vendoring native image deps into every app.",
         ],
@@ -536,8 +532,8 @@ npx shadcn@latest add @atroui/home-hero
 # 2) Forms: package + thin route stubs
 npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact
-# same pattern: waitlist, newsletter
+npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
+# same pattern: newsletter; contact uses @atroui/api-contact with your own form UI
 
 # 3) AI tools: same package setup
 npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
@@ -552,7 +548,7 @@ npx shadcn@latest add @atroui/scope-chat @atroui/api-scope`,
         ],
       },
       {
-        heading: "From zero to a live contact form",
+        heading: "From zero to a live waitlist form",
         body: [
           "A concrete path for forms:",
           "1. Register the catalog and add the form plus route (see [Installation](/docs/installation)).",
@@ -652,7 +648,7 @@ KV_REST_API_TOKEN=…`,
         body: [
           "Canonical guide: [Host APIs](/docs/host-api).",
           "CLI setup: [Installation](/docs/installation). Catalog: [Registry](/docs/registry).",
-          "Try a form: [Contact form](/docs/components/contact-contact-form).",
+          "Try a form: [Waitlist form](/docs/components/brand-waitlist-form). Contact POST handler: [Host APIs](/docs/host-api).",
           "How the split happened: [Why we moved to the shadcn registry](/blog/npm-to-shadcn-registry).",
           "Fresh app walkthrough: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
         ],
@@ -757,7 +753,7 @@ npx shadcn@latest add @atroui/home-hero
 # Forms - package + thin route stubs
 npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact
+npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
 
 # AI tools - same package setup
 npx shadcn@latest add @atroui/og-workspace @atroui/api-generate`,

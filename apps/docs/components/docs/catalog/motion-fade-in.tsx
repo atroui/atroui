@@ -25,10 +25,10 @@ export function MotionFadeInDoc() {
             preview
           </code>{" "}
           in docs canvases so the stage is never stuck at opacity 0. Prefer{" "}
-          <Link href="/docs/components/reveal" className="bam-link">
-            Reveal
+          <Link href="/docs/components/motion-stagger" className="bam-link">
+            Stagger
           </Link>{" "}
-          when you want CSS-only IntersectionObserver with no motion dependency.
+          when several siblings should enter in sequence.
         </>
       }
       examples={[

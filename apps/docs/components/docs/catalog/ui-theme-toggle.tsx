@@ -26,12 +26,8 @@ export function UiThemeToggleDoc() {
           </code>{" "}
           breakpoint it collapses to a single icon button that cycles light →
           system → dark, and the sliding pill above that shares one layout id,
-          so two on screen hand the indicator back and forth. For the compact
-          sun/moon button instead of the pill, use{" "}
-          <Link href="/docs/components/theme-toggle-icon" className="bam-link">
-            Theme Toggle Icon
-          </Link>
-          ; if a naive dark mode hides body copy, use{" "}
+          so two on screen hand the indicator back and forth. If a naive dark
+          mode hides body copy, use{" "}
           <Link href="/docs/components/ui-theme-adapt" className="bam-link">
             Adaptive Theme Switch
           </Link>

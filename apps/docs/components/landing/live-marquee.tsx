@@ -39,11 +39,11 @@ const ROW_A = [
 const ROW_B = [
   "/docs/components/brand-waitlist-form",
   "/docs/components/ui-form-select",
-  "/docs/components/currently",
-  "/docs/components/stack-list",
+  "/docs/components/personal-hero",
   "/docs/components/logo-cloud",
   "/docs/components/changelog",
   "/docs/components/project-list",
+  "/docs/components/local-clock",
 ]
 
 const byHref = new Map(allNavItems.map((item) => [item.href, item]))

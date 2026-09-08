@@ -20,7 +20,7 @@ const CARE_ITEMS = [
   {
     label: "JSON-LD helpers",
     desc: "Structured data, no UI",
-    href: "/docs/components/seo-json-ld",
+    href: "/docs/identity",
   },
   {
     label: "Collections",

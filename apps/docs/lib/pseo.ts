@@ -49,24 +49,6 @@ export type PseoTerm = {
 }
 
 export const pseoPages: Record<string, PseoPage> = {
-  "/docs/components/contact-contact-form": {
-    path: "/docs/components/contact-contact-form",
-    title: "Next.js contact form with SMTP (shadcn)",
-    description:
-      "Copy a production Next.js contact form into your repo with npx shadcn add @atroui/contact-form. Pair @atroui/api-contact for honeypot, rate limit, and SMTP or Resend — your keys.",
-    job: "Ship a contact form without writing /api/contact from scratch",
-    body: "Most kits give you inputs. This block posts to your App Router route. The matching Host API validates JSON, ignores honeypot bots, caps body size, and sends mail through SMTP or Resend. AtroUI never holds the inbox credentials.",
-    faqs: [
-      {
-        q: "Do I need the atroui npm package for the contact form UI?",
-        a: "No. npx shadcn add @atroui/contact-form copies the form. Add npm i atroui and @atroui/api-contact only when you want the hardened POST handler.",
-      },
-      {
-        q: "Does atroui.com send the email?",
-        a: "No. Mail leaves from the consumer app using CONTACT_EMAIL_TO plus SMTP_* or RESEND_API_KEY. Missing mail config returns 503, not a send on AtroUI keys.",
-      },
-    ],
-  },
   "/docs/components/brand-waitlist-form": {
     path: "/docs/components/brand-waitlist-form",
     title: "Next.js waitlist form (Resend or SMTP)",
@@ -165,20 +147,6 @@ export const pseoPages: Record<string, PseoPage> = {
       },
     ],
   },
-  "/docs/components/seo-json-ld": {
-    path: "/docs/components/seo-json-ld",
-    title: "Next.js JSON-LD components (getBrand)",
-    description:
-      "Copy @atroui/json-ld for Organization, Article, FAQ, and breadcrumb graph tied to getBrand() so chrome and structured data stay in sync.",
-    job: "Stop hardcoding atroui.com into consumer schema",
-    body: "After CLI add, JSON-LD reads getBrand() and getSiteUrl(). Override NEXT_PUBLIC_SITE_*. This is the identity-kit spoke, not a generic FAQ widget.",
-    faqs: [
-      {
-        q: "Will Google show FAQ rich results?",
-        a: "Only if visible FAQ content matches FaqJsonLd. Do not emit FAQ schema for questions the page does not show.",
-      },
-    ],
-  },
   "/docs/components/ui-theme-adapt": {
     path: "/docs/components/ui-theme-adapt",
     title: "Adaptive dark theme from light tokens (OKLCH)",
@@ -246,12 +214,11 @@ export const pseoCollections: PseoCollection[] = [
     slug: "nextjs-forms",
     title: "Next.js forms with Host APIs",
     description:
-      "Contact, waitlist, and newsletter UI you own, plus hardened App Router handlers. BYOK mail — SMTP or Resend.",
+      "Waitlist and newsletter UI you own, plus hardened App Router handlers including optional api-contact. BYOK mail — SMTP or Resend.",
     intro:
-      "Searchers want a Next.js contact form that is not a CodePen. This collection is the AtroUI answer: copied UI, then optional atroui/api/* so you do not write honeypot and 429 logic again.",
-    why: "One job: inbound email. Three blocks share the same security defaults and the same install-mode matrix.",
+      "Searchers want a Next.js form that is not a CodePen. This collection is the AtroUI answer: copied UI for waitlist/newsletter, then optional atroui/api/* (including api-contact for a custom contact route) so you do not write honeypot and 429 logic again.",
+    why: "One job: inbound email. The form blocks share the same security defaults and the same install-mode matrix; contact UI is yours — wire @atroui/api-contact when you need the handler.",
     paths: [
-      "/docs/components/contact-contact-form",
       "/docs/components/brand-waitlist-form",
       "/docs/components/newsletter-newsletter-form",
       "/docs/host-api",
@@ -259,7 +226,7 @@ export const pseoCollections: PseoCollection[] = [
     faqs: [
       {
         q: "Which form should I install first?",
-        a: "Contact if you need a message plus optional attachment. Waitlist or newsletter if you only need an email field into Resend.",
+        a: "Waitlist or newsletter if you only need an email field into Resend. For a full contact message, keep your own form UI and add @atroui/api-contact for the POST handler.",
       },
     ],
   },

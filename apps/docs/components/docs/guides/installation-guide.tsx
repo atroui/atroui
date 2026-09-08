@@ -163,7 +163,7 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
           code={`npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
 
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact`}
+npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist`}
         />
         <p className="leading-relaxed">
           Env, security defaults, rate limits:{" "}

@@ -35,7 +35,7 @@ const contactSchema = z.object({
 
 /**
  * POST /api/contact handler.
- * Letter-sheet ContactForm sends: name, email, company?, message, honeypot.
+ * Contact POST body: name, email, company?, message, honeypot.
  * Optional legacy fields (projectType, budget, timeline, attachment*) still accepted.
  */
 export async function handleContactPost(req: Request): Promise<Response> {

@@ -397,7 +397,7 @@ export default async function OpenGraphImage() {
                       fontWeight: 500,
                     }}
                   >
-                    contact-form
+                    waitlist-form
                   </span>
                   <span
                     style={{
@@ -405,7 +405,7 @@ export default async function OpenGraphImage() {
                       fontSize: 10,
                     }}
                   >
-                    With SMTP Host API
+                    With Resend Host API
                   </span>
                 </div>
                 <div

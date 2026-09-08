@@ -1,4 +1,5 @@
-import type { MockupVariant } from "../components/ui/ui-mockup-frame";
+/** Kept after UiMockupFrame removal — HomeWork still tags studies with a mockup kind. */
+export type MockupVariant = "saas" | "ai" | "design" | "marketplace";
 
 export type CaseStudyResult = {
   metric: string;

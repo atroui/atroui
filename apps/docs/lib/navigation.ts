@@ -23,7 +23,7 @@ export const GUIDE_SECTION_TITLES = [
   "Getting Started",
   "Setup",
   "Kits",
-  "Reference",
+  "Reference"
 ] as const
 
 export const navigation: NavSection[] = [
@@ -49,7 +49,7 @@ export const navigation: NavSection[] = [
         title: "Collections",
         href: "/docs/collections",
         description: "Jobs: forms, OG, launch",
-      },
+      }
     ],
   },
   {
@@ -65,7 +65,7 @@ export const navigation: NavSection[] = [
         title: "Host APIs",
         href: "/docs/host-api",
         description: "Forms & AI routes, BYOK",
-      },
+      }
     ],
   },
   {
@@ -81,7 +81,7 @@ export const navigation: NavSection[] = [
         title: "Launch workflow",
         href: "/docs/guides/launch-workflow",
         description: "Scope → OG",
-      },
+      }
     ],
   },
   {
@@ -97,7 +97,7 @@ export const navigation: NavSection[] = [
         href: "/docs/compare",
         description: "vs copy-paste kits",
       },
-      { title: "Changelog", href: "/docs/changelog", description: "Releases" },
+      { title: "Changelog", href: "/docs/changelog", description: "Releases" }
     ],
   },
   {
@@ -108,7 +108,7 @@ export const navigation: NavSection[] = [
         title: "Updates",
         href: "/updates",
         description: "Major AtroUI news by email",
-      },
+      }
     ],
   },
   {
@@ -181,12 +181,6 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Mockup Frame",
-        href: "/docs/components/ui-ui-mockup-frame",
-        description: "Product chrome frame",
-        badge: "registry",
-      },
-      {
         title: "Timeline",
         href: "/docs/components/ui-timeline-animation",
         description: "Scroll-linked motion",
@@ -209,7 +203,7 @@ export const navigation: NavSection[] = [
         href: "/docs/components/motion-primitives-scroll-progress",
         description: "Reading progress bar",
         badge: "registry",
-      },
+      }
     ],
   },
   {
@@ -306,12 +300,6 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Contact Form",
-        href: "/docs/components/contact-contact-form",
-        description: "Lead capture form",
-        badge: "host-api",
-      },
-      {
         title: "Calendly Embed",
         href: "/docs/components/contact-calendly-embed",
         description: "Booking embed",
@@ -348,18 +336,6 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Before / After",
-        href: "/docs/components/case-studies-before-after-slider",
-        description: "Compare slider",
-        badge: "registry",
-      },
-      {
-        title: "Case Study",
-        href: "/docs/components/case-studies-visual-case-study",
-        description: "Case study layout",
-        badge: "registry",
-      },
-      {
         title: "AR Portfolio",
         href: "/docs/components/ar-ar-portfolio",
         description: "AR showcase",
@@ -370,7 +346,7 @@ export const navigation: NavSection[] = [
         href: "/docs/components/seo-made-with-embed",
         description: "Credit badge",
         badge: "registry",
-      },
+      }
     ],
   },
   {
@@ -389,21 +365,9 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Currently",
-        href: "/docs/components/currently",
-        description: "What you’re up to now",
-        badge: "registry",
-      },
-      {
         title: "Project List",
         href: "/docs/components/project-list",
         description: "Hairline project list",
-        badge: "registry",
-      },
-      {
-        title: "Log Preview",
-        href: "/docs/components/log-preview",
-        description: "Recent log entries",
         badge: "registry",
       },
       {
@@ -416,42 +380,6 @@ export const navigation: NavSection[] = [
         title: "Command Menu",
         href: "/docs/components/command-menu",
         description: "⌘K command palette",
-        badge: "registry",
-      },
-      {
-        title: "Reveal",
-        href: "/docs/components/reveal",
-        description: "Scroll reveal wrapper",
-        badge: "registry",
-      },
-      {
-        title: "Theme Toggle Icon",
-        href: "/docs/components/theme-toggle-icon",
-        description: "Compact sun/moon toggle",
-        badge: "registry",
-      },
-      {
-        title: "Site Header Narrow",
-        href: "/docs/components/site-header-narrow",
-        description: "640px indie header",
-        badge: "registry",
-      },
-      {
-        title: "Site Footer Narrow",
-        href: "/docs/components/site-footer-narrow",
-        description: "Quiet indie footer",
-        badge: "registry",
-      },
-      {
-        title: "Social Float",
-        href: "/docs/components/social-float",
-        description: "Fixed social FAB",
-        badge: "registry",
-      },
-      {
-        title: "Reading Shelf",
-        href: "/docs/components/reading-shelf",
-        description: "Book cover shelf",
         badge: "registry",
       },
       {
@@ -477,13 +405,7 @@ export const navigation: NavSection[] = [
         href: "/docs/components/weather-chip",
         description: "Open-Meteo weather",
         badge: "registry",
-      },
-      {
-        title: "Stack List",
-        href: "/docs/components/stack-list",
-        description: "Tools and stack list",
-        badge: "registry",
-      },
+      }
     ],
   },
   {
@@ -537,7 +459,7 @@ export const navigation: NavSection[] = [
         href: "/docs/components/studio-live-dashboard",
         description: "Studio status board",
         badge: "registry",
-      },
+      }
     ],
   },
   {
@@ -548,21 +470,9 @@ export const navigation: NavSection[] = [
         href: "/docs/components/analytics-analytics-provider",
         description: "Plausible / GA wrapper",
         badge: "registry",
-      },
-      {
-        title: "JSON-LD",
-        href: "/docs/components/seo-json-ld",
-        description: "schema.org helpers",
-        badge: "registry",
-      },
-      {
-        title: "Testimonial Schema",
-        href: "/docs/components/seo-testimonial-schema",
-        description: "Review structured data",
-        badge: "registry",
-      },
+      }
     ],
-  },
+  }
 ]
 
 export const allNavItems = navigation.flatMap((section) => section.items)
@@ -593,7 +503,7 @@ export const toolApps: { title: string; href: string; description: string }[] =
       title: "Project planner",
       href: "/planner",
       description: "Scope a build, hand off to OG",
-    },
+    }
   ]
 
 export const badgeLabel: Record<NonNullable<NavItem["badge"]>, string> = {

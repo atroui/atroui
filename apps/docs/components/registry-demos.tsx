@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import {
-  BeforeAfterSlider,
   BoldFooter,
   Breadcrumbs,
   Button,
@@ -17,7 +16,6 @@ import {
   CommandMenu,
   ContextualCTA,
   CountUp,
-  Currently,
   CalendlyEmbed,
   DeadlineCountdown,
   ExitIntentPopup,
@@ -32,7 +30,6 @@ import {
   HomeWho,
   HomeWork,
   LocalClock,
-  LogPreview,
   LogoCloud,
   LogoMark,
   LogoWordmark,
@@ -41,31 +38,22 @@ import {
   PersonalHero,
   ProjectList,
   Prose,
-  ReadingShelf,
   ResourcesContent,
   Resume,
-  Reveal,
   ScopeChat,
   ScrollProgress,
-  SocialFloat,
   SocialShare,
-  StackList,
   Stagger,
   StaggerChild,
   Textarea,
   ThemeToggle,
-  ThemeToggleIcon,
   ThumbnailLivePreview,
   ThumbnailWorkspace,
   TimelineAnimation,
-  UiMockupFrame,
-  VisualCaseStudy,
   WeatherChip,
   ArPortfolio,
   JournalContent,
   LiveDashboard,
-  SiteGraphJsonLd,
-  TestimonialSchema,
   trackEvent,
   MEDIA,
   mediaSrc,
@@ -77,9 +65,7 @@ import {
   Settings2,
   Trash2,
 } from "lucide-react"
-import { TESTIMONIALS } from "atroui/content/testimonials"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
-import { ContactStagePreview } from "@/components/registry/contact-stage-preview"
 import { HomeHero } from "../registry/default/blocks/home-hero"
 import { OgExamples } from "../registry/default/blocks/og-examples"
 import { OgLivePreview } from "../registry/default/blocks/og-live-preview"
@@ -87,9 +73,7 @@ import { OgWorkspace } from "../registry/default/blocks/og-workspace"
 import { PricingOverview } from "../registry/default/blocks/pricing-overview"
 import { ProjectPlanner } from "../registry/default/blocks/project-planner"
 import { SiteFooter } from "../registry/default/blocks/site-footer"
-import { SiteFooterNarrow } from "../registry/default/blocks/site-footer-narrow"
 import { SiteHeader } from "../registry/default/blocks/site-header"
-import { SiteHeaderNarrow } from "../registry/default/blocks/site-header-narrow"
 
 /** Live canvas demos - one per documented component where a useful preview exists. */
 
@@ -621,14 +605,6 @@ export function DemoScrollProgress() {
   )
 }
 
-export function DemoBeforeAfterSlider() {
-  return <BeforeAfterSlider className="w-full max-w-lg" />
-}
-
-export function DemoUiMockupFrame() {
-  return <UiMockupFrame variant="saas" className="w-full max-w-lg" />
-}
-
 export function DemoOgLivePreview() {
   // Same `@atroui/og-live-preview` source users install — CSS-only card.
   return (
@@ -784,104 +760,9 @@ export function DemoAnalyticsProvider() {
   )
 }
 
-export function DemoJsonLd() {
-  return (
-    <HeadlessShell
-      stamp="Headless"
-      title="JSON-LD helpers - emit schema.org in the document"
-    >
-      <p>
-        Helpers like{" "}
-        <code className="font-mono text-xs text-foreground">SiteGraphJsonLd</code>,{" "}
-        <code className="font-mono text-xs text-foreground">ArticleJsonLd</code>,{" "}
-        <code className="font-mono text-xs text-foreground">FaqJsonLd</code>, and
-        more inject{" "}
-        <code className="font-mono text-xs text-foreground">
-          &lt;script type=&quot;application/ld+json&quot;&gt;
-        </code>
-        . No visible UI - check View Source or Rich Results Test.
-      </p>
-      {/* Live inject for this preview mount */}
-      <SiteGraphJsonLd />
-      <pre className="overflow-x-auto border border-border-subtle bg-muted/30 p-3 font-mono text-[11px] leading-relaxed text-foreground">
-        {`import { SiteGraphJsonLd, ArticleJsonLd } from "atroui"
-
-// Homepage
-<SiteGraphJsonLd />
-
-// Journal post
-<ArticleJsonLd
-  title="…"
-  description="…"
-  slug="shipping-mvps"
-  date="2026-01-01"
-/>`}
-      </pre>
-      <p className="text-xs">
-        This preview mounts <span className="text-foreground">SiteGraphJsonLd</span>{" "}
-        once - inspect the page source for the graph.
-      </p>
-    </HeadlessShell>
-  )
-}
-
-export function DemoTestimonialSchema() {
-  const sample = {
-    "@context": "https://schema.org",
-    "@graph": TESTIMONIALS.slice(0, 2).map((t) => ({
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: t.name,
-        jobTitle: t.title,
-        worksFor: { "@type": "Organization", name: t.company },
-      },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: String(t.rating),
-        bestRating: "5",
-      },
-      reviewBody: t.quote.slice(0, 96) + (t.quote.length > 96 ? "…" : ""),
-      itemReviewed: {
-        "@type": "ProfessionalService",
-        name: "Makershot",
-      },
-    })),
-  }
-
-  return (
-    <HeadlessShell
-      stamp="Headless"
-      title="TestimonialSchema - Review JSON-LD (no AggregateRating)"
-    >
-      <p>
-        Emits individual{" "}
-        <code className="font-mono text-xs text-foreground">Review</code> nodes
-        from studio testimonials. Intentionally skips AggregateRating (spam risk
-        for self-published stars).
-      </p>
-      <TestimonialSchema />
-      <pre className="max-h-56 overflow-auto border border-border-subtle bg-muted/30 p-3 font-mono text-[11px] leading-relaxed text-foreground">
-        {JSON.stringify(sample, null, 2)}
-      </pre>
-      <p className="text-xs">
-        Full graph is injected on this page - sample above shows the shape.
-      </p>
-    </HeadlessShell>
-  )
-}
-
 export function DemoSiteFooter() {
   // Same `@atroui/site-footer` source users install — not npm.
   return <SiteFooter />
-}
-
-export function DemoContactForm() {
-  return (
-    <div className="mx-auto w-full max-w-md">
-      <ContactStagePreview />
-    </div>
-  )
 }
 
 export function DemoCalendlyEmbed() {
@@ -933,49 +814,6 @@ export function DemoThumbnailWorkspace() {
   return (
     <div className="w-full max-h-[520px] overflow-auto rounded-xl border border-border-subtle">
       <ThumbnailWorkspace />
-    </div>
-  )
-}
-
-export function DemoVisualCaseStudy() {
-  const study = {
-    id: "demo",
-    title: "B2B SaaS MVP shipped in 7 days",
-    client: { name: "Stealth SaaS founder", industry: "Developer tools" },
-    projectType: "MVP Sprint",
-    challenge:
-      "A solo founder had validated demand through waitlist signups but needed a working product - auth, billing, and core workflow - before a deadline.",
-    solution:
-      "A 7-day MVP sprint: one core workflow, auth, checkout, and a Postgres-backed dashboard with daily async updates and a live preview.",
-    results: [
-      {
-        metric: "Time to launch",
-        value: "7 days",
-        description: "From kickoff to production deploy",
-      },
-      {
-        metric: "Waitlist conversion",
-        value: "34%",
-        description: "Signups who activated in week one",
-      },
-      {
-        metric: "Lighthouse",
-        value: "96",
-        description: "Performance on launch day",
-      },
-    ],
-    technologies: ["Next.js", "TypeScript", "Clerk", "Stripe", "Supabase"],
-    timeline: "7 days",
-    budget: "Sprint",
-    testimonial: "We went from waitlist to paying users in a week.",
-    testimonialAuthor: "Founder",
-    image: "/og",
-    mockupVariant: "saas" as const,
-    relatedServices: [],
-  }
-  return (
-    <div className="w-full max-h-[720px] overflow-auto rounded-2xl border border-border-subtle">
-      <VisualCaseStudy study={study as never} />
     </div>
   )
 }
@@ -1079,26 +917,10 @@ export function DemoDeadlineCountdown() {
   )
 }
 
-export function DemoCurrently() {
-  return (
-    <IndieKitFrame>
-      <Currently className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
 export function DemoProjectList() {
   return (
     <IndieKitFrame>
       <ProjectList className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoLogPreview() {
-  return (
-    <IndieKitFrame>
-      <LogPreview className="w-full" />
     </IndieKitFrame>
   )
 }
@@ -1148,118 +970,6 @@ export function DemoCommandMenuGallery() {
         </ul>
       </div>
     </div>
-  )
-}
-
-export function DemoReveal() {
-  return (
-    <div className="mx-auto w-full max-w-md">
-      <Reveal className="w-full rounded-xl border border-border-subtle bg-card px-6 py-8 text-left">
-        <p className="ms-stamp">Reveal</p>
-        <p className="mt-2 text-sm text-foreground">
-          Fades and rises when the block enters the viewport. Pair with{" "}
-          <code className="font-mono text-xs">.atro-reveal</code> CSS from{" "}
-          <code className="font-mono text-xs">atroui/globals.css</code>.
-        </p>
-      </Reveal>
-    </div>
-  )
-}
-
-export function DemoRevealStaggered() {
-  return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-3">
-      <Reveal className="rounded-xl border border-border-subtle bg-card px-5 py-4 text-sm text-foreground">
-        First in
-      </Reveal>
-      <Reveal
-        delay={160}
-        className="rounded-xl border border-border-subtle bg-card px-5 py-4 text-sm text-foreground"
-      >
-        Follows at 160ms
-      </Reveal>
-    </div>
-  )
-}
-
-export function DemoThemeToggleIcon() {
-  return (
-    <div className="mx-auto flex w-fit items-center gap-3 rounded-lg border border-border-subtle bg-background px-4 py-3">
-      <ThemeToggleIcon />
-      <span className="font-mono text-[12px] text-muted-foreground">
-        Compact sun / moon toggle
-      </span>
-    </div>
-  )
-}
-
-export function DemoSiteHeaderNarrow() {
-  // Same `@atroui/site-header-narrow` source users install — not npm.
-  return (
-    <IndieKitFrame>
-      <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">
-        <SiteHeaderNarrow siteName="atroui" />
-        <div className="px-5 py-8 text-sm text-muted-foreground">
-          Narrow sticky chrome — 640px max width, mono nav, theme icon.
-        </div>
-      </div>
-    </IndieKitFrame>
-  )
-}
-
-export function DemoSiteFooterNarrow() {
-  // Same `@atroui/site-footer-narrow` source users install — not npm.
-  return (
-    <IndieKitFrame>
-      <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">
-        <SiteFooterNarrow siteName="atroui" />
-      </div>
-    </IndieKitFrame>
-  )
-}
-
-export function DemoSocialFloat() {
-  return (
-    <div className="relative mx-auto h-48 w-full max-w-md rounded-xl border border-border-subtle bg-background">
-      <p className="absolute inset-x-0 top-6 px-6 text-center text-sm text-muted-foreground">
-        Social float mounts fixed to the viewport — open the FAB in the corner.
-      </p>
-      <SocialFloat />
-    </div>
-  )
-}
-
-/** Contained gallery thumb — in-frame FAB + links (no fixed portal). */
-export function DemoSocialFloatGallery() {
-  return (
-    <div className="relative h-full overflow-hidden bg-background">
-      <div className="absolute inset-x-0 top-4 px-3 text-center font-mono text-[9px] text-muted-foreground">
-        Connect
-      </div>
-      <div className="absolute bottom-3 right-3 flex flex-col items-end gap-1.5">
-        <div className="flex flex-col gap-1 rounded-lg border border-border-subtle bg-card p-1.5 shadow-sm">
-          {["Email", "GitHub", "X"].map((label) => (
-            <span
-              key={label}
-              className="rounded-md px-2 py-1 font-mono text-[9px] text-foreground"
-            >
-              {label}
-            </span>
-          ))}
-        </div>
-        <span className="flex size-8 items-center justify-center rounded-full border border-border-subtle bg-foreground text-[11px] font-medium text-background">
-          +
-        </span>
-      </div>
-    </div>
-  )
-}
-
-export function DemoReadingShelf() {
-  return (
-    <IndieKitFrame>
-      <ReadingShelf className="w-full" />
-    </IndieKitFrame>
   )
 }
 
@@ -1313,13 +1023,5 @@ export function DemoWeatherChipLondon() {
     <div className="flex justify-center py-6">
       <WeatherChip lat={51.5074} lon={-0.1278} label="LON" />
     </div>
-  )
-}
-
-export function DemoStackList() {
-  return (
-    <IndieKitFrame>
-      <StackList className="w-full" />
-    </IndieKitFrame>
   )
 }

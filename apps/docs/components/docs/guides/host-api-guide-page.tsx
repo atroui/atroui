@@ -65,10 +65,10 @@ export function HostApiGuidePage() {
           Launch workflow
         </Link>
         <Link
-          href="/docs/components/contact-contact-form"
+          href="/docs/components/brand-waitlist-form"
           className="atro-btn-ghost"
         >
-          Contact form
+          Waitlist form
         </Link>
       </div>
 

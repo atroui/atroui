@@ -102,7 +102,7 @@ npx shadcn@latest add @atroui/home-hero`}
           <li>
             Add UI with the CLI (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              @atroui/contact-form
+              @atroui/waitlist-form
             </code>
             , etc.) instead of importing large blocks from the package when a
             registry item exists.

@@ -20,7 +20,6 @@ const FAMILIES: { name: string; items: string[] }[] = [
       "theme-adapt",
       "theme-provider",
       "logo",
-      "mockup-frame",
       "timeline-animation",
       "founder-avatar",
     ],
@@ -44,7 +43,6 @@ const FAMILIES: { name: string; items: string[] }[] = [
       "faq",
       "contextual-cta",
       "exit-intent-popup",
-      "contact-form",
     ],
   },
   {
@@ -62,17 +60,11 @@ const FAMILIES: { name: string; items: string[] }[] = [
   },
   {
     name: "Studio",
-    items: [
-      "before-after-slider",
-      "visual-case-study",
-      "ar-portfolio",
-      "live-dashboard",
-      "project-planner",
-    ],
+    items: ["ar-portfolio", "live-dashboard", "project-planner"],
   },
   {
     name: "SEO",
-    items: ["json-ld", "testimonial-schema", "analytics-provider"],
+    items: ["analytics-provider"],
   },
   {
     name: "Tools",

@@ -12,7 +12,7 @@ export function SiteHeaderDoc() {
       preview={<DemoSiteHeader />}
       code={'import { SiteHeader } from "@/components/blocks/site-header"\n\n<SiteHeader />'}
       fullBleed={true}
-      usage="Mount once in the root layout. Nav links target studio host paths (/work, /tools, /services, /journal, /about, /contact). Fork or parameterize before reuse on another IA. For a 640px personal chrome variant, use @atroui/site-header-narrow."
+      usage="Mount once in the root layout. Nav links target studio host paths (/work, /tools, /services, /journal, /about, /contact). Fork or parameterize before reuse on another IA."
     />
   )
 }
