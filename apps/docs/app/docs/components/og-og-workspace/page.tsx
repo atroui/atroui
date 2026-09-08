@@ -43,7 +43,7 @@ export default function Page() {
       }
       extra={
         <section className="md-glass space-y-2 p-5">
-          <h2 className="ds-headline text-base text-foreground">
+          <h2 className="docs-section-title">
             Try it before you install
           </h2>
           <p className="text-[15px] leading-relaxed text-muted-foreground">

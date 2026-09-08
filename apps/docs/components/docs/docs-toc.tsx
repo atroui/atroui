@@ -93,7 +93,7 @@ export function DocsToc() {
   return (
     <nav aria-label="On this page" className="text-[13px]">
       <p className="docs-book-nav-heading !px-0">On this page</p>
-      <ul className="mt-2 space-y-0.5 border-l border-border-subtle">
+      <ul className="mt-2 space-y-0.5 border-l border-[color:var(--docs-border)]">
         {headings.map((h) => (
           <li key={h.id}>
             <a
@@ -110,8 +110,8 @@ export function DocsToc() {
                 "-ml-px block border-l py-1 pl-3 leading-snug transition-colors",
                 h.level === 3 && "pl-5",
                 active === h.id
-                  ? "border-[color:var(--docs-link)] text-foreground"
-                  : "border-transparent text-muted-foreground hover:text-foreground"
+                  ? "border-[color:var(--docs-link)] text-[color:var(--docs-fg-strong)]"
+                  : "border-transparent text-muted-foreground hover:text-[color:var(--docs-fg-strong)]"
               )}
             >
               {h.text}

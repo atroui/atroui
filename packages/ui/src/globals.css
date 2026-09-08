@@ -259,14 +259,14 @@
     text-transform: uppercase;
     color: var(--muted-foreground);
   }
-  /* Supporting copy next to Caveat — regular weight, not ultra-light */
+  /* Supporting copy — one step under body; hosts may override color */
   .ds-lede {
     font-family: var(--font-body);
     font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
     font-weight: 400;
     line-height: 1.65;
     letter-spacing: 0.01em;
-    color: var(--muted-foreground);
+    color: color-mix(in oklch, var(--foreground) 78%, transparent);
   }
   .ds-body {
     font-family: var(--font-body);
@@ -331,10 +331,10 @@
     color: var(--muted-foreground);
   }
   .bam-link {
-    color: var(--foreground);
+    color: var(--docs-link, var(--foreground));
     text-decoration: underline;
-    text-decoration-color: color-mix(in oklch, var(--brand) 55%, transparent);
-    text-underline-offset: 0.28em;
+    text-decoration-color: color-mix(in oklch, var(--brand) 40%, transparent);
+    text-underline-offset: 0.22em;
     transition: text-decoration-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
   }
   @media (hover: hover) and (pointer: fine) {

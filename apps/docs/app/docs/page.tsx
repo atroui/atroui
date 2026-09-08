@@ -63,52 +63,48 @@ export default function DocsIntroPage() {
         </p>
 
         <h3 id="essential-commands">3. Learn the essential commands</h3>
-        <div className="not-prose my-4 overflow-x-auto">
-          <table className="w-full min-w-[28rem] border-collapse text-left text-[13px]">
-            <thead>
-              <tr className="border-b border-border-subtle text-muted-foreground">
-                <th className="py-2 pr-4 font-medium">Action</th>
-                <th className="py-2 font-medium">How</th>
-              </tr>
-            </thead>
-            <tbody className="text-foreground">
-              <tr className="border-b border-border-subtle/80">
-                <td className="py-2.5 pr-4">Customize copy</td>
-                <td className="py-2.5 font-mono text-[12px]">
-                  Edit CONTENT at top of file
-                </td>
-              </tr>
-              <tr className="border-b border-border-subtle/80">
-                <td className="py-2.5 pr-4">Try OG cards</td>
-                <td className="py-2.5">
-                  Open{" "}
-                  <Link href="/og" className="bam-link font-mono text-[12px]">
-                    /og
-                  </Link>
-                </td>
-              </tr>
-              <tr className="border-b border-border-subtle/80">
-                <td className="py-2.5 pr-4">Theme tokens</td>
-                <td className="py-2.5">
-                  <Link href="/docs/theming" className="bam-link">
-                    Theming
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2.5 pr-4">Forms / AI routes</td>
-                <td className="py-2.5">
-                  <Link href="/docs/host-api" className="bam-link">
-                    Host APIs
-                  </Link>{" "}
-                  <span className="text-muted-foreground">
-                    (<code className="font-mono text-[12px]">npm i atroui</code>)
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>How</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Customize copy</td>
+              <td>
+                <code>Edit CONTENT at top of file</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Try OG cards</td>
+              <td>
+                Open{" "}
+                <Link href="/og" className="bam-link">
+                  /og
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>Theme tokens</td>
+              <td>
+                <Link href="/docs/theming" className="bam-link">
+                  Theming
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>Forms / AI routes</td>
+              <td>
+                <Link href="/docs/host-api" className="bam-link">
+                  Host APIs
+                </Link>{" "}
+                (<code>npm i atroui</code>)
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <p>
           If you forget a registry name, search{" "}
           <Link href="/docs/components" className="bam-link">

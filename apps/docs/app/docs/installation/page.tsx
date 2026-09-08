@@ -33,7 +33,7 @@ export default function InstallationPage() {
       />
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="prerequisites">
+        <h2 className="docs-section-title" id="prerequisites">
           1. Prerequisites
         </h2>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
@@ -57,7 +57,7 @@ export default function InstallationPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="init">
+        <h2 className="docs-section-title" id="init">
           2. Init shadcn
         </h2>
         <CodeBlock language="bash" code={`npx shadcn@latest init`} />
@@ -71,7 +71,7 @@ export default function InstallationPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="add">
+        <h2 className="docs-section-title" id="add">
           3. Add a component
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -109,7 +109,7 @@ npx shadcn@latest add @atroui/site-footer`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="what-landed">
+        <h2 className="docs-section-title" id="what-landed">
           4. What landed in the repo
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -158,7 +158,7 @@ NEXT_PUBLIC_SITE_URL=https://acme.test`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="host-api">
+        <h2 className="docs-section-title" id="host-api">
           5. When you also need <code>npm i atroui</code>
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -198,7 +198,7 @@ RESEND_AUDIENCE_ID=…`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="troubleshooting">
+        <h2 className="docs-section-title" id="troubleshooting">
           6. Troubleshooting
         </h2>
         <ul className="list-disc space-y-3 pl-5 text-[15px] text-muted-foreground">
@@ -236,7 +236,7 @@ RESEND_AUDIENCE_ID=…`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="install-modes">
+        <h2 className="docs-section-title" id="install-modes">
           Install modes
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -253,7 +253,7 @@ RESEND_AUDIENCE_ID=…`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="host-bound-tools">
+        <h2 className="docs-section-title" id="host-bound-tools">
           Host-bound tools (optional)
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -279,7 +279,7 @@ HUGGINGFACE_API_KEY=…`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="clone">
+        <h2 className="docs-section-title" id="clone">
           Clone the monorepo
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -296,7 +296,7 @@ pnpm dev`}
 
       {pseo?.faqs?.length ? (
         <section className="space-y-4 border-t border-border-subtle pt-8">
-          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
+          <h2 className="docs-section-title">FAQ</h2>
           <dl className="space-y-5">
             {pseo.faqs.map((item) => (
               <div key={item.q}>

@@ -32,7 +32,7 @@ export default function MigratePage() {
 
       <section className="space-y-4">
         <h2
-          className="ds-headline text-base text-foreground"
+          className="docs-section-title"
           id="from-shadcn"
         >
           From plain shadcn/ui
@@ -84,7 +84,7 @@ npx shadcn@latest add @atroui/home-hero`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="from-npm">
+        <h2 className="docs-section-title" id="from-npm">
           From the npm <code>atroui</code> package
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -138,7 +138,7 @@ npx shadcn@latest add @atroui/home-hero`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground" id="from-kits">
+        <h2 className="docs-section-title" id="from-kits">
           From copy-paste / animation kits
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">

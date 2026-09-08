@@ -57,7 +57,7 @@ export default async function CollectionPage({ params }: Props) {
       />
 
       <section className="space-y-3">
-        <h2 className="ds-headline text-base text-foreground">
+        <h2 className="docs-section-title">
           Why this grouping
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -66,7 +66,7 @@ export default async function CollectionPage({ params }: Props) {
       </section>
 
       <section className="space-y-3">
-        <h2 className="ds-headline text-base text-foreground">Install these</h2>
+        <h2 className="docs-section-title">Install these</h2>
         <ul className="md-glass divide-y divide-border-subtle">
           {collection.paths.map((href) => (
             <li key={href}>
@@ -83,7 +83,7 @@ export default async function CollectionPage({ params }: Props) {
 
       {collection.faqs.length > 0 ? (
         <section className="space-y-4">
-          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
+          <h2 className="docs-section-title">FAQ</h2>
           <dl className="space-y-4">
             {collection.faqs.map((faq) => (
               <div key={faq.q}>

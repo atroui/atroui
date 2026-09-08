@@ -30,7 +30,7 @@ export default function IdentityPage() {
       />
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">1. Core brand config (getBrand)</h2>
+        <h2 className="docs-section-title">1. Core brand config (getBrand)</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Instead of hardcoding your product name or canonical URLs across headers, footers, and SEO scripts, we configure them in a single place. Install the brand helper:
         </p>
@@ -64,7 +64,7 @@ export function getBrand() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">2. Schema.org structured data (JSON-LD)</h2>
+        <h2 className="docs-section-title">2. Schema.org structured data (JSON-LD)</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Google and other search engines utilize Schema.org JSON-LD to display rich snippets, star-ratings, and nest directories in the SERP. AtroUI offers headless schema components that automatically read from your brand config. Install the schema package:
         </p>
@@ -117,7 +117,7 @@ export default function BlogPost({ post }) {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">3. Next.js metadata and canonical paths</h2>
+        <h2 className="docs-section-title">3. Next.js metadata and canonical paths</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Search engines penalize duplicate path strings. To prevent index pollution, ensure a stable <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">metadataBase</code> is set in the root layout metadata so relative paths resolve to the absolute canonical URL automatically.
         </p>
@@ -144,7 +144,7 @@ export const metadata: Metadata = {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">4. 2026 Favicon and SERP checklist</h2>
+        <h2 className="docs-section-title">4. 2026 Favicon and SERP checklist</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Modern search results display your brand favicon right next to your snippet link. If you only provide a legacy favicon, Google may display a generic globe, lowering organic click-through rates.
         </p>
@@ -184,7 +184,7 @@ export const metadata = {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">5. Sitemap and robots generation</h2>
+        <h2 className="docs-section-title">5. Sitemap and robots generation</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           App Router supports automated dynamic sitemaps and search crawler instructions natively. Build your dynamic crawl tree using the dynamic sitemap helper:
         </p>
@@ -238,7 +238,7 @@ export default function robots(): MetadataRoute.Robots {
       </section>
 
       <section className="md-glass space-y-3 p-5">
-        <h2 className="ds-headline text-base text-foreground">SEO Discipline: Brand ≠ CONTENT</h2>
+        <h2 className="docs-section-title">SEO Discipline: Brand ≠ CONTENT</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           AtroUI maintains a strict division of data to avoid typical template mistakes:
         </p>

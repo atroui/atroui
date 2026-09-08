@@ -31,7 +31,7 @@ export default function ThemingPage() {
       />
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">CSS variables</h2>
+        <h2 className="docs-section-title">CSS variables</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Light and dark themes live under{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -66,7 +66,7 @@ export default function ThemingPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Fonts</h2>
+        <h2 className="docs-section-title">Fonts</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Two voices on purpose:
         </p>
@@ -154,7 +154,7 @@ export default function ThemingPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Radius</h2>
+        <h2 className="docs-section-title">Radius</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           One knob. CTAs, stamps, and panels use{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -189,7 +189,7 @@ export default function ThemingPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Site brand</h2>
+        <h2 className="docs-section-title">Site brand</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Chrome strings (name, domain, email, site URL) come from{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -219,7 +219,7 @@ export default function ThemingPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Dark mode</h2>
+        <h2 className="docs-section-title">Dark mode</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Use{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">

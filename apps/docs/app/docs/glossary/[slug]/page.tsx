@@ -47,14 +47,14 @@ export default async function GlossaryTermPage({ params }: Props) {
       />
 
       <section className="space-y-3">
-        <h2 className="ds-headline text-base text-foreground">Definition</h2>
+        <h2 className="docs-section-title">Definition</h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           {term.definition}
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="ds-headline text-base text-foreground">
+        <h2 className="docs-section-title">
           Why it matters
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -63,7 +63,7 @@ export default async function GlossaryTermPage({ params }: Props) {
       </section>
 
       <nav className="space-y-2" aria-label="Related">
-        <h2 className="ds-headline text-base text-foreground">Related</h2>
+        <h2 className="docs-section-title">Related</h2>
         <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
           {term.relatedPaths.map((item) => (
             <li key={item.href}>

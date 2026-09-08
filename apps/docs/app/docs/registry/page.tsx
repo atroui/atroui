@@ -45,7 +45,7 @@ export default function RegistryPage() {
       />
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
+        <h2 className="docs-section-title">
           1. Init shadcn (if needed)
         </h2>
         <CodeBlock language="bash" code={`npx shadcn@latest init`} />
@@ -63,7 +63,7 @@ export default function RegistryPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
+        <h2 className="docs-section-title">
           2. Add a component
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -119,7 +119,7 @@ npx shadcn@latest add @atroui/site-footer`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">Catalog</h2>
+        <h2 className="docs-section-title">Catalog</h2>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
           <li>
             Libs:{" "}
@@ -408,7 +408,7 @@ npx shadcn@latest add @atroui/site-footer`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="ds-headline text-base text-foreground">
+        <h2 className="docs-section-title">
           Next steps
         </h2>
         <p className="text-[15px] leading-relaxed text-muted-foreground">

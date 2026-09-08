@@ -45,9 +45,10 @@ html {
      essays (/blog, /updates), and tool rooms (/og, /planner), so they resolve
      here too. .docs-book narrows them again for the reading room. */
   --docs-title-font: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  --docs-fg: color-mix(in oklch, var(--foreground) 88%, transparent);
+  --docs-fg: color-mix(in oklch, var(--foreground) 90%, transparent);
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
+  --docs-link: color-mix(in oklch, var(--brand) 72%, white);
 }
 
 .atro-btn,
@@ -371,11 +372,11 @@ html {
   --docs-content-max: 43.125rem; /* 690px — Zed measure */
   --docs-toc-width: 11.5rem;
   --docs-title-font: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  --docs-fg: color-mix(in oklch, var(--foreground) 88%, transparent);
+  --docs-fg: color-mix(in oklch, var(--foreground) 90%, transparent);
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
   --docs-sidebar-bg: color-mix(in oklch, var(--foreground) 2%, var(--background));
-  --docs-link: color-mix(in oklch, var(--brand) 75%, white);
+  --docs-link: color-mix(in oklch, var(--brand) 72%, white);
 }
 
 .docs-book-frame {
@@ -542,7 +543,7 @@ html {
   color: var(--docs-link);
 }
 
-/* Page title — Zed H1 energy */
+/* Page title — quiet chapter arrival (Outfit, not marketing display) */
 .docs-book-header {
   margin-bottom: 1.75rem;
 }
@@ -560,31 +561,34 @@ html {
   padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--docs-border, var(--border-subtle));
   font-family: var(--docs-title-font);
-  font-size: clamp(1.5rem, 1.35rem + 0.8vw, 1.75rem);
+  font-size: clamp(1.625rem, 1.4rem + 0.9vw, 1.875rem);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
   color: var(--docs-fg-strong);
 }
 .docs-book-lede {
-  margin-top: 0.85rem;
+  margin-top: 0.9rem;
   max-width: 40rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.65;
-  color: var(--docs-fg, var(--muted-foreground));
+  color: var(--docs-fg);
 }
 .docs-book-lede a {
-  color: var(--docs-fg-strong);
+  color: var(--docs-link);
   text-decoration: underline;
   text-decoration-color: color-mix(in oklch, var(--brand) 35%, transparent);
   text-underline-offset: 0.2em;
+}
+.docs-book-lede a:hover {
+  text-decoration-color: color-mix(in oklch, var(--brand) 60%, transparent);
 }
 .docs-book-lede code {
   font-family: var(--font-mono);
   font-size: 0.84em;
   border-radius: 0.3rem;
   border: 1px solid var(--docs-border);
-  background: color-mix(in oklch, var(--foreground) 4%, transparent);
+  background: color-mix(in oklch, var(--brand) 8%, transparent);
   padding: 0.1rem 0.35rem;
   color: var(--docs-fg-strong);
 }
@@ -648,7 +652,7 @@ html {
   color: var(--docs-fg-strong);
 }
 .docs-book .docs-prose a:not(.bam-link):not(.ms-cta):not(.ms-cta-ghost):not(.atro-btn):not(.atro-btn-ghost) {
-  color: var(--docs-fg-strong);
+  color: var(--docs-link);
   text-decoration: underline;
   text-decoration-color: color-mix(in oklch, var(--brand) 30%, transparent);
   text-underline-offset: 0.2em;
@@ -701,19 +705,80 @@ html {
   color: var(--docs-fg);
 }
 
-/* Guide pages that still use section + ds-headline — calm them inside the book */
-.docs-book article > section > h2.ds-headline {
+/* Guide pages — section H2s use docs-section-title (same ladder as prose) */
+.docs-book article section > h2.docs-section-title {
   margin-top: 0;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid var(--docs-border);
-  font-family: var(--docs-title-font);
-  font-size: 1.35rem;
-  font-weight: 500;
-  letter-spacing: -0.015em;
 }
 .docs-book article.space-y-10 > section + section,
 .docs-book article.space-y-8 > section + section {
   margin-top: 2rem;
+}
+/* Long copy on guide pages: one body ink (overrides text-muted-foreground) */
+.docs-book article > section > p,
+.docs-book article > section > ul,
+.docs-book article > section > ol,
+.docs-book article > section > dl {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--docs-fg);
+}
+.docs-book article > section > ul,
+.docs-book article > section > ol {
+  padding-left: 1.4rem;
+}
+.docs-book article > section > ul {
+  list-style: disc;
+}
+.docs-book article > section > ol {
+  list-style: decimal;
+}
+.docs-book article > section > ul > li + li,
+.docs-book article > section > ol > li + li {
+  margin-top: 0.35rem;
+}
+.docs-book article > section > p strong,
+.docs-book article > section > ul strong,
+.docs-book article > section > ol strong {
+  font-weight: 600;
+  color: var(--docs-fg-strong);
+}
+.docs-book article > section > p > code:not([class]),
+.docs-book article > section li > code:not([class]),
+.docs-book article > section > p code.rounded-md,
+.docs-book article > section li code.rounded-md {
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+  border-radius: 0.3rem;
+  border: 1px solid var(--docs-border);
+  background: color-mix(in oklch, var(--brand) 8%, transparent);
+  padding: 0.1rem 0.35rem;
+  color: var(--docs-fg-strong);
+}
+/* Getting Started verbs table — quiet chrome */
+.docs-book .docs-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+.docs-book .docs-prose table th {
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-align: left;
+  padding: 0.5rem 1rem 0.5rem 0;
+  border-bottom: 1px solid var(--docs-border);
+}
+.docs-book .docs-prose table td {
+  padding: 0.65rem 1rem 0.65rem 0;
+  border-bottom: 1px solid color-mix(in oklch, var(--docs-border) 80%, transparent);
+  color: var(--docs-fg-strong);
+  vertical-align: top;
+}
+.docs-book .docs-prose table tr:last-child td {
+  border-bottom: 0;
+}
+.docs-book .docs-prose table td .font-mono,
+.docs-book .docs-prose table td code {
+  font-size: 0.75rem;
 }
 
 /* Pseo appendix — after the API reference the page is done. Overlay copy, FAQ,
@@ -891,63 +956,65 @@ html {
 }
 
 /* ==========================================================================
-   Docs reading surface (legacy hooks — kept for non-book callers)
+   Docs reading surface — same ladder as .docs-book (one ink, one H2)
    ========================================================================== */
 .docs-prose {
   font-size: 0.9375rem;
   line-height: 1.75;
-  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+  color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
 }
 .docs-prose > * + * {
   margin-top: 1rem;
 }
 .docs-prose h2 {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-family: var(--docs-title-font, var(--font-heading));
+  font-size: 1.35rem;
   font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.35;
-  color: var(--foreground);
-  margin-top: 2.75rem;
-  padding-top: 0;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--docs-fg-strong, var(--foreground));
+  margin-top: 2.25rem;
+  margin-bottom: 0;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--docs-border, var(--border-subtle));
   scroll-margin-top: 5rem;
 }
 .docs-prose h3 {
-  font-family: var(--font-heading);
-  font-size: 1.0625rem;
+  font-family: var(--docs-title-font, var(--font-heading));
+  font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: -0.015em;
-  color: var(--foreground);
-  margin-top: 1.75rem;
+  color: var(--docs-fg-strong, var(--foreground));
+  margin-top: 1.6rem;
   scroll-margin-top: 5rem;
 }
 .docs-prose h2 + p,
 .docs-prose h3 + p,
 .docs-prose h2 + ul,
 .docs-prose h3 + ul {
-  margin-top: 0.65rem;
+  margin-top: 0.75rem;
 }
 .docs-prose p {
-  color: color-mix(in oklch, var(--foreground) 74%, transparent);
+  color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
 }
 .docs-prose strong {
-  font-weight: 550;
-  color: var(--foreground);
+  font-weight: 600;
+  color: var(--docs-fg-strong, var(--foreground));
 }
 .docs-prose a:not(.bam-link):not(.ms-cta):not(.ms-cta-ghost):not(.atro-btn):not(.atro-btn-ghost) {
-  color: var(--foreground);
+  color: var(--docs-link, var(--foreground));
   text-decoration: underline;
-  text-decoration-color: color-mix(in oklch, var(--foreground) 28%, transparent);
-  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in oklch, var(--brand) 30%, transparent);
+  text-underline-offset: 0.2em;
   transition: text-decoration-color 160ms ease;
 }
 .docs-prose a:not(.bam-link):hover {
-  text-decoration-color: color-mix(in oklch, var(--foreground) 55%, transparent);
+  text-decoration-color: color-mix(in oklch, var(--brand) 55%, transparent);
 }
 .docs-prose ul,
 .docs-prose ol {
-  padding-left: 1.35rem;
-  color: color-mix(in oklch, var(--foreground) 74%, transparent);
+  padding-left: 1.4rem;
+  color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
 }
 .docs-prose ul {
   list-style: disc;
@@ -957,7 +1024,7 @@ html {
 }
 .docs-prose ul > li + li,
 .docs-prose ol > li + li {
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
 }
 .docs-prose ul > li::before {
   content: none;
@@ -969,26 +1036,26 @@ html {
   font-family: var(--font-mono);
   font-size: 0.84em;
   border-radius: 0.3rem;
-  border: 1px solid var(--border-subtle);
-  background: color-mix(in oklch, var(--foreground) 4%, transparent);
-  padding: 0.12rem 0.35rem;
-  color: var(--foreground);
+  border: 1px solid var(--docs-border, var(--border-subtle));
+  background: color-mix(in oklch, var(--brand) 8%, transparent);
+  padding: 0.1rem 0.35rem;
+  color: var(--docs-fg-strong, var(--foreground));
 }
 .docs-prose hr {
   border: 0;
-  border-top: 1px solid var(--border-subtle);
-  margin-block: 2.25rem;
+  border-top: 1px solid var(--docs-border, var(--border-subtle));
+  margin-block: 2rem;
 }
 .docs-callout {
   display: flex;
   gap: 0.75rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--docs-border, var(--border-subtle));
   background: color-mix(in oklch, var(--foreground) 2.5%, transparent);
   padding: 0.9rem 1rem;
   font-size: 0.9375rem;
   line-height: 1.6;
-  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+  color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
 }
 
 
@@ -1038,7 +1105,7 @@ html {
   font-family: var(--font-outfit), var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.65;
-  color: color-mix(in oklch, var(--foreground) 68%, transparent);
+  color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
 }
 
 @media (min-width: 640px) {
