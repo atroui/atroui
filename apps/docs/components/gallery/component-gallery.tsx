@@ -1,27 +1,41 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { Search, X } from "lucide-react"
-import { navigation } from "@/lib/navigation"
-import { PreviewCard } from "@/components/gallery/preview-card"
+import {
+  badgeLabel,
+  catalogSections,
+  toolApps,
+  type NavItem,
+} from "@/lib/navigation"
 import { cn } from "@/lib/utils"
 
-const sections = navigation.filter(
-  (s) =>
-    s.title !== "Getting Started" &&
-    s.title !== "Setup" &&
-    s.title !== "Kits" &&
-    s.title !== "Reference" &&
-    s.title !== "More"
-)
+type Entry = {
+  category: string
+  item: NavItem
+}
 
-type Entry = { category: string; item: (typeof sections)[number]["items"][number] }
-
-const allEntries: Entry[] = sections.flatMap((section) =>
+const allEntries: Entry[] = catalogSections.flatMap((section) =>
   section.items.map((item) => ({ category: section.title, item }))
 )
 
-const categories = ["All", ...sections.map((s) => s.title)]
+const categories = ["All", ...catalogSections.map((s) => s.title)]
+
+function KitBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
+  return (
+    <span
+      className={cn(
+        "docs-book-badge",
+        badge === "host-api" || badge === "registry"
+          ? "docs-book-badge-accent"
+          : undefined
+      )}
+    >
+      {badgeLabel[badge]}
+    </span>
+  )
+}
 
 export function ComponentGallery() {
   const [active, setActive] = React.useState("All")
@@ -32,6 +46,14 @@ export function ComponentGallery() {
     if (param && categories.includes(param)) setActive(param)
   }, [])
 
+  function setCategory(category: string) {
+    setActive(category)
+    const url = new URL(window.location.href)
+    if (category === "All") url.searchParams.delete("category")
+    else url.searchParams.set("category", category)
+    window.history.replaceState({}, "", url.pathname + url.search)
+  }
+
   const filtered = React.useMemo(() => {
     const q = query.trim().toLowerCase()
     return allEntries.filter(({ category, item }) => {
@@ -39,97 +61,149 @@ export function ComponentGallery() {
       if (!q) return true
       return (
         item.title.toLowerCase().includes(q) ||
-        (item.description?.toLowerCase().includes(q) ?? false)
+        (item.description?.toLowerCase().includes(q) ?? false) ||
+        category.toLowerCase().includes(q)
       )
     })
   }, [active, query])
 
-  return (
-    <div className="space-y-6">
-      <div className="sticky top-16 z-30 -mx-4 border-b border-border-subtle bg-background/80 px-4 py-3 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-          <div className="relative w-full lg:max-w-xs">
-            <Search
-              className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-              aria-hidden
-            />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search components…"
-              aria-label="Search components"
-              className="h-10 w-full rounded-lg border border-border-subtle bg-white/[0.03] pl-9 pr-9 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-brand/50"
-            />
-            {query ? (
-              <button
-                type="button"
-                onClick={() => setQuery("")}
-                aria-label="Clear search"
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md p-1 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <X className="size-4" aria-hidden />
-              </button>
-            ) : null}
-          </div>
+  const byChapter = React.useMemo(() => {
+    return catalogSections
+      .map((section) => ({
+        title: section.title,
+        items: filtered
+          .filter((e) => e.category === section.title)
+          .map((e) => e.item),
+      }))
+      .filter((chapter) => chapter.items.length > 0)
+  }, [filtered])
 
-          <div
-            role="tablist"
-            aria-label="Filter by category"
-            className="flex flex-1 gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {categories.map((category) => {
-              const selected = active === category
-              const count =
-                category === "All"
-                  ? allEntries.length
-                  : sections.find((s) => s.title === category)?.items.length ?? 0
-              return (
-                <button
-                  key={category}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setActive(category)}
-                  className={cn(
-                    "inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[13px] font-medium transition-colors",
-                    selected
-                      ? "border-brand/40 bg-brand/10 text-foreground"
-                      : "border-transparent text-muted-foreground hover:bg-white/[0.05] hover:text-foreground"
-                  )}
-                >
-                  {category}
-                  <span
-                    className={cn(
-                      "font-mono text-[11px]",
-                      selected ? "text-brand" : "text-muted-foreground/60"
-                    )}
-                  >
-                    {count}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
+  return (
+    <div className="docs-catalog">
+      <div className="docs-catalog-toolbar">
+        <div className="docs-catalog-search">
+          <Search
+            className="docs-catalog-search-icon"
+            aria-hidden
+            size={16}
+            strokeWidth={1.75}
+          />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search the catalog…"
+            aria-label="Search the catalog"
+            className="docs-catalog-search-input"
+          />
+          {query ? (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              aria-label="Clear search"
+              className="docs-catalog-search-clear"
+            >
+              <X size={16} aria-hidden strokeWidth={1.75} />
+            </button>
+          ) : null}
+        </div>
+
+        <div
+          role="tablist"
+          aria-label="Filter by family"
+          className="docs-catalog-tabs"
+        >
+          {categories.map((category) => {
+            const selected = active === category
+            const count =
+              category === "All"
+                ? allEntries.length
+                : (catalogSections.find((s) => s.title === category)?.items
+                    .length ?? 0)
+            return (
+              <button
+                key={category}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setCategory(category)}
+                className={cn(
+                  "docs-catalog-tab",
+                  selected && "docs-catalog-tab-active"
+                )}
+              >
+                {category}
+                <span className="docs-catalog-tab-count">{count}</span>
+              </button>
+            )
+          })}
         </div>
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-xl border border-border-subtle bg-white/[0.02] px-6 py-16 text-center">
-          <p className="ds-headline text-xl text-foreground">No matches</p>
-          <p className="ds-meta mt-1">
-            Nothing for “{query}”. Try a different term or clear the filter.
+        <div className="docs-catalog-empty" role="status">
+          <p className="docs-hub-title">No matches</p>
+          <p className="docs-hub-meta">
+            Nothing for “{query || active}”. Clear search or pick another family.
           </p>
         </div>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {filtered.map(({ item }) => (
-            <li key={item.href}>
-              <PreviewCard item={item} />
+        <div className="docs-catalog-chapters">
+          {byChapter.map((chapter) => (
+            <section
+              key={chapter.title}
+              className="docs-catalog-chapter"
+              aria-labelledby={`catalog-${chapter.title}`}
+            >
+              <header className="docs-catalog-chapter-head">
+                <h2
+                  id={`catalog-${chapter.title}`}
+                  className="docs-catalog-chapter-title"
+                >
+                  {chapter.title}
+                </h2>
+                <span className="docs-catalog-chapter-count">
+                  {chapter.items.length}
+                </span>
+              </header>
+              <ul className="docs-kit-list">
+                {chapter.items.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="docs-kit-row docs-catalog-row">
+                      <span className="docs-kit-row-head">
+                        <span className="docs-hub-title">{item.title}</span>
+                        {item.badge ? <KitBadge badge={item.badge} /> : null}
+                      </span>
+                      {item.description ? (
+                        <span className="docs-hub-meta">{item.description}</span>
+                      ) : null}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      )}
+
+      <aside className="docs-catalog-tools" aria-label="Live tools">
+        <p className="docs-catalog-tools-stamp">Live tools</p>
+        <ul className="docs-kit-list">
+          {toolApps.map((app) => (
+            <li key={app.href}>
+              <Link href={app.href} className="docs-kit-row docs-catalog-row">
+                <span className="docs-kit-row-head">
+                  <span className="docs-hub-title">{app.title}</span>
+                  <span className="docs-book-badge docs-book-badge-accent">
+                    App
+                  </span>
+                </span>
+                <span className="docs-hub-meta">{app.description}</span>
+              </Link>
             </li>
           ))}
         </ul>
-      )}
+      </aside>
     </div>
   )
 }
