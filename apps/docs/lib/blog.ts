@@ -952,7 +952,7 @@ npx shadcn@latest add @atroui/button`,
     slug: "dark-first-design-tokens",
     title: "Dark-first design tokens in AtroUI",
     description:
-      "How AtroUI’s dark-first tokens work: black canvas, brand blue #0b7bff, glass surfaces, Outfit, and how to override them in atroui/globals.css.",
+      "How AtroUI’s dark-first tokens work: charcoal canvas, violet brand #6d28d9, Merriweather + DM Sans, and how to override them in atroui/globals.css.",
     date: "2026-08-05",
     sections: [
       {
@@ -964,8 +964,8 @@ npx shadcn@latest add @atroui/button`,
       {
         heading: "The visual system in one pass",
         body: [
-          "Canvas near black. Brand blue at #0b7bff (and the matching --brand CSS variable). Cyan mist accents. Glass panels via utilities like ms-panel / md-glass. Rounded-full CTAs that match the docs site.",
-          "Display type expects Outfit exposed as --font-outfit. Sans and mono fall through the same token sheet so marketing pages and app chrome share one rhythm.",
+          "Canvas near charcoal. Brand violet at #6d28d9 (and matching --brand / --primary). Soft-rect CTAs. Glass panels via utilities like ms-panel / md-glass.",
+          "Headings use Merriweather (--font-merriweather). UI and body use DM Sans (--font-dm-sans). Mono stays Geist Mono so marketing and app chrome share one rhythm.",
         ],
       },
       {
@@ -984,11 +984,11 @@ npx shadcn@latest add @atroui/button`,
           {
             language: "css",
             code: `.dark {
-  --brand: oklch(0.62 0.2 255);
-  --background: oklch(0 0 0);
-  --primary: oklch(0.99 0 0);
-  --primary-foreground: oklch(0 0 0);
-  --font-sans: var(--font-outfit);
+  --brand: oklch(0.585 0.233 277.117);
+  --background: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.398 0.195 277.366);
+  --primary-foreground: oklch(0.962 0.018 272.314);
+  --font-sans: var(--font-dm-sans);
 }`,
           },
         ],
@@ -1240,7 +1240,7 @@ export default function RootLayout({
       {
         heading: "Fonts and the dark class",
         body: [
-          "Load Outfit with variable: \"--font-outfit\" and put that variable on <html> so display styles match the catalog. You can keep className=\"dark\" on html for first paint while ThemeProvider manages the class afterward.",
+          "Load Merriweather as --font-merriweather and DM Sans as --font-dm-sans (include italic styles) on <html> or <body> so headings and UI match the catalog. You can keep className=\"dark\" on html for first paint while ThemeProvider manages the class afterward.",
           "Full layout snippet: [Install AtroUI in Next.js](/blog/install-atroui-nextjs-app-router).",
         ],
       },

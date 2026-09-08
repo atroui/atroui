@@ -9,7 +9,7 @@ const CONTENT = {
     {
       label: "Focus",
       value: "Shipping the personal site kit",
-      swatch: "var(--color-brand, #0b7bff)",
+      swatch: "var(--color-brand, #6d28d9)",
     },
     {
       label: "Build",

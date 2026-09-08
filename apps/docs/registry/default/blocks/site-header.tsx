@@ -214,7 +214,7 @@ export function SiteHeader() {
                       {active ? (
                         <motion.span
                           layoutId="nav-rule"
-                          className="absolute inset-x-3.5 bottom-0 h-0.5 bg-[var(--color-brand,#0b7bff)]"
+                          className="absolute inset-x-3.5 bottom-0 h-0.5 bg-[var(--color-brand,#6d28d9)]"
                           transition={
                             reduce
                               ? { duration: 0 }

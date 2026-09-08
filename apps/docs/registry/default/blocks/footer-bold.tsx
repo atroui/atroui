@@ -45,7 +45,7 @@ export function BoldFooter() {
               </h2>
               <a
                 href={`mailto:${email}`}
-                className="border-b-2 border-foreground pb-1 text-lg font-medium transition-colors hover:border-[var(--color-brand,#0b7bff)] hover:text-[var(--color-brand,#0b7bff)]"
+                className="border-b-2 border-foreground pb-1 text-lg font-medium transition-colors hover:border-[var(--color-brand,#6d28d9)] hover:text-[var(--color-brand,#6d28d9)]"
               >
                 {email}
               </a>
@@ -61,7 +61,7 @@ export function BoldFooter() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="inline-flex min-h-10 items-center font-medium hover:text-[var(--color-brand,#0b7bff)]"
+                      className="inline-flex min-h-10 items-center font-medium hover:text-[var(--color-brand,#6d28d9)]"
                     >
                       {item.label}
                     </Link>
@@ -80,7 +80,7 @@ export function BoldFooter() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-10 items-center font-medium hover:text-[var(--color-brand,#0b7bff)]"
+                        className="inline-flex min-h-10 items-center font-medium hover:text-[var(--color-brand,#6d28d9)]"
                       >
                         {item.label}
                       </a>
@@ -88,7 +88,7 @@ export function BoldFooter() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="inline-flex min-h-10 items-center font-medium hover:text-[var(--color-brand,#0b7bff)]"
+                        className="inline-flex min-h-10 items-center font-medium hover:text-[var(--color-brand,#6d28d9)]"
                       >
                         {item.label}
                       </Link>
@@ -116,7 +116,7 @@ export function BoldFooter() {
                 </span>
                 <a
                   href="#main"
-                  className="inline-flex min-h-10 items-center text-xs font-bold tracking-widest uppercase transition-colors hover:text-[var(--color-brand,#0b7bff)]"
+                  className="inline-flex min-h-10 items-center text-xs font-bold tracking-widest uppercase transition-colors hover:text-[var(--color-brand,#6d28d9)]"
                 >
                   Back to top ↑
                 </a>

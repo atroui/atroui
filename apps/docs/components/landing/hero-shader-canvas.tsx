@@ -149,9 +149,9 @@ export function HeroShaderCanvas({
               rotationX={0}
               rotationY={130}
               rotationZ={70}
-              color1="#92dbe0"
-              color2="#0b7bff"
-              color3="#3865cf"
+              color1="#c4b5fd"
+              color2="#8b5cf6"
+              color3="#6d28d9"
               reflection={0.4}
               cAzimuthAngle={270}
               cPolarAngle={180}

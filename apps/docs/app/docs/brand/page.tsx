@@ -55,7 +55,7 @@ export default function BrandKitPage() {
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           Interrupted A - open letterform with a floating brand bar (
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-            #0b7bff
+            #6d28d9
           </code>
           ). Download SVGs from the docs public folder:
         </p>
@@ -123,9 +123,9 @@ export default function BrandKitPage() {
         <h2 className="docs-section-title">Colors</h2>
         <ul className="grid gap-3 sm:grid-cols-3">
           {[
-            { name: "Canvas", hex: "#0a0a0a" },
-            { name: "Brand", hex: "#0b7bff" },
-            { name: "Accent mist", hex: "#92dbe0" },
+            { name: "Canvas", hex: "#1c1c1f" },
+            { name: "Brand", hex: "#6d28d9" },
+            { name: "Brand bright", hex: "#8b5cf6" },
           ].map((c) => (
             <li
               key={c.hex}

@@ -1,14 +1,24 @@
 import type { Metadata, Viewport } from "next"
-import { Caveat, Geist_Mono, Outfit } from "next/font/google"
+import { Caveat, DM_Sans, Geist_Mono, Merriweather } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import "atroui/globals.css"
 import "./globals.css"
 
-const outfit = Outfit({
+/** shadcn Mira preset: Merriweather headings · DM Sans base · Geist Mono code */
+const merriweather = Merriweather({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-merriweather",
+  display: "swap",
+})
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-dm-sans",
   display: "swap",
 })
 
@@ -32,8 +42,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-    { media: "(prefers-color-scheme: light)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1c1f" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
   ],
 }
 
@@ -129,7 +139,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
+        className={`${merriweather.variable} ${dmSans.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

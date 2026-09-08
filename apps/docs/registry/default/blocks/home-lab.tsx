@@ -75,7 +75,7 @@ export function HomeLab() {
             </p>
             <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#0b7bff)]">
+              <span className="italic text-[var(--color-brand,#6d28d9)]">
                 {CONTENT.headlineAccent}
               </span>
               {CONTENT.headlineAfter}
@@ -103,8 +103,8 @@ export function HomeLab() {
             <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 sm:p-8 lg:col-span-5 lg:border-r lg:border-b-0">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-brand,#0b7bff)]">
-                    <span className="size-1.5 animate-pulse rounded-full bg-[var(--color-brand,#0b7bff)]" />
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-brand,#6d28d9)]">
+                    <span className="size-1.5 animate-pulse rounded-full bg-[var(--color-brand,#6d28d9)]" />
                     {statusLabel(featured.status)}
                   </span>
                 </div>
@@ -118,13 +118,13 @@ export function HomeLab() {
                   {featured.description}
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium group-hover:text-[var(--color-brand,#0b7bff)]">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium group-hover:text-[var(--color-brand,#6d28d9)]">
                 Open tool
                 <ArrowUpRight className="size-3.5" />
               </span>
             </div>
             <div className="flex items-center justify-center bg-muted/30 p-6 sm:p-8 lg:col-span-7">
-              <div className="flex aspect-[1200/630] w-full max-w-xl flex-col justify-end rounded-xl bg-gradient-to-br from-[#0a0a0a] via-[#111827] to-[#0b7bff]/30 p-6 ring-1 ring-border-subtle">
+              <div className="flex aspect-[1200/630] w-full max-w-xl flex-col justify-end rounded-xl bg-gradient-to-br from-[#0a0a0a] via-[#111827] to-[#6d28d9]/30 p-6 ring-1 ring-border-subtle">
                 <p className="text-xl font-medium text-white sm:text-2xl">
                   Ship in days, not quarters.
                 </p>
@@ -143,10 +143,10 @@ export function HomeLab() {
             {rest.map((tool) => (
               <li key={tool.name}>
                 <Link href={tool.href} className="group block p-6 sm:p-8">
-                  <p className="text-xs font-medium text-[var(--color-brand,#0b7bff)]">
+                  <p className="text-xs font-medium text-[var(--color-brand,#6d28d9)]">
                     {statusLabel(tool.status)}
                   </p>
-                  <h3 className="mt-2 text-lg font-medium text-foreground group-hover:text-[var(--color-brand,#0b7bff)]">
+                  <h3 className="mt-2 text-lg font-medium text-foreground group-hover:text-[var(--color-brand,#6d28d9)]">
                     {tool.name}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">

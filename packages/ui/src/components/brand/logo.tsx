@@ -45,7 +45,7 @@ export function LogoMark({
         width="13"
         height="3.6"
         rx="1.8"
-        fill="var(--color-brand, #0b7bff)"
+        fill="var(--color-brand, #6d28d9)"
       />
     </svg>
   );

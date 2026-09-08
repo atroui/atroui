@@ -16,7 +16,7 @@ type LandingSectionHeaderProps = {
 
 /**
  * Shared section header for the marketing surface.
- * `product` (default): quiet eyebrow + Outfit headline — Zed discipline.
+ * `product` (default): quiet eyebrow + Merriweather headline — Zed discipline.
  * `brand`: sketch stamp for moments that earn the voice.
  */
 export function LandingSectionHeader({

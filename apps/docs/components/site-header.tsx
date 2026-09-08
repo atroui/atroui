@@ -1,65 +1,37 @@
-import { Github } from "lucide-react"
 import { ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { SiteNav } from "@/components/site-nav"
+import { SiteChrome } from "@/components/site-chrome"
 import { SharedBrand, TransitionLink } from "@/components/view-transitions"
 
-const GITHUB_REPO = "https://github.com/atroui/atroui"
-
 /**
- * Marketing shell chrome — Zed sticky bar + Components · Docs · Blog megas.
- * Docs book uses DocsHeader instead (dual-shell).
+ * Short marketing bar — brand · Docs/Components/Blog · search · theme.
+ * No mega menus, no Browse CTA (Components + search cover it).
  */
 export function SiteHeader() {
   return (
-    <header
-      className="sticky top-0 z-40 border-b border-border-subtle bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70"
-      style={{ viewTransitionName: "site-header" }}
-    >
-      <div className="atro-shell flex h-14 items-center gap-3">
+    <SiteChrome
+      leading={
         <SharedBrand>
           <TransitionLink
             href="/"
-            className="flex min-w-0 items-center gap-2"
+            className="atro-site-brand"
             aria-label="AtroUI home"
           >
-            <LogoMark className="size-5 shrink-0 text-foreground" />
-            <span className="text-[15px] font-medium tracking-[-0.02em] text-foreground">
-              AtroUI
-            </span>
+            <LogoMark className="size-4 shrink-0 text-foreground" />
+            <span>AtroUI</span>
           </TransitionLink>
         </SharedBrand>
-
-        <SiteNav />
-
-        <div className="ml-auto flex shrink-0 items-center gap-2">
-          <div className="hidden md:block">
-            <CommandMenu />
-          </div>
-          <div className="md:hidden">
-            <CommandMenu compact />
-          </div>
+      }
+      trailing={
+        <>
+          <CommandMenu compact />
           <ThemeToggle />
-          <a
-            href={GITHUB_REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="hidden h-9 items-center gap-1.5 rounded-[var(--atro-control-radius)] px-2.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
-          >
-            <Github className="size-4" aria-hidden />
-            GitHub
-          </a>
-          <TransitionLink
-            href="/docs/components"
-            transitionTypes={[]}
-            className="atro-btn hidden md:inline-flex"
-          >
-            Browse
-          </TransitionLink>
-        </div>
-      </div>
-    </header>
+        </>
+      }
+    >
+      <SiteNav />
+    </SiteChrome>
   )
 }

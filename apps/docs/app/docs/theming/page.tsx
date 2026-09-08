@@ -8,7 +8,7 @@ import { docsPageMetadata } from "@/lib/docs-metadata"
 export const metadata: Metadata = docsPageMetadata({
   title: "Theming",
   description:
-    "AtroUI dark-first design tokens - black canvas, brand #0b7bff, glass surfaces, Outfit display + UI with opt-in Caveat sketch. Customize host CSS and @atroui/brand.",
+    "AtroUI dark-first tokens — violet primary, Merriweather headings + DM Sans UI, Caveat sketch, soft-rect radius. Customize host CSS and @atroui/brand.",
   path: "/docs/theming",
 })
 
@@ -20,10 +20,14 @@ export default function ThemingPage() {
         title="Theming"
         lede={
           <>
-            AtroUI&rsquo;s design system is dark-first: black canvas, brand blue
-            from the hero shader (<code>#0b7bff</code>),{" "}
-            <strong>Outfit display and UI</strong> with opt-in Caveat sketch,
-            quiet panels, and soft-rect CTAs. After <code>npx shadcn add</code>, tokens live in{" "}
+            Dark-first tokens on a cool charcoal canvas. Primary and{" "}
+            <code>--brand</code> share the same violet (
+            <code>#6d28d9</code> /{" "}
+            <code>oklch(0.457 0.24 277)</code>).{" "}
+            <strong>Merriweather</strong> for headings,{" "}
+            <strong>DM Sans</strong> for UI and body, opt-in Caveat
+            sketch, soft-rect CTAs via <code>--radius</code>. After{" "}
+            <code>npx shadcn add</code>, tokens live in{" "}
             <strong>your</strong> host CSS (or a theme sheet you copy), not
             behind a required npm import.
           </>
@@ -42,10 +46,12 @@ export default function ThemingPage() {
             .dark
           </code>
           . Override brand or neutrals to restyle without rewriting components.
+          Site chrome CTAs (<code>.atro-btn</code>, <code>.ms-cta</code>) and
+          shadcn <code>Button</code> all read <code>--primary</code>.
         </p>
         <CodeBlock
           language="css"
-          code={`.dark {\n  --brand: oklch(0.62 0.2 255);\n  --background: oklch(0 0 0);\n  --primary: oklch(0.99 0 0);\n  --primary-foreground: oklch(0 0 0);\n  --font-sans: var(--font-outfit);\n}`}
+          code={`.dark {\n  --background: oklch(0.141 0.005 285.823);\n  --foreground: oklch(0.985 0 0);\n  --primary: oklch(0.398 0.195 277.366);\n  --primary-foreground: oklch(0.962 0.018 272.314);\n  --brand: oklch(0.585 0.233 277.117);\n  --font-sans: var(--font-dm-sans);\n}`}
         />
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           The docs host and Host API consumers can still import{" "}
@@ -68,14 +74,12 @@ export default function ThemingPage() {
       <section className="space-y-4">
         <h2 className="docs-section-title">Fonts</h2>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          Two voices on purpose:
+          Same pairing as the shadcn Mira + Indigo preset:
         </p>
         <ul className="list-disc space-y-2 pl-5 text-[15px] text-muted-foreground">
           <li>
-            <strong className="text-foreground">Outfit (display + UI)</strong> —
-            page titles, section headings, body and supporting copy at{" "}
-            <em className="text-foreground">regular</em> weight — not
-            ultra-light (
+            <strong className="text-foreground">Merriweather (headings)</strong>{" "}
+            — page titles, section H2s, display accents (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-display
             </code>
@@ -84,6 +88,14 @@ export default function ThemingPage() {
               .ds-headline
             </code>
             ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-display-italic
+            </code>
+            ). Bold weight; true italic for accent words.
+          </li>
+          <li>
+            <strong className="text-foreground">DM Sans (base / UI)</strong> —
+            body, ledes, labels, buttons, chrome (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-lede
             </code>
@@ -95,12 +107,15 @@ export default function ThemingPage() {
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-meta
             </code>
+            ,{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              .ds-eyebrow
+            </code>
             ).
           </li>
           <li>
             <strong className="text-foreground">Caveat (opt-in sketch)</strong> —
-            never the default display face. Reach for it on brand marks,
-            chalkboard accents, and display accent words (
+            never the default display face. Brand marks and chalkboard accents (
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-sketch
             </code>
@@ -108,12 +123,7 @@ export default function ThemingPage() {
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               .ds-sketch-accent
             </code>
-            ,{" "}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-              .ds-display-italic
-            </code>
-            — Outfit has no italic, so accent spans use sketch rather than a
-            fake oblique).
+            ).
           </li>
           <li>
             <strong className="text-foreground">Geist Mono</strong> — code,
@@ -133,23 +143,32 @@ export default function ThemingPage() {
           </li>
         </ul>
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
-          On the docs host, load Caveat + Outfit in the root layout and expose{" "}
+          On the docs host, load Merriweather + DM Sans + Caveat + Geist Mono in
+          the root layout and expose{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            --font-merriweather
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            --font-dm-sans
+          </code>
+          ,{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             --font-caveat
-          </code>{" "}
-          /{" "}
+          </code>
+          , and{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
-            --font-outfit
+            --font-geist-mono
           </code>
           .
         </p>
         <CodeBlock
           language="css"
           code={`/* Token map (already in atroui globals) */
---font-heading: var(--font-outfit); /* section h2 */
---font-display: var(--font-heading); /* page titles */
---font-sans: var(--font-outfit);    /* body / UI */
---font-sketch: var(--font-caveat);  /* opt-in: .ds-sketch only */`}
+--font-heading: var(--font-merriweather); /* titles / H2 */
+--font-display: var(--font-heading);
+--font-sans: var(--font-dm-sans);         /* body / UI */
+--font-sketch: var(--font-caveat);        /* opt-in sketch only */`}
         />
       </section>
 
@@ -173,7 +192,7 @@ export default function ThemingPage() {
         </p>
         <CodeBlock
           language="css"
-          code={`:root {\n  /* Soft rect (AtroUI default) */\n  --radius: 0.875rem;\n\n  /* Sharp — set once, CTAs follow */\n  /* --radius: 0; */\n\n  /* Extra soft — still not a pill */\n  /* --radius: 1.25rem; */\n}`}
+          code={`:root {\n  /* Soft rect (AtroUI default) — controls follow via --atro-control-radius */\n  --radius: 0.45rem;\n\n  /* Sharp — set once, CTAs follow */\n  /* --radius: 0; */\n\n  /* Extra soft — still not a pill */\n  /* --radius: 1.25rem; */\n}`}
         />
         <p className="text-[15px] font-light leading-relaxed text-muted-foreground">
           Want full pills? Edit the installed block — change{" "}

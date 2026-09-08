@@ -73,7 +73,7 @@ function Chip({
       disabled={disabled}
       className={
         pressed
-          ? "border border-[var(--color-brand,#0b7bff)] bg-[var(--color-brand,#0b7bff)]/10 px-3.5 py-2.5 text-left text-sm text-foreground"
+          ? "border border-[var(--color-brand,#6d28d9)] bg-[var(--color-brand,#6d28d9)]/10 px-3.5 py-2.5 text-left text-sm text-foreground"
           : "border border-border-subtle bg-background px-3.5 py-2.5 text-left text-sm text-muted-foreground hover:border-border hover:text-foreground"
       }
     >
@@ -141,7 +141,7 @@ export function ContactForm() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
       >
-        <div className="flex size-10 items-center justify-center rounded-full bg-[var(--color-brand,#0b7bff)]/15 text-[var(--color-brand,#0b7bff)]">
+        <div className="flex size-10 items-center justify-center rounded-full bg-[var(--color-brand,#6d28d9)]/15 text-[var(--color-brand,#6d28d9)]">
           <Check className="size-5" aria-hidden />
         </div>
         <h2 className="mt-4 text-2xl font-medium text-foreground">
@@ -172,7 +172,7 @@ export function ContactForm() {
                 i === step
                   ? "text-xs font-medium text-foreground"
                   : i < step
-                    ? "text-xs text-[var(--color-brand,#0b7bff)]"
+                    ? "text-xs text-[var(--color-brand,#6d28d9)]"
                     : "text-xs text-muted-foreground"
               }
             >

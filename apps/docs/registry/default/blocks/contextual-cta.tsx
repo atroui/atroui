@@ -95,7 +95,7 @@ export function ContextualCta({ preview = false }: ContextualCtaProps) {
         <div className="flex items-stretch border border-border-subtle bg-background shadow-[0_16px_48px_-24px_rgba(0,0,0,0.35)]">
           <div
             aria-hidden
-            className="w-1 shrink-0 bg-[var(--color-brand,#0b7bff)]"
+            className="w-1 shrink-0 bg-[var(--color-brand,#6d28d9)]"
           />
           <div className="flex min-w-0 flex-1 flex-col gap-3 p-3.5 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
             <div className="min-w-0 flex-1">

@@ -43,7 +43,7 @@ export function HomeHeroLead() {
         <div className="mx-auto flex max-w-7xl flex-col items-center space-y-3.5 border-x border-border-subtle px-6 py-7 text-center sm:px-10 sm:py-8">
           <p className="inline-flex items-center gap-2 rounded-lg border border-border-subtle px-3 py-1 text-[11px] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
             <span
-              className="size-1.5 rounded-full bg-[var(--color-brand,#0b7bff)]"
+              className="size-1.5 rounded-full bg-[var(--color-brand,#6d28d9)]"
               aria-hidden
             />
             {CONTENT.stamp}
@@ -51,7 +51,7 @@ export function HomeHeroLead() {
 
           <h1 className="max-w-4xl text-[1.75rem] leading-[1.05] font-medium tracking-tight text-foreground sm:text-4xl md:text-5xl">
             {CONTENT.headlineBefore}{" "}
-            <span className="italic text-[var(--color-brand,#0b7bff)]">
+            <span className="italic text-[var(--color-brand,#6d28d9)]">
               {CONTENT.headlineAccent}
             </span>
             {CONTENT.headlineAfter}
@@ -89,7 +89,7 @@ export function HomeHero() {
           <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle px-6 py-10 text-center sm:px-10 sm:py-14">
             <p className="inline-flex items-center gap-2 rounded-lg border border-border-subtle px-3 py-1 text-[11px] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
               <span
-                className="size-1.5 rounded-full bg-[var(--color-brand,#0b7bff)]"
+                className="size-1.5 rounded-full bg-[var(--color-brand,#6d28d9)]"
                 aria-hidden
               />
               {CONTENT.stamp}
@@ -97,7 +97,7 @@ export function HomeHero() {
 
             <h1 className="max-w-4xl text-[2.125rem] leading-[1.05] font-medium tracking-tight text-foreground sm:text-6xl md:text-7xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#0b7bff)]">
+              <span className="italic text-[var(--color-brand,#6d28d9)]">
                 {CONTENT.headlineAccent}
               </span>
               {CONTENT.headlineAfter}
@@ -163,7 +163,7 @@ export function HomeHero() {
               </div>
               <Link
                 href={CONTENT.ogHref}
-                className="hidden items-center gap-1 text-[11px] font-medium text-[var(--color-brand,#0b7bff)] sm:inline-flex"
+                className="hidden items-center gap-1 text-[11px] font-medium text-[var(--color-brand,#6d28d9)] sm:inline-flex"
               >
                 Open live
                 <ArrowUpRight className="size-3" aria-hidden />
@@ -172,7 +172,7 @@ export function HomeHero() {
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px]">
               <div className="min-w-0 border-b border-border-subtle p-4 lg:border-b-0 lg:border-r">
-                <div className="flex aspect-[1200/630] flex-col justify-end rounded-xl bg-gradient-to-br from-[#0a0a0a] via-[#111827] to-[#0b7bff]/30 p-6 ring-1 ring-border-subtle">
+                <div className="flex aspect-[1200/630] flex-col justify-end rounded-xl bg-gradient-to-br from-[#0a0a0a] via-[#111827] to-[#6d28d9]/30 p-6 ring-1 ring-border-subtle">
                   <p className="whitespace-pre-line text-2xl font-medium tracking-tight text-white sm:text-3xl">
                     {CONTENT.ogTitle}
                   </p>
@@ -187,7 +187,7 @@ export function HomeHero() {
                   <p className="font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
                     {CONTENT.sprintTitle}
                   </p>
-                  <span className="text-[11px] tabular-nums text-[var(--color-brand,#0b7bff)]">
+                  <span className="text-[11px] tabular-nums text-[var(--color-brand,#6d28d9)]">
                     {CONTENT.sprintDay}
                   </span>
                 </div>
@@ -197,7 +197,7 @@ export function HomeHero() {
                       key={row.day}
                       className={
                         "active" in row && row.active
-                          ? "flex items-center gap-3 bg-[color-mix(in_oklab,var(--color-brand,#0b7bff)_8%,transparent)] px-4 py-3"
+                          ? "flex items-center gap-3 bg-[color-mix(in_oklab,var(--color-brand,#6d28d9)_8%,transparent)] px-4 py-3"
                           : "flex items-center gap-3 px-4 py-3"
                       }
                     >
@@ -221,12 +221,12 @@ export function HomeHero() {
                       </span>
                       {row.done ? (
                         <span
-                          className="ml-auto size-1.5 rounded-full bg-[var(--color-brand,#0b7bff)]"
+                          className="ml-auto size-1.5 rounded-full bg-[var(--color-brand,#6d28d9)]"
                           aria-hidden
                         />
                       ) : "active" in row && row.active ? (
                         <span
-                          className="ml-auto size-1.5 animate-pulse rounded-full bg-[var(--color-brand,#0b7bff)]"
+                          className="ml-auto size-1.5 animate-pulse rounded-full bg-[var(--color-brand,#6d28d9)]"
                           aria-hidden
                         />
                       ) : null}

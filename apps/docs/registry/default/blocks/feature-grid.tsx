@@ -53,7 +53,7 @@ export function FeatureGrid() {
             </p>
             <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#0b7bff)]">
+              <span className="italic text-[var(--color-brand,#6d28d9)]">
                 {CONTENT.headlineAccent}
               </span>
               {CONTENT.headlineAfter}

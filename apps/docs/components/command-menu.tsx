@@ -56,7 +56,7 @@ function SearchDialog({
           <Search className="size-4 text-muted-foreground" aria-hidden />
           <input
             autoFocus
-            placeholder="Search components…"
+            placeholder="Search docs…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="h-10 flex-1 bg-transparent text-sm text-foreground caret-brand outline-none placeholder:text-muted-foreground"
@@ -167,9 +167,9 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           aria-label="Search documentation"
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle bg-white/5 text-foreground"
+          className="atro-site-icon-btn border border-border-subtle bg-transparent text-foreground"
         >
-          <Search className="size-4" aria-hidden />
+          <Search className="size-3.5" aria-hidden />
         </button>
       ) : (
         <button
@@ -177,11 +177,11 @@ export function CommandMenu({ compact }: { compact?: boolean }) {
           onClick={() => setOpen(true)}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="inline-flex h-9 w-full max-w-[min(220px,40vw)] items-center gap-2 rounded-[var(--atro-control-radius)] border border-border-subtle bg-white/5 px-3 text-[13px] text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+          className="inline-flex h-8 w-full min-w-[10rem] items-center gap-2 rounded-[var(--atro-control-radius)] border border-border-subtle bg-transparent px-2.5 text-[12px] text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground"
         >
           <Search className="size-3.5 shrink-0" aria-hidden />
-          <span className="flex-1 text-left">Search…</span>
-          <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-[0.25rem] border border-border-subtle bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
+          <span className="min-w-0 flex-1 truncate text-left">Search docs…</span>
+          <kbd className="pointer-events-none hidden h-5 select-none items-center rounded-[0.25rem] border border-border-subtle px-1 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
             ⌘K
           </kbd>
         </button>

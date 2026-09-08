@@ -156,7 +156,7 @@ export function MobileSidebar() {
         type="button"
         aria-label="Open documentation menu"
         onClick={() => setOpen(true)}
-        className="inline-flex size-9 items-center justify-center rounded-md border border-border-subtle text-foreground"
+        className="atro-site-icon-btn border border-border-subtle text-foreground"
       >
         <Menu className="h-4 w-4" aria-hidden />
       </button>

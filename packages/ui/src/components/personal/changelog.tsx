@@ -152,7 +152,7 @@ export function Changelog({
                           className={
                             "inline-flex items-center rounded-[3px] px-1.5 py-[1px] font-mono text-[10.5px] transition-colors " +
                             (activeTag === tag
-                              ? "bg-[color-mix(in_oklab,var(--color-brand,#0b7bff)_16%,transparent)] text-[var(--color-brand,#0b7bff)]"
+                              ? "bg-[color-mix(in_oklab,var(--color-brand,#6d28d9)_16%,transparent)] text-[var(--color-brand,#6d28d9)]"
                               : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground")
                           }
                         >
@@ -187,7 +187,7 @@ function TagButton({
       className={
         "inline-flex items-center rounded-md px-2.5 py-1 font-mono text-[11px] transition-colors " +
         (active
-          ? "bg-[color-mix(in_oklab,var(--color-brand,#0b7bff)_16%,transparent)] text-[var(--color-brand,#0b7bff)]"
+          ? "bg-[color-mix(in_oklab,var(--color-brand,#6d28d9)_16%,transparent)] text-[var(--color-brand,#6d28d9)]"
           : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground")
       }
     >

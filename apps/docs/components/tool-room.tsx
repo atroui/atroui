@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { cn } from "@/lib/utils"
 
 /**
- * Tool room — same arrival as a docs page (quiet eyebrow, Outfit title + rule)
+ * Tool room — same arrival as a docs page (quiet eyebrow, Instrument title + rule)
  * followed by the framed product stage. Used by /og and /planner.
  *
  * Wears the docs bar without the chapter nav so the room reads as one app; the

@@ -18,7 +18,7 @@
 ## Setup
 
 - [Registry](https://www.atroui.com/docs/registry): How `@atroui/…` copies source into your repo and how names map.
-- [Theming](https://www.atroui.com/docs/theming): Dark-first tokens, Outfit display, opt-in Caveat sketch.
+- [Theming](https://www.atroui.com/docs/theming): Dark-first tokens, Merriweather headings + DM Sans UI, opt-in Caveat sketch.
 - [Host APIs](https://www.atroui.com/docs/host-api): Forms and AI routes on your keys — BYOK, 503 when missing.
 
 ## Kits

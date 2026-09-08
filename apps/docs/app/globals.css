@@ -34,17 +34,112 @@ html {
   }
 }
 
-/* Shared product CTAs — one soft-rect control (Browse / hero / footer / docs) */
+/* Shared navbar — floating soft-rect pill (marketing + docs) */
+.atro-site-chrome {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 40;
+  margin-top: 0.75rem;
+  background: transparent;
+  border: none;
+  pointer-events: none;
+}
+.atro-site-chrome .atro-shell {
+  pointer-events: auto;
+}
+.atro-site-chrome-inner {
+  display: flex;
+  height: 2.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 0.65rem;
+  border-radius: var(--atro-panel-radius, var(--radius));
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--card) 94%, var(--background));
+  box-shadow:
+    0 1px 0 color-mix(in oklch, var(--foreground) 5%, transparent),
+    0 14px 36px -22px color-mix(in oklch, var(--foreground) 32%, transparent);
+}
+@supports (padding: max(0px)) {
+  .atro-site-chrome {
+    top: max(0.75rem, env(safe-area-inset-top));
+    margin-top: max(0.75rem, env(safe-area-inset-top));
+  }
+}
+.atro-site-chrome--docs .atro-site-chrome-inner {
+  gap: 0.75rem;
+}
+.atro-site-chrome-center {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  max-width: 28rem;
+  margin-inline: auto;
+}
+.atro-site-chrome-center > * {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .atro-site-chrome-center {
+    max-width: 32rem;
+  }
+}
+@media (min-width: 1280px) {
+  .atro-site-chrome-center {
+    max-width: 36rem;
+  }
+}
+.atro-site-brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: var(--foreground);
+}
+.atro-site-brand span {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.atro-site-icon-btn {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--atro-control-radius, 0.375rem);
+  color: var(--muted-foreground);
+  transition: color 140ms ease, background-color 140ms ease;
+}
+.atro-site-icon-btn:hover {
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--foreground) 5%, transparent);
+}
+/* Theme toggle sits at control height inside the thinner bar */
+.atro-site-chrome [aria-label^="Theme:"] {
+  height: 2rem;
+  width: 2rem;
+}
+.atro-site-chrome [role="radiogroup"] {
+  height: 2rem;
+}
+.atro-site-chrome [role="radiogroup"] > button {
+  min-height: 2rem;
+  min-width: 1.75rem;
+}
+
+/* Shared product CTAs — soft-rect controls follow theme --radius / --primary */
 :root {
-  --atro-control-radius: 0.375rem; /* matches header Browse */
+  --atro-control-radius: var(--radius);
   --atro-control-height: 2.25rem;
-  /* One radius for the product stage chrome — tool room, docs example frame,
-     landing demo frame. Cards keep --radius-lg; controls keep the value above. */
-  --atro-panel-radius: 0.5rem;
+  /* Panel chrome sits one step softer than controls */
+  --atro-panel-radius: calc(var(--radius) + 0.05rem);
   /* Arrival tokens — the .docs-book-* header classes are shared by docs,
      essays (/blog, /updates), and tool rooms (/og, /planner), so they resolve
      here too. .docs-book narrows them again for the reading room. */
-  --docs-title-font: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  --docs-title-font: var(--font-heading), ui-serif, Georgia, serif;
   --docs-fg: color-mix(in oklch, var(--foreground) 90%, transparent);
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
@@ -59,12 +154,12 @@ html {
   justify-content: center;
   gap: 0.4rem;
   border-radius: var(--atro-control-radius);
-  background: var(--foreground);
+  background: var(--primary);
   padding-inline: 0.95rem;
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  color: var(--background);
+  color: var(--primary-foreground);
   text-decoration: none;
   box-shadow: none;
   transition:
@@ -371,7 +466,7 @@ html {
   --docs-sidebar-width: 14rem; /* 224px */
   --docs-content-max: 43.125rem; /* 690px — Zed measure */
   --docs-toc-width: 11.5rem;
-  --docs-title-font: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  --docs-title-font: var(--font-heading), ui-serif, Georgia, serif;
   --docs-fg: color-mix(in oklch, var(--foreground) 90%, transparent);
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
@@ -543,7 +638,7 @@ html {
   color: var(--docs-link);
 }
 
-/* Page title — quiet chapter arrival (Outfit, not marketing display) */
+/* Page title — quiet chapter arrival (Merriweather, not marketing display) */
 .docs-book-header {
   margin-bottom: 1.75rem;
 }
@@ -562,9 +657,9 @@ html {
   border-bottom: 1px solid var(--docs-border, var(--border-subtle));
   font-family: var(--docs-title-font);
   font-size: clamp(1.625rem, 1.4rem + 0.9vw, 1.875rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   color: var(--docs-fg-strong);
 }
 .docs-book-lede {
@@ -623,7 +718,7 @@ html {
   border-bottom: 1px solid var(--docs-border);
   font-family: var(--docs-title-font);
   font-size: 1.35rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.3;
   color: var(--docs-fg-strong);
@@ -634,7 +729,7 @@ html {
   margin-top: 1.6rem;
   font-family: var(--docs-title-font);
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--docs-fg-strong);
   scroll-margin-top: 5rem;
 }
@@ -969,7 +1064,7 @@ html {
 .docs-prose h2 {
   font-family: var(--docs-title-font, var(--font-heading));
   font-size: 1.35rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.3;
   color: var(--docs-fg-strong, var(--foreground));
@@ -982,7 +1077,7 @@ html {
 .docs-prose h3 {
   font-family: var(--docs-title-font, var(--font-heading));
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--docs-fg-strong, var(--foreground));
   margin-top: 1.6rem;
@@ -1059,7 +1154,7 @@ html {
 }
 
 
-/* Blog essay — Outfit body (product room), ~740px Zed blog measure */
+/* Blog essay — DM Sans body (product room), ~740px Zed blog measure */
 .atro-essay {
   margin-inline: auto;
   width: 100%;
@@ -1083,7 +1178,7 @@ html {
 }
 
 .blog-prose {
-  font-family: var(--font-outfit), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-dm-sans), var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   color: color-mix(in oklch, var(--foreground) 78%, transparent);
@@ -1102,7 +1197,7 @@ html {
 }
 
 .blog-lede {
-  font-family: var(--font-outfit), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-dm-sans), var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
@@ -1152,18 +1247,18 @@ html {
 .atro-hero-title {
   font-family: var(--font-heading);
   font-size: clamp(2.35rem, 5.5vw, 4rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.06;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   text-wrap: balance;
 }
 
 /* Shared marketing section H2 — one step under hero, above body */
 .atro-section-title {
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
   font-size: clamp(1.35rem, 2vw, 1.55rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   line-height: 1.25;
   color: var(--foreground);
   text-wrap: balance;
@@ -1771,42 +1866,13 @@ html {
   color: var(--muted-foreground);
 }
 
-/* Final CTA band — Zed "Daily drive with Zed" */
-.atro-final-cta {
-  border-top: 1px solid var(--border-subtle);
-  background: color-mix(in oklch, var(--foreground) 2.5%, var(--background));
-}
+/* Final CTA — dense close on the shared section rhythm */
 .atro-final-cta-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding-block: 2rem;
+  gap: 1.25rem;
   text-align: center;
-}
-@media (min-width: 640px) {
-  .atro-final-cta-inner {
-    padding-block: 2.5rem;
-  }
-}
-@media (min-width: 1024px) {
-  .atro-final-cta-inner {
-    padding-block: 2.75rem;
-  }
-}
-.atro-final-cta-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: var(--foreground);
-}
-.atro-final-cta-lede {
-  max-width: 28rem;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--muted-foreground);
 }
 
 .atro-section-links {
@@ -1997,15 +2063,6 @@ html {
 }
 
 /* Landing stays a step denser than the base rhythm (matches .atro-section-inner). */
-.atro-landing .atro-final-cta-inner {
-  gap: 0.875rem;
-  padding-block: 2rem;
-}
-@media (min-width: 640px) {
-  .atro-landing .atro-final-cta-inner {
-    padding-block: 2.25rem;
-  }
-}
 
 .atro-landing .atro-section-links {
   margin-top: 0.75rem;
@@ -2029,14 +2086,13 @@ html {
 
 .atro-landing .atro-trust-title,
 .atro-landing .ds-headline,
-.atro-landing .atro-section-title,
-.atro-landing .atro-final-cta-title {
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.035em;
+.atro-landing .atro-section-title {
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  letter-spacing: -0.02em;
 }
 
 .atro-landing .atro-section-title {
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
 }
 
 .atro-landing .atro-jw-stage .ds-headline {
@@ -2078,8 +2134,7 @@ html {
 }
 
 .atro-landing .ds-lede,
-.atro-landing .ds-body,
-.atro-landing .atro-final-cta-lede {
+.atro-landing .ds-body {
   color: var(--landing-muted);
 }
 
@@ -2787,16 +2842,13 @@ html {
   background:
     radial-gradient(
       90% 60% at 50% -8%,
-      color-mix(in oklch, #0b7bff 12%, transparent),
+      color-mix(in oklch, var(--brand) 12%, transparent),
       transparent 52%
     ),
     var(--background);
 }
 
 /* Fixed-height preview — component stays full size; scroll if taller */
-.atro-landing .rw-preview-pane {
-  --color-brand: #0b7bff;
-}
 
 .atro-landing .rw-preview-stack {
   position: relative;
@@ -2958,7 +3010,7 @@ html {
   width: 0.875rem;
   height: 0.875rem;
   flex-shrink: 0;
-  color: color-mix(in oklch, #0b7bff 70%, var(--landing-muted));
+  color: color-mix(in oklch, var(--brand) 70%, var(--landing-muted));
 }
 
 .atro-landing .rw-code-file {
@@ -3053,8 +3105,8 @@ html {
     border-color 140ms ease;
 }
 .atro-landing .rw-glimpse-cta:hover {
-  border-color: color-mix(in oklch, #0b7bff 45%, var(--landing-border));
-  background: color-mix(in oklch, var(--landing-surface) 96%, #0b7bff);
+  border-color: color-mix(in oklch, var(--brand) 45%, var(--landing-border));
+  background: color-mix(in oklch, var(--landing-surface) 96%, var(--brand));
 }
 
 .atro-landing .rw-code-full {
@@ -3086,7 +3138,7 @@ html {
   margin-inline: -0.3rem;
   padding-inline: 0.3rem;
   border-radius: 0.25rem;
-  background: color-mix(in oklch, #0b7bff 12%, transparent);
+  background: color-mix(in oklch, var(--brand) 12%, transparent);
 }
 
 .atro-landing .rw-source-gutter {

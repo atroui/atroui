@@ -8,10 +8,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =============================================================================
-   AtroUI - Digital Success system
-   Black canvas · electric blue brand · glass surfaces · rounded CTAs
-   Base: hero-digital-success (#92dbe0 / #0b7bff / #3865cf)
-   Typography: Outfit display+UI · Caveat opt-in sketch · Geist Mono
+   AtroUI design tokens
+   Dark-first · violet primary (hue ~277) · soft-rect CTAs
+   Typography: Merriweather headings · DM Sans UI · Caveat sketch · Geist Mono
+   (matches shadcn Mira + Indigo + Zinc theme preset)
    ============================================================================= */
 
 @theme inline {
@@ -21,16 +21,16 @@
   --color-surface-raised: var(--surface-raised);
   --color-border-subtle: var(--border-subtle);
 
-  --font-sans: var(--font-outfit);
+  --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-outfit);
+  --font-heading: var(--font-merriweather);
   --font-display: var(--font-heading);
-  --font-body: var(--font-outfit);
-  --font-label: var(--font-outfit);
+  --font-body: var(--font-dm-sans);
+  --font-label: var(--font-dm-sans);
   /* Opt-in only — .ds-sketch and sketch accents. Never the default display. */
   --font-sketch: var(--font-caveat);
 
-  /* Hero brand - #0b7bff / #92dbe0 */
+  /* Brand accent — tracks --primary / --brand */
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
   --color-brand-dim: var(--brand-dim);
@@ -76,53 +76,57 @@
 }
 
 :root {
-  --radius: 0.875rem;
-  /* Header chrome (search / theme / Browse) — tighter than tile --radius */
-  --atro-control-radius: 0.375rem;
+  --radius: 0.45rem;
+  /* Controls follow theme radius — no separate fork that fights --radius */
+  --atro-control-radius: var(--radius);
 
-  --font-outfit: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-merriweather: "Merriweather", ui-serif, Georgia, serif;
+  --font-dm-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  /* Back-compat aliases for older host CSS / OG previews */
+  --font-instrument: var(--font-dm-sans);
+  --font-outfit: var(--font-dm-sans);
   --font-geist-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   /* Host should load Caveat (docs layout does). Fallback keeps sketchy intent. */
   --font-caveat: "Caveat", "Segoe Print", "Bradley Hand", cursive;
 
-  /* Light alternate - cool neutrals, same brand */
-  --brand: oklch(0.58 0.2 255);
-  --brand-hover: oklch(0.64 0.19 255);
-  --brand-dim: oklch(0.48 0.16 255);
-  --brand-glow: oklch(0.58 0.2 255 / 35%);
+  /* Brand tracks primary (violet) so accents / links stay coherent */
+  --brand: oklch(0.457 0.24 277.023);
+  --brand-hover: oklch(0.511 0.262 276.966);
+  --brand-dim: oklch(0.398 0.195 277.366);
+  --brand-glow: oklch(0.457 0.24 277.023 / 35%);
 
-  --background: oklch(0.985 0.005 250);
-  --foreground: oklch(0.16 0.02 260);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.16 0.02 260);
+  --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.02 260);
-  --primary: oklch(0.16 0.02 260);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.01 250);
-  --secondary-foreground: oklch(0.22 0.02 260);
-  --muted: oklch(0.955 0.01 250);
-  --muted-foreground: oklch(0.5 0.02 260);
-  --accent: oklch(0.95 0.02 250);
-  --accent-foreground: oklch(0.22 0.02 260);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.457 0.24 277.023);
+  --primary-foreground: oklch(0.962 0.018 272.314);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.015 250);
-  --input: oklch(0.88 0.015 250);
-  --ring: oklch(0.58 0.2 255);
-  --chart-1: oklch(0.7 0.12 220);
-  --chart-2: oklch(0.58 0.2 255);
-  --chart-3: oklch(0.5 0.15 260);
-  --chart-4: oklch(0.45 0.08 250);
-  --chart-5: oklch(0.35 0.04 260);
-  --sidebar: oklch(0.98 0.005 250);
-  --sidebar-foreground: oklch(0.16 0.02 260);
-  --sidebar-primary: oklch(0.58 0.2 255);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.95 0.02 250);
-  --sidebar-accent-foreground: oklch(0.22 0.02 260);
-  --sidebar-border: oklch(0.88 0.015 250);
-  --sidebar-ring: oklch(0.58 0.2 255);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+  --chart-1: oklch(0.785 0.115 274.713);
+  --chart-2: oklch(0.585 0.233 277.117);
+  --chart-3: oklch(0.511 0.262 276.966);
+  --chart-4: oklch(0.457 0.24 277.023);
+  --chart-5: oklch(0.398 0.195 277.366);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: oklch(0.511 0.262 276.966);
+  --sidebar-primary-foreground: oklch(0.962 0.018 272.314);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.705 0.015 286.067);
 
   --surface: var(--card);
   --surface-raised: var(--secondary);
@@ -130,44 +134,42 @@
 }
 
 .dark {
-  /* Hero canvas - near black with cool undertone */
-  --brand: oklch(0.62 0.2 255);
-  --brand-hover: oklch(0.72 0.16 230);
-  --brand-dim: oklch(0.5 0.15 260);
-  --brand-glow: oklch(0.62 0.2 255 / 40%);
+  --brand: oklch(0.585 0.233 277.117);
+  --brand-hover: oklch(0.785 0.115 274.713);
+  --brand-dim: oklch(0.398 0.195 277.366);
+  --brand-glow: oklch(0.585 0.233 277.117 / 40%);
 
-  --background: oklch(0 0 0);
-  --foreground: oklch(0.99 0 0);
-  --card: oklch(0.14 0.015 260);
-  --card-foreground: oklch(0.99 0 0);
-  --popover: oklch(0.14 0.015 260);
-  --popover-foreground: oklch(0.99 0 0);
-  /* Primary CTA = white pill (hero) */
-  --primary: oklch(0.99 0 0);
-  --primary-foreground: oklch(0 0 0);
-  --secondary: oklch(0.22 0.02 260);
-  --secondary-foreground: oklch(0.99 0 0);
-  --muted: oklch(0.18 0.015 260);
-  --muted-foreground: oklch(0.72 0.02 250);
-  --accent: oklch(0.22 0.03 255);
-  --accent-foreground: oklch(0.99 0 0);
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.398 0.195 277.366);
+  --primary-foreground: oklch(0.962 0.018 272.314);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.62 0.2 255);
-  --chart-1: oklch(0.85 0.07 200);
-  --chart-2: oklch(0.62 0.2 255);
-  --chart-3: oklch(0.55 0.15 260);
-  --chart-4: oklch(0.45 0.08 250);
-  --chart-5: oklch(0.35 0.04 260);
-  --sidebar: oklch(0.08 0.01 260);
-  --sidebar-foreground: oklch(0.99 0 0);
-  --sidebar-primary: oklch(0.62 0.2 255);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.18 0.02 255);
-  --sidebar-accent-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.552 0.016 285.938);
+  --chart-1: oklch(0.785 0.115 274.713);
+  --chart-2: oklch(0.585 0.233 277.117);
+  --chart-3: oklch(0.511 0.262 276.966);
+  --chart-4: oklch(0.457 0.24 277.023);
+  --chart-5: oklch(0.398 0.195 277.366);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.585 0.233 277.117);
+  --sidebar-primary-foreground: oklch(0.962 0.018 272.314);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.62 0.2 255);
+  --sidebar-ring: oklch(0.552 0.016 285.938);
 
   --surface: var(--card);
   --surface-raised: var(--secondary);
@@ -220,28 +222,27 @@
 @layer utilities {
   .ds-display {
     font-family: var(--font-display);
-    letter-spacing: -0.03em;
-    /* Outfit product default — hosts that repoint --font-display at a
+    letter-spacing: -0.02em;
+    /* Merriweather headings — hosts that repoint --font-display at a
        handwriting face should raise line-height themselves. */
-    line-height: 1.12;
-    font-weight: 500;
+    line-height: 1.15;
+    font-weight: 700;
     overflow: visible;
   }
-  /* Accent words in display lines — Outfit has no italic face, so the
-     sketch voice carries the emphasis instead of a synthetic oblique. */
+  /* Accent words in display lines — Merriweather italic (not sketch). */
   .ds-display-italic {
-    font-family: var(--font-sketch);
-    font-style: normal;
+    font-family: var(--font-display);
+    font-style: italic;
     letter-spacing: -0.01em;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1.2;
     overflow: visible;
   }
   .ds-headline {
     font-family: var(--font-heading);
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    font-weight: 700;
   }
   /* Explicit sketch voice — brand marks, couplets, chalkboard accents */
   .ds-sketch {
@@ -250,7 +251,7 @@
     font-weight: 500;
     line-height: 1.2;
   }
-  /* Quiet Outfit labels that sit under sketch titles */
+  /* Quiet DM Sans labels that sit under sketch / serif titles */
   .ds-eyebrow {
     font-family: var(--font-body);
     font-size: 0.6875rem;
@@ -311,9 +312,9 @@
     vertical-align: baseline;
     background-image: linear-gradient(
       90deg,
-      oklch(0.99 0 0),
-      oklch(0.85 0.07 200),
-      oklch(0.62 0.2 255)
+      var(--foreground),
+      color-mix(in oklch, var(--brand-hover) 70%, white),
+      var(--brand)
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -369,7 +370,7 @@
     justify-content: center;
     gap: 0.5rem;
     min-height: 2.25rem;
-    border-radius: var(--atro-control-radius, 0.375rem);
+    border-radius: var(--atro-control-radius, var(--radius));
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: 0.8125rem;
@@ -396,7 +397,7 @@
     justify-content: center;
     gap: 0.5rem;
     min-height: 2.25rem;
-    border-radius: var(--atro-control-radius, 0.375rem);
+    border-radius: var(--atro-control-radius, var(--radius));
     border: 1px solid color-mix(in oklch, var(--foreground) 20%, transparent);
     background: color-mix(in oklch, var(--foreground) 5%, transparent);
     font-size: 0.8125rem;
