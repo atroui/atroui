@@ -184,7 +184,7 @@ export function MobileSidebar() {
               <X className="h-4 w-4" aria-hidden />
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto px-3 py-6">
+          <div className="docs-scroll-quiet flex-1 overflow-y-auto px-3 py-6">
             <DocsSidebar />
           </div>
         </div>
