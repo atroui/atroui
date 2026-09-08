@@ -23,7 +23,7 @@ export default function Page() {
       preview={<DemoButton />}
       code={'import { Button } from "@/components/ui/button"\n\n<Button>Continue</Button>\n<Button variant="outline" size="sm">Cancel</Button>'}
       fullBleed={false}
-      usage="Prefer one primary button per view. Use outline/ghost for secondary actions; destructive sparingly."
+      usage="Keep one primary button per view. Use outline or ghost for the actions beside it, and destructive only when the action removes data."
       examples={[
         {
           title: "With icon",

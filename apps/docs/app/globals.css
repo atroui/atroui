@@ -109,22 +109,8 @@ html {
   }
 }
 
-/* Docs/blog ms-cta → same geometry as atro-btn (no glow, same radius) */
-.ms-cta {
-  height: var(--atro-control-height) !important;
-  min-height: var(--atro-control-height);
-  border-radius: var(--atro-control-radius) !important;
-  padding: 0 0.95rem !important;
-  font-size: 0.8125rem !important;
-  box-shadow: none !important;
-}
-.ms-cta-ghost {
-  height: var(--atro-control-height) !important;
-  min-height: var(--atro-control-height);
-  border-radius: var(--atro-control-radius) !important;
-  padding: 0 0.95rem !important;
-  font-size: 0.8125rem !important;
-}
+/* ms-cta / ms-cta-ghost geometry lives in atroui/globals.css (control height,
+   radius, padding, flat by default). Utilities like h-9 px-3.5 stay winnable. */
 
 /* Hero backdrop — hairline grid + whisper of brand. Product UI carries the room. */
 .atro-hero-canvas {

@@ -356,6 +356,42 @@ export function DemoFormSelect() {
   )
 }
 
+export function DemoFormSelectLabelled() {
+  const [plan, setPlan] = React.useState("pro")
+  return (
+    <div className="flex w-full max-w-xs flex-col gap-4 text-left">
+      <div className="space-y-1.5">
+        <label htmlFor="demo-select-plan" className="text-sm font-medium">
+          Plan
+        </label>
+        <FormSelect
+          id="demo-select-plan"
+          value={plan}
+          onValueChange={setPlan}
+          options={[
+            { value: "free", label: "Free" },
+            { value: "pro", label: "Pro" },
+            { value: "team", label: "Team" },
+          ]}
+        />
+      </div>
+      <div className="space-y-1.5">
+        <label htmlFor="demo-select-region" className="text-sm font-medium">
+          Region
+        </label>
+        <FormSelect
+          id="demo-select-region"
+          disabled
+          value=""
+          onValueChange={() => {}}
+          placeholder="Chosen by your plan"
+          options={[{ value: "iad", label: "Washington, D.C." }]}
+        />
+      </div>
+    </div>
+  )
+}
+
 export { DemoThemeAdapt } from "@/components/theme-adapt-demo"
 
 export function DemoThemeToggle() {
@@ -408,6 +444,18 @@ export function DemoBreadcrumbs() {
         { label: "Docs", href: "/docs" },
         { label: "Components", href: "/docs/components" },
         { label: "Breadcrumbs" },
+      ]}
+    />
+  )
+}
+
+export function DemoBreadcrumbsPlain() {
+  return (
+    <Breadcrumbs
+      items={[
+        { label: "Docs", href: "/docs" },
+        { label: "Primitives" },
+        { label: "Breadcrumbs", href: "/docs/components/ui-breadcrumbs" },
       ]}
     />
   )

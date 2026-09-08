@@ -23,7 +23,7 @@ export default function Page() {
       preview={<DemoCard />}
       code={'import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n} from "@/components/ui/card"\nimport { Button } from "@/components/ui/button"\n\n<Card>\n  <CardHeader>\n    <CardTitle>Project Alpha</CardTitle>\n    <CardDescription>Shipped this week</CardDescription>\n  </CardHeader>\n  <CardContent>Body copy</CardContent>\n  <CardFooter>\n    <Button size="sm">Open</Button>\n  </CardFooter>\n</Card>'}
       fullBleed={false}
-      usage="Use Card when the surface itself is the interaction container. Prefer plain sections for static marketing layout."
+      usage="Use Card when a group of content is acted on as a unit - a project, a plan, a record. For static marketing sections, plain layout reads calmer than a boxed surface."
       examples={[
         {
           title: "Header action and footer actions",

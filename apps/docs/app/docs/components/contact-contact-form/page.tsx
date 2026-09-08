@@ -19,7 +19,7 @@ export default function Page() {
       preview={<DemoContactForm />}
       code={'import { ContactForm } from "@/components/blocks/contact-form"\n\n<ContactForm />'}
       fullBleed={true}
-      usage="Pair with npx shadcn add @atroui/api-contact (or import handleContactPost from atroui/api/contact). Set SMTP_* / CONTACT_EMAIL_TO (see .env.example)."
+      usage="Posts to /api/contact. Install @atroui/api-contact for the route, or import handleContactPost from atroui/api/contact. Set SMTP_* and CONTACT_EMAIL_TO (see .env.example)."
     />
   )
 }

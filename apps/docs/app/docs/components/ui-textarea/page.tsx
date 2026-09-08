@@ -23,7 +23,7 @@ export default function Page() {
       preview={<DemoTextarea />}
       code={'import { Textarea } from "@/components/ui/textarea"\n\n<Textarea placeholder="Message" />'}
       fullBleed={false}
-      usage="Reach for Textarea whenever the answer can run past one line - notes, feedback, changelog bodies. Pair it with a real label; the placeholder is a hint, not a name."
+      usage="Use Textarea when the answer can run past one line - notes, feedback, changelog bodies. Keep a real label above it; the placeholder is a hint, not a name."
       examples={[
         {
           title: "Invalid state",
