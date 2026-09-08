@@ -134,7 +134,7 @@ export function CalendlyEmbed({ url }: CalendlyEmbedProps) {
         </p>
         <a
           href={`mailto:${brand.email}`}
-          className="inline-flex h-11 w-fit items-center gap-2 rounded-[var(--atro-control-radius,0.375rem)] bg-foreground px-5 text-sm font-medium text-background"
+          className="atro-btn w-fit"
         >
           {CONTENT.emailCtaPrefix} {brand.email}
           <ExternalLink className="size-3.5" aria-hidden />

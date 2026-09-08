@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { BlogJsonLd } from "atroui"
-import { getLatestPost, getOlderPosts } from "@/lib/blog"
+import { getLatestPost, getOlderPosts, blogPosts } from "@/lib/blog"
+import { formatLedgerDate } from "@/lib/blog-format"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -11,18 +12,19 @@ export const metadata: Metadata = docsPageMetadata({
   path: "/blog",
 })
 
-function formatLedgerDate(iso: string) {
-  // YYYY-MM-DD → keep ISO for <time>; display as compact mono
-  const [y, m, d] = iso.split("-")
-  if (!y || !m || !d) return iso
-  return `${y}.${m}.${d}`
-}
-
 export default function BlogIndexPage() {
   const latest = getLatestPost()
   const older = [...getOlderPosts()].sort((a, b) =>
     b.date.localeCompare(a.date)
   )
+  const jsonLdPosts = [...blogPosts]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((post) => ({
+      title: post.title,
+      description: post.description,
+      slug: post.slug,
+      date: post.date,
+    }))
 
   return (
     <div className="bg-background text-foreground">
@@ -30,6 +32,7 @@ export default function BlogIndexPage() {
         path="/blog"
         name="AtroUI Blog"
         description="Guides that take you from search to owning the UI with the shadcn CLI."
+        posts={jsonLdPosts}
       />
 
       <main className="blog-index">
@@ -121,7 +124,10 @@ export default function BlogIndexPage() {
             <Link href="/docs/registry" className="bam-link">
               own the UI
             </Link>
-            .
+            .{" "}
+            <a href="/rss.xml" className="bam-link">
+              RSS
+            </a>
           </p>
         </footer>
       </main>

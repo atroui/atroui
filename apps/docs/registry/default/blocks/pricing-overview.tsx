@@ -109,7 +109,7 @@ export function PricingLead() {
           </div>
           <Link
             href={CONTENT.allHref}
-            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-lg border border-border-subtle px-4 text-sm font-medium"
+            className="atro-btn-ghost shrink-0"
           >
             {CONTENT.allLabel}
             <ArrowRight className="size-3.5" aria-hidden />
@@ -151,7 +151,7 @@ export function PricingLead() {
               </div>
               <Link
                 href={featured.ctaHref}
-                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background sm:w-auto"
+                className="atro-btn w-full justify-center sm:w-auto"
               >
                 {featured.ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />
@@ -207,7 +207,7 @@ export function PricingOverview() {
           </div>
           <Link
             href={CONTENT.allHref}
-            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-lg border border-border-subtle px-4 text-sm font-medium"
+            className="atro-btn-ghost shrink-0"
           >
             {CONTENT.allLabel}
             <ArrowRight className="size-3.5" aria-hidden />
@@ -249,7 +249,7 @@ export function PricingOverview() {
               </div>
               <Link
                 href={featured.ctaHref}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background sm:w-auto"
+                className="atro-btn w-full justify-center sm:w-auto"
               >
                 {featured.ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />

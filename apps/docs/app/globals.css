@@ -147,67 +147,9 @@ html {
   --docs-link: color-mix(in oklch, var(--brand) 72%, white);
 }
 
-.atro-btn,
-.zed-btn {
-  display: inline-flex;
-  height: var(--atro-control-height);
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  border-radius: var(--atro-control-radius);
-  background: var(--primary);
-  padding-inline: 0.95rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--primary-foreground);
-  text-decoration: none;
-  box-shadow: none;
-  transition:
-    opacity 150ms ease,
-    transform 100ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .atro-btn:hover,
-  .zed-btn:hover {
-    opacity: 0.9;
-  }
-}
-.atro-btn:active,
-.zed-btn:active {
-  transform: translateY(1px) scale(0.99);
-}
-.atro-btn-ghost,
-.zed-btn-ghost {
-  display: inline-flex;
-  height: var(--atro-control-height);
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  border-radius: var(--atro-control-radius);
-  border: 1px solid var(--border-subtle);
-  background: transparent;
-  padding-inline: 0.95rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--foreground);
-  text-decoration: none;
-  box-shadow: none;
-  transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .atro-btn-ghost:hover,
-  .zed-btn-ghost:hover {
-    background: color-mix(in oklch, var(--foreground) 4%, transparent);
-    border-color: color-mix(in oklch, var(--foreground) 18%, transparent);
-  }
-}
-
-/* ms-cta / ms-cta-ghost geometry lives in atroui/globals.css (control height,
-   radius, padding, flat by default). Utilities like h-9 px-3.5 stay winnable. */
+/* Product CTAs (.atro-btn / .atro-btn-ghost; .ms-cta / .zed-btn aliases) live
+   in atroui/globals.css. Docs imports that sheet first — do not redeclare here.
+   Utilities like h-9 px-3.5 stay winnable on top of the shared geometry. */
 
 /* Hero backdrop — hairline grid + whisper of brand. Product UI carries the room. */
 .atro-hero-canvas {
@@ -1727,21 +1669,6 @@ a.docs-changelog-hash:hover {
 }
 
 
-/* Blog essay — DM Sans body (product room), ~740px Zed blog measure */
-.atro-essay {
-  margin-inline: auto;
-  width: 100%;
-  max-width: 46.25rem; /* 740px */
-  padding-inline: 1.25rem;
-  padding-block: 2.5rem 3.5rem;
-}
-@media (min-width: 640px) {
-  .atro-essay {
-    padding-inline: 1.5rem;
-    padding-block: 3rem 4rem;
-  }
-}
-
 /* ==========================================================================
    Blog index — reading-room ledger (Family Values)
    1. Gradual revelation: masthead → one lead → index spine
@@ -1751,9 +1678,9 @@ a.docs-changelog-hash:hover {
    ========================================================================== */
 
 .blog-index {
-  margin-inline: auto;
+  margin-inline: auto; /* column centered on the page */
   width: 100%;
-  max-width: 42rem; /* slightly tighter than essay — index denser */
+  max-width: 42rem;
   padding-inline: 1.25rem;
   padding-block: 2.75rem 4rem;
 }
@@ -1768,6 +1695,7 @@ a.docs-changelog-hash:hover {
 .blog-index-mast {
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
+  text-align: center;
 }
 
 .blog-index-stamp {
@@ -1788,6 +1716,7 @@ a.docs-changelog-hash:hover {
   letter-spacing: -0.04em;
   line-height: 1.08;
   text-wrap: balance;
+  text-align: center;
   color: var(--foreground);
 }
 
@@ -1799,10 +1728,12 @@ a.docs-changelog-hash:hover {
 }
 
 .blog-index-lede {
-  margin: 1rem 0 0;
-  max-width: 36ch;
+  margin: 1rem auto 0;
+  max-width: 40rem;
   font-size: 0.9375rem;
   line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
   color: color-mix(in oklch, var(--foreground) 72%, transparent);
 }
 
@@ -1811,11 +1742,13 @@ a.docs-changelog-hash:hover {
   margin-top: 0;
   padding: 1.75rem 0 2rem;
   border-bottom: 1px solid var(--border);
+  text-align: center;
 }
 
 .blog-index-lead-meta {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: 0.75rem;
 }
 
@@ -1856,16 +1789,19 @@ a.docs-changelog-hash:hover {
   letter-spacing: -0.03em;
   line-height: 1.15;
   text-wrap: balance;
+  text-align: center;
   color: var(--foreground);
   transition: color 160ms ease;
 }
 
 .blog-index-lead-desc {
-  margin: 0.75rem 0 0;
+  margin: 0.75rem auto 0;
+  max-width: 40rem;
   font-size: 0.9375rem;
   line-height: 1.55;
+  text-align: justify;
+  text-justify: inter-word;
   color: color-mix(in oklch, var(--foreground) 68%, transparent);
-  text-wrap: pretty;
 }
 
 .blog-index-lead-cta {
@@ -1887,7 +1823,7 @@ a.docs-changelog-hash:hover {
   }
 }
 
-/* Ledger — date spine */
+/* Ledger — centered stack (date above title), body justified */
 .blog-index-ledger {
   margin-top: 2.25rem;
 }
@@ -1895,7 +1831,7 @@ a.docs-changelog-hash:hover {
 .blog-index-ledger-head {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 0.35rem;
 }
@@ -1933,17 +1869,18 @@ a.docs-changelog-hash:hover {
 }
 
 .blog-index-row-link {
-  display: grid;
-  grid-template-columns: 6.25rem minmax(0, 1fr);
-  gap: 0.85rem 1.15rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
   padding-block: 1.05rem;
   text-decoration: none;
   color: inherit;
   position: relative;
-  transition: background-color 160ms ease, padding-left 160ms ease;
+  transition: background-color 160ms ease;
   border-radius: 0;
   outline-offset: 2px;
+  text-align: center;
 }
 .blog-index-row-link:focus-visible {
   outline: 2px solid var(--ring);
@@ -1955,18 +1892,16 @@ a.docs-changelog-hash:hover {
   letter-spacing: 0.03em;
   color: var(--muted-foreground);
   font-variant-numeric: tabular-nums;
-  padding-top: 0.28rem;
-  /* spine tick */
-  box-shadow: inset 2px 0 0 transparent;
-  padding-left: 0.55rem;
-  margin-left: -0.55rem;
-  transition: box-shadow 160ms ease, color 160ms ease;
+  transition: color 160ms ease;
 }
 
 .blog-index-row-body {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  align-items: center;
+  width: 100%;
+  max-width: 40rem;
   min-width: 0;
 }
 
@@ -1976,6 +1911,7 @@ a.docs-changelog-hash:hover {
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.3;
+  text-align: center;
   color: var(--foreground);
   transition: color 160ms ease;
 }
@@ -1983,34 +1919,25 @@ a.docs-changelog-hash:hover {
 .blog-index-row-desc {
   font-size: 0.8125rem;
   line-height: 1.45;
+  text-align: justify;
+  text-justify: inter-word;
   color: color-mix(in oklch, var(--foreground) 55%, transparent);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  width: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .blog-index-row-link:hover {
     background: color-mix(in oklch, var(--foreground) 2.5%, transparent);
-    padding-left: 0.35rem;
   }
   .blog-index-row-link:hover .blog-index-row-date {
     color: var(--brand);
-    box-shadow: inset 2px 0 0 var(--brand);
   }
   .blog-index-row-link:hover .blog-index-row-title {
     color: color-mix(in oklch, var(--foreground) 82%, var(--brand));
-  }
-}
-
-@media (max-width: 479px) {
-  .blog-index-row-link {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-  }
-  .blog-index-row-date {
-    padding-top: 0;
   }
 }
 
@@ -2021,10 +1948,13 @@ a.docs-changelog-hash:hover {
   font-size: 0.875rem;
   line-height: 1.55;
   color: var(--muted-foreground);
+  text-align: center;
 }
 .blog-index-exit p {
-  margin: 0;
-  max-width: 40ch;
+  margin: 0 auto;
+  max-width: 40rem;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2046,7 +1976,7 @@ a.docs-changelog-hash:hover {
    ========================================================================== */
 
 .blog-essay {
-  margin-inline: auto;
+  margin-inline: auto; /* column centered on the page */
   width: 100%;
   max-width: 42rem; /* max-w-2xl */
   padding: 0.75rem 1.5rem 2.5rem;
@@ -2060,6 +1990,7 @@ a.docs-changelog-hash:hover {
 
 .blog-essay-mast {
   margin-bottom: 0;
+  text-align: center;
 }
 
 .blog-essay-title {
@@ -2070,6 +2001,7 @@ a.docs-changelog-hash:hover {
   letter-spacing: -0.02em;
   line-height: 1.25;
   text-wrap: balance;
+  text-align: center;
   color: var(--foreground);
 }
 
@@ -2078,6 +2010,7 @@ a.docs-changelog-hash:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.15rem 0;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.75rem; /* text-xs */
@@ -2107,13 +2040,23 @@ a.docs-changelog-hash:hover {
   color: color-mix(in oklch, var(--foreground) 78%, transparent);
 }
 
-/* my-5 paragraphs — margin collapse = 1.25rem between peers */
+/* denser than rauchg my-5 — short listicle paras read less sparse */
 .blog-essay-p {
-  margin-block: 1.25rem;
+  margin-block: 0.8rem;
   font-family: var(--font-dm-sans), var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.625;
-  text-wrap: pretty;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.blog-index-lede,
+.blog-index-lead-desc,
+.blog-index-row-desc,
+.blog-index-exit p,
+.blog-essay-p {
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .blog-essay-strong {
@@ -2149,10 +2092,11 @@ a.docs-changelog-hash:hover {
 
 .blog-essay-codeblock {
   margin-block: 1.25rem;
+  text-align: left; /* code stays left-readable */
 }
 
 .blog-essay-h2 {
-  margin-block: 2rem;
+  margin-block: 1.5rem;
   position: relative;
   font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.25rem;
@@ -2160,6 +2104,7 @@ a.docs-changelog-hash:hover {
   letter-spacing: -0.02em;
   line-height: 1.3;
   text-wrap: balance;
+  text-align: center;
   color: var(--foreground);
 }
 
@@ -2182,12 +2127,15 @@ a.docs-changelog-hash:hover {
 .blog-essay-foot {
   margin-top: 2.5rem;
   padding-top: 0;
+  text-align: center;
 }
 
 .blog-essay-sign {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 40rem;
   font-size: 0.9375rem;
   line-height: 1.5;
+  text-align: center;
   color: color-mix(in oklch, var(--foreground) 78%, transparent);
 }
 
@@ -2222,48 +2170,6 @@ a.docs-changelog-hash:hover {
   .blog-essay-a,
   .blog-essay-more-link {
     transition: none;
-  }
-}
-
-/* Legacy aliases — updates page + any leftover prose hooks */
-.blog-flow p,
-.blog-prose,
-.blog-lede {
-  text-align: left;
-  text-indent: 0;
-  text-wrap: pretty;
-}
-
-.blog-prose {
-  font-family: var(--font-dm-sans), var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: color-mix(in oklch, var(--foreground) 78%, transparent);
-}
-
-@media (min-width: 640px) {
-  .blog-prose {
-    font-size: 1.0625rem;
-    line-height: 1.75;
-  }
-}
-
-.blog-prose strong {
-  font-weight: 600;
-  color: var(--foreground);
-}
-
-.blog-lede {
-  font-family: var(--font-dm-sans), var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
-}
-
-@media (min-width: 640px) {
-  .blog-lede {
-    font-size: 1.125rem;
-    line-height: 1.65;
   }
 }
 
@@ -2874,55 +2780,6 @@ a.docs-changelog-hash:hover {
   }
 }
 
-/* Legacy blog cards (unused on landing; keep for safety) */
-.atro-blog-grid {
-  display: grid;
-  gap: 1rem;
-  margin-top: 2.5rem;
-}
-@media (min-width: 768px) {
-  .atro-blog-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-.atro-blog-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.35rem;
-  text-decoration: none;
-  transition: background-color 160ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .atro-blog-card:hover {
-    background: color-mix(in oklch, var(--foreground) 3%, transparent);
-  }
-}
-.atro-blog-card-title {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
-  color: var(--foreground);
-}
-.atro-blog-card-desc {
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--muted-foreground);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.atro-blog-card-meta {
-  margin-top: auto;
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-}
-
 /* Final CTA — dense close on the shared section rhythm */
 .atro-final-cta-inner {
   display: flex;
@@ -3107,19 +2964,6 @@ a.docs-changelog-hash:hover {
   }
 }
 
-.atro-landing .atro-blog-grid {
-  gap: 0.85rem;
-  margin-top: 1.25rem;
-}
-@media (min-width: 768px) {
-  .atro-landing .atro-blog-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-.atro-landing .atro-blog-card {
-  padding: 1rem 1.1rem;
-}
-
 /* Landing stays a step denser than the base rhythm (matches .atro-section-inner). */
 
 .atro-landing .atro-section-links {
@@ -3211,8 +3055,7 @@ a.docs-changelog-hash:hover {
 
 .atro-landing .atro-just-works-panel,
 .atro-landing .atro-eco-list,
-.atro-landing .atro-letter,
-.atro-landing .atro-blog-card {
+.atro-landing .atro-letter {
   border-color: var(--landing-border);
   background: color-mix(in oklch, var(--landing-fg) 2%, transparent);
 }

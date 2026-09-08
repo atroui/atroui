@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ProjectPlanner } from "atroui"
 import { InstallCommandChip } from "@/components/install-command-chip"
 import { ToolExitBand } from "@/components/tool-exit-band"
 import { ToolRoom } from "@/components/tool-room"
 import { docsPageMetadata } from "@/lib/docs-metadata"
+import { ProjectPlanner } from "../../registry/default/blocks/project-planner"
 
 const PLANNER_INSTALL = "npx shadcn@latest add @atroui/project-planner"
 

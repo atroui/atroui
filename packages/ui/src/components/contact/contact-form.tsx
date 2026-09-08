@@ -284,7 +284,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-[var(--atro-control-radius,0.375rem)] bg-foreground px-4 text-sm font-medium text-background transition-[opacity,transform] duration-150 enabled:hover:opacity-90 enabled:active:scale-[0.98] disabled:opacity-55 motion-reduce:transition-none motion-reduce:active:scale-100"
+            className="atro-btn shrink-0 disabled:opacity-55"
           >
             {status === "loading" ? (
               <>

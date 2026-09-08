@@ -38,24 +38,15 @@ import {
   LogoWordmark,
   MadeWithEmbed,
   NewsletterForm,
-  OgExamples,
-  OgLivePreview,
-  OgWorkspace,
   PersonalHero,
-  PricingOverview,
   ProjectList,
   Prose,
-  ProjectPlanner,
   ReadingShelf,
   ResourcesContent,
   Resume,
   Reveal,
   ScopeChat,
   ScrollProgress,
-  SiteFooter,
-  SiteFooterNarrow,
-  SiteHeader,
-  SiteHeaderNarrow,
   SocialFloat,
   SocialShare,
   StackList,
@@ -90,6 +81,15 @@ import { TESTIMONIALS } from "atroui/content/testimonials"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 import { ContactStagePreview } from "@/components/registry/contact-stage-preview"
 import { HomeHero } from "../registry/default/blocks/home-hero"
+import { OgExamples } from "../registry/default/blocks/og-examples"
+import { OgLivePreview } from "../registry/default/blocks/og-live-preview"
+import { OgWorkspace } from "../registry/default/blocks/og-workspace"
+import { PricingOverview } from "../registry/default/blocks/pricing-overview"
+import { ProjectPlanner } from "../registry/default/blocks/project-planner"
+import { SiteFooter } from "../registry/default/blocks/site-footer"
+import { SiteFooterNarrow } from "../registry/default/blocks/site-footer-narrow"
+import { SiteHeader } from "../registry/default/blocks/site-header"
+import { SiteHeaderNarrow } from "../registry/default/blocks/site-header-narrow"
 
 /** Live canvas demos - one per documented component where a useful preview exists. */
 
@@ -119,6 +119,7 @@ export function DemoHomeWork() {
 }
 
 export function DemoPricingOverview() {
+  // Same `@atroui/pricing-overview` source users install — not npm.
   return <PricingOverview />
 }
 
@@ -135,6 +136,7 @@ export function DemoBoldFooter() {
 }
 
 export function DemoSiteHeader() {
+  // Same `@atroui/site-header` source users install — not npm.
   return (
     <div className="w-full bg-background">
       <SiteHeader />
@@ -628,6 +630,7 @@ export function DemoUiMockupFrame() {
 }
 
 export function DemoOgLivePreview() {
+  // Same `@atroui/og-live-preview` source users install — CSS-only card.
   return (
     <div className="relative aspect-[1200/630] w-full max-w-xl overflow-hidden rounded-xl ring-1 ring-border-subtle">
       <OgLivePreview
@@ -640,6 +643,7 @@ export function DemoOgLivePreview() {
 }
 
 export function DemoOgExamples() {
+  // Same `@atroui/og-examples` source users install — not npm.
   return (
     <div className="w-full border-y border-border-subtle bg-background">
       <OgExamples preview className="w-full" />
@@ -648,6 +652,7 @@ export function DemoOgExamples() {
 }
 
 export function DemoOgWorkspace() {
+  // Same `@atroui/og-workspace` install (CSS preview shell). Live /og tool is npm Host API.
   return (
     <div className="w-full max-h-[520px] overflow-auto rounded-xl border border-border-subtle">
       <OgWorkspace />
@@ -867,6 +872,7 @@ export function DemoTestimonialSchema() {
 }
 
 export function DemoSiteFooter() {
+  // Same `@atroui/site-footer` source users install — not npm.
   return <SiteFooter />
 }
 
@@ -903,6 +909,7 @@ export function DemoScopeChat() {
 }
 
 export function DemoProjectPlanner() {
+  // Same `@atroui/project-planner` source users install — not npm.
   return (
     <div className="w-full max-h-[520px] overflow-auto rounded-xl border border-border-subtle">
       <ProjectPlanner />
@@ -1187,6 +1194,7 @@ export function DemoThemeToggleIcon() {
 }
 
 export function DemoSiteHeaderNarrow() {
+  // Same `@atroui/site-header-narrow` source users install — not npm.
   return (
     <IndieKitFrame>
       <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">
@@ -1200,6 +1208,7 @@ export function DemoSiteHeaderNarrow() {
 }
 
 export function DemoSiteFooterNarrow() {
+  // Same `@atroui/site-footer-narrow` source users install — not npm.
   return (
     <IndieKitFrame>
       <div className="overflow-hidden rounded-xl border border-border-subtle bg-background">

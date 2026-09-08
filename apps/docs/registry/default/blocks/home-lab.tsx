@@ -86,7 +86,7 @@ export function HomeLab() {
           </div>
           <Link
             href={CONTENT.allHref}
-            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-lg border border-border-subtle px-4 text-sm font-medium"
+            className="atro-btn-ghost shrink-0"
           >
             {CONTENT.allLabel}
             <ArrowRight className="size-3.5" aria-hidden />

@@ -79,6 +79,7 @@
   /* Mira (shadcn) — light. Do not fork these values in the docs app. */
   --radius: 0.45rem;
   --atro-control-radius: var(--radius);
+  --atro-control-height: 2.25rem;
 
   --font-merriweather: "Merriweather", ui-serif, Georgia, serif;
   --font-dm-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
@@ -215,9 +216,6 @@
     text-wrap: pretty;
   }
   @media (hover: hover) and (pointer: fine) {
-    .ms-cta:hover {
-      filter: brightness(1.05);
-    }
     .ms-cta--glow:hover {
       box-shadow: 0 0 28px var(--brand-glow);
     }
@@ -368,55 +366,75 @@
     }
   }
 
-  /* Product room = flat CTAs at control height. Glow is opt-in: .ms-cta--glow */
-  .ms-cta {
+  /* Product CTAs — .atro-btn is canonical; .ms-cta / .zed-btn share the same
+     soft-rect geometry. Glow is opt-in: .ms-cta--glow */
+  .atro-btn,
+  .ms-cta,
+  .zed-btn {
     display: inline-flex;
+    height: var(--atro-control-height, 2.25rem);
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    min-height: 2.25rem;
-    border-radius: var(--atro-control-radius, var(--radius));
+    gap: 0.4rem;
+    border-radius: var(--atro-control-radius, 0.375rem);
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: -0.01em;
-    padding: 0 0.95rem;
+    padding-inline: 0.95rem;
     box-shadow: none;
+    text-decoration: none;
     transition:
-      transform 100ms ease-out,
-      filter 200ms cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 150ms ease,
+      transform 100ms ease,
       box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1);
   }
   .ms-cta--glow {
     box-shadow: 0 0 20px var(--brand-glow);
   }
-  .ms-cta:active {
-    transform: scale(0.97);
+  @media (hover: hover) and (pointer: fine) {
+    .atro-btn:hover,
+    .ms-cta:hover,
+    .zed-btn:hover {
+      opacity: 0.9;
+    }
+  }
+  .atro-btn:active,
+  .ms-cta:active,
+  .zed-btn:active {
+    transform: translateY(1px) scale(0.99);
   }
 
   /* Secondary CTA — same control geometry */
-  .ms-cta-ghost {
+  .atro-btn-ghost,
+  .ms-cta-ghost,
+  .zed-btn-ghost {
     display: inline-flex;
+    height: var(--atro-control-height, 2.25rem);
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    min-height: 2.25rem;
-    border-radius: var(--atro-control-radius, var(--radius));
-    border: 1px solid color-mix(in oklch, var(--foreground) 20%, transparent);
-    background: color-mix(in oklch, var(--foreground) 5%, transparent);
+    gap: 0.4rem;
+    border-radius: var(--atro-control-radius, 0.375rem);
+    border: 1px solid var(--border-subtle);
+    background: transparent;
     font-size: 0.8125rem;
     font-weight: 500;
+    letter-spacing: -0.01em;
     color: var(--foreground);
-    padding: 0 0.95rem;
+    padding-inline: 0.95rem;
+    box-shadow: none;
+    text-decoration: none;
     transition:
-      background-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
-      border-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+      background-color 150ms ease,
+      border-color 150ms ease;
   }
   @media (hover: hover) and (pointer: fine) {
-    .ms-cta-ghost:hover {
-      background: color-mix(in oklch, var(--foreground) 10%, transparent);
-      border-color: color-mix(in oklch, var(--foreground) 35%, transparent);
+    .atro-btn-ghost:hover,
+    .ms-cta-ghost:hover,
+    .zed-btn-ghost:hover {
+      background: color-mix(in oklch, var(--foreground) 4%, transparent);
+      border-color: color-mix(in oklch, var(--foreground) 18%, transparent);
     }
   }
 
@@ -584,7 +602,9 @@
   .og-preview-shimmer {
     animation: none;
   }
-  .ms-cta:active {
+  .atro-btn:active,
+  .ms-cta:active,
+  .zed-btn:active {
     transform: none;
   }
 }

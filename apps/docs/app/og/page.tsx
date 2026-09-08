@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Suspense } from "react"
+// Live tool: npm Host API OgWorkspace (full generate/download UI).
+// Registry `@atroui/og-workspace` is a CSS-only preview shell — see DemoOgWorkspace.
 import { OgWorkspace } from "atroui"
 import { InstallCommandChip } from "@/components/install-command-chip"
 import { ToolExitBand } from "@/components/tool-exit-band"
@@ -26,7 +28,9 @@ export default function OgPage() {
           <Link href="/docs/guides/launch-workflow" className="bam-link">
             launch workflow
           </Link>
-          . Preview downloads work without AI keys. Want only this maker?{" "}
+          . This hosted tool is the npm Host API demo (full generate UI). The
+          registry install below is the CSS preview shell you own in your repo.
+          Want only that maker?{" "}
           <Link href="/docs/components/og-og-workspace" className="bam-link">
             Docs
           </Link>
@@ -37,6 +41,7 @@ export default function OgPage() {
         <>
           <InstallCommandChip command={OG_INSTALL} />
           <p className="max-w-sm text-[11px] leading-relaxed text-muted-foreground sm:text-right">
+            Registry copy is CSS-only. This page runs the npm Host API workspace.
             AI Generate needs{" "}
             <code className="font-mono text-[10px] text-foreground">
               @atroui/api-generate

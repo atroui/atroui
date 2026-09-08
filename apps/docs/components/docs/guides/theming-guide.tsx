@@ -46,13 +46,13 @@ export function ThemingGuide() {
           </code>
           {" "}
           in light). Override Mira variables to restyle without rewriting
-          components. Site chrome CTAs (<code>.atro-btn</code>,{" "}
-          <code>.ms-cta</code>) and shadcn <code>Button</code> all read{" "}
+          components. Site chrome CTAs (<code>.atro-btn</code>;{" "}
+          <code>.ms-cta</code> aliases it) and shadcn <code>Button</code> all read{" "}
           <code>--primary</code>.
         </p>
         <CodeBlock
           language="css"
-          code={`:root {\n  --background: oklch(1 0 0);\n  --foreground: oklch(0.141 0.005 285.823);\n  --primary: oklch(0.457 0.24 277.023);\n  --radius: 0.45rem;\n}\n\n.dark {\n  --background: oklch(0.141 0.005 285.823);\n  --foreground: oklch(0.985 0 0);\n  --primary: oklch(0.398 0.195 277.366);\n  --card: oklch(0.21 0.006 285.885);\n}`}
+          code={`:root {\n  --background: oklch(1 0 0);\n  --foreground: oklch(0.141 0.005 285.823);\n  --primary: oklch(0.457 0.24 277.023);\n  --radius: 0.45rem;\n}\n\n.dark {\n  --background: oklch(0.185 0.006 285.9);\n  --foreground: oklch(0.985 0 0);\n  --primary: oklch(0.398 0.195 277.366);\n  --card: oklch(0.235 0.007 285.9);\n}`}
         />
         <p className="leading-relaxed">
           The docs host and Host API consumers can still import{" "}

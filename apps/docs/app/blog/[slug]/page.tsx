@@ -6,20 +6,10 @@ import { ArticleJsonLd } from "atroui"
 import { BlogThemeAdaptPreview } from "@/components/blog-theme-adapt-preview"
 import { CodeBlock } from "@/components/code-block"
 import { blogPosts, getPost, type BlogPost } from "@/lib/blog"
+import { formatEssayDate } from "@/lib/blog-format"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 type Props = { params: Promise<{ slug: string }> }
-
-/** “April 21, 2020” — rauchg meta line. */
-function formatEssayDate(iso: string) {
-  const d = new Date(`${iso}T12:00:00`)
-  if (Number.isNaN(d.getTime())) return iso
-  return d.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  })
-}
 
 function keepReading(slug: string, limit = 3): BlogPost[] {
   return [...blogPosts]

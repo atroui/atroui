@@ -92,7 +92,7 @@ export function WaitlistForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-[var(--atro-control-radius,0.375rem)] bg-foreground px-4 text-sm font-medium text-background transition-opacity disabled:opacity-50"
+          className="atro-btn w-full justify-center disabled:opacity-50"
         >
           {status === "loading" ? (
             <Loader2 className="size-4 animate-spin" aria-hidden />

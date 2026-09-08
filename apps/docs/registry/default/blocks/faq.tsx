@@ -110,7 +110,7 @@ export function Faq() {
           <div className="border-t border-border-subtle px-6 py-5 sm:px-8">
             <Link
               href={CONTENT.ctaHref}
-              className="inline-flex h-10 items-center gap-1.5 text-sm font-medium"
+              className="atro-btn-ghost"
             >
               {CONTENT.ctaLabel}
               <ArrowRight className="size-3.5" aria-hidden />

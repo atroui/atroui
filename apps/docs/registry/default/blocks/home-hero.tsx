@@ -60,14 +60,14 @@ export function HomeHeroLead() {
           <div className="flex w-full max-w-xl flex-col items-stretch gap-2.5 pt-1 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
             <Link
               href={CONTENT.primaryCta.href}
-              className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto"
+              className="atro-btn w-full justify-center sm:w-auto"
             >
               {CONTENT.primaryCta.label}
               <ArrowRight className="size-4" aria-hidden />
             </Link>
             <Link
               href={CONTENT.secondaryCta.href}
-              className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-border-subtle px-5 text-sm font-medium text-foreground sm:w-auto"
+              className="atro-btn-ghost w-full justify-center sm:w-auto"
             >
               {CONTENT.secondaryCta.label}
               <ArrowRight className="size-3.5 opacity-60" aria-hidden />
@@ -114,14 +114,14 @@ export function HomeHero() {
             <div className="flex w-full max-w-xl flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
               <Link
                 href={CONTENT.primaryCta.href}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto"
+                className="atro-btn w-full justify-center sm:w-auto"
               >
                 {CONTENT.primaryCta.label}
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
               <Link
                 href={CONTENT.secondaryCta.href}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-border-subtle px-5 text-sm font-medium text-foreground sm:w-auto"
+                className="atro-btn-ghost w-full justify-center sm:w-auto"
               >
                 {CONTENT.secondaryCta.label}
                 <ArrowRight className="size-3.5 opacity-60" aria-hidden />

@@ -2,16 +2,9 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { LandingSectionHeader } from "@/components/landing/landing-section-header"
 import { getRecentPosts } from "@/lib/blog"
+import { formatLongDate } from "@/lib/blog-format"
 
-function formatDate(iso: string) {
-  return new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  })
-}
-
-/** Zed “The latest” — hairline list, same rhythm as /blog (no card soup). */
+/** Home “The latest” — hairline journal strip, not the /blog ledger. */
 export function LandingBlog() {
   const posts = getRecentPosts(3)
 
@@ -40,7 +33,7 @@ export function LandingBlog() {
               <Link href={`/blog/${post.slug}`} className="atro-blog-row">
                 <div className="atro-blog-row-main">
                   {i === 0 ? (
-                    <span className="atro-blog-newest">Newest</span>
+                    <span className="atro-blog-newest">Now</span>
                   ) : null}
                   <span className="atro-blog-row-title">{post.title}</span>
                   <span className="atro-blog-row-desc">{post.description}</span>
@@ -49,7 +42,7 @@ export function LandingBlog() {
                   className="atro-blog-row-date"
                   dateTime={post.date}
                 >
-                  {formatDate(post.date)}
+                  {formatLongDate(post.date)}
                 </time>
               </Link>
             </li>

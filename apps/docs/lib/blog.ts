@@ -985,7 +985,7 @@ npx shadcn@latest add @atroui/button`,
             language: "css",
             code: `.dark {
   --brand: oklch(0.585 0.233 277.117);
-  --background: oklch(0.141 0.005 285.823);
+  --background: oklch(0.185 0.006 285.9);
   --primary: oklch(0.398 0.195 277.366);
   --primary-foreground: oklch(0.962 0.018 272.314);
   --font-sans: var(--font-dm-sans);
