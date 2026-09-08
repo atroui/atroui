@@ -989,6 +989,20 @@ export function DemoCountUp() {
   )
 }
 
+export function DemoCountUpSlow() {
+  return (
+    <div className="flex items-baseline justify-center gap-2 font-mono tabular-nums">
+      <CountUp
+        value={42}
+        duration={2400}
+        className="text-5xl font-medium tracking-tight text-foreground"
+        ariaLabel="42"
+      />
+      <span className="text-sm text-muted-foreground">blocks</span>
+    </div>
+  )
+}
+
 export function DemoDeadlineCountdown() {
   return (
     <IndieKitFrame>

@@ -5,9 +5,9 @@ import { ComponentDoc } from "@/components/component-doc"
 import { DemoThemeToggle } from "@/components/registry-demos"
 
 export const metadata: Metadata = componentPageMetadata(
-  "React Theme Toggle Component",
+  "Theme Toggle",
   "/docs/components/ui-theme-toggle",
-  "An elegant React theme toggle component built for Tailwind CSS and next-themes with soft-rect radius options."
+  "Segmented light / system / dark control for next-themes."
 )
 
 export default function Page() {

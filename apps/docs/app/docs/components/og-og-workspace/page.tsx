@@ -15,8 +15,8 @@ export default function Page() {
     <ComponentDoc
       registryName="og-workspace"
       href="/docs/components/og-og-workspace"
-      title="Next.js OG Image Workspace (Satori + BYOK)"
-      description="An interactive, client-side Open Graph social card workspace UI for Next.js powered by Satori, tailwindcss, and AI prompt overrides. Running live on this site at /og."
+      title="OG Workspace"
+      description="Client-side Open Graph card workspace (Satori + optional AI). Live on this site at /og."
       preview={<DemoOgWorkspace />}
       code={'import { OgWorkspace } from "@/components/blocks/og-workspace"\n\n<OgWorkspace />'}
       fullBleed={true}

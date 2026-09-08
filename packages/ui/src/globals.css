@@ -220,19 +220,19 @@
 @layer utilities {
   .ds-display {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
-    /* LH/overflow kept generous so a host that repoints --font-display at a
-       handwriting face still has room for ascenders / descenders. */
-    line-height: 1.25;
+    letter-spacing: -0.03em;
+    /* Outfit product default — hosts that repoint --font-display at a
+       handwriting face should raise line-height themselves. */
+    line-height: 1.12;
     font-weight: 500;
     overflow: visible;
   }
   .ds-display-italic {
     font-family: var(--font-display);
     font-style: italic;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
     font-weight: 500;
-    line-height: 1.25;
+    line-height: 1.12;
     overflow: visible;
   }
   .ds-headline {

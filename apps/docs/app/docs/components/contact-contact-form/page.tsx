@@ -14,8 +14,8 @@ export default function Page() {
     <ComponentDoc
       href="/docs/components/contact-contact-form"
       registryName="contact-form"
-      title="Hardened Next.js Contact Form with SMTP API"
-      description="A secure, production-ready React contact form component for Next.js with a matching SMTP and Resend backend API route."
+      title="Contact Form"
+      description="Production contact form with honeypot, validation, and a matching /api/contact Host route (SMTP or Resend)."
       preview={<DemoContactForm />}
       code={'import { ContactForm } from "@/components/blocks/contact-form"\n\n<ContactForm />'}
       fullBleed={true}
