@@ -1,36 +1,41 @@
 import { DocsPageFade } from "@/components/docs/docs-page-fade"
-import { DocsToc } from "@/components/docs/docs-toc"
+import {
+  DocsTocMobile,
+  DocsTocProvider,
+  DocsTocRail,
+} from "@/components/docs/docs-toc"
+import { DocsSidebarScroll } from "@/components/docs/docs-sidebar-scroll"
 import { DocsSidebar } from "@/components/sidebar"
 import { DocsRouteTransition } from "@/components/view-transitions"
 
 /**
- * Zed/mdBook page frame:
- * sidebar (280) · content (~690 measure) · optional page TOC
+ * Docs reading frame:
+ * sticky chapter spine · content measure · soft TOC satellite (xl+).
+ * Mid breakpoints get an On-this-page disclosure above the chapter.
  */
 export function DocsLayoutShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="docs-book-frame">
-      <aside className="docs-book-sidebar" aria-label="Documentation">
-        <div className="docs-book-sidebar-scroll docs-scroll-quiet">
-          <DocsSidebar />
-        </div>
-      </aside>
-
-      <div className="docs-book-page">
-        <main className="docs-book-main">
-          <div data-docs-content>
-            <DocsRouteTransition>
-              <DocsPageFade>{children}</DocsPageFade>
-            </DocsRouteTransition>
-          </div>
-        </main>
-
-        <aside className="docs-book-toc" aria-label="On this page">
-          <div className="docs-book-toc-sticky docs-scroll-quiet">
-            <DocsToc />
-          </div>
+    <DocsTocProvider>
+      <div className="docs-book-frame">
+        <aside className="docs-book-sidebar" aria-label="Documentation">
+          <DocsSidebarScroll>
+            <DocsSidebar />
+          </DocsSidebarScroll>
         </aside>
+
+        <div className="docs-book-page">
+          <main className="docs-book-main">
+            <DocsTocMobile />
+            <div data-docs-content>
+              <DocsRouteTransition>
+                <DocsPageFade>{children}</DocsPageFade>
+              </DocsRouteTransition>
+            </div>
+          </main>
+
+          <DocsTocRail />
+        </div>
       </div>
-    </div>
+    </DocsTocProvider>
   )
 }

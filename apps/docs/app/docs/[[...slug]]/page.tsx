@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import type { ComponentType } from "react"
+import type { ComponentType, ReactNode } from "react"
 import type { MDXComponents } from "mdx/types"
+import { DocsTocSeed } from "@/components/docs/docs-toc"
 import { getMDXComponents } from "@/components/mdx"
+import { normalizeServerToc } from "@/lib/docs-toc"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 import { source } from "@/lib/source"
 
@@ -14,6 +16,7 @@ type MdxPageData = {
   title: string
   description?: string
   body: ComponentType<{ components?: MDXComponents }>
+  toc?: { title?: ReactNode; url: string; depth: number }[]
 }
 
 export default async function DocsMdxPage(props: PageProps) {
@@ -23,9 +26,11 @@ export default async function DocsMdxPage(props: PageProps) {
 
   const data = page.data as MdxPageData
   const MDX = data.body
+  const toc = normalizeServerToc(data.toc)
 
   return (
     <div className="docs-mdx">
+      {toc.length > 0 ? <DocsTocSeed items={toc} /> : null}
       <MDX components={getMDXComponents()} />
     </div>
   )
