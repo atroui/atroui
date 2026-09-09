@@ -7,7 +7,7 @@ export function MotionLabelRollDoc() {
       registryName="label-roll"
       href="/docs/components/motion-label-roll"
       title="Label Roll"
-      description="Clipped dual-copy roll on hover and focus — CSS ≤100ms, not Motion variants."
+      description="Letter-staggered label swap on hover and focus — CSS only, easeOutExpo."
       preview={<DemoLabelRoll />}
       code={`import { LabelRoll } from "@/components/ui/label-roll"
 
@@ -15,13 +15,12 @@ export function MotionLabelRollDoc() {
       fullBleed={false}
       usage={
         <>
-          Use on nav links and secondary CTAs. CSS transform keeps the frequent path
-          snappy. Wrap in an {" "}
+          Use on nav links and secondary CTAs. Plain strings get a cascading letter
+          swap; other nodes fall back to a whole-line roll. Put{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
-            a
-          </code>
-          {" "}
-          or button for hover; pass{" "}
+            group
+          </code>{" "}
+          on the wrapping link so sibling icons trigger the roll. Pass{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
             interactive
           </code>{" "}

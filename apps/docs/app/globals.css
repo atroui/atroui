@@ -3035,11 +3035,10 @@ a.docs-changelog-hash:hover {
   }
 }
 
-/* Final CTA — dense close + short sticky scrub track */
+/* Final CTA — quiet close, normal section height */
 .atro-final-cta {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 }
 .atro-final-cta-inner {
   display: flex;

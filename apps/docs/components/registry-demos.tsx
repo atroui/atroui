@@ -1317,7 +1317,7 @@ export function DemoBaseUiPlayground() {
             <DemoToggle />
             <a
               href="#playground-motion"
-              className="text-sm font-medium text-foreground"
+              className="group text-sm font-medium text-foreground"
             >
               <LabelRoll secondary="Install AtroUI">Get started</LabelRoll>
             </a>
@@ -1796,11 +1796,11 @@ export function DemoTransitionPanel() {
 export function DemoLabelRoll() {
   return (
     <div className="flex w-full max-w-md flex-col items-center gap-3 py-4">
-      <a href="#demo" className="text-base font-medium text-foreground">
+      <a href="#demo" className="group text-base font-medium text-foreground">
         <LabelRoll secondary="Install AtroUI">Get started</LabelRoll>
       </a>
       <p className="text-center text-sm text-muted-foreground">
-        Hover or focus — clipped dual-copy roll.
+        Hover — letters cascade out; the next label rises in.
       </p>
     </div>
   )

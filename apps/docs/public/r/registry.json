@@ -1478,7 +1478,7 @@
       "name": "label-roll",
       "type": "registry:ui",
       "title": "Label Roll",
-      "description": "Clipped dual-copy roll on hover/focus for links and secondary CTAs.",
+      "description": "Letter-staggered label swap on hover/focus for links and secondary CTAs.",
       "dependencies": [
         "motion"
       ],
