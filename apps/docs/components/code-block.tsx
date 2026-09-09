@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Check, Copy } from "lucide-react"
 import { CopyButton } from "atroui"
 import { highlight } from "fumadocs-core/highlight"
 import posthog from "posthog-js"
