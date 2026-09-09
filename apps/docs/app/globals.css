@@ -148,7 +148,7 @@ html {
   --docs-fg: color-mix(in oklch, var(--foreground) 90%, transparent);
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
-  --docs-link: color-mix(in oklch, var(--brand) 72%, white);
+  --docs-link: color-mix(in oklch, var(--brand) 85%, var(--foreground));
 }
 
 /* Product CTAs (.atro-btn / .atro-btn-ghost; .ms-cta / .zed-btn aliases) live
@@ -424,7 +424,7 @@ html {
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
   --docs-sidebar-bg: color-mix(in oklch, var(--foreground) 2%, var(--background));
-  --docs-link: color-mix(in oklch, var(--brand) 72%, white);
+  --docs-link: color-mix(in oklch, var(--brand) 85%, var(--foreground));
 }
 
 .docs-book-frame {

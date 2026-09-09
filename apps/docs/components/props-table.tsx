@@ -21,7 +21,7 @@ export function PropsTable({ data, className }: PropsTableProps) {
       )}
     >
       <table className="w-full min-w-[36rem] text-left text-sm">
-        <thead className="border-b border-border-subtle bg-white/[0.03]">
+        <thead className="border-b border-border-subtle bg-muted/60">
           <tr>
             {["Prop", "Type", "Default", "Description"].map((label) => (
               <th

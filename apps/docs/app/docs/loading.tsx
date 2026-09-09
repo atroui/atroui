@@ -5,10 +5,10 @@ export default function Loading() {
       aria-busy="true"
       aria-label="Loading"
     >
-      <div className="h-8 w-2/3 max-w-md rounded-sm bg-white/8" />
+      <div className="h-8 w-2/3 max-w-md rounded-sm bg-muted" />
       <div className="h-px w-full bg-border-subtle" />
-      <div className="mt-2 h-4 w-full max-w-lg rounded-sm bg-white/[0.05]" />
-      <div className="h-4 w-5/6 max-w-md rounded-sm bg-white/[0.05]" />
+      <div className="mt-2 h-4 w-full max-w-lg rounded-sm bg-muted/60" />
+      <div className="h-4 w-5/6 max-w-md rounded-sm bg-muted/60" />
     </div>
   )
 }

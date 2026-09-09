@@ -148,7 +148,7 @@ export function HomeHero() {
 
       <div className="relative z-10 w-full border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-8 sm:px-10 sm:py-10">
-          <div className="overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-muted/20 shadow-[0_32px_80px_-40px_rgba(0,0,0,0.45)]">
+          <div className="overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-muted/20 shadow-sm">
             <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/40 px-3 py-2.5 sm:px-4">
               <div className="flex gap-1.5" aria-hidden>
                 <span className="size-2.5 rounded-full bg-foreground/15" />
@@ -173,10 +173,10 @@ export function HomeHero() {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px]">
               <div className="min-w-0 border-b border-border-subtle p-4 lg:border-b-0 lg:border-r">
                 <div className="flex aspect-[1200/630] flex-col justify-end rounded-xl bg-gradient-to-br from-background via-card to-[color-mix(in_oklch,var(--brand)_30%,transparent)] p-6 ring-1 ring-border-subtle">
-                  <p className="whitespace-pre-line text-2xl font-medium tracking-tight text-white sm:text-3xl">
+                  <p className="whitespace-pre-line text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
                     {CONTENT.ogTitle}
                   </p>
-                  <p className="mt-2 text-sm text-white/70">
+                  <p className="mt-2 text-sm text-muted-foreground">
                     {brand.name} - {CONTENT.ogSubtitle}
                   </p>
                 </div>

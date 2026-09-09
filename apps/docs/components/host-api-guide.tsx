@@ -149,7 +149,7 @@ XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`}
           children: (
             <div className="overflow-x-auto rounded-xl border border-border-subtle bg-background/40">
               <table className="w-full min-w-[28rem] text-left text-sm">
-                <thead className="border-b border-border-subtle bg-white/[0.03]">
+                <thead className="border-b border-border-subtle bg-muted/60">
                   <tr>
                     {["Control", "Default"].map((label) => (
                       <th

@@ -52,7 +52,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         title={`Theme: ${currentOption.label}`}
         onClick={cycle}
         className={cn(
-          "inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle bg-white/5 text-foreground sm:hidden active:scale-[0.97]",
+          "inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle bg-muted text-foreground sm:hidden active:scale-[0.97]",
           className
         )}
       >
@@ -63,7 +63,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         role="radiogroup"
         aria-label="Theme"
         className={cn(
-          "hidden items-stretch overflow-hidden rounded-[var(--atro-control-radius)] border border-border-subtle bg-white/5 sm:inline-flex",
+          "hidden items-stretch overflow-hidden rounded-[var(--atro-control-radius)] border border-border-subtle bg-muted sm:inline-flex",
           className
         )}
       >
@@ -85,7 +85,8 @@ export function ThemeToggle({ className }: { className?: string }) {
               className={cn(
                 "relative inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
                 isActive && "text-primary-foreground",
-                !isActive && "hover:bg-white/10 hover:text-foreground"
+                !isActive &&
+                  "hover:bg-foreground/[0.06] hover:text-foreground"
               )}
             >
               {isActive &&

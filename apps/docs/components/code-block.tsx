@@ -102,7 +102,7 @@ export function CodeBlock({
         className,
       )}
     >
-      <div className="flex items-center justify-between border-b border-border-subtle bg-white/[0.03] px-4 py-2.5">
+      <div className="flex items-center justify-between border-b border-border-subtle bg-muted/60 px-4 py-2.5">
         <span className="text-[11px] font-semibold tracking-[0.08em] text-muted-foreground uppercase">
           {language}
         </span>
@@ -117,7 +117,7 @@ export function CodeBlock({
               embedded,
             })
           }}
-          className="h-7 border bg-white/5 px-2.5 text-[12px] font-medium text-muted-foreground hover:bg-white/10 hover:text-foreground dark:bg-white/5"
+          className="h-7 border bg-foreground/[0.04] px-2.5 text-[12px] font-medium text-muted-foreground hover:bg-foreground/[0.06] hover:text-foreground"
         />
       </div>
       <React.Suspense fallback={<CodeFallback code={code} />}>

@@ -76,7 +76,8 @@
 }
 
 :root {
-  /* Mira (shadcn) — light. Do not fork these values in the docs app. */
+  /* Mira (shadcn) — light. Soft cool paper room (hue ~286), not pure white
+     or cream — intentional room like dark. Do not fork in the docs app. */
   --radius: 0.45rem;
   --atro-control-radius: var(--radius);
   --atro-control-height: 2.25rem;
@@ -91,36 +92,36 @@
   /* Host should load Caveat (docs layout does). Fallback keeps sketchy intent. */
   --font-caveat: "Caveat", "Segoe Print", "Bradley Hand", cursive;
 
-  --background: oklch(1 0 0);
+  --background: oklch(0.985 0.004 286);
   --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
+  --card: oklch(0.995 0.002 286);
   --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.995 0.002 286);
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.457 0.24 277.023);
   --primary-foreground: oklch(0.962 0.018 272.314);
-  --secondary: oklch(0.967 0.001 286.375);
+  --secondary: oklch(0.955 0.005 286);
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
+  --muted: oklch(0.955 0.005 286);
   --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
+  --accent: oklch(0.955 0.005 286);
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
+  --border: oklch(0.90 0.006 286);
+  --input: oklch(0.90 0.006 286);
   --ring: oklch(0.705 0.015 286.067);
   --chart-1: oklch(0.785 0.115 274.713);
   --chart-2: oklch(0.585 0.233 277.117);
   --chart-3: oklch(0.511 0.262 276.966);
   --chart-4: oklch(0.457 0.24 277.023);
   --chart-5: oklch(0.398 0.195 277.366);
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0.985 0.004 286);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.511 0.262 276.966);
   --sidebar-primary-foreground: oklch(0.962 0.018 272.314);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent: oklch(0.955 0.005 286);
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-border: oklch(0.90 0.006 286);
   --sidebar-ring: oklch(0.705 0.015 286.067);
 
   /* Atro aliases — derived from Mira only, never a second palette */
@@ -359,10 +360,14 @@
   }
   @media (hover: hover) and (pointer: fine) {
     .ds-hero-nav-link:hover {
-      color: rgb(255 255 255 / 0.95);
+      color: color-mix(in oklch, var(--foreground) 95%, transparent);
       text-decoration-line: underline;
       text-decoration-style: wavy;
-      text-decoration-color: rgb(255 255 255 / 0.9);
+      text-decoration-color: color-mix(
+        in oklch,
+        var(--foreground) 90%,
+        transparent
+      );
     }
   }
 

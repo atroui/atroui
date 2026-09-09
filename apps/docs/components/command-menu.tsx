@@ -73,7 +73,7 @@ function SearchDialog({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex size-8 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+            className="inline-flex size-8 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
             aria-label="Close"
           >
             <X className="size-4" />
@@ -95,7 +95,7 @@ function SearchDialog({
                 key={`${item.source ?? "nav"}:${item.href}`}
                 type="button"
                 className={cn(
-                  "flex w-full items-center justify-between gap-3 rounded-[var(--atro-control-radius)] px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-white/5"
+                  "flex w-full items-center justify-between gap-3 rounded-[var(--atro-control-radius)] px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-foreground/[0.06]"
                 )}
                 onClick={() => onSelect(item)}
               >
