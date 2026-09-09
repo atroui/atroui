@@ -1033,6 +1033,13 @@ html[data-type="mono"] {
   background-size: 200% 100%;
   animation: og-shimmer 1.4s ease-in-out infinite;
 }
+/* Fillable controls — Careful delight: ring-tinted caret while typing.
+   Focus settle stays on the control (border + ring tween). No float-label
+   or per-keystroke Motion. Native caret blink only — no decorative loop. */
+.atro-field-type {
+  caret-color: var(--ring);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .motion-safe-transition {
     transition-duration: 0.01ms;
@@ -1049,6 +1056,10 @@ html[data-type="mono"] {
   .ms-cta:active,
   .zed-btn:active {
     transform: none;
+  }
+  /* Keep caret tint; never add a decorative caret keyframe here. */
+  .atro-field-type {
+    caret-color: var(--ring);
   }
 }
 

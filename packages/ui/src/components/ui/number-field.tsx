@@ -121,7 +121,7 @@ function NumberFieldInput({
     <NumberFieldPrimitive.Input
       data-slot="number-field-input"
       className={cn(
-        "h-full min-w-0 flex-1 border-0 bg-transparent px-3 text-center text-base text-foreground outline-none sm:text-sm",
+        "atro-field-type h-full min-w-0 flex-1 border-0 bg-transparent px-3 text-center text-base text-foreground outline-none sm:text-sm",
         "placeholder:text-muted-foreground",
         "disabled:cursor-not-allowed",
         "tabular-nums",

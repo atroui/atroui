@@ -29,7 +29,7 @@ const digitFocusTween = {
 
 /**
  * OTP field — soft-rect digit slots + focus settle (Family Values: careful delight).
- * Motion only on the focused slot; peers stay still.
+ * Ring caret via `.atro-field-type`; Motion only on the focused slot scale.
  */
 function OTPField({ className, ...props }: OTPFieldPrimitive.Root.Props) {
   return (
@@ -54,7 +54,7 @@ function OTPFieldInput({
     <OTPFieldPrimitive.Input
       data-slot="otp-field-input"
       className={cn(
-        "h-[var(--atro-control-height,2.25rem)] w-[var(--atro-control-height,2.25rem)] shrink-0 rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background text-center text-base text-foreground tabular-nums outline-none transition-[border-color,box-shadow,background-color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-sm",
+        "atro-field-type h-[var(--atro-control-height,2.25rem)] w-[var(--atro-control-height,2.25rem)] shrink-0 rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background text-center text-base text-foreground tabular-nums outline-none transition-[border-color,box-shadow,background-color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-sm",
         "placeholder:text-muted-foreground",
         "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20",
         "data-filled:border-border",
