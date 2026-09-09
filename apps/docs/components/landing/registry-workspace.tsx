@@ -210,7 +210,8 @@ export function RegistryWorkspace({
   className?: string
 }) {
   const reduce = useReducedMotion()
-  const { accent, radius, surface, type } = useLiveThemeInstallAxes()
+  const { accent, radius, surface, typeDisplay, typeBody } =
+    useLiveThemeInstallAxes()
   const slotMap = React.useMemo(() => {
     const fromSlots: Partial<Record<RegistryWorkspaceBlockId, React.ReactNode>> =
       {
@@ -233,7 +234,8 @@ export function RegistryWorkspace({
     accent,
     radius,
     surface,
-    type,
+    typeDisplay,
+    typeBody,
   })
 
   React.useEffect(() => {

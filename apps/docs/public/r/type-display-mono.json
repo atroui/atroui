@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-display-mono",
+  "title": "Mono display",
+  "description": "Geist Mono for heading and display only. Body stays on the host default.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+      "font-display": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    }
+  },
+  "docs": "Display role only. Live axis: data-type-display=\"mono\".",
+  "type": "registry:theme"
+}

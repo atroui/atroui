@@ -23,8 +23,18 @@ import {
   type SurfaceTokens,
 } from "./surface-themes"
 import {
+  TYPE_BODY_ATTR,
+  TYPE_BODY_DEFAULT,
+  TYPE_DISPLAY_ATTR,
+  TYPE_DISPLAY_DEFAULT,
   TYPE_THEMES,
-  TYPE_THEME_ATTR,
+  resolveTypePreset,
+  typeFaceMeta,
+  typeBodyRemaps,
+  typeDisplayRemaps,
+  type TypeBodyRemaps,
+  type TypeDisplayRemaps,
+  type TypeFaceId,
   type TypeFontRemaps,
   type TypeThemeId,
 } from "./type-themes"
@@ -36,6 +46,11 @@ type ThemeExportOpts = {
   accent: ColorThemeId
   radius: RadiusThemeId
   surface?: SurfaceThemeId
+  /** Display face (headings). Defaults to Serif. */
+  typeDisplay?: TypeFaceId
+  /** Body face (UI / copy). Defaults to Sans. */
+  typeBody?: TypeFaceId
+  /** @deprecated Prefer typeDisplay + typeBody */
   type?: TypeThemeId
 }
 
@@ -43,19 +58,37 @@ function resolveOpts(opts: ThemeExportOpts): {
   accent: ColorThemeId
   radius: RadiusThemeId
   surface: SurfaceThemeId
+  typeDisplay: TypeFaceId
+  typeBody: TypeFaceId
   type: TypeThemeId
 } {
+  let typeDisplay = opts.typeDisplay
+  let typeBody = opts.typeBody
+  if ((!typeDisplay || !typeBody) && opts.type) {
+    const preset = TYPE_THEMES.find((t) => t.id === opts.type) ?? TYPE_THEMES[0]!
+    typeDisplay = typeDisplay ?? preset.display
+    typeBody = typeBody ?? preset.body
+  }
+  typeDisplay = typeDisplay ?? TYPE_DISPLAY_DEFAULT
+  typeBody = typeBody ?? TYPE_BODY_DEFAULT
   return {
     accent: opts.accent,
     radius: opts.radius,
     surface: opts.surface ?? "mira",
-    type: opts.type ?? "mira",
+    typeDisplay,
+    typeBody,
+    type: resolveTypePreset(typeDisplay, typeBody),
   }
 }
 
 function formatTokenBlock(
   selector: string,
-  tokens: AccentTokens | SurfaceTokens | TypeFontRemaps,
+  tokens:
+    | AccentTokens
+    | SurfaceTokens
+    | TypeFontRemaps
+    | TypeDisplayRemaps
+    | TypeBodyRemaps,
 ): string {
   const lines = (Object.keys(tokens) as (keyof typeof tokens)[]).map(
     (key) => `  --${key}: ${tokens[key]};`,
@@ -68,17 +101,18 @@ function formatTokenBlock(
  * Mira axes omit their blocks (defaults live in :root).
  */
 export function buildThemeExportCss(opts: ThemeExportOpts): string {
-  const { accent, radius, surface, type } = resolveOpts(opts)
+  const { accent, radius, surface, typeDisplay, typeBody } = resolveOpts(opts)
   const accentMeta =
     COLOR_THEMES.find((t) => t.id === accent) ?? COLOR_THEMES[0]!
   const surfaceMeta =
     SURFACE_THEMES.find((t) => t.id === surface) ?? SURFACE_THEMES[0]!
-  const typeMeta = TYPE_THEMES.find((t) => t.id === type) ?? TYPE_THEMES[0]!
+  const displayMeta = typeFaceMeta(typeDisplay)
+  const bodyMeta = typeFaceMeta(typeBody)
   const radiusMeta =
     RADIUS_THEMES.find((t) => t.id === radius) ?? RADIUS_THEMES[1]!
 
   const header = [
-    `/* AtroUI Theme Studio export — Accent: ${accentMeta.label} · Surface: ${surfaceMeta.label} · Type: ${typeMeta.label} · Radius: ${radiusMeta.label}`,
+    `/* AtroUI Theme Studio export — Accent: ${accentMeta.label} · Surface: ${surfaceMeta.label} · Display: ${displayMeta.label} · Body: ${bodyMeta.label} · Radius: ${radiusMeta.label}`,
     `   Paste into your globals.css. Keep .dark for appearance.`,
     `   Install picker: ${THEME_EXPORT_INSTALL}`,
     `*/`,
@@ -126,16 +160,32 @@ export function buildThemeExportCss(opts: ThemeExportOpts): string {
     )
   }
 
-  if (type === "mira") {
+  if (typeDisplay === TYPE_DISPLAY_DEFAULT) {
     parts.push(
-      `/* Mira type is the Atro default — no ${TYPE_THEME_ATTR} block needed. */`,
+      `/* Serif display is the Atro default — no ${TYPE_DISPLAY_ATTR} block needed. */`,
       "",
     )
   } else {
-    const remaps =
-      TYPE_THEMES.find((t) => t.id === type)?.remaps ?? TYPE_THEMES[0]!.remaps
     parts.push(
-      formatTokenBlock(`html[${TYPE_THEME_ATTR}="${type}"]`, remaps),
+      formatTokenBlock(
+        `html[${TYPE_DISPLAY_ATTR}="${typeDisplay}"]`,
+        typeDisplayRemaps(typeDisplay, true),
+      ),
+      "",
+    )
+  }
+
+  if (typeBody === TYPE_BODY_DEFAULT) {
+    parts.push(
+      `/* Sans body is the Atro default — no ${TYPE_BODY_ATTR} block needed. */`,
+      "",
+    )
+  } else {
+    parts.push(
+      formatTokenBlock(
+        `html[${TYPE_BODY_ATTR}="${typeBody}"]`,
+        typeBodyRemaps(typeBody, true),
+      ),
       "",
     )
   }
@@ -157,18 +207,30 @@ export function buildThemeExportCss(opts: ThemeExportOpts): string {
   return parts.join("\n").trimEnd() + "\n"
 }
 
-/** Registry theme packages that bake axes into consumer globals via cssVars. Mira is default — no package. */
+/** Registry theme packages that bake axes into consumer globals via cssVars. Defaults omit. */
 export function themeRegistryCompanions(opts: ThemeExportOpts): string[] {
-  const { accent, radius, surface, type } = resolveOpts(opts)
+  const { accent, radius, surface, typeDisplay, typeBody, type } =
+    resolveOpts(opts)
   const out: string[] = []
   if (accent !== "mira") out.push(`@atroui/theme-${accent}`)
   if (radius !== "mira") out.push(`@atroui/radius-${radius}`)
   if (surface !== "mira") out.push(`@atroui/surface-${surface}`)
-  if (type !== "mira") out.push(`@atroui/type-${type}`)
+
+  // Prefer a matching pair package when Display+Body form a known preset.
+  if (type !== "mira") {
+    out.push(`@atroui/type-${type}`)
+  } else {
+    if (typeDisplay !== TYPE_DISPLAY_DEFAULT) {
+      out.push(`@atroui/type-display-${typeDisplay}`)
+    }
+    if (typeBody !== TYPE_BODY_DEFAULT) {
+      out.push(`@atroui/type-body-${typeBody}`)
+    }
+  }
   return out
 }
 
-/** items: "button" or "@atroui/button" — appends non-Mira theme packages. */
+/** items: "button" or "@atroui/button" — appends non-default theme packages. */
 export function buildShadcnAddCommand(
   items: string[],
   opts: ThemeExportOpts,

@@ -8,12 +8,14 @@ import { CopyButton, buildShadcnAddCommand } from "atroui"
 import { useLiveThemeInstallAxes } from "@/hooks/use-live-theme-install-axes"
 
 export function LiveInstall({ className }: { className?: string }) {
-  const { accent, radius, surface, type } = useLiveThemeInstallAxes()
+  const { accent, radius, surface, typeDisplay, typeBody } =
+    useLiveThemeInstallAxes()
   const addLine = buildShadcnAddCommand(["home-hero"], {
     accent,
     radius,
     surface,
-    type,
+    typeDisplay,
+    typeBody,
   })
   const lines = ["npx shadcn@latest init", addLine] as const
   const all = lines.join("\n")

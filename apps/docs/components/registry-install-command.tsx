@@ -2,21 +2,23 @@
 
 /**
  * Install line that ships browsing theme axes with the component.
- * Tide + Paper + Sans → `… add @atroui/button @atroui/theme-tide @atroui/surface-paper @atroui/type-sans`
+ * Tide + Paper + Serif body → `… add @atroui/button @atroui/theme-tide @atroui/surface-paper @atroui/type-body-serif`
  */
 
 import {
   COLOR_THEMES,
   RADIUS_THEMES,
   SURFACE_THEMES,
-  TYPE_THEMES,
   buildShadcnAddCommand,
   themeRegistryCompanions,
   type ColorThemeId,
   type RadiusThemeId,
   type SurfaceThemeId,
-  type TypeThemeId,
 } from "atroui"
+import {
+  typeFaceMeta,
+  type TypeFaceId,
+} from "atroui/lib/type-themes"
 import { InstallCommandChip } from "@/components/install-command-chip"
 import { useLiveThemeInstallAxes } from "@/hooks/use-live-theme-install-axes"
 import { cn } from "@/lib/utils"
@@ -25,9 +27,16 @@ function companionNote(
   accent: ColorThemeId,
   radius: RadiusThemeId,
   surface: SurfaceThemeId,
-  type: TypeThemeId,
+  typeDisplay: TypeFaceId,
+  typeBody: TypeFaceId,
 ): string | null {
-  const companions = themeRegistryCompanions({ accent, radius, surface, type })
+  const companions = themeRegistryCompanions({
+    accent,
+    radius,
+    surface,
+    typeDisplay,
+    typeBody,
+  })
   if (companions.length === 0) return null
 
   const bits: string[] = []
@@ -41,8 +50,11 @@ function companionNote(
       `${SURFACE_THEMES.find((t) => t.id === surface)?.label ?? surface} surface`,
     )
   }
-  if (type !== "mira") {
-    bits.push(`${TYPE_THEMES.find((t) => t.id === type)?.label ?? type} type`)
+  if (typeDisplay !== "serif") {
+    bits.push(`${typeFaceMeta(typeDisplay).label} display`)
+  }
+  if (typeBody !== "sans") {
+    bits.push(`${typeFaceMeta(typeBody).label} body`)
   }
   if (radius !== "mira") {
     bits.push(
@@ -64,16 +76,18 @@ export function RegistryInstallCommand({
   className?: string
   showNote?: boolean
 }) {
-  const { accent, radius, surface, type, mounted } = useLiveThemeInstallAxes()
+  const { accent, radius, surface, typeDisplay, typeBody, mounted } =
+    useLiveThemeInstallAxes()
   const command = buildShadcnAddCommand(items, {
     accent,
     radius,
     surface,
-    type,
+    typeDisplay,
+    typeBody,
   })
   const note =
     showNote && mounted
-      ? companionNote(accent, radius, surface, type)
+      ? companionNote(accent, radius, surface, typeDisplay, typeBody)
       : null
 
   return (

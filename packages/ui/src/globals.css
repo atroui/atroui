@@ -21,12 +21,9 @@
   --color-surface-raised: var(--surface-raised);
   --color-border-subtle: var(--border-subtle);
 
-  --font-sans: var(--font-dm-sans);
+  /* Point utilities at runtime role tokens so data-type-* can rebind them */
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-merriweather);
-  --font-display: var(--font-heading);
-  --font-body: var(--font-dm-sans);
-  --font-label: var(--font-dm-sans);
   /* Opt-in only — .ds-sketch and sketch accents. Never the default display. */
   --font-sketch: var(--font-caveat);
 
@@ -84,13 +81,20 @@
 
   --font-merriweather: "Merriweather", ui-serif, Georgia, serif;
   --font-dm-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  /* Back-compat aliases for older host CSS / OG previews */
-  --font-instrument: var(--font-dm-sans);
+  --font-instrument: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-space-grotesk: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  /* Back-compat alias for older host CSS / OG previews */
   --font-outfit: var(--font-dm-sans);
   --font-geist-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   /* Host should load Caveat (docs layout does). Fallback keeps sketchy intent. */
   --font-caveat: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+
+  /* Runtime type roles — overridden by data-type-display / data-type-body */
+  --font-heading: var(--font-merriweather);
+  --font-display: var(--font-heading);
+  --font-body: var(--font-dm-sans);
+  --font-label: var(--font-body);
 
   /* Stepped cool paper room (hue ~286): canvas → card → raised wash.
      Opaque gray borders read as ruled paper — use ink-alpha hairlines. */
@@ -535,29 +539,70 @@ html.dark[data-surface="ink"] {
 }
 
 /* =============================================================================
-   Live type themes — data-type on <html>, orthogonal to accent + radius + .dark
-   Default Mira = no attribute (Merriweather headings · DM Sans body).
-   Faces: --font-merriweather / --font-dm-sans / --font-geist-mono (host layout).
+   Live type — Display + Body faces on <html>.
+   Defaults (Mira): Display = Serif, Body = Sans — no attributes.
+   Role tokens live on :root; font-sans utility → var(--font-body).
+   Legacy data-type pair packages still remap all roles for installs.
    ============================================================================= */
 
+html[data-type-display="sans"] {
+  --font-heading: var(--font-dm-sans);
+  --font-display: var(--font-dm-sans);
+}
+html[data-type-display="mono"] {
+  --font-heading: var(--font-geist-mono);
+  --font-display: var(--font-geist-mono);
+}
+html[data-type-display="sketch"] {
+  --font-heading: var(--font-caveat);
+  --font-display: var(--font-caveat);
+}
+html[data-type-display="instrument"] {
+  --font-heading: var(--font-instrument);
+  --font-display: var(--font-instrument);
+}
+html[data-type-display="grotesk"] {
+  --font-heading: var(--font-space-grotesk);
+  --font-display: var(--font-space-grotesk);
+}
+
+html[data-type-body="serif"] {
+  --font-body: var(--font-merriweather);
+  --font-label: var(--font-merriweather);
+}
+html[data-type-body="mono"] {
+  --font-body: var(--font-geist-mono);
+  --font-label: var(--font-geist-mono);
+}
+html[data-type-body="sketch"] {
+  --font-body: var(--font-caveat);
+  --font-label: var(--font-caveat);
+}
+html[data-type-body="instrument"] {
+  --font-body: var(--font-instrument);
+  --font-label: var(--font-instrument);
+}
+html[data-type-body="grotesk"] {
+  --font-body: var(--font-space-grotesk);
+  --font-label: var(--font-space-grotesk);
+}
+
+/* Legacy pair attr — keep for @atroui/type-* consumers */
 html[data-type="sans"] {
   --font-heading: var(--font-dm-sans);
   --font-display: var(--font-dm-sans);
-  --font-sans: var(--font-dm-sans);
   --font-body: var(--font-dm-sans);
   --font-label: var(--font-dm-sans);
 }
 html[data-type="serif"] {
   --font-heading: var(--font-merriweather);
   --font-display: var(--font-merriweather);
-  --font-sans: var(--font-merriweather);
   --font-body: var(--font-merriweather);
   --font-label: var(--font-merriweather);
 }
 html[data-type="mono"] {
   --font-heading: var(--font-dm-sans);
   --font-display: var(--font-dm-sans);
-  --font-sans: var(--font-geist-mono);
   --font-body: var(--font-geist-mono);
   --font-label: var(--font-geist-mono);
 }
@@ -567,7 +612,7 @@ html[data-type="mono"] {
     @apply border-border outline-ring/50;
   }
   html {
-    @apply font-sans;
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
     overflow-x: clip;
     scroll-padding-top: 5rem;
     font-feature-settings: "ss01", "kern";

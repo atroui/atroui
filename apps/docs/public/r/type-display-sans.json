@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-display-sans",
+  "title": "Sans display",
+  "description": "DM Sans for heading and display only. Body stays on the host default.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+      "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif"
+    }
+  },
+  "docs": "Display role only. Live axis: data-type-display=\"sans\".",
+  "type": "registry:theme"
+}

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Caveat, DM_Sans, Geist_Mono, Merriweather } from "next/font/google"
+import { Caveat, DM_Sans, Geist_Mono, Instrument_Serif, Merriweather, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { THEME_BOOT_SCRIPT } from "atroui"
@@ -32,6 +32,20 @@ const geistMono = Geist_Mono({
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
+  display: "swap",
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
   display: "swap",
 })
 
@@ -145,7 +159,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body
-        className={`${merriweather.variable} ${dmSans.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
+        className={`${merriweather.variable} ${dmSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider

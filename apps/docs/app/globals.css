@@ -2306,7 +2306,7 @@ a.docs-changelog-hash:hover {
 /* denser than rauchg my-5 — short listicle paras read less sparse */
 .blog-essay-p {
   margin-block: 0.8rem;
-  font-family: var(--font-dm-sans), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.625;
   text-align: justify;
@@ -3153,6 +3153,7 @@ html:not(.dark) .atro-landing .atro-hero-canvas::after {
 }
 
 .atro-landing .atro-hero-lede {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   font-weight: 400;
@@ -3311,12 +3312,14 @@ html:not(.dark) .atro-landing .landing-demo-frame {
 }
 
 .atro-landing .atro-letter-body {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.9375rem;
   line-height: 1.75;
   color: var(--landing-muted);
 }
 
 .atro-landing .atro-pillar-body {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   color: var(--landing-muted);
 }
 

@@ -121,10 +121,11 @@
       "title": "Color Theme Picker",
       "description": "Unified Themes popover — Accent, Surface, Type, and Radius axes (orthogonal to light/dark).",
       "dependencies": [
-        "lucide-react"
+        "motion"
       ],
       "registryDependencies": [
         "@atroui/utils",
+        "@atroui/motion",
         "@atroui/popover",
         "@atroui/color-themes",
         "@atroui/surface-themes",
@@ -169,7 +170,7 @@
       "name": "type-themes",
       "type": "registry:lib",
       "title": "Type Themes",
-      "description": "Type (font) theme ids, storage, remaps, and apply helpers for data-type (Mira / Sans / Serif / Mono).",
+      "description": "Type faces and Display/Body role helpers (data-type-display / data-type-body). Legacy pair presets kept for installs.",
       "files": [
         {
           "path": "registry/default/lib/type-themes.ts",
@@ -635,6 +636,138 @@
         }
       },
       "docs": "Type remap only — does not load fonts. Prefer next/font DM Sans + Geist Mono. Install: npx shadcn@latest add @atroui/button @atroui/type-mono"
+    },
+    {
+      "name": "type-display-sans",
+      "type": "registry:theme",
+      "title": "Sans display",
+      "description": "DM Sans for heading and display only. Body stays on the host default.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+          "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif"
+        }
+      },
+      "docs": "Display role only. Live axis: data-type-display=\"sans\"."
+    },
+    {
+      "name": "type-display-mono",
+      "type": "registry:theme",
+      "title": "Mono display",
+      "description": "Geist Mono for heading and display only. Body stays on the host default.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+          "font-display": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+        }
+      },
+      "docs": "Display role only. Live axis: data-type-display=\"mono\"."
+    },
+    {
+      "name": "type-body-serif",
+      "type": "registry:theme",
+      "title": "Serif body",
+      "description": "Merriweather for sans, body, and label. Display stays on the host default.",
+      "cssVars": {
+        "theme": {
+          "font-sans": "\"Merriweather\", ui-serif, Georgia, serif",
+          "font-body": "\"Merriweather\", ui-serif, Georgia, serif",
+          "font-label": "\"Merriweather\", ui-serif, Georgia, serif"
+        }
+      },
+      "docs": "Body role only. Live axis: data-type-body=\"serif\"."
+    },
+    {
+      "name": "type-body-mono",
+      "type": "registry:theme",
+      "title": "Mono body",
+      "description": "Geist Mono for sans, body, and label. Display stays on the host default.",
+      "cssVars": {
+        "theme": {
+          "font-sans": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+          "font-body": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+          "font-label": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+        }
+      },
+      "docs": "Body role only. Live axis: data-type-body=\"mono\"."
+    },
+    {
+      "name": "type-display-sketch",
+      "type": "registry:theme",
+      "title": "Sketch display",
+      "description": "Caveat for heading and display only.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive",
+          "font-display": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive"
+        }
+      },
+      "docs": "Display role only. Live axis: data-type-display=\"sketch\"."
+    },
+    {
+      "name": "type-display-instrument",
+      "type": "registry:theme",
+      "title": "Instrument display",
+      "description": "Instrument Serif for heading and display only.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"Instrument Serif\", ui-serif, Georgia, serif",
+          "font-display": "\"Instrument Serif\", ui-serif, Georgia, serif"
+        }
+      },
+      "docs": "Display role only. Live axis: data-type-display=\"instrument\"."
+    },
+    {
+      "name": "type-display-grotesk",
+      "type": "registry:theme",
+      "title": "Grotesk display",
+      "description": "Space Grotesk for heading and display only.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
+          "font-display": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif"
+        }
+      },
+      "docs": "Display role only. Live axis: data-type-display=\"grotesk\"."
+    },
+    {
+      "name": "type-body-sketch",
+      "type": "registry:theme",
+      "title": "Sketch body",
+      "description": "Caveat for body and label.",
+      "cssVars": {
+        "theme": {
+          "font-body": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive",
+          "font-label": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive"
+        }
+      },
+      "docs": "Body role only. Live axis: data-type-body=\"sketch\"."
+    },
+    {
+      "name": "type-body-instrument",
+      "type": "registry:theme",
+      "title": "Instrument body",
+      "description": "Instrument Serif for body and label.",
+      "cssVars": {
+        "theme": {
+          "font-body": "\"Instrument Serif\", ui-serif, Georgia, serif",
+          "font-label": "\"Instrument Serif\", ui-serif, Georgia, serif"
+        }
+      },
+      "docs": "Body role only. Live axis: data-type-body=\"instrument\"."
+    },
+    {
+      "name": "type-body-grotesk",
+      "type": "registry:theme",
+      "title": "Grotesk body",
+      "description": "Space Grotesk for body and label.",
+      "cssVars": {
+        "theme": {
+          "font-body": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
+          "font-label": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif"
+        }
+      },
+      "docs": "Body role only. Live axis: data-type-body=\"grotesk\"."
     },
     {
       "name": "theme-export",

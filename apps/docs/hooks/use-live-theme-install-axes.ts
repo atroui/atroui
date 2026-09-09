@@ -1,8 +1,11 @@
 "use client"
 
 /**
- * Live accent + surface + type + radius axes for install commands.
+ * Live accent + surface + type (display/body) + radius axes for install commands.
  * Syncs from storage + data-* attrs on <html>.
+ *
+ * Type-face helpers import from `atroui/lib/type-themes` — not the package barrel —
+ * so Next optimizePackageImports cannot leave new exports as undefined.
  */
 
 import * as React from "react"
@@ -13,28 +16,41 @@ import {
   RADIUS_THEME_STORAGE_KEY,
   SURFACE_THEME_ATTR,
   SURFACE_THEME_STORAGE_KEY,
-  TYPE_THEME_ATTR,
-  TYPE_THEME_STORAGE_KEY,
   readStoredColorTheme,
   readStoredRadiusTheme,
   readStoredSurfaceTheme,
-  readStoredTypeTheme,
   type ColorThemeId,
   type RadiusThemeId,
   type SurfaceThemeId,
-  type TypeThemeId,
 } from "atroui"
+import {
+  TYPE_BODY_ATTR,
+  TYPE_BODY_STORAGE_KEY,
+  TYPE_DISPLAY_ATTR,
+  TYPE_DISPLAY_STORAGE_KEY,
+  TYPE_THEME_STORAGE_KEY,
+  readStoredTypeBody,
+  readStoredTypeDisplay,
+  readStoredTypeTheme,
+  type TypeFaceId,
+  type TypeThemeId,
+} from "atroui/lib/type-themes"
 
 export function useLiveThemeInstallAxes(): {
   accent: ColorThemeId
   radius: RadiusThemeId
   surface: SurfaceThemeId
+  typeDisplay: TypeFaceId
+  typeBody: TypeFaceId
+  /** Nearest pair preset when Display+Body match one (else mira). */
   type: TypeThemeId
   mounted: boolean
 } {
   const [accent, setAccent] = React.useState<ColorThemeId>("mira")
   const [radius, setRadius] = React.useState<RadiusThemeId>("mira")
   const [surface, setSurface] = React.useState<SurfaceThemeId>("mira")
+  const [typeDisplay, setTypeDisplay] = React.useState<TypeFaceId>("serif")
+  const [typeBody, setTypeBody] = React.useState<TypeFaceId>("sans")
   const [type, setType] = React.useState<TypeThemeId>("mira")
   const [mounted, setMounted] = React.useState(false)
 
@@ -43,6 +59,8 @@ export function useLiveThemeInstallAxes(): {
       setAccent(readStoredColorTheme())
       setRadius(readStoredRadiusTheme())
       setSurface(readStoredSurfaceTheme())
+      setTypeDisplay(readStoredTypeDisplay())
+      setTypeBody(readStoredTypeBody())
       setType(readStoredTypeTheme())
     }
     sync()
@@ -54,6 +72,8 @@ export function useLiveThemeInstallAxes(): {
         event.key === COLOR_THEME_STORAGE_KEY ||
         event.key === RADIUS_THEME_STORAGE_KEY ||
         event.key === SURFACE_THEME_STORAGE_KEY ||
+        event.key === TYPE_DISPLAY_STORAGE_KEY ||
+        event.key === TYPE_BODY_STORAGE_KEY ||
         event.key === TYPE_THEME_STORAGE_KEY
       ) {
         sync()
@@ -69,7 +89,8 @@ export function useLiveThemeInstallAxes(): {
         COLOR_THEME_ATTR,
         RADIUS_THEME_ATTR,
         SURFACE_THEME_ATTR,
-        TYPE_THEME_ATTR,
+        TYPE_DISPLAY_ATTR,
+        TYPE_BODY_ATTR,
       ],
     })
 
@@ -79,5 +100,5 @@ export function useLiveThemeInstallAxes(): {
     }
   }, [])
 
-  return { accent, radius, surface, type, mounted }
+  return { accent, radius, surface, typeDisplay, typeBody, type, mounted }
 }
