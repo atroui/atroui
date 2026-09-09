@@ -87,7 +87,7 @@ export function HomeLab() {
                   </span>
                 </div>
 
-                <div className="bg-muted/30 p-4 sm:p-6 lg:col-span-7">
+                <div className="bg-muted p-4 sm:p-6 lg:col-span-7">
                   <div className="overflow-hidden rounded-xl ring-1 ring-border-subtle">
                     <div className="relative aspect-1200/630">
                       <OgLivePreview

@@ -2,4 +2,4 @@
 "atroui": patch
 ---
 
-Polish light Mira as an intentional room and make ThemeToggle chrome readable in both modes.
+Deepen light Mira as a stepped room (ladder, hairline borders, elev tokens) so light holds next to dark.

@@ -148,12 +148,12 @@ export function HomeHero() {
 
       <div className="relative z-10 w-full border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-8 sm:px-10 sm:py-10">
-          <div className="overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-muted/20 shadow-sm">
-            <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/40 px-3 py-2.5 sm:px-4">
+          <div className="overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-background">
+            <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/70 px-3 py-2.5 sm:px-4">
               <div className="flex gap-1.5" aria-hidden>
-                <span className="size-2.5 rounded-full bg-foreground/15" />
-                <span className="size-2.5 rounded-full bg-foreground/15" />
-                <span className="size-2.5 rounded-full bg-foreground/15" />
+                <span className="size-2.5 rounded-full bg-foreground/25" />
+                <span className="size-2.5 rounded-full bg-foreground/25" />
+                <span className="size-2.5 rounded-full bg-foreground/25" />
               </div>
               <div className="flex min-w-0 flex-1 items-center justify-center">
                 <div className="flex max-w-md items-center gap-2 truncate rounded-md border border-border-subtle bg-background px-3 py-1 text-[11px] text-muted-foreground sm:text-xs">

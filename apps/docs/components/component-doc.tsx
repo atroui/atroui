@@ -106,7 +106,7 @@ export function ComponentDoc({
           <h2 className="docs-section-title" id="installation">
             Installation
           </h2>
-          <pre className="overflow-x-auto rounded-lg border border-border-subtle bg-muted/60 px-3 py-2.5">
+          <pre className="overflow-x-auto rounded-lg border border-border-subtle bg-muted px-3 py-2.5">
             <code className="font-mono text-[12px] text-foreground sm:text-[13px]">
               {installCmd}
             </code>

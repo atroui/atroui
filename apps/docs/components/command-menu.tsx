@@ -47,14 +47,14 @@ function SearchDialog({
       transition={fadeTween}
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" aria-hidden />
+      <div className="absolute inset-0 bg-foreground/50 backdrop-blur-sm" aria-hidden />
       <motion.div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Search documentation"
         tabIndex={-1}
-        className="relative w-full max-w-lg overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card shadow-[0_24px_48px_-24px_rgba(0,0,0,0.65)]"
+        className="relative w-full max-w-lg overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card shadow-[0_24px_48px_-24px_color-mix(in_oklch,var(--foreground)_65%,transparent)]"
         initial={reduce ? false : { opacity: 0, y: 10, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 6, scale: 0.98 }}
@@ -73,7 +73,7 @@ function SearchDialog({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex size-8 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+            className="inline-flex size-8 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             aria-label="Close"
           >
             <X className="size-4" />
@@ -95,7 +95,7 @@ function SearchDialog({
                 key={`${item.source ?? "nav"}:${item.href}`}
                 type="button"
                 className={cn(
-                  "flex w-full items-center justify-between gap-3 rounded-[var(--atro-control-radius)] px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-foreground/[0.06]"
+                  "flex w-full items-center justify-between gap-3 rounded-[var(--atro-control-radius)] px-3 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:bg-muted"
                 )}
                 onClick={() => onSelect(item)}
               >

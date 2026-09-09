@@ -97,12 +97,12 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        "docs-codeblock group relative overflow-hidden rounded-[var(--atro-panel-radius)] bg-muted/30 text-foreground",
+        "docs-codeblock group relative overflow-hidden rounded-[var(--atro-panel-radius)] bg-muted text-foreground",
         !embedded && "border border-border-subtle",
         className,
       )}
     >
-      <div className="flex items-center justify-between border-b border-border-subtle bg-muted/60 px-4 py-2.5">
+      <div className="flex items-center justify-between border-b border-border-subtle bg-secondary px-4 py-2.5">
         <span className="text-[11px] font-semibold tracking-[0.08em] text-muted-foreground uppercase">
           {language}
         </span>
@@ -117,7 +117,7 @@ export function CodeBlock({
               embedded,
             })
           }}
-          className="h-7 border bg-foreground/[0.04] px-2.5 text-[12px] font-medium text-muted-foreground hover:bg-foreground/[0.06] hover:text-foreground"
+          className="h-7 border bg-muted px-2.5 text-[12px] font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
         />
       </div>
       <React.Suspense fallback={<CodeFallback code={code} />}>

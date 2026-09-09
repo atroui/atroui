@@ -123,7 +123,7 @@ export function HomeLab() {
                 <ArrowUpRight className="size-3.5" />
               </span>
             </div>
-            <div className="flex items-center justify-center bg-muted/30 p-6 sm:p-8 lg:col-span-7">
+            <div className="flex items-center justify-center bg-muted p-6 sm:p-8 lg:col-span-7">
               <div className="flex aspect-[1200/630] w-full max-w-xl flex-col justify-end rounded-xl bg-gradient-to-br from-background via-card to-[color-mix(in_oklch,var(--brand)_30%,transparent)] p-6 ring-1 ring-border-subtle">
                 <p className="text-xl font-medium text-foreground sm:text-2xl">
                   Ship in days, not quarters.

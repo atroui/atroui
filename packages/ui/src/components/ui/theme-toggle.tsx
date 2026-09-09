@@ -90,7 +90,7 @@ export function ThemeToggle({ className }: { className?: string }) {
                 "motion-safe-transition relative inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
                 isActive && "text-primary-foreground",
                 !isActive &&
-                  "hover:bg-foreground/[0.06] hover:text-foreground",
+                  "hover:bg-foreground/[0.08] hover:text-foreground",
               )}
             >
               {isActive &&

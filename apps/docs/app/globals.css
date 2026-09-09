@@ -63,7 +63,7 @@ html {
   background: color-mix(in oklch, var(--card) 94%, var(--background));
   box-shadow:
     0 1px 0 color-mix(in oklch, var(--foreground) 5%, transparent),
-    0 14px 36px -22px color-mix(in oklch, var(--foreground) 32%, transparent);
+    0 14px 36px -22px var(--elev-ambient);
 }
 @supports (padding: max(0px)) {
   .atro-site-chrome {
@@ -149,6 +149,13 @@ html {
   --docs-fg-strong: var(--foreground);
   --docs-border: var(--border-subtle);
   --docs-link: color-mix(in oklch, var(--brand) 85%, var(--foreground));
+  /* Elevation — cooler ambient than fg-mix; package may deepen these later */
+  --elev-ambient: oklch(0.25 0.02 286 / 0.14);
+  --elev-key: oklch(0.2 0.02 286 / 0.08);
+}
+.dark {
+  --elev-ambient: color-mix(in oklch, var(--foreground) 32%, transparent);
+  --elev-key: color-mix(in oklch, var(--foreground) 18%, transparent);
 }
 
 /* Product CTAs (.atro-btn / .atro-btn-ghost; .ms-cta / .zed-btn aliases) live
@@ -265,7 +272,7 @@ html {
 .atro-chip-brand {
   border-color: color-mix(in oklch, var(--brand) 40%, transparent);
   background: color-mix(in oklch, var(--brand) 12%, transparent);
-  color: color-mix(in oklch, var(--brand-hover) 80%, white);
+  color: color-mix(in oklch, var(--brand-hover) 80%, var(--background));
 }
 
 /* Browser-frame mockup — flat product stage (Zed-style: UI is the visual) */
@@ -275,7 +282,7 @@ html {
   background: color-mix(in oklch, var(--background) 96%, var(--foreground));
   box-shadow:
     0 0 0 1px color-mix(in oklch, var(--foreground) 4%, transparent) inset,
-    0 24px 64px -48px color-mix(in oklch, var(--foreground) 35%, transparent);
+    0 24px 64px -48px var(--elev-ambient);
   overflow: hidden;
 }
 
@@ -2612,13 +2619,20 @@ a.docs-changelog-hash:hover {
    shorthands later in this file. */
 .atro-landing .atro-hero-product {
   border-radius: var(--atro-panel-radius);
-  box-shadow: 0 32px 64px -48px color-mix(in oklch, var(--foreground) 35%, transparent);
+  box-shadow: 0 32px 64px -48px var(--elev-ambient);
+}
+html:not(.dark) .atro-landing .atro-hero-product {
+  box-shadow: none;
 }
 .atro-hero-product .atro-frame,
 .atro-hero-product .rw-shell.landing-demo-frame {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 8%, transparent);
+}
+html:not(.dark) .atro-hero-product .atro-frame,
+html:not(.dark) .atro-hero-product .rw-shell.landing-demo-frame {
+  box-shadow: none;
 }
 .atro-hero-product .atro-pillar-grid,
 .atro-hero-product .atro-pillar-grid--attached {
@@ -3086,17 +3100,46 @@ a.docs-changelog-hash:hover {
   --landing-muted: var(--muted-foreground);
   --landing-border: var(--border);
   --landing-surface: var(--card);
-  --landing-demo-bg: var(--muted);
+  /* Preview stage = page canvas — raised muted made a visible “card well” on light. */
+  --landing-demo-bg: var(--background);
 
   background-color: var(--background);
   color: var(--foreground);
 }
 
-/* Landing hero stays flat Mira canvas — no brand radial / hairline grid.
-   Atmosphere lives in product UI, not behind the H1. */
-.atro-landing .atro-hero-canvas::before,
+/* Light: hero product chrome sits on the room, not a lifted white card. */
+html:not(.dark) .atro-landing {
+  --landing-surface: var(--background);
+}
+
+/* Landing hero: brand radial stays off (no orb soup). Dark stays flat;
+   light-only quiet hairline — careful delight at lower opacity than global. */
+.atro-landing .atro-hero-canvas::before {
+  display: none;
+}
 .atro-landing .atro-hero-canvas::after {
   display: none;
+}
+html:not(.dark) .atro-landing .atro-hero-canvas::after {
+  display: block;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 2.5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 2.5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 95% 75% at 50% 0%, black 15%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 95% 75% at 50% 0%,
+    black 15%,
+    transparent 78%
+  );
 }
 
 .atro-landing .atro-hero-title {
@@ -3127,7 +3170,11 @@ a.docs-changelog-hash:hover {
   background: var(--landing-surface);
   box-shadow:
     0 0 0 1px color-mix(in oklch, var(--foreground) 8%, transparent),
-    0 32px 64px -48px color-mix(in oklch, var(--foreground) 35%, transparent);
+    0 32px 64px -48px var(--elev-ambient);
+}
+html:not(.dark) .atro-landing .landing-demo-frame {
+  /* Hairline only — no double ring / heavy cast that reads as a floating box. */
+  box-shadow: 0 18px 40px -32px var(--elev-ambient);
 }
 
 .atro-landing .landing-demo-viewport {
@@ -3142,7 +3189,7 @@ a.docs-changelog-hash:hover {
   border-radius: var(--atro-panel-radius);
   border: 1px solid var(--landing-border);
   background: var(--landing-surface);
-  box-shadow: 0 32px 64px -48px color-mix(in oklch, var(--foreground) 32%, transparent);
+  box-shadow: 0 32px 64px -48px var(--elev-ambient);
 }
 
 .atro-landing .atro-section {
@@ -3319,6 +3366,19 @@ a.docs-changelog-hash:hover {
   background: color-mix(in oklch, var(--landing-fg) 2%, transparent);
 }
 
+/* Light landing — quieter material depth (panels, tiles) without orb soup */
+html:not(.dark) .atro-landing .atro-just-works-panel,
+html:not(.dark) .atro-landing .atro-eco-list,
+html:not(.dark) .atro-landing .atro-letter {
+  background: var(--card);
+}
+html:not(.dark) .atro-landing .atro-tile {
+  background: var(--card);
+}
+html:not(.dark) .atro-landing .atro-tile:hover {
+  background: var(--muted);
+}
+
 .atro-landing .atro-care-chip {
   border-color: var(--landing-border);
   background: transparent;
@@ -3342,6 +3402,12 @@ a.docs-changelog-hash:hover {
 .atro-landing .zed-btn,
 .atro-landing .atro-btn {
   box-shadow: none;
+}
+/* Light-only CTA whisper — elev-key, not brand glow */
+html:not(.dark) .atro-landing .ms-cta,
+html:not(.dark) .atro-landing .zed-btn,
+html:not(.dark) .atro-landing .atro-btn {
+  box-shadow: 0 1px 2px var(--elev-key);
 }
 
 .atro-landing .ms-cta-ghost,
@@ -3932,6 +3998,10 @@ a.docs-changelog-hash:hover {
     0 36px 72px -44px color-mix(in oklch, var(--foreground) 32%, transparent),
     0 0 80px -48px color-mix(in oklch, var(--brand) 22%, transparent);
 }
+html:not(.dark) .atro-landing .rw-shell {
+  /* Drop brand bloom + loud ambient — light already has a visible border. */
+  box-shadow: 0 18px 40px -32px var(--elev-ambient);
+}
 
 .atro-landing .rw-chrome {
   display: flex;
@@ -4002,6 +4072,15 @@ a.docs-changelog-hash:hover {
     radial-gradient(
       90% 60% at 50% -8%,
       color-mix(in oklch, var(--brand) 12%, transparent),
+      transparent 52%
+    ),
+    var(--background);
+}
+html:not(.dark) .atro-landing .rw-body {
+  background:
+    radial-gradient(
+      90% 60% at 50% -8%,
+      color-mix(in oklch, var(--brand) 5%, transparent),
       transparent 52%
     ),
     var(--background);

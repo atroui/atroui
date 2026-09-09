@@ -72,7 +72,7 @@ export function InstallCommandChip({
   return (
     <div
       className={cn(
-        "relative flex min-w-0 max-w-full items-center gap-1.5 rounded-lg border bg-muted/60 py-1 pr-1 pl-2.5 transition-colors duration-200 sm:gap-2 sm:pl-3",
+        "relative flex min-w-0 max-w-full items-center gap-1.5 rounded-lg border bg-muted py-1 pr-1 pl-2.5 transition-colors duration-200 sm:gap-2 sm:pl-3",
         pulse
           ? "border-brand/60"
           : copied

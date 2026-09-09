@@ -76,8 +76,8 @@
 }
 
 :root {
-  /* Mira (shadcn) — light. Soft cool paper room (hue ~286), not pure white
-     or cream — intentional room like dark. Do not fork in the docs app. */
+  /* Mira (shadcn) — light. Stepped cool paper room (hue ~286), not flat
+     near-white — intentional depth like dark. Do not fork in the docs app. */
   --radius: 0.45rem;
   --atro-control-radius: var(--radius);
   --atro-control-height: 2.25rem;
@@ -92,46 +92,51 @@
   /* Host should load Caveat (docs layout does). Fallback keeps sketchy intent. */
   --font-caveat: "Caveat", "Segoe Print", "Bradley Hand", cursive;
 
-  --background: oklch(0.985 0.004 286);
+  /* Stepped cool paper room (hue ~286): canvas → card → raised wash.
+     Opaque gray borders read as ruled paper — use ink-alpha hairlines. */
+  --background: oklch(0.968 0.007 286);
   --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(0.995 0.002 286);
+  --card: oklch(0.992 0.003 286);
   --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(0.995 0.002 286);
+  --popover: oklch(0.992 0.003 286);
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.457 0.24 277.023);
   --primary-foreground: oklch(0.962 0.018 272.314);
-  --secondary: oklch(0.955 0.005 286);
+  --secondary: oklch(0.935 0.008 286);
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.955 0.005 286);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.955 0.005 286);
+  --muted: oklch(0.935 0.008 286);
+  --muted-foreground: oklch(0.48 0.018 285.9);
+  --accent: oklch(0.935 0.008 286);
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.90 0.006 286);
-  --input: oklch(0.90 0.006 286);
-  --ring: oklch(0.705 0.015 286.067);
+  --border: oklch(0.35 0.02 286 / 0.14);
+  --input: oklch(0.35 0.02 286 / 0.16);
+  --ring: oklch(0.55 0.08 277);
   --chart-1: oklch(0.785 0.115 274.713);
   --chart-2: oklch(0.585 0.233 277.117);
   --chart-3: oklch(0.511 0.262 276.966);
   --chart-4: oklch(0.457 0.24 277.023);
   --chart-5: oklch(0.398 0.195 277.366);
-  --sidebar: oklch(0.985 0.004 286);
+  --sidebar: oklch(0.955 0.006 286);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.511 0.262 276.966);
   --sidebar-primary-foreground: oklch(0.962 0.018 272.314);
-  --sidebar-accent: oklch(0.955 0.005 286);
+  --sidebar-accent: oklch(0.935 0.008 286);
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.90 0.006 286);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  --sidebar-border: oklch(0.35 0.02 286 / 0.14);
+  --sidebar-ring: oklch(0.55 0.08 277);
 
   /* Atro aliases — derived from Mira only, never a second palette */
   --brand: var(--primary);
   --brand-hover: var(--sidebar-primary);
   --brand-dim: var(--chart-5);
-  --brand-glow: color-mix(in oklch, var(--primary) 35%, transparent);
+  --brand-glow: color-mix(in oklch, var(--sidebar-primary) 42%, transparent);
   --surface: var(--card);
   --surface-raised: var(--secondary);
   --border-subtle: var(--border);
+  /* Elevation — cool cast shadow (not foreground bloom; that only works on dark) */
+  --elev-ambient: oklch(0.25 0.02 286 / 0.14);
+  --elev-key: oklch(0.2 0.02 286 / 0.08);
 
   color-scheme: light;
 }
@@ -179,6 +184,8 @@
   --surface: var(--card);
   --surface-raised: var(--secondary);
   --border-subtle: var(--border);
+  --elev-ambient: color-mix(in oklch, var(--foreground) 32%, transparent);
+  --elev-key: color-mix(in oklch, var(--foreground) 18%, transparent);
 
   color-scheme: dark;
 }
@@ -317,7 +324,7 @@
     background-image: linear-gradient(
       90deg,
       var(--foreground),
-      color-mix(in oklch, var(--brand-hover) 70%, white),
+      color-mix(in oklch, var(--brand-hover) 70%, var(--background)),
       var(--brand)
     );
     -webkit-background-clip: text;
@@ -328,7 +335,7 @@
   }
   /* Prefer this over .ds-gradient-text on Caveat / sketch display — no clip */
   .ds-sketch-accent {
-    color: color-mix(in oklch, var(--brand-hover) 85%, white);
+    color: color-mix(in oklch, var(--brand-hover) 85%, var(--background));
   }
   .bam-section-label {
     font-size: 0.8125rem;
@@ -444,16 +451,25 @@
   }
 
   .ms-panel {
-    background: color-mix(in oklch, var(--foreground) 4%, transparent);
-    border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+    background: color-mix(in oklch, var(--card) 88%, var(--muted));
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     backdrop-filter: blur(16px);
   }
+  .dark .ms-panel {
+    background: color-mix(in oklch, var(--foreground) 4%, transparent);
+    border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+  }
   .ms-panel-raised {
-    background: color-mix(in oklch, var(--foreground) 6%, transparent);
-    border: 1px solid color-mix(in oklch, var(--foreground) 14%, transparent);
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     backdrop-filter: blur(20px);
+    box-shadow: 0 16px 40px -24px var(--elev-ambient);
+  }
+  .dark .ms-panel-raised {
+    background: color-mix(in oklch, var(--foreground) 6%, transparent);
+    border: 1px solid color-mix(in oklch, var(--foreground) 14%, transparent);
     box-shadow: 0 16px 40px -24px color-mix(in oklch, var(--brand) 40%, transparent);
   }
   .ms-shell-pad {
@@ -513,7 +529,7 @@
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     background-size: 240px 240px;
     mix-blend-mode: soft-light;
-    opacity: 0.5;
+    opacity: 0.28;
     pointer-events: none;
   }
   .dark .bg-grain {

@@ -47,7 +47,7 @@ export function DocsExample({
         className
       )}
     >
-      <div className="flex min-w-0 items-center gap-2 border-b border-border-subtle bg-foreground/[0.02] px-1.5">
+      <div className="flex min-w-0 items-center gap-2 border-b border-border-subtle bg-muted px-1.5">
         <div className="relative flex shrink-0 gap-0.5 p-1.5">
           {(["preview", "code"] as const).map((key) => (
             <button
