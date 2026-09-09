@@ -2,23 +2,8 @@
 
 import * as React from "react"
 import { Slider as SliderPrimitive } from "@base-ui/react/slider"
-import { motion, useReducedMotion } from "motion/react"
 
-import { pressTween } from "../../lib/motion"
 import { cn } from "../../lib/utils"
-
-function withoutDomAnimationHandlers<T extends Record<string, unknown>>(
-  props: T
-) {
-  const {
-    onAnimationStart: _onAnimationStart,
-    onDrag: _onDrag,
-    onDragStart: _onDragStart,
-    onDragEnd: _onDragEnd,
-    ...rest
-  } = props
-  return rest
-}
 
 function Slider({
   className,
@@ -66,7 +51,9 @@ function SliderControl({ className, ...props }: SliderPrimitive.Control.Props) {
     <SliderPrimitive.Control
       data-slot="slider-control"
       className={cn(
-        "flex w-full touch-none items-center py-1 select-none",
+        // `relative` — thumb is absolute + % of this box. Without it, abspos
+        // escapes to ResizablePreview / other ancestor relatives (drag lag).
+        "relative flex w-full touch-none items-center py-1 select-none",
         className
       )}
       {...props}
@@ -105,45 +92,25 @@ function SliderIndicator({
 }
 
 /**
- * Soft-rect thumb — press scale via `pressTween` only.
- * Position is owned by Base UI; Motion never eases drag travel.
+ * Soft-rect thumb — CSS press scale only.
+ * Base UI owns position via CSS `translate`; never wrap in Motion (scale
+ * transform fights drag travel and feels laggy).
  */
-function SliderThumb({
-  className,
-  render,
-  ...props
-}: SliderPrimitive.Thumb.Props) {
-  const reduce = useReducedMotion()
-
+function SliderThumb({ className, ...props }: SliderPrimitive.Thumb.Props) {
   return (
     <SliderPrimitive.Thumb
       data-slot="slider-thumb"
       className={cn(
         "block size-4 shrink-0 rounded-[calc(var(--radius)-2px)] border border-border-subtle bg-background shadow-sm outline-none",
         "ring-1 ring-black/5 dark:ring-white/10",
+        // Scale only — never transition-transform (TW v4 includes `translate`).
+        "transition-[scale] duration-100 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "active:scale-[0.96] data-dragging:scale-[0.96] data-dragging:transition-none",
         "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20",
         "data-dragging:border-primary",
+        "motion-reduce:transition-none motion-reduce:active:scale-100 motion-reduce:data-dragging:scale-100",
         className
       )}
-      render={
-        render ??
-        (reduce
-          ? undefined
-          : (htmlProps) => (
-              <motion.div
-                {...withoutDomAnimationHandlers(
-                  htmlProps as Record<string, unknown>
-                )}
-                style={{
-                  ...((htmlProps as { style?: React.CSSProperties }).style ??
-                    {}),
-                  borderRadius: "calc(var(--radius) - 2px)",
-                }}
-                whileTap={{ scale: 0.96 }}
-                transition={pressTween}
-              />
-            ))
-      }
       {...props}
     />
   )

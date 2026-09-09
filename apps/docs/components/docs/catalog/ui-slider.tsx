@@ -1,5 +1,33 @@
+"use client"
+
+import {
+  Slider,
+  SliderControl,
+  SliderIndicator,
+  SliderLabel,
+  SliderThumb,
+  SliderTrack,
+  SliderValue,
+} from "atroui/components/ui/slider"
+
 import { ComponentDoc } from "@/components/component-doc"
-import { DemoSlider } from "@/components/registry-demos"
+
+function DemoSlider() {
+  return (
+    <Slider defaultValue={42} className="w-full max-w-xs text-left">
+      <div className="flex items-center justify-between gap-2">
+        <SliderLabel>Intensity</SliderLabel>
+        <SliderValue />
+      </div>
+      <SliderControl>
+        <SliderTrack>
+          <SliderIndicator />
+        </SliderTrack>
+        <SliderThumb />
+      </SliderControl>
+    </Slider>
+  )
+}
 
 export function UiSliderDoc() {
   return (
@@ -32,7 +60,7 @@ export function UiSliderDoc() {
   </SliderControl>
 </Slider>`}
       fullBleed={false}
-      usage="Thumb gets pressTween scale only. Never ease the track fill while dragging — Base UI CSS vars stay 1:1 with the pointer."
+      usage="SliderControl must be `relative` so the absolute thumb % positions against the control — not a parent like ResizablePreview. Thumb press is CSS scale only; track fill stays 1:1 with the pointer."
     />
   )
 }
