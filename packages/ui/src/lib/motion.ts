@@ -160,11 +160,85 @@ export const pageFade = {
   ease: easeOutSoft,
 } as const
 
+/**
+ * Marketing chrome hide-on-scroll (Motion scroll-direction pattern).
+ * Docs book headers stay fixed — never pass this tween there.
+ * Call sites: `useReducedMotion` → skip hide (stay visible, no travel).
+ */
+export const SCROLL_HIDE_OFFSET = 150
+
+export const scrollHideTween = {
+  type: "tween" as const,
+  duration: 0.28,
+  ease: easeOutSoft,
+} as const
+
 /** Button / control press feedback (scale / translate) — ≤100ms */
 export const pressTween = {
   type: "tween" as const,
   duration: 0.1,
   ease: easeOutExpo,
+} as const
+
+/**
+ * Signature hover language (soft-rect Mira chrome):
+ * Material brightens (CSS); geometry barely lifts; ink travels; never grow.
+ * Hover ≤1px y; press into surface; focus mirrors hover.
+ */
+export const hoverLift = { y: -1 } as const
+export const pressInto = { scale: 0.98, y: 1 } as const
+/** Alias — keyboard focus uses the same target as hover. */
+export const focusAsHover = hoverLift
+
+/** Hover / focus settle — slightly longer Soft than press. */
+export const hoverTween = {
+  type: "tween" as const,
+  duration: 0.14,
+  ease: easeOutSoft,
+} as const
+
+/**
+ * Gesture targets for soft-rect controls.
+ * Prefer per-gesture transitions so press stays ≤100ms Expo while hover Soft.
+ */
+export function controlGestures(reduce?: boolean | null) {
+  if (reduce) {
+    return {
+      whileHover: undefined,
+      whileFocus: undefined,
+      whileTap: undefined,
+    }
+  }
+  return {
+    whileHover: { ...hoverLift, transition: hoverTween },
+    whileFocus: { ...focusAsHover, transition: hoverTween },
+    whileTap: { ...pressInto, transition: pressTween },
+  }
+}
+
+/**
+ * Scroll / timeline sequence reveal — opacity + y only (never blur).
+ * Delay step is landing-scale (~120ms), not list {@link stagger} (≤50ms).
+ */
+export const LANDING_STAGGER = 0.12
+
+export const timelineRevealVariants = {
+  visible: (i: number) => ({
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: i * LANDING_STAGGER,
+      ...enterTween(0.28, easeOutExpo),
+    },
+  }),
+  hidden: { y: 12, opacity: 0 },
+} as const
+
+/** In-view / section reveal enter (FadeIn / LineReveal). */
+export const inViewTween = {
+  type: "tween" as const,
+  duration: 0.28,
+  ease: easeOutSoft,
 } as const
 
 /** Tooltip appear / dismiss */

@@ -3,7 +3,7 @@
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar"
 import { motion, useReducedMotion } from "motion/react"
 
-import { pressTween } from "../../lib/motion"
+import { controlGestures, pressTween } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 
 /**
@@ -52,6 +52,7 @@ function ToolbarButton({
   ...props
 }: ToolbarPrimitive.Button.Props) {
   const reduce = useReducedMotion()
+  const gestures = controlGestures(reduce)
 
   return (
     <ToolbarPrimitive.Button
@@ -60,8 +61,11 @@ function ToolbarButton({
       render={
         render ?? (
           <motion.button
-            whileTap={reduce ? undefined : { scale: 0.97, y: 0.5 }}
-            transition={pressTween}
+            whileHover={gestures.whileHover}
+            whileFocus={gestures.whileFocus}
+            whileTap={
+              reduce ? undefined : { scale: 0.97, y: 0.5, transition: pressTween }
+            }
           />
         )
       }

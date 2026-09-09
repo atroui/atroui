@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { ComponentDoc } from "@/components/component-doc"
-import { DemoFadeIn, DemoFadeInDelayed } from "@/components/registry-demos"
-
+import { DemoFadeIn, DemoFadeInDelayed, DemoFadeInSection } from "@/components/registry-demos"
 
 export function MotionFadeInDoc() {
   return (
@@ -9,9 +8,9 @@ export function MotionFadeInDoc() {
       registryName="fade-in"
       href="/docs/components/motion-fade-in"
       title="Fade In"
-      description="Scroll-triggered fade + rise. Preview animates on mount — use Replay to watch again."
+      description="The scroll reveal — opacity + rise. One primitive for cards and sections."
       preview={<DemoFadeIn />}
-      code={`import { FadeIn } from "@/components/motion/fade-in"
+      code={`import { FadeIn } from "@/components/ui/fade-in"
 
 <FadeIn>Content</FadeIn>
 
@@ -20,15 +19,31 @@ export function MotionFadeInDoc() {
       fullBleed={false}
       usage={
         <>
-          Wrap page sections that should rise into place on scroll. Pass{" "}
+          Use this for any scroll enter. Pass{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             preview
           </code>{" "}
-          in docs canvases so the stage is never stuck at opacity 0. Prefer{" "}
+          in docs canvases. For landing sections, use earlier trigger defaults (
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+            margin=&quot;-40px&quot;
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+            amount=0.2
+          </code>
+          ) or spread{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px]">
+            fadeInSection
+          </code>
+          . Prefer{" "}
           <Link href="/docs/components/motion-stagger" className="bam-link">
             Stagger
           </Link>{" "}
-          when several siblings should enter in sequence.
+          when siblings enter in sequence,{" "}
+          <Link href="/docs/components/motion-line-reveal" className="bam-link">
+            Line Reveal
+          </Link>{" "}
+          for headlines.
         </>
       }
       examples={[
@@ -36,10 +51,20 @@ export function MotionFadeInDoc() {
           title: "Delay and travel",
           tip: "delay is seconds (Motion), not ms. Raise y when the block should feel like it climbed farther.",
           preview: <DemoFadeInDelayed />,
-          code: `import { FadeIn } from "@/components/motion/fade-in"
+          code: `import { FadeIn } from "@/components/ui/fade-in"
 
 <FadeIn delay={0.35} y={24}>
   Content
+</FadeIn>`,
+        },
+        {
+          title: "Section (landing) trigger",
+          tip: "Earlier viewport trigger — same motion language, not a second component.",
+          preview: <DemoFadeInSection />,
+          code: `import { FadeIn, fadeInSection } from "@/components/ui/fade-in"
+
+<FadeIn {...fadeInSection}>
+  Section
 </FadeIn>`,
         },
       ]}
@@ -48,7 +73,7 @@ export function MotionFadeInDoc() {
           name: "y",
           type: "number",
           default: "14",
-          description: "Initial translateY in px.",
+          description: "Starting translateY in px.",
         },
         {
           name: "delay",
@@ -60,14 +85,31 @@ export function MotionFadeInDoc() {
           name: "duration",
           type: "number",
           default: "0.28",
-          description: "Tween duration in seconds.",
+          description: "Tween duration (easeOutSoft).",
+        },
+        {
+          name: "once",
+          type: "boolean",
+          default: "true",
+          description: "Play only the first time it enters view.",
+        },
+        {
+          name: "amount",
+          type: 'number | "some" | "all"',
+          default: "0.15",
+          description: "How much must be visible to trigger.",
+        },
+        {
+          name: "margin",
+          type: "string",
+          default: '"0px"',
+          description: 'Viewport root margin. "-40px" triggers earlier (landing).',
         },
         {
           name: "preview",
           type: "boolean",
           default: "false",
-          description:
-            "Animate on mount (docs stages) instead of waiting for scroll.",
+          description: "Animate on mount (docs canvases).",
         },
       ]}
     />

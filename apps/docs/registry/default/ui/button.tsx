@@ -4,7 +4,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { motion, useReducedMotion } from "motion/react"
 
-import { pressTween } from "@/lib/motion"
+import { controlGestures, hoverLift, hoverTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
@@ -46,8 +46,9 @@ const buttonVariants = cva(
 )
 
 /**
- * Soft-rect Mira button — whileTap press (scale+y) + subtle whileHover.
- * No spring. Dots/TextMorph loading skipped (too heavy for every CTA).
+ * Soft-rect Mira button — signature hover language + press into surface.
+ * Material brightens (CSS); geometry ≤1px lift; never scale on hover.
+ * TextMorph loading is opt-in via the TextMorph primitive — not default here.
  */
 function Button({
   className,
@@ -60,8 +61,8 @@ function Button({
   const hasPopup =
     props["aria-haspopup"] != null && props["aria-haspopup"] !== false
   const skipMotion = reduce || variant === "link" || hasPopup
-  const hoverPrimary =
-    variant === "default" || variant === "secondary"
+  const gestures = controlGestures(skipMotion)
+  const hoverPrimary = variant === "default" || variant === "secondary"
 
   return (
     <ButtonPrimitive
@@ -74,11 +75,11 @@ function Button({
               skipMotion
                 ? undefined
                 : hoverPrimary
-                  ? { opacity: 0.9, y: -0.5 }
-                  : { y: -0.5 }
+                  ? { ...hoverLift, opacity: 0.9, transition: hoverTween }
+                  : gestures.whileHover
             }
-            whileTap={skipMotion ? undefined : { scale: 0.98, y: 1 }}
-            transition={pressTween}
+            whileFocus={skipMotion ? undefined : gestures.whileFocus}
+            whileTap={gestures.whileTap}
           />
         )
       }

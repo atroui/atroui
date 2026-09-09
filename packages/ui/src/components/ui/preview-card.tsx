@@ -4,6 +4,9 @@ import * as React from "react"
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 
+import { Magnetic } from "../motion/magnetic"
+import { Spotlight } from "../motion/spotlight"
+import { Tilt } from "../motion/tilt"
 import { popupMotion } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 
@@ -24,6 +27,46 @@ function usePreviewCardOpen() {
     throw new Error("PreviewCard parts must be used within <PreviewCard>")
   }
   return ctx.open
+}
+
+type TiltOpt = boolean | { rotationFactor?: number; perspective?: number }
+type MagneticOpt = boolean | { intensity?: number; range?: number }
+type SpotlightOpt = boolean | { size?: number; opacity?: number; color?: string }
+
+function resolveOpt<T extends object>(
+  opt: boolean | T | undefined,
+  defaults: T
+): T | null {
+  if (!opt) return null
+  if (opt === true) return defaults
+  return { ...defaults, ...opt }
+}
+
+/**
+ * Opt-in media motion for PreviewCardContent only.
+ * Defaults off — never apply magnetic / tilt / spotlight to Button / Menu chrome.
+ */
+function wrapMediaMotion(
+  children: React.ReactNode,
+  opts: {
+    tilt: ReturnType<typeof resolveOpt<{ rotationFactor?: number; perspective?: number }>>
+    magnetic: ReturnType<typeof resolveOpt<{ intensity?: number; range?: number }>>
+    spotlight: ReturnType<
+      typeof resolveOpt<{ size?: number; opacity?: number; color?: string }>
+    >
+  }
+) {
+  let body = children
+  if (opts.spotlight) {
+    body = <Spotlight {...opts.spotlight}>{body}</Spotlight>
+  }
+  if (opts.tilt) {
+    body = <Tilt {...opts.tilt}>{body}</Tilt>
+  }
+  if (opts.magnetic) {
+    body = <Magnetic {...opts.magnetic}>{body}</Magnetic>
+  }
+  return body
 }
 
 function PreviewCard({
@@ -71,14 +114,35 @@ function PreviewCardContent({
   side = "bottom",
   sideOffset = 8,
   render,
+  children,
+  tilt: tiltOpt = false,
+  magnetic: magneticOpt = false,
+  spotlight: spotlightOpt = false,
   ...props
 }: PreviewCardPrimitive.Popup.Props &
   Pick<
     PreviewCardPrimitive.Positioner.Props,
     "align" | "alignOffset" | "side" | "sideOffset"
-  >) {
+  > & {
+    /** Mild 3D tilt — media only. Default false. */
+    tilt?: TiltOpt
+    /** Mild magnetic pull — media only. Default false. */
+    magnetic?: MagneticOpt
+    /** Low-opacity cursor wash — dark Mira media. Default false. */
+    spotlight?: SpotlightOpt
+  }) {
   const open = usePreviewCardOpen()
   const reduce = useReducedMotion()
+
+  const tilt = reduce
+    ? null
+    : resolveOpt(tiltOpt, { rotationFactor: 6 })
+  const magnetic = reduce
+    ? null
+    : resolveOpt(magneticOpt, { intensity: 0.25, range: 48 })
+  const spotlight = reduce
+    ? null
+    : resolveOpt(spotlightOpt, { opacity: 0.12, size: 240 })
 
   return (
     <AnimatePresence>
@@ -100,7 +164,9 @@ function PreviewCardContent({
               )}
               render={render ?? <motion.div {...popupMotion(reduce)} />}
               {...props}
-            />
+            >
+              {wrapMediaMotion(children, { tilt, magnetic, spotlight })}
+            </PreviewCardPrimitive.Popup>
           </PreviewCardPrimitive.Positioner>
         </PreviewCardPrimitive.Portal>
       ) : null}
@@ -152,3 +218,4 @@ export {
   PreviewCardTitle,
   PreviewCardTrigger,
 }
+export type { MagneticOpt, SpotlightOpt, TiltOpt }

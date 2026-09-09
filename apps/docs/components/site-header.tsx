@@ -7,11 +7,12 @@ import { SharedBrand, TransitionLink } from "@/components/view-transitions"
 
 /**
  * Short marketing bar — brand · Docs/Components/Blog · search · theme.
- * No mega menus, no Browse CTA (Components + search cover it).
+ * Hide-on-scroll (Motion scroll-direction) — docs book uses DocsHeader instead.
  */
 export function SiteHeader() {
   return (
     <SiteChrome
+      hideOnScroll
       leading={
         <SharedBrand>
           <TransitionLink

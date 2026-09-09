@@ -48,6 +48,10 @@ html {
 .atro-site-chrome .atro-shell {
   pointer-events: auto;
 }
+/* Marketing hide-on-scroll — kill hit targets while translated away */
+.atro-site-chrome.is-scroll-hidden .atro-shell {
+  pointer-events: none;
+}
 .atro-site-chrome-inner {
   display: flex;
   height: 2.5rem;
@@ -3031,7 +3035,12 @@ a.docs-changelog-hash:hover {
   }
 }
 
-/* Final CTA — dense close on the shared section rhythm */
+/* Final CTA — dense close + short sticky scrub track */
+.atro-final-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 .atro-final-cta-inner {
   display: flex;
   flex-direction: column;

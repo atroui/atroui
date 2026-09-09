@@ -171,7 +171,7 @@ export const navigation: NavSection[] = [
       {
         title: "Preview Card",
         href: "/docs/components/ui-preview-card",
-        description: "Link preview settle",
+        description: "Link preview + opt-in media motion",
         badge: "registry",
       },
       {
@@ -405,13 +405,67 @@ export const navigation: NavSection[] = [
       {
         title: "Fade In",
         href: "/docs/components/motion-fade-in",
-        description: "Enter animation",
+        description: "Scroll reveal",
         badge: "registry",
       },
       {
         title: "Stagger",
         href: "/docs/components/motion-stagger",
         description: "Staggered children",
+        badge: "registry",
+      },
+      {
+        title: "Line Reveal",
+        href: "/docs/components/motion-line-reveal",
+        description: "Text enter stagger",
+        badge: "registry",
+      },
+      {
+        title: "Text Morph",
+        href: "/docs/components/motion-text-morph",
+        description: "Label state morph",
+        badge: "registry",
+      },
+      {
+        title: "Copy Button",
+        href: "/docs/components/motion-copy-button",
+        description: "Copy → check recipe",
+        badge: "registry",
+      },
+      {
+        title: "Label Roll",
+        href: "/docs/components/motion-label-roll",
+        description: "Hover text roll",
+        badge: "registry",
+      },
+      {
+        title: "Magnetic",
+        href: "/docs/components/motion-magnetic",
+        description: "Media pointer pull",
+        badge: "registry",
+      },
+      {
+        title: "Tilt",
+        href: "/docs/components/motion-tilt",
+        description: "Mild media 3D tilt",
+        badge: "registry",
+      },
+      {
+        title: "Spotlight",
+        href: "/docs/components/motion-spotlight",
+        description: "Dark card cursor wash",
+        badge: "registry",
+      },
+      {
+        title: "Animate Number",
+        href: "/docs/components/motion-animate-number",
+        description: "Pricing / stats counter",
+        badge: "registry",
+      },
+      {
+        title: "Transition Panel",
+        href: "/docs/components/motion-transition-panel",
+        description: "Wait-mode panel swap",
         badge: "registry",
       },
       {

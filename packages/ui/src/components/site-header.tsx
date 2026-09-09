@@ -1,7 +1,13 @@
 "use client";
 
 import { ArrowRight, Menu, X } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,6 +15,11 @@ import { useEffect, useState } from "react";
 import { LogoWordmark } from "./brand/logo";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { getBrand } from "../lib/brand";
+import {
+  SCROLL_HIDE_OFFSET,
+  easeOutSoft,
+  scrollHideTween,
+} from "../lib/motion";
 import { cn } from "../lib/utils";
 
 const nav = [
@@ -25,27 +36,36 @@ function isActive(pathname: string, href: string) {
 
 /**
  * Editorial site chrome - same max-w-7xl + border-x frame as page bands.
+ * Hide-on-scroll (Motion scroll-direction) — marketing shell only.
+ * Reduced motion: stays visible; no hide travel.
  */
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const reduce = useReducedMotion();
   const brandName = getBrand().name;
+  const { scrollY } = useScroll();
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (current) => {
+    setScrolled(current > 8);
+    if (reduce || open) {
+      setHidden(false);
+      return;
+    }
+    const previous = scrollY.getPrevious() ?? 0;
+    const next = current > previous && current > SCROLL_HIDE_OFFSET;
+    setHidden((prev) => (prev === next ? prev : next));
+  });
 
   useEffect(() => {
     if (!open) return;
+    setHidden(false);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
@@ -58,13 +78,22 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header
+    <motion.header
       className={cn(
         "sticky top-0 z-50 pt-[env(safe-area-inset-top)] transition-[background-color,border-color] duration-200",
         scrolled || open
           ? "border-b border-border-subtle bg-background/85 backdrop-blur-xl backdrop-saturate-150"
           : "border-b border-border-subtle/60 bg-background/50 backdrop-blur-md",
       )}
+      animate={
+        reduce || open
+          ? { y: 0, opacity: 1 }
+          : {
+              y: hidden ? -80 : 0,
+              opacity: hidden ? 0 : 1,
+            }
+      }
+      transition={reduce ? { duration: 0 } : scrollHideTween}
     >
       <div className="mx-auto max-w-7xl border-x border-border-subtle">
         <div className="flex h-14 items-center justify-between gap-4 ms-shell-pad">
@@ -101,9 +130,9 @@ export function SiteHeader() {
                             reduce
                               ? { duration: 0 }
                               : {
-                                  type: "spring",
-                                  bounce: 0,
-                                  duration: 0.35,
+                                  type: "tween",
+                                  duration: 0.28,
+                                  ease: easeOutSoft,
                                 }
                           }
                           aria-hidden
@@ -154,7 +183,11 @@ export function SiteHeader() {
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+            transition={
+              reduce
+                ? { duration: 0 }
+                : { duration: 0.22, ease: easeOutSoft }
+            }
           >
             <div className="mx-auto max-w-7xl border-x border-border-subtle">
               <nav className="flex flex-col divide-y divide-border-subtle">
@@ -198,6 +231,6 @@ export function SiteHeader() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

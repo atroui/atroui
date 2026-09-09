@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label-roll",
+  "title": "Label Roll",
+  "description": "Clipped dual-copy roll on hover/focus for links and secondary CTAs.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/label-roll.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\ntype LabelRollProps = {\n  children: React.ReactNode\n  className?: string\n  /** Second line — defaults to the same children (hover roll). */\n  secondary?: React.ReactNode\n  /**\n   * When true, the roll surface is focusable (standalone control).\n   * Keep false when wrapping with `<a>` / `<button>` so you don't nest tab stops.\n   */\n  interactive?: boolean\n}\n\n/**\n * Clipped dual-copy roll on hover / focus — tiny frequent delight for links & secondary CTAs.\n * CSS transform (not Motion variants) so the frequent path stays snappy ≤100ms.\n * Reduced motion: static label.\n */\nexport function LabelRoll({\n  children,\n  secondary,\n  className,\n  interactive = false,\n}: LabelRollProps) {\n  const second = secondary ?? children\n\n  return (\n    <span\n      className={cn(\n        \"group/roll relative inline-flex h-[1.15em] overflow-hidden align-bottom outline-none\",\n        className\n      )}\n      tabIndex={interactive ? 0 : undefined}\n    >\n      <span\n        className={cn(\n          \"inline-flex flex-col will-change-transform\",\n          \"transition-transform duration-100 ease-[cubic-bezier(0.16,1,0.3,1)]\",\n          \"motion-reduce:transition-none\",\n          \"group-hover/roll:-translate-y-1/2\",\n          interactive && \"group-focus-within/roll:-translate-y-1/2\"\n        )}\n      >\n        <span className=\"inline-block leading-[1.15]\">{children}</span>\n        <span className=\"inline-block leading-[1.15]\" aria-hidden>\n          {second}\n        </span>\n      </span>\n    </span>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/label-roll.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

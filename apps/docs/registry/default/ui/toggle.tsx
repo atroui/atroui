@@ -5,7 +5,11 @@ import { Toggle as TogglePrimitive } from "@base-ui/react/toggle"
 import { cva, type VariantProps } from "class-variance-authority"
 import { motion, useReducedMotion } from "motion/react"
 
-import { easeOutExpo, layoutTween, pressTween } from "@/lib/motion"
+import {
+  controlGestures,
+  easeOutExpo,
+  layoutTween,
+} from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 /** Pressed fill settle — ~160ms easeOutExpo, no spring. */
@@ -92,6 +96,7 @@ function Toggle({
   const reduce = useReducedMotion()
   const group = React.useContext(ToggleGroupMotionContext)
   const useSharedHighlight = Boolean(group && !group.multiple)
+  const gestures = controlGestures(reduce)
 
   return (
     <TogglePrimitive
@@ -107,8 +112,9 @@ function Toggle({
             {...withoutDomAnimationHandlers(
               htmlProps as Record<string, unknown>
             )}
-            whileTap={reduce ? undefined : { scale: 0.98, y: 1 }}
-            transition={pressTween}
+            whileHover={gestures.whileHover}
+            whileFocus={gestures.whileFocus}
+            whileTap={gestures.whileTap}
           >
             {shared ? (
               reduce ? (

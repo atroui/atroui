@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionPanel,
   AccordionTrigger,
+  AnimateNumber,
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -83,6 +84,7 @@ import {
   DrawerTrigger,
   ExitIntentPopup,
   FadeIn,
+  fadeInSection,
   FaqInteractivePreview,
   FeatureGrid,
   Field,
@@ -98,6 +100,9 @@ import {
   HomeCrafts,
   HomeLab,
   HomePrinciple,
+  LabelRoll,
+  LineReveal,
+  Magnetic,
   HomeWho,
   HomeWork,
   Input,
@@ -179,6 +184,7 @@ import {
   SliderTrack,
   SliderValue,
   SocialShare,
+  Spotlight,
   Stagger,
   StaggerChild,
   Switch,
@@ -187,9 +193,12 @@ import {
   TabsList,
   TabsTrigger,
   Textarea,
+  TextMorph,
+  CopyButton,
   ThemeToggle,
   ThumbnailLivePreview,
   ThumbnailWorkspace,
+  Tilt,
   TimelineAnimation,
   Toaster,
   ToastProvider,
@@ -203,10 +212,12 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
+  TransitionPanel,
   trackEvent,
   useToastManager,
   WeatherChip,
 } from "atroui"
+import { IMAGEORY } from "@/lib/imageory"
 import {
   ArrowRight,
   MoreHorizontal,
@@ -415,28 +426,28 @@ export function DemoCardCompactMedia() {
     <div className="flex flex-wrap items-start justify-center gap-4">
       <Card size="sm" className="w-full max-w-[240px]">
         <img
-          src="/examples/product-launch.png"
+          src={IMAGEORY.landscape}
           alt=""
           width={1200}
           height={630}
           className="aspect-2/1 w-full object-cover"
         />
         <CardHeader>
-          <CardTitle>Product launch</CardTitle>
-          <CardDescription>Shipped Sep 2</CardDescription>
+          <CardTitle>Landscape</CardTitle>
+          <CardDescription>Imageory</CardDescription>
         </CardHeader>
       </Card>
       <Card size="sm" className="w-full max-w-[240px]">
         <img
-          src="/examples/changelog-release.png"
+          src={IMAGEORY.nature}
           alt=""
           width={1200}
           height={630}
           className="aspect-2/1 w-full object-cover"
         />
         <CardHeader>
-          <CardTitle>Changelog 0.4</CardTitle>
-          <CardDescription>Shipped Aug 28</CardDescription>
+          <CardTitle>Nature</CardTitle>
+          <CardDescription>Imageory</CardDescription>
         </CardHeader>
       </Card>
     </div>
@@ -733,16 +744,25 @@ export function DemoPreviewCard() {
         >
           AtroUI
         </PreviewCardTrigger>
-        <PreviewCardContent>
-          <PreviewCardHeader>
+        <PreviewCardContent
+          tilt
+          spotlight
+          className="w-80 overflow-hidden p-0"
+        >
+          <img
+            src={IMAGEORY.cosmos}
+            alt=""
+            className="aspect-video w-full object-cover"
+          />
+          <PreviewCardHeader className="p-3.5">
             <PreviewCardTitle>AtroUI</PreviewCardTitle>
             <PreviewCardDescription>
-              Own the files after install — soft open, stay on the page.
+              Opt-in tilt + spotlight on media — soft settle, never default chrome.
             </PreviewCardDescription>
           </PreviewCardHeader>
         </PreviewCardContent>
       </PreviewCard>{" "}
-      for a quiet preview.
+      for a quiet media preview.
     </p>
   )
 }
@@ -1478,6 +1498,282 @@ export function DemoFadeInDelayed() {
   )
 }
 
+export function DemoFadeInSection() {
+  const [key, setKey] = React.useState(0)
+
+  return (
+    <div className="flex w-full max-w-md flex-col items-stretch gap-4">
+      <FadeIn
+        key={key}
+        preview
+        {...fadeInSection}
+        className="rounded-xl border border-border-subtle bg-card px-6 py-5 text-sm text-foreground shadow-sm"
+      >
+        <p className="ms-stamp mb-2">FadeIn · section</p>
+        <p className="font-medium">Earlier trigger, same motion</p>
+        <p className="mt-1 text-muted-foreground">
+          Spreading fadeInSection — not a second component.
+        </p>
+      </FadeIn>
+      <button
+        type="button"
+        onClick={() => setKey((k) => k + 1)}
+        className="atro-btn-ghost self-center"
+      >
+        Replay
+      </button>
+    </div>
+  )
+}
+
+/** @deprecated Gallery alias — use DemoFadeInSection */
+export function DemoInView() {
+  return <DemoFadeInSection />
+}
+
+export function DemoTextMorph() {
+  const [label, setLabel] = React.useState("Idle")
+  const cycle = () =>
+    setLabel((v) => (v === "Idle" ? "Loading" : v === "Loading" ? "Done" : "Idle"))
+
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-4">
+      <button
+        type="button"
+        onClick={cycle}
+        className="atro-btn inline-flex min-w-[7rem] justify-center"
+      >
+        <TextMorph className="font-medium">{label}</TextMorph>
+      </button>
+      <p className="text-center text-sm text-muted-foreground">
+        Click to morph Idle → Loading → Done. Opt-in — not default on every Button.
+      </p>
+    </div>
+  )
+}
+
+export function DemoCopyButton() {
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <CopyButton value="npx shadcn@latest add @atroui/copy-button" />
+        <CopyButton
+          value="atroui.com"
+          size="icon-sm"
+          aria-label="Copy site URL"
+        />
+      </div>
+      <p className="text-center text-sm text-muted-foreground">
+        Rare-path delight — TextMorph label + icon swap. Not default on every Button.
+      </p>
+    </div>
+  )
+}
+
+export function DemoAnimateNumber() {
+  const [value, setValue] = React.useState(1280)
+
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-4">
+      <p className="text-4xl font-medium tracking-tight text-foreground">
+        <AnimateNumber
+          value={value}
+          from={0}
+          prefix="$"
+          format={{ style: "decimal", maximumFractionDigits: 0 }}
+        />
+      </p>
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => setValue(480)}
+          className="atro-btn-ghost"
+        >
+          $480
+        </button>
+        <button
+          type="button"
+          onClick={() => setValue(1280)}
+          className="atro-btn-ghost"
+        >
+          $1,280
+        </button>
+        <button
+          type="button"
+          onClick={() => setValue(9600)}
+          className="atro-btn-ghost"
+        >
+          $9,600
+        </button>
+      </div>
+      <p className="text-center text-sm text-muted-foreground">
+        Digits tween as numbers — Soft settle, no scramble.
+      </p>
+    </div>
+  )
+}
+
+export function DemoTransitionPanel() {
+  const [activeKey, setActiveKey] = React.useState("overview")
+
+  const tabs = [
+    { key: "overview", label: "Overview" },
+    { key: "motion", label: "Motion" },
+    { key: "a11y", label: "A11y" },
+  ] as const
+
+  const panels = {
+    overview: (
+      <>
+        <p className="ms-stamp mb-2">Overview</p>
+        <p className="font-medium">Discrete panel swap</p>
+        <p className="mt-1 text-muted-foreground">
+          Exit finishes before enter — wait mode for feature tabs.
+        </p>
+      </>
+    ),
+    motion: (
+      <>
+        <p className="ms-stamp mb-2">Motion</p>
+        <p className="font-medium">Opacity + small y</p>
+        <p className="mt-1 text-muted-foreground">
+          pageFade duration, easeOutSoft — no spring overshoot.
+        </p>
+      </>
+    ),
+    a11y: (
+      <>
+        <p className="ms-stamp mb-2">A11y</p>
+        <p className="font-medium">Reduced motion</p>
+        <p className="mt-1 text-muted-foreground">
+          Instant swap when prefers-reduced-motion is set.
+        </p>
+      </>
+    ),
+  }
+
+  return (
+    <div className="flex w-full max-w-md flex-col items-stretch gap-4">
+      <div className="flex gap-1 rounded-lg border border-border-subtle bg-muted/40 p-1">
+        {tabs.map((tab) => (
+          <button
+            key={tab.key}
+            type="button"
+            onClick={() => setActiveKey(tab.key)}
+            className={
+              activeKey === tab.key
+                ? "flex-1 rounded-md bg-card px-3 py-1.5 text-sm font-medium text-foreground shadow-sm"
+                : "flex-1 rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+            }
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      <TransitionPanel
+        activeKey={activeKey}
+        className="rounded-xl border border-border-subtle bg-card px-6 py-5 text-sm text-foreground shadow-sm"
+      >
+        {panels}
+      </TransitionPanel>
+    </div>
+  )
+}
+
+export function DemoLabelRoll() {
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-3 py-4">
+      <a href="#demo" className="text-base font-medium text-foreground">
+        <LabelRoll secondary="Install AtroUI">Get started</LabelRoll>
+      </a>
+      <p className="text-center text-sm text-muted-foreground">
+        Hover or focus — clipped dual-copy roll.
+      </p>
+    </div>
+  )
+}
+
+export function DemoMagnetic() {
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-3 py-4">
+      <Magnetic
+        className="w-full max-w-xs overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
+        intensity={0.28}
+        range={64}
+      >
+        <img
+          src={IMAGEORY.landscape}
+          alt=""
+          className="aspect-[16/10] w-full object-cover"
+        />
+      </Magnetic>
+      <p className="text-center text-sm text-muted-foreground">
+        Move over the card — mild pull, tween settle. Media from Imageory.
+      </p>
+    </div>
+  )
+}
+
+export function DemoTilt() {
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-3 py-6">
+      <Tilt
+        className="w-full max-w-xs overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
+        rotationFactor={6}
+      >
+        <img
+          src={IMAGEORY.sky}
+          alt=""
+          className="aspect-[16/10] w-full object-cover"
+        />
+      </Tilt>
+      <p className="text-center text-sm text-muted-foreground">
+        Mild ≤6° tilt. Imageory sky — never Button / Menu chrome.
+      </p>
+    </div>
+  )
+}
+
+export function DemoSpotlight() {
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-3 py-4">
+      <Spotlight className="w-full max-w-xs rounded-[var(--radius)] border border-border-subtle bg-zinc-950">
+        <img
+          src={IMAGEORY.darkVoid}
+          alt=""
+          className="aspect-[16/10] w-full object-cover opacity-90"
+        />
+      </Spotlight>
+      <p className="text-center text-sm text-muted-foreground">
+        Low-opacity wash on dark Imageory media.
+      </p>
+    </div>
+  )
+}
+
+export function DemoLineReveal() {
+  const [key, setKey] = React.useState(0)
+
+  return (
+    <div className="flex w-full max-w-lg flex-col items-stretch gap-4">
+      <LineReveal
+        key={key}
+        preview
+        className="text-left text-lg font-medium tracking-tight text-foreground"
+      >
+        Show the fundamental first. Reveal depth only when it is relevant.
+      </LineReveal>
+      <button
+        type="button"
+        onClick={() => setKey((k) => k + 1)}
+        className="atro-btn-ghost self-center"
+      >
+        Replay
+      </button>
+    </div>
+  )
+}
+
 export function DemoStagger() {
   const [key, setKey] = React.useState(0)
 
@@ -1542,7 +1838,7 @@ export function DemoScrollProgress() {
       <div className="relative border-b border-border-subtle bg-muted/40 px-4 py-2.5">
         <p className="ms-stamp">ScrollProgress</p>
         <p className="mt-1 text-sm text-muted-foreground">
-          Scroll the panel - the brand bar tracks local progress.
+          Scroll the panel — scaleX tracks progress directly (no spring lag).
         </p>
         <ScrollProgress
           containerRef={containerRef}
@@ -1556,10 +1852,18 @@ export function DemoScrollProgress() {
         <p className="font-medium text-foreground">Reading pane</p>
         {Array.from({ length: 12 }, (_, i) => (
           <p key={i} className="mt-3">
-            Section {i + 1}. In production this mounts fixed at the top of the
-            viewport and tracks document scroll. Here it uses{" "}
-            <code className="font-mono text-xs text-foreground">containerRef</code>{" "}
-            so the preview is self-contained.
+            Section {i + 1}. Production mounts fixed at the viewport top and
+            binds{" "}
+            <code className="font-mono text-xs text-foreground">
+              scrollYProgress
+            </code>{" "}
+            →{" "}
+            <code className="font-mono text-xs text-foreground">scaleX</code>.
+            Pass{" "}
+            <code className="font-mono text-xs text-foreground">
+              springOptions
+            </code>{" "}
+            only if you want a soft settle. Reduced motion hides the bar.
           </p>
         ))}
       </div>

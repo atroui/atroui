@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tilt",
+  "title": "Tilt",
+  "description": "Mild 3D media tilt toward the pointer — rotationFactor ≤6–8°. Opt-in only.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/tilt.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  animate,\n  motion,\n  useMotionValue,\n  useReducedMotion,\n} from \"motion/react\"\nimport type { HTMLMotionProps } from \"motion/react\"\n\nimport { easeOutSoft, hoverTween } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\n/** Cap — mild media tilt only (≤6–8°). Never Button / Menu chrome. */\nexport const TILT_ROTATION_MAX = 8\n\nconst settle = {\n  type: \"tween\" as const,\n  duration: hoverTween.duration,\n  ease: easeOutSoft,\n}\n\nexport type TiltProps = HTMLMotionProps<\"div\"> & {\n  /** Max rotate in degrees. Clamped ≤ {@link TILT_ROTATION_MAX}. Default 6. */\n  rotationFactor?: number\n  /** CSS perspective in px. Default 800. */\n  perspective?: number\n}\n\n/**\n * Mild 3D tilt toward the pointer — media / PreviewCard only.\n * Real-time rotate on move; tween settle on leave. Reduced motion → static.\n */\nexport function Tilt({\n  rotationFactor = 6,\n  perspective = 800,\n  className,\n  style,\n  onPointerMove,\n  onPointerLeave,\n  children,\n  ...props\n}: TiltProps) {\n  const reduce = useReducedMotion()\n  const rotateX = useMotionValue(0)\n  const rotateY = useMotionValue(0)\n  const max = Math.min(Math.max(rotationFactor, 0), TILT_ROTATION_MAX)\n\n  const handleMove = React.useCallback(\n    (e: React.PointerEvent<HTMLDivElement>) => {\n      onPointerMove?.(e)\n      if (e.defaultPrevented) return\n      const rect = e.currentTarget.getBoundingClientRect()\n      const px = (e.clientX - rect.left) / rect.width - 0.5\n      const py = (e.clientY - rect.top) / rect.height - 0.5\n      rotateX.set(-py * max * 2)\n      rotateY.set(px * max * 2)\n    },\n    [max, onPointerMove, rotateX, rotateY]\n  )\n\n  const handleLeave = React.useCallback(\n    (e: React.PointerEvent<HTMLDivElement>) => {\n      onPointerLeave?.(e)\n      if (e.defaultPrevented) return\n      animate(rotateX, 0, settle)\n      animate(rotateY, 0, settle)\n    },\n    [onPointerLeave, rotateX, rotateY]\n  )\n\n  if (reduce) {\n    return (\n      <div\n        className={cn(className)}\n        style={style as React.CSSProperties}\n        {...(props as React.HTMLAttributes<HTMLDivElement>)}\n      >\n        {children as React.ReactNode}\n      </div>\n    )\n  }\n\n  return (\n    <motion.div\n      className={cn(className)}\n      style={{\n        rotateX,\n        rotateY,\n        transformPerspective: perspective,\n        transformStyle: \"preserve-3d\",\n        ...style,\n      }}\n      onPointerMove={handleMove}\n      onPointerLeave={handleLeave}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/tilt.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

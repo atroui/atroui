@@ -29,9 +29,8 @@ export function LandingHero() {
         <LandingBlog />
       </LandingReveal>
 
-      <LandingReveal>
-        <LandingFinalCta />
-      </LandingReveal>
+      {/* Final CTA owns its own sticky scrub — skip InView so they don't fight. */}
+      <LandingFinalCta />
 
       <SiteFooter />
     </>

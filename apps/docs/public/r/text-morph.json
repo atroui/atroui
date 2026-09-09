@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-morph",
+  "title": "Text Morph",
+  "description": "Shared-letter morph between label strings. Opt-in for state swaps.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/text-morph.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\"\n\nimport { layoutTween } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\ntype TextMorphProps = {\n  children: string\n  className?: string\n  as?: \"span\" | \"p\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"label\"\n  /**\n   * Stable id prefix for layoutIds when multiple TextMorphs share a tree.\n   * Defaults to a React id.\n   */\n  morphId?: string\n}\n\n/**\n * Shared-letter morph between label strings (Idle → Loading → Done).\n * Opt-in — too heavy as a default on every Button.\n * Family Values: letters travel; reduced motion crossfades the whole string.\n */\nexport function TextMorph({\n  children,\n  className,\n  as: Tag = \"span\",\n  morphId,\n}: TextMorphProps) {\n  const reduce = useReducedMotion()\n  const reactId = React.useId()\n  const id = morphId ?? reactId\n\n  if (reduce) {\n    return (\n      <Tag className={cn(\"inline-block\", className)} aria-label={children}>\n        {children}\n      </Tag>\n    )\n  }\n\n  const chars = Array.from(children)\n  const counts = new Map<string, number>()\n\n  return (\n    <Tag className={cn(\"inline-flex flex-wrap whitespace-pre-wrap\", className)} aria-label={children}>\n      <AnimatePresence mode=\"popLayout\" initial={false}>\n        {chars.map((char) => {\n          const n = counts.get(char) ?? 0\n          counts.set(char, n + 1)\n          const layoutId = `${id}-${char === \" \" ? \"space\" : char}-${n}`\n          return (\n            <motion.span\n              key={layoutId}\n              layoutId={layoutId}\n              className=\"inline-block\"\n              initial={{ opacity: 0, y: 6 }}\n              animate={{ opacity: 1, y: 0 }}\n              exit={{ opacity: 0, y: -6 }}\n              transition={layoutTween}\n              aria-hidden\n            >\n              {char === \" \" ? \"\\u00A0\" : char}\n            </motion.span>\n          )\n        })}\n      </AnimatePresence>\n    </Tag>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/text-morph.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

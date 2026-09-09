@@ -2,12 +2,14 @@ export { cn } from "./lib/utils"
 export {
   STAGGER_DEFAULT,
   STAGGER_MAX,
+  LANDING_STAGGER,
   EXIT_DURATION_SCALE,
   atroMotionDefaults,
   avatarFallbackMotion,
   avatarImageMotion,
   avatarTween,
   backdropMotion,
+  controlGestures,
   dialogContentMotion,
   dialogTween,
   drawerPanelMotion,
@@ -19,6 +21,10 @@ export {
   exitTween,
   fadeTween,
   fillTween,
+  focusAsHover,
+  hoverLift,
+  hoverTween,
+  inViewTween,
   layoutTween,
   menuItemVariants,
   menuPopupMotion,
@@ -28,20 +34,24 @@ export {
   popupMotion,
   popupTween,
   presenceTweens,
+  pressInto,
   pressTween,
   revealTween,
+  SCROLL_HIDE_OFFSET,
+  scrollHideTween,
   stagger,
   staggerContainer,
   staggerDelay,
   staggerItem,
   switchLayoutTween,
+  timelineRevealVariants,
   toastMotion,
   toastTween,
   tooltipMotion,
   tooltipTween,
 } from "./lib/motion"
 export type { DrawerPanelSide } from "./lib/motion"
-export { MEDIA, mediaSrc } from "./lib/media"
+export { MEDIA, mediaSrc, IMAGEORY, IMAGEORY_ORIGIN, imageory } from "./lib/media"
 export type { MediaSrc, OgExampleSlug } from "./lib/media"
 export {
   applyCompanionPalette,
@@ -95,8 +105,18 @@ export * from "./components/home/who"
 export * from "./components/home/work"
 export * from "./components/journal/journal-content"
 export * from "./components/journal/social-share"
+export * from "./components/motion/animate-number"
+export * from "./components/motion/copy-button"
 export * from "./components/motion/fade-in"
+export * from "./components/motion/in-view"
+export * from "./components/motion/label-roll"
+export * from "./components/motion/line-reveal"
+export * from "./components/motion/magnetic"
+export * from "./components/motion/spotlight"
 export * from "./components/motion/stagger"
+export * from "./components/motion/text-morph"
+export * from "./components/motion/tilt"
+export * from "./components/motion/transition-panel"
 export * from "./components/motion-primitives/scroll-progress"
 export * from "./components/newsletter/newsletter-form"
 export * from "./components/og/og-examples"

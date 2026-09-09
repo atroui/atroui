@@ -61,7 +61,20 @@ const FAMILIES: { name: string; items: string[] }[] = [
   },
   {
     name: "Motion",
-    items: ["fade-in", "stagger", "scroll-progress"],
+    items: [
+      "fade-in",
+      "stagger",
+      "line-reveal",
+      "text-morph",
+      "copy-button",
+      "label-roll",
+      "magnetic",
+      "tilt",
+      "spotlight",
+      "animate-number",
+      "transition-panel",
+      "scroll-progress",
+    ],
   },
   {
     name: "Chrome",

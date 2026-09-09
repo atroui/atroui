@@ -67,19 +67,20 @@ import { Button } from "@/components/ui/button"
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "atroui"
+import { IMAGEORY } from "@/lib/imageory"
 
 <Card size="sm" className="w-full max-w-[240px]">
   <img
-    src="/examples/product-launch.png"
+    src={IMAGEORY.landscape}
     alt=""
     width={1200}
     height={630}
     className="aspect-2/1 w-full object-cover"
   />
   <CardHeader>
-    <CardTitle>Product launch</CardTitle>
-    <CardDescription>Shipped Sep 2</CardDescription>
+    <CardTitle>Landscape</CardTitle>
+    <CardDescription>Imageory</CardDescription>
   </CardHeader>
 </Card>`,
         },

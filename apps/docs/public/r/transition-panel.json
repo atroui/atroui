@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "transition-panel",
+  "title": "Transition Panel",
+  "description": "Wait-mode content swaps for feature tabs and docs panels — opacity + small y.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/transition-panel.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\"\n\nimport { enterTween, exitTween, pageFade } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\ntype TransitionPanelProps = {\n  /** Stable key for the active panel — remounts the motion child on change. */\n  activeKey: string\n  /**\n   * Panel content keyed by `activeKey`, or a render prop that receives the key.\n   * Prefer a map for discrete feature tabs; use a render prop when panels are dynamic.\n   */\n  children:\n    | Record<string, React.ReactNode>\n    | ((activeKey: string) => React.ReactNode)\n  className?: string\n  /** Enter/exit y travel in px. Opacity always pairs with y (never fade alone). */\n  y?: number\n}\n\n/**\n * Discrete panel swap — AnimatePresence `mode=\"wait\"`, opacity + small y.\n * Family Values fluidity: exit finishes before enter; no spring. Reduced motion → instant.\n */\nexport function TransitionPanel({\n  activeKey,\n  children,\n  className,\n  y = 8,\n}: TransitionPanelProps) {\n  const reduce = useReducedMotion()\n  const content =\n    typeof children === \"function\" ? children(activeKey) : children[activeKey]\n\n  if (reduce) {\n    return <div className={cn(className)}>{content}</div>\n  }\n\n  const enter = enterTween(pageFade.duration, pageFade.ease)\n  const exit = exitTween(pageFade.duration, pageFade.ease)\n\n  return (\n    <div className={cn(className)}>\n      <AnimatePresence mode=\"wait\" initial={false}>\n        <motion.div\n          key={activeKey}\n          initial={{ opacity: 0, y }}\n          animate={{\n            opacity: 1,\n            y: 0,\n            transition: enter,\n          }}\n          exit={{\n            opacity: 0,\n            y: -Math.round(y * 0.5),\n            transition: exit,\n          }}\n        >\n          {content}\n        </motion.div>\n      </AnimatePresence>\n    </div>\n  )\n}\n\nexport type { TransitionPanelProps }\n",
+      "type": "registry:ui",
+      "target": "components/ui/transition-panel.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

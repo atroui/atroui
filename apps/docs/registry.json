@@ -24,7 +24,7 @@
       "name": "motion",
       "type": "registry:lib",
       "title": "Motion",
-      "description": "Shared overlay tween tokens and Motion presence helpers (Family Values easings, no springs).",
+      "description": "Shared motion tokens \u2014 hover language, presence helpers, timeline reveal (Family Values easings, no springs/blur).",
       "files": [
         {
           "path": "registry/default/lib/motion.ts",
@@ -63,7 +63,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Soft-rect AtroUI button with Motion press feedback. Source lands in your project.",
+      "description": "Soft-rect AtroUI button \u2014 hover lift \u22641px, press into surface, focus parity.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority",
@@ -539,14 +539,17 @@
       "name": "preview-card",
       "type": "registry:ui",
       "title": "Preview Card",
-      "description": "Hover/focus link preview \u2014 soft popover settle, no fireworks.",
+      "description": "Hover/focus link preview \u2014 soft popover settle; opt-in tilt / magnetic / spotlight for media.",
       "dependencies": [
         "@base-ui/react",
         "motion"
       ],
       "registryDependencies": [
         "@atroui/utils",
-        "@atroui/motion"
+        "@atroui/motion",
+        "@atroui/magnetic",
+        "@atroui/tilt",
+        "@atroui/spotlight"
       ],
       "files": [
         {
@@ -969,9 +972,12 @@
       "name": "fade-in",
       "type": "registry:ui",
       "title": "Fade In",
-      "description": "Scroll-triggered fade + rise using motion.",
+      "description": "The scroll reveal \u2014 opacity + rise. One primitive; use fadeInSection for landing triggers.",
       "dependencies": [
         "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion"
       ],
       "files": [
         {
@@ -985,9 +991,12 @@
       "name": "stagger",
       "type": "registry:ui",
       "title": "Stagger",
-      "description": "Stagger children on scroll with StaggerChild.",
+      "description": "Stagger children on scroll with StaggerChild (clamped \u226450ms).",
       "dependencies": [
         "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion"
       ],
       "files": [
         {
@@ -1383,15 +1392,222 @@
       "name": "timeline-animation",
       "type": "registry:ui",
       "title": "Timeline Animation",
-      "description": "Scroll-linked sequenced motion for hero timelines.",
+      "description": "Sequential in-view reveal for heroes \u2014 opacity + y only (no blur).",
       "dependencies": [
         "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion"
       ],
       "files": [
         {
           "path": "registry/default/ui/timeline-animation.tsx",
           "type": "registry:ui",
           "target": "components/ui/timeline-animation.tsx"
+        }
+      ]
+    },
+    {
+      "name": "in-view",
+      "type": "registry:ui",
+      "title": "In View",
+      "description": "Deprecated alias of Fade In with landing defaults. Prefer @atroui/fade-in.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/fade-in",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/in-view.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/in-view.tsx"
+        }
+      ]
+    },
+    {
+      "name": "text-morph",
+      "type": "registry:ui",
+      "title": "Text Morph",
+      "description": "Shared-letter morph between label strings. Opt-in for state swaps.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/text-morph.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/text-morph.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:ui",
+      "title": "Copy Button",
+      "description": "Copy \u2192 check Button recipe with TextMorph + icon swap. Rare-path delight \u2014 not default on every Button.",
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@atroui/button",
+        "@atroui/text-morph",
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/copy-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/copy-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label-roll",
+      "type": "registry:ui",
+      "title": "Label Roll",
+      "description": "Clipped dual-copy roll on hover/focus for links and secondary CTAs.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/label-roll.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label-roll.tsx"
+        }
+      ]
+    },
+    {
+      "name": "line-reveal",
+      "type": "registry:ui",
+      "title": "Line Reveal",
+      "description": "Word/line stagger enter \u2014 opacity + y + clip. Marketing default.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/line-reveal.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/line-reveal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "magnetic",
+      "type": "registry:ui",
+      "title": "Magnetic",
+      "description": "Mild pointer pull for media cards \u2014 intensity \u22640.35, range \u226480px. Never chrome.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/magnetic.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/magnetic.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tilt",
+      "type": "registry:ui",
+      "title": "Tilt",
+      "description": "Mild 3D media tilt toward the pointer \u2014 rotationFactor \u22646\u20138\u00b0. Opt-in only.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/tilt.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tilt.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spotlight",
+      "type": "registry:ui",
+      "title": "Spotlight",
+      "description": "Low-opacity cursor wash for dark Mira media cards. Reduced motion skips.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/spotlight.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spotlight.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animate-number",
+      "type": "registry:ui",
+      "title": "Animate Number",
+      "description": "Pricing/stats counter \u2014 digits tween as numbers with easeOutSoft. Reduced motion jumps to final.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/animate-number.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/animate-number.tsx"
+        }
+      ]
+    },
+    {
+      "name": "transition-panel",
+      "type": "registry:ui",
+      "title": "Transition Panel",
+      "description": "Wait-mode content swaps for feature tabs and docs panels \u2014 opacity + small y.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/transition-panel.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/transition-panel.tsx"
         }
       ]
     },

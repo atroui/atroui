@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button",
+  "title": "Copy Button",
+  "description": "Copy → check Button recipe with TextMorph + icon swap. Rare-path delight — not default on every Button.",
+  "dependencies": [
+    "lucide-react",
+    "motion",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@atroui/button",
+    "@atroui/text-morph",
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/copy-button.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Check, Copy } from \"lucide-react\"\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\"\nimport type { VariantProps } from \"class-variance-authority\"\n\nimport { layoutTween } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\nimport { Button, buttonVariants } from \"@/components/ui/button\"\nimport { TextMorph } from \"@/components/ui/text-morph\"\n\ntype ButtonProps = React.ComponentProps<typeof Button> &\n  VariantProps<typeof buttonVariants>\n\nexport type CopyButtonProps = Omit<ButtonProps, \"children\" | \"onClick\"> & {\n  /** Clipboard payload. */\n  value: string\n  idleLabel?: string\n  copiedLabel?: string\n  idleIcon?: React.ReactNode\n  copiedIcon?: React.ReactNode\n  /** Hide labels (icon-only). Inferred when `size` is an icon size. */\n  iconOnly?: boolean\n  /** Reset to idle after this many ms. Default 2000. */\n  timeout?: number\n  onCopied?: (value: string) => void\n  onCopyError?: (error: unknown) => void\n}\n\nfunction isIconSize(size: ButtonProps[\"size\"]) {\n  return typeof size === \"string\" && size.startsWith(\"icon\")\n}\n\n/**\n * Copy → check Button recipe (rare-path careful delight).\n * Motion.dev-style icon swap + TextMorph label, AtroUI-eased (layoutTween, no blur).\n * Opt-in — not default on every Button.\n */\nexport function CopyButton({\n  value,\n  idleLabel = \"Copy\",\n  copiedLabel = \"Copied\",\n  idleIcon,\n  copiedIcon,\n  iconOnly: iconOnlyProp,\n  timeout = 2000,\n  onCopied,\n  onCopyError,\n  className,\n  variant = \"outline\",\n  size = \"sm\",\n  disabled,\n  \"aria-label\": ariaLabel,\n  ...props\n}: CopyButtonProps) {\n  const reduce = useReducedMotion()\n  const [copied, setCopied] = React.useState(false)\n  const resetTimer = React.useRef<number | null>(null)\n  const morphId = React.useId()\n\n  const iconOnly = iconOnlyProp ?? isIconSize(size)\n  const idle = idleIcon ?? <Copy aria-hidden />\n  const done = copiedIcon ?? <Check className=\"text-brand\" aria-hidden />\n  const statusLabel = copied ? copiedLabel : idleLabel\n\n  React.useEffect(\n    () => () => {\n      if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)\n    },\n    [],\n  )\n\n  async function copy() {\n    if (copied) return\n    try {\n      await navigator.clipboard.writeText(value)\n      setCopied(true)\n      onCopied?.(value)\n      if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)\n      resetTimer.current = window.setTimeout(() => setCopied(false), timeout)\n    } catch (error) {\n      onCopyError?.(error)\n    }\n  }\n\n  return (\n    <Button\n      type=\"button\"\n      variant={variant}\n      size={size}\n      disabled={disabled}\n      aria-label={ariaLabel ?? statusLabel}\n      data-copied={copied ? \"\" : undefined}\n      className={cn(copied && \"border-brand/40\", className)}\n      {...props}\n      onClick={copy}\n    >\n      <span className=\"relative inline-flex size-[1em] shrink-0 items-center justify-center\">\n        {reduce ? (\n          <span className=\"inline-flex\">{copied ? done : idle}</span>\n        ) : (\n          <AnimatePresence mode=\"wait\" initial={false}>\n            <motion.span\n              key={copied ? \"copied\" : \"idle\"}\n              className=\"inline-flex\"\n              initial={{ opacity: 0, scale: 0.65, y: 4 }}\n              animate={{ opacity: 1, scale: 1, y: 0 }}\n              exit={{ opacity: 0, scale: 0.65, y: -4 }}\n              transition={layoutTween}\n            >\n              {copied ? done : idle}\n            </motion.span>\n          </AnimatePresence>\n        )}\n      </span>\n      {iconOnly ? null : (\n        <TextMorph morphId={morphId} className=\"font-medium\">\n          {statusLabel}\n        </TextMorph>\n      )}\n      <span className=\"sr-only\" aria-live=\"polite\">\n        {copied ? copiedLabel : \"\"}\n      </span>\n    </Button>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/copy-button.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArticleJsonLd } from "atroui"
+import { BlogReadingProgress } from "@/components/blog-reading-progress"
 import { BlogThemeAdaptPreview } from "@/components/blog-theme-adapt-preview"
 import { CodeBlock } from "@/components/code-block"
 import { blogPosts, getPost, type BlogPost } from "@/lib/blog"
@@ -141,6 +142,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="bg-background text-foreground">
+      <BlogReadingProgress />
       <ArticleJsonLd
         title={post.title}
         description={post.description}

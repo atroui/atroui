@@ -1,13 +1,10 @@
 "use client"
 
 import type { Variants } from "motion/react"
-import {
-  type HTMLMotionProps,
-  motion,
-  useInView,
-  useReducedMotion,
-} from "motion/react"
+import { type HTMLMotionProps, motion, useInView, useReducedMotion } from "motion/react"
 import type React from "react"
+
+import { timelineRevealVariants } from "@/lib/motion"
 
 type TimelineContentProps<T extends keyof HTMLElementTagNameMap> = {
   children?: React.ReactNode
@@ -19,9 +16,11 @@ type TimelineContentProps<T extends keyof HTMLElementTagNameMap> = {
   once?: boolean
 } & HTMLMotionProps<T>
 
-export const TimelineAnimation = <
-  T extends keyof HTMLElementTagNameMap = "div",
->({
+/**
+ * Sequential in-view reveal for landing / essay sequences.
+ * Default: opacity + y only (Family Values — no blur-in).
+ */
+export const TimelineAnimation = <T extends keyof HTMLElementTagNameMap = "div">({
   children,
   animationNum,
   timelineRef,
@@ -32,23 +31,7 @@ export const TimelineAnimation = <
   ...props
 }: TimelineContentProps<T>) => {
   const reduce = useReducedMotion()
-
-  const defaultSequenceVariants: Variants = {
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: reduce ? 0 : i * 0.5,
-        duration: reduce ? 0 : 0.5,
-      },
-    }),
-    hidden: {
-      y: reduce ? 0 : 8,
-      opacity: reduce ? 1 : 0,
-    },
-  }
-
-  const sequenceVariants = customVariants || defaultSequenceVariants
+  const sequenceVariants = customVariants || timelineRevealVariants
 
   const isInView = useInView(timelineRef, {
     once,
@@ -56,10 +39,19 @@ export const TimelineAnimation = <
 
   const MotionComponent = motion[as || "div"] as React.ElementType
 
+  if (reduce) {
+    const Tag = (as || "div") as React.ElementType
+    return (
+      <Tag className={className} {...(props as object)}>
+        {children}
+      </Tag>
+    )
+  }
+
   return (
     <MotionComponent
-      initial={reduce ? false : "hidden"}
-      animate={reduce || isInView ? "visible" : "hidden"}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
       custom={animationNum}
       variants={sequenceVariants}
       className={className}
