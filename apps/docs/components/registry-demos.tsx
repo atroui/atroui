@@ -2,9 +2,37 @@
 
 import * as React from "react"
 import {
+  Accordion,
+  AccordionHeader,
+  AccordionItem,
+  AccordionPanel,
+  AccordionTrigger,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  ArPortfolio,
+  Autocomplete,
+  AutocompleteClear,
+  AutocompleteContent,
+  AutocompleteEmpty,
+  AutocompleteInput,
+  AutocompleteInputGroup,
+  AutocompleteItem,
+  AutocompleteList,
+  AutocompleteTrigger,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   BoldFooter,
   Breadcrumbs,
   Button,
+  CalendlyEmbed,
   Card,
   CardAction,
   CardContent,
@@ -13,15 +41,58 @@ import {
   CardHeader,
   CardTitle,
   Changelog,
+  Checkbox,
+  CheckboxGroup,
+  Collapsible,
+  CollapsiblePanel,
+  CollapsibleTrigger,
+  Combobox,
+  ComboboxClear,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxInputGroup,
+  ComboboxItem,
+  ComboboxItemIndicator,
+  ComboboxList,
+  ComboboxTrigger,
   CommandMenu,
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
   ContextualCTA,
   CountUp,
-  CalendlyEmbed,
   DeadlineCountdown,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
   ExitIntentPopup,
   FadeIn,
   FaqInteractivePreview,
   FeatureGrid,
+  Field,
+  FieldControl,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  Fieldset,
+  FieldsetLegend,
+  Form,
   FormSelect,
   FounderAvatar,
   HomeCrafts,
@@ -29,34 +100,112 @@ import {
   HomePrinciple,
   HomeWho,
   HomeWork,
+  Input,
+  JournalContent,
+  LiveDashboard,
   LocalClock,
   LogoCloud,
   LogoMark,
   LogoWordmark,
   MadeWithEmbed,
+  MEDIA,
+  mediaSrc,
+  Menu,
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+  MenuContent,
+  MenuItem,
+  MenuSeparator,
+  MenuTrigger,
+  Meter,
+  MeterIndicator,
+  MeterLabel,
+  MeterTrack,
+  MeterValue,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
   NewsletterForm,
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldScrubArea,
+  OTPField,
+  OTPFieldInput,
+  OTPFieldSeparator,
   PersonalHero,
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+  PreviewCard,
+  PreviewCardContent,
+  PreviewCardDescription,
+  PreviewCardHeader,
+  PreviewCardTitle,
+  PreviewCardTrigger,
+  Progress,
+  ProgressIndicator,
+  ProgressLabel,
+  ProgressTrack,
+  ProgressValue,
   ProjectList,
   Prose,
+  Radio,
+  RadioGroup,
   ResourcesContent,
   Resume,
   ScopeChat,
+  ScrollArea,
   ScrollProgress,
+  Separator,
+  Slider,
+  SliderControl,
+  SliderIndicator,
+  SliderLabel,
+  SliderThumb,
+  SliderTrack,
+  SliderValue,
   SocialShare,
   Stagger,
   StaggerChild,
+  Switch,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
   Textarea,
   ThemeToggle,
   ThumbnailLivePreview,
   ThumbnailWorkspace,
   TimelineAnimation,
-  WeatherChip,
-  ArPortfolio,
-  JournalContent,
-  LiveDashboard,
+  Toaster,
+  ToastProvider,
+  Toggle,
+  ToggleGroup,
+  Toolbar,
+  ToolbarButton,
+  ToolbarGroup,
+  ToolbarSeparator,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
   trackEvent,
-  MEDIA,
-  mediaSrc,
+  useToastManager,
+  WeatherChip,
 } from "atroui"
 import {
   ArrowRight,
@@ -65,6 +214,8 @@ import {
   Settings2,
   Trash2,
 } from "lucide-react"
+import { MotionConfig } from "motion/react"
+import { atroMotionDefaults } from "@/lib/motion"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 import { HomeHero } from "../registry/default/blocks/home-hero"
 import { OgExamples } from "../registry/default/blocks/og-examples"
@@ -376,6 +527,817 @@ export function DemoFormSelectLabelled() {
         />
       </div>
     </div>
+  )
+}
+
+export function DemoDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger render={<Button />}>Open dialog</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Rename project</DialogTitle>
+          <DialogDescription>
+            Ease-out settle (opacity + y/scale). Exit ~80% of enter.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose render={<Button variant="outline" />}>Cancel</DialogClose>
+          <DialogClose render={<Button />}>Save</DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+export function DemoAlertDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger render={<Button variant="destructive" />}>
+        Delete project
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete this project?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This removes drafts and cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction variant="destructive">Delete</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}
+
+export function DemoMenu() {
+  return (
+    <Menu>
+      <MenuTrigger render={<Button variant="outline" />}>
+        Open menu
+      </MenuTrigger>
+      <MenuContent>
+        <MenuItem>Duplicate</MenuItem>
+        <MenuItem>Archive</MenuItem>
+        <MenuSeparator />
+        <MenuItem variant="destructive">Delete</MenuItem>
+      </MenuContent>
+    </Menu>
+  )
+}
+
+export function DemoContextMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger className="flex h-28 w-full max-w-xs items-center justify-center rounded-[var(--radius)] border border-dashed border-border-subtle text-sm text-muted-foreground">
+        Right click here
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem>Duplicate</ContextMenuItem>
+        <ContextMenuItem>Archive</ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  )
+}
+
+export function DemoNavigationMenu() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Product</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-1 sm:w-56">
+              <li>
+                <NavigationMenuLink href="#">
+                  <span className="font-medium">Overview</span>
+                  <span className="text-muted-foreground">
+                    What ships in the kit
+                  </span>
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="#">
+                  <span className="font-medium">Pricing</span>
+                  <span className="text-muted-foreground">
+                    Free install path
+                  </span>
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Docs</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-1 sm:w-56">
+              <li>
+                <NavigationMenuLink href="#">
+                  <span className="font-medium">Guides</span>
+                  <span className="text-muted-foreground">
+                    Task-first install
+                  </span>
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="#">
+                  <span className="font-medium">API</span>
+                  <span className="text-muted-foreground">
+                    Host routes + BYOK
+                  </span>
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+      <NavigationMenuViewport />
+    </NavigationMenu>
+  )
+}
+
+export function DemoMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>New</MenubarItem>
+          <MenubarItem>Open</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>Save</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Cut</MenubarItem>
+          <MenubarItem>Copy</MenubarItem>
+          <MenubarItem>Paste</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Zoom In</MenubarItem>
+          <MenubarItem>Zoom Out</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}
+
+export function DemoPopover() {
+  return (
+    <Popover>
+      <PopoverTrigger render={<Button variant="outline" />}>
+        Details
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverHeader>
+          <PopoverTitle>Deploy preview</PopoverTitle>
+          <PopoverDescription>
+            Progressive disclosure — keep the page, reveal the option.
+          </PopoverDescription>
+        </PopoverHeader>
+      </PopoverContent>
+    </Popover>
+  )
+}
+
+export function DemoTooltip() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger render={<Button variant="outline" size="sm" />}>
+          Hover me
+        </TooltipTrigger>
+        <TooltipContent>Short hint. Micro settle only.</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+
+export function DemoPreviewCard() {
+  return (
+    <p className="text-sm text-muted-foreground">
+      Hover{" "}
+      <PreviewCard>
+        <PreviewCardTrigger
+          href="https://www.atroui.com"
+          className="font-medium text-foreground underline decoration-border-subtle underline-offset-4"
+        >
+          AtroUI
+        </PreviewCardTrigger>
+        <PreviewCardContent>
+          <PreviewCardHeader>
+            <PreviewCardTitle>AtroUI</PreviewCardTitle>
+            <PreviewCardDescription>
+              Own the files after install — soft open, stay on the page.
+            </PreviewCardDescription>
+          </PreviewCardHeader>
+        </PreviewCardContent>
+      </PreviewCard>{" "}
+      for a quiet preview.
+    </p>
+  )
+}
+
+export function DemoScrollArea() {
+  const tags = [
+    "button",
+    "dialog",
+    "menu",
+    "popover",
+    "preview-card",
+    "scroll-area",
+    "separator",
+    "tabs",
+    "tooltip",
+  ]
+  return (
+    <ScrollArea className="h-48 w-56 rounded-[var(--radius)] border border-border-subtle text-left">
+      <div className="p-3">
+        <p className="mb-3 text-[0.6875rem] font-medium tracking-wide text-muted-foreground uppercase">
+          Registry
+        </p>
+        {tags.map((tag) => (
+          <div key={tag}>
+            <div className="text-sm text-foreground">{tag}</div>
+            <Separator className="my-2" />
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  )
+}
+
+export function DemoSeparator() {
+  return (
+    <div className="flex w-full max-w-xs flex-col gap-3 text-left">
+      <p className="text-sm text-foreground">Section A</p>
+      <Separator />
+      <p className="text-sm text-muted-foreground">Section B — hairline only.</p>
+      <div className="flex h-8 items-center gap-3">
+        <span className="text-sm">Left</span>
+        <Separator orientation="vertical" />
+        <span className="text-sm text-muted-foreground">Right</span>
+      </div>
+    </div>
+  )
+}
+
+export function DemoField() {
+  return (
+    <Field className="max-w-xs text-left">
+      <FieldLabel>Project name</FieldLabel>
+      <FieldControl placeholder="Acme launch" name="project" required />
+      <FieldDescription>Shown on the OG card and sitemap.</FieldDescription>
+      <FieldError match="valueMissing">Name is required.</FieldError>
+    </Field>
+  )
+}
+
+export function DemoNumberField() {
+  return (
+    <NumberField
+      className="max-w-[12rem] text-left"
+      defaultValue={4}
+      min={1}
+      max={12}
+    >
+      <NumberFieldScrubArea>Quantity</NumberFieldScrubArea>
+      <NumberFieldGroup>
+        <NumberFieldDecrement />
+        <NumberFieldInput />
+        <NumberFieldIncrement />
+      </NumberFieldGroup>
+    </NumberField>
+  )
+}
+
+export function DemoOtpField() {
+  return (
+    <OTPField length={6} className="justify-start" aria-label="Verification code">
+      <OTPFieldInput />
+      <OTPFieldInput aria-label="Digit 2 of 6" />
+      <OTPFieldInput aria-label="Digit 3 of 6" />
+      <OTPFieldSeparator />
+      <OTPFieldInput aria-label="Digit 4 of 6" />
+      <OTPFieldInput aria-label="Digit 5 of 6" />
+      <OTPFieldInput aria-label="Digit 6 of 6" />
+    </OTPField>
+  )
+}
+
+export function DemoForm() {
+  return (
+    <Form
+      className="max-w-xs text-left"
+      onFormSubmit={() => {
+        /* demo — no network */
+      }}
+    >
+      <Field name="email">
+        <FieldLabel>Email</FieldLabel>
+        <FieldControl
+          type="email"
+          required
+          placeholder="you@studio.dev"
+          defaultValue=""
+        />
+        <FieldError match="valueMissing">Email is required.</FieldError>
+        <FieldError match="typeMismatch">Enter a valid email.</FieldError>
+      </Field>
+      <Button type="submit" size="sm">
+        Continue
+      </Button>
+    </Form>
+  )
+}
+
+export function DemoFieldset() {
+  return (
+    <Fieldset className="max-w-sm text-left">
+      <FieldsetLegend>Billing contact</FieldsetLegend>
+      <Field name="contact-name">
+        <FieldLabel>Name</FieldLabel>
+        <FieldControl placeholder="Ada Lovelace" />
+      </Field>
+      <Field name="contact-email">
+        <FieldLabel>Email</FieldLabel>
+        <FieldControl type="email" placeholder="ada@studio.dev" />
+      </Field>
+    </Fieldset>
+  )
+}
+
+export function DemoInput() {
+  return (
+    <Input className="max-w-xs" placeholder="you@studio.dev" type="email" />
+  )
+}
+
+export function DemoSwitch() {
+  const [on, setOn] = React.useState(true)
+  return (
+    <div className="flex items-center gap-3">
+      <Switch
+        checked={on}
+        onCheckedChange={setOn}
+        aria-label="Publish drafts"
+      />
+      <span className="text-sm text-muted-foreground">
+        {on ? "layout thumb" : "justify flip"}
+      </span>
+    </div>
+  )
+}
+
+
+export function DemoToast() {
+  return (
+    <ToastProvider>
+      <DemoToastTrigger />
+      <Toaster />
+    </ToastProvider>
+  )
+}
+
+function DemoToastTrigger() {
+  const toast = useToastManager()
+  return (
+    <Button
+      onClick={() =>
+        toast.add({
+          title: "Saved",
+          description: "Draft published to the registry.",
+        })
+      }
+    >
+      Show toast
+    </Button>
+  )
+}
+
+export function DemoProgress() {
+  const [value, setValue] = React.useState(36)
+  React.useEffect(() => {
+    const id = window.setInterval(() => {
+      setValue((v) => (v >= 100 ? 12 : v + 8))
+    }, 1200)
+    return () => window.clearInterval(id)
+  }, [])
+  return (
+    <Progress value={value} className="w-full max-w-xs text-left">
+      <div className="flex items-center justify-between gap-2">
+        <ProgressLabel>Uploading</ProgressLabel>
+        <ProgressValue />
+      </div>
+      <ProgressTrack>
+        <ProgressIndicator />
+      </ProgressTrack>
+    </Progress>
+  )
+}
+
+export function DemoSlider() {
+  return (
+    <Slider defaultValue={42} className="w-full max-w-xs text-left">
+      <div className="flex items-center justify-between gap-2">
+        <SliderLabel>Intensity</SliderLabel>
+        <SliderValue />
+      </div>
+      <SliderControl>
+        <SliderTrack>
+          <SliderIndicator />
+        </SliderTrack>
+        <SliderThumb />
+      </SliderControl>
+    </Slider>
+  )
+}
+
+export function DemoMeter() {
+  return (
+    <Meter value={72} className="w-full max-w-xs text-left">
+      <div className="flex items-center justify-between gap-2">
+        <MeterLabel>Storage</MeterLabel>
+        <MeterValue />
+      </div>
+      <MeterTrack>
+        <MeterIndicator />
+      </MeterTrack>
+    </Meter>
+  )
+}
+
+export function DemoAvatar() {
+  return (
+    <div className="flex items-center gap-3">
+      <Avatar>
+        <AvatarImage src={mediaSrc(MEDIA.founderPortrait)} alt="" />
+        <AvatarFallback>AK</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    </div>
+  )
+}
+
+export function DemoCheckbox() {
+  return (
+    <label className="flex items-center gap-2 text-sm text-foreground">
+      <Checkbox defaultChecked />
+      Notify on publish
+    </label>
+  )
+}
+
+const CHECKBOX_GROUP_ALL = ["draft", "review", "ship"] as const
+
+export function DemoCheckboxGroup() {
+  const [value, setValue] = React.useState<string[]>(["draft"])
+  return (
+    <CheckboxGroup
+      aria-label="Release stages"
+      value={value}
+      onValueChange={setValue}
+      allValues={[...CHECKBOX_GROUP_ALL]}
+      className="text-left"
+    >
+      <label className="flex items-center gap-2 text-sm text-foreground">
+        <Checkbox parent />
+        Release stages
+      </label>
+      <label className="ml-4 flex items-center gap-2 text-sm text-foreground">
+        <Checkbox value="draft" />
+        Draft
+      </label>
+      <label className="ml-4 flex items-center gap-2 text-sm text-foreground">
+        <Checkbox value="review" />
+        Review
+      </label>
+      <label className="ml-4 flex items-center gap-2 text-sm text-foreground">
+        <Checkbox value="ship" />
+        Ship
+      </label>
+    </CheckboxGroup>
+  )
+}
+
+export function DemoToggle() {
+  return (
+    <Toggle aria-label="Bold" defaultPressed>
+      Bold
+    </Toggle>
+  )
+}
+
+export function DemoToggleGroup() {
+  return (
+    <ToggleGroup defaultValue={["left"]} aria-label="Align">
+      <Toggle value="left">Left</Toggle>
+      <Toggle value="center">Center</Toggle>
+      <Toggle value="right">Right</Toggle>
+    </ToggleGroup>
+  )
+}
+
+export function DemoToolbar() {
+  return (
+    <Toolbar aria-label="Editor">
+      <ToolbarGroup>
+        <ToolbarButton aria-label="Bold">B</ToolbarButton>
+        <ToolbarButton aria-label="Italic">I</ToolbarButton>
+      </ToolbarGroup>
+      <ToolbarSeparator />
+      <ToolbarButton aria-label="Link">Link</ToolbarButton>
+    </Toolbar>
+  )
+}
+
+export function DemoRadio() {
+  return (
+    <RadioGroup
+      defaultValue="draft"
+      aria-label="Release state"
+      className="text-left"
+    >
+      <label className="flex items-center gap-2 text-sm text-foreground">
+        <Radio value="draft" />
+        Draft
+      </label>
+      <label className="flex items-center gap-2 text-sm text-foreground">
+        <Radio value="live" />
+        Live
+      </label>
+      <label className="flex items-center gap-2 text-sm text-foreground">
+        <Radio value="archived" />
+        Archived
+      </label>
+    </RadioGroup>
+  )
+}
+
+export function DemoAccordion() {
+  return (
+    <Accordion
+      defaultValue={["install"]}
+      className="w-full max-w-md text-left"
+    >
+      <AccordionItem value="install">
+        <AccordionHeader>
+          <AccordionTrigger>Install</AccordionTrigger>
+        </AccordionHeader>
+        <AccordionPanel>
+          npx shadcn add @atroui/accordion — own the files after install.
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="motion">
+        <AccordionHeader>
+          <AccordionTrigger>Motion</AccordionTrigger>
+        </AccordionHeader>
+        <AccordionPanel>
+          Panel height settles with revealTween; chevron rotates; open
+          trigger morphs a quiet focus wash.
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="a11y">
+        <AccordionHeader>
+          <AccordionTrigger>Reduced motion</AccordionTrigger>
+        </AccordionHeader>
+        <AccordionPanel>
+          Prefers-reduced-motion falls back to Base UI CSS height — no path
+          draw, no layoutId wash.
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+
+const DEMO_FRUITS = ["Apple", "Banana", "Blueberry", "Cherry", "Mango"]
+const DEMO_TAGS = ["motion", "registry", "scope", "og", "host-api"]
+
+export function DemoCombobox() {
+  return (
+    <Combobox items={DEMO_FRUITS}>
+      <div className="w-full max-w-xs text-left">
+        <ComboboxInputGroup>
+          <ComboboxInput placeholder="Choose a fruit" />
+          <ComboboxClear />
+          <ComboboxTrigger />
+        </ComboboxInputGroup>
+        <ComboboxContent>
+          <ComboboxEmpty>No fruits found.</ComboboxEmpty>
+          <ComboboxList>
+            {(item: string) => (
+              <ComboboxItem key={item} value={item}>
+                {item}
+                <ComboboxItemIndicator />
+              </ComboboxItem>
+            )}
+          </ComboboxList>
+        </ComboboxContent>
+      </div>
+    </Combobox>
+  )
+}
+
+export function DemoAutocomplete() {
+  return (
+    <Autocomplete items={DEMO_TAGS}>
+      <div className="w-full max-w-xs text-left">
+        <AutocompleteInputGroup>
+          <AutocompleteInput placeholder="Search tags" />
+          <AutocompleteClear />
+          <AutocompleteTrigger />
+        </AutocompleteInputGroup>
+        <AutocompleteContent>
+          <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
+          <AutocompleteList>
+            {(item: string) => (
+              <AutocompleteItem key={item} value={item}>
+                {item}
+              </AutocompleteItem>
+            )}
+          </AutocompleteList>
+        </AutocompleteContent>
+      </div>
+    </Autocomplete>
+  )
+}
+
+export function DemoCollapsible() {
+  return (
+    <Collapsible defaultOpen className="w-full max-w-md text-left">
+      <CollapsibleTrigger>Advanced options</CollapsibleTrigger>
+      <CollapsiblePanel>
+        Reveal depth only when it is relevant — one focused section at a
+        time. Height settles with revealTween.
+      </CollapsiblePanel>
+    </Collapsible>
+  )
+}
+
+export function DemoDrawer() {
+  return (
+    <Drawer side="right">
+      <DrawerTrigger render={<Button variant="outline" />}>
+        Open drawer
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Filters</DrawerTitle>
+          <DrawerDescription>
+            Edge slide via panelTween (easeOutSoft) — travel, not teleport.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <DrawerClose render={<Button variant="outline" />}>
+            Cancel
+          </DrawerClose>
+          <DrawerClose render={<Button />}>Apply</DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  )
+}
+
+export function DemoTabs() {
+  return (
+    <Tabs defaultValue="overview" className="w-full max-w-md">
+      <TabsList>
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="activity">Activity</TabsTrigger>
+        <TabsTrigger value="settings">Settings</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview" className="pt-3 text-sm text-muted-foreground">
+        layoutId pill morph — shared element travels. Panel height settles
+        when peers differ.
+      </TabsContent>
+      <TabsContent value="activity" className="pt-3 text-sm text-muted-foreground">
+        Peer switch stays lateral.
+        <br />
+        Extra lines make layout height travel obvious.
+      </TabsContent>
+      <TabsContent value="settings" className="pt-3 text-sm text-muted-foreground">
+        Soft-rect chrome. No spring bounce.
+      </TabsContent>
+    </Tabs>
+  )
+}
+
+function PlaygroundCue({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="font-mono text-[10px] tracking-wide text-muted-foreground uppercase">
+      {children}
+    </p>
+  )
+}
+
+export function DemoBaseUiPlayground() {
+  return (
+    <MotionConfig {...atroMotionDefaults}>
+      <div className="flex w-full max-w-lg flex-col gap-8 text-left">
+        <div className="space-y-1.5">
+          <p className="text-sm font-medium text-foreground">Motion taste</p>
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Tweens only · ease-out settle · exit ≈80% enter · opacity+travel on
+            popups · layout/layoutId morph · stagger ≤40–50ms ·{" "}
+            <code className="font-mono text-[11px] text-foreground">
+              MotionConfig
+            </code>{" "}
+            defaults from{" "}
+            <code className="font-mono text-[11px] text-foreground">
+              atroMotionDefaults
+            </code>
+            . Reduced motion → duration 0.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <PlaygroundCue>ease-out settle · overlays</PlaygroundCue>
+          <div className="flex flex-wrap items-center gap-3">
+            <DemoDialog />
+            <DemoDrawer />
+            <DemoMenu />
+            <DemoContextMenu />
+            <DemoMenubar />
+            <DemoPopover />
+            <DemoTooltip />
+            <DemoAlertDialog />
+            <DemoToast />
+          </div>
+          <p className="text-[11px] text-muted-foreground">
+            Menu / toast rows stagger on open. Dialog: y+scale. Drawer: edge
+            slide.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <PlaygroundCue>layout morph · tabs / nav</PlaygroundCue>
+          <DemoNavigationMenu />
+          <DemoPreviewCard />
+          <DemoTabs />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <PlaygroundCue>layout thumb · press ≤100ms</PlaygroundCue>
+          <div className="flex flex-wrap items-end gap-6">
+            <DemoField />
+            <DemoInput />
+            <DemoTextarea />
+            <DemoNumberField />
+            <DemoSwitch />
+            <DemoCheckbox />
+            <DemoToggle />
+            <DemoButton />
+          </div>
+          <DemoOtpField />
+        </div>
+
+        <div className="flex flex-wrap items-start gap-8">
+          <DemoForm />
+          <DemoFieldset />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <PlaygroundCue>height:auto · pathLength · fill</PlaygroundCue>
+          <div className="flex flex-wrap items-start gap-8">
+            <DemoRadio />
+            <DemoCheckboxGroup />
+            <DemoAccordion />
+            <DemoCollapsible />
+            <DemoScrollArea />
+            <DemoSeparator />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <PlaygroundCue>stagger list · layoutId highlight</PlaygroundCue>
+          <div className="flex flex-wrap items-start gap-6">
+            <DemoCombobox />
+            <DemoAutocomplete />
+          </div>
+          <DemoFormSelect />
+        </div>
+
+        <div className="flex flex-wrap items-center gap-6">
+          <DemoToggleGroup />
+          <DemoToolbar />
+          <DemoProgress />
+          <DemoSlider />
+          <DemoMeter />
+          <DemoAvatar />
+        </div>
+      </div>
+    </MotionConfig>
   )
 }
 

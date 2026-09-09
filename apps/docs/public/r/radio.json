@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio",
+  "title": "Radio",
+  "description": "Radio group with Motion fill-scale indicator on Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/radio.tsx",
+      "content": "\"use client\"\n\nimport { Radio as RadioPrimitive } from \"@base-ui/react/radio\"\nimport { RadioGroup as RadioGroupPrimitive } from \"@base-ui/react/radio-group\"\nimport { motion, useReducedMotion } from \"motion/react\"\n\nimport { easeOutExpo } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\n/** Fill scale — ~160ms easeOutExpo, no spring overshoot. */\nconst fillTween = {\n  duration: 0.16,\n  ease: easeOutExpo,\n} as const\n\nfunction withoutDomAnimationHandlers<T extends Record<string, unknown>>(\n  props: T\n) {\n  const {\n    onAnimationStart: _onAnimationStart,\n    onDrag: _onDrag,\n    onDragStart: _onDragStart,\n    onDragEnd: _onDragEnd,\n    ...rest\n  } = props\n  return rest\n}\n\nfunction RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {\n  return (\n    <RadioGroupPrimitive\n      data-slot=\"radio-group\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction Radio({ className, ...props }: RadioPrimitive.Root.Props) {\n  const reduce = useReducedMotion()\n\n  return (\n    <RadioPrimitive.Root\n      data-slot=\"radio\"\n      className={cn(\n        \"peer group/radio relative inline-flex size-4 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-background outline-none transition-[border-color,box-shadow] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]\",\n        \"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20\",\n        \"data-checked:border-primary\",\n        \"data-disabled:cursor-not-allowed data-disabled:opacity-50\",\n        \"aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20\",\n        \"motion-reduce:transition-none\",\n        className\n      )}\n      {...props}\n    >\n      <RadioPrimitive.Indicator\n        data-slot=\"radio-indicator\"\n        keepMounted\n        className=\"flex size-full items-center justify-center\"\n        render={\n          reduce\n            ? (htmlProps, state) => (\n                <span\n                  {...htmlProps}\n                  className={cn(\n                    htmlProps.className,\n                    \"flex items-center justify-center\",\n                    !state.checked && \"opacity-0\"\n                  )}\n                >\n                  <span className=\"size-2 rounded-full bg-primary\" />\n                </span>\n              )\n            : (htmlProps, state) => (\n                <motion.span\n                  {...withoutDomAnimationHandlers(\n                    htmlProps as Record<string, unknown>\n                  )}\n                  initial={false}\n                  animate={{\n                    opacity: state.checked ? 1 : 0,\n                    scale: state.checked ? 1 : 0.5,\n                  }}\n                  transition={fillTween}\n                  className={cn(\n                    htmlProps.className,\n                    \"flex items-center justify-center\"\n                  )}\n                >\n                  <span className=\"size-2 rounded-full bg-primary\" />\n                </motion.span>\n              )\n        }\n      />\n    </RadioPrimitive.Root>\n  )\n}\n\nexport { Radio, RadioGroup }\n",
+      "type": "registry:ui",
+      "target": "components/ui/radio.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

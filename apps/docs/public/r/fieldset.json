@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fieldset",
+  "title": "Fieldset",
+  "description": "Legend + soft-rect group chrome for related controls.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/fieldset.tsx",
+      "content": "\"use client\"\n\nimport { Fieldset as FieldsetPrimitive } from \"@base-ui/react/fieldset\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Fieldset — legend + soft-rect group chrome.\n * Gradual revelation: group related controls under one quiet surface.\n */\nfunction Fieldset({\n  className,\n  ...props\n}: FieldsetPrimitive.Root.Props) {\n  return (\n    <FieldsetPrimitive.Root\n      data-slot=\"fieldset\"\n      className={cn(\n        \"flex w-full min-w-0 flex-col gap-3 rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background/60 p-4 data-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction FieldsetLegend({\n  className,\n  ...props\n}: FieldsetPrimitive.Legend.Props) {\n  return (\n    <FieldsetPrimitive.Legend\n      data-slot=\"fieldset-legend\"\n      className={cn(\n        \"px-0.5 text-[0.8125rem] leading-none font-medium text-foreground/90 data-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Fieldset, FieldsetLegend }\n",
+      "type": "registry:ui",
+      "target": "components/ui/fieldset.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -12,11 +12,11 @@ export function UiTextareaDoc() {
       registryName="textarea"
       href="/docs/components/ui-textarea"
       title="Textarea"
-      description="Multi-line text input."
+      description="Soft-rect multi-line control aligned to Atro input tokens."
       preview={<DemoTextarea />}
       code={'import { Textarea } from "@/components/ui/textarea"\n\n<Textarea placeholder="Message" />'}
       fullBleed={false}
-      usage="Use Textarea when the answer can run past one line - notes, feedback, changelog bodies. Keep a real label above it; the placeholder is a hint, not a name."
+      usage="Use Textarea when the answer can run past one line. Match Input soft-rect tokens; pair with Field for labels and errors."
       examples={[
         {
           title: "Invalid state",

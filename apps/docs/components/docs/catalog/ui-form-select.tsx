@@ -11,7 +11,7 @@ export function UiFormSelectDoc() {
       registryName="form-select"
       href="/docs/components/ui-form-select"
       title="Form Select"
-      description="Accessible select built on Base UI."
+      description="Soft-rect select on Base UI with caret rotate, popup settle, and list stagger ≤40ms."
       preview={<DemoFormSelect />}
       code={`import { FormSelect } from "@/components/ui/form-select"
 
@@ -28,7 +28,7 @@ const [stack, setStack] = useState("")
   ]}
 />`}
       fullBleed={false}
-      usage="Use for a short list of known options - roughly three to a dozen. The value is fully controlled: hold it in state and pass it back down. An empty string means nothing is chosen yet, which is what surfaces the placeholder."
+      usage="Use for a short list of known options — roughly three to a dozen. Popup settles with menuPopupMotion; rows stagger ≤40ms; highlight morphs via layoutId. Value is fully controlled."
       examples={[
         {
           title: "Label and disabled state",

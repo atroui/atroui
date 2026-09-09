@@ -21,6 +21,19 @@
       ]
     },
     {
+      "name": "motion",
+      "type": "registry:lib",
+      "title": "Motion",
+      "description": "Shared overlay tween tokens and Motion presence helpers (Family Values easings, no springs).",
+      "files": [
+        {
+          "path": "registry/default/lib/motion.ts",
+          "type": "registry:lib",
+          "target": "lib/motion.ts"
+        }
+      ]
+    },
+    {
       "name": "brand",
       "type": "registry:lib",
       "title": "Brand",
@@ -50,13 +63,15 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "AtroUI button with CVA variants. Source lands in your project.",
+      "description": "Soft-rect AtroUI button with Motion press feedback. Source lands in your project.",
       "dependencies": [
         "@base-ui/react",
-        "class-variance-authority"
+        "class-variance-authority",
+        "motion"
       ],
       "registryDependencies": [
-        "@atroui/utils"
+        "@atroui/utils",
+        "@atroui/motion"
       ],
       "files": [
         {
@@ -140,7 +155,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "Multi-line text input styled for AtroUI forms.",
+      "description": "Soft-rect multi-line control aligned to Atro input tokens.",
       "registryDependencies": [
         "@atroui/utils"
       ],
@@ -153,22 +168,764 @@
       ]
     },
     {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Soft-rect checkbox with Motion check path draw on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "title": "Checkbox Group",
+      "description": "Soft-rect checkbox group \u2014 compose with Checkbox (value / parent).",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/checkbox"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/checkbox-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "type": "registry:ui",
+      "title": "Radio",
+      "description": "Radio group with Motion fill-scale indicator on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/radio.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Disclosure with height:auto, chevron rotate, and optional focus morph.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Single disclosure with height:auto settle and chevron rotate.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Filterable select on Base UI with Mira soft-rect, popup settle, and list stagger \u226440ms.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "title": "Autocomplete",
+      "description": "Suggest-as-you-type with popup settle, layoutId highlight, and list stagger \u226440ms.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/autocomplete.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/autocomplete.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Edge panel with panelTween slide, backdrop fade, and portal presence.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion",
+        "@atroui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
       "name": "form-select",
       "type": "registry:ui",
       "title": "Form Select",
-      "description": "Accessible select built on Base UI.",
+      "description": "Soft-rect select on Base UI with caret rotate, popup settle, and list stagger \u226440ms.",
       "dependencies": [
         "@base-ui/react",
-        "lucide-react"
+        "lucide-react",
+        "motion"
       ],
       "registryDependencies": [
-        "@atroui/utils"
+        "@atroui/utils",
+        "@atroui/motion"
       ],
       "files": [
         {
           "path": "registry/default/ui/form-select.tsx",
           "type": "registry:ui",
           "target": "components/ui/form-select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialog on Base UI with Mira surfaces and short settle motion.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion",
+        "@atroui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Confirm destructive or irreversible actions with Base UI Alert Dialog.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion",
+        "@atroui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "Dropdown menu on Base UI with soft-rect items and settle motion.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Pointer context menu on Base UI with menu settle and row stagger.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/context-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "Site nav panels with peer crossfade and soft-rect Mira popup.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/navigation-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "Focus-roving menubar shell with Menu grammar and Motion popups.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/menu"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/menubar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/menubar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Anchored popover surface for progressive disclosure.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Fast tooltip with micro appear motion and reduced-motion respect.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "preview-card",
+      "type": "registry:ui",
+      "title": "Preview Card",
+      "description": "Hover/focus link preview \u2014 soft popover settle, no fireworks.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/preview-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/preview-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Bounded scroll region with soft-rect thumb that fades when idle.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Soft-rect hairline divider \u2014 static, no decorative motion.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Quiet Field spine \u2014 label, description, Motion error reveal, control.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Single-line input aligned to Atro control height and soft-rect.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "Number Field",
+      "description": "Soft-rect stepper number field with careful scrub feedback on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/number-field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/number-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "otp-field",
+      "type": "registry:ui",
+      "title": "OTP Field",
+      "description": "Soft-rect OTP digit slots with whileFocus settle (~160ms easeOutExpo) on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/otp-field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/otp-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Base UI form validation orchestration \u2014 pair with Field.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "fieldset",
+      "type": "registry:ui",
+      "title": "Fieldset",
+      "description": "Legend + soft-rect group chrome for related controls.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/fieldset.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/fieldset.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Soft-rect switch \u2014 layout thumb + flex justify flip (Motion.dev Base UI).",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Edge toast stack on Base UI with opacity+y enter/exit and careful CSS-var stacking.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion",
+        "@atroui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/toast.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Task progress bar with soft-rect fill width tween on Base UI Progress.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/progress.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Range slider with thumb press micro-motion; track fill stays 1:1 while dragging.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "Read-only meter gauge with soft-rect value fill tween on Base UI Meter.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/meter.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/meter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Soft-rect avatar with image fade-in and fallback crossfade on Base UI Avatar.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabs with layoutId pill morph + panel layout height (Motion.dev layout).",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Soft-rect two-state button with pressed fill morph on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Toggle peers with layoutId highlight morph \u2014 Motion.dev Base UI pattern.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/toggle",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Dense soft-rect toolbar chrome with Motion press feedback.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/toolbar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toolbar.tsx"
         }
       ]
     },
