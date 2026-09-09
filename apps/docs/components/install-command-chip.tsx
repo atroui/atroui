@@ -8,6 +8,7 @@
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
+import { CopyStatusIcon } from "atroui"
 import posthog from "posthog-js"
 import { easeOutExpo } from "@/lib/motion"
 import { cn } from "@/lib/utils"
@@ -64,7 +65,7 @@ export function InstallCommandChip({
         later(() => setPulse(false), 200)
       }
     } catch {
-      /* ignore */
+      /* ignore — keep idle; do not claim success */
     }
   }
 
@@ -104,18 +105,11 @@ export function InstallCommandChip({
         aria-label={copied ? "Copied" : "Copy install command"}
         className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-brand transition-colors hover:bg-brand/15 hover:text-foreground"
       >
-        {copied ? (
-          <motion.span
-            className="inline-flex"
-            initial={reduce ? false : { scale: 0.65, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.14, ease: easeOutExpo }}
-          >
-            <Check className="size-3.5 text-brand" aria-hidden />
-          </motion.span>
-        ) : (
-          <Copy className="size-3.5" aria-hidden />
-        )}
+        <CopyStatusIcon
+          copied={copied}
+          idle={<Copy className="size-3.5" aria-hidden />}
+          done={<Check className="size-3.5 text-brand" aria-hidden />}
+        />
       </button>
     </div>
   )

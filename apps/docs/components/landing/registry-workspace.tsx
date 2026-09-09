@@ -8,8 +8,9 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Braces, Check, ChevronDown, ChevronUp, Copy } from "lucide-react"
+import { Braces, ChevronDown, ChevronUp } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import { CopyButton } from "atroui"
 import type {
   PreviewStrategy,
   RegistryWorkspaceBlock,
@@ -227,22 +228,10 @@ export function RegistryWorkspace({
   const glimpse = extractSourceExcerpt(block.source, GLIMPSE_LINES)
   const fullExcerpt = extractSourceExcerpt(block.source, EXPANDED_LINES)
   const command = `npx shadcn@latest add @atroui/${block.registry}`
-  const [copied, setCopied] = React.useState(false)
 
   React.useEffect(() => {
-    setCopied(false)
     setExpanded(false)
   }, [activeId])
-
-  async function copyCommand() {
-    try {
-      await navigator.clipboard.writeText(command)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 1600)
-    } catch {
-      /* ignore */
-    }
-  }
 
   function panelPreview(id: RegistryWorkspaceBlockId): React.ReactNode {
     return slotMap.get(id) ?? null
@@ -413,18 +402,14 @@ export function RegistryWorkspace({
               {command}
             </motion.code>
           </AnimatePresence>
-          <button
-            type="button"
-            onClick={copyCommand}
-            aria-label={copied ? "Copied" : "Copy install command"}
-            className="rw-term-copy"
-          >
-            {copied ? (
-              <Check className="size-3.5" aria-hidden />
-            ) : (
-              <Copy className="size-3.5" aria-hidden />
-            )}
-          </button>
+          <CopyButton
+            key={command}
+            value={command}
+            size="icon-sm"
+            variant="ghost"
+            timeout={1600}
+            className="rw-term-copy text-inherit hover:bg-foreground/[0.06] hover:text-foreground"
+          />
         </div>
         {block.host ? (
           <div className="rw-host-chips" aria-label="Host API">

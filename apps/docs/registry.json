@@ -1204,6 +1204,9 @@
           "type": "registry:component",
           "target": "components/blocks/pricing-overview.tsx"
         }
+      ],
+      "registryDependencies": [
+        "@atroui/animate-number"
       ]
     },
     {
@@ -1512,6 +1515,26 @@
       ]
     },
     {
+      "name": "word-reveal-scroll",
+      "type": "registry:ui",
+      "title": "Word Reveal Scroll",
+      "description": "Progress-driven word opacity via scroll \u2014 opacity only, no blur. Pull lines.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/word-reveal-scroll.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/word-reveal-scroll.tsx"
+        }
+      ]
+    },
+    {
       "name": "magnetic",
       "type": "registry:ui",
       "title": "Magnetic",
@@ -1725,7 +1748,8 @@
       ],
       "registryDependencies": [
         "@atroui/utils",
-        "@atroui/fade-in"
+        "@atroui/fade-in",
+        "@atroui/animate-number"
       ],
       "files": [
         {
@@ -1747,7 +1771,8 @@
       ],
       "registryDependencies": [
         "@atroui/utils",
-        "@atroui/project-brief"
+        "@atroui/project-brief",
+        "@atroui/animate-number"
       ],
       "files": [
         {
@@ -2016,6 +2041,9 @@
           "type": "registry:component",
           "target": "components/blocks/count-up.tsx"
         }
+      ],
+      "registryDependencies": [
+        "@atroui/animate-number"
       ]
     },
     {
@@ -2029,6 +2057,9 @@
           "type": "registry:component",
           "target": "components/blocks/deadline-countdown.tsx"
         }
+      ],
+      "registryDependencies": [
+        "@atroui/animate-number"
       ]
     },
     {

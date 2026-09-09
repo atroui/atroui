@@ -2739,7 +2739,7 @@ a.docs-changelog-hash:hover {
   gap: 1.75rem;
   margin-top: 1.75rem;
 }
-/* Exiting + entering panels share one cell so the stage crossfades without collapsing. */
+/* Stage cell for TransitionPanel (wait-mode opacity+y). Grid keeps min-width: 0. */
 .atro-jw-swap {
   display: grid;
   min-width: 0;

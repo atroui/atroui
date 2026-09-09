@@ -349,7 +349,7 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Base UI Playground",
+        title: "Motion Playground",
         href: "/docs/components/ui-playground",
         description: "P0 spine together",
         badge: "registry",
@@ -418,6 +418,12 @@ export const navigation: NavSection[] = [
         title: "Line Reveal",
         href: "/docs/components/motion-line-reveal",
         description: "Text enter stagger",
+        badge: "registry",
+      },
+      {
+        title: "Word Reveal Scroll",
+        href: "/docs/components/motion-word-reveal-scroll",
+        description: "Scroll word opacity",
         badge: "registry",
       },
       {

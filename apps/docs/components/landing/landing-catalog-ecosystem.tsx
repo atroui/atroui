@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
+import { AnimateNumber } from "atroui"
 import { LandingSectionHeader } from "@/components/landing/landing-section-header"
 import { catalogNavItems, navigation } from "@/lib/navigation"
 
@@ -40,7 +43,12 @@ export function LandingCatalogEcosystem() {
           variant="product"
           align="left"
           title="The growing catalog"
-          lede={`${total}+ blocks in clear families — browse by intent, not folder depth.`}
+          lede={
+            <>
+              <AnimateNumber value={total} from={0} suffix="+" /> blocks in
+              clear families — browse by intent, not folder depth.
+            </>
+          }
           action={
             <Link
               href="/docs/components"
@@ -67,9 +75,17 @@ export function LandingCatalogEcosystem() {
                 {blurbs[section.title] ?? section.items[0]?.description}
               </span>
               <span className="atro-eco-count">
-                {section.title === "Tools"
-                  ? "2 live"
-                  : `${section.items.length} blocks`}
+                {section.title === "Tools" ? (
+                  "2 live"
+                ) : (
+                  <>
+                    <AnimateNumber
+                      value={section.items.length}
+                      from={0}
+                    />{" "}
+                    blocks
+                  </>
+                )}
               </span>
             </Link>
           ))}

@@ -2,12 +2,11 @@
 
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import type { VariantProps } from "class-variance-authority"
 
-import { layoutTween } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import { Button, buttonVariants } from "../ui/button"
+import { CopyStatusIcon } from "./copy-status-icon"
 import { TextMorph } from "./text-morph"
 
 type ButtonProps = React.ComponentProps<typeof Button> &
@@ -54,7 +53,6 @@ export function CopyButton({
   "aria-label": ariaLabel,
   ...props
 }: CopyButtonProps) {
-  const reduce = useReducedMotion()
   const [copied, setCopied] = React.useState(false)
   const resetTimer = React.useRef<number | null>(null)
   const morphId = React.useId()
@@ -70,6 +68,14 @@ export function CopyButton({
     },
     [],
   )
+
+  React.useEffect(() => {
+    setCopied(false)
+    if (resetTimer.current !== null) {
+      window.clearTimeout(resetTimer.current)
+      resetTimer.current = null
+    }
+  }, [value])
 
   async function copy() {
     if (copied) return
@@ -96,24 +102,7 @@ export function CopyButton({
       {...props}
       onClick={copy}
     >
-      <span className="relative inline-flex size-[1em] shrink-0 items-center justify-center">
-        {reduce ? (
-          <span className="inline-flex">{copied ? done : idle}</span>
-        ) : (
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={copied ? "copied" : "idle"}
-              className="inline-flex"
-              initial={{ opacity: 0, scale: 0.65, y: 4 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.65, y: -4 }}
-              transition={layoutTween}
-            >
-              {copied ? done : idle}
-            </motion.span>
-          </AnimatePresence>
-        )}
-      </span>
+      <CopyStatusIcon copied={copied} idle={idle} done={done} />
       {iconOnly ? null : (
         <TextMorph morphId={morphId} className="font-medium">
           {statusLabel}

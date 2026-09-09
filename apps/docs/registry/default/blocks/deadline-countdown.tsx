@@ -2,6 +2,8 @@
 
 import * as React from "react"
 
+import { AnimateNumber } from "../ui/animate-number"
+
 const TOTAL_SEGMENTS = 24
 const DAY_MS = 24 * 60 * 60 * 1000
 
@@ -39,7 +41,7 @@ function formatFullDate(iso: string) {
   }).format(parseIso(iso))
 }
 
-/** Inlined CountUp helper — self-contained registry block. */
+/** In-view gate + AnimateNumber — self-contained registry helper. */
 function CountUp({
   value,
   duration = 1200,
@@ -52,8 +54,7 @@ function CountUp({
   ariaLabel?: string
 }) {
   const ref = React.useRef<HTMLSpanElement | null>(null)
-  const [display, setDisplay] = React.useState(0)
-  const startedRef = React.useRef(false)
+  const [active, setActive] = React.useState(false)
 
   React.useEffect(() => {
     const node = ref.current
@@ -62,55 +63,42 @@ function CountUp({
     const reduced =
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
     if (reduced) {
-      setDisplay(value)
+      setActive(true)
       return
     }
 
-    let raf = 0
-    const start = () => {
-      if (startedRef.current) return
-      startedRef.current = true
-      const t0 = performance.now()
-      const from = 0
-      const to = value
-      const ease = (t: number) => 1 - Math.pow(1 - t, 4)
-
-      const step = (now: number) => {
-        const t = Math.min(1, (now - t0) / duration)
-        setDisplay(Math.round(from + (to - from) * ease(t)))
-        if (t < 1) raf = requestAnimationFrame(step)
-      }
-      raf = requestAnimationFrame(step)
-    }
-
     if (typeof IntersectionObserver === "undefined") {
-      start()
-      return () => cancelAnimationFrame(raf)
+      setActive(true)
+      return
     }
 
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
-          start()
+          setActive(true)
           io.disconnect()
         }
       },
       { threshold: 0.3 }
     )
     io.observe(node)
-    return () => {
-      io.disconnect()
-      cancelAnimationFrame(raf)
-    }
-  }, [value, duration])
+    return () => io.disconnect()
+  }, [])
 
   return (
-    <span
-      ref={ref}
-      className={className}
-      aria-label={ariaLabel ?? String(value)}
-    >
-      {display}
+    <span ref={ref}>
+      {active ? (
+        <AnimateNumber
+          value={value}
+          from={0}
+          duration={duration / 1000}
+          className={className}
+        />
+      ) : (
+        <span className={className} aria-label={ariaLabel ?? String(value)}>
+          0
+        </span>
+      )}
     </span>
   )
 }
@@ -182,9 +170,7 @@ export function DeadlineCountdown({
                   key={i}
                   className={
                     "h-[6px] flex-1 rounded-[1px] transition-colors duration-300 " +
-                    (filled
-                      ? "bg-brand"
-                      : "bg-border-subtle")
+                    (filled ? "bg-brand" : "bg-border-subtle")
                   }
                 />
               )

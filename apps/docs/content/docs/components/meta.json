@@ -27,6 +27,8 @@
     "local-clock",
     "logo-cloud",
     "motion-fade-in",
+    "motion-line-reveal",
+    "motion-word-reveal-scroll",
     "motion-magnetic",
     "motion-primitives-scroll-progress",
     "motion-spotlight",

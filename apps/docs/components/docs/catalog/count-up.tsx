@@ -8,13 +8,13 @@ export function CountUpDoc() {
       href="/docs/components/count-up"
       registryName="count-up"
       title="Count Up"
-      description="In-view count-up number with reduced-motion support."
+      description="In-view count-up via AnimateNumber with reduced-motion support."
       preview={<DemoCountUp />}
       code={`import { CountUp } from "@/components/blocks/count-up"
 
 <CountUp value={128} />`}
       fullBleed={false}
-      usage="Use for stats bands. Passes prefers-reduced-motion by jumping to the final value."
+      usage="Use for stats bands. In-view gate wraps AnimateNumber — prefers-reduced-motion jumps to the final value."
       examples={[
         {
           title: "Custom duration",

@@ -1,10 +1,42 @@
+"use client"
+
 import { ArrowRight, Check } from "lucide-react"
 import Link from "next/link"
 
+import { AnimateNumber } from "../ui/animate-number"
+
 /**
  * Edit CONTENT / PACKAGES to match your studio pricing.
- * Matches the AtroUI docs Pricing Overview band (no motion deps).
+ * Matches the AtroUI docs Pricing Overview band.
+ * Package prices tween via AnimateNumber (careful delight on reveal).
  */
+
+/** Split a price label so digits can tween (`$4,800`, `from $2,400`, `$8,000+`). */
+function AnimatedPrice({
+  price,
+  className,
+}: {
+  price: string
+  className?: string
+}) {
+  const match = price.trim().match(/^(.*?)([\d,]+)(.*)$/)
+  if (!match?.[2]) {
+    return <span className={className}>{price}</span>
+  }
+  const prefix = match[1] ?? ""
+  const digits = match[2]
+  const suffix = match[3] ?? ""
+  return (
+    <AnimateNumber
+      value={Number(digits.replace(/,/g, ""))}
+      from={0}
+      prefix={prefix}
+      suffix={suffix}
+      className={className}
+    />
+  )
+}
+
 const CONTENT = {
   stamp: "Pricing",
   headlineBefore: "Fixed packages.",
@@ -262,7 +294,7 @@ export function PricingOverview() {
                   {CONTENT.investmentLabel}
                 </p>
                 <p className="mt-3 text-4xl font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl">
-                  {featured.price}
+                  <AnimatedPrice price={featured.price} />
                 </p>
                 {featured.priceSuffix ? (
                   <p className="mt-2 text-sm text-muted-foreground">
@@ -300,7 +332,7 @@ export function PricingOverview() {
                   </p>
                   <div className="flex flex-wrap items-center gap-4 md:col-span-4 md:justify-end">
                     <span className="text-lg font-semibold tabular-nums text-foreground">
-                      {s.price}
+                      <AnimatedPrice price={s.price} />
                       {s.priceSuffix ? (
                         <span className="ml-1.5 text-sm font-normal text-muted-foreground">
                           {s.priceSuffix}

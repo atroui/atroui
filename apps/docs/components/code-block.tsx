@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
-import { motion, useReducedMotion } from "motion/react"
+import { CopyButton } from "atroui"
 import { highlight } from "fumadocs-core/highlight"
 import posthog from "posthog-js"
-import { easeOutExpo } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 interface CodeBlockProps {
@@ -95,32 +94,6 @@ export function CodeBlock({
   className,
   embedded = false,
 }: CodeBlockProps) {
-  const [copied, setCopied] = React.useState(false)
-  const reduce = useReducedMotion()
-  const resetTimer = React.useRef<number | null>(null)
-
-  React.useEffect(
-    () => () => {
-      if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)
-    },
-    [],
-  )
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(code)
-      posthog.capture("documentation_code_copied", {
-        language,
-        embedded,
-      })
-      setCopied(true)
-      if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)
-      resetTimer.current = window.setTimeout(() => setCopied(false), 2000)
-    } catch {
-      /* ignore */
-    }
-  }
-
   return (
     <div
       className={cn(
@@ -133,29 +106,19 @@ export function CodeBlock({
         <span className="text-[11px] font-semibold tracking-[0.08em] text-muted-foreground uppercase">
           {language}
         </span>
-        <button
-          type="button"
-          onClick={copy}
-          aria-label={copied ? "Copied" : "Copy code"}
-          className={cn(
-            "inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md border bg-white/5 px-2.5 text-[12px] font-medium text-muted-foreground transition-colors duration-200 hover:bg-white/10 hover:text-foreground",
-            copied ? "border-brand/40" : "border-border-subtle",
-          )}
-        >
-          {copied ? (
-            <motion.span
-              className="inline-flex"
-              initial={reduce ? false : { scale: 0.65, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.14, ease: easeOutExpo }}
-            >
-              <Check className="size-3.5 text-brand" aria-hidden />
-            </motion.span>
-          ) : (
-            <Copy className="size-3.5" aria-hidden />
-          )}
-          {copied ? "Copied" : "Copy"}
-        </button>
+        <CopyButton
+          value={code}
+          size="sm"
+          variant="outline"
+          timeout={2000}
+          onCopied={() => {
+            posthog.capture("documentation_code_copied", {
+              language,
+              embedded,
+            })
+          }}
+          className="h-7 border bg-white/5 px-2.5 text-[12px] font-medium text-muted-foreground hover:bg-white/10 hover:text-foreground dark:bg-white/5"
+        />
       </div>
       <React.Suspense fallback={<CodeFallback code={code} />}>
         <HighlightedCode code={code} language={language} />

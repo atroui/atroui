@@ -2,9 +2,11 @@
 
 import * as React from "react"
 
+import { AnimateNumber } from "../ui/animate-number"
+
 /**
- * Counts up from 0 to `value` over `duration` ms with out-quart easing.
- * Runs once on first in-view and respects prefers-reduced-motion.
+ * Counts up from 0 to `value` on first in-view.
+ * Wraps AnimateNumber (easeOutSoft); reduced motion jumps to final.
  */
 export function CountUp({
   value,
@@ -13,13 +15,13 @@ export function CountUp({
   ariaLabel,
 }: {
   value: number
+  /** Duration in ms (converted for AnimateNumber). */
   duration?: number
   className?: string
   ariaLabel?: string
 }) {
   const ref = React.useRef<HTMLSpanElement | null>(null)
-  const [display, setDisplay] = React.useState(0)
-  const startedRef = React.useRef(false)
+  const [active, setActive] = React.useState(false)
 
   React.useEffect(() => {
     const node = ref.current
@@ -28,55 +30,42 @@ export function CountUp({
     const reduced =
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
     if (reduced) {
-      setDisplay(value)
+      setActive(true)
       return
     }
 
-    let raf = 0
-    const start = () => {
-      if (startedRef.current) return
-      startedRef.current = true
-      const t0 = performance.now()
-      const from = 0
-      const to = value
-      const ease = (t: number) => 1 - Math.pow(1 - t, 4)
-
-      const step = (now: number) => {
-        const t = Math.min(1, (now - t0) / duration)
-        setDisplay(Math.round(from + (to - from) * ease(t)))
-        if (t < 1) raf = requestAnimationFrame(step)
-      }
-      raf = requestAnimationFrame(step)
-    }
-
     if (typeof IntersectionObserver === "undefined") {
-      start()
-      return () => cancelAnimationFrame(raf)
+      setActive(true)
+      return
     }
 
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
-          start()
+          setActive(true)
           io.disconnect()
         }
       },
       { threshold: 0.3 }
     )
     io.observe(node)
-    return () => {
-      io.disconnect()
-      cancelAnimationFrame(raf)
-    }
-  }, [value, duration])
+    return () => io.disconnect()
+  }, [])
 
   return (
-    <span
-      ref={ref}
-      className={className}
-      aria-label={ariaLabel ?? String(value)}
-    >
-      {display}
+    <span ref={ref}>
+      {active ? (
+        <AnimateNumber
+          value={value}
+          from={0}
+          duration={duration / 1000}
+          className={className}
+        />
+      ) : (
+        <span className={className} aria-label={ariaLabel ?? String(value)}>
+          0
+        </span>
+      )}
     </span>
   )
 }

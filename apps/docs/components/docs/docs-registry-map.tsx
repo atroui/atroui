@@ -65,6 +65,7 @@ const FAMILIES: { name: string; items: string[] }[] = [
       "fade-in",
       "stagger",
       "line-reveal",
+      "word-reveal-scroll",
       "text-morph",
       "copy-button",
       "label-roll",

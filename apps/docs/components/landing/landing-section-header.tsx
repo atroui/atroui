@@ -7,7 +7,7 @@ type LandingSectionHeaderProps = {
   /** Product eyebrow — mono uppercase, Zed-style section label. */
   eyebrow?: string
   title: ReactNode
-  lede?: string
+  lede?: ReactNode
   variant?: "brand" | "product"
   align?: "left" | "center"
   action?: ReactNode

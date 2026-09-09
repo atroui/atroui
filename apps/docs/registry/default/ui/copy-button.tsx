@@ -71,6 +71,14 @@ export function CopyButton({
     [],
   )
 
+  React.useEffect(() => {
+    setCopied(false)
+    if (resetTimer.current !== null) {
+      window.clearTimeout(resetTimer.current)
+      resetTimer.current = null
+    }
+  }, [value])
+
   async function copy() {
     if (copied) return
     try {
