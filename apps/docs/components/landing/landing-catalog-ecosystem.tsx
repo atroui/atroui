@@ -9,7 +9,6 @@ import { catalogNavItems, navigation } from "@/lib/navigation"
 const SECTION_HREF: Record<string, string> = {
   Primitives: "/docs/components?category=Primitives",
   Blocks: "/docs/components?category=Blocks",
-  Indie: "/docs/components?category=Indie",
   Tools: "/og",
   Headless: "/docs/components?category=Headless",
   More: "/docs/changelog",
@@ -18,7 +17,6 @@ const SECTION_HREF: Record<string, string> = {
 const blurbs: Record<string, string> = {
   Primitives: "Buttons, cards, inputs, theme controls",
   Blocks: "Marketing sections and page chrome",
-  Indie: "Personal-site kit — projects, resume, clocks",
   Tools: "OG workspace & project planner — live tools",
   Headless: "Analytics and structured-data helpers",
   More: "Compare, changelog, blog, updates",

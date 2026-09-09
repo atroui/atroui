@@ -32,18 +32,18 @@ const ROW_A = [
   "/docs/components/pricing-overview",
   "/docs/components/feature-grid",
   "/docs/components/faq-interactive-preview",
-  "/docs/components/deadline-countdown",
-  "/docs/components/count-up",
+  "/docs/components/home-hero",
+  "/docs/components/motion-animate-number",
 ]
 
 const ROW_B = [
   "/docs/components/brand-waitlist-form",
   "/docs/components/ui-form-select",
-  "/docs/components/personal-hero",
+  "/docs/components/site-header",
   "/docs/components/logo-cloud",
-  "/docs/components/changelog",
-  "/docs/components/project-list",
-  "/docs/components/local-clock",
+  "/docs/components/home-work",
+  "/docs/components/ui-tabs",
+  "/docs/components/feature-grid",
 ]
 
 const byHref = new Map(allNavItems.map((item) => [item.href, item]))

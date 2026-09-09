@@ -41,7 +41,6 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  Changelog,
   Checkbox,
   CheckboxGroup,
   Collapsible,
@@ -57,15 +56,12 @@ import {
   ComboboxItemIndicator,
   ComboboxList,
   ComboboxTrigger,
-  CommandMenu,
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
   ContextualCTA,
-  CountUp,
-  DeadlineCountdown,
   Dialog,
   DialogClose,
   DialogContent,
@@ -108,7 +104,6 @@ import {
   Input,
   JournalContent,
   LiveDashboard,
-  LocalClock,
   LogoCloud,
   LogoMark,
   LogoWordmark,
@@ -148,7 +143,6 @@ import {
   OTPField,
   OTPFieldInput,
   OTPFieldSeparator,
-  PersonalHero,
   Popover,
   PopoverContent,
   PopoverDescription,
@@ -166,12 +160,10 @@ import {
   ProgressLabel,
   ProgressTrack,
   ProgressValue,
-  ProjectList,
   Prose,
   Radio,
   RadioGroup,
   ResourcesContent,
-  Resume,
   ScopeChat,
   ScrollArea,
   ScrollProgress,
@@ -215,7 +207,6 @@ import {
   TransitionPanel,
   trackEvent,
   useToastManager,
-  WeatherChip,
   WordRevealScroll,
 } from "atroui"
 import { IMAGEORY } from "@/lib/imageory"
@@ -2271,159 +2262,6 @@ export function DemoThemeProviderNote() {
           </span>
         </div>
       </div>
-    </div>
-  )
-}
-
-/** Indie site kit demos — center the 640px column in the wide docs preview. */
-function IndieKitFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mx-auto w-full max-w-[640px] px-4 py-6 sm:px-5 sm:py-8">
-      {children}
-    </div>
-  )
-}
-
-export function DemoCountUp() {
-  return (
-    <div className="flex items-baseline justify-center gap-2 font-mono tabular-nums">
-      <CountUp
-        value={128}
-        className="text-5xl font-medium tracking-tight text-foreground"
-        ariaLabel="128"
-      />
-      <span className="text-sm text-muted-foreground">ships</span>
-    </div>
-  )
-}
-
-export function DemoCountUpSlow() {
-  return (
-    <div className="flex items-baseline justify-center gap-2 font-mono tabular-nums">
-      <CountUp
-        value={42}
-        duration={2400}
-        className="text-5xl font-medium tracking-tight text-foreground"
-        ariaLabel="42"
-      />
-      <span className="text-sm text-muted-foreground">blocks</span>
-    </div>
-  )
-}
-
-export function DemoDeadlineCountdown() {
-  return (
-    <IndieKitFrame>
-      <DeadlineCountdown className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoProjectList() {
-  return (
-    <IndieKitFrame>
-      <ProjectList className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoChangelog() {
-  return (
-    <IndieKitFrame>
-      <Changelog className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoCommandMenu() {
-  return (
-    <div className="relative mx-auto w-full max-w-md rounded-xl border border-border-subtle bg-background px-6 py-10 text-center">
-      <p className="text-sm text-muted-foreground">
-        Press{" "}
-        <kbd className="rounded border border-border-subtle bg-muted px-1.5 py-0.5 font-mono text-[11px] text-foreground">
-          ⌘K
-        </kbd>{" "}
-        (or Ctrl+K) to open the command menu.
-      </p>
-      <CommandMenu />
-    </div>
-  )
-}
-
-/** Contained gallery thumb — no portal (⌘K is for the live docs page). */
-export function DemoCommandMenuGallery() {
-  return (
-    <div className="flex h-full items-center justify-center bg-background p-4">
-      <div className="w-full max-w-[14rem] overflow-hidden rounded-lg border border-border-subtle bg-card shadow-sm">
-        <div className="flex items-center gap-2 border-b border-border-subtle px-2.5 py-2">
-          <span className="flex-1 truncate font-mono text-[10px] text-muted-foreground">
-            Search docs…
-          </span>
-          <kbd className="rounded border border-border-subtle px-1 font-mono text-[9px] text-muted-foreground">
-            ⌘K
-          </kbd>
-        </div>
-        <ul className="space-y-0.5 p-1.5 font-mono text-[10px] text-foreground">
-          <li className="rounded-md bg-white/[0.06] px-2 py-1.5">Home</li>
-          <li className="rounded-md px-2 py-1.5 text-muted-foreground">
-            Components
-          </li>
-          <li className="rounded-md px-2 py-1.5 text-muted-foreground">Blog</li>
-        </ul>
-      </div>
-    </div>
-  )
-}
-
-export function DemoPersonalHero() {
-  return (
-    <IndieKitFrame>
-      <PersonalHero
-        name="Your Name"
-        imageSrc={mediaSrc(MEDIA.founderPortrait)}
-        imageAlt="Portrait"
-        className="w-full px-0 pt-2 sm:pt-4"
-      />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoResume() {
-  return (
-    <div className="mx-auto max-h-[560px] w-full max-w-[720px] overflow-auto">
-      <Resume />
-    </div>
-  )
-}
-
-export function DemoLocalClock() {
-  return (
-    <div className="flex justify-center py-6">
-      <LocalClock timezone="America/New_York" timezoneLabel="NYC" />
-    </div>
-  )
-}
-
-export function DemoLocalClockLondon() {
-  return (
-    <div className="flex justify-center py-6">
-      <LocalClock timezone="Europe/London" timezoneLabel="LON" />
-    </div>
-  )
-}
-
-export function DemoWeatherChip() {
-  return (
-    <div className="flex justify-center py-6">
-      <WeatherChip lat={40.7128} lon={-74.006} label="NYC" />
-    </div>
-  )
-}
-
-export function DemoWeatherChipLondon() {
-  return (
-    <div className="flex justify-center py-6">
-      <WeatherChip lat={51.5074} lon={-0.1278} label="LON" />
     </div>
   )
 }

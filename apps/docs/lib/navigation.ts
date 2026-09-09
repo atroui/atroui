@@ -626,65 +626,6 @@ export const navigation: NavSection[] = [
     ],
   },
   {
-    title: "Indie",
-    items: [
-      {
-        title: "Count Up",
-        href: "/docs/components/count-up",
-        description: "In-view number animation",
-        badge: "registry",
-      },
-      {
-        title: "Deadline Countdown",
-        href: "/docs/components/deadline-countdown",
-        description: "Days-to-deadline band",
-        badge: "registry",
-      },
-      {
-        title: "Project List",
-        href: "/docs/components/project-list",
-        description: "Hairline project list",
-        badge: "registry",
-      },
-      {
-        title: "Changelog",
-        href: "/docs/components/changelog",
-        description: "Filterable ship log",
-        badge: "registry",
-      },
-      {
-        title: "Command Menu",
-        href: "/docs/components/command-menu",
-        description: "⌘K command palette",
-        badge: "registry",
-      },
-      {
-        title: "Personal Hero",
-        href: "/docs/components/personal-hero",
-        description: "Indie intro + portrait",
-        badge: "registry",
-      },
-      {
-        title: "Resume",
-        href: "/docs/components/resume",
-        description: "Printable resume block",
-        badge: "registry",
-      },
-      {
-        title: "Local Clock",
-        href: "/docs/components/local-clock",
-        description: "Timezone time chip",
-        badge: "registry",
-      },
-      {
-        title: "Weather Chip",
-        href: "/docs/components/weather-chip",
-        description: "Open-Meteo weather",
-        badge: "registry",
-      }
-    ],
-  },
-  {
     title: "Tools",
     megaLabel: "Tool blocks",
     items: [
@@ -798,7 +739,6 @@ const sectionKind: Record<string, DocKind | undefined> = {
   More: undefined,
   Primitives: "Primitive",
   Blocks: "Block",
-  Indie: "Block",
   Tools: "Tool",
   Headless: "Headless",
 }

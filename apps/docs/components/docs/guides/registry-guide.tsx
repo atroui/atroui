@@ -182,8 +182,8 @@ npx shadcn@latest add @atroui/site-header`}
               {
                 "@type": "ListItem",
                 "position": 4,
-                "name": "Personal Portfolio Hero Component",
-                "url": `${siteUrl}/docs/components/personal-hero`
+                "name": "Home Hero Component",
+                "url": `${siteUrl}/docs/components/home-hero`
               },
               {
                 "@type": "ListItem",

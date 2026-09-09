@@ -373,82 +373,60 @@ npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
     slug: "indie-site-kit-new-components",
     title: "Indie site kit: new AtroUI components for portfolio sites",
     description:
-      "What shipped in the AtroUI indie site kit: narrow chrome, command menu, changelog, countdown, personal hero, and more. Plus Home Crafts, Feature Grid, and Logo Cloud. How to install and where it sits vs studio Blocks.",
+      "What shipped in the AtroUI indie site kit (later removed): narrow chrome, command menu, changelog, countdown, personal hero, and more — plus Home Crafts, Feature Grid, and Logo Cloud.",
     date: "2026-08-07",
     sections: [
       {
         body: [
           "AtroUI started as a dark-first studio catalog: heroes, pricing, Host APIs, marketing sections extracted from shipped work. That remains the [Blocks](/docs/components) story.",
-          "Indie founders also need a different altitude: a narrow column, mono stamps, a ⌘K palette, a ship log, a portrait hero. Not another max-w-7xl marketing band.",
-          "We shipped that as the **indie site kit**. Same registry install model. Same tokens. A second chrome language you can own in your repo.",
-          "This post lists what landed, how to install it, and how it sits next to studio Blocks without replacing them.",
+          "In August 2026 we also shipped a second altitude — the **indie site kit**: ~640px reading width, mono stamps, a personal ⌘K palette, ship log, portrait hero, and related chips. Same registry install model. Same tokens.",
+          "**Update (2026-09):** that kit was removed from the catalog. It did not earn shelf space next to Primitives and Blocks. This post stays as a record of what shipped and why the second chrome language existed.",
+          "Studio Blocks and [Primitives](/docs/components) remain the install path. Prefer composing product and portfolio pages from those surfaces.",
         ],
       },
       {
-        heading: "Why a second kit",
+        heading: "Why a second kit existed",
         body: [
-          "Studio Blocks assume a wide editorial frame: border-x shells, loud CTAs, package pricing. Portfolio sites often want the opposite: ~640px reading width, quiet hairlines, status rows, and tools that feel like a personal homepage.",
-          "Shipping both styles is intentional. [Site Header](/docs/components/site-header) and [Site Footer](/docs/components/site-footer) stay the studio chrome language. Indie surfaces use a narrower reading column and quieter stamps — pick the altitude that matches the site you are shipping.",
-          "In the docs sidebar the remaining kit lives under **Indie**. Component IDs stay stable (`@atroui/personal-hero`, `@atroui/command-menu`, and so on).",
+          "Studio Blocks assume a wide editorial frame: border-x shells, loud CTAs, package pricing. Portfolio sites often want the opposite: narrow reading width, quiet hairlines, status rows, and tools that feel like a personal homepage.",
+          "[Site Header](/docs/components/site-header) and [Site Footer](/docs/components/site-footer) stay the studio chrome language. The indie kit tried a quieter personal desk — then lost the comparison to the Primitive motion language.",
         ],
       },
       {
-        heading: "What shipped in Indie",
+        heading: "What shipped (historical)",
         body: [
-          "**Home surfaces:** `@atroui/personal-hero` (optional circular portrait), `@atroui/project-list`.",
-          "**Ship in public:** `@atroui/changelog` (tag filters, month groups).",
-          "**Tools:** `@atroui/command-menu` (cmdk, ⌘K), `@atroui/deadline-countdown` + `@atroui/count-up`, `@atroui/local-clock`, `@atroui/weather-chip` (Open-Meteo, no API key), `@atroui/resume`.",
-          "Browse the full list under [Indie](/docs/components/personal-hero) in the docs nav, or start from any item above.",
+          "**Home surfaces:** personal hero (optional circular portrait), project list.",
+          "**Ship in public:** changelog (tag filters, month groups).",
+          "**Tools:** command menu (cmdk), deadline countdown + count-up, local clock, weather chip (Open-Meteo), resume.",
+          "Those registry IDs are no longer published. Use [Blocks](/docs/components) and [Primitives](/docs/components) instead.",
         ],
       },
       {
-        heading: "Also new in Blocks",
+        heading: "Also new in Blocks (still shipping)",
         body: [
           "Alongside the kit we fixed catalog trust and filled two common landing gaps:",
           "**Home Crafts** (`@atroui/home-crafts`) is a real capabilities band, not a pricing alias. Pair it with [Pricing Overview](/docs/components/pricing-overview) when you need a rate card.",
-          "**Feature Grid** and **Logo Cloud** ship as CONTENT-driven landing blocks. They stay off the atroui.com homepage until you have real social proof worth showing. Install them when your product site needs pillars or partner marks.",
+          "**Feature Grid** and **Logo Cloud** ship as CONTENT-driven landing blocks. They stay off the atroui.com homepage until you have real social proof worth showing.",
           "**Site Footer** is no longer an alias of Bold Footer. Quiet chrome and loud wordmark footer are distinct demos again.",
         ],
       },
       {
-        heading: "Install",
+        heading: "Install (today)",
         body: [
-          "Same CLI as everything else in the catalog. No Host API package required for these UI blocks.",
+          "Indie kit items are gone. Install studio Blocks and Primitives instead:",
         ],
         codeBlocks: [
           {
             language: "bash",
-            code: `# Homepage slice
-npx shadcn@latest add @atroui/personal-hero @atroui/project-list
-
-# Command palette (needs cmdk)
-npx shadcn@latest add @atroui/command-menu
-
-# Studio landing extras
-npx shadcn@latest add @atroui/home-crafts @atroui/feature-grid`,
+            code: `npx shadcn@latest add @atroui/home-crafts @atroui/feature-grid @atroui/button`,
           },
-        ],
-      },
-      {
-        body: [
-          "Edit the top-level `CONTENT` (and lists) after install. For Personal Hero, set `imageSrc` to your portrait path. For Command Menu, mount once in the root layout; it listens for ⌘K / Ctrl+K.",
-          "If you use Host APIs too, keep the install-mode story straight: [registry UI only](/docs/installation) for these sections; npm `atroui` only when you add forms or AI routes. See [Host APIs](/docs/host-api).",
-        ],
-      },
-      {
-        heading: "What we did not do",
-        body: [
-          "We did not replace studio Blocks. We did not put fake testimonials on atroui.com. We did not ship a personal brand mark as AtroUI identity.",
-          "The kit is for builders who want the portfolio altitude in their git history. Compose it with studio sections when a product page needs both.",
         ],
       },
       {
         heading: "Where to go next",
         body: [
-          "Open the **Indie** section in the docs sidebar and click through previews.",
+          "Browse [Components](/docs/components) for Primitives and Blocks.",
           "Read [Installation](/docs/installation) if you are new to the registry.",
           "Read [Host APIs: own the UI, bring your keys](/blog/host-apis-own-the-ui-bring-your-keys) if forms and AI tools are next.",
-          "Own the UI. Borrow the boring API security when you need it. Bring your own keys.",
         ],
       },
     ],

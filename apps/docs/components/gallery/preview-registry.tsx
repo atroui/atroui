@@ -16,11 +16,7 @@ import {
   DemoButton,
   DemoCalendlyEmbed,
   DemoCard,
-  DemoChangelog,
-  DemoCommandMenuGallery,
   DemoContextualCta,
-  DemoCountUp,
-  DemoDeadlineCountdown,
   DemoAccordion,
   DemoAutocomplete,
   DemoCheckbox,
@@ -61,7 +57,6 @@ import {
   DemoLineReveal,
   DemoWordRevealScroll,
   DemoLiveDashboard,
-  DemoLocalClock,
   DemoLogo,
   DemoLogoCloud,
   DemoMadeWithEmbed,
@@ -70,13 +65,10 @@ import {
   DemoOgExamples,
   DemoOgLivePreview,
   DemoOgWorkspace,
-  DemoPersonalHero,
   DemoPricingOverview,
-  DemoProjectList,
   DemoProjectPlanner,
   DemoProse,
   DemoResourcesContent,
-  DemoResume,
   DemoScopeChat,
   DemoScrollArea,
   DemoScrollProgress,
@@ -99,7 +91,6 @@ import {
   DemoTilt,
   DemoTimelineAnimation,
   DemoWaitlistForm,
-  DemoWeatherChip,
 } from "@/components/registry-demos"
 
 export const previewRegistry: Record<string, ComponentType> = {
@@ -180,17 +171,6 @@ export const previewRegistry: Record<string, ComponentType> = {
   "/docs/components/resources-resources-content": DemoResourcesContent,
   "/docs/components/ar-ar-portfolio": DemoArPortfolio,
   "/docs/components/seo-made-with-embed": DemoMadeWithEmbed,
-
-  // Indie
-  "/docs/components/count-up": DemoCountUp,
-  "/docs/components/deadline-countdown": DemoDeadlineCountdown,
-  "/docs/components/project-list": DemoProjectList,
-  "/docs/components/changelog": DemoChangelog,
-  "/docs/components/personal-hero": DemoPersonalHero,
-  "/docs/components/resume": DemoResume,
-  "/docs/components/local-clock": DemoLocalClock,
-  "/docs/components/weather-chip": DemoWeatherChip,
-  "/docs/components/command-menu": DemoCommandMenuGallery,
 
   // Tools
   "/docs/components/og-og-examples": DemoOgExamples,
