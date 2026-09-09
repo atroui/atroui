@@ -103,6 +103,40 @@
       ]
     },
     {
+      "name": "color-themes",
+      "type": "registry:lib",
+      "title": "Color Themes",
+      "description": "Accent theme ids, storage, and apply helpers for data-color-theme (orthogonal to light/dark).",
+      "files": [
+        {
+          "path": "registry/default/lib/color-themes.ts",
+          "type": "registry:lib",
+          "target": "lib/color-themes.ts"
+        }
+      ]
+    },
+    {
+      "name": "color-theme-picker",
+      "type": "registry:ui",
+      "title": "Color Theme Picker",
+      "description": "Live accent theme list — click a swatch to recolor the site (orthogonal to light/dark).",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/popover",
+        "@atroui/color-themes"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/color-theme-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/color-theme-picker.tsx"
+        }
+      ]
+    },
+    {
       "name": "adaptive-theme",
       "type": "registry:lib",
       "title": "Adaptive Theme",

@@ -1,4 +1,4 @@
-import { ThemeToggle } from "atroui"
+import { ColorThemePicker, ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { SiteNav } from "@/components/site-nav"
@@ -28,6 +28,7 @@ export function SiteHeader() {
       trailing={
         <>
           <CommandMenu compact />
+          <ColorThemePicker />
           <ThemeToggle />
         </>
       }

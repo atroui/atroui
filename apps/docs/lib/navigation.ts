@@ -467,6 +467,12 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
+        title: "Color Theme Picker",
+        href: "/docs/components/ui-color-theme-picker",
+        description: "Live accent swatches",
+        badge: "registry",
+      },
+      {
         title: "Adaptive Theme Switch",
         href: "/docs/components/ui-theme-adapt",
         description: "Keeps type readable across modes",

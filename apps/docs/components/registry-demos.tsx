@@ -186,6 +186,7 @@ import {
   TabsTrigger,
   Textarea,
   TextMorph,
+  ColorThemePicker,
   CopyButton,
   ThemeToggle,
   ThumbnailLivePreview,
@@ -1469,6 +1470,10 @@ export { DemoThemeAdapt } from "@/components/theme-adapt-demo"
 
 export function DemoThemeToggle() {
   return <ThemeToggle />
+}
+
+export function DemoColorThemePicker() {
+  return <ColorThemePicker />
 }
 
 export function DemoLogo() {

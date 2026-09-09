@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-themes",
+  "title": "Color Themes",
+  "description": "Accent theme ids, storage, and apply helpers for data-color-theme (orthogonal to light/dark).",
+  "files": [
+    {
+      "path": "registry/default/lib/color-themes.ts",
+      "content": "/**\n * Live accent themes — orthogonal to next-themes light/dark/system.\n * CSS: `html[data-color-theme=\"<id>\"]` in globals.css. Default Mira = no attribute.\n */\n\nexport const COLOR_THEME_STORAGE_KEY = \"atro-color-theme\"\nexport const COLOR_THEME_ATTR = \"data-color-theme\"\n\nexport const COLOR_THEMES = [\n  {\n    id: \"mira\",\n    label: \"Mira\",\n    description: \"Violet — Atro default\",\n    /** Brand chip for the picker (matches light sidebar-primary) */\n    swatch: \"oklch(0.511 0.262 277)\",\n  },\n  {\n    id: \"tide\",\n    label: \"Tide\",\n    description: \"Teal\",\n    swatch: \"oklch(0.511 0.13 185)\",\n  },\n  {\n    id: \"ember\",\n    label: \"Ember\",\n    description: \"Amber\",\n    swatch: \"oklch(0.58 0.17 75)\",\n  },\n  {\n    id: \"bloom\",\n    label: \"Bloom\",\n    description: \"Rose\",\n    swatch: \"oklch(0.54 0.19 18)\",\n  },\n  {\n    id: \"graphite\",\n    label: \"Graphite\",\n    description: \"Cool slate\",\n    swatch: \"oklch(0.48 0.045 265)\",\n  },\n] as const\n\nexport type ColorThemeId = (typeof COLOR_THEMES)[number][\"id\"]\n\nexport function isColorThemeId(value: string): value is ColorThemeId {\n  return COLOR_THEMES.some((t) => t.id === value)\n}\n\n/** Apply accent theme to `<html>`. Mira clears the attribute (CSS default). */\nexport function applyColorTheme(id: ColorThemeId) {\n  if (typeof document === \"undefined\") return\n  const root = document.documentElement\n  if (id === \"mira\") {\n    root.removeAttribute(COLOR_THEME_ATTR)\n  } else {\n    root.setAttribute(COLOR_THEME_ATTR, id)\n  }\n  try {\n    localStorage.setItem(COLOR_THEME_STORAGE_KEY, id)\n  } catch {\n    /* private mode */\n  }\n}\n\nexport function readStoredColorTheme(): ColorThemeId {\n  if (typeof window === \"undefined\") return \"mira\"\n  try {\n    const raw = localStorage.getItem(COLOR_THEME_STORAGE_KEY)\n    if (raw && isColorThemeId(raw)) return raw\n  } catch {\n    /* private mode */\n  }\n  return \"mira\"\n}\n\n/** Inline before paint — paste into a blocking `<script>` in the root layout. */\nexport const COLOR_THEME_BOOT_SCRIPT = `(function(){try{var k=${JSON.stringify(COLOR_THEME_STORAGE_KEY)},a=${JSON.stringify(COLOR_THEME_ATTR)},t=localStorage.getItem(k);if(t&&t!==\"mira\")document.documentElement.setAttribute(a,t);}catch(e){}})();`\n",
+      "type": "registry:lib",
+      "target": "lib/color-themes.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

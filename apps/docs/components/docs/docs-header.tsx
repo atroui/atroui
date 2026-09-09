@@ -1,5 +1,5 @@
 import { Github } from "lucide-react"
-import { ThemeToggle } from "atroui"
+import { ColorThemePicker, ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileSidebar } from "@/components/sidebar"
@@ -45,6 +45,7 @@ export function DocsHeader({
           <div className="sm:hidden">
             <CommandMenu compact />
           </div>
+          <ColorThemePicker />
           <ThemeToggle />
           <a
             href={GITHUB_REPO}
