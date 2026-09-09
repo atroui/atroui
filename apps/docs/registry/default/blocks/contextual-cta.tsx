@@ -95,7 +95,7 @@ export function ContextualCta({ preview = false }: ContextualCtaProps) {
         <div className="flex items-stretch border border-border-subtle bg-background shadow-[0_16px_48px_-24px_rgba(0,0,0,0.35)]">
           <div
             aria-hidden
-            className="w-1 shrink-0 bg-[var(--color-brand,#0b7bff)]"
+            className="w-1 shrink-0 bg-brand"
           />
           <div className="flex min-w-0 flex-1 flex-col gap-3 p-3.5 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
             <div className="min-w-0 flex-1">
@@ -112,7 +112,7 @@ export function ContextualCta({ preview = false }: ContextualCtaProps) {
             <div className="flex items-center gap-2">
               <Link
                 href={CONTENT.href}
-                className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg bg-foreground px-3.5 text-sm font-medium text-background sm:flex-none"
+                className="atro-btn h-9 flex-1 justify-center px-3.5 text-sm sm:flex-none"
               >
                 {CONTENT.cta}
                 <ArrowRight className="size-3.5" aria-hidden />

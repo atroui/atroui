@@ -57,7 +57,7 @@ export function HomeLab() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand">
-                        <span className="size-1.5 animate-pulse rounded-full bg-brand" />
+                        <span className="size-1.5 animate-pulse rounded-full bg-brand motion-reduce:animate-none" />
                         {statusLabel(featured.status)}
                       </span>
                       <span className="text-xs text-muted-foreground">
@@ -87,7 +87,7 @@ export function HomeLab() {
                   </span>
                 </div>
 
-                <div className="bg-muted/30 p-4 sm:p-6 lg:col-span-7">
+                <div className="bg-muted p-4 sm:p-6 lg:col-span-7">
                   <div className="overflow-hidden rounded-xl ring-1 ring-border-subtle">
                     <div className="relative aspect-1200/630">
                       <OgLivePreview

@@ -87,7 +87,7 @@ export function OverlayShell({
         >
           <motion.button
             type="button"
-            className="absolute inset-0 cursor-default bg-black/75"
+            className="absolute inset-0 cursor-default bg-foreground/55"
             aria-label="Close menu"
             variants={{
               closed: { opacity: 0 },

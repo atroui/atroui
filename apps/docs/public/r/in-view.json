@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "in-view",
+  "title": "In View",
+  "description": "Deprecated alias of Fade In with landing defaults. Prefer @atroui/fade-in.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/fade-in",
+    "@atroui/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/in-view.tsx",
+      "content": "\"use client\"\n\nimport { FadeIn, fadeInSection, type FadeInProps } from \"@/components/ui/fade-in\"\n\nexport type InViewProps = Omit<FadeInProps, \"preview\" | \"duration\">\n\n/**\n * @deprecated Use FadeIn — same motion. Thin alias with landing section defaults.\n */\nexport function InView({\n  y = fadeInSection.y,\n  amount = fadeInSection.amount,\n  margin = fadeInSection.margin,\n  ...props\n}: InViewProps) {\n  return <FadeIn y={y} amount={amount} margin={margin} {...props} />\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/in-view.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

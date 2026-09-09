@@ -57,7 +57,7 @@ export function HomeWho({
                 </p>
                 <h2 className="mt-3 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
                   {name}{" "}
-                  <span className="italic text-[var(--color-brand,#0b7bff)]">
+                  <span className="italic text-brand">
                     {CONTENT.headlineSuffix}
                   </span>
                 </h2>
@@ -99,7 +99,7 @@ export function HomeWho({
             <div className="flex flex-col gap-3">
               <Link
                 href={CONTENT.ctaHref}
-                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto sm:justify-start"
+                className="atro-btn w-full justify-center sm:w-auto sm:justify-start"
               >
                 {CONTENT.ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />

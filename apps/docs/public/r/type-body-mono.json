@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-body-mono",
+  "title": "Mono body",
+  "description": "Geist Mono for sans, body, and label. Display stays on the host default.",
+  "cssVars": {
+    "theme": {
+      "font-sans": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+      "font-body": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+      "font-label": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    }
+  },
+  "docs": "Body role only. Live axis: data-type-body=\"mono\".",
+  "type": "registry:theme"
+}

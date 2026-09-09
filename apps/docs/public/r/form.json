@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "title": "Form",
+  "description": "Base UI form validation orchestration — pair with Field.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/form.tsx",
+      "content": "\"use client\"\n\nimport { Form as FormPrimitive } from \"@base-ui/react/form\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Form — Base UI validation orchestration.\n * Pair with Field for label / error reveal; chrome stays quiet.\n */\nfunction Form<FormValues extends Record<string, any> = Record<string, any>>({\n  className,\n  ...props\n}: FormPrimitive.Props<FormValues>) {\n  return (\n    <FormPrimitive\n      data-slot=\"form\"\n      className={cn(\"flex w-full flex-col gap-4\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Form }\n",
+      "type": "registry:ui",
+      "target": "components/ui/form.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -36,7 +36,7 @@ export function OgExamples({
         <Link
           key={ex.title}
           href={ex.href}
-          className="group relative aspect-1200/630 overflow-hidden rounded-2xl border border-border-subtle"
+          className="group relative aspect-1200/630 overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle"
         >
           <OgLivePreview
             title={ex.title}

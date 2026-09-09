@@ -1,0 +1,166 @@
+import Link from "next/link"
+import { Github } from "lucide-react"
+import { LogoMark } from "@/components/logo-mark"
+import { catalogSections, toolApps } from "@/lib/navigation"
+
+const GITHUB_REPO = "https://github.com/atroui/atroui"
+const NPM_URL = "https://www.npmjs.com/package/atroui"
+
+type FooterLink = { label: string; href: string; external?: boolean }
+
+/**
+ * Same spine as the nav — Components · Docs · Blog — expanded into columns.
+ * Catalog categories and tool rooms come from `navigation.ts` so the footer
+ * can never drift into a second taxonomy.
+ */
+const columns: { heading: string; links: FooterLink[] }[] = [
+  {
+    heading: "Components",
+    links: [
+      { label: "Gallery", href: "/docs/components" },
+      ...catalogSections.map((section) => ({
+        label: section.megaLabel ?? section.title,
+        href: `/docs/components?category=${encodeURIComponent(section.title)}`,
+      })),
+    ],
+  },
+  {
+    heading: "Docs",
+    links: [
+      { label: "Getting Started", href: "/docs" },
+      { label: "Installation", href: "/docs/installation" },
+      { label: "Registry", href: "/docs/registry" },
+      { label: "Host APIs", href: "/docs/host-api" },
+      { label: "Theming", href: "/docs/theming" },
+      { label: "Compare", href: "/docs/compare" },
+      { label: "Glossary", href: "/docs/glossary" },
+    ],
+  },
+  {
+    heading: "Tools",
+    links: [
+      ...toolApps.map((tool) => ({ label: tool.title, href: tool.href })),
+      { label: "Launch workflow", href: "/docs/guides/launch-workflow" },
+      { label: "Collections", href: "/docs/collections" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "Blog", href: "/blog" },
+      { label: "Updates", href: "/updates" },
+      { label: "Changelog", href: "/docs/changelog" },
+      { label: "Brand kit", href: "/docs/brand" },
+      { label: "Identity kit", href: "/docs/identity" },
+      { label: "GitHub", href: GITHUB_REPO, external: true },
+      { label: "npm · atroui", href: NPM_URL, external: true },
+    ],
+  },
+]
+
+function FooterAnchor({ link }: { link: FooterLink }) {
+  const className =
+    "text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+  if (link.external) {
+    return (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {link.label}
+      </a>
+    )
+  }
+  return (
+    <Link href={link.href} className={className}>
+      {link.label}
+    </Link>
+  )
+}
+
+/**
+ * Marketing-shell only: landing, blog, updates, tool rooms. Docs rooms
+ * (`/docs/**`) close with their own exit footer — never this mega map.
+ */
+export function SiteFooter() {
+  return (
+    <footer className="relative border-t border-border-subtle bg-background">
+      <div className="atro-shell py-14 lg:py-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-4">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5"
+              aria-label="AtroUI home"
+            >
+              <LogoMark className="size-6 text-foreground" />
+              <span className="text-lg font-medium tracking-[-0.02em] text-foreground">
+                AtroUI
+              </span>
+            </Link>
+            <p className="ds-body mt-4 max-w-xs text-muted-foreground">
+              Dark-first React &amp; Next.js catalog on the official shadcn
+              registry. Own the source. Bring your own keys.
+            </p>
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="atro-btn-ghost mt-6 inline-flex"
+            >
+              <Github className="size-4" aria-hidden />
+              GitHub
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+            {columns.map((column) => (
+              <nav key={column.heading} aria-label={column.heading}>
+                <h3 className="ds-mono-label mb-3.5">{column.heading}</h3>
+                <ul className="space-y-2.5">
+                  {column.links.map((link) => (
+                    <li key={link.label}>
+                      <FooterAnchor link={link} />
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col gap-3 border-t border-border-subtle pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="ds-meta">
+            © {new Date().getFullYear()} AtroUI · atroui.com
+          </p>
+          <div className="ds-meta flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a
+              href="https://www.iamk.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              iamk.xyz
+            </a>
+            <a
+              href="https://www.makershot.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              makershot.tech
+            </a>
+            <Link
+              href="/docs"
+              className="transition-colors hover:text-foreground"
+            >
+              Docs
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}

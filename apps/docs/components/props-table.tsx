@@ -16,12 +16,12 @@ export function PropsTable({ data, className }: PropsTableProps) {
   return (
     <div
       className={cn(
-        "overflow-x-auto rounded-2xl border border-border-subtle bg-card/40",
+        "overflow-x-auto rounded-2xl border border-border-subtle bg-card",
         className
       )}
     >
       <table className="w-full min-w-[36rem] text-left text-sm">
-        <thead className="border-b border-border-subtle bg-white/[0.03]">
+        <thead className="border-b border-border-subtle bg-muted">
           <tr>
             {["Prop", "Type", "Default", "Description"].map((label) => (
               <th

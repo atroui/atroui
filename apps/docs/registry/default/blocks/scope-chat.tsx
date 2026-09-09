@@ -67,7 +67,7 @@ export function ScopeChat() {
   }
 
   return (
-    <div className="flex min-h-[420px] flex-col overflow-hidden rounded-2xl border border-border-subtle bg-card/40">
+    <div className="flex min-h-[420px] flex-col overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/40">
       <div className="border-b border-border-subtle px-4 py-3">
         <p className="ms-stamp">Scope chat</p>
         <p className="mt-1 text-xs text-muted-foreground">{CONTENT.emptyHint}</p>
@@ -119,7 +119,7 @@ export function ScopeChat() {
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex size-10 items-center justify-center rounded-lg bg-brand text-white disabled:opacity-60"
+            className="atro-btn size-10 shrink-0 !px-0 disabled:opacity-60"
             aria-label="Send"
           >
             {loading ? (

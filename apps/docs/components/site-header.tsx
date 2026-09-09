@@ -1,89 +1,39 @@
-"use client"
-
-import { Github, Star } from "lucide-react"
-import { ThemeToggle } from "atroui"
+import { ColorThemePicker, ThemeToggle } from "atroui"
 import { LogoMark } from "@/components/logo-mark"
 import { CommandMenu } from "@/components/command-menu"
-import { MobileSidebar } from "@/components/sidebar"
-import {
-  SharedBrand,
-  SharedOwnCta,
-  TransitionLink,
-} from "@/components/view-transitions"
-import { primaryNav } from "@/lib/primary-nav"
+import { SiteNav } from "@/components/site-nav"
+import { SiteChrome } from "@/components/site-chrome"
+import { SharedBrand, TransitionLink } from "@/components/view-transitions"
 
-const GITHUB_REPO = "https://github.com/atroui/atroui"
-
+/**
+ * Short marketing bar — brand · Docs/Components/Blog · search · theme.
+ * Hide-on-scroll (Motion scroll-direction) — docs book uses DocsHeader instead.
+ */
 export function SiteHeader() {
   return (
-    <header
-      className="sticky top-0 z-40 w-full border-b border-border-subtle bg-background/95 pt-[env(safe-area-inset-top)]"
-      style={{ viewTransitionName: "site-header" }}
-    >
-      <div className="mx-auto flex h-14 max-w-350 items-center gap-2 px-3 sm:gap-3 sm:px-6">
-        <MobileSidebar />
-
+    <SiteChrome
+      hideOnScroll
+      leading={
         <SharedBrand>
           <TransitionLink
             href="/"
-            className="flex min-w-0 items-center gap-2 sm:gap-2.5"
+            className="atro-site-brand"
             aria-label="AtroUI home"
           >
-            <LogoMark className="shrink-0 text-foreground" />
-            <span className="truncate text-[15px] font-medium tracking-tight text-foreground sm:text-[17px]">
-              AtroUI
-            </span>
+            <LogoMark className="size-4 shrink-0 text-foreground" />
+            <span>AtroUI</span>
           </TransitionLink>
         </SharedBrand>
-
-        <nav
-          aria-label="Primary"
-          className="ml-1 hidden items-center gap-0.5 md:ml-2 md:flex lg:ml-3"
-        >
-          {primaryNav.map((item) => (
-            <TransitionLink
-              key={item.href}
-              href={item.href}
-              transitionTypes={[]}
-              className="px-2 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground xl:px-2.5"
-            >
-              {item.label}
-            </TransitionLink>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <div className="md:hidden">
-            <CommandMenu compact />
-          </div>
-          <div className="hidden md:block">
-            <CommandMenu />
-          </div>
+      }
+      trailing={
+        <>
+          <CommandMenu compact />
+          <ColorThemePicker />
           <ThemeToggle />
-          <a
-            href={GITHUB_REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Star AtroUI on GitHub"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border-subtle bg-white/[0.03] px-2.5 text-foreground transition-colors hover:bg-white/[0.06] sm:px-3"
-          >
-            <Github className="size-4" aria-hidden />
-            <span className="hidden text-[13px] font-medium sm:inline">
-              Star
-            </span>
-            <Star className="size-3.5 opacity-80" aria-hidden />
-          </a>
-          <SharedOwnCta>
-            <TransitionLink
-              href="/docs/registry"
-              transitionTypes={[]}
-              className="ms-cta hidden h-9 px-3.5 text-sm md:inline-flex lg:px-4"
-            >
-              Own the UI
-            </TransitionLink>
-          </SharedOwnCta>
-        </div>
-      </div>
-    </header>
+        </>
+      }
+    >
+      <SiteNav />
+    </SiteChrome>
   )
 }

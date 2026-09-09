@@ -39,7 +39,7 @@ Never lead with `npm i atroui` for pure UI. Use the CLI first; add the package o
 | Mode | What you get | Install |
 |------|--------------|---------|
 | **Registry UI only** | Heroes, chrome, form UI — owned source files | `npx shadcn add @atroui/…`. No `atroui` package. |
-| **Forms** | Contact / waitlist / newsletter UI + hardened routes | `npm i atroui`, `transpilePackages: ["atroui"]`, then `@atroui/contact-form` + `@atroui/api-contact` (same for waitlist / newsletter). |
+| **Forms** | Waitlist / newsletter UI + hardened routes (optional `api-contact` for your own contact UI) | `npm i atroui`, `transpilePackages: ["atroui"]`, then `@atroui/waitlist-form` + `@atroui/api-waitlist` (same for newsletter; contact → `@atroui/api-contact`). |
 | **AI tools** | OG, thumbnail, scope chat + matching APIs | Same package setup + `@atroui/og-workspace` / `thumbnail-workspace` / `scope-chat` + `@atroui/api-*`. |
 
 ## Monorepo structure

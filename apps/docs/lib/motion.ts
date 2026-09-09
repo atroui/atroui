@@ -1,37 +1,74 @@
 /**
- * Shared motion tokens — Family Values fluidity.
- * Use these instead of one-off springs that overshoot on web chrome.
+ * Docs motion surface — cubic-bezier / tween tokens live in `atroui`.
+ * Landing Variants that need `motion/react` stay here.
  */
 
-export const easeOutExpo = [0.16, 1, 0.3, 1] as const
-export const easeOutSoft = [0.32, 0.72, 0, 1] as const
+import type { Variants } from "motion/react"
 
-/** Overlay / drawer panel slide */
-export const panelTween = {
-  duration: 0.28,
-  ease: easeOutSoft,
-} as const
+export {
+  STAGGER_DEFAULT,
+  STAGGER_MAX,
+  LANDING_STAGGER,
+  EXIT_DURATION_SCALE,
+  atroMotionDefaults,
+  avatarFallbackMotion,
+  avatarImageMotion,
+  avatarTween,
+  backdropMotion,
+  controlGestures,
+  dialogContentMotion,
+  dialogTween,
+  drawerPanelMotion,
+  easeOutExpo,
+  easeOutSoft,
+  enterEase,
+  enterTween,
+  exitEase,
+  exitTween,
+  fadeTween,
+  fillTween,
+  focusAsHover,
+  hoverLift,
+  hoverTween,
+  inViewTween,
+  layoutTween,
+  menuItemVariants,
+  menuPopupMotion,
+  menuPopupVariants,
+  pageFade,
+  panelTween,
+  popupMotion,
+  popupTween,
+  presenceTweens,
+  pressInto,
+  pressTween,
+  revealTween,
+  SCROLL_HIDE_OFFSET,
+  scrollHideTween,
+  stagger,
+  staggerContainer,
+  staggerDelay,
+  staggerItem,
+  switchLayoutTween,
+  timelineRevealVariants,
+  toastMotion,
+  toastTween,
+  tooltipMotion,
+  tooltipTween,
+} from "atroui"
+export type { DrawerPanelSide } from "atroui"
 
-/** Backdrop fade */
-export const fadeTween = {
-  duration: 0.2,
-  ease: "easeOut" as const,
-} as const
+import { LANDING_STAGGER, timelineRevealVariants } from "atroui"
 
-/** Dialog / command panel appear */
-export const dialogTween = {
-  duration: 0.22,
-  ease: easeOutExpo,
-} as const
+/**
+ * Landing hero / section reveal stagger (TimelineAnimation).
+ * Opacity + y only — blur-in read as AI-slop atmosphere and cost a paint.
+ * Prefer {@link timelineRevealVariants} from atroui; this alias keeps docs call sites.
+ */
+export const reveal: Variants = timelineRevealVariants
 
-/** Collapsible height (sidebar sections) */
-export const revealTween = {
-  duration: 0.24,
-  ease: easeOutSoft,
-} as const
+/** @deprecated Use {@link reveal} — name kept so older MDX/demos keep compiling. */
+export const revealBlur = reveal
 
-/** Docs / blog page content continuity */
-export const pageFade = {
-  duration: 0.18,
-  ease: easeOutSoft,
-} as const
+/** Stagger step between sequential landing reveals (ms). */
+export const landingStaggerMs = LANDING_STAGGER * 1000

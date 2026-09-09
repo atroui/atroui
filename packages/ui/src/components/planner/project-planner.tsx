@@ -7,6 +7,33 @@ import { useMemo, useState } from "react";
 
 import { cn } from "../../lib/utils";
 import { buildOgHref, type ProjectBrief } from "../../lib/project-brief";
+import { AnimateNumber } from "../motion/animate-number";
+
+/** Tween the leading amount; keep range / plus suffix static (`$2,400 - $4,000`). */
+function AnimatedPriceRange({
+  priceRange,
+  className,
+}: {
+  priceRange: string;
+  className?: string;
+}) {
+  const match = priceRange.trim().match(/^(.*?)([\d,]+)(.*)$/);
+  if (!match?.[2]) {
+    return <span className={className}>{priceRange}</span>;
+  }
+  const prefix = match[1] ?? "";
+  const digits = match[2];
+  const suffix = match[3] ?? "";
+  return (
+    <AnimateNumber
+      value={Number(digits.replace(/,/g, ""))}
+      from={0}
+      prefix={prefix}
+      suffix={suffix}
+      className={className}
+    />
+  );
+}
 
 type PlannerState = {
   projectType: "mvp" | "full" | "";
@@ -488,7 +515,7 @@ export function ProjectPlanner() {
                     Estimated price
                   </dt>
                   <dd className="ds-display mt-2 text-xl break-words text-foreground sm:text-2xl md:text-3xl">
-                    {estimate.priceRange}
+                    <AnimatedPriceRange priceRange={estimate.priceRange} />
                   </dd>
                 </div>
                 <div className="py-5 sm:pl-6">

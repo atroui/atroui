@@ -8,6 +8,33 @@ import { useMemo, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { buildOgHref, type ProjectBrief } from "@/lib/project-brief";
+import { AnimateNumber } from "../ui/animate-number";
+
+/** Tween the leading amount; keep range / plus suffix static. */
+function AnimatedPriceRange({
+  priceRange,
+  className,
+}: {
+  priceRange: string;
+  className?: string;
+}) {
+  const match = priceRange.trim().match(/^(.*?)([\d,]+)(.*)$/);
+  if (!match?.[2]) {
+    return <span className={className}>{priceRange}</span>;
+  }
+  const prefix = match[1] ?? "";
+  const digits = match[2];
+  const suffix = match[3] ?? "";
+  return (
+    <AnimateNumber
+      value={Number(digits.replace(/,/g, ""))}
+      from={0}
+      prefix={prefix}
+      suffix={suffix}
+      className={className}
+    />
+  );
+}
 
 type PlannerState = {
   projectType: "mvp" | "full" | "";
@@ -499,7 +526,7 @@ export function ProjectPlanner() {
                     Estimated price
                   </dt>
                   <dd className="ds-display mt-2 text-xl break-words text-foreground sm:text-2xl md:text-3xl">
-                    {estimate.priceRange}
+                    <AnimatedPriceRange priceRange={estimate.priceRange} />
                   </dd>
                 </div>
                 <div className="py-5 sm:pl-6">
@@ -516,7 +543,7 @@ export function ProjectPlanner() {
               </p>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-                <button type="button" onClick={goToContact} className="ms-cta">
+                <button type="button" onClick={goToContact} className="atro-btn">
                   Continue to contact
                   <ArrowRight className="size-4" aria-hidden />
                 </button>
@@ -534,13 +561,13 @@ export function ProjectPlanner() {
                     ogTitle: estimate.service,
                     ogSubtitle: estimate.summary,
                   } satisfies ProjectBrief)}
-                  className="ms-cta-ghost"
+                  className="atro-btn-ghost"
                 >
                   Preview social card
                 </Link>
                 <Link
                   href={`/services/${estimate.serviceId}`}
-                  className="ms-cta-ghost"
+                  className="atro-btn-ghost"
                 >
                   View service details
                 </Link>
@@ -563,7 +590,7 @@ export function ProjectPlanner() {
                 type="button"
                 onClick={() => setStep((s) => s + 1)}
                 disabled={!canNext()}
-                className="ms-cta min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50"
+                className="atro-btn min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span

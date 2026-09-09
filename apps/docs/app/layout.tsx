@@ -1,14 +1,25 @@
 import type { Metadata, Viewport } from "next"
-import { Caveat, Geist_Mono, Outfit } from "next/font/google"
+import { Caveat, DM_Sans, Geist_Mono, Instrument_Serif, Merriweather, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { THEME_BOOT_SCRIPT } from "atroui"
 import { ThemeProvider } from "@/components/theme-provider"
 import "atroui/globals.css"
 import "./globals.css"
 
-const outfit = Outfit({
+/** shadcn Mira preset: Merriweather headings · DM Sans base · Geist Mono code */
+const merriweather = Merriweather({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-merriweather",
+  display: "swap",
+})
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-dm-sans",
   display: "swap",
 })
 
@@ -24,6 +35,20 @@ const caveat = Caveat({
   display: "swap",
 })
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+})
+
 /** Canonical host matches production (apex → www). */
 const siteUrl = "https://www.atroui.com"
 
@@ -32,8 +57,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-    { media: "(prefers-color-scheme: light)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1c1f" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
   ],
 }
 
@@ -128,8 +153,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
+        />
+      </head>
       <body
-        className={`${outfit.variable} ${geistMono.variable} ${caveat.variable} font-sans antialiased`}
+        className={`${merriweather.variable} ${dmSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable} antialiased`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"

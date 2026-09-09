@@ -1,10 +1,42 @@
+"use client"
+
 import { ArrowRight, Check } from "lucide-react"
 import Link from "next/link"
 
+import { AnimateNumber } from "../ui/animate-number"
+
 /**
  * Edit CONTENT / PACKAGES to match your studio pricing.
- * Matches the AtroUI docs Pricing Overview band (no motion deps).
+ * Matches the AtroUI docs Pricing Overview band.
+ * Package prices tween via AnimateNumber (careful delight on reveal).
  */
+
+/** Split a price label so digits can tween (`$4,800`, `from $2,400`, `$8,000+`). */
+function AnimatedPrice({
+  price,
+  className,
+}: {
+  price: string
+  className?: string
+}) {
+  const match = price.trim().match(/^(.*?)([\d,]+)(.*)$/)
+  if (!match?.[2]) {
+    return <span className={className}>{price}</span>
+  }
+  const prefix = match[1] ?? ""
+  const digits = match[2]
+  const suffix = match[3] ?? ""
+  return (
+    <AnimateNumber
+      value={Number(digits.replace(/,/g, ""))}
+      from={0}
+      prefix={prefix}
+      suffix={suffix}
+      className={className}
+    />
+  )
+}
+
 const CONTENT = {
   stamp: "Pricing",
   headlineBefore: "Fixed packages.",
@@ -85,6 +117,104 @@ const PACKAGES = [
   },
 ]
 
+/** Lead moment for landing demos — header + featured package only. */
+export function PricingLead() {
+  const featured = PACKAGES.find((p) => p.highlight) ?? PACKAGES[0]!
+
+  return (
+    <div className="w-full bg-background text-foreground">
+      <div className="border-y border-border-subtle">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 border-x border-border-subtle px-6 py-8 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:py-10">
+          <div className="max-w-2xl">
+            <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+              {CONTENT.stamp}
+            </p>
+            <h2 className="mt-3 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+              {CONTENT.headlineBefore}{" "}
+              <span className="italic text-brand">
+                {CONTENT.headlineAccent}
+              </span>
+            </h2>
+            <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
+              {CONTENT.lede}
+            </p>
+          </div>
+          <Link
+            href={CONTENT.allHref}
+            className="atro-btn-ghost shrink-0"
+          >
+            {CONTENT.allLabel}
+            <ArrowRight className="size-3.5" aria-hidden />
+          </Link>
+        </div>
+      </div>
+
+      <div className="border-b border-border-subtle">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle">
+          <div className="grid grid-cols-1 sm:grid-cols-12">
+            <div className="flex flex-col justify-between gap-6 border-b border-border-subtle p-6 sm:col-span-7 sm:border-r sm:border-b-0 sm:p-8">
+              <div>
+                {featured.badge ? (
+                  <span className="mb-2 inline-block text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+                    {featured.badge}
+                  </span>
+                ) : null}
+                <h3 className="text-xl font-medium text-foreground sm:text-2xl">
+                  {featured.name}
+                </h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  {featured.tagline} · {featured.timeline}
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {featured.features.slice(0, 3).map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-start gap-2 text-sm text-foreground/90"
+                    >
+                      <Check
+                        className="mt-0.5 size-3.5 shrink-0 text-brand"
+                        strokeWidth={2.5}
+                        aria-hidden
+                      />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Link
+                href={featured.ctaHref}
+                className="atro-btn w-full justify-center sm:w-auto"
+              >
+                {featured.ctaLabel}
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+
+            <div className="flex flex-col justify-between gap-4 bg-muted/30 p-6 sm:col-span-5 sm:p-8">
+              <div>
+                <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+                  {CONTENT.investmentLabel}
+                </p>
+                <p className="mt-2 text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+                  {featured.price}
+                </p>
+                {featured.priceSuffix ? (
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    {featured.priceSuffix} · {featured.timeline}
+                  </p>
+                ) : null}
+              </div>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {CONTENT.investmentNote}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function PricingOverview() {
   const featured = PACKAGES.find((p) => p.highlight) ?? PACKAGES[0]!
   const rest = PACKAGES.filter((p) => p.id !== featured.id)
@@ -99,7 +229,7 @@ export function PricingOverview() {
             </p>
             <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#0b7bff)]">
+              <span className="italic text-brand">
                 {CONTENT.headlineAccent}
               </span>
             </h2>
@@ -109,7 +239,7 @@ export function PricingOverview() {
           </div>
           <Link
             href={CONTENT.allHref}
-            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-lg border border-border-subtle px-4 text-sm font-medium"
+            className="atro-btn-ghost shrink-0"
           >
             {CONTENT.allLabel}
             <ArrowRight className="size-3.5" aria-hidden />
@@ -140,7 +270,7 @@ export function PricingOverview() {
                       className="flex items-start gap-2 text-sm text-foreground/90"
                     >
                       <Check
-                        className="mt-0.5 size-3.5 shrink-0 text-[var(--color-brand,#0b7bff)]"
+                        className="mt-0.5 size-3.5 shrink-0 text-brand"
                         strokeWidth={2.5}
                         aria-hidden
                       />
@@ -151,7 +281,7 @@ export function PricingOverview() {
               </div>
               <Link
                 href={featured.ctaHref}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background sm:w-auto"
+                className="atro-btn w-full justify-center sm:w-auto"
               >
                 {featured.ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />
@@ -164,7 +294,7 @@ export function PricingOverview() {
                   {CONTENT.investmentLabel}
                 </p>
                 <p className="mt-3 text-4xl font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl">
-                  {featured.price}
+                  <AnimatedPrice price={featured.price} />
                 </p>
                 {featured.priceSuffix ? (
                   <p className="mt-2 text-sm text-muted-foreground">
@@ -202,7 +332,7 @@ export function PricingOverview() {
                   </p>
                   <div className="flex flex-wrap items-center gap-4 md:col-span-4 md:justify-end">
                     <span className="text-lg font-semibold tabular-nums text-foreground">
-                      {s.price}
+                      <AnimatedPrice price={s.price} />
                       {s.priceSuffix ? (
                         <span className="ml-1.5 text-sm font-normal text-muted-foreground">
                           {s.priceSuffix}

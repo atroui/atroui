@@ -1,67 +1,61 @@
-# AtroUI
+# AtroUI Docs
 
 > Dark-first React / Next.js catalog on the official shadcn registry. MIT. You own the copied files.
-> Install: npx shadcn@latest add @atroui/home-hero  (any @atroui/… item)
-> Public namespace @atroui — listed in https://ui.shadcn.com/r/registries.json — no GitHub token, not a private GitHub registry.
-> Tailwind CSS v4 (not v3 @apply / opacity syntax).
-> Optional Host APIs (npm i atroui + transpilePackages): contact, waitlist, newsletter, OG, thumbnail, scope. BYOK: SMTP/Resend, Hugging Face/Gemini/xAI. AtroUI never holds keys and does not run paid AI on atroui.com. Missing keys → 503 on the consumer app.
-> Host APIs: https://www.atroui.com/docs/host-api
-> Compare (not Magic UI / Aceternity): https://www.atroui.com/docs/compare
-> Site: https://www.atroui.com
-> Registry JSON: https://www.atroui.com/r/{name}.json
+> Install: `npx shadcn@latest add @atroui/home-hero` (any `@atroui/…` item)
+> Public namespace `@atroui` — https://ui.shadcn.com/r/registries.json — no GitHub token.
+> Tailwind CSS v4. Optional Host APIs (`npm i atroui` + BYOK). Site: https://www.atroui.com
+> Full catalog dump: https://www.atroui.com/llms-full.txt
+> Registry JSON: https://www.atroui.com/r/registry.json
 > Repo: https://github.com/atroui/atroui
-> npm (package atroui): https://www.npmjs.com/package/atroui
 
-## Install
+## Getting Started
 
-```bash
-npx shadcn@latest init
-npx shadcn@latest add @atroui/home-hero
-```
+- [Getting Started](https://www.atroui.com/docs): First-hour Quick Start — init, add a block, essential commands.
+- [Installation](https://www.atroui.com/docs/installation): Prerequisites, init, add, what lands in the repo, troubleshooting.
+- [Coming from…](https://www.atroui.com/docs/migrate): Task paths from plain shadcn/ui, npm atroui, or copy-paste kits.
+- [Collections](https://www.atroui.com/docs/collections): Job hubs — forms, OG, launch — instead of browsing every block.
 
-`@atroui` is in the official shadcn registry directory. No manual `registry add` URL step.
+## Setup
 
-## Key pages
+- [Registry](https://www.atroui.com/docs/registry): How `@atroui/…` copies source into your repo and how names map.
+- [Theming](https://www.atroui.com/docs/theming): Dark-first tokens, Merriweather headings + DM Sans UI, opt-in Caveat sketch.
+- [Host APIs](https://www.atroui.com/docs/host-api): Forms and AI routes on your keys — BYOK, 503 when missing.
 
-- Home: https://www.atroui.com
-- Docs: https://www.atroui.com/docs
-- Installation: https://www.atroui.com/docs/installation
-- Registry: https://www.atroui.com/docs/registry
-- Theming: https://www.atroui.com/docs/theming
-- Brand kit: https://www.atroui.com/docs/brand
-- Compare: https://www.atroui.com/docs/compare
-- Collections: https://www.atroui.com/docs/collections
-- Glossary: https://www.atroui.com/docs/glossary
-- Full catalog (plain text): https://www.atroui.com/llms-full.txt
-- Blog: https://www.atroui.com/blog
-- Changelog: https://www.atroui.com/docs/changelog
-- Components: https://www.atroui.com/docs/components
+## Kits
+
+- [Brand kit](https://www.atroui.com/docs/brand): Logo mark, wordmark, and brand voice assets.
+- [Identity kit](https://www.atroui.com/docs/identity): Site name, SEO, and identity config.
+- [Launch workflow](https://www.atroui.com/docs/guides/launch-workflow): Scope a build through OG social cards.
+
+## Reference
+
+- [Glossary](https://www.atroui.com/docs/glossary): Host API, BYOK, registry, and related terms.
+- [Compare](https://www.atroui.com/docs/compare): How AtroUI differs from primitives-only / copy-paste kits.
+- [Changelog](https://www.atroui.com/docs/changelog): Release notes.
+
+## Catalog
+
+- [Components](https://www.atroui.com/docs/components): Live gallery of Primitives, Blocks, Tools, Headless.
 - Catalog JSON: https://www.atroui.com/r/registry.json
 
-## Registry highlights
-
-### Primitives
+### Primitives (highlights)
 - @atroui/button, @atroui/card, @atroui/textarea, @atroui/form-select
 - @atroui/breadcrumbs, @atroui/prose, @atroui/theme-toggle, @atroui/theme-provider, @atroui/logo
-- @atroui/mockup-frame, @atroui/timeline-animation, @atroui/founder-avatar
 - @atroui/fade-in, @atroui/stagger, @atroui/scroll-progress
 
-### Blocks
+### Blocks (highlights)
 - @atroui/home-hero, @atroui/site-header, @atroui/site-footer, @atroui/faq
 - @atroui/pricing-overview, @atroui/contact-form, @atroui/waitlist-form
-- @atroui/social-share, @atroui/before-after-slider, @atroui/visual-case-study
-- @atroui/ar-portfolio, @atroui/live-dashboard, @atroui/project-planner
-- @atroui/json-ld, @atroui/testimonial-schema, @atroui/analytics-provider
-- @atroui/og-live-preview, @atroui/og-workspace, @atroui/thumbnail-workspace, @atroui/scope-chat
+- @atroui/og-workspace, @atroui/thumbnail-workspace, @atroui/scope-chat, @atroui/project-planner
 
-Full catalog: https://www.atroui.com/r/registry.json
+## Tools (live rooms)
 
-## Blog
+- [OG workspace](https://www.atroui.com/og): Generate social cards in the browser.
+- [Project planner](https://www.atroui.com/planner): Scope a build, hand off to OG.
 
-- https://www.atroui.com/blog
+## More
 
-## Related
-
-- GitHub: https://github.com/atroui/atroui
-- npm (tokens / package): https://www.npmjs.com/package/atroui
-- shadcn directory: https://ui.shadcn.com/docs/directory?q=atroui
+- [Blog](https://www.atroui.com/blog): Guides and longer essays.
+- [Updates](https://www.atroui.com/updates): Major AtroUI news by email.
+- Home: https://www.atroui.com
+- npm (package `atroui`): https://www.npmjs.com/package/atroui

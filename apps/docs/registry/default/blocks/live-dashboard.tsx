@@ -4,6 +4,7 @@ import { Activity, Circle } from "lucide-react"
 import { useEffect, useState } from "react"
 
 import { FadeIn } from "@/components/ui/fade-in"
+import { AnimateNumber } from "../ui/animate-number"
 import { cn } from "@/lib/utils"
 
 type Status = "active" | "shipping" | "paused"
@@ -66,11 +67,13 @@ export function LiveDashboard() {
       <div className="ms-shell-pad flex items-center justify-between border-b border-border-subtle py-4">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
           </span>
           <span className="text-xs font-medium text-muted-foreground">
-            Studio live · {publicProjects.length} active project
+            Studio live ·{" "}
+            <AnimateNumber value={publicProjects.length} from={0} /> active
+            project
             {publicProjects.length === 1 ? "" : "s"}
           </span>
         </div>
@@ -112,7 +115,11 @@ export function LiveDashboard() {
                 <div className="md:col-span-4">
                   <div className="flex items-center justify-between text-[10px] text-muted-foreground">
                     <span>{project.milestone}</span>
-                    <span>{project.progress}%</span>
+                    <AnimateNumber
+                      value={project.progress}
+                      from={0}
+                      suffix="%"
+                    />
                   </div>
                   <div className="mt-1.5 h-1 overflow-hidden border border-border-subtle bg-muted">
                     <div

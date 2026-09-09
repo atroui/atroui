@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "title": "Slider",
+  "description": "Range slider with thumb press micro-motion; track fill stays 1:1 while dragging.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/slider.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Slider as SliderPrimitive } from \"@base-ui/react/slider\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Slider({\n  className,\n  children,\n  defaultValue = 50,\n  ...props\n}: SliderPrimitive.Root.Props) {\n  return (\n    <SliderPrimitive.Root\n      data-slot=\"slider\"\n      defaultValue={defaultValue}\n      className={cn(\n        \"flex w-full touch-none flex-col gap-2 select-none data-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </SliderPrimitive.Root>\n  )\n}\n\nfunction SliderLabel({ className, ...props }: SliderPrimitive.Label.Props) {\n  return (\n    <SliderPrimitive.Label\n      data-slot=\"slider-label\"\n      className={cn(\"text-sm font-medium text-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction SliderValue({ className, ...props }: SliderPrimitive.Value.Props) {\n  return (\n    <SliderPrimitive.Value\n      data-slot=\"slider-value\"\n      className={cn(\"text-xs tabular-nums text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction SliderControl({ className, ...props }: SliderPrimitive.Control.Props) {\n  return (\n    <SliderPrimitive.Control\n      data-slot=\"slider-control\"\n      className={cn(\n        // `relative` — thumb is absolute + % of this box. Without it, abspos\n        // escapes to ResizablePreview / other ancestor relatives (drag lag).\n        \"relative flex w-full touch-none items-center py-1 select-none\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction SliderTrack({ className, ...props }: SliderPrimitive.Track.Props) {\n  return (\n    <SliderPrimitive.Track\n      data-slot=\"slider-track\"\n      className={cn(\n        \"relative h-1.5 w-full grow overflow-hidden rounded-[var(--radius)] bg-muted\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Track fill follows the thumb 1:1 — no width ease while dragging\n * (Base UI CSS vars; do not wrap in fillTween).\n */\nfunction SliderIndicator({\n  className,\n  ...props\n}: SliderPrimitive.Indicator.Props) {\n  return (\n    <SliderPrimitive.Indicator\n      data-slot=\"slider-indicator\"\n      className={cn(\"absolute h-full rounded-[var(--radius)] bg-primary\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Soft-rect thumb — CSS press scale only.\n * Base UI owns position via CSS `translate`; never wrap in Motion (scale\n * transform fights drag travel and feels laggy).\n */\nfunction SliderThumb({ className, ...props }: SliderPrimitive.Thumb.Props) {\n  return (\n    <SliderPrimitive.Thumb\n      data-slot=\"slider-thumb\"\n      className={cn(\n        \"block size-4 shrink-0 rounded-[calc(var(--radius)-2px)] border border-border-subtle bg-background shadow-sm outline-none\",\n        \"ring-1 ring-black/5 dark:ring-white/10\",\n        // Scale only — never transition-transform (TW v4 includes `translate`).\n        \"transition-[scale] duration-100 ease-[cubic-bezier(0.16,1,0.3,1)]\",\n        \"active:scale-[0.96] data-dragging:scale-[0.96] data-dragging:transition-none\",\n        \"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20\",\n        \"data-dragging:border-primary\",\n        \"motion-reduce:transition-none motion-reduce:active:scale-100 motion-reduce:data-dragging:scale-100\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Slider,\n  SliderControl,\n  SliderIndicator,\n  SliderLabel,\n  SliderThumb,\n  SliderTrack,\n  SliderValue,\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/slider.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

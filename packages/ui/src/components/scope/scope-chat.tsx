@@ -177,7 +177,7 @@ export function ScopeChat() {
           <button
             type="submit"
             disabled={loading || !input.trim()}
-            className="ms-cta size-10 shrink-0 !rounded-none !px-0 disabled:opacity-50"
+            className="ms-cta size-10 shrink-0 rounded-[var(--atro-control-radius)] !px-0 disabled:opacity-50"
             aria-label="Send"
           >
             <Send className="size-4" />

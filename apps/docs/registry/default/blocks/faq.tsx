@@ -60,7 +60,7 @@ export function Faq() {
           </p>
           <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
             {CONTENT.headlineBefore}{" "}
-            <span className="italic text-[var(--color-brand,#0b7bff)]">
+            <span className="italic text-brand">
               {CONTENT.headlineAccent}
             </span>
             {CONTENT.headlineAfter}
@@ -87,7 +87,7 @@ export function Faq() {
                     <ChevronDown
                       className={`mt-1 size-4 shrink-0 text-muted-foreground transition-transform ${
                         open
-                          ? "rotate-180 text-[var(--color-brand,#0b7bff)]"
+                          ? "rotate-180 text-brand"
                           : ""
                       }`}
                       aria-hidden
@@ -110,7 +110,7 @@ export function Faq() {
           <div className="border-t border-border-subtle px-6 py-5 sm:px-8">
             <Link
               href={CONTENT.ctaHref}
-              className="inline-flex h-10 items-center gap-1.5 text-sm font-medium"
+              className="atro-btn-ghost"
             >
               {CONTENT.ctaLabel}
               <ArrowRight className="size-3.5" aria-hidden />

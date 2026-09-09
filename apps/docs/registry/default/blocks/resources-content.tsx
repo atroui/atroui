@@ -54,7 +54,7 @@ export function ResourcesContent() {
           <li key={item.id}>
             <Link
               href={item.href}
-              className="block rounded-2xl border border-border-subtle bg-card/40 p-5 transition-colors hover:bg-white/[0.04]"
+              className="block rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/40 p-5 transition-colors hover:bg-foreground/[0.04]"
             >
               <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
                 {item.kind}

@@ -83,7 +83,7 @@ export function HomeWork() {
             </p>
             <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#0b7bff)]">
+              <span className="italic text-brand">
                 {CONTENT.headlineAccent}
               </span>
               {CONTENT.headlineAfter}
@@ -91,7 +91,7 @@ export function HomeWork() {
           </div>
           <Link
             href={CONTENT.allHref}
-            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-lg border border-border-subtle px-4 text-sm font-medium"
+            className="atro-btn-ghost shrink-0"
           >
             {CONTENT.allLabel}
             <ArrowRight className="size-3.5" aria-hidden />
@@ -123,7 +123,7 @@ export function HomeWork() {
                   {featured.challenge}
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors group-hover:text-[var(--color-brand,#0b7bff)]">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors group-hover:text-brand">
                 {featured.hrefLabel}
                 <ArrowUpRight className="size-3.5" />
               </span>
@@ -156,7 +156,7 @@ export function HomeWork() {
                   <p className="text-xs text-muted-foreground">
                     {study.industry} · {study.type}
                   </p>
-                  <h3 className="mt-3 text-lg font-medium text-foreground group-hover:text-[var(--color-brand,#0b7bff)]">
+                  <h3 className="mt-3 text-lg font-medium text-foreground group-hover:text-brand">
                     {study.title}
                   </h3>
                   <p className="mt-3 line-clamp-3 text-sm text-muted-foreground">

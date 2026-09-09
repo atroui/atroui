@@ -1,8 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Suspense } from "react"
+// Live tool: npm Host API OgWorkspace (full generate/download UI).
+// Registry `@atroui/og-workspace` is a CSS-only preview shell — see DemoOgWorkspace.
 import { OgWorkspace } from "atroui"
 import { InstallCommandChip } from "@/components/install-command-chip"
+import { ToolExitBand } from "@/components/tool-exit-band"
+import { ToolRoom } from "@/components/tool-room"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 const OG_INSTALL = "npx shadcn@latest add @atroui/og-workspace"
@@ -16,31 +20,28 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function OgPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-        <div className="max-w-2xl space-y-2">
-          <p className="ms-stamp">Tool</p>
-          <h1 className="ds-display text-2xl text-foreground sm:text-3xl">
-            OG workspace
-          </h1>
-          <p className="text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
-            Prefill from the{" "}
-            <Link href="/docs/guides/launch-workflow" className="bam-link">
-              launch workflow
-            </Link>
-            . Preview downloads work without AI keys. Want only this maker?{" "}
-            <Link
-              href="/docs/components/og-og-workspace"
-              className="bam-link"
-            >
-              Docs
-            </Link>
-            .
-          </p>
-        </div>
-        <div className="flex min-w-0 flex-col gap-1.5 sm:items-end">
+    <ToolRoom
+      title="OG workspace"
+      lede={
+        <>
+          Prefill from the{" "}
+          <Link href="/docs/guides/launch-workflow" className="bam-link">
+            launch workflow
+          </Link>
+          . This hosted tool is the npm Host API demo (full generate UI). The
+          registry install below is the CSS preview shell you own in your repo.
+          Want only that maker?{" "}
+          <Link href="/docs/components/og-og-workspace" className="bam-link">
+            Docs
+          </Link>
+          .
+        </>
+      }
+      meta={
+        <>
           <InstallCommandChip command={OG_INSTALL} />
           <p className="max-w-sm text-[11px] leading-relaxed text-muted-foreground sm:text-right">
+            Registry copy is CSS-only. This page runs the npm Host API workspace.
             AI Generate needs{" "}
             <code className="font-mono text-[10px] text-foreground">
               @atroui/api-generate
@@ -51,12 +52,24 @@ export default function OgPage() {
             </Link>
             .
           </p>
-        </div>
-      </header>
-      <div
-        id="og-workspace"
-        className="overflow-hidden rounded-xl border border-border-subtle"
-      >
+        </>
+      }
+      exit={
+        <ToolExitBand
+          primaryHref="/docs/host-api"
+          primaryLabel="Wire Host APIs for AI generate"
+          links={[
+            { href: "/planner", label: "Project planner" },
+            { href: "/docs/guides/launch-workflow", label: "Launch workflow" },
+            {
+              href: "/docs/components/og-og-workspace",
+              label: "Component docs",
+            },
+          ]}
+        />
+      }
+    >
+      <div id="og-workspace">
         <Suspense
           fallback={
             <p className="p-6 font-mono text-[12px] text-muted-foreground">
@@ -67,6 +80,6 @@ export default function OgPage() {
           <OgWorkspace />
         </Suspense>
       </div>
-    </main>
+    </ToolRoom>
   )
 }

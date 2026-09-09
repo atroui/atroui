@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-display-instrument",
+  "title": "Instrument display",
+  "description": "Instrument Serif for heading and display only.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"Instrument Serif\", ui-serif, Georgia, serif",
+      "font-display": "\"Instrument Serif\", ui-serif, Georgia, serif"
+    }
+  },
+  "docs": "Display role only. Live axis: data-type-display=\"instrument\".",
+  "type": "registry:theme"
+}

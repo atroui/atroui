@@ -376,19 +376,88 @@ export function SoftwareAppJsonLd() {
   );
 }
 
+/** Minimal post shape for Blog JSON-LD enrichment (backward compatible when omitted). */
+export type BlogJsonLdPost = {
+  title: string;
+  description?: string;
+  slug: string;
+  date: string;
+  /** Absolute URL or site-relative path for the post image. */
+  image?: string;
+};
+
 /** CollectionPage hint for the blog / journal index. */
 export function BlogJsonLd({
   path = "/journal",
   name,
   description,
+  posts,
+  /** URL segment for post permalinks. Defaults to `path`. */
+  postBasePath,
 }: {
   path?: string;
   name?: string;
   description?: string;
+  /** When set, emits `blogPost` BlogPosting entries + an ItemList `mainEntity`. */
+  posts?: BlogJsonLdPost[];
+  postBasePath?: string;
 } = {}) {
   const siteUrl = getSiteUrl();
   const brandName = getBrand().name;
   const pagePath = path.startsWith("/") ? path : `/${path}`;
+  const postSegmentRaw = postBasePath ?? path;
+  const postSegment = postSegmentRaw.startsWith("/")
+    ? postSegmentRaw
+    : `/${postSegmentRaw}`;
+  const pageUrl = `${siteUrl}${pagePath}`;
+
+  const blogPostings =
+    posts && posts.length > 0
+      ? posts.map((post) => {
+          const postUrl = `${siteUrl}${postSegment}/${post.slug}`;
+          const imageUrl = post.image
+            ? post.image.startsWith("http")
+              ? post.image
+              : `${siteUrl}${post.image.startsWith("/") ? post.image : `/${post.image}`}`
+            : undefined;
+          return {
+            "@type": "BlogPosting" as const,
+            headline: post.title,
+            ...(post.description ? { description: post.description } : {}),
+            datePublished: post.date,
+            url: postUrl,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": postUrl,
+            },
+            ...(imageUrl ? { image: imageUrl } : {}),
+            author: {
+              "@type": "Organization",
+              name: brandName,
+              url: siteUrl,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: brandName,
+              url: siteUrl,
+            },
+          };
+        })
+      : undefined;
+
+  const itemList =
+    posts && posts.length > 0
+      ? {
+          "@type": "ItemList" as const,
+          itemListElement: posts.map((post, index) => ({
+            "@type": "ListItem" as const,
+            position: index + 1,
+            name: post.title,
+            url: `${siteUrl}${postSegment}/${post.slug}`,
+          })),
+        }
+      : undefined;
+
   const data = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -396,12 +465,14 @@ export function BlogJsonLd({
     description:
       description ??
       "Guides on the shadcn registry, dark-first tokens, and Next.js components.",
-    url: `${siteUrl}${pagePath}`,
+    url: pageUrl,
     publisher: {
       "@type": "Organization",
       name: brandName,
       url: siteUrl,
     },
+    ...(blogPostings ? { blogPost: blogPostings } : {}),
+    ...(itemList ? { mainEntity: itemList } : {}),
   };
   return (
     <script

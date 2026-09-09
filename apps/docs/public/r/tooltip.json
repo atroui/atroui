@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "title": "Tooltip",
+  "description": "Fast tooltip with micro appear motion and reduced-motion respect.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/tooltip.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Tooltip as TooltipPrimitive } from \"@base-ui/react/tooltip\"\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\"\n\nimport { tooltipMotion } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\n/** Quiet Mira elevation — lighter than menus; still one soft lift. */\nconst tooltipElevation =\n  \"shadow-[0_6px_16px_-12px_color-mix(in_oklch,var(--foreground)_14%,transparent)]\"\n\ntype TooltipOpenContextValue = {\n  open: boolean\n}\n\nconst TooltipOpenContext = React.createContext<TooltipOpenContextValue | null>(\n  null\n)\n\nfunction useTooltipOpen() {\n  const ctx = React.useContext(TooltipOpenContext)\n  if (!ctx) {\n    throw new Error(\"Tooltip parts must be used within <Tooltip>\")\n  }\n  return ctx.open\n}\n\nfunction TooltipProvider({\n  delay = 400,\n  ...props\n}: TooltipPrimitive.Provider.Props) {\n  return (\n    <TooltipPrimitive.Provider\n      data-slot=\"tooltip-provider\"\n      delay={delay}\n      {...props}\n    />\n  )\n}\n\nfunction Tooltip({\n  open: openProp,\n  defaultOpen = false,\n  onOpenChange,\n  ...props\n}: TooltipPrimitive.Root.Props) {\n  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen)\n  const isControlled = openProp !== undefined\n  const open = isControlled ? openProp : uncontrolledOpen\n\n  const handleOpenChange = React.useCallback<\n    NonNullable<TooltipPrimitive.Root.Props[\"onOpenChange\"]>\n  >(\n    (next, eventDetails) => {\n      if (!isControlled) setUncontrolledOpen(next)\n      onOpenChange?.(next, eventDetails)\n    },\n    [isControlled, onOpenChange]\n  )\n\n  return (\n    <TooltipOpenContext.Provider value={{ open }}>\n      <TooltipPrimitive.Root\n        data-slot=\"tooltip\"\n        open={open}\n        onOpenChange={handleOpenChange}\n        {...props}\n      />\n    </TooltipOpenContext.Provider>\n  )\n}\n\nfunction TooltipTrigger({ ...props }: TooltipPrimitive.Trigger.Props) {\n  return <TooltipPrimitive.Trigger data-slot=\"tooltip-trigger\" {...props} />\n}\n\nfunction TooltipContent({\n  className,\n  side = \"top\",\n  sideOffset = 6,\n  align = \"center\",\n  alignOffset = 0,\n  children,\n  render,\n  ...props\n}: TooltipPrimitive.Popup.Props &\n  Pick<\n    TooltipPrimitive.Positioner.Props,\n    \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\"\n  >) {\n  const open = useTooltipOpen()\n  const reduce = useReducedMotion()\n\n  return (\n    <AnimatePresence>\n      {open ? (\n        <TooltipPrimitive.Portal keepMounted key=\"tooltip-portal\">\n          <TooltipPrimitive.Positioner\n            align={align}\n            alignOffset={alignOffset}\n            side={side}\n            sideOffset={sideOffset}\n            className=\"isolate z-50\"\n          >\n            <TooltipPrimitive.Popup\n              data-slot=\"tooltip-content\"\n              className={cn(\n                \"z-50 w-fit max-w-xs origin-(--transform-origin) rounded-[calc(var(--radius)-2px)] border border-border-subtle bg-popover px-2 py-0.5 font-mono text-[11px] leading-snug tracking-tight text-popover-foreground\",\n                tooltipElevation,\n                className\n              )}\n              render={render ?? <motion.div {...tooltipMotion(reduce)} />}\n              {...props}\n            >\n              {children}\n            </TooltipPrimitive.Popup>\n          </TooltipPrimitive.Positioner>\n        </TooltipPrimitive.Portal>\n      ) : null}\n    </AnimatePresence>\n  )\n}\n\nexport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger }\n",
+      "type": "registry:ui",
+      "target": "components/ui/tooltip.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

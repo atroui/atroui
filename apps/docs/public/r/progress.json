@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "Task progress bar with soft-rect fill width tween on Base UI Progress.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/progress.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Progress as ProgressPrimitive } from \"@base-ui/react/progress\"\nimport { motion, useReducedMotion } from \"motion/react\"\n\nimport { fillTween } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\nfunction withoutDomAnimationHandlers<T extends Record<string, unknown>>(\n  props: T\n) {\n  const {\n    onAnimationStart: _onAnimationStart,\n    onDrag: _onDrag,\n    onDragStart: _onDragStart,\n    onDragEnd: _onDragEnd,\n    ...rest\n  } = props\n  return rest\n}\n\nfunction Progress({\n  className,\n  children,\n  value,\n  min = 0,\n  max = 100,\n  ...props\n}: ProgressPrimitive.Root.Props) {\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      value={value}\n      min={min}\n      max={max}\n      className={cn(\"flex w-full flex-col gap-1.5\", className)}\n      {...props}\n    >\n      {children}\n    </ProgressPrimitive.Root>\n  )\n}\n\nfunction ProgressLabel({ className, ...props }: ProgressPrimitive.Label.Props) {\n  return (\n    <ProgressPrimitive.Label\n      data-slot=\"progress-label\"\n      className={cn(\"text-sm font-medium text-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction ProgressValue({ className, ...props }: ProgressPrimitive.Value.Props) {\n  return (\n    <ProgressPrimitive.Value\n      data-slot=\"progress-value\"\n      className={cn(\"text-xs tabular-nums text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {\n  return (\n    <ProgressPrimitive.Track\n      data-slot=\"progress-track\"\n      className={cn(\n        \"relative h-1.5 w-full overflow-hidden rounded-[var(--radius)] bg-muted\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Soft-rect fill — width tweens with `fillTween` (easeOutSoft).\n * Indeterminate: quiet pulse via CSS, no spring.\n */\nfunction ProgressIndicator({\n  className,\n  render,\n  ...props\n}: ProgressPrimitive.Indicator.Props) {\n  const reduce = useReducedMotion()\n\n  return (\n    <ProgressPrimitive.Indicator\n      data-slot=\"progress-indicator\"\n      className={cn(\n        \"h-full rounded-[var(--radius)] bg-primary\",\n        \"data-[status=indeterminate]:w-1/3 data-[status=indeterminate]:animate-pulse\",\n        \"motion-reduce:data-[status=indeterminate]:animate-none\",\n        className\n      )}\n      render={\n        render ??\n        ((htmlProps) => {\n          const width = (htmlProps.style as React.CSSProperties | undefined)\n            ?.width\n          if (reduce || typeof width !== \"string\") {\n            return <div {...htmlProps} />\n          }\n          return (\n            <motion.div\n              {...withoutDomAnimationHandlers(\n                htmlProps as Record<string, unknown>\n              )}\n              initial={false}\n              animate={{ width }}\n              transition={fillTween}\n            />\n          )\n        })\n      }\n      {...props}\n    />\n  )\n}\n\nexport {\n  Progress,\n  ProgressIndicator,\n  ProgressLabel,\n  ProgressTrack,\n  ProgressValue,\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/progress.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

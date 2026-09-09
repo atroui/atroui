@@ -1,9 +1,11 @@
 "use client"
 
 import { Monitor, Moon, Sun } from "lucide-react"
+import { motion, useReducedMotion } from "motion/react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
+import { layoutTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 const OPTIONS = [
@@ -14,9 +16,14 @@ const OPTIONS = [
 
 type ThemeId = (typeof OPTIONS)[number]["id"]
 
+/** Active segment indicator — inset radius accounts for the 1px control border. */
+const PILL_CLASS =
+  "absolute inset-0 rounded-[calc(var(--atro-control-radius)-1px)] bg-primary"
+
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
     setMounted(true)
@@ -41,7 +48,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         title={`Theme: ${currentOption.label}`}
         onClick={cycle}
         className={cn(
-          "inline-flex size-9 items-center justify-center rounded-lg border border-border-subtle bg-white/5 text-foreground sm:hidden active:scale-[0.97]",
+          "inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle bg-muted text-foreground sm:hidden active:scale-[0.97]",
           className
         )}
       >
@@ -52,7 +59,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         role="radiogroup"
         aria-label="Theme"
         className={cn(
-          "hidden items-stretch overflow-hidden rounded-lg border border-border-subtle bg-white/5 sm:inline-flex",
+          "hidden items-stretch overflow-hidden rounded-[var(--atro-control-radius)] border border-border-subtle bg-muted sm:inline-flex",
           className
         )}
       >
@@ -72,12 +79,26 @@ export function ThemeToggle({ className }: { className?: string }) {
               title={title}
               onClick={() => setTheme(id)}
               className={cn(
-                "inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
-                isActive && "bg-primary text-primary-foreground",
-                !isActive && "hover:bg-white/10 hover:text-foreground"
+                "relative inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
+                isActive && "text-primary-foreground",
+                !isActive &&
+                  "hover:bg-foreground/[0.08] hover:text-foreground"
               )}
             >
-              <Icon className="size-3.5" strokeWidth={2} />
+              {isActive &&
+                (reduce ? (
+                  <span className={PILL_CLASS} aria-hidden />
+                ) : (
+                  <motion.span
+                    // Withheld until mounted so the hydration correction from
+                    // "system" to the stored theme snaps instead of sliding.
+                    layoutId={mounted ? "atro-theme-pill" : undefined}
+                    className={PILL_CLASS}
+                    transition={layoutTween}
+                    aria-hidden
+                  />
+                ))}
+              <Icon className="relative size-3.5" strokeWidth={2} />
             </button>
           )
         })}

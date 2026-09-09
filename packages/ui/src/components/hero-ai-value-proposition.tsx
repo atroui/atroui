@@ -258,7 +258,7 @@ export function HeroAiValueProposition() {
             once
             animationNum={6}
             timelineRef={timelineRef}
-            className="overflow-hidden rounded-2xl border border-border-subtle bg-surface shadow-[0_32px_80px_-40px_rgba(0,0,0,0.45)]"
+            className="overflow-hidden rounded-2xl border border-border-subtle bg-surface shadow-sm"
           >
             <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/40 px-3 py-2.5 sm:px-4">
               <div className="flex gap-1.5" aria-hidden>
@@ -345,7 +345,7 @@ export function HeroAiValueProposition() {
                         />
                       ) : "active" in row && row.active ? (
                         <span
-                          className="ml-auto size-1.5 animate-pulse rounded-full bg-brand"
+                          className="ml-auto size-1.5 animate-pulse rounded-full bg-brand motion-reduce:animate-none"
                           aria-hidden
                         />
                       ) : null}
