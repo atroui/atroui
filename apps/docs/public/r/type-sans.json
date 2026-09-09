@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-sans",
+  "title": "Sans type",
+  "description": "DM Sans for heading, display, sans, body, and label. Literal stacks — load the face or accept FOUT.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+      "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+      "font-sans": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+      "font-body": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+      "font-label": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif"
+    }
+  },
+  "docs": "Type remap only — does not load fonts. Prefer next/font DM Sans, or system FOUT. Install: npx shadcn@latest add @atroui/button @atroui/type-sans",
+  "type": "registry:theme"
+}

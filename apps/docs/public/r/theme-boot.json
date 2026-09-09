@@ -2,15 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme-boot",
   "title": "Theme Boot",
-  "description": "Combined early-paint script for data-color-theme and data-radius.",
+  "description": "Combined early-paint script for data-color-theme, data-surface, data-radius, and data-type.",
   "registryDependencies": [
     "@atroui/color-themes",
-    "@atroui/radius-themes"
+    "@atroui/surface-themes",
+    "@atroui/radius-themes",
+    "@atroui/type-themes"
   ],
   "files": [
     {
       "path": "registry/default/lib/theme-boot.ts",
-      "content": "/**\n * Combined early-paint boot for accent + radius themes.\n * Prefer this over separate color/radius scripts in the root layout.\n */\n\nimport {\n  COLOR_THEME_ATTR,\n  COLOR_THEME_STORAGE_KEY,\n} from \"./color-themes\"\nimport {\n  RADIUS_THEME_ATTR,\n  RADIUS_THEME_STORAGE_KEY,\n} from \"./radius-themes\"\n\n/** Inline before paint — one IIFE for both `data-color-theme` and `data-radius`. */\nexport const THEME_BOOT_SCRIPT = `(function(){try{var ck=${JSON.stringify(COLOR_THEME_STORAGE_KEY)},ca=${JSON.stringify(COLOR_THEME_ATTR)},ct=localStorage.getItem(ck);if(ct&&ct!==\"mira\")document.documentElement.setAttribute(ca,ct);var rk=${JSON.stringify(RADIUS_THEME_STORAGE_KEY)},ra=${JSON.stringify(RADIUS_THEME_ATTR)},rt=localStorage.getItem(rk);if(rt&&rt!==\"mira\")document.documentElement.setAttribute(ra,rt);}catch(e){}})();`\n",
+      "content": "/**\n * Combined early-paint boot for accent + surface + radius + type themes.\n * Prefer this over separate axis scripts in the root layout.\n */\n\nimport {\n  COLOR_THEME_ATTR,\n  COLOR_THEME_STORAGE_KEY,\n} from \"./color-themes\"\nimport {\n  RADIUS_THEME_ATTR,\n  RADIUS_THEME_STORAGE_KEY,\n} from \"./radius-themes\"\nimport {\n  SURFACE_THEME_ATTR,\n  SURFACE_THEME_STORAGE_KEY,\n} from \"./surface-themes\"\nimport {\n  TYPE_THEME_ATTR,\n  TYPE_THEME_STORAGE_KEY,\n} from \"./type-themes\"\n\n/** Inline before paint — one IIFE for color, surface, radius, and type attrs. */\nexport const THEME_BOOT_SCRIPT = `(function(){try{var ck=${JSON.stringify(COLOR_THEME_STORAGE_KEY)},ca=${JSON.stringify(COLOR_THEME_ATTR)},ct=localStorage.getItem(ck);if(ct&&ct!==\"mira\")document.documentElement.setAttribute(ca,ct);var sk=${JSON.stringify(SURFACE_THEME_STORAGE_KEY)},sa=${JSON.stringify(SURFACE_THEME_ATTR)},st=localStorage.getItem(sk);if(st&&st!==\"mira\")document.documentElement.setAttribute(sa,st);var rk=${JSON.stringify(RADIUS_THEME_STORAGE_KEY)},ra=${JSON.stringify(RADIUS_THEME_ATTR)},rt=localStorage.getItem(rk);if(rt&&rt!==\"mira\")document.documentElement.setAttribute(ra,rt);var tk=${JSON.stringify(TYPE_THEME_STORAGE_KEY)},ta=${JSON.stringify(TYPE_THEME_ATTR)},tt=localStorage.getItem(tk);if(tt&&tt!==\"mira\")document.documentElement.setAttribute(ta,tt);}catch(e){}})();`\n",
       "type": "registry:lib",
       "target": "lib/theme-boot.ts"
     }

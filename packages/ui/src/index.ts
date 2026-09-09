@@ -201,6 +201,32 @@ export {
   type RadiusThemeId,
 } from "./lib/radius-themes"
 export {
+  SURFACE_THEMES,
+  SURFACE_THEME_ATTR,
+  SURFACE_THEME_BOOT_SCRIPT,
+  SURFACE_THEME_STORAGE_KEY,
+  SURFACE_THEME_TOKENS,
+  applySurfaceTheme,
+  isSurfaceThemeId,
+  readStoredSurfaceTheme,
+  type SurfaceRoomId,
+  type SurfaceThemeId,
+  type SurfaceTokens,
+} from "./lib/surface-themes"
+export {
+  TYPE_THEMES,
+  TYPE_THEME_ATTR,
+  TYPE_THEME_BOOT_SCRIPT,
+  TYPE_THEME_LITERAL_REMAPS,
+  TYPE_THEME_LITERAL_STACKS,
+  TYPE_THEME_STORAGE_KEY,
+  applyTypeTheme,
+  isTypeThemeId,
+  readStoredTypeTheme,
+  type TypeFontRemaps,
+  type TypeThemeId,
+} from "./lib/type-themes"
+export {
   THEME_EXPORT_INSTALL,
   buildShadcnAddCommand,
   buildThemeExportCss,

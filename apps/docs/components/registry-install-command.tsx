@@ -1,39 +1,58 @@
 "use client"
 
 /**
- * Install line that ships the browsing accent/radius with the component.
- * Tide selected → `npx shadcn@latest add @atroui/button @atroui/theme-tide`
+ * Install line that ships browsing theme axes with the component.
+ * Tide + Paper + Sans → `… add @atroui/button @atroui/theme-tide @atroui/surface-paper @atroui/type-sans`
  */
 
 import {
   COLOR_THEMES,
   RADIUS_THEMES,
+  SURFACE_THEMES,
+  TYPE_THEMES,
   buildShadcnAddCommand,
   themeRegistryCompanions,
   type ColorThemeId,
   type RadiusThemeId,
+  type SurfaceThemeId,
+  type TypeThemeId,
 } from "atroui"
 import { InstallCommandChip } from "@/components/install-command-chip"
 import { useLiveThemeInstallAxes } from "@/hooks/use-live-theme-install-axes"
 import { cn } from "@/lib/utils"
 
-function companionNote(accent: ColorThemeId, radius: RadiusThemeId): string | null {
-  const companions = themeRegistryCompanions({ accent, radius })
+function companionNote(
+  accent: ColorThemeId,
+  radius: RadiusThemeId,
+  surface: SurfaceThemeId,
+  type: TypeThemeId,
+): string | null {
+  const companions = themeRegistryCompanions({ accent, radius, surface, type })
   if (companions.length === 0) return null
 
-  const accentLabel =
-    COLOR_THEMES.find((t) => t.id === accent)?.label ?? accent
-  const radiusLabel =
-    RADIUS_THEMES.find((t) => t.id === radius)?.label ?? radius
-
-  const hasAccent = accent !== "mira"
-  const hasRadius = radius !== "mira"
-
-  if (hasAccent && hasRadius) {
-    return `Includes ${accentLabel} accent · ${radiusLabel} radius.`
+  const bits: string[] = []
+  if (accent !== "mira") {
+    bits.push(
+      `${COLOR_THEMES.find((t) => t.id === accent)?.label ?? accent} accent`,
+    )
   }
-  if (hasAccent) return `Includes ${accentLabel} accent tokens.`
-  return `Includes ${radiusLabel} radius.`
+  if (surface !== "mira") {
+    bits.push(
+      `${SURFACE_THEMES.find((t) => t.id === surface)?.label ?? surface} surface`,
+    )
+  }
+  if (type !== "mira") {
+    bits.push(`${TYPE_THEMES.find((t) => t.id === type)?.label ?? type} type`)
+  }
+  if (radius !== "mira") {
+    bits.push(
+      `${RADIUS_THEMES.find((t) => t.id === radius)?.label ?? radius} radius`,
+    )
+  }
+
+  if (bits.length === 0) return null
+  if (bits.length === 1) return `Includes ${bits[0]} tokens.`
+  return `Includes ${bits.join(" · ")}.`
 }
 
 export function RegistryInstallCommand({
@@ -45,10 +64,17 @@ export function RegistryInstallCommand({
   className?: string
   showNote?: boolean
 }) {
-  const { accent, radius, mounted } = useLiveThemeInstallAxes()
-  const command = buildShadcnAddCommand(items, { accent, radius })
+  const { accent, radius, surface, type, mounted } = useLiveThemeInstallAxes()
+  const command = buildShadcnAddCommand(items, {
+    accent,
+    radius,
+    surface,
+    type,
+  })
   const note =
-    showNote && mounted ? companionNote(accent, radius) : null
+    showNote && mounted
+      ? companionNote(accent, radius, surface, type)
+      : null
 
   return (
     <div className={cn("space-y-1.5", className)}>

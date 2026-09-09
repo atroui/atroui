@@ -24,7 +24,7 @@
       "name": "motion",
       "type": "registry:lib",
       "title": "Motion",
-      "description": "Shared motion tokens \u2014 hover language, presence helpers, timeline reveal (Family Values easings, no springs/blur).",
+      "description": "Shared motion tokens — hover language, presence helpers, timeline reveal (Family Values easings, no springs/blur).",
       "files": [
         {
           "path": "registry/default/lib/motion.ts",
@@ -50,7 +50,7 @@
       "name": "project-brief",
       "type": "registry:lib",
       "title": "Project Brief",
-      "description": "Shared ProjectBrief type + OG/thumbnail href helpers for Scope \u2192 Planner \u2192 social card glue.",
+      "description": "Shared ProjectBrief type + OG/thumbnail href helpers for Scope → Planner → social card glue.",
       "files": [
         {
           "path": "registry/default/lib/project-brief.ts",
@@ -63,7 +63,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Soft-rect AtroUI button \u2014 hover lift \u22641px, press into surface, focus parity.",
+      "description": "Soft-rect AtroUI button — hover lift ≤1px, press into surface, focus parity.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority",
@@ -119,14 +119,17 @@
       "name": "color-theme-picker",
       "type": "registry:ui",
       "title": "Color Theme Picker",
-      "description": "Live accent theme list — click a swatch to recolor the site (orthogonal to light/dark).",
+      "description": "Unified Themes popover — Accent, Surface, Type, and Radius axes (orthogonal to light/dark).",
       "dependencies": [
         "lucide-react"
       ],
       "registryDependencies": [
         "@atroui/utils",
         "@atroui/popover",
-        "@atroui/color-themes"
+        "@atroui/color-themes",
+        "@atroui/surface-themes",
+        "@atroui/type-themes",
+        "@atroui/radius-themes"
       ],
       "files": [
         {
@@ -146,6 +149,32 @@
           "path": "registry/default/lib/radius-themes.ts",
           "type": "registry:lib",
           "target": "lib/radius-themes.ts"
+        }
+      ]
+    },
+    {
+      "name": "surface-themes",
+      "type": "registry:lib",
+      "title": "Surface Themes",
+      "description": "Surface (room) theme ids, storage, token maps, and apply helpers for data-surface (Mira / Mist / Paper / Stone / Ink).",
+      "files": [
+        {
+          "path": "registry/default/lib/surface-themes.ts",
+          "type": "registry:lib",
+          "target": "lib/surface-themes.ts"
+        }
+      ]
+    },
+    {
+      "name": "type-themes",
+      "type": "registry:lib",
+      "title": "Type Themes",
+      "description": "Type (font) theme ids, storage, remaps, and apply helpers for data-type (Mira / Sans / Serif / Mono).",
+      "files": [
+        {
+          "path": "registry/default/lib/type-themes.ts",
+          "type": "registry:lib",
+          "target": "lib/type-themes.ts"
         }
       ]
     },
@@ -340,12 +369,282 @@
       "docs": "Sharp corner scale. Install with a component: npx shadcn@latest add @atroui/button @atroui/radius-sharp"
     },
     {
+      "name": "surface-mist",
+      "type": "registry:theme",
+      "title": "Mist surface",
+      "description": "Cooler grey room — stepped canvas / card / muted. Surfaces only; accents stay Mira.",
+      "cssVars": {
+        "light": {
+          "background": "oklch(0.96 0.005 255)",
+          "foreground": "oklch(0.145 0.004 255)",
+          "card": "oklch(0.985 0.003 255)",
+          "card-foreground": "oklch(0.145 0.004 255)",
+          "popover": "oklch(0.985 0.003 255)",
+          "popover-foreground": "oklch(0.145 0.004 255)",
+          "secondary": "oklch(0.93 0.006 255)",
+          "secondary-foreground": "oklch(0.22 0.005 255)",
+          "muted": "oklch(0.93 0.006 255)",
+          "muted-foreground": "oklch(0.48 0.015 255)",
+          "accent": "oklch(0.93 0.006 255)",
+          "accent-foreground": "oklch(0.22 0.005 255)",
+          "border": "oklch(0.35 0.015 255 / 0.14)",
+          "input": "oklch(0.35 0.015 255 / 0.16)",
+          "sidebar": "oklch(0.948 0.004 255)",
+          "sidebar-foreground": "oklch(0.145 0.004 255)",
+          "sidebar-accent": "oklch(0.93 0.006 255)",
+          "sidebar-accent-foreground": "oklch(0.22 0.005 255)",
+          "sidebar-border": "oklch(0.35 0.015 255 / 0.14)",
+          "elev-ambient": "oklch(0.25 0.015 255 / 0.14)",
+          "elev-key": "oklch(0.2 0.015 255 / 0.08)"
+        },
+        "dark": {
+          "background": "oklch(0.175 0.008 255)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.225 0.009 255)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.225 0.009 255)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "secondary": "oklch(0.28 0.008 255)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.28 0.008 255)",
+          "muted-foreground": "oklch(0.7 0.012 255)",
+          "accent": "oklch(0.28 0.008 255)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "sidebar": "oklch(0.225 0.009 255)",
+          "sidebar-foreground": "oklch(0.985 0 0)",
+          "sidebar-accent": "oklch(0.28 0.008 255)",
+          "sidebar-accent-foreground": "oklch(0.985 0 0)",
+          "sidebar-border": "oklch(1 0 0 / 10%)",
+          "elev-ambient": "color-mix(in oklch, var(--foreground) 32%, transparent)",
+          "elev-key": "color-mix(in oklch, var(--foreground) 18%, transparent)"
+        }
+      },
+      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"mist\". Install: npx shadcn@latest add @atroui/button @atroui/surface-mist"
+    },
+    {
+      "name": "surface-paper",
+      "type": "registry:theme",
+      "title": "Paper surface",
+      "description": "Brighter canvas — still stepped, never flat white. Surfaces only; accents stay Mira.",
+      "cssVars": {
+        "light": {
+          "background": "oklch(0.98 0.005 286)",
+          "foreground": "oklch(0.141 0.005 285.823)",
+          "card": "oklch(0.995 0.002 286)",
+          "card-foreground": "oklch(0.141 0.005 285.823)",
+          "popover": "oklch(0.995 0.002 286)",
+          "popover-foreground": "oklch(0.141 0.005 285.823)",
+          "secondary": "oklch(0.945 0.006 286)",
+          "secondary-foreground": "oklch(0.21 0.006 285.885)",
+          "muted": "oklch(0.945 0.006 286)",
+          "muted-foreground": "oklch(0.48 0.016 285.9)",
+          "accent": "oklch(0.945 0.006 286)",
+          "accent-foreground": "oklch(0.21 0.006 285.885)",
+          "border": "oklch(0.35 0.018 286 / 0.12)",
+          "input": "oklch(0.35 0.018 286 / 0.14)",
+          "sidebar": "oklch(0.968 0.004 286)",
+          "sidebar-foreground": "oklch(0.141 0.005 285.823)",
+          "sidebar-accent": "oklch(0.945 0.006 286)",
+          "sidebar-accent-foreground": "oklch(0.21 0.006 285.885)",
+          "sidebar-border": "oklch(0.35 0.018 286 / 0.12)",
+          "elev-ambient": "oklch(0.28 0.018 286 / 0.12)",
+          "elev-key": "oklch(0.22 0.018 286 / 0.07)"
+        },
+        "dark": {
+          "background": "oklch(0.2 0.005 286)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.25 0.006 286)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.25 0.006 286)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "secondary": "oklch(0.305 0.006 286)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.305 0.006 286)",
+          "muted-foreground": "oklch(0.72 0.014 286)",
+          "accent": "oklch(0.305 0.006 286)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "sidebar": "oklch(0.25 0.006 286)",
+          "sidebar-foreground": "oklch(0.985 0 0)",
+          "sidebar-accent": "oklch(0.305 0.006 286)",
+          "sidebar-accent-foreground": "oklch(0.985 0 0)",
+          "sidebar-border": "oklch(1 0 0 / 10%)",
+          "elev-ambient": "color-mix(in oklch, var(--foreground) 30%, transparent)",
+          "elev-key": "color-mix(in oklch, var(--foreground) 16%, transparent)"
+        }
+      },
+      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"paper\". Install: npx shadcn@latest add @atroui/button @atroui/surface-paper"
+    },
+    {
+      "name": "surface-stone",
+      "type": "registry:theme",
+      "title": "Stone surface",
+      "description": "Quiet neutral stone (low chroma warm lean). Surfaces only; accents stay Mira.",
+      "cssVars": {
+        "light": {
+          "background": "oklch(0.965 0.006 82)",
+          "foreground": "oklch(0.16 0.008 75)",
+          "card": "oklch(0.99 0.003 82)",
+          "card-foreground": "oklch(0.16 0.008 75)",
+          "popover": "oklch(0.99 0.003 82)",
+          "popover-foreground": "oklch(0.16 0.008 75)",
+          "secondary": "oklch(0.932 0.007 82)",
+          "secondary-foreground": "oklch(0.23 0.008 75)",
+          "muted": "oklch(0.932 0.007 82)",
+          "muted-foreground": "oklch(0.48 0.012 75)",
+          "accent": "oklch(0.932 0.007 82)",
+          "accent-foreground": "oklch(0.23 0.008 75)",
+          "border": "oklch(0.35 0.01 80 / 0.14)",
+          "input": "oklch(0.35 0.01 80 / 0.16)",
+          "sidebar": "oklch(0.952 0.005 82)",
+          "sidebar-foreground": "oklch(0.16 0.008 75)",
+          "sidebar-accent": "oklch(0.932 0.007 82)",
+          "sidebar-accent-foreground": "oklch(0.23 0.008 75)",
+          "sidebar-border": "oklch(0.35 0.01 80 / 0.14)",
+          "elev-ambient": "oklch(0.28 0.01 80 / 0.13)",
+          "elev-key": "oklch(0.22 0.01 80 / 0.07)"
+        },
+        "dark": {
+          "background": "oklch(0.18 0.004 80)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.23 0.004 80)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.23 0.004 80)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "secondary": "oklch(0.285 0.004 80)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.285 0.004 80)",
+          "muted-foreground": "oklch(0.7 0.01 80)",
+          "accent": "oklch(0.285 0.004 80)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "sidebar": "oklch(0.23 0.004 80)",
+          "sidebar-foreground": "oklch(0.985 0 0)",
+          "sidebar-accent": "oklch(0.285 0.004 80)",
+          "sidebar-accent-foreground": "oklch(0.985 0 0)",
+          "sidebar-border": "oklch(1 0 0 / 10%)",
+          "elev-ambient": "color-mix(in oklch, var(--foreground) 32%, transparent)",
+          "elev-key": "color-mix(in oklch, var(--foreground) 18%, transparent)"
+        }
+      },
+      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"stone\". Install: npx shadcn@latest add @atroui/button @atroui/surface-stone"
+    },
+    {
+      "name": "surface-ink",
+      "type": "registry:theme",
+      "title": "Ink surface",
+      "description": "Deeper room — crushed canvas with stepped card / muted. Surfaces only; accents stay Mira.",
+      "cssVars": {
+        "light": {
+          "background": "oklch(0.94 0.008 286)",
+          "foreground": "oklch(0.14 0.006 285.8)",
+          "card": "oklch(0.97 0.005 286)",
+          "card-foreground": "oklch(0.14 0.006 285.8)",
+          "popover": "oklch(0.97 0.005 286)",
+          "popover-foreground": "oklch(0.14 0.006 285.8)",
+          "secondary": "oklch(0.91 0.008 286)",
+          "secondary-foreground": "oklch(0.21 0.006 285.885)",
+          "muted": "oklch(0.91 0.008 286)",
+          "muted-foreground": "oklch(0.46 0.018 285.9)",
+          "accent": "oklch(0.91 0.008 286)",
+          "accent-foreground": "oklch(0.21 0.006 285.885)",
+          "border": "oklch(0.32 0.02 286 / 0.16)",
+          "input": "oklch(0.32 0.02 286 / 0.18)",
+          "sidebar": "oklch(0.925 0.007 286)",
+          "sidebar-foreground": "oklch(0.14 0.006 285.8)",
+          "sidebar-accent": "oklch(0.91 0.008 286)",
+          "sidebar-accent-foreground": "oklch(0.21 0.006 285.885)",
+          "sidebar-border": "oklch(0.32 0.02 286 / 0.16)",
+          "elev-ambient": "oklch(0.22 0.02 286 / 0.16)",
+          "elev-key": "oklch(0.18 0.02 286 / 0.1)"
+        },
+        "dark": {
+          "background": "oklch(0.155 0.006 286)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.205 0.007 286)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.205 0.007 286)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "secondary": "oklch(0.26 0.007 286)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.26 0.007 286)",
+          "muted-foreground": "oklch(0.68 0.014 286)",
+          "accent": "oklch(0.26 0.007 286)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "border": "oklch(1 0 0 / 9%)",
+          "input": "oklch(1 0 0 / 13%)",
+          "sidebar": "oklch(0.205 0.007 286)",
+          "sidebar-foreground": "oklch(0.985 0 0)",
+          "sidebar-accent": "oklch(0.26 0.007 286)",
+          "sidebar-accent-foreground": "oklch(0.985 0 0)",
+          "sidebar-border": "oklch(1 0 0 / 9%)",
+          "elev-ambient": "color-mix(in oklch, var(--foreground) 28%, transparent)",
+          "elev-key": "color-mix(in oklch, var(--foreground) 15%, transparent)"
+        }
+      },
+      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"ink\". Install: npx shadcn@latest add @atroui/button @atroui/surface-ink"
+    },
+    {
+      "name": "type-sans",
+      "type": "registry:theme",
+      "title": "Sans type",
+      "description": "DM Sans for heading, display, sans, body, and label. Literal stacks — load the face or accept FOUT.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+          "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+          "font-sans": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+          "font-body": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+          "font-label": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif"
+        }
+      },
+      "docs": "Type remap only — does not load fonts. Prefer next/font DM Sans, or system FOUT. Install: npx shadcn@latest add @atroui/button @atroui/type-sans"
+    },
+    {
+      "name": "type-serif",
+      "type": "registry:theme",
+      "title": "Serif type",
+      "description": "Merriweather editorial stack for heading, display, sans, body, and label. Literal stacks — load the face or accept FOUT.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"Merriweather\", ui-serif, Georgia, serif",
+          "font-display": "\"Merriweather\", ui-serif, Georgia, serif",
+          "font-sans": "\"Merriweather\", ui-serif, Georgia, serif",
+          "font-body": "\"Merriweather\", ui-serif, Georgia, serif",
+          "font-label": "\"Merriweather\", ui-serif, Georgia, serif"
+        }
+      },
+      "docs": "Type remap only — does not load fonts. Prefer next/font Merriweather, or system FOUT. Install: npx shadcn@latest add @atroui/button @atroui/type-serif"
+    },
+    {
+      "name": "type-mono",
+      "type": "registry:theme",
+      "title": "Mono type",
+      "description": "DM Sans headings with Geist Mono body/chrome. Literal stacks — load the faces or accept FOUT.",
+      "cssVars": {
+        "theme": {
+          "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+          "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+          "font-sans": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+          "font-body": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+          "font-label": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+        }
+      },
+      "docs": "Type remap only — does not load fonts. Prefer next/font DM Sans + Geist Mono. Install: npx shadcn@latest add @atroui/button @atroui/type-mono"
+    },
+    {
       "name": "theme-export",
       "type": "registry:lib",
       "title": "Theme Export",
-      "description": "Paste-ready CSS builder for accent + radius Theme Studio exports.",
+      "description": "Paste-ready CSS builder for accent + surface + type + radius Theme Studio exports.",
       "registryDependencies": [
         "@atroui/color-themes",
+        "@atroui/surface-themes",
+        "@atroui/type-themes",
         "@atroui/radius-themes"
       ],
       "files": [
@@ -360,10 +659,12 @@
       "name": "theme-boot",
       "type": "registry:lib",
       "title": "Theme Boot",
-      "description": "Combined early-paint script for data-color-theme and data-radius.",
+      "description": "Combined early-paint script for data-color-theme, data-surface, data-radius, and data-type.",
       "registryDependencies": [
         "@atroui/color-themes",
-        "@atroui/radius-themes"
+        "@atroui/surface-themes",
+        "@atroui/radius-themes",
+        "@atroui/type-themes"
       ],
       "files": [
         {
@@ -463,7 +764,7 @@
       "name": "checkbox-group",
       "type": "registry:ui",
       "title": "Checkbox Group",
-      "description": "Soft-rect checkbox group \u2014 compose with Checkbox (value / parent).",
+      "description": "Soft-rect checkbox group — compose with Checkbox (value / parent).",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -548,7 +849,7 @@
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
-      "description": "Filterable select on Base UI with Mira soft-rect, popup settle, and list stagger \u226440ms.",
+      "description": "Filterable select on Base UI with Mira soft-rect, popup settle, and list stagger ≤40ms.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react",
@@ -570,7 +871,7 @@
       "name": "autocomplete",
       "type": "registry:ui",
       "title": "Autocomplete",
-      "description": "Suggest-as-you-type with popup settle, layoutId highlight, and list stagger \u226440ms.",
+      "description": "Suggest-as-you-type with popup settle, layoutId highlight, and list stagger ≤40ms.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react",
@@ -615,7 +916,7 @@
       "name": "form-select",
       "type": "registry:ui",
       "title": "Form Select",
-      "description": "Soft-rect select on Base UI with caret rotate, popup settle, and list stagger \u226440ms.",
+      "description": "Soft-rect select on Base UI with caret rotate, popup settle, and list stagger ≤40ms.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react",
@@ -810,7 +1111,7 @@
       "name": "preview-card",
       "type": "registry:ui",
       "title": "Preview Card",
-      "description": "Hover/focus link preview \u2014 soft popover settle; opt-in tilt / magnetic / spotlight for media.",
+      "description": "Hover/focus link preview — soft popover settle; opt-in tilt / magnetic / spotlight for media.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -853,7 +1154,7 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "Soft-rect hairline divider \u2014 static, no decorative motion.",
+      "description": "Soft-rect hairline divider — static, no decorative motion.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -872,7 +1173,7 @@
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
-      "description": "Quiet Field spine \u2014 label, description, Motion error reveal, control.",
+      "description": "Quiet Field spine — label, description, Motion error reveal, control.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -954,7 +1255,7 @@
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
-      "description": "Base UI form validation orchestration \u2014 pair with Field.",
+      "description": "Base UI form validation orchestration — pair with Field.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -992,7 +1293,7 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "Soft-rect switch \u2014 layout thumb + flex justify flip (Motion.dev Base UI).",
+      "description": "Soft-rect switch — layout thumb + flex justify flip (Motion.dev Base UI).",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -1164,7 +1465,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
-      "description": "Toggle peers with layoutId highlight morph \u2014 Motion.dev Base UI pattern.",
+      "description": "Toggle peers with layoutId highlight morph — Motion.dev Base UI pattern.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -1243,7 +1544,7 @@
       "name": "fade-in",
       "type": "registry:ui",
       "title": "Fade In",
-      "description": "The scroll reveal \u2014 opacity + rise. One primitive; use fadeInSection for landing triggers.",
+      "description": "The scroll reveal — opacity + rise. One primitive; use fadeInSection for landing triggers.",
       "dependencies": [
         "motion"
       ],
@@ -1262,7 +1563,7 @@
       "name": "stagger",
       "type": "registry:ui",
       "title": "Stagger",
-      "description": "Stagger children on scroll with StaggerChild (clamped \u226450ms).",
+      "description": "Stagger children on scroll with StaggerChild (clamped ≤50ms).",
       "dependencies": [
         "motion"
       ],
@@ -1666,7 +1967,7 @@
       "name": "timeline-animation",
       "type": "registry:ui",
       "title": "Timeline Animation",
-      "description": "Sequential in-view reveal for heroes \u2014 opacity + y only (no blur).",
+      "description": "Sequential in-view reveal for heroes — opacity + y only (no blur).",
       "dependencies": [
         "motion"
       ],
@@ -1725,7 +2026,7 @@
       "name": "copy-button",
       "type": "registry:ui",
       "title": "Copy Button",
-      "description": "Copy \u2192 check Button recipe with TextMorph + icon swap. Rare-path delight \u2014 not default on every Button.",
+      "description": "Copy → check Button recipe with TextMorph + icon swap. Rare-path delight — not default on every Button.",
       "dependencies": [
         "lucide-react",
         "motion",
@@ -1769,7 +2070,7 @@
       "name": "line-reveal",
       "type": "registry:ui",
       "title": "Line Reveal",
-      "description": "Word/line stagger enter \u2014 opacity + y + clip. Marketing default.",
+      "description": "Word/line stagger enter — opacity + y + clip. Marketing default.",
       "dependencies": [
         "motion"
       ],
@@ -1789,7 +2090,7 @@
       "name": "word-reveal-scroll",
       "type": "registry:ui",
       "title": "Word Reveal Scroll",
-      "description": "Progress-driven word opacity via scroll \u2014 opacity only, no blur. Pull lines.",
+      "description": "Progress-driven word opacity via scroll — opacity only, no blur. Pull lines.",
       "dependencies": [
         "motion"
       ],
@@ -1809,7 +2110,7 @@
       "name": "magnetic",
       "type": "registry:ui",
       "title": "Magnetic",
-      "description": "Mild pointer pull for media cards \u2014 intensity \u22640.35, range \u226480px. Never chrome.",
+      "description": "Mild pointer pull for media cards — intensity ≤0.35, range ≤80px. Never chrome.",
       "dependencies": [
         "motion"
       ],
@@ -1829,7 +2130,7 @@
       "name": "tilt",
       "type": "registry:ui",
       "title": "Tilt",
-      "description": "Mild 3D media tilt toward the pointer \u2014 rotationFactor \u22646\u20138\u00b0. Opt-in only.",
+      "description": "Mild 3D media tilt toward the pointer — rotationFactor ≤6–8°. Opt-in only.",
       "dependencies": [
         "motion"
       ],
@@ -1869,7 +2170,7 @@
       "name": "animate-number",
       "type": "registry:ui",
       "title": "Animate Number",
-      "description": "Pricing/stats counter \u2014 digits tween as numbers with easeOutSoft. Reduced motion jumps to final.",
+      "description": "Pricing/stats counter — digits tween as numbers with easeOutSoft. Reduced motion jumps to final.",
       "dependencies": [
         "motion"
       ],
@@ -1889,7 +2190,7 @@
       "name": "transition-panel",
       "type": "registry:ui",
       "title": "Transition Panel",
-      "description": "Wait-mode content swaps for feature tabs and docs panels \u2014 opacity + small y.",
+      "description": "Wait-mode content swaps for feature tabs and docs panels — opacity + small y.",
       "dependencies": [
         "motion"
       ],

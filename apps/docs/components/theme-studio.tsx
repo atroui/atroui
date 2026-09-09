@@ -13,29 +13,45 @@ import {
   CopyButton,
   RADIUS_THEMES,
   RadiusThemePicker,
+  SURFACE_THEMES,
+  TYPE_THEMES,
   ThemeToggle,
   applyColorTheme,
   applyRadiusTheme,
+  applySurfaceTheme,
+  applyTypeTheme,
   buildThemeExportCss,
   readStoredColorTheme,
   readStoredRadiusTheme,
+  readStoredSurfaceTheme,
+  readStoredTypeTheme,
   type ColorThemeId,
   type RadiusThemeId,
+  type SurfaceThemeId,
+  type TypeThemeId,
 } from "atroui"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function ThemeStudio() {
   const [accent, setAccent] = useState<ColorThemeId>("mira")
+  const [surface, setSurface] = useState<SurfaceThemeId>("mira")
+  const [type, setType] = useState<TypeThemeId>("mira")
   const [radius, setRadius] = useState<RadiusThemeId>("mira")
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const nextAccent = readStoredColorTheme()
+    const nextSurface = readStoredSurfaceTheme()
+    const nextType = readStoredTypeTheme()
     const nextRadius = readStoredRadiusTheme()
     setAccent(nextAccent)
+    setSurface(nextSurface)
+    setType(nextType)
     setRadius(nextRadius)
     applyColorTheme(nextAccent)
+    applySurfaceTheme(nextSurface)
+    applyTypeTheme(nextType)
     applyRadiusTheme(nextRadius)
     setMounted(true)
 
@@ -49,17 +65,30 @@ export function ThemeStudio() {
 
   const accentMeta =
     COLOR_THEMES.find((t) => t.id === accent) ?? COLOR_THEMES[0]!
+  const surfaceMeta =
+    SURFACE_THEMES.find((t) => t.id === surface) ?? SURFACE_THEMES[0]!
+  const typeMeta = TYPE_THEMES.find((t) => t.id === type) ?? TYPE_THEMES[0]!
   const radiusMeta =
     RADIUS_THEMES.find((t) => t.id === radius) ?? RADIUS_THEMES[1]!
 
   const exportCss = useMemo(
-    () => buildThemeExportCss({ accent, radius }),
-    [accent, radius],
+    () => buildThemeExportCss({ accent, radius, surface, type }),
+    [accent, radius, surface, type],
   )
 
   const selectAccent = (id: ColorThemeId) => {
     setAccent(id)
     applyColorTheme(id)
+  }
+
+  const selectSurface = (id: SurfaceThemeId) => {
+    setSurface(id)
+    applySurfaceTheme(id)
+  }
+
+  const selectType = (id: TypeThemeId) => {
+    setType(id)
+    applyTypeTheme(id)
   }
 
   return (
@@ -118,6 +147,110 @@ export function ThemeStudio() {
         </section>
 
         <section className="space-y-2">
+          <p className="ds-mono-label">Surface</p>
+          <div
+            role="radiogroup"
+            aria-label="Surface theme"
+            className="flex flex-col gap-0.5"
+          >
+            {SURFACE_THEMES.map((option) => {
+              const active = mounted && surface === option.id
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={active}
+                  onClick={() => selectSurface(option.id)}
+                  className={cn(
+                    "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
+                    active
+                      ? "bg-background text-foreground ring-1 ring-border-subtle"
+                      : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                  )}
+                >
+                  <span
+                    className="size-4 shrink-0 rounded-[3px] ring-1 ring-border-subtle"
+                    style={{ background: option.swatch }}
+                    aria-hidden
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-medium text-foreground">
+                      {option.label}
+                    </span>
+                    <span className="block text-[11px] text-muted-foreground">
+                      {option.description}
+                    </span>
+                  </span>
+                  {active ? (
+                    <Check
+                      className="size-3.5 shrink-0 text-brand"
+                      strokeWidth={2.25}
+                      aria-hidden
+                    />
+                  ) : (
+                    <span className="size-3.5 shrink-0" aria-hidden />
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="space-y-2">
+          <p className="ds-mono-label">Type</p>
+          <div
+            role="radiogroup"
+            aria-label="Type theme"
+            className="flex flex-col gap-0.5"
+          >
+            {TYPE_THEMES.map((option) => {
+              const active = mounted && type === option.id
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={active}
+                  onClick={() => selectType(option.id)}
+                  className={cn(
+                    "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
+                    active
+                      ? "bg-background text-foreground ring-1 ring-border-subtle"
+                      : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                  )}
+                >
+                  <span
+                    className="inline-flex size-8 shrink-0 items-center justify-center rounded-[3px] bg-background text-sm font-medium text-foreground ring-1 ring-border-subtle"
+                    style={{ fontFamily: option.remaps["font-heading"] }}
+                    aria-hidden
+                  >
+                    {option.sample}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-medium text-foreground">
+                      {option.label}
+                    </span>
+                    <span className="block text-[11px] text-muted-foreground">
+                      {option.description}
+                    </span>
+                  </span>
+                  {active ? (
+                    <Check
+                      className="size-3.5 shrink-0 text-brand"
+                      strokeWidth={2.25}
+                      aria-hidden
+                    />
+                  ) : (
+                    <span className="size-3.5 shrink-0" aria-hidden />
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="space-y-2">
           <p className="ds-mono-label">Radius</p>
           <RadiusThemePicker className="w-full [&_button]:min-w-0 [&_button]:flex-1" />
         </section>
@@ -142,7 +275,8 @@ export function ThemeStudio() {
           <p className="font-mono text-[10px] leading-relaxed text-muted-foreground">
             {mounted ? (
               <>
-                {accentMeta.label} · {radiusMeta.label}
+                {accentMeta.label} · {surfaceMeta.label} · {typeMeta.label} ·{" "}
+                {radiusMeta.label}
               </>
             ) : (
               "…"
@@ -159,8 +293,8 @@ export function ThemeStudio() {
               Your product, in this skin
             </h2>
             <p className="text-[15px] leading-relaxed text-muted-foreground">
-              Accents and radius apply across the site. Copy the CSS when it
-              feels right.
+              Accent, surface, type, and radius apply across the site. Copy the
+              CSS when it feels right.
             </p>
           </div>
 

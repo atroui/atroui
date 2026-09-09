@@ -210,7 +210,7 @@ export function RegistryWorkspace({
   className?: string
 }) {
   const reduce = useReducedMotion()
-  const { accent, radius } = useLiveThemeInstallAxes()
+  const { accent, radius, surface, type } = useLiveThemeInstallAxes()
   const slotMap = React.useMemo(() => {
     const fromSlots: Partial<Record<RegistryWorkspaceBlockId, React.ReactNode>> =
       {
@@ -229,7 +229,12 @@ export function RegistryWorkspace({
   const block = blocks.find((b) => b.id === activeId) ?? blocks[0]!
   const glimpse = extractSourceExcerpt(block.source, GLIMPSE_LINES)
   const fullExcerpt = extractSourceExcerpt(block.source, EXPANDED_LINES)
-  const command = buildShadcnAddCommand([block.registry], { accent, radius })
+  const command = buildShadcnAddCommand([block.registry], {
+    accent,
+    radius,
+    surface,
+    type,
+  })
 
   React.useEffect(() => {
     setExpanded(false)
