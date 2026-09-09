@@ -8,6 +8,8 @@ import { catalogNavItems, navigation } from "@/lib/navigation"
 
 const SECTION_HREF: Record<string, string> = {
   Primitives: "/docs/components?category=Primitives",
+  Motion: "/docs/components?category=Motion",
+  Theme: "/docs/components?category=Theme",
   Blocks: "/docs/components?category=Blocks",
   Tools: "/og",
   Headless: "/docs/components?category=Headless",
@@ -15,7 +17,9 @@ const SECTION_HREF: Record<string, string> = {
 }
 
 const blurbs: Record<string, string> = {
-  Primitives: "Buttons, cards, inputs, theme controls",
+  Primitives: "Base UI controls — buttons, forms, overlays",
+  Motion: "Reveal, morph, numbers, media motion",
+  Theme: "Light / dark switch and providers",
   Blocks: "Marketing sections and page chrome",
   Tools: "OG workspace & project planner — live tools",
   Headless: "Analytics and structured-data helpers",

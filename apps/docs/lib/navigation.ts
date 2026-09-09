@@ -16,7 +16,7 @@ export type NavSection = {
 /**
  * Curated catalog — not a filesystem dump.
  * Guide spine (Getting Started → Setup → Kits → Reference) then
- * Primitives / Blocks / Tools / Headless.
+ * Primitives / Motion / Theme / Blocks / Tools / Headless.
  */
 /** Guide spine sections — pager walks these in order (not the catalog dump). */
 export const GUIDE_SECTION_TITLES = [
@@ -133,6 +133,12 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
+        title: "Drawer",
+        href: "/docs/components/ui-drawer",
+        description: "Edge panel slide",
+        badge: "registry",
+      },
+      {
         title: "Menu",
         href: "/docs/components/ui-menu",
         description: "Dropdown actions",
@@ -171,49 +177,19 @@ export const navigation: NavSection[] = [
       {
         title: "Preview Card",
         href: "/docs/components/ui-preview-card",
-        description: "Link preview + opt-in media motion",
+        description: "Link preview hover",
         badge: "registry",
       },
       {
-        title: "Scroll Area",
-        href: "/docs/components/ui-scroll-area",
-        description: "Idle thumb fade",
-        badge: "registry",
-      },
-      {
-        title: "Separator",
-        href: "/docs/components/ui-separator",
-        description: "Soft hairline",
+        title: "Toast",
+        href: "/docs/components/ui-toast",
+        description: "Edge notification stack",
         badge: "registry",
       },
       {
         title: "Field",
         href: "/docs/components/ui-field",
         description: "Label + error spine",
-        badge: "registry",
-      },
-      {
-        title: "Number Field",
-        href: "/docs/components/ui-number-field",
-        description: "Stepper + scrub",
-        badge: "registry",
-      },
-      {
-        title: "OTP Field",
-        href: "/docs/components/ui-otp-field",
-        description: "Digit slots",
-        badge: "registry",
-      },
-      {
-        title: "Form",
-        href: "/docs/components/ui-form",
-        description: "Validation spine",
-        badge: "registry",
-      },
-      {
-        title: "Fieldset",
-        href: "/docs/components/ui-fieldset",
-        description: "Legend group",
         badge: "registry",
       },
       {
@@ -226,6 +202,18 @@ export const navigation: NavSection[] = [
         title: "Textarea",
         href: "/docs/components/ui-textarea",
         description: "Multi-line control",
+        badge: "registry",
+      },
+      {
+        title: "Number Field",
+        href: "/docs/components/ui-number-field",
+        description: "Stepper + scrub",
+        badge: "registry",
+      },
+      {
+        title: "OTP Field",
+        href: "/docs/components/ui-otp-field",
+        description: "Digit slots",
         badge: "registry",
       },
       {
@@ -271,15 +259,9 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Accordion",
-        href: "/docs/components/ui-accordion",
-        description: "Height disclosure",
-        badge: "registry",
-      },
-      {
-        title: "Collapsible",
-        href: "/docs/components/ui-collapsible",
-        description: "Single height reveal",
+        title: "Form Select",
+        href: "/docs/components/ui-form-select",
+        description: "Styled select",
         badge: "registry",
       },
       {
@@ -295,21 +277,33 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Drawer",
-        href: "/docs/components/ui-drawer",
-        description: "Edge panel slide",
+        title: "Form",
+        href: "/docs/components/ui-form",
+        description: "Validation spine",
+        badge: "registry",
+      },
+      {
+        title: "Fieldset",
+        href: "/docs/components/ui-fieldset",
+        description: "Legend group",
+        badge: "registry",
+      },
+      {
+        title: "Accordion",
+        href: "/docs/components/ui-accordion",
+        description: "Height disclosure",
+        badge: "registry",
+      },
+      {
+        title: "Collapsible",
+        href: "/docs/components/ui-collapsible",
+        description: "Single height reveal",
         badge: "registry",
       },
       {
         title: "Tabs",
         href: "/docs/components/ui-tabs",
         description: "Indicator morph",
-        badge: "registry",
-      },
-            {
-        title: "Toast",
-        href: "/docs/components/ui-toast",
-        description: "Edge notification stack",
         badge: "registry",
       },
       {
@@ -336,22 +330,22 @@ export const navigation: NavSection[] = [
         description: "Image fade + fallback",
         badge: "registry",
       },
-{
+      {
         title: "Card",
         href: "/docs/components/ui-card",
         description: "Grouped surface",
         badge: "registry",
       },
       {
-        title: "Form Select",
-        href: "/docs/components/ui-form-select",
-        description: "Styled select",
+        title: "Separator",
+        href: "/docs/components/ui-separator",
+        description: "Soft hairline",
         badge: "registry",
       },
       {
-        title: "Motion Playground",
-        href: "/docs/components/ui-playground",
-        description: "P0 spine together",
+        title: "Scroll Area",
+        href: "/docs/components/ui-scroll-area",
+        description: "Idle thumb fade",
         badge: "registry",
       },
       {
@@ -366,40 +360,15 @@ export const navigation: NavSection[] = [
         description: "Long-form typography",
         badge: "registry",
       },
+    ],
+  },
+  {
+    title: "Motion",
+    items: [
       {
-        title: "Founder Avatar",
-        href: "/docs/components/ui-founder-avatar",
-        description: "Portrait mark",
-        badge: "registry",
-      },
-      {
-        title: "Theme Toggle",
-        href: "/docs/components/ui-theme-toggle",
-        description: "Light / dark switch",
-        badge: "registry",
-      },
-      {
-        title: "Adaptive Theme Switch",
-        href: "/docs/components/ui-theme-adapt",
-        description: "Keeps type readable across modes",
-        badge: "registry",
-      },
-      {
-        title: "Theme Provider",
-        href: "/docs/components/theme-provider",
-        description: "next-themes root",
-        badge: "registry",
-      },
-      {
-        title: "Logo",
-        href: "/docs/components/brand-logo",
-        description: "Mark and wordmark",
-        badge: "registry",
-      },
-      {
-        title: "Timeline",
-        href: "/docs/components/ui-timeline-animation",
-        description: "Scroll-linked motion",
+        title: "Playground",
+        href: "/docs/components/ui-playground",
+        description: "Motion kit together",
         badge: "registry",
       },
       {
@@ -433,15 +402,39 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
+        title: "Label Roll",
+        href: "/docs/components/motion-label-roll",
+        description: "Hover text roll",
+        badge: "registry",
+      },
+      {
         title: "Copy Button",
         href: "/docs/components/motion-copy-button",
         description: "Copy → check recipe",
         badge: "registry",
       },
       {
-        title: "Label Roll",
-        href: "/docs/components/motion-label-roll",
-        description: "Hover text roll",
+        title: "Animate Number",
+        href: "/docs/components/motion-animate-number",
+        description: "Pricing / stats counter",
+        badge: "registry",
+      },
+      {
+        title: "Transition Panel",
+        href: "/docs/components/motion-transition-panel",
+        description: "Wait-mode panel swap",
+        badge: "registry",
+      },
+      {
+        title: "Scroll Progress",
+        href: "/docs/components/motion-primitives-scroll-progress",
+        description: "Reading progress bar",
+        badge: "registry",
+      },
+      {
+        title: "Timeline",
+        href: "/docs/components/ui-timeline-animation",
+        description: "Scroll-linked motion",
         badge: "registry",
       },
       {
@@ -462,24 +455,29 @@ export const navigation: NavSection[] = [
         description: "Dark card cursor wash",
         badge: "registry",
       },
+    ],
+  },
+  {
+    title: "Theme",
+    items: [
       {
-        title: "Animate Number",
-        href: "/docs/components/motion-animate-number",
-        description: "Pricing / stats counter",
+        title: "Theme Toggle",
+        href: "/docs/components/ui-theme-toggle",
+        description: "Light / dark switch",
         badge: "registry",
       },
       {
-        title: "Transition Panel",
-        href: "/docs/components/motion-transition-panel",
-        description: "Wait-mode panel swap",
+        title: "Adaptive Theme Switch",
+        href: "/docs/components/ui-theme-adapt",
+        description: "Keeps type readable across modes",
         badge: "registry",
       },
       {
-        title: "Scroll Progress",
-        href: "/docs/components/motion-primitives-scroll-progress",
-        description: "Reading progress bar",
+        title: "Theme Provider",
+        href: "/docs/components/theme-provider",
+        description: "next-themes root",
         badge: "registry",
-      }
+      },
     ],
   },
   {
@@ -495,6 +493,18 @@ export const navigation: NavSection[] = [
         title: "Site Footer",
         href: "/docs/components/site-footer",
         description: "Simple site footer",
+        badge: "registry",
+      },
+      {
+        title: "Logo",
+        href: "/docs/components/brand-logo",
+        description: "Mark and wordmark",
+        badge: "registry",
+      },
+      {
+        title: "Founder Avatar",
+        href: "/docs/components/ui-founder-avatar",
+        description: "Portrait mark",
         badge: "registry",
       },
       {
@@ -729,7 +739,7 @@ export const badgeLabel: Record<NonNullable<NavItem["badge"]>, string> = {
   registry: "CLI",
 }
 
-export type DocKind = "Primitive" | "Block" | "Tool" | "Headless"
+export type DocKind = "Primitive" | "Motion" | "Theme" | "Block" | "Tool" | "Headless"
 
 const sectionKind: Record<string, DocKind | undefined> = {
   "Getting Started": undefined,
@@ -738,6 +748,8 @@ const sectionKind: Record<string, DocKind | undefined> = {
   Reference: undefined,
   More: undefined,
   Primitives: "Primitive",
+  Motion: "Motion",
+  Theme: "Theme",
   Blocks: "Block",
   Tools: "Tool",
   Headless: "Headless",
