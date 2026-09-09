@@ -11,14 +11,12 @@ import {
   SURFACE_THEMES,
   buildShadcnAddCommand,
   themeRegistryCompanions,
+  typeFaceMeta,
   type ColorThemeId,
   type RadiusThemeId,
   type SurfaceThemeId,
-} from "atroui"
-import {
-  typeFaceMeta,
   type TypeFaceId,
-} from "atroui/lib/type-themes"
+} from "atroui/lib/theme"
 import { InstallCommandChip } from "@/components/install-command-chip"
 import { useLiveThemeInstallAxes } from "@/hooks/use-live-theme-install-axes"
 import { cn } from "@/lib/utils"

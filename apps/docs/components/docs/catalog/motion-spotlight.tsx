@@ -9,7 +9,7 @@ export function MotionSpotlightDoc() {
       title="Spotlight"
       description="Low-opacity cursor wash for dark Mira media cards."
       preview={<DemoSpotlight />}
-      code={`import { Spotlight } from "atroui"
+      code={`import { Spotlight } from "@/components/ui/spotlight"
 import { IMAGEORY } from "@/lib/imageory"
 
 <Spotlight opacity={0.12}>

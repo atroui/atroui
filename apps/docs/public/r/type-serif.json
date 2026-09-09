@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "type-serif",
   "title": "Serif type",
-  "description": "Merriweather editorial stack for heading, display, sans, body, and label. Literal stacks — load the face or accept FOUT.",
+  "description": "Legacy pair preset: Merriweather across type roles. Prefer Display/Body companions. Literal stacks — load the face or accept FOUT.",
   "cssVars": {
     "theme": {
       "font-heading": "\"Merriweather\", ui-serif, Georgia, serif",

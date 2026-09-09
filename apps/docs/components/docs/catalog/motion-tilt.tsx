@@ -9,7 +9,7 @@ export function MotionTiltDoc() {
       title="Tilt"
       description="Mild 3D media tilt toward the pointer — rotationFactor ≤6–8°."
       preview={<DemoTilt />}
-      code={`import { Tilt } from "atroui"
+      code={`import { Tilt } from "@/components/ui/tilt"
 import { IMAGEORY } from "@/lib/imageory"
 
 <Tilt rotationFactor={6}>

@@ -16,7 +16,7 @@ export function UiPreviewCardDoc() {
   PreviewCardHeader,
   PreviewCardTitle,
   PreviewCardTrigger,
-} from "atroui"
+} from "@/components/ui/preview-card"
 import { IMAGEORY } from "@/lib/imageory"
 
 <PreviewCard>

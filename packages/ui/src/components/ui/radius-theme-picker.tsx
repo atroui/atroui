@@ -9,20 +9,16 @@ import {
   readStoredRadiusTheme,
   type RadiusThemeId,
 } from "../../lib/radius-themes"
+import { layoutTween } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 
 /** Active segment indicator — inset radius accounts for the 1px control border. */
 const PILL_CLASS =
   "absolute inset-0 rounded-[calc(var(--atro-control-radius)-1px)] bg-background shadow-sm"
 
-const PILL_TWEEN = {
-  duration: 0.24,
-  ease: [0.32, 0.72, 0, 1],
-} as const
-
 /**
  * Radius axis — Soft | Mira | Sharp. Soft-rect segmented chrome (Family Values).
- * Orthogonal to ColorThemePicker (accent) and ThemeToggle (light/dark).
+ * Themes popover owns Accent / Surface / Type / Radius; ThemeToggle stays light/dark.
  */
 export function RadiusThemePicker({ className }: { className?: string }) {
   const [theme, setTheme] = useState<RadiusThemeId>("mira")
@@ -77,7 +73,7 @@ export function RadiusThemePicker({ className }: { className?: string }) {
                 <motion.span
                   layoutId={mounted ? "atro-radius-pill" : undefined}
                   className={PILL_CLASS}
-                  transition={PILL_TWEEN}
+                  transition={layoutTween}
                   aria-hidden
                 />
               ))}

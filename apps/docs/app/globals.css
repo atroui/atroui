@@ -9,6 +9,11 @@ html {
   html {
     scroll-behavior: auto;
   }
+  /* Status ornaments — kill Tailwind pulse/ping under reduced motion */
+  .animate-pulse,
+  .animate-ping {
+    animation: none;
+  }
 }
 
 /* ==========================================================================

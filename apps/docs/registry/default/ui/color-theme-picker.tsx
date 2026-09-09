@@ -14,19 +14,19 @@ import {
   applyColorTheme,
   readStoredColorTheme,
   type ColorThemeId,
-} from "../../lib/color-themes"
+} from "@/lib/color-themes"
 import {
   RADIUS_THEMES,
   applyRadiusTheme,
   readStoredRadiusTheme,
   type RadiusThemeId,
-} from "../../lib/radius-themes"
+} from "@/lib/radius-themes"
 import {
   SURFACE_THEMES,
   applySurfaceTheme,
   readStoredSurfaceTheme,
   type SurfaceThemeId,
-} from "../../lib/surface-themes"
+} from "@/lib/surface-themes"
 import {
   TYPE_FACES,
   applyTypeBody,
@@ -35,9 +35,9 @@ import {
   readStoredTypeDisplay,
   typeFaceMeta,
   type TypeFaceId,
-} from "../../lib/type-themes"
-import { layoutTween, switchLayoutTween } from "../../lib/motion"
-import { cn } from "../../lib/utils"
+} from "@/lib/type-themes"
+import { layoutTween, switchLayoutTween } from "@/lib/motion"
+import { cn } from "@/lib/utils"
 import {
   Popover,
   PopoverContent,

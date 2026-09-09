@@ -4,7 +4,7 @@
  * Live accent + surface + type (display/body) + radius axes for install commands.
  * Syncs from storage + data-* attrs on <html>.
  *
- * Type-face helpers import from `atroui/lib/type-themes` — not the package barrel —
+ * Theme helpers import from `atroui/lib/theme` — not the package barrel —
  * so Next optimizePackageImports cannot leave new exports as undefined.
  */
 
@@ -16,25 +16,23 @@ import {
   RADIUS_THEME_STORAGE_KEY,
   SURFACE_THEME_ATTR,
   SURFACE_THEME_STORAGE_KEY,
-  readStoredColorTheme,
-  readStoredRadiusTheme,
-  readStoredSurfaceTheme,
-  type ColorThemeId,
-  type RadiusThemeId,
-  type SurfaceThemeId,
-} from "atroui"
-import {
   TYPE_BODY_ATTR,
   TYPE_BODY_STORAGE_KEY,
   TYPE_DISPLAY_ATTR,
   TYPE_DISPLAY_STORAGE_KEY,
   TYPE_THEME_STORAGE_KEY,
+  readStoredColorTheme,
+  readStoredRadiusTheme,
+  readStoredSurfaceTheme,
   readStoredTypeBody,
   readStoredTypeDisplay,
   readStoredTypeTheme,
+  type ColorThemeId,
+  type RadiusThemeId,
+  type SurfaceThemeId,
   type TypeFaceId,
   type TypeThemeId,
-} from "atroui/lib/type-themes"
+} from "atroui/lib/theme"
 
 export function useLiveThemeInstallAxes(): {
   accent: ColorThemeId

@@ -61,22 +61,58 @@ export function getBrand() {
           Schema.org structured data
         </h2>
         <p className="leading-relaxed">
-          Google and other search engines utilize Schema.org JSON-LD to display rich snippets, star-ratings, and nest directories in the SERP. AtroUI ships headless schema helpers on the{" "}
+          For domain resolution in your own JSON-LD (or other structured data),
+          install the registry helper —{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/seo
+          </code>{" "}
+          drops{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            lib/seo.ts
+          </code>{" "}
+          with{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            getSiteDomain()
+          </code>{" "}
+          (reads{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            getBrand().domain
+          </code>
+          ):
+        </p>
+        <CodeBlock
+          language="bash"
+          code="npx shadcn@latest add @atroui/seo"
+        />
+        <CodeBlock
+          language="typescript"
+          code={`import { getSiteDomain } from "@/lib/seo"
+
+const domain = getSiteDomain()`}
+        />
+        <p className="leading-relaxed">
+          Ready-made JSON-LD React components (
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            SiteGraphJsonLd
+          </code>
+          ,{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            ArticleJsonLd
+          </code>
+          , etc.) are Host / headless helpers on the npm{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             atroui
           </code>{" "}
-          package that read from your brand config:
+          package — not UI from the registry. Use them when you already depend on
+          Host APIs; they are optional for a registry-only identity setup:
         </p>
         <CodeBlock
           language="bash"
           code="npm i atroui"
         />
-        <p className="leading-relaxed">
-          Import them in your root App Router layout or individual page files:
-        </p>
         <CodeBlock
           language="tsx"
-          code={`// app/layout.tsx
+          code={`// app/layout.tsx — Host helper (optional)
 import { SiteGraphJsonLd } from "atroui"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -95,7 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </p>
         <CodeBlock
           language="tsx"
-          code={`// app/blog/[slug]/page.tsx
+          code={`// app/blog/[slug]/page.tsx — Host helper (optional)
 import { ArticleJsonLd } from "atroui"
 
 export default function BlogPost({ post }) {

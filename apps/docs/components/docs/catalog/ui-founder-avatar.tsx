@@ -12,7 +12,7 @@ export function UiFounderAvatarDoc() {
       preview={<DemoFounderAvatar />}
       code={'import { FounderAvatar } from "@/components/ui/founder-avatar"\n\n<FounderAvatar size="md" />'}
       fullBleed={false}
-      usage="Portrait ships inside the atroui package (no /public copy needed). Override with src or NEXT_PUBLIC_FOUNDER_AVATAR. Decorative only (aria-hidden); put the name in adjacent copy. Sizes: sm, md, lg."
+      usage="Set CONTENT.src to a path under /public (or an absolute URL) in the installed founder-avatar file. Empty src falls back to NEXT_PUBLIC_FOUNDER_AVATAR, then initials from CONTENT.initials or getBrand().name. Decorative only (aria-hidden); put the name in adjacent copy. Sizes: sm, md, lg."
       props={[
         {
           name: "size",
@@ -22,9 +22,9 @@ export function UiFounderAvatarDoc() {
         },
         {
           name: "src",
-          type: "string | StaticImageData",
+          type: "string",
           description:
-            "Optional override. Defaults to the bundled founder portrait.",
+            "Optional override. Else CONTENT.src, then NEXT_PUBLIC_FOUNDER_AVATAR, then initials.",
         },
         {
           name: "initials",

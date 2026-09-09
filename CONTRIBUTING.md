@@ -7,8 +7,10 @@ Please review this guide before your first pull request. Check [open issues](htt
 ## About this repository
 
 - **Package manager:** [pnpm](https://pnpm.io) + [Turborepo](https://turbo.build)
-- **Publishable package:** [`atroui`](https://www.npmjs.com/package/atroui) in `packages/ui`
+- **Consumer UI path:** registry-first — `npx shadcn add @atroui/…`. New primitives go in `apps/docs/registry/default` first. Do **not** teach `import { Button } from "atroui"`.
+- **Publishable package:** [`atroui`](https://www.npmjs.com/package/atroui) in `packages/ui` — Host APIs + docs-host transpile only (not the UI catalog install path)
 - **Docs / landing:** `apps/docs` → [atroui.com](https://www.atroui.com)
+- **Registry Mirror** (not “all UI”): only the pairs in `scripts/registry-sync.mjs` sync from `packages/ui` → `apps/docs/registry/default` via `pnpm registry:sync` (CI: `pnpm registry:sync:check`). Synced today: `utils`, `color`/`surface`/`radius`/`type` themes, `theme-boot`, `theme-export`, `theme` facade, `color-theme-picker`. Registry-owned (not mirrored): `theme-toggle`, `radius-theme-picker`, and the rest of the catalog.
 - **Styling:** Tailwind CSS v4, design tokens in `packages/ui/src/globals.css`
 - **Animation:** [motion](https://motion.dev) (`motion/react`)
 - **Versioning:** [Changesets](https://github.com/changesets/changesets)
@@ -46,20 +48,27 @@ pnpm lint
 
 Copy [`.env.example`](.env.example) to `apps/docs/.env.local` if you need Host API env vars locally.
 
+### Package imports (docs host / Host APIs only)
+
+Docs-host app code may import deep paths like `atroui/lib/theme` and Host API routes use `atroui/api/*`. Avoid relying on `optimizePackageImports` for `atroui`. **Do not** document or sample `import { Button } from "atroui"` for consumers — UI ships via the registry.
+
 ## Folder structure
 
 ```
 /
 ├── apps/
-│   └── docs/                      # Next.js docs + landing
+│   └── docs/                      # Next.js docs + landing + registry catalog
 │       ├── app/
 │       ├── components/
+│       ├── registry/              # Consumer-facing UI source (primitives live here)
+│       │   └── default/
 │       └── content/
 ├── packages/
-│   ├── ui/                        # `atroui` (published)
+│   ├── ui/                        # `atroui` npm — Host APIs + mirrored theme libs
 │   │   ├── src/
-│   │   │   ├── components/
-│   │   │   ├── lib/
+│   │   │   ├── api/               # Host API handlers
+│   │   │   ├── components/        # Mirrored picker(s) only (not the full catalog)
+│   │   │   ├── lib/               # Mirrored theme/utils sources
 │   │   │   ├── content/           # Optional demo / portfolio copy
 │   │   │   └── globals.css
 │   │   └── CHANGELOG.md
@@ -78,8 +87,8 @@ Copy [`.env.example`](.env.example) to `apps/docs/.env.local` if you need Host A
 
 | Path | Publish? |
 |------|----------|
-| `packages/ui` (`atroui`) | Yes |
-| `apps/docs` | No (docs site) |
+| `packages/ui` (`atroui`) | Yes (Host APIs + mirrored theme libs; not “install UI from npm”) |
+| `apps/docs` | No (docs site + registry catalog) |
 | `packages/typescript-config` | No |
 
 ## Pull requests
@@ -132,7 +141,7 @@ chore(ci): pin actions to full SHAs
 
 ## Requests for new components
 
-Open a [GitHub Discussion](https://github.com/atroui/atroui/discussions) or issue describing the component, intended API, and whether it needs a Host API. Prefer patterns that match the existing dark-first Digital Success tokens.
+Open a [GitHub Discussion](https://github.com/atroui/atroui/discussions) or issue describing the component, intended API, and whether it needs a Host API. **Add new UI primitives under `apps/docs/registry/default` first** (then `registry.json` + `pnpm --filter @atroui/docs registry:build`). Only add to `packages/ui` when the file is on the Mirror list or is a Host API. Prefer patterns that match the existing dark-first Digital Success tokens.
 
 ## Release pipeline (maintainers)
 
@@ -160,7 +169,7 @@ If org rules block automatic Version Packages PRs, open manually from `changeset
 
 On [github.com/atroui/atroui](https://github.com/atroui/atroui):
 
-- **Description:** production React / Next.js component library · atroui.com
+- **Description:** registry-first React / Next.js UI · Host APIs · atroui.com
 - **Topics:** `react`, `nextjs`, `design-system`, `tailwind`, `ui`, `components`, `atroui`
 - **Website:** `https://www.atroui.com`
 - **License:** MIT (see [LICENSE](./LICENSE))

@@ -1040,6 +1040,11 @@ html[data-type="mono"] {
   .og-preview-shimmer {
     animation: none;
   }
+  /* Status ornaments — kill Tailwind pulse/ping under reduced motion */
+  .animate-pulse,
+  .animate-ping {
+    animation: none;
+  }
   .atro-btn:active,
   .ms-cta:active,
   .zed-btn:active {

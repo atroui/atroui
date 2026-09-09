@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "type-mono",
   "title": "Mono type",
-  "description": "DM Sans headings with Geist Mono body/chrome. Literal stacks — load the faces or accept FOUT.",
+  "description": "Legacy pair preset: DM Sans display + Geist Mono body. Prefer Display/Body companions. Literal stacks — load the faces or accept FOUT.",
   "cssVars": {
     "theme": {
       "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",

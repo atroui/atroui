@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme-boot",
   "title": "Theme Boot",
-  "description": "Combined early-paint script for data-color-theme, data-surface, data-radius, and data-type.",
+  "description": "Combined early-paint script for data-color-theme, data-surface, data-radius, data-type-display, and data-type-body.",
   "registryDependencies": [
     "@atroui/color-themes",
     "@atroui/surface-themes",

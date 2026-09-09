@@ -7,10 +7,9 @@
       "name": "utils",
       "type": "registry:lib",
       "title": "Utils",
-      "description": "cn() helper (clsx + tailwind-merge).",
+      "description": "cn() helper — Tailwind class merge (shadcn cn engine).",
       "dependencies": [
-        "clsx",
-        "tailwind-merge"
+        "cn"
       ],
       "files": [
         {
@@ -593,7 +592,7 @@
       "name": "type-sans",
       "type": "registry:theme",
       "title": "Sans type",
-      "description": "DM Sans for heading, display, sans, body, and label. Literal stacks — load the face or accept FOUT.",
+      "description": "Legacy pair preset: DM Sans across type roles. Prefer Display/Body companions. Literal stacks — load the face or accept FOUT.",
       "cssVars": {
         "theme": {
           "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
@@ -609,7 +608,7 @@
       "name": "type-serif",
       "type": "registry:theme",
       "title": "Serif type",
-      "description": "Merriweather editorial stack for heading, display, sans, body, and label. Literal stacks — load the face or accept FOUT.",
+      "description": "Legacy pair preset: Merriweather across type roles. Prefer Display/Body companions. Literal stacks — load the face or accept FOUT.",
       "cssVars": {
         "theme": {
           "font-heading": "\"Merriweather\", ui-serif, Georgia, serif",
@@ -625,7 +624,7 @@
       "name": "type-mono",
       "type": "registry:theme",
       "title": "Mono type",
-      "description": "DM Sans headings with Geist Mono body/chrome. Literal stacks — load the faces or accept FOUT.",
+      "description": "Legacy pair preset: DM Sans display + Geist Mono body. Prefer Display/Body companions. Literal stacks — load the faces or accept FOUT.",
       "cssVars": {
         "theme": {
           "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
@@ -792,7 +791,7 @@
       "name": "theme-boot",
       "type": "registry:lib",
       "title": "Theme Boot",
-      "description": "Combined early-paint script for data-color-theme, data-surface, data-radius, and data-type.",
+      "description": "Combined early-paint script for data-color-theme, data-surface, data-radius, data-type-display, and data-type-body.",
       "registryDependencies": [
         "@atroui/color-themes",
         "@atroui/surface-themes",

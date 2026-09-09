@@ -9,7 +9,7 @@ export function MotionMagneticDoc() {
       title="Magnetic"
       description="Mild pointer pull for media cards — intensity ≤0.35, range ≤80px."
       preview={<DemoMagnetic />}
-      code={`import { Magnetic } from "atroui"
+      code={`import { Magnetic } from "@/components/ui/magnetic"
 import { IMAGEORY } from "@/lib/imageory"
 
 <Magnetic intensity={0.28} range={64}>

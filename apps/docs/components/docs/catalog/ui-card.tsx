@@ -67,7 +67,7 @@ import { Button } from "@/components/ui/button"
   CardDescription,
   CardHeader,
   CardTitle,
-} from "atroui"
+} from "@/components/ui/card"
 import { IMAGEORY } from "@/lib/imageory"
 
 <Card size="sm" className="w-full max-w-[240px]">

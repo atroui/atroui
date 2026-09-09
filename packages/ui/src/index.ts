@@ -188,8 +188,6 @@ export {
   readStoredColorTheme,
   type AccentTokens,
   type ColorThemeId,
-} from "./lib/color-themes"
-export {
   RADIUS_THEMES,
   RADIUS_THEME_ATTR,
   RADIUS_THEME_BOOT_SCRIPT,
@@ -199,8 +197,6 @@ export {
   radiusThemeValue,
   readStoredRadiusTheme,
   type RadiusThemeId,
-} from "./lib/radius-themes"
-export {
   SURFACE_THEMES,
   SURFACE_THEME_ATTR,
   SURFACE_THEME_BOOT_SCRIPT,
@@ -212,8 +208,6 @@ export {
   type SurfaceRoomId,
   type SurfaceThemeId,
   type SurfaceTokens,
-} from "./lib/surface-themes"
-export {
   TYPE_FACES,
   TYPE_THEMES,
   TYPE_BODY_ATTR,
@@ -244,14 +238,12 @@ export {
   type TypeFaceId,
   type TypeFontRemaps,
   type TypeThemeId,
-} from "./lib/type-themes"
-export {
+  THEME_BOOT_SCRIPT,
   THEME_EXPORT_INSTALL,
   buildShadcnAddCommand,
   buildThemeExportCss,
   themeRegistryCompanions,
-} from "./lib/theme-export"
-export { THEME_BOOT_SCRIPT } from "./lib/theme-boot"
+} from "./lib/theme"
 export * from "./components/ui/timeline-animation"
 export * from "./components/ui/toast"
 export * from "./components/ui/toggle"

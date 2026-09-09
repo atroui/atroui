@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "type-sans",
   "title": "Sans type",
-  "description": "DM Sans for heading, display, sans, body, and label. Literal stacks — load the face or accept FOUT.",
+  "description": "Legacy pair preset: DM Sans across type roles. Prefer Display/Body companions. Literal stacks — load the face or accept FOUT.",
   "cssVars": {
     "theme": {
       "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",

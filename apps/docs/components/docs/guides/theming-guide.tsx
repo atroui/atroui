@@ -158,10 +158,11 @@ export function ThemingGuide() {
         </p>
         <CodeBlock
           language="css"
-          code={`/* Token map (already in atroui globals) */
+          code={`/* Face stacks → role tokens → utilities (font-sans → --font-body) */
 --font-heading: var(--font-merriweather); /* titles / H2 */
 --font-display: var(--font-heading);
---font-sans: var(--font-dm-sans);         /* body / UI */
+--font-body: var(--font-dm-sans);         /* body / UI */
+--font-sans: var(--font-body);            /* utility → role */
 --font-sketch: var(--font-caveat);        /* opt-in sketch only */`}
         />
       </section>

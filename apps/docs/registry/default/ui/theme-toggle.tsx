@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
+import { layoutTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 const OPTIONS = [
@@ -18,11 +19,6 @@ type ThemeId = (typeof OPTIONS)[number]["id"]
 /** Active segment indicator — inset radius accounts for the 1px control border. */
 const PILL_CLASS =
   "absolute inset-0 rounded-[calc(var(--atro-control-radius)-1px)] bg-primary"
-
-const PILL_TWEEN = {
-  duration: 0.24,
-  ease: [0.32, 0.72, 0, 1],
-} as const
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme()
@@ -98,7 +94,7 @@ export function ThemeToggle({ className }: { className?: string }) {
                     // "system" to the stored theme snaps instead of sliding.
                     layoutId={mounted ? "atro-theme-pill" : undefined}
                     className={PILL_CLASS}
-                    transition={PILL_TWEEN}
+                    transition={layoutTween}
                     aria-hidden
                   />
                 ))}

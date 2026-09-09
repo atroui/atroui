@@ -156,7 +156,7 @@ export function SiteHeader() {
             </Link>
             <button
               type="button"
-              className="inline-flex size-9 items-center justify-center border border-border-subtle text-foreground transition-colors hover:bg-muted md:hidden active:scale-[0.97]"
+              className="inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-foreground transition-colors hover:bg-muted md:hidden active:scale-[0.97]"
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label={open ? "Close menu" : "Open menu"}

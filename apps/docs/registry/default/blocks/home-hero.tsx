@@ -226,7 +226,7 @@ export function HomeHero() {
                         />
                       ) : "active" in row && row.active ? (
                         <span
-                          className="ml-auto size-1.5 animate-pulse rounded-full bg-brand"
+                          className="ml-auto size-1.5 animate-pulse rounded-full bg-brand motion-reduce:animate-none"
                           aria-hidden
                         />
                       ) : null}

@@ -34,8 +34,9 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     viewTransition: true,
+    // AtroUI barrel grows often; optimizePackageImports drops new exports —
+    // use deep `atroui/lib/*` for new libs; do not re-add `atroui` to this list.
     optimizePackageImports: [
-      "atroui",
       "lucide-react",
       "motion",
       "@phosphor-icons/react",
