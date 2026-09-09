@@ -12,32 +12,45 @@ export const SURFACE_THEMES = [
     id: "mira",
     label: "Mira",
     description: "Cool paper — default",
-    /** Picker chip — light canvas */
-    swatch: "oklch(0.968 0.007 286)",
+    /**
+     * Picker only. Extreme sRGB pairs + layout so dual-tone survives
+     * washed extended displays (midtones crush; subtle panels vanish).
+     */
+    swatch: "#d8d0ee",
+    panel: "#2a2048",
+    layout: "frame" as const,
   },
   {
     id: "mist",
     label: "Mist",
     description: "Cooler grey room",
-    swatch: "oklch(0.96 0.005 255)",
+    swatch: "#d4dce4",
+    panel: "#1a222c",
+    layout: "split" as const,
   },
   {
     id: "paper",
     label: "Paper",
     description: "Brighter canvas",
-    swatch: "oklch(0.98 0.005 286)",
+    swatch: "#f6f4ee",
+    panel: "#2a2824",
+    layout: "stack" as const,
   },
   {
     id: "stone",
     label: "Stone",
     description: "Quiet neutral",
-    swatch: "oklch(0.965 0.006 82)",
+    swatch: "#e6d8c4",
+    panel: "#3d2e1c",
+    layout: "inset" as const,
   },
   {
     id: "ink",
     label: "Ink",
     description: "Deeper room",
-    swatch: "oklch(0.94 0.008 286)",
+    swatch: "#0e0d12",
+    panel: "#8a8498",
+    layout: "field" as const,
   },
 ] as const
 

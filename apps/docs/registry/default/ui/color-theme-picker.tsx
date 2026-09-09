@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Check } from "lucide-react"
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react"
 
 import {
   COLOR_THEMES,
@@ -31,7 +30,6 @@ import { cn } from "../../lib/utils"
 import {
   Popover,
   PopoverContent,
-  PopoverDescription,
   PopoverHeader,
   PopoverTitle,
   PopoverTrigger,
@@ -91,10 +89,68 @@ function ThemesTriggerIcon({
   )
 }
 
+function AxisLabel({ children }: { children: ReactNode }) {
+  return (
+    <p className="ds-mono-label mb-2 text-[10px] tracking-[0.14em] text-muted-foreground/80">
+      {children}
+    </p>
+  )
+}
+
+const chipBase =
+  "motion-safe-transition relative inline-flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-[var(--atro-control-radius)] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-popover"
+
+/**
+ * Mini room mark — one paint layer (gradient / inset shadow), near-black
+ * panels. Nested midtone fills crush on washed extended displays.
+ */
+function SurfaceChipPreview({
+  swatch,
+  panel,
+  layout,
+}: {
+  swatch: string
+  panel: string
+  layout: (typeof SURFACE_THEMES)[number]["layout"]
+}) {
+  const style: CSSProperties =
+    layout === "split"
+      ? {
+          backgroundImage: `linear-gradient(to right, ${swatch} 50%, ${panel} 50%)`,
+        }
+      : layout === "stack"
+        ? {
+            backgroundImage: `linear-gradient(to bottom, ${swatch} 55%, ${panel} 55%)`,
+          }
+        : layout === "frame"
+          ? {
+              backgroundColor: swatch,
+              boxShadow: `inset 0 0 0 4px ${panel}`,
+            }
+          : layout === "inset"
+            ? {
+                backgroundColor: swatch,
+                backgroundImage: `linear-gradient(${panel}, ${panel})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundSize: "14px 14px",
+              }
+            : {
+                /* field — Ink */
+                backgroundColor: panel,
+                backgroundImage: `linear-gradient(${swatch}, ${swatch})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundSize: "14px 14px",
+              }
+
+  return <span className="absolute inset-0" style={style} aria-hidden />
+}
+
 /**
  * Unified Themes popover — Accent · Surface · Type · Radius.
- * Gradual revelation: one soft-rect control, sections inside. Orthogonal to
- * ThemeToggle (light / system / dark). Trigger: soft-rect mark + live accent.
+ * Gradual revelation: one soft-rect control; inside, visual chips not
+ * encyclopedia rows. Orthogonal to ThemeToggle (light / system / dark).
  */
 export function ColorThemePicker({ className }: { className?: string }) {
   const [accent, setAccent] = useState<ColorThemeId>("mira")
@@ -121,6 +177,12 @@ export function ColorThemePicker({ className }: { className?: string }) {
 
   const currentAccent =
     COLOR_THEMES.find((t) => t.id === accent) ?? COLOR_THEMES[0]!
+  const currentSurface =
+    SURFACE_THEMES.find((t) => t.id === surface) ?? SURFACE_THEMES[0]!
+  const currentType =
+    TYPE_THEMES.find((t) => t.id === type) ?? TYPE_THEMES[0]!
+  const currentRadius =
+    RADIUS_THEMES.find((t) => t.id === radius) ?? RADIUS_THEMES[1]!
 
   const selectAccent = (id: ColorThemeId) => {
     setAccent(id)
@@ -142,6 +204,10 @@ export function ColorThemePicker({ className }: { className?: string }) {
     applyRadiusTheme(id)
   }
 
+  const reading = mounted
+    ? `${currentAccent.label} · ${currentSurface.label} · ${currentType.label} · ${currentRadius.label}`
+    : "…"
+
   return (
     <Popover>
       <PopoverTrigger
@@ -159,233 +225,161 @@ export function ColorThemePicker({ className }: { className?: string }) {
       <PopoverContent
         align="end"
         sideOffset={8}
-        className="w-[18rem] max-h-[70vh] gap-0 overflow-y-auto p-0"
+        className="w-[15.5rem] gap-0 overflow-hidden p-0"
       >
-        <PopoverHeader className="border-b border-border-subtle px-3 py-2.5">
-          <PopoverTitle className="text-sm font-medium">Themes</PopoverTitle>
-          <PopoverDescription className="text-xs text-muted-foreground">
-            Accent, surface, type, and radius. Light / dark stays separate.
-          </PopoverDescription>
+        <PopoverHeader className="space-y-1 border-b border-border-subtle px-3.5 pb-2.5 pt-3">
+          <PopoverTitle className="font-heading text-[0.9375rem] font-medium tracking-[-0.02em]">
+            Themes
+          </PopoverTitle>
+          <p
+            className="truncate text-[11px] tabular-nums text-muted-foreground"
+            aria-live="polite"
+          >
+            {reading}
+          </p>
         </PopoverHeader>
 
-        {/* Accent */}
-        <section className="border-b border-border-subtle p-1.5">
-          <p className="ds-mono-label px-2 pb-1.5 pt-1">Accent</p>
-          <div
-            role="radiogroup"
-            aria-label="Accent theme"
-            className="flex flex-col gap-0.5"
-          >
-            {COLOR_THEMES.map((option) => {
-              const active = mounted && accent === option.id
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => selectAccent(option.id)}
-                  className={cn(
-                    "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                    active
-                      ? "bg-muted text-foreground"
-                      : "text-muted-foreground hover:bg-muted/80 hover:text-foreground",
-                  )}
-                >
-                  <span
-                    className="size-4 shrink-0 rounded-[3px] ring-1 ring-border-subtle"
+        <div className="flex flex-col gap-4 px-3.5 py-3.5">
+          {/* Accent — color is the affordance */}
+          <section>
+            <AxisLabel>Accent</AxisLabel>
+            <div
+              role="radiogroup"
+              aria-label="Accent"
+              className="flex flex-wrap gap-1.5"
+            >
+              {COLOR_THEMES.map((option) => {
+                const active = mounted && accent === option.id
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    aria-label={option.label}
+                    title={option.label}
+                    onClick={() => selectAccent(option.id)}
+                    className={cn(
+                      chipBase,
+                      "ring-1 ring-inset ring-border-subtle",
+                      active &&
+                        "ring-2 ring-brand ring-offset-2 ring-offset-popover",
+                    )}
                     style={{ background: option.swatch }}
-                    aria-hidden
                   />
-                  <span
-                    className="inline-flex h-5 shrink-0 items-center justify-center rounded-[3px] px-1.5 text-[10px] font-semibold tracking-tight text-white ring-1 ring-black/10"
-                    style={{ background: option.swatch }}
-                    aria-hidden
+                )
+              })}
+            </div>
+          </section>
+
+          {/* Surface — room chips */}
+          <section>
+            <AxisLabel>Surface</AxisLabel>
+            <div
+              role="radiogroup"
+              aria-label="Surface"
+              className="flex flex-wrap gap-1.5"
+            >
+              {SURFACE_THEMES.map((option) => {
+                const active = mounted && surface === option.id
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    aria-label={option.label}
+                    title={option.label}
+                    onClick={() => selectSurface(option.id)}
+                    className={cn(
+                      chipBase,
+                      "ring-1 ring-inset ring-border-subtle",
+                      active &&
+                        "ring-2 ring-foreground/55 ring-offset-2 ring-offset-popover",
+                    )}
                   >
-                    Aa
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-medium text-foreground">
-                      {option.label}
-                    </span>
-                    <span className="block text-[11px] text-muted-foreground">
-                      {option.description}
-                    </span>
-                  </span>
-                  {active ? (
-                    <Check
-                      className="size-3.5 shrink-0 text-brand"
-                      strokeWidth={2.25}
-                      aria-hidden
+                    <SurfaceChipPreview
+                      swatch={option.swatch}
+                      panel={option.panel}
+                      layout={option.layout}
                     />
-                  ) : (
-                    <span className="size-3.5 shrink-0" aria-hidden />
-                  )}
-                </button>
-              )
-            })}
-          </div>
-        </section>
+                  </button>
+                )
+              })}
+            </div>
+          </section>
 
-        {/* Surface */}
-        <section className="border-b border-border-subtle p-1.5">
-          <p className="ds-mono-label px-2 pb-1.5 pt-1">Surface</p>
-          <div
-            role="radiogroup"
-            aria-label="Surface theme"
-            className="flex flex-col gap-0.5"
-          >
-            {SURFACE_THEMES.map((option) => {
-              const active = mounted && surface === option.id
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => selectSurface(option.id)}
-                  className={cn(
-                    "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                    active
-                      ? "bg-muted text-foreground"
-                      : "text-muted-foreground hover:bg-muted/80 hover:text-foreground",
-                  )}
-                >
-                  <span
-                    className="size-4 shrink-0 rounded-[3px] ring-1 ring-border-subtle"
-                    style={{ background: option.swatch }}
-                    aria-hidden
-                  />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-medium text-foreground">
-                      {option.label}
-                    </span>
-                    <span className="block text-[11px] text-muted-foreground">
-                      {option.description}
-                    </span>
-                  </span>
-                  {active ? (
-                    <Check
-                      className="size-3.5 shrink-0 text-brand"
-                      strokeWidth={2.25}
-                      aria-hidden
-                    />
-                  ) : (
-                    <span className="size-3.5 shrink-0" aria-hidden />
-                  )}
-                </button>
-              )
-            })}
-          </div>
-        </section>
-
-        {/* Type */}
-        <section className="border-b border-border-subtle p-1.5">
-          <p className="ds-mono-label px-2 pb-1.5 pt-1">Type</p>
-          <div
-            role="radiogroup"
-            aria-label="Type theme"
-            className="flex flex-col gap-0.5"
-          >
-            {TYPE_THEMES.map((option) => {
-              const active = mounted && type === option.id
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => selectType(option.id)}
-                  className={cn(
-                    "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                    active
-                      ? "bg-muted text-foreground"
-                      : "text-muted-foreground hover:bg-muted/80 hover:text-foreground",
-                  )}
-                >
-                  <span
-                    className="inline-flex size-8 shrink-0 items-center justify-center rounded-[3px] bg-muted text-sm font-medium text-foreground ring-1 ring-border-subtle"
-                    style={{
-                      fontFamily: option.remaps["font-heading"],
-                    }}
-                    aria-hidden
+          {/* Type — glyph samples */}
+          <section>
+            <AxisLabel>Type</AxisLabel>
+            <div
+              role="radiogroup"
+              aria-label="Type"
+              className="flex flex-wrap gap-1.5"
+            >
+              {TYPE_THEMES.map((option) => {
+                const active = mounted && type === option.id
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    aria-label={option.label}
+                    title={option.label}
+                    onClick={() => selectType(option.id)}
+                    className={cn(
+                      chipBase,
+                      "bg-muted/60 text-[13px] leading-none text-foreground ring-1 ring-inset ring-border-subtle",
+                      active &&
+                        "bg-muted text-foreground ring-2 ring-foreground/55 ring-offset-2 ring-offset-popover",
+                    )}
+                    style={{ fontFamily: option.remaps["font-heading"] }}
                   >
                     {option.sample}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-medium text-foreground">
-                      {option.label}
-                    </span>
-                    <span className="block text-[11px] text-muted-foreground">
-                      {option.description}
-                    </span>
-                  </span>
-                  {active ? (
-                    <Check
-                      className="size-3.5 shrink-0 text-brand"
-                      strokeWidth={2.25}
-                      aria-hidden
-                    />
-                  ) : (
-                    <span className="size-3.5 shrink-0" aria-hidden />
-                  )}
-                </button>
-              )
-            })}
-          </div>
-        </section>
+                  </button>
+                )
+              })}
+            </div>
+          </section>
 
-        {/* Radius */}
-        <section className="p-1.5">
-          <p className="ds-mono-label px-2 pb-1.5 pt-1">Radius</p>
-          <div
-            role="radiogroup"
-            aria-label="Corner radius"
-            className="flex flex-col gap-0.5"
-          >
-            {RADIUS_THEMES.map((option) => {
-              const active = mounted && radius === option.id
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => selectRadius(option.id)}
-                  className={cn(
-                    "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                    active
-                      ? "bg-muted text-foreground"
-                      : "text-muted-foreground hover:bg-muted/80 hover:text-foreground",
-                  )}
-                >
-                  <span
-                    className="size-4 shrink-0 border border-border-subtle bg-muted"
-                    style={{ borderRadius: option.value }}
-                    aria-hidden
-                  />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-medium text-foreground">
-                      {option.label}
-                    </span>
-                    <span className="block text-[11px] text-muted-foreground">
-                      {option.description}
-                    </span>
-                  </span>
-                  {active ? (
-                    <Check
-                      className="size-3.5 shrink-0 text-brand"
-                      strokeWidth={2.25}
+          {/* Radius — corner previews */}
+          <section>
+            <AxisLabel>Radius</AxisLabel>
+            <div
+              role="radiogroup"
+              aria-label="Radius"
+              className="flex flex-wrap gap-1.5"
+            >
+              {RADIUS_THEMES.map((option) => {
+                const active = mounted && radius === option.id
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    aria-label={option.label}
+                    title={option.label}
+                    onClick={() => selectRadius(option.id)}
+                    className={cn(
+                      chipBase,
+                      "bg-transparent ring-1 ring-inset ring-border-subtle",
+                      active &&
+                        "ring-2 ring-foreground/55 ring-offset-2 ring-offset-popover",
+                    )}
+                  >
+                    <span
+                      className="size-4 border border-foreground/35 bg-muted"
+                      style={{ borderRadius: option.value }}
                       aria-hidden
                     />
-                  ) : (
-                    <span className="size-3.5 shrink-0" aria-hidden />
-                  )}
-                </button>
-              )
-            })}
-          </div>
-        </section>
+                  </button>
+                )
+              })}
+            </div>
+          </section>
+        </div>
       </PopoverContent>
     </Popover>
   )

@@ -170,8 +170,37 @@ export function ThemeStudio() {
                   )}
                 >
                   <span
-                    className="size-4 shrink-0 rounded-[3px] ring-1 ring-border-subtle"
-                    style={{ background: option.swatch }}
+                    className="relative size-4 shrink-0 overflow-hidden rounded-[3px] ring-1 ring-border-subtle"
+                    style={
+                      option.layout === "split"
+                        ? {
+                            backgroundImage: `linear-gradient(to right, ${option.swatch} 50%, ${option.panel} 50%)`,
+                          }
+                        : option.layout === "stack"
+                          ? {
+                              backgroundImage: `linear-gradient(to bottom, ${option.swatch} 55%, ${option.panel} 55%)`,
+                            }
+                          : option.layout === "frame"
+                            ? {
+                                backgroundColor: option.swatch,
+                                boxShadow: `inset 0 0 0 2px ${option.panel}`,
+                              }
+                            : option.layout === "inset"
+                              ? {
+                                  backgroundColor: option.swatch,
+                                  backgroundImage: `linear-gradient(${option.panel}, ${option.panel})`,
+                                  backgroundRepeat: "no-repeat",
+                                  backgroundPosition: "center",
+                                  backgroundSize: "8px 8px",
+                                }
+                              : {
+                                  backgroundColor: option.panel,
+                                  backgroundImage: `linear-gradient(${option.swatch}, ${option.swatch})`,
+                                  backgroundRepeat: "no-repeat",
+                                  backgroundPosition: "center",
+                                  backgroundSize: "8px 8px",
+                                }
+                    }
                     aria-hidden
                   />
                   <span className="min-w-0 flex-1">
