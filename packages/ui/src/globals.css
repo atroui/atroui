@@ -304,6 +304,18 @@ html.dark[data-color-theme="graphite"] {
   --chart-5: oklch(0.36 0.03 265);
 }
 
+/* =============================================================================
+   Live radius themes — data-radius on <html>, orthogonal to accent + .dark
+   Default Mira = no attribute (--radius: 0.45rem above). Soft-rect, not pills.
+   ============================================================================= */
+
+html[data-radius="soft"] {
+  --radius: 0.65rem;
+}
+html[data-radius="sharp"] {
+  --radius: 0.25rem;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

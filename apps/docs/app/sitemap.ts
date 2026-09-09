@@ -23,6 +23,7 @@ const staticPaths = [
   "/docs/glossary",
   "/og",
   "/planner",
+  "/themes",
   "/updates",
   "/llms.txt",
   "/llms-full.txt",

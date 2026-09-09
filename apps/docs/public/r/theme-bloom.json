@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-bloom",
+  "title": "Bloom accent",
+  "description": "Rose accent tokens (primary, sidebar, ring, charts) for light and dark. Merges into your globals.css via the shadcn CLI.",
+  "cssVars": {
+    "light": {
+      "primary": "oklch(0.5 0.18 18)",
+      "primary-foreground": "oklch(0.98 0.01 20)",
+      "sidebar-primary": "oklch(0.54 0.19 18)",
+      "sidebar-primary-foreground": "oklch(0.98 0.01 20)",
+      "ring": "oklch(0.58 0.1 18)",
+      "sidebar-ring": "oklch(0.58 0.1 18)",
+      "chart-1": "oklch(0.8 0.1 18)",
+      "chart-2": "oklch(0.6 0.15 18)",
+      "chart-3": "oklch(0.54 0.19 18)",
+      "chart-4": "oklch(0.5 0.18 18)",
+      "chart-5": "oklch(0.45 0.15 18)"
+    },
+    "dark": {
+      "primary": "oklch(0.45 0.15 18)",
+      "primary-foreground": "oklch(0.98 0.01 20)",
+      "sidebar-primary": "oklch(0.6 0.16 18)",
+      "sidebar-primary-foreground": "oklch(0.98 0.01 20)",
+      "ring": "oklch(0.55 0.05 18)",
+      "sidebar-ring": "oklch(0.55 0.05 18)",
+      "chart-1": "oklch(0.8 0.1 18)",
+      "chart-2": "oklch(0.6 0.16 18)",
+      "chart-3": "oklch(0.54 0.19 18)",
+      "chart-4": "oklch(0.5 0.18 18)",
+      "chart-5": "oklch(0.45 0.15 18)"
+    }
+  },
+  "docs": "Sets accent tokens only. Surfaces stay your sheet. Pair with any @atroui/ui install: npx shadcn@latest add @atroui/button @atroui/theme-bloom",
+  "type": "registry:theme"
+}

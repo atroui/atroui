@@ -22,6 +22,7 @@ import {
 /**
  * Live accent theme list — click a swatch, whole site recolors immediately.
  * Orthogonal to ThemeToggle (light / system / dark). Soft-rect popover, not a pill row.
+ * Careful delight: soft-rect mini chip preview beside each swatch.
  */
 export function ColorThemePicker({ className }: { className?: string }) {
   const [theme, setTheme] = useState<ColorThemeId>("mira")
@@ -65,7 +66,7 @@ export function ColorThemePicker({ className }: { className?: string }) {
       <PopoverContent
         align="end"
         sideOffset={8}
-        className="w-[15.5rem] gap-0 p-0"
+        className="w-[17rem] gap-0 p-0"
       >
         <PopoverHeader className="border-b border-border-subtle px-3 py-2.5">
           <PopoverTitle className="text-sm font-medium">Themes</PopoverTitle>
@@ -99,6 +100,13 @@ export function ColorThemePicker({ className }: { className?: string }) {
                   style={{ background: option.swatch }}
                   aria-hidden
                 />
+                <span
+                  className="inline-flex h-5 shrink-0 items-center justify-center rounded-[3px] px-1.5 text-[10px] font-semibold tracking-tight text-white ring-1 ring-black/10"
+                  style={{ background: option.swatch }}
+                  aria-hidden
+                >
+                  Aa
+                </span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-sm font-medium text-foreground">
                     {option.label}

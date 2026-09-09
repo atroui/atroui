@@ -73,6 +73,29 @@ export function ThemingGuide() {
       </section>
 
       <section className="space-y-4">
+        <h2 className="docs-section-title" id="accents">
+          Accents
+        </h2>
+        <p className="leading-relaxed">
+          Live accents (Mira / Tide / Ember / Bloom / Graphite) set{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            data-color-theme
+          </code>{" "}
+          on the docs host. When you pick Tide on a component page, the install
+          chip appends{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/theme-tide
+          </code>{" "}
+          so the CLI ships those tokens with the block. Mira is the default —
+          no companion package. Try it in{" "}
+          <Link href="/themes" className="bam-link">
+            Theme Studio
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="space-y-4">
         <h2 className="docs-section-title" id="fonts">
           Fonts
         </h2>
@@ -161,7 +184,11 @@ export function ThemingGuide() {
             --radius-md
           </code>
           ). Default is soft rectangle — not capsules. Circles stay for avatars,
-          status dots, and true toggles.
+          status dots, and true toggles. Try Soft / Mira / Sharp live in{" "}
+          <Link href="/themes" className="bam-link">
+            Theme Studio
+          </Link>
+          .
         </p>
         <CodeBlock
           language="css"

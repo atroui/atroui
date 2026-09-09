@@ -176,16 +176,37 @@ export * from "./components/ui/textarea"
 export * from "./components/ui/theme-adapt"
 export * from "./components/ui/theme-toggle"
 export * from "./components/ui/color-theme-picker"
+export * from "./components/ui/radius-theme-picker"
 export {
   COLOR_THEMES,
   COLOR_THEME_ATTR,
   COLOR_THEME_BOOT_SCRIPT,
   COLOR_THEME_STORAGE_KEY,
+  COLOR_THEME_TOKENS,
   applyColorTheme,
   isColorThemeId,
   readStoredColorTheme,
+  type AccentTokens,
   type ColorThemeId,
 } from "./lib/color-themes"
+export {
+  RADIUS_THEMES,
+  RADIUS_THEME_ATTR,
+  RADIUS_THEME_BOOT_SCRIPT,
+  RADIUS_THEME_STORAGE_KEY,
+  applyRadiusTheme,
+  isRadiusThemeId,
+  radiusThemeValue,
+  readStoredRadiusTheme,
+  type RadiusThemeId,
+} from "./lib/radius-themes"
+export {
+  THEME_EXPORT_INSTALL,
+  buildShadcnAddCommand,
+  buildThemeExportCss,
+  themeRegistryCompanions,
+} from "./lib/theme-export"
+export { THEME_BOOT_SCRIPT } from "./lib/theme-boot"
 export * from "./components/ui/timeline-animation"
 export * from "./components/ui/toast"
 export * from "./components/ui/toggle"

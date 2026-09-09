@@ -10,13 +10,14 @@ import * as React from "react"
 import Link from "next/link"
 import { Braces, ChevronDown, ChevronUp } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import { CopyButton } from "atroui"
+import { CopyButton, buildShadcnAddCommand } from "atroui"
 import type {
   PreviewStrategy,
   RegistryWorkspaceBlock,
   RegistryWorkspaceBlockId,
 } from "@/lib/registry-workspace-server"
 import { extractSourceExcerpt } from "@/lib/registry-workspace-utils"
+import { useLiveThemeInstallAxes } from "@/hooks/use-live-theme-install-axes"
 import { cn } from "@/lib/utils"
 import { easeOutExpo, easeOutSoft } from "@/lib/motion"
 
@@ -209,6 +210,7 @@ export function RegistryWorkspace({
   className?: string
 }) {
   const reduce = useReducedMotion()
+  const { accent, radius } = useLiveThemeInstallAxes()
   const slotMap = React.useMemo(() => {
     const fromSlots: Partial<Record<RegistryWorkspaceBlockId, React.ReactNode>> =
       {
@@ -227,7 +229,7 @@ export function RegistryWorkspace({
   const block = blocks.find((b) => b.id === activeId) ?? blocks[0]!
   const glimpse = extractSourceExcerpt(block.source, GLIMPSE_LINES)
   const fullExcerpt = extractSourceExcerpt(block.source, EXPANDED_LINES)
-  const command = `npx shadcn@latest add @atroui/${block.registry}`
+  const command = buildShadcnAddCommand([block.registry], { accent, radius })
 
   React.useEffect(() => {
     setExpanded(false)

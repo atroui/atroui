@@ -1,17 +1,18 @@
 "use client"
 
 /**
- * Clean terminal — static lines, token-based. No legacy presence styling.
+ * Clean terminal — static init + theme-aware add line.
  */
 
-import { CopyButton } from "atroui"
-
-export const INSTALL_LINES = [
-  "npx shadcn@latest init",
-  "npx shadcn@latest add @atroui/home-hero",
-] as const
+import { CopyButton, buildShadcnAddCommand } from "atroui"
+import { useLiveThemeInstallAxes } from "@/hooks/use-live-theme-install-axes"
 
 export function LiveInstall({ className }: { className?: string }) {
+  const { accent, radius } = useLiveThemeInstallAxes()
+  const addLine = buildShadcnAddCommand(["home-hero"], { accent, radius })
+  const lines = ["npx shadcn@latest init", addLine] as const
+  const all = lines.join("\n")
+
   return (
     <div
       className={[
@@ -25,7 +26,7 @@ export function LiveInstall({ className }: { className?: string }) {
       <div className="flex items-center justify-between gap-3 border-b border-border-subtle px-4 py-2.5">
         <span className="text-[11px] text-muted-foreground">Terminal</span>
         <CopyButton
-          value={INSTALL_LINES.join("\n")}
+          value={all}
           idleLabel="Copy all"
           copiedLabel="Copied"
           size="xs"
@@ -36,10 +37,12 @@ export function LiveInstall({ className }: { className?: string }) {
       </div>
 
       <div className="space-y-3 px-4 py-4">
-        {INSTALL_LINES.map((line, i) => (
-          <div key={line} className="flex items-start gap-2">
+        {lines.map((line, i) => (
+          <div key={`${i}-${line}`} className="flex items-start gap-2">
             <span className="shrink-0 select-none text-muted-foreground">$</span>
-            <code className="min-w-0 flex-1 break-all text-foreground/90">{line}</code>
+            <code className="min-w-0 flex-1 break-all text-foreground/90">
+              {line}
+            </code>
             <CopyButton
               value={line}
               size="icon-sm"

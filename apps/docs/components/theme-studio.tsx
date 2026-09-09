@@ -1,0 +1,203 @@
+"use client"
+
+/**
+ * Theme Studio — one composition in the ToolRoom stage.
+ * Family Values: gradual revelation (controls in the rail, sample on the stage),
+ * soft-rect chrome, careful delight (Copy CSS is the one primary action).
+ */
+
+import { useEffect, useMemo, useState } from "react"
+import Link from "next/link"
+import {
+  COLOR_THEMES,
+  CopyButton,
+  RADIUS_THEMES,
+  RadiusThemePicker,
+  ThemeToggle,
+  applyColorTheme,
+  applyRadiusTheme,
+  buildThemeExportCss,
+  readStoredColorTheme,
+  readStoredRadiusTheme,
+  type ColorThemeId,
+  type RadiusThemeId,
+} from "atroui"
+import { Check } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+export function ThemeStudio() {
+  const [accent, setAccent] = useState<ColorThemeId>("mira")
+  const [radius, setRadius] = useState<RadiusThemeId>("mira")
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    const nextAccent = readStoredColorTheme()
+    const nextRadius = readStoredRadiusTheme()
+    setAccent(nextAccent)
+    setRadius(nextRadius)
+    applyColorTheme(nextAccent)
+    applyRadiusTheme(nextRadius)
+    setMounted(true)
+
+    // RadiusThemePicker is uncontrolled — mirror data-radius for export footer.
+    const root = document.documentElement
+    const syncRadius = () => setRadius(readStoredRadiusTheme())
+    const mo = new MutationObserver(syncRadius)
+    mo.observe(root, { attributes: true, attributeFilter: ["data-radius"] })
+    return () => mo.disconnect()
+  }, [])
+
+  const accentMeta =
+    COLOR_THEMES.find((t) => t.id === accent) ?? COLOR_THEMES[0]!
+  const radiusMeta =
+    RADIUS_THEMES.find((t) => t.id === radius) ?? RADIUS_THEMES[1]!
+
+  const exportCss = useMemo(
+    () => buildThemeExportCss({ accent, radius }),
+    [accent, radius],
+  )
+
+  const selectAccent = (id: ColorThemeId) => {
+    setAccent(id)
+    applyColorTheme(id)
+  }
+
+  return (
+    <div className="flex min-h-[28rem] flex-col md:flex-row">
+      {/* Left rail — controls only */}
+      <aside className="flex w-full shrink-0 flex-col gap-6 border-b border-border-subtle bg-muted/30 p-4 md:w-[240px] md:border-b-0 md:border-r">
+        <section className="space-y-2">
+          <p className="ds-mono-label">Accent</p>
+          <div
+            role="radiogroup"
+            aria-label="Accent theme"
+            className="flex flex-col gap-0.5"
+          >
+            {COLOR_THEMES.map((option) => {
+              const active = mounted && accent === option.id
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={active}
+                  onClick={() => selectAccent(option.id)}
+                  className={cn(
+                    "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
+                    active
+                      ? "bg-background text-foreground ring-1 ring-border-subtle"
+                      : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                  )}
+                >
+                  <span
+                    className="size-4 shrink-0 rounded-[3px] ring-1 ring-border-subtle"
+                    style={{ background: option.swatch }}
+                    aria-hidden
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-medium text-foreground">
+                      {option.label}
+                    </span>
+                    <span className="block text-[11px] text-muted-foreground">
+                      {option.description}
+                    </span>
+                  </span>
+                  {active ? (
+                    <Check
+                      className="size-3.5 shrink-0 text-brand"
+                      strokeWidth={2.25}
+                      aria-hidden
+                    />
+                  ) : (
+                    <span className="size-3.5 shrink-0" aria-hidden />
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="space-y-2">
+          <p className="ds-mono-label">Radius</p>
+          <RadiusThemePicker className="w-full [&_button]:min-w-0 [&_button]:flex-1" />
+        </section>
+
+        <section className="space-y-2">
+          <p className="ds-mono-label">Appearance</p>
+          <div className="flex flex-col gap-1.5">
+            <ThemeToggle />
+            <p className="text-[11px] leading-relaxed text-muted-foreground">
+              Site-wide light / dark / system.
+            </p>
+          </div>
+        </section>
+
+        <div className="mt-auto space-y-2 border-t border-border-subtle pt-4">
+          <CopyButton
+            value={exportCss}
+            idleLabel="Copy CSS"
+            className="w-full justify-center"
+            variant="default"
+          />
+          <p className="font-mono text-[10px] leading-relaxed text-muted-foreground">
+            {mounted ? (
+              <>
+                {accentMeta.label} · {radiusMeta.label}
+              </>
+            ) : (
+              "…"
+            )}
+          </p>
+        </div>
+      </aside>
+
+      {/* Main stage — one live sample composition */}
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-6 bg-background p-6 sm:p-8 md:p-10">
+        <div className="mx-auto w-full max-w-md space-y-5">
+          <div className="space-y-2">
+            <h2 className="ds-headline text-2xl tracking-tight text-foreground sm:text-[1.75rem]">
+              Your product, in this skin
+            </h2>
+            <p className="text-[15px] leading-relaxed text-muted-foreground">
+              Accents and radius apply across the site. Copy the CSS when it
+              feels right.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" className="atro-btn">
+              Primary action
+            </button>
+            <button type="button" className="atro-btn-ghost">
+              Ghost
+            </button>
+          </div>
+
+          <p className="text-[13px] leading-relaxed text-muted-foreground">
+            Muted note — secondary copy tracks{" "}
+            <code className="rounded-[calc(var(--radius)-2px)] bg-muted px-1 py-0.5 font-mono text-[11px] text-foreground">
+              --muted-foreground
+            </code>
+            .
+          </p>
+
+          <label className="block space-y-1.5">
+            <span className="ds-mono-label">Field</span>
+            <input
+              type="text"
+              readOnly
+              defaultValue="soft-rect input"
+              className="flex h-[var(--atro-control-height,2.25rem)] w-full min-w-0 rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background px-3 text-sm text-foreground outline-none"
+            />
+          </label>
+
+          <p>
+            <Link href="/docs/theming" className="bam-link text-sm">
+              Theming guide
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}

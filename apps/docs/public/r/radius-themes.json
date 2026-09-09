@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radius-themes",
+  "title": "Radius Themes",
+  "description": "Radius theme ids, storage, and apply helpers for data-radius (Soft / Mira / Sharp).",
+  "files": [
+    {
+      "path": "registry/default/lib/radius-themes.ts",
+      "content": "/**\n * Live radius themes — orthogonal to accent + light/dark.\n * CSS: `html[data-radius=\"<id>\"]` in globals.css. Default Mira = no attribute.\n */\n\nexport const RADIUS_THEME_STORAGE_KEY = \"atro-radius-theme\"\nexport const RADIUS_THEME_ATTR = \"data-radius\"\n\nexport const RADIUS_THEMES = [\n  {\n    id: \"soft\",\n    label: \"Soft\",\n    description: \"0.65rem — rounder soft-rect\",\n    /** CSS --radius value */\n    value: \"0.65rem\",\n  },\n  {\n    id: \"mira\",\n    label: \"Mira\",\n    description: \"0.45rem — Atro default\",\n    value: \"0.45rem\",\n  },\n  {\n    id: \"sharp\",\n    label: \"Sharp\",\n    description: \"0.25rem — tighter corners\",\n    value: \"0.25rem\",\n  },\n] as const\n\nexport type RadiusThemeId = (typeof RADIUS_THEMES)[number][\"id\"]\n\nexport function isRadiusThemeId(value: string): value is RadiusThemeId {\n  return RADIUS_THEMES.some((t) => t.id === value)\n}\n\nexport function radiusThemeValue(id: RadiusThemeId): string {\n  return RADIUS_THEMES.find((t) => t.id === id)?.value ?? \"0.45rem\"\n}\n\n/** Apply radius theme to `<html>`. Mira clears the attribute (CSS default). */\nexport function applyRadiusTheme(id: RadiusThemeId) {\n  if (typeof document === \"undefined\") return\n  const root = document.documentElement\n  if (id === \"mira\") {\n    root.removeAttribute(RADIUS_THEME_ATTR)\n  } else {\n    root.setAttribute(RADIUS_THEME_ATTR, id)\n  }\n  try {\n    localStorage.setItem(RADIUS_THEME_STORAGE_KEY, id)\n  } catch {\n    /* private mode */\n  }\n}\n\nexport function readStoredRadiusTheme(): RadiusThemeId {\n  if (typeof window === \"undefined\") return \"mira\"\n  try {\n    const raw = localStorage.getItem(RADIUS_THEME_STORAGE_KEY)\n    if (raw && isRadiusThemeId(raw)) return raw\n  } catch {\n    /* private mode */\n  }\n  return \"mira\"\n}\n\n/** Inline before paint — paste into a blocking `<script>` in the root layout. */\nexport const RADIUS_THEME_BOOT_SCRIPT = `(function(){try{var k=${JSON.stringify(RADIUS_THEME_STORAGE_KEY)},a=${JSON.stringify(RADIUS_THEME_ATTR)},t=localStorage.getItem(k);if(t&&t!==\"mira\")document.documentElement.setAttribute(a,t);}catch(e){}})();`\n",
+      "type": "registry:lib",
+      "target": "lib/radius-themes.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

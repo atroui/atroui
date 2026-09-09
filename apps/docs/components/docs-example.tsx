@@ -19,8 +19,11 @@ type DocsExampleProps = {
    * Blog embeds: keep the reading column, no inner scrollbar.
    */
   unclip?: boolean
-  /** CLI install line in the stage toolbar (see it → get it). */
-  installCommand?: string
+  /**
+   * CLI install in the stage toolbar (see it → get it).
+   * Pass a raw string for InstallCommandChip, or a node (e.g. RegistryInstallCommand).
+   */
+  installCommand?: string | React.ReactNode
 }
 
 /**
@@ -77,7 +80,11 @@ export function DocsExample({
 
         {installCommand ? (
           <div className="ml-auto flex min-w-0 items-center py-1 pr-1 sm:pr-1.5">
-            <InstallCommandChip command={installCommand} />
+            {typeof installCommand === "string" ? (
+              <InstallCommandChip command={installCommand} />
+            ) : (
+              installCommand
+            )}
           </div>
         ) : null}
       </div>

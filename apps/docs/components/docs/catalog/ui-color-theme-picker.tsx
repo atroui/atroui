@@ -24,7 +24,12 @@ export function UiColorThemePickerDoc() {
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             data-color-theme
           </code>
-          . Paste{" "}
+          . Selecting Tide (or another accent) appends{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/theme-tide
+          </code>{" "}
+          to install commands on docs pages so the CLI ships those tokens with
+          the component. Paste{" "}
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
             COLOR_THEME_BOOT_SCRIPT
           </code>{" "}

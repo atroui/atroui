@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Caveat, DM_Sans, Geist_Mono, Merriweather } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { COLOR_THEME_BOOT_SCRIPT } from "atroui"
+import { THEME_BOOT_SCRIPT } from "atroui"
 import { ThemeProvider } from "@/components/theme-provider"
 import "atroui/globals.css"
 import "./globals.css"
@@ -141,7 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
-          dangerouslySetInnerHTML={{ __html: COLOR_THEME_BOOT_SCRIPT }}
+          dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
         />
       </head>
       <body

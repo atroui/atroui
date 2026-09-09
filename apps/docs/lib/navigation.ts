@@ -736,7 +736,12 @@ export const toolApps: { title: string; href: string; description: string }[] =
       title: "Project planner",
       href: "/planner",
       description: "Scope a build, hand off to OG",
-    }
+    },
+    {
+      title: "Theme Studio",
+      href: "/themes",
+      description: "Live accents, radius, and CSS export",
+    },
   ]
 
 export const badgeLabel: Record<NonNullable<NavItem["badge"]>, string> = {

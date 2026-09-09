@@ -5,6 +5,7 @@ import { DocsExample } from "@/components/docs-example"
 import { DocsPager } from "@/components/docs-pager"
 import { PseoOnPage } from "@/components/pseo-on-page"
 import { PropsTable, type PropRow } from "@/components/props-table"
+import { RegistryInstallCommand } from "@/components/registry-install-command"
 import {
   findNavContext,
   type DocKind,
@@ -61,9 +62,10 @@ export function ComponentDoc({
   const kind = kindProp ?? nav?.kind ?? "Primitive"
   const inRegistry = Boolean(registryName)
   const isHostApi = nav?.item.badge === "host-api"
-  const installCmd =
-    installation ??
-    (registryName ? `npx shadcn@latest add @atroui/${registryName}` : null)
+  /** Custom multi-line override — keep static CodeBlock, skip live companions. */
+  const customInstall = installation?.trim() ? installation : null
+  const liveItems = !customInstall && registryName ? [registryName] : null
+  const hasInstall = Boolean(customInstall || liveItems)
 
   return (
     <article className={fullBleed ? "docs-book-wide space-y-6" : "space-y-6"}>
@@ -87,9 +89,15 @@ export function ComponentDoc({
           preview={preview}
           code={code}
           fullBleed={fullBleed}
-          installCommand={installCmd ?? undefined}
+          installCommand={
+            liveItems ? (
+              <RegistryInstallCommand items={liveItems} showNote={false} />
+            ) : (
+              (customInstall ?? undefined)
+            )
+          }
         />
-        {installCmd ? null : (
+        {hasInstall ? null : (
           <p className="text-[14px] leading-relaxed text-muted-foreground">
             Not in the CLI registry yet. Prefer registry blocks when you want
             owned source via{" "}
@@ -101,16 +109,16 @@ export function ComponentDoc({
         )}
       </section>
 
-      {installCmd ? (
+      {hasInstall ? (
         <section className="space-y-3">
           <h2 className="docs-section-title" id="installation">
             Installation
           </h2>
-          <pre className="overflow-x-auto rounded-lg border border-border-subtle bg-muted px-3 py-2.5">
-            <code className="font-mono text-[12px] text-foreground sm:text-[13px]">
-              {installCmd}
-            </code>
-          </pre>
+          {liveItems ? (
+            <RegistryInstallCommand items={liveItems} />
+          ) : (
+            <CodeBlock code={customInstall!} language="bash" />
+          )}
           <p className="text-[13px] text-muted-foreground">
             Source lands in your repo.{" "}
             <Link href="/docs/installation" className="bam-link">
