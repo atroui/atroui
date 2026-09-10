@@ -161,6 +161,23 @@ export const pageFade = {
 } as const
 
 /**
+ * Route enter — full continuity beat for page-level content.
+ * Opacity + y + blur settle (expo). Chrome (sidebar/TOC/header) stays
+ * mounted; only the measure column re-enters. Reduced motion → duration 0.
+ */
+export const pageEnterTween = {
+  type: "tween" as const,
+  duration: 0.4,
+  ease: easeOutExpo,
+} as const
+
+/** Route enter travel in px — one step above the scroll-reveal beat. */
+export const PAGE_ENTER_Y = 12
+
+/** Route enter blur in px — paired with y + opacity, never alone. */
+export const PAGE_ENTER_BLUR = 4
+
+/**
  * Marketing chrome hide-on-scroll (Motion scroll-direction pattern).
  * Docs book headers stay fixed — never pass this tween there.
  * Call sites: `useReducedMotion` → skip hide (stay visible, no travel).

@@ -2,11 +2,17 @@
 
 import { motion, useReducedMotion } from "motion/react"
 import { usePathname } from "next/navigation"
-import { pageFade } from "@/lib/motion"
+import {
+  PAGE_ENTER_BLUR,
+  PAGE_ENTER_Y,
+  pageEnterTween,
+} from "@/lib/motion"
 
 /**
- * Docs article continuity — chapter content fades in once per route.
- * Sidebar / TOC stay put; only the measure column re-enters.
+ * Docs article continuity — chapter content re-enters once per route.
+ * Full beat (opacity + y + blur settle); sidebar / TOC / header stay
+ * mounted so the page morphs instead of remounting. Reduced motion →
+ * instant.
  */
 export function DocsPageFade({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -15,9 +21,13 @@ export function DocsPageFade({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
       key={pathname}
-      initial={reduce ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={reduce ? { duration: 0 } : pageFade}
+      initial={
+        reduce
+          ? false
+          : { opacity: 0, y: PAGE_ENTER_Y, filter: `blur(${PAGE_ENTER_BLUR}px)` }
+      }
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={reduce ? { duration: 0 } : pageEnterTween}
     >
       {children}
     </motion.div>

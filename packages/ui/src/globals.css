@@ -626,6 +626,11 @@ html[data-type="mono"] {
     font-feature-settings: "ss01", "kern";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    /* Never faux-bold: Merriweather ships 400/700 only — synthesized
+       500/600 would look cheaper than true 700. Variable faces (DM Sans)
+       still get optical sizing. */
+    font-synthesis-weight: none;
+    font-optical-sizing: auto;
   }
   body {
     @apply bg-background text-foreground;
@@ -689,7 +694,7 @@ html[data-type="mono"] {
     letter-spacing: -0.02em;
     /* Merriweather headings — hosts that repoint --font-display at a
        handwriting face should raise line-height themselves. */
-    line-height: 1.15;
+    line-height: 1.08;
     font-weight: 700;
     overflow: visible;
   }
