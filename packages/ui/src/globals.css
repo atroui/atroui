@@ -891,6 +891,27 @@ html[data-type="mono"] {
     }
   }
 
+  /* Small category / meta chip — pill mono; consumer-safe (blocks rely on it) */
+  .atro-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border-subtle);
+    background: color-mix(in oklch, var(--foreground) 4%, transparent);
+    padding: 0.2rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  .atro-chip-brand {
+    border-color: color-mix(in oklch, var(--brand) 40%, transparent);
+    background: color-mix(in oklch, var(--brand) 12%, transparent);
+    color: color-mix(in oklch, var(--brand-hover) 80%, var(--background));
+  }
+
   .ms-panel {
     background: color-mix(in oklch, var(--card) 88%, var(--muted));
     border: 1px solid var(--border-subtle);

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee",
+  "title": "Marquee",
+  "description": "Infinite logo/testimonial strip — reverse/pause/vertical/repeat.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/marquee.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type MarqueeProps = React.HTMLAttributes<HTMLDivElement> & {\n  /** Reverse scroll direction. Default false. */\n  reverse?: boolean\n  /** Pause on hover / focus-within. Default true. */\n  pauseOnHover?: boolean\n  /** Vertical scroll. Default false. */\n  vertical?: boolean\n  /** Repeat count for seamless loop. Default 2. */\n  repeat?: number\n  /** Duration in seconds for one loop. Default 40. */\n  duration?: number\n}\n\n/**\n * Infinite marquee — logo / testimonial strips.\n * Token-agnostic shell; children carry color. Reduced motion → scrollable row.\n */\nexport function Marquee({\n  reverse = false,\n  pauseOnHover = true,\n  vertical = false,\n  repeat = 2,\n  duration = 40,\n  className,\n  children,\n  ...props\n}: MarqueeProps) {\n  const reduce = useReducedMotion()\n  const items = React.useMemo(\n    () => Array.from({ length: Math.max(repeat, 1) }, (_, i) => i),\n    [repeat]\n  )\n\n  if (reduce) {\n    return (\n      <div\n        className={cn(\n          \"flex overflow-auto\",\n          vertical ? \"max-h-48 flex-col\" : \"flex-row\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </div>\n    )\n  }\n\n  return (\n    <div\n      data-slot=\"marquee\"\n      className={cn(\n        \"group/marquee relative flex overflow-hidden\",\n        vertical ? \"flex-col\" : \"flex-row\",\n        className\n      )}\n      {...props}\n    >\n      <style>{`@keyframes atro-marquee-x { from { transform: translateX(0); } to { transform: translateX(-50%); } } @keyframes atro-marquee-y { from { transform: translateY(0); } to { transform: translateY(-50%); } }`}</style>\n      {items.map((i) => (\n        <div\n          key={i}\n          aria-hidden={i > 0}\n          className={cn(\n            \"flex shrink-0 items-center\",\n            vertical ? \"flex-col\" : \"flex-row\",\n            pauseOnHover &&\n              \"group-hover/marquee:[animation-play-state:paused] group-focus-within/marquee:[animation-play-state:paused]\"\n          )}\n          style={{\n            animation: `${vertical ? \"atro-marquee-y\" : \"atro-marquee-x\"} ${duration}s linear infinite ${reverse ? \"reverse\" : \"normal\"}`,\n          }}\n        >\n          {children}\n        </div>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/marquee.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

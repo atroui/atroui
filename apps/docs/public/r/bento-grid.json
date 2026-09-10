@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bento-grid",
+  "title": "Bento Grid",
+  "description": "Soft-rect bento grid + card with top hairline glow.",
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/bento-grid.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport function BentoGrid({\n  className,\n  children,\n}: {\n  className?: string\n  children: React.ReactNode\n}) {\n  return (\n    <div\n      data-slot=\"bento-grid\"\n      className={cn(\n        \"grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3\",\n        className\n      )}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport function BentoCard({\n  className,\n  title,\n  description,\n  header,\n  children,\n}: {\n  className?: string\n  title?: React.ReactNode\n  description?: React.ReactNode\n  header?: React.ReactNode\n  children?: React.ReactNode\n}) {\n  return (\n    <div\n      data-slot=\"bento-card\"\n      className={cn(\n        \"group relative flex flex-col justify-between overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card p-5 transition-colors duration-200 hover:border-[color-mix(in_oklch,var(--brand)_30%,var(--border-subtle))]\",\n        className\n      )}\n    >\n      {header ? <div className=\"mb-4 overflow-hidden\">{header}</div> : null}\n      <div className=\"mt-auto\">\n        {title ? (\n          <h3 className=\"text-[0.9375rem] font-medium tracking-tight text-foreground\">\n            {title}\n          </h3>\n        ) : null}\n        {description ? (\n          <p className=\"mt-1.5 text-sm leading-relaxed text-muted-foreground\">\n            {description}\n          </p>\n        ) : null}\n        {children}\n      </div>\n      <div\n        aria-hidden\n        className=\"pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color-mix(in_oklch,var(--brand)_40%,transparent)] to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100\"\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/bento-grid.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

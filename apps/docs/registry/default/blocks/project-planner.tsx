@@ -168,6 +168,7 @@ function ChoiceButton({
       aria-pressed={pressed}
       className={cn(
         "border px-4 py-3 text-left transition-colors active:scale-[0.99]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         pressed
           ? "border-brand bg-brand/8 text-foreground"
           : "border-border-subtle bg-background text-muted-foreground hover:border-border hover:text-foreground",
@@ -268,6 +269,9 @@ export function ProjectPlanner() {
 
       {/* Wizard */}
       <div className="flex min-h-0 flex-col lg:col-span-8 lg:min-h-105">
+        <p aria-live="polite" className="sr-only">
+          Step {step + 1} of {STEPS.length}: {STEPS[step]}
+        </p>
         <div className="border-b border-border-subtle ms-shell-pad py-4">
           <div className="flex items-center justify-between gap-3">
             <p className="ds-mono-label">
@@ -369,6 +373,11 @@ export function ProjectPlanner() {
                   </ChoiceButton>
                 ))}
               </div>
+              <p aria-live="polite" className="text-xs text-muted-foreground">
+                {state.features.length === 0
+                  ? "No features selected yet — pick at least one to continue."
+                  : `${state.features.length} selected.`}
+              </p>
             </div>
           ) : null}
 
@@ -437,6 +446,7 @@ export function ProjectPlanner() {
                     aria-pressed={state.budget === b.id}
                     className={cn(
                       "flex w-full items-center justify-between px-1 py-4 text-left text-sm transition-colors active:scale-[0.99]",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                       state.budget === b.id
                         ? "font-medium text-foreground"
                         : "text-muted-foreground hover:text-foreground",
@@ -581,7 +591,7 @@ export function ProjectPlanner() {
                 type="button"
                 onClick={() => setStep((s) => Math.max(0, s - 1))}
                 disabled={step === 0}
-                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground disabled:opacity-40"
+                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <ArrowLeft className="size-3.5" aria-hidden />
                 Back
@@ -590,7 +600,7 @@ export function ProjectPlanner() {
                 type="button"
                 onClick={() => setStep((s) => s + 1)}
                 disabled={!canNext()}
-                className="atro-btn min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50"
+                className="atro-btn min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span

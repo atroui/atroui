@@ -26,13 +26,22 @@ export function OgWorkspace() {
           at your generator API to export PNGs.
         </p>
       </div>
-      <div className="relative aspect-[1200/630] overflow-hidden rounded-xl border border-border-subtle">
+      <div
+        className="relative aspect-[1200/630] overflow-hidden rounded-xl border border-border-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        tabIndex={0}
+        role="img"
+        aria-label="OG card preview. No exports yet — previews stay local until you connect a generator."
+      >
         <OgLivePreview
           title={CONTENT.title}
           subtitle={CONTENT.subtitle}
           styleKey={CONTENT.styleKey}
         />
       </div>
+      <p aria-live="polite" className="text-xs text-muted-foreground">
+        Preview ready. No exports yet — point CONTENT.endpoint at your
+        generator API to export PNGs.
+      </p>
     </div>
   )
 }

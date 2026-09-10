@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-marquee",
+  "title": "Logo Marquee",
+  "description": "Muted logo strip marquee with edge mask.",
+  "files": [
+    {
+      "path": "registry/default/blocks/logo-marquee.tsx",
+      "content": "/**\n * Edit CONTENT / LOGOS for your customers or stack. Pure CSS marquee —\n * duplicated row, pauses under reduced motion. Text marks by default.\n */\nconst CONTENT = {\n  stamp: \"Powering teams at\",\n  lede: \"Swap LOGOS for real customer marks when you have them.\",\n}\n\nconst LOGOS = [\n  \"Northline\",\n  \"Cascade\",\n  \"Harbor & Co\",\n  \"Kiln\",\n  \"Fieldwork\",\n  \"Orbit Labs\",\n  \"Meridian\",\n  \"Foxglove\",\n]\n\nexport function LogoMarquee() {\n  return (\n    <section className=\"border-t border-border-subtle bg-background text-foreground\">\n      <div className=\"border-b border-border-subtle\">\n        <div className=\"mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 sm:px-10 sm:py-12\">\n          <p className=\"text-center text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase\">\n            {CONTENT.stamp}\n          </p>\n          <p className=\"mt-2 text-center text-sm text-muted-foreground\">\n            {CONTENT.lede}\n          </p>\n\n          <div\n            className=\"relative mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]\"\n            role=\"region\"\n            aria-label=\"Customer logos\"\n          >\n            <style>{`\n              @keyframes atro-logo-marquee {\n                from { transform: translateX(0); }\n                to { transform: translateX(-50%); }\n              }\n              .atro-logo-marquee-track {\n                animation: atro-logo-marquee 30s linear infinite;\n              }\n              @media (prefers-reduced-motion: reduce) {\n                .atro-logo-marquee-track {\n                  animation: none;\n                }\n              }\n            `}</style>\n            <div className=\"atro-logo-marquee-track flex w-max items-center gap-12 pr-12\">\n              {[0, 1].map((copy) => (\n                <div\n                  key={copy}\n                  aria-hidden={copy === 1}\n                  className=\"flex items-center gap-12\"\n                >\n                  {LOGOS.map((logo) => (\n                    <span\n                      key={`${copy}-${logo}`}\n                      className=\"text-[15px] font-semibold tracking-tight whitespace-nowrap text-muted-foreground/80 transition-colors hover:text-foreground\"\n                    >\n                      {logo}\n                    </span>\n                  ))}\n                </div>\n              ))}\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/logo-marquee.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

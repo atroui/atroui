@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-band",
+  "title": "CTA Band",
+  "description": "Headline + primary/ghost CTA band with brand wash.",
+  "dependencies": [
+    "lucide-react",
+    "next"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/cta-band.tsx",
+      "content": "import Link from \"next/link\"\nimport { ArrowRight } from \"lucide-react\"\n\n/**\n * Edit CONTENT to match your offer. Headline + primary/ghost CTAs over a\n * soft brand wash. No motion deps.\n * After install this file lives in your repo.\n */\nconst CONTENT = {\n  stamp: \"Limited slots · 2 per quarter\",\n  headlineBefore: \"Have something to ship\",\n  headlineAccent: \"this month\",\n  headlineAfter: \"?\",\n  lede: \"Tell us the outcome you want. We'll reply within 48 hours with a fixed scope and a fixed price.\",\n  primaryCta: { label: \"Start a project\", href: \"/contact\" },\n  secondaryCta: { label: \"See pricing\", href: \"/pricing\" },\n  footnote: \"No retainers. No hourly theater. You own everything we build.\",\n}\n\nexport function CtaBand() {\n  return (\n    <section className=\"border-t border-border-subtle bg-background text-foreground\">\n      <div className=\"border-b border-border-subtle\">\n        <div className=\"relative mx-auto max-w-7xl overflow-hidden border-x border-border-subtle\">\n          {/* Quiet brand wash — radial, no blur-orb soup */}\n          <div aria-hidden className=\"pointer-events-none absolute inset-0\">\n            <div\n              className=\"absolute inset-0\"\n              style={{\n                background:\n                  \"radial-gradient(ellipse 70% 55% at 50% 0%, color-mix(in oklch, var(--brand) 10%, transparent), transparent 70%)\",\n              }}\n            />\n            <div\n              className=\"absolute inset-x-0 bottom-0 h-px\"\n              style={{\n                background:\n                  \"linear-gradient(to right, transparent, color-mix(in oklch, var(--brand) 55%, transparent), transparent)\",\n              }}\n            />\n          </div>\n\n          <div className=\"relative flex flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-20\">\n            <p className=\"atro-chip\">\n              <span className=\"size-1.5 rounded-full bg-brand\" aria-hidden />\n              {CONTENT.stamp}\n            </p>\n            <h2 className=\"mt-5 max-w-2xl text-3xl font-medium tracking-tight text-foreground sm:text-5xl\">\n              {CONTENT.headlineBefore}{\" \"}\n              <span className=\"italic text-brand\">{CONTENT.headlineAccent}</span>\n              {CONTENT.headlineAfter}\n            </h2>\n            <p className=\"mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base\">\n              {CONTENT.lede}\n            </p>\n            <div className=\"mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center\">\n              <Link\n                href={CONTENT.primaryCta.href}\n                className=\"atro-btn justify-center\"\n              >\n                {CONTENT.primaryCta.label}\n                <ArrowRight className=\"size-4\" aria-hidden />\n              </Link>\n              <Link\n                href={CONTENT.secondaryCta.href}\n                className=\"atro-btn-ghost justify-center\"\n              >\n                {CONTENT.secondaryCta.label}\n              </Link>\n            </div>\n            <p className=\"mt-6 text-xs text-muted-foreground\">\n              {CONTENT.footnote}\n            </p>\n          </div>\n        </div>\n      </div>\n    </section>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/cta-band.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

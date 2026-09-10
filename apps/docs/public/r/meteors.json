@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meteors",
+  "title": "Meteors",
+  "description": "Capped CSS meteor streaks for heroes. Reduced-motion safe.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/meteors.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type MeteorsProps = {\n  className?: string\n  /** Meteor count. Default 20. */\n  count?: number\n}\n\n/**\n * Meteors — thin brand-tinted streaks falling across a hero.\n * CSS-only, capped count. Reduced motion → none.\n */\nexport function Meteors({ className, count = 20 }: MeteorsProps) {\n  const reduce = useReducedMotion()\n  const drops = React.useMemo(\n    () =>\n      Array.from({ length: Math.min(Math.max(count, 0), 40) }, (_, i) => ({\n        id: i,\n        left: `${(i * 53 + 11) % 100}%`,\n        delay: `${(i * 0.7) % 6}s`,\n        duration: `${5 + ((i * 1.3) % 5)}s`,\n        width: i % 3 === 0 ? 2 : 1,\n      })),\n    [count]\n  )\n\n  if (reduce) return null\n\n  return (\n    <div\n      aria-hidden\n      className={cn(\"pointer-events-none absolute inset-0 overflow-hidden\", className)}\n    >\n      <style>{`@keyframes atro-meteor-fall { 0% { transform: translateY(-10%) translateX(0) rotate(18deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(420px) translateX(-140px) rotate(18deg); opacity: 0; } }`}</style>\n      {drops.map((d) => (\n        <span\n          key={d.id}\n          className=\"absolute top-0 h-24 rounded-full\"\n          style={{\n            left: d.left,\n            width: d.width,\n            animation: `atro-meteor-fall ${d.duration} linear infinite`,\n            animationDelay: d.delay,\n            background: `linear-gradient(to bottom, transparent, color-mix(in oklch, var(--brand) 60%, transparent))`,\n          }}\n        />\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/meteors.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

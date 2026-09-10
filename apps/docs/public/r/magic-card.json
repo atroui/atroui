@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magic-card",
+  "title": "Magic Card",
+  "description": "Cursor spotlight + brand border glow on soft-rect panels.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/magic-card.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { animate, motion, useMotionValue, useReducedMotion } from \"motion/react\"\n\nimport { easeOutSoft, hoverTween } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\nconst settle = {\n  type: \"tween\" as const,\n  duration: hoverTween.duration,\n  ease: easeOutSoft,\n}\n\nexport type MagicCardProps = {\n  children: React.ReactNode\n  className?: string\n  /** Spotlight diameter in px. Default 280. */\n  size?: number\n  /** Show border glow on hover. Default true. */\n  glow?: boolean\n}\n\n/**\n * Magic card — cursor spotlight + brand border glow.\n * Soft-rect panel; tokens only (brand/border). Reduced motion → plain card.\n */\nexport function MagicCard({\n  children,\n  className,\n  size = 280,\n  glow = true,\n}: MagicCardProps) {\n  const reduce = useReducedMotion()\n  const x = useMotionValue(0)\n  const y = useMotionValue(0)\n  const wash = useMotionValue(0)\n\n  if (reduce) {\n    return (\n      <div\n        className={cn(\n          \"relative overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card\",\n          className\n        )}\n      >\n        {children}\n      </div>\n    )\n  }\n\n  return (\n    <div\n      className={cn(\n        \"relative isolate overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card transition-colors duration-200\",\n        glow && \"hover:border-[color-mix(in_oklch,var(--brand)_35%,var(--border-subtle))]\",\n        className\n      )}\n      onPointerMove={(e) => {\n        const rect = e.currentTarget.getBoundingClientRect()\n        x.set(e.clientX - rect.left)\n        y.set(e.clientY - rect.top)\n      }}\n      onPointerEnter={() => animate(wash, 1, settle)}\n      onPointerLeave={() => animate(wash, 0, settle)}\n    >\n      {children}\n      <motion.div\n        aria-hidden\n        className=\"pointer-events-none absolute z-10 rounded-full\"\n        style={{\n          width: size,\n          height: size,\n          left: x,\n          top: y,\n          x: \"-50%\",\n          y: \"-50%\",\n          opacity: wash,\n          background: `radial-gradient(circle, color-mix(in oklch, var(--brand) 14%, transparent), transparent 70%)`,\n        }}\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/magic-card.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

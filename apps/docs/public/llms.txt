@@ -59,3 +59,18 @@
 - [Updates](https://www.atroui.com/updates): Major AtroUI news by email.
 - Home: https://www.atroui.com
 - npm (package `atroui`): https://www.npmjs.com/package/atroui
+
+## Wow primitives
+
+- Install pattern: `npx shadcn add @atroui/<name>` (e.g. `npx shadcn add @atroui/marquee`).
+- [@atroui/marquee](https://www.atroui.com/docs/components): `<Marquee><LogoRow /></Marquee>` — infinite logo/testimonial strip.
+- [@atroui/border-beam](https://www.atroui.com/docs/components): `<BorderBeam />` inside a relative card — brand light travelling the edge.
+- [@atroui/magic-card](https://www.atroui.com/docs/components): `<MagicCard>` — cursor spotlight + brand border glow on panels.
+- [@atroui/animated-beam](https://www.atroui.com/docs/components): `<AnimatedBeam fromRef toRef />` — SVG beam between two nodes.
+- [@atroui/bento-grid](https://www.atroui.com/docs/components): `<BentoGrid><BentoCard title description /></BentoGrid>` — soft-rect feature grid.
+- [@atroui/meteors](https://www.atroui.com/docs/components): `<Meteors />` at the top of a hero — capped CSS meteor streaks.
+- [@atroui/dock](https://www.atroui.com/docs/components): `<Dock><DockIcon /></Dock>` — macOS magnification app dock.
+- [@atroui/orbiting-circles](https://www.atroui.com/docs/components): `<OrbitingCircles><Icon /></OrbitingCircles>` — icons orbiting a center node.
+- [@atroui/number-ticker](https://www.atroui.com/docs/components): `<NumberTicker value={4800} prefix="$" />` — count-up on inView.
+- [@atroui/aurora-text](https://www.atroui.com/docs/components): `<AuroraText>Ship in days</AuroraText>` — slow brand gradient sweep on display words.
+- Starter: `npx shadcn add @atroui/saas-starter` — `<SaasStarter />` announcement + hero + logos + features + stats + pricing teaser + CTA + footer note in one file.

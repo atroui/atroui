@@ -221,7 +221,20 @@ import {
 import { MotionConfig } from "motion/react"
 import { atroMotionDefaults } from "@/lib/motion"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
+import { AuthSplit } from "../registry/default/blocks/auth-split"
+import { CtaBand } from "../registry/default/blocks/cta-band"
+import { FaqAccordion } from "../registry/default/blocks/faq-accordion"
+import { FeatureBento } from "../registry/default/blocks/feature-bento"
+import { HeroLamp } from "../registry/default/blocks/hero-lamp"
+import { HeroParallax } from "../registry/default/blocks/hero-parallax"
 import { HomeHero } from "../registry/default/blocks/home-hero"
+import { IntegrationBeam } from "../registry/default/blocks/integration-beam"
+import { LogoMarquee } from "../registry/default/blocks/logo-marquee"
+import { PricingTiers } from "../registry/default/blocks/pricing-tiers"
+import { SaasStarter } from "../registry/default/blocks/saas-starter"
+import { ShowcaseCarousel } from "../registry/default/blocks/showcase-carousel"
+import { StatsBand } from "../registry/default/blocks/stats-band"
+import { TestimonialsStack } from "../registry/default/blocks/testimonials-stack"
 import { OgExamples } from "../registry/default/blocks/og-examples"
 import { OgLivePreview } from "../registry/default/blocks/og-live-preview"
 import { OgWorkspace } from "../registry/default/blocks/og-workspace"
@@ -229,12 +242,77 @@ import { PricingOverview } from "../registry/default/blocks/pricing-overview"
 import { ProjectPlanner } from "../registry/default/blocks/project-planner"
 import { SiteFooter } from "../registry/default/blocks/site-footer"
 import { SiteHeader } from "../registry/default/blocks/site-header"
+import {
+  AnimatedBeam,
+  AnimatedBeamFan,
+} from "../registry/default/ui/animated-beam"
+import { AuroraText } from "../registry/default/ui/aurora-text"
+import { BentoCard, BentoGrid } from "../registry/default/ui/bento-grid"
+import { BorderBeam } from "../registry/default/ui/border-beam"
+import { Dock, DockItem } from "../registry/default/ui/dock"
+import { MagicCard } from "../registry/default/ui/magic-card"
+import { Marquee } from "../registry/default/ui/marquee"
+import { Meteors } from "../registry/default/ui/meteors"
+import { NumberTicker } from "../registry/default/ui/number-ticker"
+import { OrbitingCircles } from "../registry/default/ui/orbiting-circles"
 
 /** Live canvas demos - one per documented component where a useful preview exists. */
 
 export function DemoHomeHero() {
   // Same `@atroui/home-hero` source users install — not the npm `HomeHero` alias.
   return <HomeHero />
+}
+
+export function DemoHeroParallax() {
+  return <HeroParallax />
+}
+
+export function DemoHeroLamp() {
+  return <HeroLamp />
+}
+
+export function DemoLogoMarquee() {
+  return <LogoMarquee />
+}
+
+export function DemoTestimonialsStack() {
+  return <TestimonialsStack />
+}
+
+export function DemoFeatureBento() {
+  return <FeatureBento />
+}
+
+export function DemoCtaBand() {
+  return <CtaBand />
+}
+
+export function DemoPricingTiers() {
+  return <PricingTiers />
+}
+
+export function DemoFaqAccordion() {
+  return <FaqAccordion />
+}
+
+export function DemoStatsBand() {
+  return <StatsBand />
+}
+
+export function DemoIntegrationBeam() {
+  return <IntegrationBeam />
+}
+
+export function DemoShowcaseCarousel() {
+  return <ShowcaseCarousel />
+}
+
+export function DemoAuthSplit() {
+  return <AuthSplit />
+}
+
+export function DemoSaasStarter() {
+  return <SaasStarter />
 }
 
 export function DemoHomeCrafts() {
@@ -2267,6 +2345,208 @@ export function DemoThemeProviderNote() {
           </span>
         </div>
       </div>
+    </div>
+  )
+}
+
+export function DemoMarquee() {
+  return (
+    <div className="w-full max-w-md overflow-hidden">
+      <Marquee duration={30} className="text-sm text-muted-foreground">
+        {["Acme", "Globex", "Initech", "Umbrella", "Hooli"].map((name) => (
+          <span key={name} className="mx-6 font-medium whitespace-nowrap">
+            {name}
+          </span>
+        ))}
+      </Marquee>
+      <p className="mt-3 text-center text-sm text-muted-foreground">
+        Hover pauses the loop. Static row under reduced motion.
+      </p>
+    </div>
+  )
+}
+
+export function DemoBorderBeam() {
+  return (
+    <div className="relative w-full max-w-xs overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card px-6 py-8 text-center">
+      <p className="text-sm font-medium text-foreground">Nightly build passed</p>
+      <p className="mt-1 text-sm text-muted-foreground">Light laps the edge.</p>
+      <BorderBeam size={80} duration={6} />
+    </div>
+  )
+}
+
+export function DemoMagicCard() {
+  return (
+    <MagicCard className="w-full max-w-xs p-6 text-left">
+      <p className="text-sm font-medium text-foreground">Usage this week</p>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Move over the card — brand wash follows, then settles.
+      </p>
+    </MagicCard>
+  )
+}
+
+type BeamRef = React.RefObject<HTMLElement | null>
+
+export function DemoAnimatedBeam() {
+  const containerRef = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fromRef = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const toRef = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanBox = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanHub = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanA = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanB = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanC = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  return (
+    <div className="flex w-full max-w-md flex-col gap-6">
+      <div
+        ref={containerRef as unknown as React.Ref<HTMLDivElement>}
+        className="relative flex w-full items-center justify-between gap-16 px-8 py-10"
+      >
+        <div
+          ref={fromRef as unknown as React.Ref<HTMLDivElement>}
+          className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-2 text-sm font-medium text-foreground"
+        >
+          Source
+        </div>
+        <div
+          ref={toRef as unknown as React.Ref<HTMLDivElement>}
+          className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-2 text-sm font-medium text-foreground"
+        >
+          Target
+        </div>
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={fromRef}
+          toRef={toRef}
+          curvature={-24}
+        />
+      </div>
+      <div
+        ref={fanBox as unknown as React.Ref<HTMLDivElement>}
+        className="relative flex w-full items-center justify-between gap-6 px-8 py-10"
+      >
+        <div
+          ref={fanHub as unknown as React.Ref<HTMLDivElement>}
+          className="rounded-[var(--radius)] border border-brand/40 bg-card px-4 py-2 text-sm font-medium text-foreground"
+        >
+          Hub
+        </div>
+        <div className="flex flex-col gap-3">
+          {[
+            { ref: fanA, label: "OG" },
+            { ref: fanB, label: "Scope" },
+            { ref: fanC, label: "Planner" },
+          ].map((n) => (
+            <div
+              key={n.label}
+              ref={n.ref as unknown as React.Ref<HTMLDivElement>}
+              className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-2 text-sm text-muted-foreground"
+            >
+              {n.label}
+            </div>
+          ))}
+        </div>
+        <AnimatedBeamFan
+          containerRef={fanBox}
+          fromRef={fanHub}
+          toRefs={[fanA, fanB, fanC]}
+          curvature={-16}
+        />
+      </div>
+      <p className="text-center text-sm text-muted-foreground">
+        One-to-one above, one hub fanning to three below.
+      </p>
+    </div>
+  )
+}
+
+export function DemoBentoGrid() {
+  return (
+    <BentoGrid className="w-full max-w-xl">
+      <BentoCard title="Scope" description="One focused surface at a time." />
+      <BentoCard title="Build" description="Own the source after install." />
+      <BentoCard title="Ship" description="Ease-out settle, never bounce." />
+    </BentoGrid>
+  )
+}
+
+export function DemoMeteors() {
+  return (
+    <div className="relative w-full max-w-md overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-zinc-950 px-6 py-10 text-center">
+      <Meteors count={12} />
+      <p className="relative text-sm font-medium text-white">Night deploys</p>
+      <p className="relative mt-1 text-sm text-zinc-400">
+        Streaks rest under reduced motion.
+      </p>
+    </div>
+  )
+}
+
+export function DemoDock() {
+  return (
+    <div className="flex w-full flex-col items-center gap-3 py-4">
+      <Dock>
+        <DockItem href="/tools" label="Tools">
+          <Plus className="size-4" />
+        </DockItem>
+        <DockItem href="/work" label="Work">
+          <Settings2 className="size-4" />
+        </DockItem>
+        <DockItem href="/contact" label="Contact">
+          <Trash2 className="size-4" />
+        </DockItem>
+      </Dock>
+      <p className="text-center text-sm text-muted-foreground">
+        Hover — icons swell near the pointer. Tab to focus, Enter to follow.
+      </p>
+    </div>
+  )
+}
+
+export function DemoOrbitingCircles() {
+  return (
+    <div className="flex w-full flex-col items-center gap-2 py-4">
+      <div className="relative flex h-56 w-full max-w-xs items-center justify-center">
+        <span className="flex size-10 items-center justify-center rounded-full border border-border-subtle bg-card text-sm font-medium text-foreground">
+          OS
+        </span>
+        <OrbitingCircles radius={80} duration={18}>
+          <span className="text-xs font-medium">A</span>
+          <span className="text-xs font-medium">B</span>
+          <span className="text-xs font-medium">C</span>
+        </OrbitingCircles>
+      </div>
+      <p className="text-center text-sm text-muted-foreground">
+        Static ring under reduced motion.
+      </p>
+    </div>
+  )
+}
+
+export function DemoNumberTicker() {
+  return (
+    <div className="flex w-full flex-col items-center gap-2 py-4">
+      <p className="text-4xl font-medium tracking-tight text-foreground">
+        <NumberTicker value={1280} prefix="$" />
+      </p>
+      <p className="text-center text-sm text-muted-foreground">
+        Counts up once in view.
+      </p>
+    </div>
+  )
+}
+
+export function DemoAuroraText() {
+  return (
+    <div className="py-4 text-center">
+      <p className="text-2xl font-medium tracking-tight text-foreground">
+        Ship <AuroraText>calm interfaces</AuroraText>
+      </p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Slow sweep; static brand text when motion rests.
+      </p>
     </div>
   )
 }

@@ -2733,6 +2733,408 @@
           "target": "app/api/scope/route.ts"
         }
       ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "Infinite logo/testimonial strip — reverse/pause/vertical/repeat.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/marquee.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "border-beam",
+      "type": "registry:ui",
+      "title": "Border Beam",
+      "description": "Brand light travelling the container edge. Reduced-motion safe.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/border-beam.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/border-beam.tsx"
+        }
+      ]
+    },
+    {
+      "name": "magic-card",
+      "type": "registry:ui",
+      "title": "Magic Card",
+      "description": "Cursor spotlight + brand border glow on soft-rect panels.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/motion",
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/magic-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/magic-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-beam",
+      "type": "registry:ui",
+      "title": "Animated Beam",
+      "description": "SVG integration beam between two nodes. Brand gradient.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/animated-beam.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/animated-beam.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:ui",
+      "title": "Bento Grid",
+      "description": "Soft-rect bento grid + card with top hairline glow.",
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/bento-grid.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/bento-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "meteors",
+      "type": "registry:ui",
+      "title": "Meteors",
+      "description": "Capped CSS meteor streaks for heroes. Reduced-motion safe.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/meteors.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/meteors.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dock",
+      "type": "registry:ui",
+      "title": "Dock",
+      "description": "macOS magnification dock. Token chrome, reduced-motion static.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/dock.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dock.tsx"
+        }
+      ]
+    },
+    {
+      "name": "orbiting-circles",
+      "type": "registry:ui",
+      "title": "Orbiting Circles",
+      "description": "Icons orbiting a center node for integration art.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/orbiting-circles.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/orbiting-circles.tsx"
+        }
+      ]
+    },
+    {
+      "name": "number-ticker",
+      "type": "registry:ui",
+      "title": "Number Ticker",
+      "description": "Count-up on inView with tabular nums.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/number-ticker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/number-ticker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "aurora-text",
+      "type": "registry:ui",
+      "title": "Aurora Text",
+      "description": "Slow brand gradient sweep for display words.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@atroui/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/aurora-text.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/aurora-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hero-parallax",
+      "type": "registry:block",
+      "title": "Hero Parallax",
+      "description": "Parallax product-card hero rows on scroll. Reduced-motion static.",
+      "files": [
+        {
+          "path": "registry/default/blocks/hero-parallax.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/hero-parallax.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "next"
+      ]
+    },
+    {
+      "name": "hero-lamp",
+      "type": "registry:block",
+      "title": "Hero Lamp",
+      "description": "Conic lamp glow + staggered text reveal hero.",
+      "files": [
+        {
+          "path": "registry/default/blocks/hero-lamp.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/hero-lamp.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "next"
+      ]
+    },
+    {
+      "name": "logo-marquee",
+      "type": "registry:block",
+      "title": "Logo Marquee",
+      "description": "Muted logo strip marquee with edge mask.",
+      "files": [
+        {
+          "path": "registry/default/blocks/logo-marquee.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/logo-marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-stack",
+      "type": "registry:block",
+      "title": "Testimonials Stack",
+      "description": "Layered testimonial stack with prev/next, aria-live.",
+      "files": [
+        {
+          "path": "registry/default/blocks/testimonials-stack.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/testimonials-stack.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ]
+    },
+    {
+      "name": "feature-bento",
+      "type": "registry:block",
+      "title": "Feature Bento",
+      "description": "Four-up bento feature grid, soft-rect panels.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/feature-bento.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/feature-bento.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cta-band",
+      "type": "registry:block",
+      "title": "CTA Band",
+      "description": "Headline + primary/ghost CTA band with brand wash.",
+      "files": [
+        {
+          "path": "registry/default/blocks/cta-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/cta-band.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ]
+    },
+    {
+      "name": "pricing-tiers",
+      "type": "registry:block",
+      "title": "Pricing Tiers",
+      "description": "Monthly/yearly toggle pricing tiers with highlight.",
+      "files": [
+        {
+          "path": "registry/default/blocks/pricing-tiers.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/pricing-tiers.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ]
+    },
+    {
+      "name": "faq-accordion",
+      "type": "registry:block",
+      "title": "FAQ Accordion",
+      "description": "Accessible accordion FAQ, no motion deps.",
+      "files": [
+        {
+          "path": "registry/default/blocks/faq-accordion.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/faq-accordion.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ]
+    },
+    {
+      "name": "stats-band",
+      "type": "registry:block",
+      "title": "Stats Band",
+      "description": "Tabular-nums stat band.",
+      "files": [
+        {
+          "path": "registry/default/blocks/stats-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/stats-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "integration-beam",
+      "type": "registry:block",
+      "title": "Integration Beam",
+      "description": "Center node + satellite integration art with beams.",
+      "files": [
+        {
+          "path": "registry/default/blocks/integration-beam.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/integration-beam.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ]
+    },
+    {
+      "name": "showcase-carousel",
+      "type": "registry:block",
+      "title": "Showcase Carousel",
+      "description": "Snap-scroll showcase cards with controls.",
+      "files": [
+        {
+          "path": "registry/default/blocks/showcase-carousel.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/showcase-carousel.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ]
+    },
+    {
+      "name": "auth-split",
+      "type": "registry:block",
+      "title": "Auth Split",
+      "description": "Split sign-in panel + dashboard shell preview.",
+      "files": [
+        {
+          "path": "registry/default/blocks/auth-split.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/auth-split.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ]
+    },
+    {
+      "name": "saas-starter",
+      "type": "registry:block",
+      "title": "SaaS Starter",
+      "description": "Composite starter: hero, logos, features, stats, pricing, CTA.",
+      "files": [
+        {
+          "path": "registry/default/blocks/saas-starter.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/saas-starter.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ]
     }
   ]
 }

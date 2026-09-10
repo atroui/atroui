@@ -72,9 +72,21 @@ export function ScopeChat() {
         <p className="ms-stamp">Scope chat</p>
         <p className="mt-1 text-xs text-muted-foreground">{CONTENT.emptyHint}</p>
       </div>
-      <div className="flex-1 space-y-3 overflow-y-auto p-4">
+      <div
+        role="log"
+        aria-live="polite"
+        aria-label="Scope chat messages"
+        className="flex-1 space-y-3 overflow-y-auto p-4"
+      >
         {messages.length === 0 ? (
-          <p className="text-sm text-muted-foreground">{CONTENT.placeholder}</p>
+          <div className="space-y-1">
+            <p className="text-sm font-medium text-foreground">
+              No messages yet
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {CONTENT.placeholder} {CONTENT.emptyHint}
+            </p>
+          </div>
         ) : (
           messages.map((m, i) => (
             <div
@@ -103,7 +115,11 @@ export function ScopeChat() {
             </div>
           ))
         )}
-        {error ? <p className="text-sm text-destructive">{error}</p> : null}
+        {error ? (
+          <p role="alert" className="text-sm text-destructive">
+            {error}
+          </p>
+        ) : null}
       </div>
       <form
         onSubmit={onSubmit}
@@ -119,7 +135,7 @@ export function ScopeChat() {
           <button
             type="submit"
             disabled={loading}
-            className="atro-btn size-10 shrink-0 !px-0 disabled:opacity-60"
+            className="atro-btn size-10 shrink-0 !px-0 disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             aria-label="Send"
           >
             {loading ? (
@@ -139,7 +155,7 @@ export function ScopeChat() {
             <p className="text-center text-[10px] text-muted-foreground">
               <Link
                 href={href}
-                className="text-brand underline-offset-2 hover:underline"
+                className="text-brand underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
                 Draft OG card
               </Link>{" "}
