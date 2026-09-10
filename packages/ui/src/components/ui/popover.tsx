@@ -7,9 +7,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { popupMotion } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 
-/** Quiet Mira elevation — soft lift; border carries the edge. */
-const overlayElevation =
-  "shadow-[0_8px_24px_-18px_color-mix(in_oklch,var(--foreground)_16%,transparent)]"
+/** Layered pop elevation — ring-as-border + cast stack + top light. */
+const overlayElevation = "ds-elev-pop"
 
 type PopoverOpenContextValue = {
   open: boolean
@@ -93,7 +92,7 @@ function PopoverContent({
             <PopoverPrimitive.Popup
               data-slot="popover-content"
               className={cn(
-                "z-50 w-72 origin-(--transform-origin) rounded-[var(--radius)] border border-border-subtle bg-popover p-3.5 text-sm text-popover-foreground outline-none",
+                "z-50 w-72 origin-(--transform-origin) rounded-[var(--radius)] bg-popover p-3.5 text-sm text-popover-foreground outline-none",
                 overlayElevation,
                 className
               )}

@@ -8,7 +8,7 @@ export function MotionFadeInDoc() {
       registryName="fade-in"
       href="/docs/components/motion-fade-in"
       title="Fade In"
-      description="The scroll reveal — opacity + rise. One primitive for cards and sections."
+      description="The scroll reveal — opacity + rise on the section beat. Optional blur settle."
       preview={<DemoFadeIn />}
       code={`import { FadeIn } from "@/components/ui/fade-in"
 
@@ -84,8 +84,15 @@ export function MotionFadeInDoc() {
         {
           name: "duration",
           type: "number",
-          default: "0.28",
-          description: "Tween duration (easeOutSoft).",
+          default: "0.45",
+          description: "Tween duration (easeOutExpo section beat).",
+        },
+        {
+          name: "blur",
+          type: "number | false",
+          default: "false",
+          description:
+            "Opt-in enter blur in px (e.g. SCROLL_REVEAL_BLUR). Off by default.",
         },
         {
           name: "once",

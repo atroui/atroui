@@ -31,6 +31,7 @@ export {
   hoverLift,
   hoverTween,
   inViewTween,
+  SCROLL_REVEAL_BLUR,
   layoutTween,
   menuItemVariants,
   menuPopupMotion,

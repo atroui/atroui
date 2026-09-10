@@ -13,8 +13,8 @@ import {
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
-/** Panel lift — mode-aware via `--dialog-shadow` (globals). */
-const dialogElevation = "shadow-[var(--dialog-shadow)]"
+/** Layered overlay elevation — heaviest stack. */
+const dialogElevation = "ds-elev-overlay"
 
 type DrawerOpenContextValue = {
   open: boolean

@@ -11,8 +11,8 @@ import {
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
-/** Panel lift — mode-aware via `--dialog-shadow` (globals). */
-const dialogElevation = "shadow-[var(--dialog-shadow)]"
+/** Layered overlay elevation — heaviest stack. */
+const dialogElevation = "ds-elev-overlay"
 
 type AlertDialogOpenContextValue = {
   open: boolean
@@ -109,7 +109,7 @@ function AlertDialogContent({
             data-slot="alert-dialog-content"
             data-size={size}
             className={cn(
-              "group/alert-dialog-content fixed top-1/2 left-1/2 z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-popover p-5 text-sm text-popover-foreground outline-none",
+              "group/alert-dialog-content fixed top-1/2 left-1/2 z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] bg-popover p-5 text-sm text-popover-foreground outline-none",
               "data-[size=default]:sm:max-w-md data-[size=sm]:sm:max-w-sm",
               dialogElevation,
               className

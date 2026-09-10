@@ -9,26 +9,29 @@ export type FadeInProps = HTMLMotionProps<"div"> & {
   y?: number
   delay?: number
   duration?: number
+  /** Blur in px paired with the enter — opt-in (`blur={SCROLL_REVEAL_BLUR}`). */
+  blur?: number | false
   once?: boolean
   /** Intersection amount — 0–1 or Motion keywords. */
   amount?: number | "some" | "all"
   /** Viewport margin (e.g. `"-40px"` triggers earlier — landing feel). */
   margin?: string
   /**
-   * Docs: animate on mount instead of scroll-reveal so the
+   * Docs: animate on mount instead of waiting for scroll.
    * content is never stuck at opacity 0 inside a preview canvas.
    */
   preview?: boolean
 }
 
 /**
- * The scroll reveal — opacity + small y, shared tween tokens.
- * One primitive for cards, sections, and landing (pass `margin` / `amount` for section feel).
+ * The scroll reveal — opacity + y on the section beat.
+ * Blur settle is opt-in (`blur={4}` or `SCROLL_REVEAL_BLUR`) — careful delight only.
  */
 export function FadeIn({
   y = 14,
   delay = 0,
   duration = inViewTween.duration,
+  blur = false,
   once = true,
   amount = 0.15,
   margin = "0px",
@@ -51,12 +54,19 @@ export function FadeIn({
     duration,
     delay,
   }
+  const useBlur = typeof blur === "number" && blur > 0
+  const hidden = useBlur
+    ? { opacity: 0, y, filter: `blur(${blur}px)` }
+    : { opacity: 0, y }
+  const shown = useBlur
+    ? { opacity: 1, y: 0, filter: "blur(0px)" }
+    : { opacity: 1, y: 0 }
 
   if (preview) {
     return (
       <motion.div
-        initial={{ opacity: 0, y }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={hidden}
+        animate={shown}
         transition={transition}
         {...props}
       >
@@ -67,8 +77,8 @@ export function FadeIn({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={hidden}
+      whileInView={shown}
       viewport={{ once, margin, amount }}
       transition={transition}
       {...props}

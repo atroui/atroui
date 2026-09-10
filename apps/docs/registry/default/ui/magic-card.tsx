@@ -40,7 +40,7 @@ export function MagicCard({
     return (
       <div
         className={cn(
-          "relative overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card",
+          "ds-elev-card relative overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] bg-card",
           className
         )}
       >
@@ -52,8 +52,8 @@ export function MagicCard({
   return (
     <div
       className={cn(
-        "relative isolate overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card transition-colors duration-200",
-        glow && "hover:border-[color-mix(in_oklch,var(--brand)_35%,var(--border-subtle))]",
+        "ds-elev-card relative isolate overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] bg-card",
+        glow && "ds-hover-lift",
         className
       )}
       onPointerMove={(e) => {

@@ -234,12 +234,22 @@ export const timelineRevealVariants = {
   hidden: { y: 12, opacity: 0 },
 } as const
 
-/** In-view / section reveal enter (FadeIn / LineReveal). */
+/**
+ * In-view / section reveal enter (FadeIn).
+ * Longer expo settle — premium scroll reveals run 400–550ms,
+ * not the 280ms chrome beat. Accordion/collapsible keep `revealTween`.
+ */
 export const inViewTween = {
   type: "tween" as const,
-  duration: 0.28,
-  ease: easeOutSoft,
+  duration: 0.45,
+  ease: easeOutExpo,
 } as const
+
+/**
+ * Opt-in scroll-reveal blur in px — pass to FadeIn `blur`.
+ * Off by default (Family Values: blur-in alone reads as AI-slop atmosphere).
+ */
+export const SCROLL_REVEAL_BLUR = 4
 
 /** Tooltip appear / dismiss */
 export const tooltipTween = {

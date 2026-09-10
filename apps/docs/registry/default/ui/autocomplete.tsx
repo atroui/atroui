@@ -18,9 +18,8 @@ import {
 } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
-/** Quiet Mira elevation — one soft lift on floating layers. */
-const overlayElevation =
-  "shadow-[0_18px_40px_-24px_color-mix(in_oklch,var(--foreground)_32%,transparent)]"
+/** Layered pop elevation — ring-as-border + cast stack + top light. */
+const overlayElevation = "ds-elev-pop"
 
 type AutocompleteOpenContextValue = {
   open: boolean
@@ -237,7 +236,7 @@ function AutocompleteContent({
                 <AutocompletePrimitive.Popup
                   data-slot="autocomplete-content"
                   className={cn(
-                    "z-50 max-h-(--available-height) min-w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-[var(--radius)] border border-border-subtle bg-popover p-1 text-popover-foreground outline-none",
+                    "z-50 max-h-(--available-height) min-w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-[var(--radius)] bg-popover p-1 text-popover-foreground outline-none",
                     "data-closed:overflow-hidden",
                     overlayElevation,
                     className

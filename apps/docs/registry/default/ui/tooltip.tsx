@@ -7,9 +7,9 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { tooltipMotion } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
-/** Quiet Mira elevation — lighter than menus; still one soft lift. */
+/** Smallest stack — ring + short cast + top light. */
 const tooltipElevation =
-  "shadow-[0_6px_16px_-12px_color-mix(in_oklch,var(--foreground)_14%,transparent)]"
+  "ds-elev-card"
 
 type TooltipOpenContextValue = {
   open: boolean
@@ -107,7 +107,7 @@ function TooltipContent({
             <TooltipPrimitive.Popup
               data-slot="tooltip-content"
               className={cn(
-                "z-50 w-fit max-w-xs origin-(--transform-origin) rounded-[calc(var(--radius)-2px)] border border-border-subtle bg-popover px-2 py-0.5 font-mono text-[11px] leading-snug tracking-tight text-popover-foreground",
+                "z-50 w-fit max-w-xs origin-(--transform-origin) rounded-[calc(var(--radius)-2px)] bg-popover px-2 py-0.5 font-mono text-[11px] leading-snug tracking-tight text-popover-foreground",
                 tooltipElevation,
                 className
               )}

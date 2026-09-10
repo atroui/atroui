@@ -33,9 +33,9 @@ export function LogoCloud() {
             {NAMES.map((name) => (
               <li
                 key={name}
-                className="flex min-h-16 items-center justify-center bg-background px-3 py-4"
+                className="group flex min-h-16 items-center justify-center bg-background px-3 py-4 transition-colors duration-200 hover:bg-muted/50"
               >
-                <span className="text-sm font-medium tracking-tight text-muted-foreground">
+                <span className="text-sm font-medium tracking-tight text-muted-foreground transition-colors duration-200 group-hover:text-foreground">
                   {name}
                 </span>
               </li>

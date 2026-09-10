@@ -434,6 +434,8 @@ textarea {
   caret-color: var(--brand);
 }
 
+/* Film grain lives in atroui/globals.css (imported first) — do not redeclare. */
+
 /* ==========================================================================
    Docs book — Zed/mdBook reading room
    Scoped under .docs-book (see app/docs/layout.tsx)

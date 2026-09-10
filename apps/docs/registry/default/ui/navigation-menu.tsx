@@ -8,9 +8,9 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { enterTween, pageFade, popupMotion, easeOutSoft } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
-/** Quiet Mira elevation — soft lift; border carries the edge. */
+/** Layered pop elevation — ring-as-border + cast stack + top light. */
 const overlayElevation =
-  "shadow-[0_8px_24px_-18px_color-mix(in_oklch,var(--foreground)_16%,transparent)]"
+  "ds-elev-pop"
 
 type NavigationMenuOpenContextValue = {
   open: boolean
@@ -219,7 +219,7 @@ function NavigationMenuViewport({
             <NavigationMenuPrimitive.Popup
               data-slot="navigation-menu-viewport"
               className={cn(
-                "relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-popover text-popover-foreground outline-none transition-[width,height] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
+                "relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) overflow-hidden rounded-[var(--radius)] bg-popover text-popover-foreground outline-none transition-[width,height] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
                 overlayElevation,
                 className
               )}
@@ -267,7 +267,7 @@ function NavigationMenuPopup({
     <NavigationMenuPrimitive.Popup
       data-slot="navigation-menu-popup"
       className={cn(
-        "relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-popover text-popover-foreground outline-none",
+        "relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) overflow-hidden rounded-[var(--radius)] bg-popover text-popover-foreground outline-none",
         overlayElevation,
         className
       )}

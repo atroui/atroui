@@ -17,9 +17,8 @@ import {
 } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 
-/** Quiet Mira elevation — soft lift; border carries the edge. */
-const overlayElevation =
-  "shadow-[0_8px_24px_-18px_color-mix(in_oklch,var(--foreground)_16%,transparent)]"
+/** Layered pop elevation — ring-as-border + cast stack + top light. */
+const overlayElevation = "ds-elev-pop"
 
 type ContextMenuOpenContextValue = {
   open: boolean
@@ -144,7 +143,7 @@ function ContextMenuContent({
                 <ContextMenuPrimitive.Popup
                   data-slot="context-menu-content"
                   className={cn(
-                    "z-50 max-h-(--available-height) min-w-40 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-[var(--radius)] border border-border-subtle bg-popover p-0.5 text-popover-foreground outline-none",
+                    "z-50 max-h-(--available-height) min-w-40 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-[var(--radius)] bg-popover p-0.5 text-popover-foreground outline-none",
                     "data-closed:overflow-hidden",
                     overlayElevation,
                     className

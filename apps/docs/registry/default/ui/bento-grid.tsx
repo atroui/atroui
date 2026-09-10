@@ -39,7 +39,7 @@ export function BentoCard({
     <div
       data-slot="bento-card"
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card p-5 transition-colors duration-200 hover:border-[color-mix(in_oklch,var(--brand)_30%,var(--border-subtle))]",
+        "ds-elev-card ds-hover-lift group relative flex flex-col justify-between overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] bg-card p-5",
         className
       )}
     >

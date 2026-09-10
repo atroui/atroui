@@ -12,8 +12,8 @@ import {
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
-/** Panel lift — mode-aware via `--dialog-shadow` (globals). */
-const dialogElevation = "shadow-[var(--dialog-shadow)]"
+/** Layered overlay elevation — heaviest stack; ring + casts + top light. */
+const dialogElevation = "ds-elev-overlay"
 
 type DialogOpenContextValue = {
   open: boolean
@@ -111,7 +111,7 @@ function DialogContent({
           <DialogPrimitive.Popup
             data-slot="dialog-content"
             className={cn(
-              "fixed top-1/2 left-1/2 z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-popover p-5 text-sm text-popover-foreground outline-none sm:max-w-md",
+              "fixed top-1/2 left-1/2 z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] bg-popover p-5 text-sm text-popover-foreground outline-none sm:max-w-md",
               dialogElevation,
               className
             )}

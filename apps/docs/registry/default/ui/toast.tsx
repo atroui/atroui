@@ -9,9 +9,9 @@ import { toastMotion, toastTween, exitTween, enterTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
-/** Quiet Mira elevation — soft lift; border carries the edge. */
+/** Layered pop elevation — ring-as-border + cast stack + top light. */
 const toastElevation =
-  "shadow-[0_8px_24px_-18px_color-mix(in_oklch,var(--foreground)_16%,transparent)]"
+  "ds-elev-pop"
 
 function ToastProvider({ ...props }: ToastPrimitive.Provider.Props) {
   return <ToastPrimitive.Provider data-slot="toast-provider" {...props} />
@@ -84,7 +84,7 @@ function Toast({
     >
       <motion.div
         className={cn(
-          "rounded-[var(--radius)] border border-border-subtle bg-popover text-popover-foreground outline-none",
+          "rounded-[var(--radius)] bg-popover text-popover-foreground outline-none",
           toastElevation
         )}
         {...toastMotion(reduce, ending)}
