@@ -242,7 +242,7 @@ html {
 @media (hover: hover) and (pointer: fine) {
   .atro-tile:hover {
     border-color: color-mix(in oklch, var(--foreground) 22%, transparent);
-    background: color-mix(in oklch, var(--foreground) 4.5%, transparent);
+    background: color-mix(in oklch, var(--foreground) 4%, transparent);
     box-shadow: none;
     transform: none;
   }
@@ -421,7 +421,17 @@ html {
 /* Wow layer (aurora/shimmer/beam) removed — product room stays quiet. */
 
 ::selection {
-  background: color-mix(in oklch, var(--color-brand) 32%, transparent);
+  background: color-mix(in oklch, var(--brand) 35%, transparent);
+  color: var(--foreground);
+}
+input::selection,
+textarea::selection {
+  background: color-mix(in oklch, var(--brand) 35%, transparent);
+  color: var(--foreground);
+}
+input,
+textarea {
+  caret-color: var(--brand);
 }
 
 /* ==========================================================================
@@ -996,21 +1006,27 @@ html {
   gap: 0.5rem !important;
 }
 .docs-changelog-follow-form input[type="email"] {
+  min-height: var(--atro-control-height, 2.25rem);
   padding-block: 0.5rem;
-  font-size: 0.8125rem;
+  font-size: 1rem;
+}
+@media (min-width: 640px) {
+  .docs-changelog-follow-form input[type="email"] {
+    font-size: 0.8125rem;
+  }
 }
 .docs-changelog-follow-form .ms-cta {
-  min-height: 2rem;
-  padding-inline: 0.85rem;
-  font-size: 0.75rem;
+  min-height: var(--atro-control-height, 2.25rem);
+  padding-inline: 0.95rem;
+  font-size: 0.8125rem;
 }
 .docs-changelog-follow-x {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  min-height: 2rem;
-  padding: 0 0.85rem;
+  min-height: var(--atro-control-height, 2.25rem);
+  padding: 0 0.95rem;
   border-radius: var(--atro-control-radius, 0.375rem);
   border: 1px solid var(--docs-border, var(--border-subtle));
   background: transparent;
@@ -1238,7 +1254,7 @@ a.docs-changelog-hash:hover {
   transition: background-color 140ms ease;
 }
 .docs-catalog-door:hover {
-  background: color-mix(in oklch, var(--foreground) 3%, transparent);
+  background: color-mix(in oklch, var(--foreground) 4%, transparent);
 }
 .docs-catalog-door:focus-visible {
   outline: 2px solid var(--ring);
@@ -1321,18 +1337,25 @@ a.docs-changelog-hash:hover {
   height: 2.5rem;
   padding: 0 2.25rem 0 2.35rem;
   border: 1px solid var(--docs-border);
-  border-radius: var(--radius);
+  border-radius: var(--atro-control-radius, var(--radius));
   background: color-mix(in oklch, var(--foreground) 2.5%, transparent);
   color: var(--docs-fg-strong);
-  font-size: 0.875rem;
+  font-size: 1rem;
   outline: none;
   transition: border-color 140ms ease;
+}
+@media (min-width: 640px) {
+  .docs-catalog-search-input {
+    font-size: 0.875rem;
+  }
 }
 .docs-catalog-search-input::placeholder {
   color: var(--muted-foreground);
 }
 .docs-catalog-search-input:focus-visible {
-  border-color: color-mix(in oklch, var(--brand) 45%, var(--docs-border));
+  border-color: var(--ring);
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }
 .docs-catalog-search-clear {
   position: absolute;
@@ -1343,7 +1366,7 @@ a.docs-changelog-hash:hover {
   place-items: center;
   padding: 0.35rem;
   border: 0;
-  border-radius: calc(var(--radius) - 2px);
+  border-radius: calc(var(--atro-control-radius, var(--radius)) - 2px);
   background: transparent;
   color: var(--muted-foreground);
   cursor: pointer;
@@ -1476,7 +1499,7 @@ a.docs-changelog-hash:hover {
   transition: background-color 140ms ease;
 }
 .docs-book .docs-kit-row:hover {
-  background: color-mix(in oklch, var(--foreground) 3%, transparent);
+  background: color-mix(in oklch, var(--foreground) 4%, transparent);
 }
 .docs-book .docs-kit-row:focus-visible {
   outline: 2px solid var(--ring);

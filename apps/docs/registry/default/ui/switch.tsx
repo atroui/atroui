@@ -60,12 +60,12 @@ function Switch({
       }
       className={cn(
         "peer group/switch relative inline-flex shrink-0 items-center border border-transparent outline-none",
-        "rounded-[var(--radius)] p-0.5",
+        "rounded-[var(--atro-control-radius,var(--radius))] p-0.5",
         "transition-[background-color,box-shadow] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)]",
-        "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20",
+        "focus-visible:border-ring",
         "data-checked:bg-primary data-unchecked:bg-muted",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
-        "data-[size=default]:h-5 data-[size=default]:w-9",
+        "data-[size=default]:h-6 data-[size=default]:w-10",
         "data-[size=sm]:h-4 data-[size=sm]:w-7",
         "motion-reduce:transition-none",
         className
@@ -75,8 +75,8 @@ function Switch({
         data-slot="switch-thumb"
         className={cn(
           "pointer-events-none block shrink-0 bg-background shadow-sm ring-1 ring-black/5 dark:ring-white/10",
-          "rounded-[calc(var(--radius)-2px)]",
-          "group-data-[size=default]/switch:size-4",
+          "rounded-[calc(var(--atro-control-radius,var(--radius))-2px)]",
+          "group-data-[size=default]/switch:size-5",
           "group-data-[size=sm]/switch:size-3"
         )}
         render={
@@ -92,7 +92,7 @@ function Switch({
                   style={{
                     ...((htmlProps as { style?: React.CSSProperties }).style ??
                       {}),
-                    borderRadius: "calc(var(--radius) - 2px)",
+                    borderRadius: "calc(var(--atro-control-radius,var(--radius)) - 2px)",
                   }}
                   transition={{ layout: switchLayoutTween }}
                 />

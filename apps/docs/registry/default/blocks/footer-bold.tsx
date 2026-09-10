@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 
 import { getBrand } from "@/lib/brand"
@@ -102,7 +104,7 @@ export function BoldFooter() {
           <div className="relative w-full">
             <p
               aria-hidden
-              className="pointer-events-none -mb-[2vw] select-none text-[12vw] leading-none font-black tracking-tighter text-foreground opacity-5"
+              className="pointer-events-none -mb-[2vw] select-none pb-[0.08em] text-[12vw] leading-none font-black tracking-tighter text-foreground opacity-5"
             >
               {name}
             </p>
@@ -114,12 +116,23 @@ export function BoldFooter() {
                 <span className="hidden text-xs text-muted-foreground sm:inline">
                   {CONTENT.location}
                 </span>
-                <a
-                  href="#main"
-                  className="inline-flex min-h-10 items-center text-xs font-bold tracking-widest uppercase transition-colors hover:text-brand"
+                <button
+                  type="button"
+                  aria-label="Back to top"
+                  onClick={() =>
+                    window.scrollTo({
+                      top: 0,
+                      behavior: window.matchMedia(
+                        "(prefers-reduced-motion: reduce)"
+                      ).matches
+                        ? "auto"
+                        : "smooth",
+                    })
+                  }
+                  className="inline-flex min-h-10 cursor-pointer items-center text-xs font-bold tracking-widest uppercase transition-colors hover:text-brand"
                 >
                   Back to top ↑
-                </a>
+                </button>
               </div>
             </div>
           </div>

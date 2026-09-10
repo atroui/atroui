@@ -13,9 +13,8 @@ import {
 import { cn } from "../../lib/utils"
 import { Button } from "./button"
 
-/** Quiet Mira elevation — soft lift; border carries the edge. */
-const overlayElevation =
-  "shadow-[0_8px_24px_-18px_color-mix(in_oklch,var(--foreground)_16%,transparent)]"
+/** Panel lift — mode-aware via `--dialog-shadow` (globals). */
+const dialogElevation = "shadow-[var(--dialog-shadow)]"
 
 type DrawerOpenContextValue = {
   open: boolean
@@ -100,7 +99,7 @@ function DrawerOverlay({
   return (
     <DrawerPrimitive.Backdrop
       data-slot="drawer-overlay"
-      className={cn("fixed inset-0 isolate z-50 bg-black/40", className)}
+      className={cn("dialog-overlay fixed inset-0 isolate z-50", className)}
       render={render ?? <motion.div {...backdropMotion(reduce)} />}
       {...props}
     />
@@ -151,7 +150,7 @@ function DrawerContent({
               data-slot="drawer-content"
               className={cn(
                 "relative z-50 flex flex-col gap-4 overflow-hidden bg-popover p-5 text-sm text-popover-foreground outline-none",
-                overlayElevation,
+                dialogElevation,
                 sidePopupClass[side],
                 className
               )}

@@ -77,6 +77,7 @@
      near-white — intentional depth like dark. Do not fork in the docs app. */
   --radius: 0.45rem;
   --atro-control-radius: var(--radius);
+  --atro-panel-radius: calc(var(--radius) + 0.05rem);
   --atro-control-height: 2.25rem;
 
   --font-merriweather: "Merriweather", ui-serif, Georgia, serif;
@@ -86,7 +87,8 @@
   /* Back-compat alias for older host CSS / OG previews */
   --font-outfit: var(--font-dm-sans);
   --font-geist-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
   /* Host should load Caveat (docs layout does). Fallback keeps sketchy intent. */
   --font-caveat: "Caveat", "Segoe Print", "Bradley Hand", cursive;
 
@@ -138,6 +140,10 @@
   --surface: var(--card);
   --surface-raised: var(--secondary);
   --border-subtle: var(--border);
+  /* Dialog — per-mode overlay dim + content shadow.
+     Overlay: background: var(--dialog-overlay). Content: box-shadow: var(--dialog-shadow). */
+  --dialog-overlay: rgb(0 0 0 / 0.35);
+  --dialog-shadow: 0 8px 24px -18px oklch(0.25 0.02 286 / 0.16);
   /* Elevation — cool cast shadow (not foreground bloom; that only works on dark) */
   --elev-ambient: oklch(0.25 0.02 286 / 0.14);
   --elev-key: oklch(0.2 0.02 286 / 0.08);
@@ -165,7 +171,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
+  --ring: oklch(0.62 0.08 277);
   --chart-1: oklch(0.785 0.115 274.713);
   --chart-2: oklch(0.585 0.233 277.117);
   --chart-3: oklch(0.511 0.262 276.966);
@@ -178,7 +184,7 @@
   --sidebar-accent: oklch(0.29 0.007 286);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
+  --sidebar-ring: oklch(0.62 0.08 277);
 
   /* Accents use sidebar-primary on dark so links stay readable on the canvas */
   --brand: var(--sidebar-primary);
@@ -188,6 +194,8 @@
   --surface: var(--card);
   --surface-raised: var(--secondary);
   --border-subtle: var(--border);
+  --dialog-overlay: rgb(0 0 0 / 0.6);
+  --dialog-shadow: 0 24px 64px -24px rgb(0 0 0 / 0.7);
   --elev-ambient: color-mix(in oklch, var(--foreground) 32%, transparent);
   --elev-key: color-mix(in oklch, var(--foreground) 18%, transparent);
 
@@ -218,8 +226,8 @@ html.dark[data-color-theme="tide"] {
   --primary-foreground: oklch(0.98 0.01 185);
   --sidebar-primary: oklch(0.585 0.12 185);
   --sidebar-primary-foreground: oklch(0.98 0.01 185);
-  --ring: oklch(0.55 0.04 185);
-  --sidebar-ring: oklch(0.55 0.04 185);
+  --ring: oklch(0.55 0.08 185);
+  --sidebar-ring: oklch(0.55 0.08 185);
   --chart-1: oklch(0.785 0.08 185);
   --chart-2: oklch(0.585 0.12 185);
   --chart-3: oklch(0.511 0.13 185);
@@ -272,8 +280,8 @@ html.dark[data-color-theme="bloom"] {
   --primary-foreground: oklch(0.98 0.01 20);
   --sidebar-primary: oklch(0.6 0.16 18);
   --sidebar-primary-foreground: oklch(0.98 0.01 20);
-  --ring: oklch(0.55 0.05 18);
-  --sidebar-ring: oklch(0.55 0.05 18);
+  --ring: oklch(0.55 0.08 18);
+  --sidebar-ring: oklch(0.55 0.08 18);
   --chart-1: oklch(0.8 0.1 18);
   --chart-2: oklch(0.6 0.16 18);
   --chart-3: oklch(0.54 0.19 18);
@@ -299,8 +307,8 @@ html.dark[data-color-theme="graphite"] {
   --primary-foreground: oklch(0.98 0 0);
   --sidebar-primary: oklch(0.58 0.04 265);
   --sidebar-primary-foreground: oklch(0.98 0 0);
-  --ring: oklch(0.55 0.02 265);
-  --sidebar-ring: oklch(0.55 0.02 265);
+  --ring: oklch(0.55 0.06 265);
+  --sidebar-ring: oklch(0.55 0.06 265);
   --chart-1: oklch(0.78 0.03 265);
   --chart-2: oklch(0.58 0.04 265);
   --chart-3: oklch(0.48 0.045 265);
@@ -627,6 +635,15 @@ html[data-type="mono"] {
     background: color-mix(in oklch, var(--brand) 35%, transparent);
     color: var(--foreground);
   }
+  input::selection,
+  textarea::selection {
+    background: color-mix(in oklch, var(--brand) 35%, transparent);
+    color: var(--foreground);
+  }
+  input,
+  textarea {
+    caret-color: var(--brand);
+  }
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
@@ -645,6 +662,13 @@ html[data-type="mono"] {
       box-shadow: 0 0 28px var(--brand-glow);
     }
   }
+}
+
+/* Dialog overlay — per-mode dim via --dialog-overlay (set on :root / .dark).
+   Content pairs with `box-shadow: var(--dialog-shadow)`. Light overlay is a
+   soft dim; dark overlay is near-opaque with a deeper shadow. */
+.dialog-overlay {
+  background: var(--dialog-overlay);
 }
 
 @layer utilities {
@@ -832,7 +856,7 @@ html[data-type="mono"] {
   .atro-btn:active,
   .ms-cta:active,
   .zed-btn:active {
-    transform: translateY(1px) scale(0.99);
+    transform: translateY(1px);
   }
 
   /* Secondary CTA — same control geometry */

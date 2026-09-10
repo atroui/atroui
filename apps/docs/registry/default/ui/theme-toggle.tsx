@@ -3,7 +3,7 @@
 import { Monitor, Moon, Sun } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { useEffect, useId, useState } from "react"
 
 import { layoutTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
@@ -24,6 +24,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const reduce = useReducedMotion()
+  const pillId = useId()
 
   useEffect(() => {
     setMounted(true)
@@ -52,7 +53,7 @@ export function ThemeToggle({ className }: { className?: string }) {
           className
         )}
       >
-        <currentOption.Icon className="size-4" strokeWidth={2} />
+        <currentOption.Icon className="size-3.5" strokeWidth={2} />
       </button>
 
       <div
@@ -82,7 +83,7 @@ export function ThemeToggle({ className }: { className?: string }) {
                 "relative inline-flex min-h-9 min-w-9 items-center justify-center text-muted-foreground",
                 isActive && "text-primary-foreground",
                 !isActive &&
-                  "hover:bg-foreground/[0.08] hover:text-foreground"
+                  "hover:bg-foreground/[0.04] hover:text-foreground"
               )}
             >
               {isActive &&
@@ -92,7 +93,7 @@ export function ThemeToggle({ className }: { className?: string }) {
                   <motion.span
                     // Withheld until mounted so the hydration correction from
                     // "system" to the stored theme snaps instead of sliding.
-                    layoutId={mounted ? "atro-theme-pill" : undefined}
+                    layoutId={mounted ? `atro-theme-pill-${pillId}` : undefined}
                     className={PILL_CLASS}
                     transition={layoutTween}
                     aria-hidden

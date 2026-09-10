@@ -11,9 +11,8 @@ import {
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
-/** Quiet Mira elevation — soft lift; border carries the edge. */
-const overlayElevation =
-  "shadow-[0_8px_24px_-18px_color-mix(in_oklch,var(--foreground)_16%,transparent)]"
+/** Panel lift — mode-aware via `--dialog-shadow` (globals). */
+const dialogElevation = "shadow-[var(--dialog-shadow)]"
 
 type AlertDialogOpenContextValue = {
   open: boolean
@@ -83,7 +82,7 @@ function AlertDialogOverlay({
   return (
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-overlay"
-      className={cn("fixed inset-0 isolate z-50 bg-black/40", className)}
+      className={cn("dialog-overlay fixed inset-0 isolate z-50", className)}
       render={render ?? <motion.div {...backdropMotion(reduce)} />}
       {...props}
     />
@@ -110,9 +109,9 @@ function AlertDialogContent({
             data-slot="alert-dialog-content"
             data-size={size}
             className={cn(
-              "group/alert-dialog-content fixed top-1/2 left-1/2 z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-popover p-5 text-sm text-popover-foreground outline-none",
+              "group/alert-dialog-content fixed top-1/2 left-1/2 z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-popover p-5 text-sm text-popover-foreground outline-none",
               "data-[size=default]:sm:max-w-md data-[size=sm]:sm:max-w-sm",
-              overlayElevation,
+              dialogElevation,
               className
             )}
             render={render ?? <motion.div {...dialogContentMotion(reduce)} />}

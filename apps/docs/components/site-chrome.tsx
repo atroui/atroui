@@ -59,11 +59,14 @@ export function SiteChrome({
         className
       )}
       style={{ viewTransitionName: "site-header" }}
+      aria-hidden={hidden ? true : undefined}
+      inert={hidden ? true : undefined}
       animate={
         canHide
           ? {
               y: hidden ? -72 : 0,
               opacity: hidden ? 0 : 1,
+              visibility: hidden ? "hidden" : "visible",
             }
           : { y: 0, opacity: 1 }
       }
