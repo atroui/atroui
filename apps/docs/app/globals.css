@@ -309,7 +309,8 @@ html {
   }
 }
 
-/* Gallery / docs preview stage — one room for fullBleed and compact previews. */
+/* Gallery / docs preview stage — quiet room, no grid/dot wallpaper.
+   The component is the material; the stage stays flat background. */
 .docs-example-stage,
 .atro-preview-canvas {
   background-color: var(--background);

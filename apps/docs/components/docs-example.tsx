@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
+import { Maximize, RotateCw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "@/components/code-block"
 import { InstallCommandChip } from "@/components/install-command-chip"
@@ -22,6 +23,7 @@ type DocsExampleProps = {
   /**
    * CLI install in the stage toolbar (see it → get it).
    * Pass a raw string for InstallCommandChip, or a node (e.g. RegistryInstallCommand).
+   * Live theme companions follow the site Themes tray — one source of truth.
    */
   installCommand?: string | React.ReactNode
 }
@@ -40,8 +42,24 @@ export function DocsExample({
   installCommand,
 }: DocsExampleProps) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
+  const [replayKey, setReplayKey] = React.useState(0)
+  const stageRef = React.useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
   const tabInkId = React.useId()
+
+  async function toggleFullscreen() {
+    const el = stageRef.current
+    if (!el) return
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen()
+      } else if (el.requestFullscreen) {
+        await el.requestFullscreen()
+      }
+    } catch {
+      /* Fullscreen unsupported or denied — stay inline. */
+    }
+  }
 
   return (
     <div
@@ -78,19 +96,44 @@ export function DocsExample({
           ))}
         </div>
 
-        {installCommand ? (
-          <div className="ml-auto flex min-w-0 items-center py-1 pr-1 sm:pr-1.5">
-            {typeof installCommand === "string" ? (
-              <InstallCommandChip command={installCommand} />
-            ) : (
-              installCommand
-            )}
-          </div>
-        ) : null}
+        <div className="ml-auto flex min-w-0 flex-1 items-center justify-end gap-0.5 py-1 pr-1 sm:pr-1.5">
+          {tab === "preview" ? (
+            <>
+              <button
+                type="button"
+                onClick={() => setReplayKey((k) => k + 1)}
+                aria-label="Replay preview"
+                title="Replay preview"
+                className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/10 hover:text-foreground"
+              >
+                <RotateCw className="size-3.5" aria-hidden />
+              </button>
+              <button
+                type="button"
+                onClick={toggleFullscreen}
+                aria-label="Fullscreen preview"
+                title="Fullscreen preview"
+                className="inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/10 hover:text-foreground"
+              >
+                <Maximize className="size-3.5" aria-hidden />
+              </button>
+            </>
+          ) : null}
+          {installCommand ? (
+            <div className="min-w-0 max-w-full flex-1 sm:max-w-[min(100%,36rem)]">
+              {typeof installCommand === "string" ? (
+                <InstallCommandChip command={installCommand} />
+              ) : (
+                installCommand
+              )}
+            </div>
+          ) : null}
+        </div>
       </div>
 
       {tab === "preview" ? (
         <div
+          ref={stageRef}
           data-toc-skip
           className={cn(
             "docs-example-stage relative",
@@ -101,11 +144,9 @@ export function DocsExample({
               : "atro-preview-canvas"
           )}
         >
-          {fullBleed ? (
-            <div className="w-full min-w-0">{preview}</div>
-          ) : (
-            <ResizablePreview>{preview}</ResizablePreview>
-          )}
+          <ResizablePreview key={replayKey} bleed={Boolean(fullBleed)}>
+            {preview}
+          </ResizablePreview>
         </div>
       ) : (
         <CodeBlock code={code} embedded className="border-0" />

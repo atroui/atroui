@@ -6,12 +6,24 @@ import { highlight } from "fumadocs-core/highlight"
 import posthog from "posthog-js"
 import { cn } from "@/lib/utils"
 
+export interface CodeBlockFile {
+  name: string
+  code: string
+  language?: string
+}
+
 interface CodeBlockProps {
   code: string
   language?: string
   className?: string
   /** Nest inside DocsExample - no outer border, lighter chrome */
   embedded?: boolean
+  /**
+   * Multi-file tabs. When present with length > 1, a file tab row renders
+   * under the header and the copy button copies the active file.
+   * Length <= 1 (or absent) = legacy single-file behavior, no visual change.
+   */
+  files?: CodeBlockFile[]
 }
 
 const LANG_ALIASES: Record<string, string> = {
@@ -92,7 +104,30 @@ export function CodeBlock({
   language = "tsx",
   className,
   embedded = false,
+  files,
 }: CodeBlockProps) {
+  const multi = !!files && files.length > 1
+  const [activeIndex, setActiveIndex] = React.useState(0)
+  const safeIndex = multi ? Math.min(activeIndex, files.length - 1) : 0
+  const activeFile = multi ? files[safeIndex] : undefined
+  const activeCode = activeFile?.code ?? code
+  const activeLanguage = activeFile?.language ?? language
+
+  const onTabKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (!multi || !files) return
+    let next: number | null = null
+    if (e.key === "ArrowRight") next = (index + 1) % files.length
+    else if (e.key === "ArrowLeft")
+      next = (index - 1 + files.length) % files.length
+    else if (e.key === "Home") next = 0
+    else if (e.key === "End") next = files.length - 1
+    if (next !== null) {
+      e.preventDefault()
+      setActiveIndex(next)
+      document.getElementById(`codeblock-file-${next}`)?.focus()
+    }
+  }
+
   return (
     <div
       className={cn(
@@ -103,24 +138,59 @@ export function CodeBlock({
     >
       <div className="flex items-center justify-between border-b border-border-subtle bg-secondary px-4 py-2.5">
         <span className="text-[11px] font-semibold tracking-[0.08em] text-muted-foreground uppercase">
-          {language}
+          {activeLanguage}
         </span>
         <CopyButton
-          value={code}
+          value={activeCode}
           size="sm"
           variant="outline"
           timeout={2000}
           onCopied={() => {
             posthog.capture("documentation_code_copied", {
-              language,
+              language: activeLanguage,
               embedded,
+              ...(activeFile ? { file: activeFile.name } : null),
             })
           }}
           className="h-7 border bg-muted px-2.5 text-[12px] font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
         />
       </div>
-      <React.Suspense fallback={<CodeFallback code={code} />}>
-        <HighlightedCode code={code} language={language} />
+      {multi && files ? (
+        <div
+          role="tablist"
+          aria-label="Files"
+          className="flex gap-0.5 overflow-x-auto border-b border-border-subtle bg-secondary px-2 py-1.5"
+        >
+          {files.map((file, index) => {
+            const selected = index === safeIndex
+            return (
+              <button
+                key={file.name}
+                id={`codeblock-file-${index}`}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => setActiveIndex(index)}
+                onKeyDown={(e) => onTabKeyDown(e, index)}
+                className={cn(
+                  "relative shrink-0 rounded-md px-3 py-1 font-mono text-[12px] transition-colors",
+                  selected
+                    ? "bg-foreground/10 text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                {file.name}
+              </button>
+            )
+          })}
+        </div>
+      ) : null}
+      <React.Suspense
+        key={`${activeLanguage}\0${activeCode}`}
+        fallback={<CodeFallback code={activeCode} />}
+      >
+        <HighlightedCode code={activeCode} language={activeLanguage} />
       </React.Suspense>
     </div>
   )

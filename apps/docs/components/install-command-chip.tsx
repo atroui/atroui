@@ -72,7 +72,7 @@ export function InstallCommandChip({
   return (
     <div
       className={cn(
-        "relative flex min-w-0 max-w-full items-center gap-1.5 rounded-lg border bg-muted py-1 pr-1 pl-2.5 transition-colors duration-200 sm:gap-2 sm:pl-3",
+        "relative flex min-w-0 max-w-full items-center gap-1.5 overflow-hidden rounded-lg border bg-muted py-1 pr-1 pl-2.5 transition-colors duration-200 sm:gap-2 sm:pl-3",
         pulse
           ? "border-brand/60"
           : copied
@@ -96,7 +96,10 @@ export function InstallCommandChip({
       >
         $
       </span>
-      <code className="min-w-0 truncate font-mono text-[11px] text-foreground sm:text-[12px]">
+      <code
+        title={command}
+        className="min-w-0 flex-1 truncate font-mono text-[11px] text-foreground sm:text-[12px]"
+      >
         {command}
       </code>
       <button

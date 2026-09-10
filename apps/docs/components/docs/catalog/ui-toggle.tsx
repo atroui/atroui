@@ -1,5 +1,5 @@
 import { ComponentDoc } from "@/components/component-doc"
-import { DemoToggle } from "@/components/registry-demos"
+import { DemoToggle, DemoToggleKnobs } from "@/components/registry-demos"
 
 export function UiToggleDoc() {
   return (
@@ -16,6 +16,18 @@ export function UiToggleDoc() {
 </Toggle>`}
       fullBleed={false}
       usage="Pressed fill morphs in ≤160ms. Inside ToggleGroup, single-select peers share a layoutId pill."
+      examples={[
+        {
+          title: "Try it",
+          tip: "Flip variant, size, and disabled with knobs.",
+          preview: <DemoToggleKnobs />,
+          code: `import { Toggle } from "@/components/ui/toggle"
+
+<Toggle aria-label="Bold" defaultPressed>
+  Bold
+</Toggle>`,
+        },
+      ]}
     />
   )
 }

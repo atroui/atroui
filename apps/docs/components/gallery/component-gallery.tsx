@@ -40,10 +40,33 @@ function KitBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
 export function ComponentGallery() {
   const [active, setActive] = React.useState("All")
   const [query, setQuery] = React.useState("")
+  const searchRef = React.useRef<HTMLInputElement>(null)
 
   React.useEffect(() => {
     const param = new URLSearchParams(window.location.search).get("category")
     if (param && categories.includes(param)) setActive(param)
+  }, [])
+
+  React.useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      const target = e.target as HTMLElement | null
+      const typing =
+        target != null &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      if (e.key === "/" && !typing) {
+        e.preventDefault()
+        searchRef.current?.focus()
+      } else if (e.key === "Escape") {
+        setQuery("")
+        if (document.activeElement === searchRef.current) {
+          searchRef.current?.blur()
+        }
+      }
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
   }, [])
 
   function setCategory(category: string) {
@@ -89,6 +112,7 @@ export function ComponentGallery() {
             strokeWidth={1.75}
           />
           <input
+            ref={searchRef}
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -139,6 +163,7 @@ export function ComponentGallery() {
           })}
         </div>
       </div>
+      <p className="text-[12px] text-muted-foreground">Press / to search</p>
 
       {filtered.length === 0 ? (
         <div className="docs-catalog-empty" role="status">

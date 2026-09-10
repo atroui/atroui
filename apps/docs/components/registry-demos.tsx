@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { PreviewKnobs } from "@/components/preview-knobs"
 import {
   Accordion,
   AccordionHeader,
@@ -1332,17 +1333,217 @@ function PlaygroundCue({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function DemoBaseUiPlayground() {
-  const [morphLabel, setMorphLabel] = React.useState("Idle")
-  const [amount, setAmount] = React.useState(1280)
-  const [panelKey, setPanelKey] = React.useState("taste")
-  const [revealKey, setRevealKey] = React.useState(0)
+function PlaygroundShell({ children }: { children: React.ReactNode }) {
+  return (
+    <MotionConfig {...atroMotionDefaults}>
+      <div className="flex w-full max-w-xl flex-col gap-3 text-left">{children}</div>
+    </MotionConfig>
+  )
+}
 
+/** Compact overview for the Preview stage — kit thesis only. */
+export function DemoPlaygroundOverview() {
+  return (
+    <PlaygroundShell>
+      <div className="space-y-1.5">
+        <p className="text-sm font-medium text-foreground">Motion kit</p>
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          One stage under{" "}
+          <code className="font-mono text-[11px] text-foreground">
+            MotionConfig
+          </code>{" "}
+          +{" "}
+          <code className="font-mono text-[11px] text-foreground">
+            atroMotionDefaults
+          </code>
+          . Tweens only · ease-out settle · hoverLift ≤1px · pressInto · never
+          grow · reduced motion → duration 0.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground">
+        <a href="#hover" className="bam-link">
+          Hover
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#text" className="bam-link">
+          Text
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#media" className="bam-link">
+          Media
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#enter" className="bam-link">
+          Enter
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#presence" className="bam-link">
+          Presence
+        </a>
+      </div>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundHover() {
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>hover · lift ≤1px · never grow</PlaygroundCue>
+      <div className="flex flex-wrap items-center gap-4">
+        <DemoButton />
+        <DemoToggle />
+        <a
+          href="#presence"
+          className="group text-sm font-medium text-foreground"
+        >
+          <LabelRoll secondary="Install AtroUI">Get started</LabelRoll>
+        </a>
+      </div>
+      <p className="text-[11px] text-muted-foreground">
+        Material brightens; geometry barely lifts; ink rolls. Scale-up on hover
+        is out.
+      </p>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundText() {
+  const [morphLabel, setMorphLabel] = React.useState("Idle")
+  const [revealKey, setRevealKey] = React.useState(0)
   const cycleMorph = () =>
     setMorphLabel((v) =>
       v === "Idle" ? "Loading" : v === "Loading" ? "Done" : "Idle"
     )
 
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>text · morph · roll · line</PlaygroundCue>
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={cycleMorph}
+          className="atro-btn inline-flex min-w-[7rem] justify-center"
+        >
+          <TextMorph className="font-medium">{morphLabel}</TextMorph>
+        </button>
+        <CopyButton value="npx shadcn@latest add @atroui/copy-button" />
+      </div>
+      <LineReveal
+        key={`line-${revealKey}`}
+        preview
+        className="text-base font-medium tracking-tight text-foreground"
+      >
+        Show the fundamental first. Reveal depth when it earns the frame.
+      </LineReveal>
+      <button
+        type="button"
+        onClick={() => setRevealKey((k) => k + 1)}
+        className="atro-btn-ghost self-start text-[11px]"
+      >
+        Replay line + fade
+      </button>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundMedia() {
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>media · Imageory · mild only</PlaygroundCue>
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="flex flex-col gap-1.5">
+          <Magnetic
+            className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
+            intensity={0.28}
+            range={56}
+          >
+            <img
+              src={IMAGEORY.landscape}
+              alt=""
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </Magnetic>
+          <span className="text-[10px] text-muted-foreground">Magnetic</span>
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <Tilt
+            className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
+            rotationFactor={6}
+          >
+            <img
+              src={IMAGEORY.sky}
+              alt=""
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </Tilt>
+          <span className="text-[10px] text-muted-foreground">Tilt ≤6°</span>
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <Spotlight className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-zinc-950">
+            <img
+              src={IMAGEORY.darkVoid}
+              alt=""
+              className="aspect-[4/3] w-full object-cover opacity-90"
+            />
+          </Spotlight>
+          <span className="text-[10px] text-muted-foreground">Spotlight</span>
+        </div>
+      </div>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundEnter() {
+  const [amount, setAmount] = React.useState(1280)
+  const [revealKey, setRevealKey] = React.useState(0)
+
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>enter · fade + count</PlaygroundCue>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <FadeIn
+          key={`fade-${revealKey}`}
+          preview
+          className="max-w-[14rem] rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-3 text-sm text-foreground"
+        >
+          Opacity + rise. No blur-in.
+        </FadeIn>
+        <div className="flex flex-col items-end gap-2">
+          <p className="text-3xl font-medium tracking-tight text-foreground">
+            <AnimateNumber
+              value={amount}
+              from={0}
+              prefix="$"
+              format={{ style: "decimal", maximumFractionDigits: 0 }}
+            />
+          </p>
+          <div className="flex gap-1.5">
+            {[480, 1280, 9600].map((n) => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setAmount(n)}
+                className="atro-btn-ghost px-2 py-1 text-[11px]"
+              >
+                ${n.toLocaleString()}
+              </button>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => setRevealKey((k) => k + 1)}
+            className="atro-btn-ghost px-2 py-1 text-[11px]"
+          >
+            Replay fade
+          </button>
+        </div>
+      </div>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundPresence() {
+  const [panelKey, setPanelKey] = React.useState("taste")
   const panels = {
     taste: (
       <p className="text-sm text-muted-foreground">
@@ -1362,8 +1563,49 @@ export function DemoBaseUiPlayground() {
   } as const
 
   return (
-    <MotionConfig {...atroMotionDefaults}>
-      <div className="flex w-full max-w-xl flex-col gap-10 text-left">
+    <PlaygroundShell>
+      <PlaygroundCue>presence · panel wait mode</PlaygroundCue>
+      <div className="flex gap-1 rounded-[var(--radius)] border border-border-subtle bg-muted/40 p-1">
+        {(
+          [
+            ["taste", "Taste"],
+            ["text", "Text"],
+            ["media", "Media"],
+          ] as const
+        ).map(([key, label]) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setPanelKey(key)}
+            className={
+              panelKey === key
+                ? "flex-1 rounded-md bg-card px-3 py-1.5 text-xs font-medium text-foreground shadow-sm"
+                : "flex-1 rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
+            }
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      <TransitionPanel
+        activeKey={panelKey}
+        className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-3"
+      >
+        {panels}
+      </TransitionPanel>
+      <p className="text-[11px] text-muted-foreground">
+        Exit finishes before enter. Chrome overlays (Dialog / Drawer / Menu)
+        still use the same Soft tokens — see each primitive doc.
+      </p>
+    </PlaygroundShell>
+  )
+}
+
+/** Full one-stage kit — gallery / embeds that want everything together. */
+export function DemoBaseUiPlayground() {
+  return (
+    <div className="flex w-full max-w-xl flex-col gap-10 text-left">
+      <PlaygroundShell>
         <div className="space-y-1.5">
           <p className="text-sm font-medium text-foreground">Motion kit</p>
           <p className="text-xs leading-relaxed text-muted-foreground">
@@ -1379,168 +1621,15 @@ export function DemoBaseUiPlayground() {
             grow · reduced motion → duration 0.
           </p>
         </div>
-
-        <div className="flex flex-col gap-3">
-          <PlaygroundCue>hover · lift ≤1px · never grow</PlaygroundCue>
-          <div className="flex flex-wrap items-center gap-4">
-            <DemoButton />
-            <DemoToggle />
-            <a
-              href="#playground-motion"
-              className="group text-sm font-medium text-foreground"
-            >
-              <LabelRoll secondary="Install AtroUI">Get started</LabelRoll>
-            </a>
-          </div>
-          <p className="text-[11px] text-muted-foreground">
-            Material brightens; geometry barely lifts; ink rolls. Scale-up on
-            hover is out.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <PlaygroundCue>text · morph · roll · line</PlaygroundCue>
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={cycleMorph}
-              className="atro-btn inline-flex min-w-[7rem] justify-center"
-            >
-              <TextMorph className="font-medium">{morphLabel}</TextMorph>
-            </button>
-            <CopyButton value="npx shadcn@latest add @atroui/copy-button" />
-          </div>
-          <LineReveal
-            key={`line-${revealKey}`}
-            preview
-            className="text-base font-medium tracking-tight text-foreground"
-          >
-            Show the fundamental first. Reveal depth when it earns the frame.
-          </LineReveal>
-          <button
-            type="button"
-            onClick={() => setRevealKey((k) => k + 1)}
-            className="atro-btn-ghost self-start text-[11px]"
-          >
-            Replay line + fade
-          </button>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <PlaygroundCue>media · Imageory · mild only</PlaygroundCue>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            <div className="flex flex-col gap-1.5">
-              <Magnetic
-                className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
-                intensity={0.28}
-                range={56}
-              >
-                <img
-                  src={IMAGEORY.landscape}
-                  alt=""
-                  className="aspect-[4/3] w-full object-cover"
-                />
-              </Magnetic>
-              <span className="text-[10px] text-muted-foreground">Magnetic</span>
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <Tilt
-                className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
-                rotationFactor={6}
-              >
-                <img
-                  src={IMAGEORY.sky}
-                  alt=""
-                  className="aspect-[4/3] w-full object-cover"
-                />
-              </Tilt>
-              <span className="text-[10px] text-muted-foreground">Tilt ≤6°</span>
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <Spotlight className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-zinc-950">
-                <img
-                  src={IMAGEORY.darkVoid}
-                  alt=""
-                  className="aspect-[4/3] w-full object-cover opacity-90"
-                />
-              </Spotlight>
-              <span className="text-[10px] text-muted-foreground">Spotlight</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <PlaygroundCue>enter · fade + count</PlaygroundCue>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <FadeIn
-              key={`fade-${revealKey}`}
-              preview
-              className="max-w-[14rem] rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-3 text-sm text-foreground"
-            >
-              Opacity + rise. No blur-in.
-            </FadeIn>
-            <div className="flex flex-col items-end gap-2">
-              <p className="text-3xl font-medium tracking-tight text-foreground">
-                <AnimateNumber
-                  value={amount}
-                  from={0}
-                  prefix="$"
-                  format={{ style: "decimal", maximumFractionDigits: 0 }}
-                />
-              </p>
-              <div className="flex gap-1.5">
-                {[480, 1280, 9600].map((n) => (
-                  <button
-                    key={n}
-                    type="button"
-                    onClick={() => setAmount(n)}
-                    className="atro-btn-ghost px-2 py-1 text-[11px]"
-                  >
-                    ${n.toLocaleString()}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-3" id="playground-motion">
-          <PlaygroundCue>presence · panel wait mode</PlaygroundCue>
-          <div className="flex gap-1 rounded-[var(--radius)] border border-border-subtle bg-muted/40 p-1">
-            {(
-              [
-                ["taste", "Taste"],
-                ["text", "Text"],
-                ["media", "Media"],
-              ] as const
-            ).map(([key, label]) => (
-              <button
-                key={key}
-                type="button"
-                onClick={() => setPanelKey(key)}
-                className={
-                  panelKey === key
-                    ? "flex-1 rounded-md bg-card px-3 py-1.5 text-xs font-medium text-foreground shadow-sm"
-                    : "flex-1 rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
-                }
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-          <TransitionPanel
-            activeKey={panelKey}
-            className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-3"
-          >
-            {panels}
-          </TransitionPanel>
-          <p className="text-[11px] text-muted-foreground">
-            Exit finishes before enter. Chrome overlays (Dialog / Drawer /
-            Menu) still use the same Soft tokens — see each primitive doc.
-          </p>
-        </div>
+      </PlaygroundShell>
+      <DemoPlaygroundHover />
+      <DemoPlaygroundText />
+      <DemoPlaygroundMedia />
+      <DemoPlaygroundEnter />
+      <div id="playground-motion">
+        <DemoPlaygroundPresence />
       </div>
-    </MotionConfig>
+    </div>
   )
 }
 
@@ -2547,6 +2636,107 @@ export function DemoAuroraText() {
       <p className="mt-2 text-sm text-muted-foreground">
         Slow sweep; static brand text when motion rests.
       </p>
+    </div>
+  )
+}
+
+export function DemoButtonKnobs() {
+  const [variant, setVariant] = React.useState("default")
+  const [size, setSize] = React.useState("default")
+  const [disabled, setDisabled] = React.useState(false)
+  return (
+    <div className="flex w-full flex-col items-center gap-4">
+      <PreviewKnobs
+        booleans={[{ name: "disabled", value: disabled, onChange: setDisabled }]}
+        enums={[
+          {
+            name: "variant",
+            value: variant,
+            options: ["default", "outline", "secondary", "ghost"],
+            onChange: setVariant,
+          },
+          {
+            name: "size",
+            value: size,
+            options: ["default", "sm", "lg"],
+            onChange: setSize,
+          },
+        ]}
+      />
+      <Button
+        variant={variant as "default" | "outline" | "secondary" | "ghost"}
+        size={size as "default" | "sm" | "lg"}
+        disabled={disabled}
+      >
+        Continue
+      </Button>
+    </div>
+  )
+}
+
+export function DemoSwitchKnobs() {
+  const [checked, setChecked] = React.useState(true)
+  const [disabled, setDisabled] = React.useState(false)
+  const [size, setSize] = React.useState("default")
+  return (
+    <div className="flex w-full flex-col items-center gap-4">
+      <PreviewKnobs
+        booleans={[
+          { name: "checked", value: checked, onChange: setChecked },
+          { name: "disabled", value: disabled, onChange: setDisabled },
+        ]}
+        enums={[
+          {
+            name: "size",
+            value: size,
+            options: ["default", "sm"],
+            onChange: setSize,
+          },
+        ]}
+      />
+      <Switch
+        checked={checked}
+        onCheckedChange={setChecked}
+        disabled={disabled}
+        size={size as "default" | "sm"}
+        aria-label="Publish drafts"
+      />
+    </div>
+  )
+}
+
+export function DemoToggleKnobs() {
+  const [variant, setVariant] = React.useState("default")
+  const [size, setSize] = React.useState("default")
+  const [disabled, setDisabled] = React.useState(false)
+  return (
+    <div className="flex w-full flex-col items-center gap-4">
+      <PreviewKnobs
+        booleans={[{ name: "disabled", value: disabled, onChange: setDisabled }]}
+        enums={[
+          {
+            name: "variant",
+            value: variant,
+            options: ["default", "outline"],
+            onChange: setVariant,
+          },
+          {
+            name: "size",
+            value: size,
+            options: ["default", "sm", "lg"],
+            onChange: setSize,
+          },
+        ]}
+      />
+      <Toggle
+        aria-label="Bold"
+        defaultPressed
+        variant={variant as "default" | "outline"}
+        size={size as "default" | "sm" | "lg"}
+        disabled={disabled}
+      >
+        Bold
+      </Toggle>
     </div>
   )
 }

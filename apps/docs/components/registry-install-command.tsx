@@ -89,7 +89,7 @@ export function RegistryInstallCommand({
       : null
 
   return (
-    <div className={cn("space-y-1.5", className)}>
+    <div className={cn("min-w-0 max-w-full space-y-1.5", className)}>
       <InstallCommandChip command={command} />
       {note ? (
         <p className="text-[12px] leading-relaxed text-muted-foreground">

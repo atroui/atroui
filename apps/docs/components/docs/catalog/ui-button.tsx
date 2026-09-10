@@ -2,6 +2,7 @@ import { ComponentDoc } from "@/components/component-doc"
 import {
   DemoButton,
   DemoButtonIconOnly,
+  DemoButtonKnobs,
   DemoButtonWithIcon,
 } from "@/components/registry-demos"
 
@@ -49,6 +50,16 @@ import { Button } from "@/components/ui/button"
 </Button>
 <Button size="icon" variant="secondary" aria-label="Settings">
   <Settings2 />
+</Button>`,
+        },
+        {
+          title: "Try it",
+          tip: "Flip variant, size, and disabled with knobs.",
+          preview: <DemoButtonKnobs />,
+          code: `import { Button } from "@/components/ui/button"
+
+<Button variant="outline" size="sm">
+  Continue
 </Button>`,
         },
       ]}

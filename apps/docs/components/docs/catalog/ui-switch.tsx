@@ -1,5 +1,5 @@
 import { ComponentDoc } from "@/components/component-doc"
-import { DemoSwitch } from "@/components/registry-demos"
+import { DemoSwitch, DemoSwitchKnobs } from "@/components/registry-demos"
 
 
 export function UiSwitchDoc() {
@@ -15,6 +15,16 @@ export function UiSwitchDoc() {
 <Switch aria-label="Publish drafts" defaultChecked />`}
       fullBleed={false}
       usage="Switches flip an immediate setting. Always provide an accessible name; keep the thumb travel short and respect reduced motion."
+      examples={[
+        {
+          title: "Try it",
+          tip: "Flip checked, disabled, and size with knobs.",
+          preview: <DemoSwitchKnobs />,
+          code: `import { Switch } from "@/components/ui/switch"
+
+<Switch aria-label="Publish drafts" defaultChecked />`,
+        },
+      ]}
     />
   )
 }
