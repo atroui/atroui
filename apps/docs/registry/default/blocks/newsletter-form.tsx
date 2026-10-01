@@ -59,7 +59,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
   return (
     <form
       onSubmit={onSubmit}
-      className={`flex flex-col gap-2 sm:flex-row ${className ?? ""}`}
+      className={`flex flex-col gap-2 @min-[40rem]:flex-row ${className ?? ""}`}
     >
       <div className="relative min-w-0 flex-1">
         <Mail
@@ -88,7 +88,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
         {CONTENT.submitLabel}
       </button>
       {status === "error" ? (
-        <p className="text-xs text-red-600 sm:basis-full dark:text-red-400">
+        <p className="text-xs text-red-600 @min-[40rem]:basis-full dark:text-red-400">
           {error}
         </p>
       ) : null}

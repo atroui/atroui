@@ -20,14 +20,14 @@ const STATS = [
 
 export function StatsBand() {
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">{CONTENT.headlineAccent}</span>
               {CONTENT.headlineAfter}
@@ -37,10 +37,10 @@ export function StatsBand() {
             </p>
           </div>
 
-          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-border-subtle lg:grid-cols-4">
+          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-border-subtle @min-[64rem]:grid-cols-4">
             {STATS.map((stat) => (
-              <div key={stat.label} className="bg-background p-6 sm:p-8">
-                <dd className="text-3xl font-medium tracking-tight tabular-nums text-foreground sm:text-4xl">
+              <div key={stat.label} className="bg-background p-6 @min-[40rem]:p-8">
+                <dd className="text-3xl font-medium tracking-tight tabular-nums text-foreground @min-[40rem]:text-4xl">
                   {stat.value}
                 </dd>
                 <dt className="mt-2 text-sm font-medium text-foreground">

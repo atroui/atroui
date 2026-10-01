@@ -66,14 +66,14 @@ export function HomeLab() {
   const rest = TOOLS.filter((t) => t !== featured)
 
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle px-6 py-12 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle px-6 py-12 @min-[40rem]:flex-row @min-[40rem]:items-end @min-[40rem]:justify-between @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">
                 {CONTENT.headlineAccent}
@@ -98,9 +98,9 @@ export function HomeLab() {
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
           <Link
             href={featured.href}
-            className="group grid grid-cols-1 lg:grid-cols-12"
+            className="group grid grid-cols-1 @min-[64rem]:grid-cols-12"
           >
-            <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 sm:p-8 lg:col-span-5 lg:border-r lg:border-b-0">
+            <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-5 @min-[64rem]:border-r @min-[64rem]:border-b-0">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand">
@@ -108,7 +108,7 @@ export function HomeLab() {
                     {statusLabel(featured.status)}
                   </span>
                 </div>
-                <h3 className="mt-4 text-2xl font-medium text-foreground sm:text-3xl">
+                <h3 className="mt-4 text-2xl font-medium text-foreground @min-[40rem]:text-3xl">
                   {featured.name}
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -123,9 +123,9 @@ export function HomeLab() {
                 <ArrowUpRight className="size-3.5" />
               </span>
             </div>
-            <div className="flex items-center justify-center bg-muted p-6 sm:p-8 lg:col-span-7">
+            <div className="flex items-center justify-center bg-muted p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-7">
               <div className="flex aspect-[1200/630] w-full max-w-xl flex-col justify-end rounded-xl bg-gradient-to-br from-background via-card to-[color-mix(in_oklch,var(--brand)_30%,transparent)] p-6 ring-1 ring-border-subtle">
-                <p className="text-xl font-medium text-foreground sm:text-2xl">
+                <p className="text-xl font-medium text-foreground @min-[40rem]:text-2xl">
                   Ship in days, not quarters.
                 </p>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -139,10 +139,10 @@ export function HomeLab() {
 
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
-          <ul className="grid grid-cols-1 divide-y divide-border-subtle md:grid-cols-3 md:divide-x md:divide-y-0">
+          <ul className="grid grid-cols-1 divide-y divide-border-subtle @min-[64rem]:grid-cols-3 @min-[64rem]:divide-x @min-[64rem]:divide-y-0">
             {rest.map((tool) => (
               <li key={tool.name}>
-                <Link href={tool.href} className="group block p-6 sm:p-8">
+                <Link href={tool.href} className="group block p-6 @min-[40rem]:p-8">
                   <p className="text-xs font-medium text-brand">
                     {statusLabel(tool.status)}
                   </p>

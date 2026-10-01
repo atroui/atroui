@@ -28,11 +28,11 @@ export function ThumbnailLivePreview({
         className
       )}
     >
-      <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
+      <div className="@container absolute inset-0 flex flex-col justify-end p-6 @min-[40rem]:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sky-300/90">
           {format}
         </p>
-        <p className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+        <p className="mt-2 text-2xl font-semibold tracking-tight text-white @min-[40rem]:text-3xl">
           {title}
         </p>
         <p className="mt-2 text-sm text-neutral-300">{subtitle}</p>

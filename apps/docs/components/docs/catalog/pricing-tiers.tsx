@@ -14,7 +14,7 @@ export function PricingTiersDoc() {
 export function Example() {
   return <PricingTiers />
 }`}
-      fullBleed={false}
+      fullBleed={true}
       usage="Use as the pricing section. After install, edit CONTENT and TIERS at the top of the file — monthly/yearly toggle included, one tier highlighted."
     />
   )

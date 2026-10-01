@@ -64,7 +64,7 @@ export function NewsletterForm({
   return (
     <form
       onSubmit={onSubmit}
-      className={cn("flex flex-col gap-2 sm:flex-row sm:flex-wrap", className)}
+      className={cn("flex flex-col gap-2 @min-[40rem]:flex-row @min-[40rem]:flex-wrap", className)}
     >
       <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
         <label>
@@ -88,7 +88,7 @@ export function NewsletterForm({
           placeholder={placeholder}
           disabled={status === "loading"}
           className={cn(
-            "w-full rounded-lg border border-border-subtle bg-background py-2.5 pr-4 pl-9 text-base text-foreground sm:text-sm",
+            "w-full rounded-lg border border-border-subtle bg-background py-2.5 pr-4 pl-9 text-base text-foreground @min-[40rem]:text-sm",
             "placeholder:text-muted-foreground/60",
             "focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20",
             "disabled:opacity-60",
@@ -107,7 +107,7 @@ export function NewsletterForm({
         {submitLabel}
       </button>
       {status === "error" ? (
-        <p className="text-xs text-destructive sm:basis-full">{error}</p>
+        <p className="text-xs text-destructive @min-[40rem]:basis-full">{error}</p>
       ) : null}
     </form>
   );

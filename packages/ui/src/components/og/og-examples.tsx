@@ -115,17 +115,17 @@ export function OgExamples({
         const row = (
           <div
             className={cn(
-              "grid grid-cols-1 gap-4 px-6 py-5 transition-colors md:grid-cols-12 md:items-center md:gap-4 md:px-8 md:py-6",
+              "grid grid-cols-1 gap-4 px-6 py-5 transition-colors @min-[48rem]:grid-cols-12 @min-[48rem]:items-center @min-[48rem]:gap-4 @min-[48rem]:px-8 @min-[48rem]:py-6",
             )}
           >
-            <span className="font-mono text-[11px] tabular-nums text-muted-foreground md:col-span-1">
+            <span className="@container font-mono text-[11px] tabular-nums text-muted-foreground @min-[48rem]:col-span-1">
               {String(i + 1).padStart(2, "0")}
             </span>
 
             <Link
               href={quickHref}
               scroll
-              className="group relative aspect-1200/630 overflow-hidden ring-1 ring-border-subtle md:col-span-3"
+              className="group relative aspect-1200/630 overflow-hidden ring-1 ring-border-subtle @min-[48rem]:col-span-3"
               aria-label={`Remix Quick mode: ${ex.title}`}
             >
               <img
@@ -138,11 +138,11 @@ export function OgExamples({
               />
             </Link>
 
-            <div className="min-w-0 md:col-span-4">
+            <div className="min-w-0 @min-[48rem]:col-span-4">
               <p className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
                 {ex.category}
               </p>
-              <p className="ds-headline mt-1 text-base text-foreground sm:text-lg">
+              <p className="ds-headline mt-1 text-base text-foreground @min-[40rem]:text-lg">
                 {ex.title}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
@@ -150,7 +150,7 @@ export function OgExamples({
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 md:col-span-4 md:justify-end">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 @min-[48rem]:col-span-4 @min-[48rem]:justify-end">
               <Link
                 href={quickHref}
                 scroll

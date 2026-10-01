@@ -43,7 +43,7 @@ export function CalendlyEmbed({ url }: Props) {
 
   if (!calendlyUrl) {
     return (
-      <div className="flex flex-col gap-4 px-2 py-10 sm:px-4 sm:py-14">
+      <div className="@container flex flex-col gap-4 px-2 py-10 @min-[40rem]:px-4 @min-[40rem]:py-14">
         <p className="ds-mono-label">Scheduler</p>
         <h3 className="ds-headline text-xl text-foreground">
           Calendly isn&rsquo;t connected yet

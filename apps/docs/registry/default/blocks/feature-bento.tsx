@@ -27,7 +27,7 @@ const FEATURES = [
     title: "Sections that compose",
     detail:
       "Heroes, pricing, FAQs, and forms share tokens — so any page looks designed, not assembled.",
-    span: "md:col-span-2",
+    span: "@min-[64rem]:col-span-2",
   },
   {
     icon: Zap,
@@ -58,20 +58,20 @@ const FEATURES = [
     title: "Grows with you",
     detail:
       "Start with a hero and a form. Add dashboards, tools, and docs without rewriting.",
-    span: "md:col-span-2",
+    span: "@min-[64rem]:col-span-2",
   },
 ]
 
 export function FeatureBento() {
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">{CONTENT.headlineAccent}</span>
               {CONTENT.headlineAfter}
@@ -81,11 +81,11 @@ export function FeatureBento() {
             </p>
           </div>
 
-          <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+          <ul className="mt-10 grid grid-cols-1 gap-4 @min-[40rem]:grid-cols-2 @min-[64rem]:grid-cols-4">
             {FEATURES.map((feature) => (
               <li
                 key={feature.title}
-                className={`group rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 transition-colors hover:border-[color-mix(in_oklch,var(--brand)_45%,var(--border-subtle))] sm:p-7 ${feature.span}`}
+                className={`group rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 transition-colors hover:border-[color-mix(in_oklch,var(--brand)_45%,var(--border-subtle))] @min-[40rem]:p-7 ${feature.span}`}
               >
                 <span className="inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle bg-muted/60 text-foreground transition-colors group-hover:border-[color-mix(in_oklch,var(--brand)_40%,transparent)] group-hover:text-brand">
                   <feature.icon className="size-4" aria-hidden />

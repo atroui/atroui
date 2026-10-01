@@ -52,13 +52,13 @@ export function Faq() {
   const [openId, setOpenId] = useState(ITEMS[0]?.id ?? "")
 
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 text-center sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 text-center @min-[40rem]:px-10 @min-[40rem]:py-16">
           <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
             {CONTENT.stamp}
           </p>
-          <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+          <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
             {CONTENT.headlineBefore}{" "}
             <span className="italic text-brand">
               {CONTENT.headlineAccent}
@@ -79,9 +79,9 @@ export function Faq() {
                     type="button"
                     aria-expanded={open}
                     onClick={() => setOpenId(open ? "" : item.id)}
-                    className="flex min-h-14 w-full items-start justify-between gap-4 px-6 py-4 text-left sm:px-8"
+                    className="flex min-h-14 w-full items-start justify-between gap-4 px-6 py-4 text-left @min-[40rem]:px-8"
                   >
-                    <span className="text-base font-medium text-foreground sm:text-lg">
+                    <span className="text-base font-medium text-foreground @min-[40rem]:text-lg">
                       {item.question}
                     </span>
                     <ChevronDown
@@ -94,7 +94,7 @@ export function Faq() {
                     />
                   </button>
                   {open ? (
-                    <div className="px-6 pb-5 sm:px-8">
+                    <div className="px-6 pb-5 @min-[40rem]:px-8">
                       <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                         {item.category}
                       </p>
@@ -107,7 +107,7 @@ export function Faq() {
               )
             })}
           </ul>
-          <div className="border-t border-border-subtle px-6 py-5 sm:px-8">
+          <div className="border-t border-border-subtle px-6 py-5 @min-[40rem]:px-8">
             <Link
               href={CONTENT.ctaHref}
               className="atro-btn-ghost"

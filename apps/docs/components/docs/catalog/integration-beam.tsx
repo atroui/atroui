@@ -14,7 +14,7 @@ export function IntegrationBeamDoc() {
 export function Example() {
   return <IntegrationBeam />
 }`}
-      fullBleed={false}
+      fullBleed={true}
       usage="Integrations section for marketing pages. Swap NODES for your real integrations — static layout under reduced motion."
     />
   )

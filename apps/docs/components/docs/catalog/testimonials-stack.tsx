@@ -14,7 +14,7 @@ export function TestimonialsStackDoc() {
 export function Example() {
   return <TestimonialsStack />
 }`}
-      fullBleed={false}
+      fullBleed={true}
       usage="Drop mid-page as a social-proof section. After install, edit CONTENT and TESTIMONIALS at the top of the file with your own customer quotes."
     />
   )

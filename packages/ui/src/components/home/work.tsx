@@ -20,13 +20,13 @@ export function HomeWork() {
   const topResult = featured.results[0];
 
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       {/* Header band */}
       <div className="border-b border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle ms-shell-pad py-12 sm:flex-row sm:items-end sm:justify-between sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle ms-shell-pad py-12 @min-[40rem]:flex-row @min-[40rem]:items-end @min-[40rem]:justify-between @min-[40rem]:py-16">
           <FadeIn className="max-w-2xl">
             <p className="ms-stamp">Selected work</p>
-            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground sm:text-5xl">
+            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground @min-[40rem]:text-5xl">
               Projects that{" "}
               <span className="ds-display-italic text-brand">shipped</span>.
             </h2>
@@ -46,9 +46,9 @@ export function HomeWork() {
           <FadeIn>
             <Link
               href={getCaseStudyHref(featured)}
-              className="group grid grid-cols-1 gap-0 lg:grid-cols-12"
+              className="group grid grid-cols-1 gap-0 @min-[64rem]:grid-cols-12"
             >
-              <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 sm:p-8 lg:col-span-7 lg:border-r lg:border-b-0">
+              <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-7 @min-[64rem]:border-r @min-[64rem]:border-b-0">
                 <div>
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                     <span className="font-medium tracking-wide text-foreground uppercase">
@@ -61,7 +61,7 @@ export function HomeWork() {
                       {featured.timeline} · {featured.budget}
                     </span>
                   </div>
-                  <h3 className="ds-headline mt-4 text-2xl leading-tight text-foreground sm:text-3xl">
+                  <h3 className="ds-headline mt-4 text-2xl leading-tight text-foreground @min-[40rem]:text-3xl">
                     {featured.title}
                   </h3>
                   <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
@@ -74,11 +74,11 @@ export function HomeWork() {
                   </span>
               </div>
 
-              <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 sm:p-8 lg:col-span-5">
+              <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-5">
                 {topResult ? (
                   <div>
                     <p className="ds-mono-label">Outcome</p>
-                    <p className="ds-display mt-3 text-4xl tracking-tight text-foreground sm:text-5xl md:text-6xl">
+                    <p className="ds-display mt-3 text-4xl tracking-tight text-foreground @min-[40rem]:text-5xl @min-[48rem]:text-6xl">
                       {topResult.value}
                     </p>
                     <p className="mt-2 text-sm text-muted-foreground">
@@ -115,25 +115,25 @@ export function HomeWork() {
                     <Link
                       href={getCaseStudyHref(study)}
                       className={cn(
-                        "group grid grid-cols-1 items-baseline gap-2 px-6 py-5 transition-colors md:grid-cols-12 md:gap-4 md:px-8 md:py-6",
+                        "group grid grid-cols-1 items-baseline gap-2 px-6 py-5 transition-colors @min-[48rem]:grid-cols-12 @min-[48rem]:gap-4 @min-[48rem]:px-8 @min-[48rem]:py-6",
                         "hover:bg-muted/40 active:scale-[0.998]",
                       )}
                     >
-                      <span className="font-mono text-[11px] tabular-nums text-muted-foreground md:col-span-1">
+                      <span className="font-mono text-[11px] tabular-nums text-muted-foreground @min-[48rem]:col-span-1">
                         {String(i + 2).padStart(2, "0")}
                       </span>
-                      <div className="md:col-span-5">
-                        <p className="ds-headline text-base text-foreground sm:text-lg">
+                      <div className="@min-[48rem]:col-span-5">
+                        <p className="ds-headline text-base text-foreground @min-[40rem]:text-lg">
                           {study.title}
                         </p>
                         <p className="mt-1 text-xs text-muted-foreground">
                           {study.client.industry} · {study.projectType}
                         </p>
                       </div>
-                      <p className="hidden text-sm text-muted-foreground md:col-span-3 md:block">
+                      <p className="hidden text-sm text-muted-foreground @min-[48rem]:col-span-3 @min-[48rem]:block">
                         {study.timeline} · {study.budget}
                       </p>
-                      <div className="flex items-center justify-between gap-3 md:col-span-3 md:justify-end">
+                      <div className="flex items-center justify-between gap-3 @min-[48rem]:col-span-3 @min-[48rem]:justify-end">
                         {result ? (
                           <span className="text-sm font-medium tabular-nums text-foreground">
                             {result.value}

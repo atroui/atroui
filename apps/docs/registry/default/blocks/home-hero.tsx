@@ -47,17 +47,17 @@ function HeroStamp() {
 
 function HeroCTAs() {
   return (
-    <div className="flex w-full max-w-xl flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
+    <div className="flex w-full max-w-xl flex-col items-stretch gap-3 @min-[40rem]:max-w-none @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-center">
       <Link
         href={CONTENT.primaryCta.href}
-        className="atro-btn w-full justify-center sm:w-auto"
+        className="atro-btn w-full justify-center @min-[40rem]:w-auto"
       >
         {CONTENT.primaryCta.label}
         <ArrowRight className="size-4" aria-hidden />
       </Link>
       <Link
         href={CONTENT.secondaryCta.href}
-        className="atro-btn-ghost w-full justify-center sm:w-auto"
+        className="atro-btn-ghost w-full justify-center @min-[40rem]:w-auto"
       >
         {CONTENT.secondaryCta.label}
         <ArrowRight className="size-3.5 opacity-60" aria-hidden />
@@ -68,12 +68,12 @@ function HeroCTAs() {
 
 export function HomeHeroLead() {
   return (
-    <div className="relative z-10 w-full bg-background text-foreground">
+    <div className="@container relative z-10 w-full bg-background text-foreground">
       <article className="w-full border-y border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col items-center space-y-3.5 border-x border-border-subtle px-6 py-7 text-center sm:px-10 sm:py-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center space-y-3.5 border-x border-border-subtle px-6 py-7 text-center @min-[40rem]:px-10 @min-[40rem]:py-8">
           <HeroStamp />
 
-          <h1 className="max-w-4xl text-[1.75rem] leading-[1.05] font-medium tracking-tight text-foreground sm:text-4xl md:text-5xl">
+          <h1 className="max-w-4xl text-[1.75rem] leading-[1.05] font-medium tracking-tight text-foreground @min-[40rem]:text-4xl @min-[48rem]:text-5xl">
             {CONTENT.headlineBefore}{" "}
             <span className="italic text-brand">
               {CONTENT.headlineAccent}
@@ -92,13 +92,13 @@ export function HomeHero() {
   const brand = getBrand()
 
   return (
-    <section className="relative flex flex-col overflow-hidden bg-background text-foreground">
+    <section className="@container relative flex flex-col overflow-hidden bg-background text-foreground">
       <div className="relative z-10 w-full bg-background text-foreground">
         <article className="w-full border-y border-border-subtle">
-          <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle px-6 py-10 text-center sm:px-10 sm:py-14">
+          <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle px-6 py-10 text-center @min-[40rem]:px-10 @min-[40rem]:py-14">
             <HeroStamp />
 
-            <h1 className="max-w-4xl text-[2.125rem] leading-[1.05] font-medium tracking-tight text-foreground sm:text-6xl md:text-7xl">
+            <h1 className="max-w-4xl text-[2.125rem] leading-[1.05] font-medium tracking-tight text-foreground @min-[40rem]:text-6xl @min-[48rem]:text-7xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">
                 {CONTENT.headlineAccent}
@@ -106,17 +106,17 @@ export function HomeHero() {
               {CONTENT.headlineAfter}
             </h1>
 
-            <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+            <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground @min-[40rem]:text-base">
               {CONTENT.subhead}
             </p>
           </div>
         </article>
 
         <div className="border-b border-border-subtle">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-5 border-x border-border-subtle px-6 py-8 sm:px-10 sm:py-10">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-5 border-x border-border-subtle px-6 py-8 @min-[40rem]:px-10 @min-[40rem]:py-10">
             <HeroCTAs />
 
-            <div className="flex w-full max-w-xl items-center justify-center gap-3 sm:max-w-none">
+            <div className="flex w-full max-w-xl items-center justify-center gap-3 @min-[40rem]:max-w-none">
               <div
                 aria-hidden
                 className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-[10px] font-semibold tracking-wide text-foreground"
@@ -135,9 +135,9 @@ export function HomeHero() {
       </div>
 
       <div className="relative z-10 w-full border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-8 sm:px-10 sm:py-10">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-8 @min-[40rem]:px-10 @min-[40rem]:py-10">
           <div className="overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-background">
-            <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/70 px-3 py-2.5 sm:px-4">
+            <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/70 px-3 py-2.5 @min-[40rem]:px-4">
               <div className="flex gap-1.5" aria-hidden>
                 <span className="size-2.5 rounded-full bg-[#FF5F57]/80 dark:bg-[#FF5F57]/70" />
                 <span className="size-2.5 rounded-full bg-[#FEBC2E]/80 dark:bg-[#FEBC2E]/70" />
@@ -151,17 +151,17 @@ export function HomeHero() {
               </div>
               <Link
                 href={CONTENT.ogHref}
-                className="hidden items-center gap-1 text-[11px] font-medium text-brand sm:inline-flex"
+                className="hidden items-center gap-1 text-[11px] font-medium text-brand @min-[40rem]:inline-flex"
               >
                 Open live
                 <ArrowUpRight className="size-3" aria-hidden />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px]">
-              <div className="min-w-0 border-b border-border-subtle p-4 lg:border-b-0 lg:border-r">
+            <div className="grid grid-cols-1 @min-[64rem]:grid-cols-[1fr_240px]">
+              <div className="min-w-0 border-b border-border-subtle p-4 @min-[64rem]:border-b-0 @min-[64rem]:border-r">
                 <div className="flex aspect-[1200/630] flex-col justify-end rounded-[calc(var(--atro-panel-radius,var(--radius))-4px)] bg-gradient-to-br from-background via-card to-[color-mix(in_oklch,var(--brand)_30%,transparent)] p-6 ring-1 ring-border-subtle">
-                  <p className="whitespace-pre-line text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+                  <p className="whitespace-pre-line text-2xl font-medium tracking-tight text-foreground @min-[40rem]:text-3xl">
                     {CONTENT.ogTitle}
                   </p>
                   <p className="mt-2 text-sm text-muted-foreground">

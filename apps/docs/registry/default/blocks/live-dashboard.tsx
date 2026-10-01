@@ -64,7 +64,7 @@ export function LiveDashboard() {
 
   return (
     <div>
-      <div className="ms-shell-pad flex items-center justify-between border-b border-border-subtle py-4">
+      <div className="@container ms-shell-pad flex items-center justify-between border-b border-border-subtle py-4">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
@@ -90,11 +90,11 @@ export function LiveDashboard() {
         {publicProjects.map((project, i) => (
           <li key={project.id}>
             <FadeIn delay={i * 0.05}>
-              <article className="grid grid-cols-1 items-start gap-3 px-6 py-5 md:grid-cols-12 md:gap-4 md:px-8 md:py-6">
-                <span className="font-mono text-[11px] tabular-nums text-muted-foreground md:col-span-1">
+              <article className="grid grid-cols-1 items-start gap-3 px-6 py-5 @min-[48rem]:grid-cols-12 @min-[48rem]:gap-4 @min-[48rem]:px-8 @min-[48rem]:py-6">
+                <span className="font-mono text-[11px] tabular-nums text-muted-foreground @min-[48rem]:col-span-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="md:col-span-4">
+                <div className="@min-[48rem]:col-span-4">
                   <div className="flex flex-wrap items-center gap-2">
                     <h3 className="text-sm font-medium text-foreground">
                       {project.name}
@@ -112,7 +112,7 @@ export function LiveDashboard() {
                     {project.client}
                   </p>
                 </div>
-                <div className="md:col-span-4">
+                <div className="@min-[48rem]:col-span-4">
                   <div className="flex items-center justify-between text-[10px] text-muted-foreground">
                     <span>{project.milestone}</span>
                     <AnimateNumber
@@ -132,7 +132,7 @@ export function LiveDashboard() {
                     {project.lastUpdate}
                   </p>
                 </div>
-                <p className="text-[11px] text-muted-foreground md:col-span-3 md:text-right">
+                <p className="text-[11px] text-muted-foreground @min-[48rem]:col-span-3 @min-[48rem]:text-right">
                   {project.service}
                 </p>
               </article>

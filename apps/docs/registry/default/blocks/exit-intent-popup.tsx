@@ -116,7 +116,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
         <button
           type="button"
           aria-label="Close dialog"
-          className="absolute inset-0 bg-background/70 backdrop-blur-sm"
+          className="@container absolute inset-0 bg-background/70 backdrop-blur-sm"
           onClick={close}
         />
       ) : (
@@ -128,7 +128,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
         aria-modal={!preview}
         aria-labelledby="exit-intent-title"
         tabIndex={-1}
-        className="relative z-10 w-full max-w-md border border-border-subtle bg-background p-6 shadow-[0_24px_64px_-28px_rgba(0,0,0,0.4)] sm:p-7"
+        className="relative z-10 w-full max-w-md border border-border-subtle bg-background p-6 shadow-[0_24px_64px_-28px_rgba(0,0,0,0.4)] @min-[40rem]:p-7"
       >
         <button
           type="button"
@@ -150,7 +150,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {CONTENT.body}
         </p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-6 flex flex-col gap-3 @min-[40rem]:flex-row">
           <Link
             href={CONTENT.primaryHref}
             onClick={() => {

@@ -14,7 +14,7 @@ export function StatsBandDoc() {
 export function Example() {
   return <StatsBand />
 }`}
-      fullBleed={false}
+      fullBleed={true}
       usage="Social-proof strip below the hero or features. Replace STATS with metrics you can defend."
     />
   )

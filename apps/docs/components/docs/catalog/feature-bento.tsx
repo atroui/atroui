@@ -14,7 +14,7 @@ export function FeatureBentoDoc() {
 export function Example() {
   return <FeatureBento />
 }`}
-      fullBleed={false}
+      fullBleed={true}
       usage="Use as the product overview section. After install, edit CONTENT and FEATURES at the top of the file — keep one job per card."
     />
   )

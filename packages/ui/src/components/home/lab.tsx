@@ -21,12 +21,12 @@ export function HomeLab() {
   const featured = live[0];
 
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle ms-shell-pad py-12 sm:flex-row sm:items-end sm:justify-between sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle ms-shell-pad py-12 @min-[40rem]:flex-row @min-[40rem]:items-end @min-[40rem]:justify-between @min-[40rem]:py-16">
           <FadeIn className="max-w-2xl">
             <p className="ms-stamp">Free tools</p>
-            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground sm:text-5xl">
+            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground @min-[40rem]:text-5xl">
               Proof between{" "}
               <span className="ds-display-italic text-brand">client sprints</span>
               .
@@ -51,9 +51,9 @@ export function HomeLab() {
             <FadeIn>
               <Link
                 href={featured.href}
-                className="group grid grid-cols-1 lg:grid-cols-12"
+                className="group grid grid-cols-1 @min-[64rem]:grid-cols-12"
               >
-                <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 sm:p-8 lg:col-span-5 lg:border-r lg:border-b-0">
+                <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-5 @min-[64rem]:border-r @min-[64rem]:border-b-0">
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand">
@@ -64,7 +64,7 @@ export function HomeLab() {
                         · {featured.category}
                       </span>
                     </div>
-                    <h3 className="ds-headline mt-4 text-2xl text-foreground sm:text-3xl">
+                    <h3 className="ds-headline mt-4 text-2xl text-foreground @min-[40rem]:text-3xl">
                       {featured.name}
                     </h3>
                     <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
@@ -87,7 +87,7 @@ export function HomeLab() {
                   </span>
                 </div>
 
-                <div className="bg-muted p-4 sm:p-6 lg:col-span-7">
+                <div className="bg-muted p-4 @min-[40rem]:p-6 @min-[64rem]:col-span-7">
                   <div className="overflow-hidden rounded-xl ring-1 ring-border-subtle">
                     <div className="relative aspect-1200/630">
                       <OgLivePreview
@@ -114,26 +114,26 @@ export function HomeLab() {
                   <Link
                     href={tool.href}
                     className={cn(
-                      "group grid grid-cols-1 items-center gap-2 px-6 py-5 transition-colors md:grid-cols-12 md:gap-4 md:px-8 md:py-6",
+                      "group grid grid-cols-1 items-center gap-2 px-6 py-5 transition-colors @min-[48rem]:grid-cols-12 @min-[48rem]:gap-4 @min-[48rem]:px-8 @min-[48rem]:py-6",
                       "hover:bg-muted/40 active:scale-[0.998]",
                       tool.status === "soon" && "opacity-80",
                     )}
                   >
-                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground md:col-span-1">
+                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground @min-[48rem]:col-span-1">
                       {String(i + 2).padStart(2, "0")}
                     </span>
-                    <div className="md:col-span-4">
-                      <p className="ds-headline text-base text-foreground sm:text-lg">
+                    <div className="@min-[48rem]:col-span-4">
+                      <p className="ds-headline text-base text-foreground @min-[40rem]:text-lg">
                         {tool.name}
                       </p>
-                      <p className="mt-1 text-xs text-muted-foreground md:hidden">
+                      <p className="mt-1 text-xs text-muted-foreground @min-[48rem]:hidden">
                         {tool.tagline}
                       </p>
                     </div>
-                    <p className="hidden text-sm text-muted-foreground md:col-span-4 md:block">
+                    <p className="hidden text-sm text-muted-foreground @min-[48rem]:col-span-4 @min-[48rem]:block">
                       {tool.tagline}
                     </p>
-                    <div className="flex items-center justify-between gap-3 md:col-span-3 md:justify-end">
+                    <div className="flex items-center justify-between gap-3 @min-[48rem]:col-span-3 @min-[48rem]:justify-end">
                       <span
                         className={cn(
                           "text-xs font-medium tracking-wide uppercase",

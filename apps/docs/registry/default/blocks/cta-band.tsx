@@ -19,7 +19,7 @@ const CONTENT = {
 
 export function CtaBand() {
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
         <div className="relative mx-auto max-w-7xl overflow-hidden border-x border-border-subtle">
           {/* Quiet brand wash — radial, no blur-orb soup */}
@@ -40,20 +40,20 @@ export function CtaBand() {
             />
           </div>
 
-          <div className="relative flex flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-20">
+          <div className="relative flex flex-col items-center px-6 py-14 text-center @min-[40rem]:px-10 @min-[40rem]:py-20">
             <p className="atro-chip">
               <span className="size-1.5 rounded-full bg-brand" aria-hidden />
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-5 max-w-2xl text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-5 max-w-2xl text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">{CONTENT.headlineAccent}</span>
               {CONTENT.headlineAfter}
             </h2>
-            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground @min-[40rem]:text-base">
               {CONTENT.lede}
             </p>
-            <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center">
+            <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 @min-[40rem]:w-auto @min-[40rem]:flex-row @min-[40rem]:items-center">
               <Link
                 href={CONTENT.primaryCta.href}
                 className="atro-btn justify-center"

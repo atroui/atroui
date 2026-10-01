@@ -38,8 +38,8 @@ const CONTENT = {
 /** Placeholder product preview — swap for your real dashboard. */
 export function DashboardShell() {
   return (
-    <div className="overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-background">
-      <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/70 px-3 py-2.5 sm:px-4">
+    <div className="@container overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-background">
+      <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/70 px-3 py-2.5 @min-[40rem]:px-4">
         <div className="flex gap-1.5" aria-hidden>
           <span className="size-2.5 rounded-full bg-[#FF5F57]/80 dark:bg-[#FF5F57]/70" />
           <span className="size-2.5 rounded-full bg-[#FEBC2E]/80 dark:bg-[#FEBC2E]/70" />
@@ -51,8 +51,8 @@ export function DashboardShell() {
         <Lock className="size-3 shrink-0 text-muted-foreground/60" aria-hidden />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr]">
-        <div className="hidden border-r border-border-subtle p-3 sm:block">
+      <div className="grid grid-cols-1 @min-[40rem]:grid-cols-[160px_1fr]">
+        <div className="hidden border-r border-border-subtle p-3 @min-[40rem]:block">
           <div className="space-y-1.5" aria-hidden>
             {["Overview", "Projects", "Billing", "Settings"].map((item, i) => (
               <div
@@ -69,17 +69,17 @@ export function DashboardShell() {
           </div>
         </div>
 
-        <div className="min-w-0 p-4 sm:p-5">
+        <div className="min-w-0 p-4 @min-[40rem]:p-5">
           <p className="text-sm font-medium text-foreground">
             {CONTENT.shellTitle}
           </p>
-          <dl className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <dl className="mt-3 grid grid-cols-1 gap-2 @min-[40rem]:grid-cols-3">
             {CONTENT.metrics.map((metric) => (
               <div
                 key={metric.label}
                 className="rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-card p-2.5"
               >
-                <dd className="text-sm font-semibold tabular-nums text-foreground sm:text-base">
+                <dd className="text-sm font-semibold tabular-nums text-foreground @min-[40rem]:text-base">
                   {metric.value}
                 </dd>
                 <dt className="mt-0.5 truncate text-[11px] text-muted-foreground">
@@ -118,13 +118,13 @@ export function AuthSplit() {
   return (
     <section className="border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 border-x border-border-subtle lg:grid-cols-2">
-          <div className="flex flex-col justify-center px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 border-x border-border-subtle @min-[64rem]:grid-cols-2">
+          <div className="flex flex-col justify-center px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
             <p className="atro-chip w-fit">
               <span className="size-1.5 rounded-full bg-brand" aria-hidden />
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-4xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">
                 {CONTENT.headlineAccent}
@@ -152,7 +152,7 @@ export function AuthSplit() {
                   required
                   autoComplete="email"
                   placeholder={CONTENT.emailPlaceholder}
-                  className="h-[var(--atro-control-height,2.25rem)] w-full rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background px-3 text-base text-foreground transition-[border-color,box-shadow] outline-none placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:text-sm"
+                  className="h-[var(--atro-control-height,2.25rem)] w-full rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background px-3 text-base text-foreground transition-[border-color,box-shadow] outline-none placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring @min-[40rem]:text-sm"
                 />
               </div>
               <div>
@@ -168,7 +168,7 @@ export function AuthSplit() {
                   required
                   autoComplete="current-password"
                   placeholder="••••••••"
-                  className="h-[var(--atro-control-height,2.25rem)] w-full rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background px-3 text-base text-foreground transition-[border-color,box-shadow] outline-none placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:text-sm"
+                  className="h-[var(--atro-control-height,2.25rem)] w-full rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background px-3 text-base text-foreground transition-[border-color,box-shadow] outline-none placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring @min-[40rem]:text-sm"
                 />
               </div>
               <button type="submit" className="atro-btn w-full justify-center">
@@ -188,8 +188,8 @@ export function AuthSplit() {
             </p>
           </div>
 
-          <div className="border-t border-border-subtle bg-muted/30 px-6 py-12 sm:px-10 sm:py-16 lg:border-t-0 lg:border-l">
-            <div className="mx-auto max-w-md lg:max-w-none">
+          <div className="border-t border-border-subtle bg-muted/30 px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16 @min-[64rem]:border-t-0 @min-[64rem]:border-l">
+            <div className="mx-auto max-w-md @min-[64rem]:max-w-none">
               <DashboardShell />
             </div>
           </div>

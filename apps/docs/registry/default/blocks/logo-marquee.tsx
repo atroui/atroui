@@ -20,9 +20,9 @@ const LOGOS = [
 
 export function LogoMarquee() {
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 sm:px-10 sm:py-12">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 @min-[40rem]:px-10 @min-[40rem]:py-12">
           <p className="text-center text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
             {CONTENT.stamp}
           </p>

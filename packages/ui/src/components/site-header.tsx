@@ -95,7 +95,7 @@ export function SiteHeader() {
       }
       transition={reduce ? { duration: 0 } : scrollHideTween}
     >
-      <div className="mx-auto max-w-7xl border-x border-border-subtle">
+      <div className="@container mx-auto max-w-7xl border-x border-border-subtle">
         <div className="flex h-14 items-center justify-between gap-4 ms-shell-pad">
           <Link
             href="/"

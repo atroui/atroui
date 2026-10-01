@@ -82,7 +82,7 @@ type Status =
   | { kind: "error"; message: string; isLimit?: boolean };
 
 const fieldInput = cn(
-  "w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base text-foreground sm:text-sm",
+  "w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base text-foreground @min-[40rem]:text-sm",
   "placeholder:text-muted-foreground/60",
   "transition-[border-color,box-shadow] duration-200",
   "focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20",
@@ -298,10 +298,10 @@ function OgWorkspaceInner() {
   }, [canDownloadPreview, downloadingPreview, style, subtitle, title]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12">
+    <div className="@container grid grid-cols-1 @min-[64rem]:grid-cols-12">
       {/* Controls */}
-      <div className="flex flex-col border-b border-border-subtle lg:col-span-5 lg:border-r lg:border-b-0">
-        <div className="border-b border-border-subtle px-6 py-4 sm:px-8">
+      <div className="flex flex-col border-b border-border-subtle @min-[64rem]:col-span-5 @min-[64rem]:border-r @min-[64rem]:border-b-0">
+        <div className="border-b border-border-subtle px-6 py-4 @min-[40rem]:px-8">
           <div
             role="tablist"
             aria-label="Generation mode"
@@ -326,7 +326,7 @@ function OgWorkspaceInner() {
 
         <form
           onSubmit={onSubmit}
-          className="flex flex-1 flex-col gap-5 p-6 sm:p-8"
+          className="flex flex-1 flex-col gap-5 p-6 @min-[40rem]:p-8"
         >
           {mode === "quick" ? (
             <QuickModeFields
@@ -356,7 +356,7 @@ function OgWorkspaceInner() {
                 ? `${title.length}/${QUICK_INPUT_LIMITS.titleMax} · 1200×630 · crisp text server-side`
                 : `${prompt.length} characters · 1200×630 · free-form`}
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 @min-[40rem]:flex-row @min-[40rem]:items-center">
               {mode === "prompt" ? (
                 <button
                   type="button"
@@ -379,7 +379,7 @@ function OgWorkspaceInner() {
               <button
                 type="submit"
                 disabled={!canGenerate}
-                className="ms-cta w-full justify-center sm:ml-auto sm:w-auto disabled:cursor-not-allowed disabled:opacity-50"
+                className="ms-cta w-full justify-center @min-[40rem]:ml-auto @min-[40rem]:w-auto disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isLoading ? (
                   <Loader2 className="size-4 animate-spin" />
@@ -395,7 +395,7 @@ function OgWorkspaceInner() {
         {status.kind === "error" ? (
           <div
             role="alert"
-            className="mx-6 mb-6 flex flex-col gap-3 border border-destructive/25 bg-destructive/5 px-4 py-3 text-sm sm:mx-8"
+            className="mx-6 mb-6 flex flex-col gap-3 border border-destructive/25 bg-destructive/5 px-4 py-3 text-sm @min-[40rem]:mx-8"
           >
             <div className="flex items-start gap-3 text-destructive">
               <AlertCircle className="mt-0.5 size-4 shrink-0" />
@@ -413,7 +413,7 @@ function OgWorkspaceInner() {
         ) : null}
 
         {status.kind === "success" ? (
-          <div className="mx-6 mb-6 flex items-start gap-3 border border-emerald-500/25 bg-emerald-500/5 px-4 py-3 text-sm text-emerald-700 dark:text-emerald-400 sm:mx-8">
+          <div className="mx-6 mb-6 flex items-start gap-3 border border-emerald-500/25 bg-emerald-500/5 px-4 py-3 text-sm text-emerald-700 dark:text-emerald-400 @min-[40rem]:mx-8">
             <CheckCircle2 className="mt-0.5 size-4 shrink-0" />
             <span>Image ready - download at 1200×630 from the preview.</span>
           </div>
@@ -421,8 +421,8 @@ function OgWorkspaceInner() {
       </div>
 
       {/* Preview */}
-      <div className="flex flex-col bg-muted/20 lg:col-span-7">
-        <div className="flex flex-col gap-3 border-b border-border-subtle px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="flex flex-col bg-muted/20 @min-[64rem]:col-span-7">
+        <div className="flex flex-col gap-3 border-b border-border-subtle px-6 py-4 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-between @min-[40rem]:px-8">
           <p className="ds-mono-label">Preview · 1200 × 630</p>
           {mode === "quick" &&
           (status.kind === "idle" || status.kind === "error") ? (
@@ -459,7 +459,7 @@ function OgWorkspaceInner() {
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-1 flex-col p-4 @min-[40rem]:p-6 @min-[64rem]:p-8">
           <div className="relative aspect-1200/630 overflow-hidden ring-1 ring-border-subtle">
             {status.kind === "loading" ? (
               <div className="og-preview-shimmer absolute inset-0" aria-hidden />
@@ -525,7 +525,7 @@ function OgWorkspaceInner() {
               </details>
 
               <FadeIn y={8} delay={0.15}>
-                <div className="flex flex-col gap-4 border border-border-subtle bg-background p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+                <div className="flex flex-col gap-4 border border-border-subtle bg-background p-4 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-between @min-[40rem]:p-5">
                   <div>
                     <p className="text-sm font-medium text-foreground">
                       Need a custom AI tool or MVP?
@@ -590,7 +590,7 @@ function ModeTab({
       aria-selected={active}
       onClick={onClick}
       className={cn(
-        "inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 border px-3 text-xs font-medium transition-colors active:scale-[0.98] sm:flex-none sm:justify-start",
+        "inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 border px-3 text-xs font-medium transition-colors active:scale-[0.98] @min-[40rem]:flex-none @min-[40rem]:justify-start",
         active
           ? "border-foreground bg-foreground text-background"
           : "border-border-subtle text-muted-foreground hover:text-foreground",
@@ -600,7 +600,7 @@ function ModeTab({
       {label}
       <span
         className={cn(
-          "hidden text-[11px] sm:inline",
+          "hidden text-[11px] @min-[40rem]:inline",
           active ? "text-background/70" : "text-muted-foreground/70",
         )}
       >

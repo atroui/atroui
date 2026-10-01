@@ -63,31 +63,38 @@ export function DocsSidebarScroll({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const ref = React.useRef<HTMLDivElement>(null)
 
-  React.useLayoutEffect(() => {
+  // Deferred to rAF after paint: measuring + scrolling the rail inside
+  // useLayoutEffect blocks first paint on every lateral navigation,
+  // which stacks with the article enter animation and reads as a jerk.
+  React.useEffect(() => {
     const container = ref.current
     if (!container) return
 
-    const stored = readScrollState()
-    if (stored?.pathname === pathname) {
-      container.scrollTop = stored.scrollTop
-    } else {
-      const active = getActiveNavLink(container)
-      if (active) {
-        const containerRect = container.getBoundingClientRect()
-        const activeRect = active.getBoundingClientRect()
-        if (
-          activeRect.top < containerRect.top ||
-          activeRect.bottom > containerRect.bottom
-        ) {
-          container.scrollTop +=
-            activeRect.top -
-            containerRect.top -
-            (container.clientHeight - activeRect.height) / 2
+    const raf = requestAnimationFrame(() => {
+      const stored = readScrollState()
+      if (stored?.pathname === pathname) {
+        container.scrollTop = stored.scrollTop
+      } else {
+        const active = getActiveNavLink(container)
+        if (active) {
+          const containerRect = container.getBoundingClientRect()
+          const activeRect = active.getBoundingClientRect()
+          if (
+            activeRect.top < containerRect.top ||
+            activeRect.bottom > containerRect.bottom
+          ) {
+            container.scrollTop +=
+              activeRect.top -
+              containerRect.top -
+              (container.clientHeight - activeRect.height) / 2
+          }
         }
       }
-    }
 
-    saveScrollState(container)
+      saveScrollState(container)
+    })
+
+    return () => cancelAnimationFrame(raf)
   }, [pathname])
 
   React.useEffect(() => {

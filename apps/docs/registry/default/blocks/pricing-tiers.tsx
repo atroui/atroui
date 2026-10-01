@@ -69,14 +69,14 @@ export function PricingTiers() {
   const [billing, setBilling] = useState<Billing>("monthly")
 
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">{CONTENT.headlineAccent}</span>
               {CONTENT.headlineAfter}
@@ -115,14 +115,14 @@ export function PricingTiers() {
             ) : null}
           </div>
 
-          <ul className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-3">
+          <ul className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 @min-[64rem]:grid-cols-3">
             {TIERS.map((tier) => (
               <li
                 key={tier.name}
                 className={
                   tier.highlight
-                    ? "flex flex-col rounded-[var(--atro-panel-radius)] border bg-card p-6 ring-1 sm:p-7 border-[color-mix(in_oklch,var(--brand)_50%,var(--border-subtle))] ring-[color-mix(in_oklch,var(--brand)_30%,transparent)]"
-                    : "flex flex-col rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 sm:p-7"
+                    ? "flex flex-col rounded-[var(--atro-panel-radius)] border bg-card p-6 ring-1 @min-[40rem]:p-7 border-[color-mix(in_oklch,var(--brand)_50%,var(--border-subtle))] ring-[color-mix(in_oklch,var(--brand)_30%,transparent)]"
+                    : "flex flex-col rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 @min-[40rem]:p-7"
                 }
               >
                 {tier.highlight && "badge" in tier && tier.badge ? (

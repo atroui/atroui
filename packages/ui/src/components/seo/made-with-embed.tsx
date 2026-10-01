@@ -54,10 +54,10 @@ export function MadeWithEmbed({
   }, [snippet]);
 
   return (
-    <div className={cn("grid gap-6 md:grid-cols-12 md:items-start", className)}>
-      <div className="md:col-span-5">
+    <div className={cn("grid gap-6 @min-[48rem]:grid-cols-12 @min-[48rem]:items-start", className)}>
+      <div className="@container @min-[48rem]:col-span-5">
         <p className="ms-stamp">Credit</p>
-        <h2 className="ds-display mt-4 text-2xl text-foreground sm:text-3xl">
+        <h2 className="ds-display mt-4 text-2xl text-foreground @min-[40rem]:text-3xl">
           Link back if it helped.
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -72,7 +72,7 @@ export function MadeWithEmbed({
           <img src={previewSrc} alt={alt} width={160} height={40} />
         </a>
       </div>
-      <div className="md:col-span-7">
+      <div className="@min-[48rem]:col-span-7">
         <p className="ds-mono-label mb-3">HTML snippet</p>
         <pre className="overflow-x-auto border border-border-subtle bg-muted/30 p-4 font-mono text-[11px] leading-relaxed text-foreground whitespace-pre-wrap break-all">
           {snippet}

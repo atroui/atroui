@@ -12,8 +12,9 @@ import { motion, useReducedMotion } from "motion/react"
 
 /**
  * Edit CONTENT / NODES to match your integrations. Center node with
- * orbiting satellites and SVG beams. Mobile uses a wrap grid; orbit
- * layout from md up. Static under reduced motion.
+ * orbiting satellites and SVG beams. Phone and tablet use a wrap grid;
+ * the orbit diagram is a second layout from lg up (same idea as FAQ:
+ * accordion until the split fits). Static under reduced motion.
  * After install this file lives in your repo.
  */
 const CONTENT = {
@@ -83,14 +84,14 @@ export function IntegrationBeam() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">{CONTENT.headlineAccent}</span>
               {CONTENT.headlineAfter}
@@ -101,7 +102,7 @@ export function IntegrationBeam() {
           </div>
 
           {/* Mobile — wrap grid, no absolute overflow */}
-          <div className="mt-10 flex flex-col items-center gap-6 md:hidden">
+          <div className="mt-10 flex flex-col items-center gap-6 @min-[64rem]:hidden">
             <CenterNode />
             <ul className="flex max-w-md flex-wrap items-center justify-center gap-2">
               {NODES.map((node) => (
@@ -113,7 +114,7 @@ export function IntegrationBeam() {
           </div>
 
           {/* md+ — orbit diagram */}
-          <div className="relative mx-auto mt-10 hidden aspect-[4/3] max-h-[28rem] w-full max-w-3xl md:block">
+          <div className="relative mx-auto mt-10 hidden aspect-[4/3] max-h-[28rem] w-full max-w-3xl overflow-hidden @min-[64rem]:block">
             <svg
               aria-hidden
               viewBox="0 0 100 100"
@@ -141,7 +142,7 @@ export function IntegrationBeam() {
 
             <motion.div
               aria-hidden
-              className="absolute inset-x-10 top-6 bottom-10 rounded-[50%] border border-dashed border-border-subtle sm:inset-x-16"
+              className="absolute inset-x-10 top-6 bottom-10 rounded-[50%] border border-dashed border-border-subtle @min-[40rem]:inset-x-16"
               animate={reduce ? undefined : { rotate: 360 }}
               transition={
                 reduce

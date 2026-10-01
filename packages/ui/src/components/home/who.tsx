@@ -28,15 +28,15 @@ export function HomeWho({
   const mail = email ?? brand.email;
 
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 border-x border-border-subtle lg:grid-cols-12">
-          <FadeIn className="border-b border-border-subtle p-6 sm:p-8 lg:col-span-7 lg:border-r lg:border-b-0 lg:p-10">
-            <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 border-x border-border-subtle @min-[64rem]:grid-cols-12">
+          <FadeIn className="border-b border-border-subtle p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-7 @min-[64rem]:border-r @min-[64rem]:border-b-0 @min-[64rem]:p-10">
+            <div className="flex flex-col gap-6 @min-[40rem]:flex-row @min-[40rem]:gap-8">
               <FounderAvatar size="lg" />
               <div className="min-w-0">
                 <p className="ms-stamp ms-stamp-brush">Who</p>
-                <h2 className="ds-display mt-3 text-3xl text-foreground sm:text-4xl">
+                <h2 className="ds-display mt-3 text-3xl text-foreground @min-[40rem]:text-4xl">
                   {name} is{" "}
                   <span className="ds-display-italic text-brand">me</span>.
                 </h2>
@@ -62,11 +62,11 @@ export function HomeWho({
 
           <FadeIn
             delay={0.06}
-            className="flex flex-col justify-between gap-8 bg-muted/30 p-6 sm:p-8 lg:col-span-5 lg:p-10"
+            className="flex flex-col justify-between gap-8 bg-muted/30 p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-5 @min-[64rem]:p-10"
           >
             <div>
               <p className="ms-stamp">Ready when you are</p>
-              <h2 className="ds-headline mt-3 text-2xl text-foreground sm:text-3xl">
+              <h2 className="ds-headline mt-3 text-2xl text-foreground @min-[40rem]:text-3xl">
                 Tell us the shape of your next week.
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -77,7 +77,7 @@ export function HomeWho({
             <div className="flex flex-col gap-3">
               <Link
                 href="/contact"
-                className="ms-cta w-full justify-center sm:w-auto sm:justify-start"
+                className="ms-cta w-full justify-center @min-[40rem]:w-auto @min-[40rem]:justify-start"
               >
                 Start a project
                 <ArrowRight className="size-4" aria-hidden />

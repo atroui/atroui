@@ -14,7 +14,7 @@ export function LogoMarqueeDoc() {
 export function Example() {
   return <LogoMarquee />
 }`}
-      fullBleed={false}
+      fullBleed={true}
       usage="Place below a hero as a social-proof strip. After install, edit CONTENT and LOGOS at the top of the file — swap in real customer marks."
     />
   )

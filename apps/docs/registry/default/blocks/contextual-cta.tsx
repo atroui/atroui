@@ -91,13 +91,13 @@ export function ContextualCta({ preview = false }: ContextualCtaProps) {
       role="complementary"
       aria-label="Suggested action"
     >
-      <div className="mx-auto max-w-lg px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] sm:max-w-xl sm:px-4">
+      <div className="@container mx-auto max-w-lg px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] @min-[40rem]:max-w-xl @min-[40rem]:px-4">
         <div className="flex items-stretch border border-border-subtle bg-background shadow-[0_16px_48px_-24px_rgba(0,0,0,0.35)]">
           <div
             aria-hidden
             className="w-1 shrink-0 bg-brand"
           />
-          <div className="flex min-w-0 flex-1 flex-col gap-3 p-3.5 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
+          <div className="flex min-w-0 flex-1 flex-col gap-3 p-3.5 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:gap-4 @min-[40rem]:p-4">
             <div className="min-w-0 flex-1">
               <p className="mb-1.5 text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                 {CONTENT.stamp}
@@ -112,7 +112,7 @@ export function ContextualCta({ preview = false }: ContextualCtaProps) {
             <div className="flex items-center gap-2">
               <Link
                 href={CONTENT.href}
-                className="atro-btn h-9 flex-1 justify-center px-3.5 text-sm sm:flex-none"
+                className="atro-btn h-9 flex-1 justify-center px-3.5 text-sm @min-[40rem]:flex-none"
               >
                 {CONTENT.cta}
                 <ArrowRight className="size-3.5" aria-hidden />

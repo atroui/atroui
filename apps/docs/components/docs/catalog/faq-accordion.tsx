@@ -14,7 +14,7 @@ export function FaqAccordionDoc() {
 export function Example() {
   return <FaqAccordion />
 }`}
-      fullBleed={false}
+      fullBleed={true}
       usage="Drop below pricing or beside contact. Edit CONTENT / ITEMS at the top of the file — first item opens by default."
     />
   )

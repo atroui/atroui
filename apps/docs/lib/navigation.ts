@@ -16,7 +16,7 @@ export type NavSection = {
 /**
  * Curated catalog — not a filesystem dump.
  * Guide spine (Getting Started → Setup → Kits → Reference) then
- * Primitives / Motion / Theme / Blocks / Tools / Headless.
+ * Primitives / Blocks / Tools / Headless.
  */
 /** Guide spine sections — pager walks these in order (not the catalog dump). */
 export const GUIDE_SECTION_TITLES = [
@@ -133,12 +133,6 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Drawer",
-        href: "/docs/components/ui-drawer",
-        description: "Edge panel slide",
-        badge: "registry",
-      },
-      {
         title: "Menu",
         href: "/docs/components/ui-menu",
         description: "Dropdown actions",
@@ -177,31 +171,25 @@ export const navigation: NavSection[] = [
       {
         title: "Preview Card",
         href: "/docs/components/ui-preview-card",
-        description: "Link preview hover",
+        description: "Link preview + opt-in media motion",
         badge: "registry",
       },
       {
-        title: "Toast",
-        href: "/docs/components/ui-toast",
-        description: "Edge notification stack",
+        title: "Scroll Area",
+        href: "/docs/components/ui-scroll-area",
+        description: "Idle thumb fade",
+        badge: "registry",
+      },
+      {
+        title: "Separator",
+        href: "/docs/components/ui-separator",
+        description: "Soft hairline",
         badge: "registry",
       },
       {
         title: "Field",
         href: "/docs/components/ui-field",
         description: "Label + error spine",
-        badge: "registry",
-      },
-      {
-        title: "Input",
-        href: "/docs/components/ui-input",
-        description: "Single-line control",
-        badge: "registry",
-      },
-      {
-        title: "Textarea",
-        href: "/docs/components/ui-textarea",
-        description: "Multi-line control",
         badge: "registry",
       },
       {
@@ -214,6 +202,30 @@ export const navigation: NavSection[] = [
         title: "OTP Field",
         href: "/docs/components/ui-otp-field",
         description: "Digit slots",
+        badge: "registry",
+      },
+      {
+        title: "Form",
+        href: "/docs/components/ui-form",
+        description: "Validation spine",
+        badge: "registry",
+      },
+      {
+        title: "Fieldset",
+        href: "/docs/components/ui-fieldset",
+        description: "Legend group",
+        badge: "registry",
+      },
+      {
+        title: "Input",
+        href: "/docs/components/ui-input",
+        description: "Single-line control",
+        badge: "registry",
+      },
+      {
+        title: "Textarea",
+        href: "/docs/components/ui-textarea",
+        description: "Multi-line control",
         badge: "registry",
       },
       {
@@ -259,9 +271,15 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Form Select",
-        href: "/docs/components/ui-form-select",
-        description: "Styled select",
+        title: "Accordion",
+        href: "/docs/components/ui-accordion",
+        description: "Height disclosure",
+        badge: "registry",
+      },
+      {
+        title: "Collapsible",
+        href: "/docs/components/ui-collapsible",
+        description: "Single height reveal",
         badge: "registry",
       },
       {
@@ -277,33 +295,21 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Form",
-        href: "/docs/components/ui-form",
-        description: "Validation spine",
-        badge: "registry",
-      },
-      {
-        title: "Fieldset",
-        href: "/docs/components/ui-fieldset",
-        description: "Legend group",
-        badge: "registry",
-      },
-      {
-        title: "Accordion",
-        href: "/docs/components/ui-accordion",
-        description: "Height disclosure",
-        badge: "registry",
-      },
-      {
-        title: "Collapsible",
-        href: "/docs/components/ui-collapsible",
-        description: "Single height reveal",
+        title: "Drawer",
+        href: "/docs/components/ui-drawer",
+        description: "Edge panel slide",
         badge: "registry",
       },
       {
         title: "Tabs",
         href: "/docs/components/ui-tabs",
         description: "Indicator morph",
+        badge: "registry",
+      },
+            {
+        title: "Toast",
+        href: "/docs/components/ui-toast",
+        description: "Edge notification stack",
         badge: "registry",
       },
       {
@@ -330,22 +336,22 @@ export const navigation: NavSection[] = [
         description: "Image fade + fallback",
         badge: "registry",
       },
-      {
+{
         title: "Card",
         href: "/docs/components/ui-card",
         description: "Grouped surface",
         badge: "registry",
       },
       {
-        title: "Separator",
-        href: "/docs/components/ui-separator",
-        description: "Soft hairline",
+        title: "Form Select",
+        href: "/docs/components/ui-form-select",
+        description: "Styled select",
         badge: "registry",
       },
       {
-        title: "Scroll Area",
-        href: "/docs/components/ui-scroll-area",
-        description: "Idle thumb fade",
+        title: "Motion Playground",
+        href: "/docs/components/ui-playground",
+        description: "P0 spine together",
         badge: "registry",
       },
       {
@@ -360,15 +366,40 @@ export const navigation: NavSection[] = [
         description: "Long-form typography",
         badge: "registry",
       },
-    ],
-  },
-  {
-    title: "Motion",
-    items: [
       {
-        title: "Playground",
-        href: "/docs/components/ui-playground",
-        description: "Motion kit together",
+        title: "Founder Avatar",
+        href: "/docs/components/ui-founder-avatar",
+        description: "Portrait mark",
+        badge: "registry",
+      },
+      {
+        title: "Theme Toggle",
+        href: "/docs/components/ui-theme-toggle",
+        description: "Light / dark switch",
+        badge: "registry",
+      },
+      {
+        title: "Adaptive Theme Switch",
+        href: "/docs/components/ui-theme-adapt",
+        description: "Keeps type readable across modes",
+        badge: "registry",
+      },
+      {
+        title: "Theme Provider",
+        href: "/docs/components/theme-provider",
+        description: "next-themes root",
+        badge: "registry",
+      },
+      {
+        title: "Logo",
+        href: "/docs/components/brand-logo",
+        description: "Mark and wordmark",
+        badge: "registry",
+      },
+      {
+        title: "Timeline",
+        href: "/docs/components/ui-timeline-animation",
+        description: "Scroll-linked motion",
         badge: "registry",
       },
       {
@@ -402,39 +433,15 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Label Roll",
-        href: "/docs/components/motion-label-roll",
-        description: "Hover text roll",
-        badge: "registry",
-      },
-      {
         title: "Copy Button",
         href: "/docs/components/motion-copy-button",
         description: "Copy → check recipe",
         badge: "registry",
       },
       {
-        title: "Animate Number",
-        href: "/docs/components/motion-animate-number",
-        description: "Pricing / stats counter",
-        badge: "registry",
-      },
-      {
-        title: "Transition Panel",
-        href: "/docs/components/motion-transition-panel",
-        description: "Wait-mode panel swap",
-        badge: "registry",
-      },
-      {
-        title: "Scroll Progress",
-        href: "/docs/components/motion-primitives-scroll-progress",
-        description: "Reading progress bar",
-        badge: "registry",
-      },
-      {
-        title: "Timeline",
-        href: "/docs/components/ui-timeline-animation",
-        description: "Scroll-linked motion",
+        title: "Label Roll",
+        href: "/docs/components/motion-label-roll",
+        description: "Hover text roll",
         badge: "registry",
       },
       {
@@ -456,94 +463,23 @@ export const navigation: NavSection[] = [
         badge: "registry",
       },
       {
-        title: "Marquee",
-        href: "/docs/components/motion-marquee",
-        description: "Infinite logo strip",
+        title: "Animate Number",
+        href: "/docs/components/motion-animate-number",
+        description: "Pricing / stats counter",
         badge: "registry",
       },
       {
-        title: "Border Beam",
-        href: "/docs/components/motion-border-beam",
-        description: "Edge light travel",
+        title: "Transition Panel",
+        href: "/docs/components/motion-transition-panel",
+        description: "Wait-mode panel swap",
         badge: "registry",
       },
       {
-        title: "Magic Card",
-        href: "/docs/components/motion-magic-card",
-        description: "Spotlight + border glow",
+        title: "Scroll Progress",
+        href: "/docs/components/motion-primitives-scroll-progress",
+        description: "Reading progress bar",
         badge: "registry",
-      },
-      {
-        title: "Animated Beam",
-        href: "/docs/components/motion-animated-beam",
-        description: "Integration beam path",
-        badge: "registry",
-      },
-      {
-        title: "Bento Grid",
-        href: "/docs/components/motion-bento-grid",
-        description: "Soft-rect bento cards",
-        badge: "registry",
-      },
-      {
-        title: "Meteors",
-        href: "/docs/components/motion-meteors",
-        description: "Hero streak fall",
-        badge: "registry",
-      },
-      {
-        title: "Dock",
-        href: "/docs/components/motion-dock",
-        description: "macOS magnification",
-        badge: "registry",
-      },
-      {
-        title: "Orbiting Circles",
-        href: "/docs/components/motion-orbiting-circles",
-        description: "Orbit integration art",
-        badge: "registry",
-      },
-      {
-        title: "Number Ticker",
-        href: "/docs/components/motion-number-ticker",
-        description: "Count-up on view",
-        badge: "registry",
-      },
-      {
-        title: "Aurora Text",
-        href: "/docs/components/motion-aurora-text",
-        description: "Brand gradient sweep",
-        badge: "registry",
-      },
-    ],
-  },
-  {
-    title: "Theme",
-    items: [
-      {
-        title: "Theme Toggle",
-        href: "/docs/components/ui-theme-toggle",
-        description: "Light / dark switch",
-        badge: "registry",
-      },
-      {
-        title: "Color Theme Picker",
-        href: "/docs/components/ui-color-theme-picker",
-        description: "Live accent swatches",
-        badge: "registry",
-      },
-      {
-        title: "Adaptive Theme Switch",
-        href: "/docs/components/ui-theme-adapt",
-        description: "Keeps type readable across modes",
-        badge: "registry",
-      },
-      {
-        title: "Theme Provider",
-        href: "/docs/components/theme-provider",
-        description: "next-themes root",
-        badge: "registry",
-      },
+      }
     ],
   },
   {
@@ -559,18 +495,6 @@ export const navigation: NavSection[] = [
         title: "Site Footer",
         href: "/docs/components/site-footer",
         description: "Simple site footer",
-        badge: "registry",
-      },
-      {
-        title: "Logo",
-        href: "/docs/components/brand-logo",
-        description: "Mark and wordmark",
-        badge: "registry",
-      },
-      {
-        title: "Founder Avatar",
-        href: "/docs/components/ui-founder-avatar",
-        description: "Portrait mark",
         badge: "registry",
       },
       {
@@ -780,6 +704,65 @@ export const navigation: NavSection[] = [
     ],
   },
   {
+    title: "Indie",
+    items: [
+      {
+        title: "Count Up",
+        href: "/docs/components/count-up",
+        description: "In-view number animation",
+        badge: "registry",
+      },
+      {
+        title: "Deadline Countdown",
+        href: "/docs/components/deadline-countdown",
+        description: "Days-to-deadline band",
+        badge: "registry",
+      },
+      {
+        title: "Project List",
+        href: "/docs/components/project-list",
+        description: "Hairline project list",
+        badge: "registry",
+      },
+      {
+        title: "Changelog",
+        href: "/docs/components/changelog",
+        description: "Filterable ship log",
+        badge: "registry",
+      },
+      {
+        title: "Command Menu",
+        href: "/docs/components/command-menu",
+        description: "⌘K command palette",
+        badge: "registry",
+      },
+      {
+        title: "Personal Hero",
+        href: "/docs/components/personal-hero",
+        description: "Indie intro + portrait",
+        badge: "registry",
+      },
+      {
+        title: "Resume",
+        href: "/docs/components/resume",
+        description: "Printable resume block",
+        badge: "registry",
+      },
+      {
+        title: "Local Clock",
+        href: "/docs/components/local-clock",
+        description: "Timezone time chip",
+        badge: "registry",
+      },
+      {
+        title: "Weather Chip",
+        href: "/docs/components/weather-chip",
+        description: "Open-Meteo weather",
+        badge: "registry",
+      }
+    ],
+  },
+  {
     title: "Tools",
     megaLabel: "Tool blocks",
     items: [
@@ -888,7 +871,7 @@ export const badgeLabel: Record<NonNullable<NavItem["badge"]>, string> = {
   registry: "CLI",
 }
 
-export type DocKind = "Primitive" | "Motion" | "Theme" | "Block" | "Tool" | "Headless"
+export type DocKind = "Primitive" | "Block" | "Tool" | "Headless"
 
 const sectionKind: Record<string, DocKind | undefined> = {
   "Getting Started": undefined,
@@ -897,9 +880,8 @@ const sectionKind: Record<string, DocKind | undefined> = {
   Reference: undefined,
   More: undefined,
   Primitives: "Primitive",
-  Motion: "Motion",
-  Theme: "Theme",
   Blocks: "Block",
+  Indie: "Block",
   Tools: "Tool",
   Headless: "Headless",
 }

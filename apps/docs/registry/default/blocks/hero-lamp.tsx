@@ -25,7 +25,7 @@ export function HeroLamp() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="relative overflow-hidden border-t border-border-subtle bg-background text-foreground">
+    <section className="@container relative overflow-hidden border-t border-border-subtle bg-background text-foreground">
       {/* Lamp — conic wash + hairline bar (no blur orbs) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
@@ -43,7 +43,7 @@ export function HeroLamp() {
       </div>
 
       <div className="relative border-b border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col items-center border-x border-border-subtle px-6 py-16 text-center sm:px-10 sm:py-24">
+        <div className="mx-auto flex max-w-7xl flex-col items-center border-x border-border-subtle px-6 py-16 text-center @min-[40rem]:px-10 @min-[40rem]:py-24">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export function HeroLamp() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: reduce ? 0 : 0.08, ease: EASE_EXPO }}
-            className="mt-5 max-w-3xl text-4xl leading-[1.05] font-medium tracking-tight text-foreground sm:text-6xl"
+            className="mt-5 max-w-3xl text-4xl leading-[1.05] font-medium tracking-tight text-foreground @min-[40rem]:text-6xl"
           >
             {CONTENT.headlineBefore}{" "}
             <span className="italic text-brand">{CONTENT.headlineAccent}</span>
@@ -74,7 +74,7 @@ export function HeroLamp() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55, delay: reduce ? 0 : 0.16, ease: EASE_EXPO }}
-            className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base"
+            className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground @min-[40rem]:text-base"
           >
             {CONTENT.lede}
           </motion.p>
@@ -84,7 +84,7 @@ export function HeroLamp() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: reduce ? 0 : 0.24, ease: EASE_EXPO }}
-            className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center"
+            className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 @min-[40rem]:w-auto @min-[40rem]:flex-row @min-[40rem]:items-center"
           >
             <Link
               href={CONTENT.primaryCta.href}

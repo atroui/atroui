@@ -116,7 +116,7 @@ export function ResizablePreview({
 
       <div
         className={cn(
-          "relative mx-auto",
+          "@container relative mx-auto",
           !dragging && "transition-[width] duration-150 ease-out",
           className
         )}

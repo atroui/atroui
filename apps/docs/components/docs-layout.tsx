@@ -6,7 +6,6 @@ import {
 } from "@/components/docs/docs-toc"
 import { DocsSidebarScroll } from "@/components/docs/docs-sidebar-scroll"
 import { DocsSidebar } from "@/components/sidebar"
-import { DocsRouteTransition } from "@/components/view-transitions"
 
 /**
  * Docs reading frame:
@@ -27,9 +26,7 @@ export function DocsLayoutShell({ children }: { children: React.ReactNode }) {
           <main className="docs-book-main">
             <DocsTocMobile />
             <div data-docs-content>
-              <DocsRouteTransition>
-                <DocsPageFade>{children}</DocsPageFade>
-              </DocsRouteTransition>
+              <DocsPageFade>{children}</DocsPageFade>
             </div>
           </main>
 

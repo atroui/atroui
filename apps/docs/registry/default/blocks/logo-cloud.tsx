@@ -18,9 +18,9 @@ const NAMES = [
 
 export function LogoCloud() {
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 sm:px-10 sm:py-12">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 @min-[40rem]:px-10 @min-[40rem]:py-12">
           <div className="max-w-md">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
@@ -29,7 +29,7 @@ export function LogoCloud() {
               {CONTENT.lede}
             </p>
           </div>
-          <ul className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border-subtle bg-border-subtle sm:grid-cols-3 md:grid-cols-6">
+          <ul className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border-subtle bg-border-subtle @min-[40rem]:grid-cols-3 @min-[64rem]:grid-cols-6">
             {NAMES.map((name) => (
               <li
                 key={name}

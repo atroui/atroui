@@ -110,7 +110,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
         <button
           type="button"
           aria-label="Close dialog"
-          className="absolute inset-0 bg-background/70 backdrop-blur-sm"
+          className="@container absolute inset-0 bg-background/70 backdrop-blur-sm"
           onClick={close}
         />
       ) : (
@@ -126,7 +126,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
         aria-labelledby="exit-intent-title"
         tabIndex={-1}
         className={cn(
-          "relative z-10 w-full max-w-md border border-border-subtle bg-background p-6 shadow-[0_24px_64px_-28px_color-mix(in_oklch,var(--foreground)_40%,transparent)] sm:p-7",
+          "relative z-10 w-full max-w-md border border-border-subtle bg-background p-6 shadow-[0_24px_64px_-28px_color-mix(in_oklch,var(--foreground)_40%,transparent)] @min-[40rem]:p-7",
           "motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:duration-200",
         )}
       >
@@ -149,7 +149,7 @@ export function ExitIntentPopup({ preview = false }: ExitIntentPopupProps) {
           Not sure what to build first? Book a no-pressure scoping call -
           we&apos;ll map scope, timeline, and budget in one session.
         </p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-6 flex flex-col gap-3 @min-[40rem]:flex-row">
           <Link
             href="/scope"
             onClick={() => {

@@ -62,7 +62,7 @@ function ParallaxRow({
 }) {
   const list = [...cards, ...cards]
   return (
-    <div className="overflow-hidden" aria-label={label}>
+    <div className="@container overflow-hidden" aria-label={label}>
       <motion.ul
         className="flex w-max gap-4 pr-4"
         style={staticRow ? undefined : { x }}
@@ -71,7 +71,7 @@ function ParallaxRow({
           <li
             key={`${card.title}-${i}`}
             aria-hidden={i >= cards.length}
-            className="w-64 shrink-0 rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-5 sm:w-72"
+            className="w-64 shrink-0 rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-5 @min-[40rem]:w-72"
           >
             <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
               {String((i % cards.length) + 1).padStart(2, "0")}
@@ -107,7 +107,7 @@ export function HeroParallax() {
       className="relative overflow-hidden border-t border-border-subtle bg-background text-foreground"
     >
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 text-center sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 text-center @min-[40rem]:px-10 @min-[40rem]:py-16">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ export function HeroParallax() {
               <span className="size-1.5 rounded-full bg-brand" aria-hidden />
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">{CONTENT.headlineAccent}</span>
               {CONTENT.headlineAfter}
@@ -149,7 +149,7 @@ export function HeroParallax() {
       </div>
 
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl space-y-4 border-x border-border-subtle py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl space-y-4 border-x border-border-subtle py-8 @min-[40rem]:py-10">
           {ROWS.map((cards, i) => (
             <ParallaxRow
               key={i}

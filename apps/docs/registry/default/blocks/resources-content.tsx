@@ -38,7 +38,7 @@ export function ResourcesContent() {
   }, [q])
 
   return (
-    <div className="space-y-8">
+    <div className="@container space-y-8">
       <header>
         <p className="ms-stamp">{CONTENT.title}</p>
         <p className="mt-2 text-sm text-muted-foreground">{CONTENT.blurb}</p>
@@ -49,7 +49,7 @@ export function ResourcesContent() {
           className="mt-4 w-full max-w-md rounded-lg border border-border-subtle bg-background px-4 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </header>
-      <ul className="grid gap-3 sm:grid-cols-2">
+      <ul className="grid gap-3 @min-[40rem]:grid-cols-2">
         {items.map((item) => (
           <li key={item.id}>
             <Link

@@ -74,14 +74,14 @@ export function HomeWork() {
   const rest = PROJECTS.filter((p) => p !== featured)
 
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle px-6 py-12 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle px-6 py-12 @min-[40rem]:flex-row @min-[40rem]:items-end @min-[40rem]:justify-between @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">
                 {CONTENT.headlineAccent}
@@ -103,9 +103,9 @@ export function HomeWork() {
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
           <Link
             href={featured.href}
-            className="group grid grid-cols-1 gap-0 lg:grid-cols-12"
+            className="group grid grid-cols-1 gap-0 @min-[64rem]:grid-cols-12"
           >
-            <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 sm:p-8 lg:col-span-7 lg:border-r lg:border-b-0">
+            <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-7 @min-[64rem]:border-r @min-[64rem]:border-b-0">
               <div>
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                   <span className="font-medium tracking-wide text-foreground uppercase">
@@ -116,7 +116,7 @@ export function HomeWork() {
                   <span aria-hidden>·</span>
                   <span>{featured.meta}</span>
                 </div>
-                <h3 className="mt-4 text-2xl leading-tight font-medium text-foreground sm:text-3xl">
+                <h3 className="mt-4 text-2xl leading-tight font-medium text-foreground @min-[40rem]:text-3xl">
                   {featured.title}
                 </h3>
                 <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
@@ -128,7 +128,7 @@ export function HomeWork() {
                 <ArrowUpRight className="size-3.5" />
               </span>
             </div>
-            <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 sm:p-8 lg:col-span-5">
+            <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-5">
               <div>
                 <p className="font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
                   {featured.outcomeLabel}
@@ -149,10 +149,10 @@ export function HomeWork() {
 
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
-          <ul className="grid grid-cols-1 divide-y divide-border-subtle md:grid-cols-3 md:divide-x md:divide-y-0">
+          <ul className="grid grid-cols-1 divide-y divide-border-subtle @min-[64rem]:grid-cols-3 @min-[64rem]:divide-x @min-[64rem]:divide-y-0">
             {rest.map((study) => (
               <li key={study.title}>
-                <Link href={study.href} className="group block p-6 sm:p-8">
+                <Link href={study.href} className="group block p-6 @min-[40rem]:p-8">
                   <p className="text-xs text-muted-foreground">
                     {study.industry} · {study.type}
                   </p>

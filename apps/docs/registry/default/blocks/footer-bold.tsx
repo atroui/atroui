@@ -38,22 +38,22 @@ export function BoldFooter() {
 
   return (
     <footer className="w-full overflow-hidden border-t border-border-subtle bg-background text-foreground pb-[env(safe-area-inset-bottom)]">
-      <div className="mx-auto max-w-7xl border-x border-border-subtle">
-        <div className="flex flex-col items-center px-6 py-16 sm:px-10 sm:py-20">
-          <div className="mb-16 flex w-full flex-col items-start justify-between gap-12 md:mb-20 md:flex-row">
-            <div className="max-w-md">
+      <div className="@container mx-auto max-w-7xl border-x border-border-subtle">
+        <div className="flex flex-col items-center px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-20">
+          <div className="mb-12 flex w-full min-w-0 flex-col items-start justify-between gap-10 @min-[48rem]:mb-20 @min-[48rem]:flex-row @min-[48rem]:gap-12">
+            <div className="w-full min-w-0 max-w-md">
               <h2 className="mb-6 text-3xl font-medium tracking-tight text-pretty text-foreground">
                 {CONTENT.headline}
               </h2>
               <a
                 href={`mailto:${email}`}
-                className="border-b-2 border-foreground pb-1 text-lg font-medium transition-colors hover:border-brand hover:text-brand"
+                className="inline-block max-w-full border-b-2 border-foreground pb-1 text-lg font-medium break-words transition-colors hover:border-brand hover:text-brand"
               >
                 {email}
               </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-12 sm:gap-16">
+            <div className="grid w-full min-w-0 grid-cols-1 gap-8 @min-[28rem]:grid-cols-2 @min-[28rem]:gap-10 @min-[40rem]:gap-16">
               <div>
                 <p className="mb-4 text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                   Studio
@@ -101,19 +101,19 @@ export function BoldFooter() {
             </div>
           </div>
 
-          <div className="relative w-full">
+          <div className="@container relative w-full min-w-0 overflow-hidden">
             <p
               aria-hidden
-              className="pointer-events-none -mb-[2vw] select-none pb-[0.08em] text-[12vw] leading-none font-black tracking-tighter text-foreground opacity-5"
+              className="pointer-events-none select-none pb-[0.08em] text-[clamp(2.75rem,22cqi,10rem)] leading-[0.85] font-black tracking-tighter text-foreground opacity-5"
             >
               {name}
             </p>
-            <div className="relative z-10 flex flex-col gap-4 border-t border-border-subtle pt-8 pb-2 sm:flex-row sm:items-end sm:justify-between">
+            <div className="relative z-10 flex flex-col gap-4 border-t border-border-subtle pt-8 pb-2 @min-[36rem]:flex-row @min-[36rem]:items-end @min-[36rem]:justify-between">
               <span className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
                 © {year} {name}
               </span>
-              <div className="flex items-center gap-6 sm:gap-8">
-                <span className="hidden text-xs text-muted-foreground sm:inline">
+              <div className="flex items-center gap-6 @min-[36rem]:gap-8">
+                <span className="hidden text-xs text-muted-foreground @min-[36rem]:inline">
                   {CONTENT.location}
                 </span>
                 <button

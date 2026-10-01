@@ -44,14 +44,14 @@ const FEATURES = [
 
 export function FeatureGrid() {
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">
                 {CONTENT.headlineAccent}
@@ -67,9 +67,9 @@ export function FeatureGrid() {
 
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
-          <ul className="grid grid-cols-1 gap-px overflow-hidden bg-border-subtle sm:grid-cols-2 md:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-px overflow-hidden bg-border-subtle @min-[40rem]:grid-cols-2 @min-[64rem]:grid-cols-3">
             {FEATURES.map((feature, i) => (
-              <li key={feature.title} className="bg-background p-6 sm:p-8">
+              <li key={feature.title} className="bg-background p-6 @min-[40rem]:p-8">
                 <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </p>

@@ -63,14 +63,14 @@ export function TestimonialsStack() {
   }
 
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
               <span className="italic text-brand">{CONTENT.headlineAccent}</span>
               {CONTENT.headlineAfter}
@@ -94,7 +94,7 @@ export function TestimonialsStack() {
             <div
               aria-live="polite"
               aria-atomic="true"
-              className="relative min-h-64 overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 sm:min-h-56 sm:p-8"
+              className="relative min-h-64 overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 @min-[40rem]:min-h-56 @min-[40rem]:p-8"
             >
               <Quote
                 className="size-5 text-brand"
@@ -110,7 +110,7 @@ export function TestimonialsStack() {
                     reduce ? { duration: 0 } : { duration: 0.32, ease: EASE_SOFT }
                   }
                 >
-                  <blockquote className="mt-4 text-lg leading-relaxed font-medium tracking-tight text-foreground sm:text-xl">
+                  <blockquote className="mt-4 text-lg leading-relaxed font-medium tracking-tight text-foreground @min-[40rem]:text-xl">
                     “{current.quote}”
                   </blockquote>
                   <figcaption className="mt-6 flex items-center gap-3">

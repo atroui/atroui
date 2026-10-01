@@ -75,15 +75,15 @@ export function ShowcaseCarousel() {
   }
 
   return (
-    <section className="border-t border-border-subtle bg-background text-foreground">
+    <section className="@container border-t border-border-subtle bg-background text-foreground">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
+          <div className="flex flex-col gap-6 @min-[40rem]:flex-row @min-[40rem]:items-end @min-[40rem]:justify-between">
             <div className="max-w-2xl">
               <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                 {CONTENT.stamp}
               </p>
-              <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+              <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
                 {CONTENT.headlineBefore}{" "}
                 <span className="italic text-brand">
                   {CONTENT.headlineAccent}
@@ -117,18 +117,18 @@ export function ShowcaseCarousel() {
       </div>
 
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle py-8 @min-[40rem]:py-10">
           <div
             ref={trackRef}
             role="region"
             aria-label="Customer showcase"
             tabIndex={0}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring sm:px-10"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring @min-[40rem]:px-10"
           >
             {CARDS.map((card, i) => (
               <article
                 key={card.title}
-                className="group w-72 shrink-0 snap-start overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card sm:w-80"
+                className="group w-72 shrink-0 snap-start overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card @min-[40rem]:w-80"
               >
                 <div
                   aria-hidden

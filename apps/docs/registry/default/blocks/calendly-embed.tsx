@@ -122,7 +122,7 @@ export function CalendlyEmbed({ url }: CalendlyEmbedProps) {
 
   if (!calendlyUrl || !src) {
     return (
-      <div className="flex flex-col gap-4 border border-border-subtle bg-background px-4 py-10 sm:px-6 sm:py-14">
+      <div className="@container flex flex-col gap-4 border border-border-subtle bg-background px-4 py-10 @min-[40rem]:px-6 @min-[40rem]:py-14">
         <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
           {CONTENT.stamp}
         </p>

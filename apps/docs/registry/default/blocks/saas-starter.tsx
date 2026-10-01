@@ -60,28 +60,28 @@ const CONTENT = {
 
 export function SaasStarter() {
   return (
-    <section aria-label="SaaS starter" className="w-full bg-background text-foreground">
+    <section aria-label="SaaS starter" className="@container w-full bg-background text-foreground">
       {/* Hero — announcement lives below the fold as gradual revelation */}
       <div className="border-y border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle px-6 py-12 text-center sm:px-10 sm:py-14">
+        <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle px-6 py-12 text-center @min-[40rem]:px-10 @min-[40rem]:py-14">
           <p className="atro-chip">
             <span className="size-1.5 rounded-full bg-brand" aria-hidden />
             {CONTENT.stamp}
           </p>
-          <h2 className="max-w-3xl text-4xl leading-[1.05] font-medium tracking-tight text-balance sm:text-5xl">
+          <h2 className="max-w-3xl text-4xl leading-[1.05] font-medium tracking-tight text-balance @min-[40rem]:text-5xl">
             {CONTENT.headlineBefore}{" "}
             <span className="italic text-brand">{CONTENT.headlineAccent}</span>
             {CONTENT.headlineAfter}
           </h2>
-          <p className="max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+          <p className="max-w-xl text-[15px] leading-relaxed text-muted-foreground @min-[40rem]:text-base">
             {CONTENT.subhead}
           </p>
-          <div className="flex w-full max-w-xl flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
-            <Link href={CONTENT.primaryCta.href} className="atro-btn w-full justify-center sm:w-auto">
+          <div className="flex w-full max-w-xl flex-col items-stretch gap-3 @min-[40rem]:max-w-none @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-center">
+            <Link href={CONTENT.primaryCta.href} className="atro-btn w-full justify-center @min-[40rem]:w-auto">
               {CONTENT.primaryCta.label}
               <ArrowRight className="size-4" aria-hidden />
             </Link>
-            <Link href={CONTENT.secondaryCta.href} className="atro-btn-ghost w-full justify-center sm:w-auto">
+            <Link href={CONTENT.secondaryCta.href} className="atro-btn-ghost w-full justify-center @min-[40rem]:w-auto">
               {CONTENT.secondaryCta.label}
             </Link>
           </div>
@@ -90,7 +90,7 @@ export function SaasStarter() {
 
       {/* Announcement — after hero (gradual revelation) */}
       <div className="border-b border-border-subtle">
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 border-x border-border-subtle px-6 py-2.5 text-center sm:px-10">
+        <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 border-x border-border-subtle px-6 py-2.5 text-center @min-[40rem]:px-10">
           <span className="size-1.5 shrink-0 animate-pulse rounded-full bg-brand motion-reduce:animate-none" aria-hidden />
           <p className="truncate text-xs text-muted-foreground">
             {CONTENT.announcement}{" "}
@@ -103,8 +103,8 @@ export function SaasStarter() {
 
       {/* Logo row */}
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-8 sm:px-10">
-          <ul aria-label="Trusted by" className="grid grid-cols-2 gap-px overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-border-subtle sm:grid-cols-3 md:grid-cols-6">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-8 @min-[40rem]:px-10">
+          <ul aria-label="Trusted by" className="grid grid-cols-2 gap-px overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-border-subtle @min-[40rem]:grid-cols-3 @min-[64rem]:grid-cols-6">
             {CONTENT.logos.map((name) => (
               <li key={name} className="flex min-h-14 items-center justify-center bg-background px-3 py-3">
                 <span className="text-sm font-medium tracking-tight text-muted-foreground">{name}</span>
@@ -116,7 +116,7 @@ export function SaasStarter() {
 
       {/* Feature grid */}
       <div className="border-b border-border-subtle">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 border-x border-border-subtle px-6 py-10 sm:grid-cols-2 sm:px-10 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 border-x border-border-subtle px-6 py-10 @min-[40rem]:grid-cols-2 @min-[40rem]:px-10 @min-[64rem]:grid-cols-4">
           {CONTENT.features.map((f) => (
             <div key={f.title} className="group relative flex flex-col overflow-hidden rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card p-5">
               <h3 className="text-[0.9375rem] font-medium tracking-tight text-foreground">{f.title}</h3>
@@ -129,10 +129,10 @@ export function SaasStarter() {
 
       {/* Stats */}
       <div className="border-b border-border-subtle">
-        <dl className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-border-subtle border-x border-border-subtle sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <dl className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-border-subtle border-x border-border-subtle @min-[40rem]:grid-cols-3 @min-[40rem]:divide-x @min-[40rem]:divide-y-0">
           {CONTENT.stats.map((s) => (
-            <div key={s.label} className="px-6 py-6 sm:px-8">
-              <dd className="text-2xl font-medium tracking-tight tabular-nums text-foreground sm:text-3xl">{s.value}</dd>
+            <div key={s.label} className="px-6 py-6 @min-[40rem]:px-8">
+              <dd className="text-2xl font-medium tracking-tight tabular-nums text-foreground @min-[40rem]:text-3xl">{s.value}</dd>
               <dt className="mt-1 text-xs text-muted-foreground">{s.label}</dt>
             </div>
           ))}
@@ -141,7 +141,7 @@ export function SaasStarter() {
 
       {/* Pricing teaser */}
       <div id="saas-starter-pricing" className="border-b border-border-subtle scroll-mt-16">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 border-x border-border-subtle px-6 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 border-x border-border-subtle px-6 py-10 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-between @min-[40rem]:px-10">
           <div>
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">Pricing teaser</p>
             <p className="mt-2 text-xl font-medium text-foreground">
@@ -150,7 +150,7 @@ export function SaasStarter() {
             </p>
             <p className="mt-1 text-sm text-muted-foreground">{CONTENT.pricing.note}</p>
           </div>
-          <Link href={CONTENT.pricing.cta.href} className="atro-btn w-full justify-center sm:w-auto">
+          <Link href={CONTENT.pricing.cta.href} className="atro-btn w-full justify-center @min-[40rem]:w-auto">
             {CONTENT.pricing.cta.label}
             <ArrowRight className="size-4" aria-hidden />
           </Link>
@@ -159,10 +159,10 @@ export function SaasStarter() {
 
       {/* CTA band */}
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 sm:px-10">
-          <div className="flex flex-col gap-4 rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-10 @min-[40rem]:px-10">
+          <div className="flex flex-col gap-4 rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card p-6 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-between @min-[40rem]:p-8">
             <div>
-              <h3 className="text-xl font-medium tracking-tight text-foreground sm:text-2xl">{CONTENT.ctaBand.title}</h3>
+              <h3 className="text-xl font-medium tracking-tight text-foreground @min-[40rem]:text-2xl">{CONTENT.ctaBand.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{CONTENT.ctaBand.body}</p>
             </div>
             <Link href={CONTENT.ctaBand.cta.href} className="atro-btn shrink-0">
@@ -175,7 +175,7 @@ export function SaasStarter() {
 
       {/* Footer note */}
       <div>
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-4 sm:px-10">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-4 @min-[40rem]:px-10">
           <p className="text-center text-xs text-muted-foreground">{CONTENT.footerNote}</p>
         </div>
       </div>
