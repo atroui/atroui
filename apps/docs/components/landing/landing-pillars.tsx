@@ -5,11 +5,11 @@ const PILLARS = [
   },
   {
     label: "Taste",
-    body: "Axes recolor the room. Pin 390 in the workspace — stacking still holds.",
+    body: "Axes recolor the room. Pin 390 in the workspace; stacking still holds.",
   },
   {
     label: "Ownership",
-    body: "Registry files in your git. Host APIs with your keys — or a 503.",
+    body: "Registry files in your git. Host APIs use your keys, or return 503.",
   },
 ] as const
 

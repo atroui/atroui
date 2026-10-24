@@ -18,12 +18,12 @@ const SECTION_HREF: Record<string, string> = {
 }
 
 const blurbs: Record<string, string> = {
-  Primitives: "Base UI controls — buttons, forms, overlays",
+  Primitives: "Base UI controls: buttons, forms, overlays",
   Motion: "Reveal, morph, numbers, media motion",
   Theme: "Light / dark switch and providers",
   Blocks: "Marketing sections and page chrome",
   Kits: "Landing kit · Launch workflow · agents",
-  Tools: "Launch Room · OG · planner — try live",
+  Tools: "Launch Room · OG · planner: try live",
   Headless: "Analytics and structured-data helpers",
   More: "Compare, changelog, blog, updates",
 }
@@ -49,7 +49,7 @@ export function LandingCatalogEcosystem() {
           lede={
             <>
               <AnimateNumber value={total} from={0} suffix="+" /> blocks in
-              clear families — browse by intent, not folder depth.
+              clear families. Browse by intent, not folder depth.
             </>
           }
           action={

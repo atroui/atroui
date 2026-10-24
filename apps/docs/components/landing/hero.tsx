@@ -27,8 +27,8 @@ export function AtroHero() {
           </h1>
 
           <p className="atro-hero-lede mt-4 max-w-md">
-            Production bands via the shadcn CLI. Orthogonal theme axes. Host
-            APIs on your keys — every file lands in your repo.
+            Production sections via the shadcn CLI. Theme axes that stay
+            orthogonal. Host APIs on your keys. Every file lands in your repo.
           </p>
 
           <div className="mt-6 flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center sm:justify-center">

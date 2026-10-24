@@ -76,7 +76,7 @@ function BlocksProof() {
           lede: <span className="jw-proof-str">"Own every line."</span>,
         </p>
         <p>{"}"}</p>
-        <p className="jw-proof-dim mt-2 text-[0.6875rem]">Edit CONTENT — structure stays production-shaped.</p>
+        <p className="jw-proof-dim mt-2 text-[0.6875rem]">Edit CONTENT. Structure stays production-shaped.</p>
       </div>
     </>
   )
@@ -90,6 +90,10 @@ function ToolsProof() {
       </div>
       <div className="jw-proof-body jw-proof-mono">
         <p>
+          <span className="jw-proof-hl">/launch</span>
+          <span className="jw-proof-dim"> · Launch Room</span>
+        </p>
+        <p className="mt-2">
           <span className="jw-proof-hl">/og</span>
           <span className="jw-proof-dim"> · OG workspace</span>
         </p>
@@ -98,7 +102,7 @@ function ToolsProof() {
           <span className="jw-proof-dim"> · Project planner</span>
         </p>
         <p className="jw-proof-dim mt-3 text-[0.6875rem]">
-          Live tools → same blocks via shadcn add
+          Live rooms → same blocks via shadcn add
         </p>
       </div>
     </>
