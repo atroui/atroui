@@ -5,6 +5,7 @@ import { DocsExample } from "@/components/docs-example"
 import { DocsPager } from "@/components/docs-pager"
 import { PseoOnPage } from "@/components/pseo-on-page"
 import { PropsTable, type PropRow } from "@/components/props-table"
+import { AgentInstallChip } from "@/components/agent-install-chip"
 import { RegistryInstallCommand } from "@/components/registry-install-command"
 import {
   findNavContext,
@@ -41,6 +42,8 @@ interface ComponentDocProps {
   kind?: DocKind
   registryName?: string
   installation?: string
+  /** Stage poke hint (TRY · …) for flagship live demos. */
+  tip?: string
 }
 
 export function ComponentDoc({
@@ -57,6 +60,7 @@ export function ComponentDoc({
   kind: kindProp,
   registryName,
   installation,
+  tip,
 }: ComponentDocProps) {
   const nav = href ? findNavContext(href) : null
   const kind = kindProp ?? nav?.kind ?? "Primitive"
@@ -89,6 +93,7 @@ export function ComponentDoc({
           preview={preview}
           code={code}
           fullBleed={fullBleed}
+          tip={tip}
           installCommand={
             liveItems ? (
               <RegistryInstallCommand items={liveItems} showNote={false} />
@@ -114,6 +119,20 @@ export function ComponentDoc({
           <h2 className="docs-section-title" id="installation">
             Installation
           </h2>
+          {registryName ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <AgentInstallChip
+                registryName={registryName}
+                docsHref={href}
+              />
+              <p className="text-[12px] text-muted-foreground">
+                Agent blurb — install command + no npm UI rule.{" "}
+                <Link href="/docs/guides/for-agents" className="bam-link">
+                  For agents
+                </Link>
+              </p>
+            </div>
+          ) : null}
           {liveItems ? (
             <RegistryInstallCommand items={liveItems} />
           ) : (

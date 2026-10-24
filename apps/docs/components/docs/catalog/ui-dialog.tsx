@@ -9,6 +9,7 @@ export function UiDialogDoc() {
       registryName="dialog"
       title="Dialog"
       description="Modal dialog on Base UI with Mira surfaces and short settle motion."
+      tip="Open · save to close"
       preview={<DemoDialog />}
       code={`import { Button } from "@/components/ui/button"
 import {

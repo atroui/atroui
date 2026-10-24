@@ -2,6 +2,7 @@
 export {
   EMPTY_PROJECT_BRIEF,
   PROJECT_BRIEF_STORAGE_KEY,
+  briefFromPlannerEstimate,
   briefFromScopeMessage,
   briefOgSubtitle,
   briefOgTitle,

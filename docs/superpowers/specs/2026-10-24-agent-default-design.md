@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-24  
 **Bet:** D (agent-default) — last of A→D  
-**Status:** §§1–2 approved; implementing.  
+**Status:** Implemented on `feat/atro-room` (2026-10-24).  
 **Non-goals:** MCP, CLI, teaching npm UI imports.
 
 ## Deliverables
@@ -14,8 +14,8 @@
 
 ## Success criteria
 
-- [ ] Guide live + Kits nav  
-- [ ] Paste prompt copy works  
-- [ ] `llms-full.txt` lists all registry items  
-- [ ] ComponentDoc shows Copy for agent on registry pages  
-- [ ] No MCP; no npm-UI teaching  
+- [x] Guide live + Kits nav  
+- [x] Paste prompt copy works (`CodeBlock` on for-agents)  
+- [x] `llms-full.txt` lists all registry items  
+- [x] ComponentDoc shows Copy for agent on registry pages  
+- [x] No MCP; no npm-UI teaching  

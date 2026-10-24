@@ -7,6 +7,7 @@ import { useState, type FormEvent } from "react"
 import {
   briefFromScopeMessage,
   buildOgHref,
+  type ProjectBrief,
 } from "@/lib/project-brief"
 import { cn } from "@/lib/utils"
 
@@ -25,7 +26,12 @@ const CONTENT = {
 
 type Msg = { role: "user" | "assistant"; content: string }
 
-export function ScopeChat() {
+export function ScopeChat({
+  onBriefChange,
+}: {
+  /** Fires when the user sends a message — Launch Room / host glue. */
+  onBriefChange?: (brief: ProjectBrief) => void
+} = {}) {
   const [messages, setMessages] = useState<Msg[]>([])
   const [input, setInput] = useState("")
   const [loading, setLoading] = useState(false)
@@ -37,10 +43,12 @@ export function ScopeChat() {
     if (!text || loading) return
     setInput("")
     setError(null)
-    const next: Msg[] = [...messages, { role: "user", content: text }].slice(
-      -CONTENT.maxMessages
-    )
+    const next: Msg[] = [
+      ...messages,
+      { role: "user" as const, content: text },
+    ].slice(-CONTENT.maxMessages)
     setMessages(next)
+    onBriefChange?.(briefFromScopeMessage(text))
     setLoading(true)
     try {
       const res = await fetch(CONTENT.endpoint, {

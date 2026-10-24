@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-24  
 **Bet:** B (live catalog) — second of A→D  
-**Status:** §§1–2 approved; implementing.  
+**Status:** Implemented on `feat/atro-room` (2026-10-24).  
 **Family Values:** Gradual revelation (tip only on flagships); fluidity (existing motion); careful delight (one poke, visible result).
 
 ## Problem
@@ -41,7 +41,7 @@ Coach marks, auto-open overlays, tips on every page, gallery rewrite (C), MCP (D
 
 ## Success criteria
 
-- [ ] Each of 10 demos changes visible state after one gesture without reading Usage
-- [ ] Tip ≤ 8 words after `TRY ·`; absent on non-flagships
-- [ ] Reduced-motion: interaction kept; tip static
-- [ ] Install chips / registry paths unchanged
+- [x] Each of 10 demos changes visible state after one gesture without reading Usage
+- [x] Tip ≤ 8 words after `TRY ·`; absent on non-flagships
+- [x] Reduced-motion: interaction kept; tip static
+- [x] Install chips / registry paths unchanged

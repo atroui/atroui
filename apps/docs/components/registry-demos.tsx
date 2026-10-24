@@ -223,6 +223,7 @@ import { MotionConfig } from "motion/react"
 import { atroMotionDefaults } from "@/lib/motion"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 import { HomeHero } from "../registry/default/blocks/home-hero"
+import { LaunchRoom } from "../registry/default/blocks/launch-room"
 import { OgExamples } from "../registry/default/blocks/og-examples"
 import { OgLivePreview } from "../registry/default/blocks/og-live-preview"
 import { OgWorkspace } from "../registry/default/blocks/og-workspace"
@@ -596,18 +597,31 @@ export function DemoTextareaAutoSize() {
 
 export function DemoFormSelect() {
   const [value, setValue] = React.useState("")
+  const label =
+    value === "next"
+      ? "Next.js"
+      : value === "remix"
+        ? "Remix"
+        : value === "astro"
+          ? "Astro"
+          : null
   return (
-    <FormSelect
-      className="max-w-xs"
-      value={value}
-      onValueChange={setValue}
-      placeholder="Pick a stack"
-      options={[
-        { value: "next", label: "Next.js" },
-        { value: "remix", label: "Remix" },
-        { value: "astro", label: "Astro" },
-      ]}
-    />
+    <div className="flex w-full max-w-xs flex-col items-stretch gap-3 text-left">
+      <FormSelect
+        className="w-full"
+        value={value}
+        onValueChange={setValue}
+        placeholder="Pick a stack"
+        options={[
+          { value: "next", label: "Next.js" },
+          { value: "remix", label: "Remix" },
+          { value: "astro", label: "Astro" },
+        ]}
+      />
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {label ? `Selected · ${label}` : "No stack yet"}
+      </p>
+    </div>
   )
 }
 
@@ -648,76 +662,131 @@ export function DemoFormSelectLabelled() {
 }
 
 export function DemoDialog() {
+  const [last, setLast] = React.useState<string | null>(null)
   return (
-    <Dialog>
-      <DialogTrigger render={<Button />}>Open dialog</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Rename project</DialogTitle>
-          <DialogDescription>
-            Ease-out settle (opacity + y/scale). Exit ~80% of enter.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose render={<Button variant="outline" />}>Cancel</DialogClose>
-          <DialogClose render={<Button />}>Save</DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <div className="flex flex-col items-center gap-3">
+      <Dialog>
+        <DialogTrigger render={<Button />}>Open dialog</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Rename project</DialogTitle>
+            <DialogDescription>
+              Ease-out settle (opacity + y/scale). Exit ~80% of enter.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose
+              render={<Button variant="outline" />}
+              onClick={() => setLast("Cancelled")}
+            >
+              Cancel
+            </DialogClose>
+            <DialogClose
+              render={<Button />}
+              onClick={() => setLast("Saved")}
+            >
+              Save
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {last ? `Last action · ${last}` : "Closed · waiting"}
+      </p>
+    </div>
   )
 }
 
 export function DemoAlertDialog() {
+  const [last, setLast] = React.useState<string | null>(null)
   return (
-    <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="destructive" />}>
-        Delete project
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Delete this project?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This removes drafts and cannot be undone.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive">Delete</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <div className="flex flex-col items-center gap-3">
+      <AlertDialog>
+        <AlertDialogTrigger render={<Button variant="destructive" />}>
+          Delete project
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this project?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This removes drafts and cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setLast("Kept")}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              variant="destructive"
+              onClick={() => setLast("Deleted")}
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {last ? `Last action · ${last}` : "Project still here"}
+      </p>
+    </div>
   )
 }
 
 export function DemoMenu() {
+  const [picked, setPicked] = React.useState<string | null>(null)
   return (
-    <Menu>
-      <MenuTrigger render={<Button variant="outline" />}>
-        Open menu
-      </MenuTrigger>
-      <MenuContent>
-        <MenuItem>Duplicate</MenuItem>
-        <MenuItem>Archive</MenuItem>
-        <MenuSeparator />
-        <MenuItem variant="destructive">Delete</MenuItem>
-      </MenuContent>
-    </Menu>
+    <div className="flex flex-col items-center gap-3">
+      <Menu>
+        <MenuTrigger render={<Button variant="outline" />}>
+          Open menu
+        </MenuTrigger>
+        <MenuContent>
+          <MenuItem onClick={() => setPicked("Duplicate")}>Duplicate</MenuItem>
+          <MenuItem onClick={() => setPicked("Archive")}>Archive</MenuItem>
+          <MenuSeparator />
+          <MenuItem
+            variant="destructive"
+            onClick={() => setPicked("Delete")}
+          >
+            Delete
+          </MenuItem>
+        </MenuContent>
+      </Menu>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {picked ? `Chose · ${picked}` : "Nothing chosen yet"}
+      </p>
+    </div>
   )
 }
 
 export function DemoContextMenu() {
+  const [picked, setPicked] = React.useState<string | null>(null)
   return (
-    <ContextMenu>
-      <ContextMenuTrigger className="flex h-28 w-full max-w-xs items-center justify-center rounded-[var(--radius)] border border-dashed border-border-subtle text-sm text-muted-foreground">
-        Right click here
-      </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuItem>Duplicate</ContextMenuItem>
-        <ContextMenuItem>Archive</ContextMenuItem>
-        <ContextMenuSeparator />
-        <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
-      </ContextMenuContent>
-    </ContextMenu>
+    <div className="flex w-full max-w-xs flex-col items-stretch gap-3">
+      <ContextMenu>
+        <ContextMenuTrigger className="flex h-28 w-full items-center justify-center rounded-[var(--radius)] border border-dashed border-border-subtle text-sm text-muted-foreground">
+          Right click here
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem onClick={() => setPicked("Duplicate")}>
+            Duplicate
+          </ContextMenuItem>
+          <ContextMenuItem onClick={() => setPicked("Archive")}>
+            Archive
+          </ContextMenuItem>
+          <ContextMenuSeparator />
+          <ContextMenuItem
+            variant="destructive"
+            onClick={() => setPicked("Delete")}
+          >
+            Delete
+          </ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {picked ? `Chose · ${picked}` : "Waiting for a right-click"}
+      </p>
+    </div>
   )
 }
 
@@ -929,20 +998,35 @@ export function DemoField() {
 }
 
 export function DemoNumberField() {
+  const [value, setValue] = React.useState(4)
+  const atMin = value <= 1
+  const atMax = value >= 12
   return (
-    <NumberField
-      className="max-w-[12rem] text-left"
-      defaultValue={4}
-      min={1}
-      max={12}
-    >
-      <NumberFieldScrubArea>Quantity</NumberFieldScrubArea>
-      <NumberFieldGroup>
-        <NumberFieldDecrement />
-        <NumberFieldInput />
-        <NumberFieldIncrement />
-      </NumberFieldGroup>
-    </NumberField>
+    <div className="flex w-full max-w-[12rem] flex-col gap-3 text-left">
+      <NumberField
+        className="w-full"
+        value={value}
+        onValueChange={(next) => {
+          if (typeof next === "number") setValue(next)
+        }}
+        min={1}
+        max={12}
+      >
+        <NumberFieldScrubArea>Quantity</NumberFieldScrubArea>
+        <NumberFieldGroup>
+          <NumberFieldDecrement />
+          <NumberFieldInput />
+          <NumberFieldIncrement />
+        </NumberFieldGroup>
+      </NumberField>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {atMin
+          ? "At min · 1"
+          : atMax
+            ? "At max · 12 — step won’t go further"
+            : `Value · ${value}`}
+      </p>
+    </div>
   )
 }
 
@@ -1011,15 +1095,20 @@ export function DemoInput() {
 export function DemoSwitch() {
   const [on, setOn] = React.useState(true)
   return (
-    <div className="flex items-center gap-3">
-      <Switch
-        checked={on}
-        onCheckedChange={setOn}
-        aria-label="Publish drafts"
-      />
-      <span className="text-sm text-muted-foreground">
-        {on ? "layout thumb" : "justify flip"}
-      </span>
+    <div className="flex flex-col items-center gap-3">
+      <div className="flex items-center gap-3">
+        <Switch
+          checked={on}
+          onCheckedChange={setOn}
+          aria-label="Publish drafts"
+        />
+        <span className="text-sm text-foreground">
+          {on ? "Drafts published" : "Drafts private"}
+        </span>
+      </div>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        State · {on ? "on" : "off"}
+      </p>
     </div>
   )
 }
@@ -1067,17 +1156,24 @@ export function DemoToast() {
 
 function DemoToastTrigger() {
   const toast = useToastManager()
+  const [count, setCount] = React.useState(0)
   return (
-    <Button
-      onClick={() =>
-        toast.add({
-          title: "Saved",
-          description: "Draft published to the registry.",
-        })
-      }
-    >
-      Show toast
-    </Button>
+    <div className="flex flex-col items-center gap-3">
+      <Button
+        onClick={() => {
+          setCount((n) => n + 1)
+          toast.add({
+            title: "Saved",
+            description: "Draft published to the registry.",
+          })
+        }}
+      >
+        Show toast
+      </Button>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {count > 0 ? `Fired · ${count}` : "Stack is empty"}
+      </p>
+    </div>
   )
 }
 
@@ -1318,9 +1414,14 @@ const DEMO_FRUITS = ["Apple", "Banana", "Blueberry", "Cherry", "Mango"]
 const DEMO_TAGS = ["motion", "registry", "scope", "og", "host-api"]
 
 export function DemoCombobox() {
+  const [value, setValue] = React.useState<string | null>(null)
   return (
-    <Combobox items={DEMO_FRUITS}>
-      <div className="w-full max-w-xs text-left">
+    <div className="flex w-full max-w-xs flex-col gap-3 text-left">
+      <Combobox
+        items={DEMO_FRUITS}
+        value={value}
+        onValueChange={(next) => setValue(typeof next === "string" ? next : null)}
+      >
         <ComboboxInputGroup>
           <ComboboxInput placeholder="Choose a fruit" />
           <ComboboxClear />
@@ -1337,8 +1438,11 @@ export function DemoCombobox() {
             )}
           </ComboboxList>
         </ComboboxContent>
-      </div>
-    </Combobox>
+      </Combobox>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        {value ? `Selected · ${value}` : "Type to filter · select"}
+      </p>
+    </div>
   )
 }
 
@@ -1403,26 +1507,32 @@ export function DemoDrawer() {
 }
 
 export function DemoTabs() {
+  const [tab, setTab] = React.useState("overview")
   return (
-    <Tabs defaultValue="overview" className="w-full max-w-md">
-      <TabsList>
-        <TabsTrigger value="overview">Overview</TabsTrigger>
-        <TabsTrigger value="activity">Activity</TabsTrigger>
-        <TabsTrigger value="settings">Settings</TabsTrigger>
-      </TabsList>
-      <TabsContent value="overview" className="pt-3 text-sm text-muted-foreground">
-        layoutId pill morph — shared element travels. Panel height settles
-        when peers differ.
-      </TabsContent>
-      <TabsContent value="activity" className="pt-3 text-sm text-muted-foreground">
-        Peer switch stays lateral.
-        <br />
-        Extra lines make layout height travel obvious.
-      </TabsContent>
-      <TabsContent value="settings" className="pt-3 text-sm text-muted-foreground">
-        Soft-rect chrome. No spring bounce.
-      </TabsContent>
-    </Tabs>
+    <div className="flex w-full max-w-md flex-col gap-2">
+      <Tabs value={tab} onValueChange={setTab} className="w-full">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="activity">Activity</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview" className="pt-3 text-sm text-muted-foreground">
+          layoutId pill morph — shared element travels. Panel height settles
+          when peers differ.
+        </TabsContent>
+        <TabsContent value="activity" className="pt-3 text-sm text-muted-foreground">
+          Peer switch stays lateral.
+          <br />
+          Extra lines make layout height travel obvious.
+        </TabsContent>
+        <TabsContent value="settings" className="pt-3 text-sm text-muted-foreground">
+          Soft-rect chrome. No spring bounce.
+        </TabsContent>
+      </Tabs>
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground" aria-live="polite">
+        Panel · {tab}
+      </p>
+    </div>
   )
 }
 
@@ -2632,6 +2742,14 @@ export function DemoScopeChat() {
   return (
     <div className="w-full max-h-[520px] overflow-auto rounded-xl border border-border-subtle">
       <ScopeChat />
+    </div>
+  )
+}
+
+export function DemoLaunchWorkflow() {
+  return (
+    <div className="w-full max-h-[640px] overflow-auto rounded-xl border border-border-subtle">
+      <LaunchRoom />
     </div>
   )
 }

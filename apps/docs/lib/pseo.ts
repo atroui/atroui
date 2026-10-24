@@ -11,10 +11,9 @@
  * - MCP package `@atroui/mcp` (`new-implementation1`)
  * - First-party CLI `@atroui/cli` (`ni2`)
  * - Extra AI vendors (OpenAI / Anthropic) behind Host APIs
- * - Meta registry item `@atroui/launch-workflow` (the *guide* is live;
- *   the bundled registry item is not)
  *
  * When those ship on master, add overlays/hubs here — not before.
+ * Shipped: `@atroui/launch-workflow` + live `/launch` room.
  */
 
 export type PseoFaq = { q: string; a: string }
@@ -258,9 +257,11 @@ export const pseoCollections: PseoCollection[] = [
       "Scope Chat, project planner, and OG/thumbnail workspaces sharing one ProjectBrief. From idea to social card in the consumer Next.js app.",
     intro:
       "The catalog is easy to read as a grid of widgets. This collection is the product bet: one intake conversation becomes a brief, then a card — still BYOK.",
-    why: "The live catalog already has Scope, planner, OG, and `/docs/guides/launch-workflow`. There is no `@atroui/launch-workflow` meta item on master — do not tell people to install it. Traffic on this job decides if we add one later.",
+    why: "Try the live room at `/launch`, then install `@atroui/launch-workflow` for the same path in your app. Guide: `/docs/guides/launch-workflow`.",
     paths: [
+      "/launch",
       "/docs/guides/launch-workflow",
+      "/docs/components/launch-launch-workflow",
       "/docs/components/scope-scope-chat",
       "/docs/components/planner-project-planner",
       "/docs/components/og-og-workspace",
@@ -276,21 +277,35 @@ export const pseoCollections: PseoCollection[] = [
     slug: "dark-marketing",
     title: "Dark marketing sections for Next.js",
     description:
-      "Hero, header, footer, FAQ, and pricing blocks from the AtroUI shadcn registry. Dark-first, CONTENT at the top of each file.",
+      "Hero → features/bento → logos → stats → testimonials → pricing → FAQ → CTA → auth. Soft-rect AtroUI registry blocks with CONTENT at the top of each file.",
     intro:
-      "shadcn primitives do not assemble a homepage. These blocks are the sections people actually ship — owned files, not a themed iframe.",
-    why: "No fake logo cloud on atroui.com. The same blocks are in the registry for consumers who want a logo row on their site.",
+      "shadcn primitives do not assemble a homepage. These blocks are the Vibrant-shaped landing map — owned files, Atro taste, not a themed iframe.",
+    why: "Install by job: @atroui/home-hero, feature-bento, logo-cloud / logo-marquee, stats-band, testimonials-stack, pricing-overview / pricing-tiers, faq, cta-band, auth-split. Or start from @atroui/saas-starter.",
     paths: [
       "/docs/components/home-hero",
+      "/docs/components/feature-grid",
+      "/docs/components/feature-bento",
+      "/docs/components/logo-cloud",
+      "/docs/components/logo-marquee",
+      "/docs/components/stats-band",
+      "/docs/components/testimonials-stack",
+      "/docs/components/pricing-overview",
+      "/docs/components/pricing-tiers",
+      "/docs/components/faq-interactive-preview",
+      "/docs/components/cta-band",
+      "/docs/components/auth-split",
+      "/docs/components/saas-starter",
       "/docs/components/site-header",
       "/docs/components/site-footer",
-      "/docs/components/faq-interactive-preview",
-      "/docs/components/pricing-overview",
     ],
     faqs: [
       {
         q: "Do these need Host APIs?",
         a: "No. Registry UI only. Add a form Host API when the page must send mail.",
+      },
+      {
+        q: "Where do I start?",
+        a: "Try @atroui/saas-starter for a one-file composition, or add sections à la carte in Vibrant order from the collection paths.",
       },
     ],
   },

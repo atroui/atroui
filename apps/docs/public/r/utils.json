@@ -2,9 +2,10 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "utils",
   "title": "Utils",
-  "description": "cn() helper — Tailwind class merge (shadcn cn engine).",
+  "description": "cn() helper (clsx + tailwind-merge).",
   "dependencies": [
-    "cn"
+    "clsx",
+    "tailwind-merge"
   ],
   "files": [
     {

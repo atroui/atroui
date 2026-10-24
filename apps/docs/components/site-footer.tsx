@@ -40,7 +40,8 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     heading: "Tools",
     links: [
       ...toolApps.map((tool) => ({ label: tool.title, href: tool.href })),
-      { label: "Launch workflow", href: "/docs/guides/launch-workflow" },
+      { label: "Launch room", href: "/launch" },
+      { label: "Launch guide", href: "/docs/guides/launch-workflow" },
       { label: "Collections", href: "/docs/collections" },
     ],
   },

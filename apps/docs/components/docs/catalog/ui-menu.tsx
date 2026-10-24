@@ -9,6 +9,7 @@ export function UiMenuDoc() {
       registryName="menu"
       title="Menu"
       description="Dropdown menu on Base UI with soft-rect items and settle motion."
+      tip="Open the menu · pick an item"
       preview={<DemoMenu />}
       code={`import { Button } from "@/components/ui/button"
 import {

@@ -59,12 +59,9 @@ export default function OgPage() {
           primaryHref="/docs/host-api"
           primaryLabel="Wire Host APIs for AI generate"
           links={[
+            { href: "/launch", label: "Launch room" },
             { href: "/planner", label: "Project planner" },
-            { href: "/docs/guides/launch-workflow", label: "Launch workflow" },
-            {
-              href: "/docs/components/og-og-workspace",
-              label: "Component docs",
-            },
+            { href: "/docs/guides/launch-workflow", label: "Launch guide" },
           ]}
         />
       }

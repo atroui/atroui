@@ -7,9 +7,10 @@
       "name": "utils",
       "type": "registry:lib",
       "title": "Utils",
-      "description": "cn() helper — Tailwind class merge (shadcn cn engine).",
+      "description": "cn() helper (clsx + tailwind-merge).",
       "dependencies": [
-        "cn"
+        "clsx",
+        "tailwind-merge"
       ],
       "files": [
         {
@@ -23,7 +24,7 @@
       "name": "motion",
       "type": "registry:lib",
       "title": "Motion",
-      "description": "Shared motion tokens — hover language, presence helpers, timeline reveal (Family Values easings, no springs/blur).",
+      "description": "Shared motion tokens \u2014 hover language, presence helpers, timeline reveal (Family Values easings, no springs/blur).",
       "files": [
         {
           "path": "registry/default/lib/motion.ts",
@@ -49,7 +50,7 @@
       "name": "project-brief",
       "type": "registry:lib",
       "title": "Project Brief",
-      "description": "Shared ProjectBrief type + OG/thumbnail href helpers for Scope → Planner → social card glue.",
+      "description": "Shared ProjectBrief type + OG/thumbnail href helpers for Scope \u2192 Planner \u2192 social card glue.",
       "files": [
         {
           "path": "registry/default/lib/project-brief.ts",
@@ -62,7 +63,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Soft-rect AtroUI button — hover lift ≤1px, press into surface, focus parity.",
+      "description": "Soft-rect AtroUI button \u2014 hover lift \u22641px, press into surface, focus parity.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority",
@@ -98,711 +99,6 @@
           "path": "registry/default/ui/theme-toggle.tsx",
           "type": "registry:ui",
           "target": "components/ui/theme-toggle.tsx"
-        }
-      ]
-    },
-    {
-      "name": "color-themes",
-      "type": "registry:lib",
-      "title": "Color Themes",
-      "description": "Accent theme ids, storage, token maps, and apply helpers for data-color-theme (orthogonal to light/dark).",
-      "files": [
-        {
-          "path": "registry/default/lib/color-themes.ts",
-          "type": "registry:lib",
-          "target": "lib/color-themes.ts"
-        }
-      ]
-    },
-    {
-      "name": "color-theme-picker",
-      "type": "registry:ui",
-      "title": "Color Theme Picker",
-      "description": "Unified Themes popover — Accent, Surface, Type, and Radius axes (orthogonal to light/dark).",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "@atroui/utils",
-        "@atroui/motion",
-        "@atroui/popover",
-        "@atroui/color-themes",
-        "@atroui/surface-themes",
-        "@atroui/type-themes",
-        "@atroui/radius-themes"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/color-theme-picker.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/color-theme-picker.tsx"
-        }
-      ]
-    },
-    {
-      "name": "radius-themes",
-      "type": "registry:lib",
-      "title": "Radius Themes",
-      "description": "Radius theme ids, storage, and apply helpers for data-radius (Soft / Mira / Sharp).",
-      "files": [
-        {
-          "path": "registry/default/lib/radius-themes.ts",
-          "type": "registry:lib",
-          "target": "lib/radius-themes.ts"
-        }
-      ]
-    },
-    {
-      "name": "surface-themes",
-      "type": "registry:lib",
-      "title": "Surface Themes",
-      "description": "Surface (room) theme ids, storage, token maps, and apply helpers for data-surface (Mira / Mist / Paper / Stone / Ink).",
-      "files": [
-        {
-          "path": "registry/default/lib/surface-themes.ts",
-          "type": "registry:lib",
-          "target": "lib/surface-themes.ts"
-        }
-      ]
-    },
-    {
-      "name": "type-themes",
-      "type": "registry:lib",
-      "title": "Type Themes",
-      "description": "Type faces and Display/Body role helpers (data-type-display / data-type-body). Legacy pair presets kept for installs.",
-      "files": [
-        {
-          "path": "registry/default/lib/type-themes.ts",
-          "type": "registry:lib",
-          "target": "lib/type-themes.ts"
-        }
-      ]
-    },
-    {
-      "name": "radius-theme-picker",
-      "type": "registry:ui",
-      "title": "Radius Theme Picker",
-      "description": "Soft-rect segmented control for Soft | Mira | Sharp corner radius.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "@atroui/utils",
-        "@atroui/radius-themes"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/radius-theme-picker.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/radius-theme-picker.tsx"
-        }
-      ]
-    },
-    {
-      "name": "theme-tide",
-      "type": "registry:theme",
-      "title": "Tide accent",
-      "description": "Teal accent tokens (primary, sidebar, ring, charts) for light and dark. Merges into your globals.css via the shadcn CLI.",
-      "cssVars": {
-        "light": {
-          "primary": "oklch(0.457 0.12 185)",
-          "primary-foreground": "oklch(0.98 0.01 185)",
-          "sidebar-primary": "oklch(0.511 0.13 185)",
-          "sidebar-primary-foreground": "oklch(0.98 0.01 185)",
-          "ring": "oklch(0.55 0.07 185)",
-          "sidebar-ring": "oklch(0.55 0.07 185)",
-          "chart-1": "oklch(0.785 0.08 185)",
-          "chart-2": "oklch(0.585 0.11 185)",
-          "chart-3": "oklch(0.511 0.13 185)",
-          "chart-4": "oklch(0.457 0.12 185)",
-          "chart-5": "oklch(0.42 0.1 185)"
-        },
-        "dark": {
-          "primary": "oklch(0.42 0.1 185)",
-          "primary-foreground": "oklch(0.98 0.01 185)",
-          "sidebar-primary": "oklch(0.585 0.12 185)",
-          "sidebar-primary-foreground": "oklch(0.98 0.01 185)",
-          "ring": "oklch(0.55 0.04 185)",
-          "sidebar-ring": "oklch(0.55 0.04 185)",
-          "chart-1": "oklch(0.785 0.08 185)",
-          "chart-2": "oklch(0.585 0.12 185)",
-          "chart-3": "oklch(0.511 0.13 185)",
-          "chart-4": "oklch(0.457 0.12 185)",
-          "chart-5": "oklch(0.42 0.1 185)"
-        }
-      },
-      "docs": "Sets accent tokens only. Surfaces stay your sheet. Pair with any @atroui/ui install: npx shadcn@latest add @atroui/button @atroui/theme-tide"
-    },
-    {
-      "name": "theme-ember",
-      "type": "registry:theme",
-      "title": "Ember accent",
-      "description": "Amber accent tokens (primary, sidebar, ring, charts) for light and dark. Merges into your globals.css via the shadcn CLI.",
-      "cssVars": {
-        "light": {
-          "primary": "oklch(0.55 0.16 75)",
-          "primary-foreground": "oklch(0.22 0.03 75)",
-          "sidebar-primary": "oklch(0.58 0.17 75)",
-          "sidebar-primary-foreground": "oklch(0.22 0.03 75)",
-          "ring": "oklch(0.6 0.1 75)",
-          "sidebar-ring": "oklch(0.6 0.1 75)",
-          "chart-1": "oklch(0.82 0.1 75)",
-          "chart-2": "oklch(0.65 0.14 75)",
-          "chart-3": "oklch(0.58 0.17 75)",
-          "chart-4": "oklch(0.55 0.16 75)",
-          "chart-5": "oklch(0.48 0.14 75)"
-        },
-        "dark": {
-          "primary": "oklch(0.48 0.14 75)",
-          "primary-foreground": "oklch(0.98 0.01 85)",
-          "sidebar-primary": "oklch(0.65 0.15 75)",
-          "sidebar-primary-foreground": "oklch(0.22 0.03 75)",
-          "ring": "oklch(0.58 0.06 75)",
-          "sidebar-ring": "oklch(0.58 0.06 75)",
-          "chart-1": "oklch(0.82 0.1 75)",
-          "chart-2": "oklch(0.65 0.15 75)",
-          "chart-3": "oklch(0.58 0.17 75)",
-          "chart-4": "oklch(0.55 0.16 75)",
-          "chart-5": "oklch(0.48 0.14 75)"
-        }
-      },
-      "docs": "Sets accent tokens only. Surfaces stay your sheet. Pair with any @atroui/ui install: npx shadcn@latest add @atroui/button @atroui/theme-ember"
-    },
-    {
-      "name": "theme-bloom",
-      "type": "registry:theme",
-      "title": "Bloom accent",
-      "description": "Rose accent tokens (primary, sidebar, ring, charts) for light and dark. Merges into your globals.css via the shadcn CLI.",
-      "cssVars": {
-        "light": {
-          "primary": "oklch(0.5 0.18 18)",
-          "primary-foreground": "oklch(0.98 0.01 20)",
-          "sidebar-primary": "oklch(0.54 0.19 18)",
-          "sidebar-primary-foreground": "oklch(0.98 0.01 20)",
-          "ring": "oklch(0.58 0.1 18)",
-          "sidebar-ring": "oklch(0.58 0.1 18)",
-          "chart-1": "oklch(0.8 0.1 18)",
-          "chart-2": "oklch(0.6 0.15 18)",
-          "chart-3": "oklch(0.54 0.19 18)",
-          "chart-4": "oklch(0.5 0.18 18)",
-          "chart-5": "oklch(0.45 0.15 18)"
-        },
-        "dark": {
-          "primary": "oklch(0.45 0.15 18)",
-          "primary-foreground": "oklch(0.98 0.01 20)",
-          "sidebar-primary": "oklch(0.6 0.16 18)",
-          "sidebar-primary-foreground": "oklch(0.98 0.01 20)",
-          "ring": "oklch(0.55 0.05 18)",
-          "sidebar-ring": "oklch(0.55 0.05 18)",
-          "chart-1": "oklch(0.8 0.1 18)",
-          "chart-2": "oklch(0.6 0.16 18)",
-          "chart-3": "oklch(0.54 0.19 18)",
-          "chart-4": "oklch(0.5 0.18 18)",
-          "chart-5": "oklch(0.45 0.15 18)"
-        }
-      },
-      "docs": "Sets accent tokens only. Surfaces stay your sheet. Pair with any @atroui/ui install: npx shadcn@latest add @atroui/button @atroui/theme-bloom"
-    },
-    {
-      "name": "theme-graphite",
-      "type": "registry:theme",
-      "title": "Graphite accent",
-      "description": "Cool slate accent tokens (primary, sidebar, ring, charts) for light and dark. Merges into your globals.css via the shadcn CLI.",
-      "cssVars": {
-        "light": {
-          "primary": "oklch(0.42 0.04 265)",
-          "primary-foreground": "oklch(0.98 0 0)",
-          "sidebar-primary": "oklch(0.48 0.045 265)",
-          "sidebar-primary-foreground": "oklch(0.98 0 0)",
-          "ring": "oklch(0.55 0.03 265)",
-          "sidebar-ring": "oklch(0.55 0.03 265)",
-          "chart-1": "oklch(0.78 0.03 265)",
-          "chart-2": "oklch(0.58 0.04 265)",
-          "chart-3": "oklch(0.48 0.045 265)",
-          "chart-4": "oklch(0.42 0.04 265)",
-          "chart-5": "oklch(0.36 0.03 265)"
-        },
-        "dark": {
-          "primary": "oklch(0.48 0.03 265)",
-          "primary-foreground": "oklch(0.98 0 0)",
-          "sidebar-primary": "oklch(0.58 0.04 265)",
-          "sidebar-primary-foreground": "oklch(0.98 0 0)",
-          "ring": "oklch(0.55 0.02 265)",
-          "sidebar-ring": "oklch(0.55 0.02 265)",
-          "chart-1": "oklch(0.78 0.03 265)",
-          "chart-2": "oklch(0.58 0.04 265)",
-          "chart-3": "oklch(0.48 0.045 265)",
-          "chart-4": "oklch(0.42 0.04 265)",
-          "chart-5": "oklch(0.36 0.03 265)"
-        }
-      },
-      "docs": "Sets accent tokens only. Surfaces stay your sheet. Pair with any @atroui/ui install: npx shadcn@latest add @atroui/button @atroui/theme-graphite"
-    },
-    {
-      "name": "radius-soft",
-      "type": "registry:theme",
-      "title": "Soft radius",
-      "description": "Sets --radius to 0.65rem (controls follow via --atro-control-radius).",
-      "cssVars": {
-        "light": {
-          "radius": "0.65rem"
-        },
-        "dark": {
-          "radius": "0.65rem"
-        }
-      },
-      "docs": "Soft corner scale. Install with a component: npx shadcn@latest add @atroui/button @atroui/radius-soft"
-    },
-    {
-      "name": "radius-sharp",
-      "type": "registry:theme",
-      "title": "Sharp radius",
-      "description": "Sets --radius to 0.25rem (controls follow via --atro-control-radius).",
-      "cssVars": {
-        "light": {
-          "radius": "0.25rem"
-        },
-        "dark": {
-          "radius": "0.25rem"
-        }
-      },
-      "docs": "Sharp corner scale. Install with a component: npx shadcn@latest add @atroui/button @atroui/radius-sharp"
-    },
-    {
-      "name": "surface-mist",
-      "type": "registry:theme",
-      "title": "Mist surface",
-      "description": "Cooler grey room — stepped canvas / card / muted. Surfaces only; accents stay Mira.",
-      "cssVars": {
-        "light": {
-          "background": "oklch(0.96 0.005 255)",
-          "foreground": "oklch(0.145 0.004 255)",
-          "card": "oklch(0.985 0.003 255)",
-          "card-foreground": "oklch(0.145 0.004 255)",
-          "popover": "oklch(0.985 0.003 255)",
-          "popover-foreground": "oklch(0.145 0.004 255)",
-          "secondary": "oklch(0.93 0.006 255)",
-          "secondary-foreground": "oklch(0.22 0.005 255)",
-          "muted": "oklch(0.93 0.006 255)",
-          "muted-foreground": "oklch(0.48 0.015 255)",
-          "accent": "oklch(0.93 0.006 255)",
-          "accent-foreground": "oklch(0.22 0.005 255)",
-          "border": "oklch(0.35 0.015 255 / 0.14)",
-          "input": "oklch(0.35 0.015 255 / 0.16)",
-          "sidebar": "oklch(0.948 0.004 255)",
-          "sidebar-foreground": "oklch(0.145 0.004 255)",
-          "sidebar-accent": "oklch(0.93 0.006 255)",
-          "sidebar-accent-foreground": "oklch(0.22 0.005 255)",
-          "sidebar-border": "oklch(0.35 0.015 255 / 0.14)",
-          "elev-ambient": "oklch(0.25 0.015 255 / 0.14)",
-          "elev-key": "oklch(0.2 0.015 255 / 0.08)"
-        },
-        "dark": {
-          "background": "oklch(0.175 0.008 255)",
-          "foreground": "oklch(0.985 0 0)",
-          "card": "oklch(0.225 0.009 255)",
-          "card-foreground": "oklch(0.985 0 0)",
-          "popover": "oklch(0.225 0.009 255)",
-          "popover-foreground": "oklch(0.985 0 0)",
-          "secondary": "oklch(0.28 0.008 255)",
-          "secondary-foreground": "oklch(0.985 0 0)",
-          "muted": "oklch(0.28 0.008 255)",
-          "muted-foreground": "oklch(0.7 0.012 255)",
-          "accent": "oklch(0.28 0.008 255)",
-          "accent-foreground": "oklch(0.985 0 0)",
-          "border": "oklch(1 0 0 / 10%)",
-          "input": "oklch(1 0 0 / 15%)",
-          "sidebar": "oklch(0.225 0.009 255)",
-          "sidebar-foreground": "oklch(0.985 0 0)",
-          "sidebar-accent": "oklch(0.28 0.008 255)",
-          "sidebar-accent-foreground": "oklch(0.985 0 0)",
-          "sidebar-border": "oklch(1 0 0 / 10%)",
-          "elev-ambient": "color-mix(in oklch, var(--foreground) 32%, transparent)",
-          "elev-key": "color-mix(in oklch, var(--foreground) 18%, transparent)"
-        }
-      },
-      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"mist\". Install: npx shadcn@latest add @atroui/button @atroui/surface-mist"
-    },
-    {
-      "name": "surface-paper",
-      "type": "registry:theme",
-      "title": "Paper surface",
-      "description": "Brighter canvas — still stepped, never flat white. Surfaces only; accents stay Mira.",
-      "cssVars": {
-        "light": {
-          "background": "oklch(0.98 0.005 286)",
-          "foreground": "oklch(0.141 0.005 285.823)",
-          "card": "oklch(0.995 0.002 286)",
-          "card-foreground": "oklch(0.141 0.005 285.823)",
-          "popover": "oklch(0.995 0.002 286)",
-          "popover-foreground": "oklch(0.141 0.005 285.823)",
-          "secondary": "oklch(0.945 0.006 286)",
-          "secondary-foreground": "oklch(0.21 0.006 285.885)",
-          "muted": "oklch(0.945 0.006 286)",
-          "muted-foreground": "oklch(0.48 0.016 285.9)",
-          "accent": "oklch(0.945 0.006 286)",
-          "accent-foreground": "oklch(0.21 0.006 285.885)",
-          "border": "oklch(0.35 0.018 286 / 0.12)",
-          "input": "oklch(0.35 0.018 286 / 0.14)",
-          "sidebar": "oklch(0.968 0.004 286)",
-          "sidebar-foreground": "oklch(0.141 0.005 285.823)",
-          "sidebar-accent": "oklch(0.945 0.006 286)",
-          "sidebar-accent-foreground": "oklch(0.21 0.006 285.885)",
-          "sidebar-border": "oklch(0.35 0.018 286 / 0.12)",
-          "elev-ambient": "oklch(0.28 0.018 286 / 0.12)",
-          "elev-key": "oklch(0.22 0.018 286 / 0.07)"
-        },
-        "dark": {
-          "background": "oklch(0.2 0.005 286)",
-          "foreground": "oklch(0.985 0 0)",
-          "card": "oklch(0.25 0.006 286)",
-          "card-foreground": "oklch(0.985 0 0)",
-          "popover": "oklch(0.25 0.006 286)",
-          "popover-foreground": "oklch(0.985 0 0)",
-          "secondary": "oklch(0.305 0.006 286)",
-          "secondary-foreground": "oklch(0.985 0 0)",
-          "muted": "oklch(0.305 0.006 286)",
-          "muted-foreground": "oklch(0.72 0.014 286)",
-          "accent": "oklch(0.305 0.006 286)",
-          "accent-foreground": "oklch(0.985 0 0)",
-          "border": "oklch(1 0 0 / 10%)",
-          "input": "oklch(1 0 0 / 15%)",
-          "sidebar": "oklch(0.25 0.006 286)",
-          "sidebar-foreground": "oklch(0.985 0 0)",
-          "sidebar-accent": "oklch(0.305 0.006 286)",
-          "sidebar-accent-foreground": "oklch(0.985 0 0)",
-          "sidebar-border": "oklch(1 0 0 / 10%)",
-          "elev-ambient": "color-mix(in oklch, var(--foreground) 30%, transparent)",
-          "elev-key": "color-mix(in oklch, var(--foreground) 16%, transparent)"
-        }
-      },
-      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"paper\". Install: npx shadcn@latest add @atroui/button @atroui/surface-paper"
-    },
-    {
-      "name": "surface-stone",
-      "type": "registry:theme",
-      "title": "Stone surface",
-      "description": "Quiet neutral stone (low chroma warm lean). Surfaces only; accents stay Mira.",
-      "cssVars": {
-        "light": {
-          "background": "oklch(0.965 0.006 82)",
-          "foreground": "oklch(0.16 0.008 75)",
-          "card": "oklch(0.99 0.003 82)",
-          "card-foreground": "oklch(0.16 0.008 75)",
-          "popover": "oklch(0.99 0.003 82)",
-          "popover-foreground": "oklch(0.16 0.008 75)",
-          "secondary": "oklch(0.932 0.007 82)",
-          "secondary-foreground": "oklch(0.23 0.008 75)",
-          "muted": "oklch(0.932 0.007 82)",
-          "muted-foreground": "oklch(0.48 0.012 75)",
-          "accent": "oklch(0.932 0.007 82)",
-          "accent-foreground": "oklch(0.23 0.008 75)",
-          "border": "oklch(0.35 0.01 80 / 0.14)",
-          "input": "oklch(0.35 0.01 80 / 0.16)",
-          "sidebar": "oklch(0.952 0.005 82)",
-          "sidebar-foreground": "oklch(0.16 0.008 75)",
-          "sidebar-accent": "oklch(0.932 0.007 82)",
-          "sidebar-accent-foreground": "oklch(0.23 0.008 75)",
-          "sidebar-border": "oklch(0.35 0.01 80 / 0.14)",
-          "elev-ambient": "oklch(0.28 0.01 80 / 0.13)",
-          "elev-key": "oklch(0.22 0.01 80 / 0.07)"
-        },
-        "dark": {
-          "background": "oklch(0.18 0.004 80)",
-          "foreground": "oklch(0.985 0 0)",
-          "card": "oklch(0.23 0.004 80)",
-          "card-foreground": "oklch(0.985 0 0)",
-          "popover": "oklch(0.23 0.004 80)",
-          "popover-foreground": "oklch(0.985 0 0)",
-          "secondary": "oklch(0.285 0.004 80)",
-          "secondary-foreground": "oklch(0.985 0 0)",
-          "muted": "oklch(0.285 0.004 80)",
-          "muted-foreground": "oklch(0.7 0.01 80)",
-          "accent": "oklch(0.285 0.004 80)",
-          "accent-foreground": "oklch(0.985 0 0)",
-          "border": "oklch(1 0 0 / 10%)",
-          "input": "oklch(1 0 0 / 15%)",
-          "sidebar": "oklch(0.23 0.004 80)",
-          "sidebar-foreground": "oklch(0.985 0 0)",
-          "sidebar-accent": "oklch(0.285 0.004 80)",
-          "sidebar-accent-foreground": "oklch(0.985 0 0)",
-          "sidebar-border": "oklch(1 0 0 / 10%)",
-          "elev-ambient": "color-mix(in oklch, var(--foreground) 32%, transparent)",
-          "elev-key": "color-mix(in oklch, var(--foreground) 18%, transparent)"
-        }
-      },
-      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"stone\". Install: npx shadcn@latest add @atroui/button @atroui/surface-stone"
-    },
-    {
-      "name": "surface-ink",
-      "type": "registry:theme",
-      "title": "Ink surface",
-      "description": "Deeper room — crushed canvas with stepped card / muted. Surfaces only; accents stay Mira.",
-      "cssVars": {
-        "light": {
-          "background": "oklch(0.94 0.008 286)",
-          "foreground": "oklch(0.14 0.006 285.8)",
-          "card": "oklch(0.97 0.005 286)",
-          "card-foreground": "oklch(0.14 0.006 285.8)",
-          "popover": "oklch(0.97 0.005 286)",
-          "popover-foreground": "oklch(0.14 0.006 285.8)",
-          "secondary": "oklch(0.91 0.008 286)",
-          "secondary-foreground": "oklch(0.21 0.006 285.885)",
-          "muted": "oklch(0.91 0.008 286)",
-          "muted-foreground": "oklch(0.46 0.018 285.9)",
-          "accent": "oklch(0.91 0.008 286)",
-          "accent-foreground": "oklch(0.21 0.006 285.885)",
-          "border": "oklch(0.32 0.02 286 / 0.16)",
-          "input": "oklch(0.32 0.02 286 / 0.18)",
-          "sidebar": "oklch(0.925 0.007 286)",
-          "sidebar-foreground": "oklch(0.14 0.006 285.8)",
-          "sidebar-accent": "oklch(0.91 0.008 286)",
-          "sidebar-accent-foreground": "oklch(0.21 0.006 285.885)",
-          "sidebar-border": "oklch(0.32 0.02 286 / 0.16)",
-          "elev-ambient": "oklch(0.22 0.02 286 / 0.16)",
-          "elev-key": "oklch(0.18 0.02 286 / 0.1)"
-        },
-        "dark": {
-          "background": "oklch(0.155 0.006 286)",
-          "foreground": "oklch(0.985 0 0)",
-          "card": "oklch(0.205 0.007 286)",
-          "card-foreground": "oklch(0.985 0 0)",
-          "popover": "oklch(0.205 0.007 286)",
-          "popover-foreground": "oklch(0.985 0 0)",
-          "secondary": "oklch(0.26 0.007 286)",
-          "secondary-foreground": "oklch(0.985 0 0)",
-          "muted": "oklch(0.26 0.007 286)",
-          "muted-foreground": "oklch(0.68 0.014 286)",
-          "accent": "oklch(0.26 0.007 286)",
-          "accent-foreground": "oklch(0.985 0 0)",
-          "border": "oklch(1 0 0 / 9%)",
-          "input": "oklch(1 0 0 / 13%)",
-          "sidebar": "oklch(0.205 0.007 286)",
-          "sidebar-foreground": "oklch(0.985 0 0)",
-          "sidebar-accent": "oklch(0.26 0.007 286)",
-          "sidebar-accent-foreground": "oklch(0.985 0 0)",
-          "sidebar-border": "oklch(1 0 0 / 9%)",
-          "elev-ambient": "color-mix(in oklch, var(--foreground) 28%, transparent)",
-          "elev-key": "color-mix(in oklch, var(--foreground) 15%, transparent)"
-        }
-      },
-      "docs": "Room tokens only (no primary/ring/charts). Live axis uses data-surface=\"ink\". Install: npx shadcn@latest add @atroui/button @atroui/surface-ink"
-    },
-    {
-      "name": "type-sans",
-      "type": "registry:theme",
-      "title": "Sans type",
-      "description": "Legacy pair preset: DM Sans across type roles. Prefer Display/Body companions. Literal stacks — load the face or accept FOUT.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
-          "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
-          "font-sans": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
-          "font-body": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
-          "font-label": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif"
-        }
-      },
-      "docs": "Type remap only — does not load fonts. Prefer next/font DM Sans, or system FOUT. Install: npx shadcn@latest add @atroui/button @atroui/type-sans"
-    },
-    {
-      "name": "type-serif",
-      "type": "registry:theme",
-      "title": "Serif type",
-      "description": "Legacy pair preset: Merriweather across type roles. Prefer Display/Body companions. Literal stacks — load the face or accept FOUT.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"Merriweather\", ui-serif, Georgia, serif",
-          "font-display": "\"Merriweather\", ui-serif, Georgia, serif",
-          "font-sans": "\"Merriweather\", ui-serif, Georgia, serif",
-          "font-body": "\"Merriweather\", ui-serif, Georgia, serif",
-          "font-label": "\"Merriweather\", ui-serif, Georgia, serif"
-        }
-      },
-      "docs": "Type remap only — does not load fonts. Prefer next/font Merriweather, or system FOUT. Install: npx shadcn@latest add @atroui/button @atroui/type-serif"
-    },
-    {
-      "name": "type-mono",
-      "type": "registry:theme",
-      "title": "Mono type",
-      "description": "Legacy pair preset: DM Sans display + Geist Mono body. Prefer Display/Body companions. Literal stacks — load the faces or accept FOUT.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
-          "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
-          "font-sans": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-          "font-body": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-          "font-label": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-        }
-      },
-      "docs": "Type remap only — does not load fonts. Prefer next/font DM Sans + Geist Mono. Install: npx shadcn@latest add @atroui/button @atroui/type-mono"
-    },
-    {
-      "name": "type-display-sans",
-      "type": "registry:theme",
-      "title": "Sans display",
-      "description": "DM Sans for heading and display only. Body stays on the host default.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
-          "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif"
-        }
-      },
-      "docs": "Display role only. Live axis: data-type-display=\"sans\"."
-    },
-    {
-      "name": "type-display-mono",
-      "type": "registry:theme",
-      "title": "Mono display",
-      "description": "Geist Mono for heading and display only. Body stays on the host default.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-          "font-display": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-        }
-      },
-      "docs": "Display role only. Live axis: data-type-display=\"mono\"."
-    },
-    {
-      "name": "type-body-serif",
-      "type": "registry:theme",
-      "title": "Serif body",
-      "description": "Merriweather for sans, body, and label. Display stays on the host default.",
-      "cssVars": {
-        "theme": {
-          "font-sans": "\"Merriweather\", ui-serif, Georgia, serif",
-          "font-body": "\"Merriweather\", ui-serif, Georgia, serif",
-          "font-label": "\"Merriweather\", ui-serif, Georgia, serif"
-        }
-      },
-      "docs": "Body role only. Live axis: data-type-body=\"serif\"."
-    },
-    {
-      "name": "type-body-mono",
-      "type": "registry:theme",
-      "title": "Mono body",
-      "description": "Geist Mono for sans, body, and label. Display stays on the host default.",
-      "cssVars": {
-        "theme": {
-          "font-sans": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-          "font-body": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-          "font-label": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-        }
-      },
-      "docs": "Body role only. Live axis: data-type-body=\"mono\"."
-    },
-    {
-      "name": "type-display-sketch",
-      "type": "registry:theme",
-      "title": "Sketch display",
-      "description": "Caveat for heading and display only.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive",
-          "font-display": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive"
-        }
-      },
-      "docs": "Display role only. Live axis: data-type-display=\"sketch\"."
-    },
-    {
-      "name": "type-display-instrument",
-      "type": "registry:theme",
-      "title": "Instrument display",
-      "description": "Instrument Serif for heading and display only.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"Instrument Serif\", ui-serif, Georgia, serif",
-          "font-display": "\"Instrument Serif\", ui-serif, Georgia, serif"
-        }
-      },
-      "docs": "Display role only. Live axis: data-type-display=\"instrument\"."
-    },
-    {
-      "name": "type-display-grotesk",
-      "type": "registry:theme",
-      "title": "Grotesk display",
-      "description": "Space Grotesk for heading and display only.",
-      "cssVars": {
-        "theme": {
-          "font-heading": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
-          "font-display": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif"
-        }
-      },
-      "docs": "Display role only. Live axis: data-type-display=\"grotesk\"."
-    },
-    {
-      "name": "type-body-sketch",
-      "type": "registry:theme",
-      "title": "Sketch body",
-      "description": "Caveat for body and label.",
-      "cssVars": {
-        "theme": {
-          "font-body": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive",
-          "font-label": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive"
-        }
-      },
-      "docs": "Body role only. Live axis: data-type-body=\"sketch\"."
-    },
-    {
-      "name": "type-body-instrument",
-      "type": "registry:theme",
-      "title": "Instrument body",
-      "description": "Instrument Serif for body and label.",
-      "cssVars": {
-        "theme": {
-          "font-body": "\"Instrument Serif\", ui-serif, Georgia, serif",
-          "font-label": "\"Instrument Serif\", ui-serif, Georgia, serif"
-        }
-      },
-      "docs": "Body role only. Live axis: data-type-body=\"instrument\"."
-    },
-    {
-      "name": "type-body-grotesk",
-      "type": "registry:theme",
-      "title": "Grotesk body",
-      "description": "Space Grotesk for body and label.",
-      "cssVars": {
-        "theme": {
-          "font-body": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
-          "font-label": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif"
-        }
-      },
-      "docs": "Body role only. Live axis: data-type-body=\"grotesk\"."
-    },
-    {
-      "name": "theme-export",
-      "type": "registry:lib",
-      "title": "Theme Export",
-      "description": "Paste-ready CSS builder for accent + surface + type + radius Theme Studio exports.",
-      "registryDependencies": [
-        "@atroui/color-themes",
-        "@atroui/surface-themes",
-        "@atroui/type-themes",
-        "@atroui/radius-themes"
-      ],
-      "files": [
-        {
-          "path": "registry/default/lib/theme-export.ts",
-          "type": "registry:lib",
-          "target": "lib/theme-export.ts"
-        }
-      ]
-    },
-    {
-      "name": "theme-boot",
-      "type": "registry:lib",
-      "title": "Theme Boot",
-      "description": "Combined early-paint script for data-color-theme, data-surface, data-radius, data-type-display, and data-type-body.",
-      "registryDependencies": [
-        "@atroui/color-themes",
-        "@atroui/surface-themes",
-        "@atroui/radius-themes",
-        "@atroui/type-themes"
-      ],
-      "files": [
-        {
-          "path": "registry/default/lib/theme-boot.ts",
-          "type": "registry:lib",
-          "target": "lib/theme-boot.ts"
         }
       ]
     },
@@ -896,7 +192,7 @@
       "name": "checkbox-group",
       "type": "registry:ui",
       "title": "Checkbox Group",
-      "description": "Soft-rect checkbox group — compose with Checkbox (value / parent).",
+      "description": "Soft-rect checkbox group \u2014 compose with Checkbox (value / parent).",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -981,7 +277,7 @@
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
-      "description": "Filterable select on Base UI with Mira soft-rect, popup settle, and list stagger ≤40ms.",
+      "description": "Filterable select on Base UI with Mira soft-rect, popup settle, and list stagger \u226440ms.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react",
@@ -1003,7 +299,7 @@
       "name": "autocomplete",
       "type": "registry:ui",
       "title": "Autocomplete",
-      "description": "Suggest-as-you-type with popup settle, layoutId highlight, and list stagger ≤40ms.",
+      "description": "Suggest-as-you-type with popup settle, layoutId highlight, and list stagger \u226440ms.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react",
@@ -1048,7 +344,7 @@
       "name": "form-select",
       "type": "registry:ui",
       "title": "Form Select",
-      "description": "Soft-rect select on Base UI with caret rotate, popup settle, and list stagger ≤40ms.",
+      "description": "Soft-rect select on Base UI with caret rotate, popup settle, and list stagger \u226440ms.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react",
@@ -1243,7 +539,7 @@
       "name": "preview-card",
       "type": "registry:ui",
       "title": "Preview Card",
-      "description": "Hover/focus link preview — soft popover settle; opt-in tilt / magnetic / spotlight for media.",
+      "description": "Hover/focus link preview \u2014 soft popover settle; opt-in tilt / magnetic / spotlight for media.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -1286,7 +582,7 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "Soft-rect hairline divider — static, no decorative motion.",
+      "description": "Soft-rect hairline divider \u2014 static, no decorative motion.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -1305,7 +601,7 @@
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
-      "description": "Quiet Field spine — label, description, Motion error reveal, control.",
+      "description": "Quiet Field spine \u2014 label, description, Motion error reveal, control.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -1387,7 +683,7 @@
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
-      "description": "Base UI form validation orchestration — pair with Field.",
+      "description": "Base UI form validation orchestration \u2014 pair with Field.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -1425,7 +721,7 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "Soft-rect switch — layout thumb + flex justify flip (Motion.dev Base UI).",
+      "description": "Soft-rect switch \u2014 layout thumb + flex justify flip (Motion.dev Base UI).",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -1597,7 +893,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
-      "description": "Toggle peers with layoutId highlight morph — Motion.dev Base UI pattern.",
+      "description": "Toggle peers with layoutId highlight morph \u2014 Motion.dev Base UI pattern.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -1676,7 +972,7 @@
       "name": "fade-in",
       "type": "registry:ui",
       "title": "Fade In",
-      "description": "The scroll reveal — opacity + rise. One primitive; use fadeInSection for landing triggers.",
+      "description": "The scroll reveal \u2014 opacity + rise. One primitive; use fadeInSection for landing triggers.",
       "dependencies": [
         "motion"
       ],
@@ -1695,7 +991,7 @@
       "name": "stagger",
       "type": "registry:ui",
       "title": "Stagger",
-      "description": "Stagger children on scroll with StaggerChild (clamped ≤50ms).",
+      "description": "Stagger children on scroll with StaggerChild (clamped \u226450ms).",
       "dependencies": [
         "motion"
       ],
@@ -1940,6 +1236,133 @@
       ]
     },
     {
+      "name": "feature-bento",
+      "type": "registry:block",
+      "title": "Feature Bento",
+      "description": "Bento feature grid with editable CONTENT and FEATURES. Soft-rect panels.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/feature-bento.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/feature-bento.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-stack",
+      "type": "registry:block",
+      "title": "Testimonials Stack",
+      "description": "Layered testimonial cards with prev/next. Editable CONTENT and TESTIMONIALS.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/testimonials-stack.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/testimonials-stack.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-band",
+      "type": "registry:block",
+      "title": "Stats Band",
+      "description": "Metric strip with editable CONTENT and STATS.",
+      "files": [
+        {
+          "path": "registry/default/blocks/stats-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/stats-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cta-band",
+      "type": "registry:block",
+      "title": "CTA Band",
+      "description": "Headline + primary/ghost CTAs over a quiet brand wash. Editable CONTENT.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/cta-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/cta-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pricing-tiers",
+      "type": "registry:block",
+      "title": "Pricing Tiers",
+      "description": "Toggleable pricing tiers with editable CONTENT and TIERS.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/pricing-tiers.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/pricing-tiers.tsx"
+        }
+      ]
+    },
+    {
+      "name": "logo-marquee",
+      "type": "registry:block",
+      "title": "Logo Marquee",
+      "description": "CSS logo/name marquee with editable CONTENT and LOGOS. Respects reduced motion.",
+      "files": [
+        {
+          "path": "registry/default/blocks/logo-marquee.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/logo-marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "auth-split",
+      "type": "registry:block",
+      "title": "Auth Split",
+      "description": "Split login/signup shell with editable CONTENT. No auth backend.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/auth-split.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/auth-split.tsx"
+        }
+      ]
+    },
+    {
+      "name": "saas-starter",
+      "type": "registry:block",
+      "title": "SaaS Starter",
+      "description": "One-file SaaS landing composition. Editable CONTENT \u2014 compose sections after install.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/saas-starter.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/saas-starter.tsx"
+        }
+      ]
+    },
+    {
       "name": "contextual-cta",
       "type": "registry:block",
       "title": "Contextual CTA",
@@ -2099,7 +1522,7 @@
       "name": "timeline-animation",
       "type": "registry:ui",
       "title": "Timeline Animation",
-      "description": "Sequential in-view reveal for heroes — opacity + y only (no blur).",
+      "description": "Sequential in-view reveal for heroes \u2014 opacity + y only (no blur).",
       "dependencies": [
         "motion"
       ],
@@ -2158,7 +1581,7 @@
       "name": "copy-button",
       "type": "registry:ui",
       "title": "Copy Button",
-      "description": "Copy → check Button recipe with TextMorph + icon swap. Rare-path delight — not default on every Button.",
+      "description": "Copy \u2192 check Button recipe with TextMorph + icon swap. Rare-path delight \u2014 not default on every Button.",
       "dependencies": [
         "lucide-react",
         "motion",
@@ -2202,7 +1625,7 @@
       "name": "line-reveal",
       "type": "registry:ui",
       "title": "Line Reveal",
-      "description": "Word/line stagger enter — opacity + y + clip. Marketing default.",
+      "description": "Word/line stagger enter \u2014 opacity + y + clip. Marketing default.",
       "dependencies": [
         "motion"
       ],
@@ -2222,7 +1645,7 @@
       "name": "word-reveal-scroll",
       "type": "registry:ui",
       "title": "Word Reveal Scroll",
-      "description": "Progress-driven word opacity via scroll — opacity only, no blur. Pull lines.",
+      "description": "Progress-driven word opacity via scroll \u2014 opacity only, no blur. Pull lines.",
       "dependencies": [
         "motion"
       ],
@@ -2242,7 +1665,7 @@
       "name": "magnetic",
       "type": "registry:ui",
       "title": "Magnetic",
-      "description": "Mild pointer pull for media cards — intensity ≤0.35, range ≤80px. Never chrome.",
+      "description": "Mild pointer pull for media cards \u2014 intensity \u22640.35, range \u226480px. Never chrome.",
       "dependencies": [
         "motion"
       ],
@@ -2262,7 +1685,7 @@
       "name": "tilt",
       "type": "registry:ui",
       "title": "Tilt",
-      "description": "Mild 3D media tilt toward the pointer — rotationFactor ≤6–8°. Opt-in only.",
+      "description": "Mild 3D media tilt toward the pointer \u2014 rotationFactor \u22646\u20138\u00b0. Opt-in only.",
       "dependencies": [
         "motion"
       ],
@@ -2302,7 +1725,7 @@
       "name": "animate-number",
       "type": "registry:ui",
       "title": "Animate Number",
-      "description": "Pricing/stats counter — digits tween as numbers with easeOutSoft. Reduced motion jumps to final.",
+      "description": "Pricing/stats counter \u2014 digits tween as numbers with easeOutSoft. Reduced motion jumps to final.",
       "dependencies": [
         "motion"
       ],
@@ -2322,7 +1745,7 @@
       "name": "transition-panel",
       "type": "registry:ui",
       "title": "Transition Panel",
-      "description": "Wait-mode content swaps for feature tabs and docs panels — opacity + small y.",
+      "description": "Wait-mode content swaps for feature tabs and docs panels \u2014 opacity + small y.",
       "dependencies": [
         "motion"
       ],
@@ -2607,6 +2030,38 @@
       ]
     },
     {
+      "name": "launch-workflow",
+      "type": "registry:block",
+      "title": "Launch Workflow",
+      "description": "Scope \u2192 Planner \u2192 OG in one room. Shared ProjectBrief. Preview without keys; AI Host APIs are BYOK.",
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/project-brief",
+        "@atroui/scope-chat",
+        "@atroui/project-planner",
+        "@atroui/og-workspace",
+        "@atroui/api-scope",
+        "@atroui/api-generate"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/launch-room.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/launch-room.tsx"
+        },
+        {
+          "path": "registry/default/app/launch/page.tsx",
+          "type": "registry:file",
+          "target": "app/launch/page.tsx"
+        }
+      ]
+    },
+    {
       "name": "journal-content",
       "type": "registry:block",
       "title": "Journal",
@@ -2735,405 +2190,158 @@
       ]
     },
     {
-      "name": "marquee",
+      "name": "ascii-rig",
+      "type": "registry:lib",
+      "title": "ASCII Rig",
+      "description": "Shared ASCII kit \u2014 luminance ramps, offscreen/reduced-motion aware tick loop, canvas character-cell metrics.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/lib/ascii-rig.ts",
+          "type": "registry:lib",
+          "target": "lib/ascii-rig.ts"
+        }
+      ]
+    },
+    {
+      "name": "ascii-donut",
       "type": "registry:ui",
-      "title": "Marquee",
-      "description": "Infinite logo/testimonial strip — reverse/pause/vertical/repeat.",
-      "dependencies": [
-        "motion"
+      "title": "ASCII Donut",
+      "description": "The spinning torus \u2014 3D points z-buffered per character cell, shaded by luminance ramp.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/ascii-rig"
       ],
+      "files": [
+        {
+          "path": "registry/default/ui/ascii-donut.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-donut.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ascii-rain",
+      "type": "registry:ui",
+      "title": "ASCII Rain",
+      "description": "Falling streams of glyphs whose color fades along each tail.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/ascii-rig"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/ascii-rain.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-rain.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ascii-wave",
+      "type": "registry:ui",
+      "title": "ASCII Wave",
+      "description": "Function field f(x,y,t) mapped through a luminance ramp \u2014 one text node per frame.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/ascii-rig"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/ascii-wave.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-wave.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ascii-spark",
+      "type": "registry:ui",
+      "title": "ASCII Spark",
+      "description": "Block-element bars (\u2591\u2013\u2588); a copyable plain-text sparkline.",
+      "dependencies": [],
       "registryDependencies": [
         "@atroui/utils"
       ],
       "files": [
         {
-          "path": "registry/default/ui/marquee.tsx",
+          "path": "registry/default/ui/ascii-spark.tsx",
           "type": "registry:ui",
-          "target": "components/ui/marquee.tsx"
+          "target": "components/ui/ascii-spark.tsx"
         }
       ]
     },
     {
-      "name": "border-beam",
+      "name": "ascii-bar",
       "type": "registry:ui",
-      "title": "Border Beam",
-      "description": "Brand light travelling the container edge. Reduced-motion safe.",
-      "dependencies": [
-        "motion"
-      ],
+      "title": "ASCII Bar",
+      "description": "Pseudo-graphics progress (\u25b0\u25b1) filling in plottable steps.",
+      "dependencies": [],
       "registryDependencies": [
         "@atroui/utils"
       ],
       "files": [
         {
-          "path": "registry/default/ui/border-beam.tsx",
+          "path": "registry/default/ui/ascii-bar.tsx",
           "type": "registry:ui",
-          "target": "components/ui/border-beam.tsx"
+          "target": "components/ui/ascii-bar.tsx"
         }
       ]
     },
     {
-      "name": "magic-card",
+      "name": "ascii-boot",
       "type": "registry:ui",
-      "title": "Magic Card",
-      "description": "Cursor spotlight + brand border glow on soft-rect panels.",
-      "dependencies": [
-        "motion"
-      ],
+      "title": "ASCII Boot",
+      "description": "VT100-style init log typed character by character, cursor pulsing.",
+      "dependencies": [],
       "registryDependencies": [
-        "@atroui/motion",
-        "@atroui/utils"
+        "@atroui/utils",
+        "@atroui/ascii-rig"
       ],
       "files": [
         {
-          "path": "registry/default/ui/magic-card.tsx",
+          "path": "registry/default/ui/ascii-boot.tsx",
           "type": "registry:ui",
-          "target": "components/ui/magic-card.tsx"
+          "target": "components/ui/ascii-boot.tsx"
         }
       ]
     },
     {
-      "name": "animated-beam",
+      "name": "ascii-wordmark",
       "type": "registry:ui",
-      "title": "Animated Beam",
-      "description": "SVG integration beam between two nodes. Brand gradient.",
-      "dependencies": [
-        "motion"
-      ],
+      "title": "ASCII Wordmark",
+      "description": "FIGlet-style big text from a built-in 3\u00d75 pixel font.",
+      "dependencies": [],
       "registryDependencies": [
         "@atroui/utils"
       ],
       "files": [
         {
-          "path": "registry/default/ui/animated-beam.tsx",
+          "path": "registry/default/ui/ascii-wordmark.tsx",
           "type": "registry:ui",
-          "target": "components/ui/animated-beam.tsx"
+          "target": "components/ui/ascii-wordmark.tsx"
         }
       ]
     },
     {
-      "name": "bento-grid",
+      "name": "ascii-decode",
       "type": "registry:ui",
-      "title": "Bento Grid",
-      "description": "Soft-rect bento grid + card with top hairline glow.",
+      "title": "ASCII Decode",
+      "description": "Cipher glyphs locking into the message left to right.",
+      "dependencies": [],
       "registryDependencies": [
-        "@atroui/utils"
+        "@atroui/utils",
+        "@atroui/ascii-rig"
       ],
       "files": [
         {
-          "path": "registry/default/ui/bento-grid.tsx",
+          "path": "registry/default/ui/ascii-decode.tsx",
           "type": "registry:ui",
-          "target": "components/ui/bento-grid.tsx"
+          "target": "components/ui/ascii-decode.tsx"
         }
-      ]
-    },
-    {
-      "name": "meteors",
-      "type": "registry:ui",
-      "title": "Meteors",
-      "description": "Capped CSS meteor streaks for heroes. Reduced-motion safe.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "@atroui/utils"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/meteors.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/meteors.tsx"
-        }
-      ]
-    },
-    {
-      "name": "dock",
-      "type": "registry:ui",
-      "title": "Dock",
-      "description": "macOS magnification dock. Token chrome, reduced-motion static.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "@atroui/utils"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/dock.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/dock.tsx"
-        }
-      ]
-    },
-    {
-      "name": "orbiting-circles",
-      "type": "registry:ui",
-      "title": "Orbiting Circles",
-      "description": "Icons orbiting a center node for integration art.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "@atroui/utils"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/orbiting-circles.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/orbiting-circles.tsx"
-        }
-      ]
-    },
-    {
-      "name": "number-ticker",
-      "type": "registry:ui",
-      "title": "Number Ticker",
-      "description": "Count-up on inView with tabular nums.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "@atroui/utils"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/number-ticker.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/number-ticker.tsx"
-        }
-      ]
-    },
-    {
-      "name": "aurora-text",
-      "type": "registry:ui",
-      "title": "Aurora Text",
-      "description": "Slow brand gradient sweep for display words.",
-      "dependencies": [
-        "motion"
-      ],
-      "registryDependencies": [
-        "@atroui/utils"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/aurora-text.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/aurora-text.tsx"
-        }
-      ]
-    },
-    {
-      "name": "hero-parallax",
-      "type": "registry:block",
-      "title": "Hero Parallax",
-      "description": "Parallax product-card hero rows on scroll. Reduced-motion static.",
-      "files": [
-        {
-          "path": "registry/default/blocks/hero-parallax.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/hero-parallax.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "motion",
-        "next"
-      ]
-    },
-    {
-      "name": "hero-lamp",
-      "type": "registry:block",
-      "title": "Hero Lamp",
-      "description": "Conic lamp glow + staggered text reveal hero.",
-      "files": [
-        {
-          "path": "registry/default/blocks/hero-lamp.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/hero-lamp.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "motion",
-        "next"
-      ]
-    },
-    {
-      "name": "logo-marquee",
-      "type": "registry:block",
-      "title": "Logo Marquee",
-      "description": "Muted logo strip marquee with edge mask.",
-      "files": [
-        {
-          "path": "registry/default/blocks/logo-marquee.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/logo-marquee.tsx"
-        }
-      ]
-    },
-    {
-      "name": "testimonials-stack",
-      "type": "registry:block",
-      "title": "Testimonials Stack",
-      "description": "Layered testimonial stack with prev/next, aria-live.",
-      "files": [
-        {
-          "path": "registry/default/blocks/testimonials-stack.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/testimonials-stack.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "motion"
-      ]
-    },
-    {
-      "name": "feature-bento",
-      "type": "registry:block",
-      "title": "Feature Bento",
-      "description": "Four-up bento feature grid, soft-rect panels.",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "files": [
-        {
-          "path": "registry/default/blocks/feature-bento.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/feature-bento.tsx"
-        }
-      ]
-    },
-    {
-      "name": "cta-band",
-      "type": "registry:block",
-      "title": "CTA Band",
-      "description": "Headline + primary/ghost CTA band with brand wash.",
-      "files": [
-        {
-          "path": "registry/default/blocks/cta-band.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/cta-band.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "next"
-      ]
-    },
-    {
-      "name": "pricing-tiers",
-      "type": "registry:block",
-      "title": "Pricing Tiers",
-      "description": "Monthly/yearly toggle pricing tiers with highlight.",
-      "files": [
-        {
-          "path": "registry/default/blocks/pricing-tiers.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/pricing-tiers.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "next"
-      ]
-    },
-    {
-      "name": "faq-accordion",
-      "type": "registry:block",
-      "title": "FAQ Accordion",
-      "description": "Accessible accordion FAQ, no motion deps.",
-      "files": [
-        {
-          "path": "registry/default/blocks/faq-accordion.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/faq-accordion.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "next"
-      ]
-    },
-    {
-      "name": "stats-band",
-      "type": "registry:block",
-      "title": "Stats Band",
-      "description": "Tabular-nums stat band.",
-      "files": [
-        {
-          "path": "registry/default/blocks/stats-band.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/stats-band.tsx"
-        }
-      ]
-    },
-    {
-      "name": "integration-beam",
-      "type": "registry:block",
-      "title": "Integration Beam",
-      "description": "Center node + satellite integration art with beams.",
-      "files": [
-        {
-          "path": "registry/default/blocks/integration-beam.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/integration-beam.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "motion"
-      ]
-    },
-    {
-      "name": "showcase-carousel",
-      "type": "registry:block",
-      "title": "Showcase Carousel",
-      "description": "Snap-scroll showcase cards with controls.",
-      "files": [
-        {
-          "path": "registry/default/blocks/showcase-carousel.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/showcase-carousel.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "next"
-      ]
-    },
-    {
-      "name": "auth-split",
-      "type": "registry:block",
-      "title": "Auth Split",
-      "description": "Split sign-in panel + dashboard shell preview.",
-      "files": [
-        {
-          "path": "registry/default/blocks/auth-split.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/auth-split.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "next"
-      ]
-    },
-    {
-      "name": "saas-starter",
-      "type": "registry:block",
-      "title": "SaaS Starter",
-      "description": "Composite starter: hero, logos, features, stats, pricing, CTA.",
-      "files": [
-        {
-          "path": "registry/default/blocks/saas-starter.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/saas-starter.tsx"
-        }
-      ],
-      "dependencies": [
-        "lucide-react",
-        "next"
       ]
     }
   ]

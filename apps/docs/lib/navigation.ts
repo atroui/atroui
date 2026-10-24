@@ -81,7 +81,12 @@ export const navigation: NavSection[] = [
         title: "Launch workflow",
         href: "/docs/guides/launch-workflow",
         description: "Scope → OG",
-      }
+      },
+      {
+        title: "For agents",
+        href: "/docs/guides/for-agents",
+        description: "Paste prompt + install rules",
+      },
     ],
   },
   {
@@ -808,6 +813,12 @@ export const navigation: NavSection[] = [
         badge: "host-api",
       },
       {
+        title: "Launch Workflow",
+        href: "/docs/components/launch-launch-workflow",
+        description: "Scope → Planner → OG room",
+        badge: "registry",
+      },
+      {
         title: "Live Dashboard",
         href: "/docs/components/studio-live-dashboard",
         description: "Studio status board",
@@ -861,6 +872,11 @@ export const toolApps: { title: string; href: string; description: string }[] =
       title: "Theme Studio",
       href: "/themes",
       description: "Live accents, radius, and CSS export",
+    },
+    {
+      title: "Launch room",
+      href: "/launch",
+      description: "Scope → Planner → OG in one path",
     },
   ]
 

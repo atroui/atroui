@@ -8,6 +8,7 @@ export function UiComboboxDoc() {
       registryName="combobox"
       title="Combobox"
       description="Filterable select on Base UI with Mira soft-rect, popup settle, and list stagger ≤40ms."
+      tip="Type to filter · select"
       preview={<DemoCombobox />}
       code={`import {
   Combobox,

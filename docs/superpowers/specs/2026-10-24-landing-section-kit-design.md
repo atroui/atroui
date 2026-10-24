@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-24  
 **Bet:** C (landing sections) — third of A→D  
-**Status:** §§1–2 approved; implementing.  
+**Status:** Implemented on `feat/atro-room` (2026-10-24).  
 **Family Values:** Gradual revelation (composable sections); careful delight (soft-rect, no lamp/parallax defaults).
 
 ## Problem
@@ -27,7 +27,7 @@ Register eight orphaned soft-rect blocks, add docs/nav/collection discovery, reb
 
 ## Success criteria
 
-- [ ] All eight in `registry.json` + `public/r/<name>.json`
-- [ ] Docs page + Demo* + nav for each
-- [ ] `dark-marketing` collection paths updated
-- [ ] `llms.txt` lists the new install names
+- [x] All eight in `registry.json` + `public/r/<name>.json`
+- [x] Docs page + Demo* + nav for each (pre-existed; now installable)
+- [x] `dark-marketing` collection paths updated
+- [x] `llms.txt` lists the new install names

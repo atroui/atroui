@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "testimonials-stack",
   "title": "Testimonials Stack",
-  "description": "Layered testimonial stack with prev/next, aria-live.",
+  "description": "Layered testimonial cards with prev/next. Editable CONTENT and TESTIMONIALS.",
   "dependencies": [
     "lucide-react",
     "motion"

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pricing-tiers",
   "title": "Pricing Tiers",
-  "description": "Monthly/yearly toggle pricing tiers with highlight.",
+  "description": "Toggleable pricing tiers with editable CONTENT and TIERS.",
   "dependencies": [
     "lucide-react",
     "next"

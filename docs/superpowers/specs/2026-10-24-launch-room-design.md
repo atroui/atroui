@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-24  
 **Bet:** A (workflow glue) — first of A→D  
-**Status:** Approved in chat (§1–§3). Awaiting user skim before implementation.  
+**Status:** Implemented on `feat/atro-room` (2026-10-24).  
 **Family Values:** Gradual revelation (one step), fluidity (step pill + brief travel), careful delight (handoff CTA only).
 
 ## Problem
@@ -82,11 +82,11 @@ Sticky step rail top → stage → sticky handoff CTA bottom. Soft-rect frame; q
 
 ## Success criteria
 
-- [ ] `/launch` runs Scope → Planner → Social without keys (preview / rules)
-- [ ] Brief survives step changes (state + `localStorage`)
-- [ ] `npx shadcn@latest add @atroui/launch-workflow` pulls deps + page/shell
-- [ ] Guide, nav, pseo, footer tell one story (remove “do not install meta”)
-- [ ] Reduced-motion: steps cut, no layout spring
+- [x] `/launch` runs Scope → Planner → Social without keys (preview / rules)
+- [x] Brief survives step changes (state + `localStorage`)
+- [x] `npx shadcn@latest add @atroui/launch-workflow` pulls deps + page/shell
+- [x] Guide, nav, pseo, footer tell one story (remove “do not install meta”)
+- [x] Reduced-motion: steps cut, no layout spring
 
 ## Sequencing note
 

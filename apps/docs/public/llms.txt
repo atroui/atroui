@@ -8,6 +8,12 @@
 > Registry JSON: https://www.atroui.com/r/registry.json
 > Repo: https://github.com/atroui/atroui
 
+## Agents
+
+- Paste prompt + rules: https://www.atroui.com/docs/guides/for-agents
+- Full catalog dump: https://www.atroui.com/llms-full.txt
+- Never import UI from npm `atroui` — registry CLI only.
+
 ## Getting Started
 
 - [Getting Started](https://www.atroui.com/docs): First-hour Quick Start — init, add a block, essential commands.
@@ -26,6 +32,8 @@
 - [Brand kit](https://www.atroui.com/docs/brand): Logo mark, wordmark, and brand voice assets.
 - [Identity kit](https://www.atroui.com/docs/identity): Site name, SEO, and identity config.
 - [Launch workflow](https://www.atroui.com/docs/guides/launch-workflow): Scope a build through OG social cards.
+- [Launch room](https://www.atroui.com/launch): Live Scope → Planner → Social (`npx shadcn add @atroui/launch-workflow`).
+- [For agents](https://www.atroui.com/docs/guides/for-agents): Paste prompt + hard install rules for Cursor / Claude / Codex.
 
 ## Reference
 
@@ -45,11 +53,20 @@
 
 ### Blocks (highlights)
 - @atroui/home-hero, @atroui/site-header, @atroui/site-footer, @atroui/faq
-- @atroui/pricing-overview, @atroui/contact-form, @atroui/waitlist-form
+- @atroui/feature-grid, @atroui/feature-bento, @atroui/logo-cloud, @atroui/logo-marquee
+- @atroui/stats-band, @atroui/testimonials-stack, @atroui/cta-band
+- @atroui/pricing-overview, @atroui/pricing-tiers, @atroui/auth-split, @atroui/saas-starter
+- @atroui/contact-form, @atroui/waitlist-form
 - @atroui/og-workspace, @atroui/thumbnail-workspace, @atroui/scope-chat, @atroui/project-planner
+- @atroui/launch-workflow — Scope → Planner → OG room + `app/launch/page.tsx`
+
+### Landing map (Vibrant-shaped)
+- Collection: https://www.atroui.com/docs/collections/dark-marketing
+- Order: hero → features/bento → logos → stats → testimonials → pricing → FAQ → CTA → auth
 
 ## Tools (live rooms)
 
+- [Launch room](https://www.atroui.com/launch): Scope → Planner → Social in one path.
 - [OG workspace](https://www.atroui.com/og): Generate social cards in the browser.
 - [Project planner](https://www.atroui.com/planner): Scope a build, hand off to OG.
 

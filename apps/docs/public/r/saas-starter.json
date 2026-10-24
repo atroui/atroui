@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "saas-starter",
   "title": "SaaS Starter",
-  "description": "Composite starter: hero, logos, features, stats, pricing, CTA.",
+  "description": "One-file SaaS landing composition. Editable CONTENT — compose sections after install.",
   "dependencies": [
     "lucide-react",
     "next"

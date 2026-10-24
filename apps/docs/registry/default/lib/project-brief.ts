@@ -100,3 +100,26 @@ export function briefFromScopeMessage(text: string): ProjectBrief {
     ogSubtitle: "Built with AtroUI",
   }
 }
+
+/** Seed a brief from a planner estimate (service + summary + constraints). */
+export function briefFromPlannerEstimate(input: {
+  service: string
+  summary: string
+  features?: string[]
+  timeline?: string
+  priceRange?: string
+}): ProjectBrief {
+  const name = input.service.trim() || "Untitled project"
+  const oneLiner = input.summary.trim()
+  return {
+    ...EMPTY_PROJECT_BRIEF,
+    name,
+    oneLiner,
+    pages: input.features ?? [],
+    constraints: [input.timeline, input.priceRange].filter(
+      (v): v is string => Boolean(v),
+    ),
+    ogTitle: name,
+    ogSubtitle: oneLiner,
+  }
+}
