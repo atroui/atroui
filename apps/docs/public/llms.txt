@@ -61,13 +61,16 @@
 - @atroui/contact-form, @atroui/waitlist-form
 - @atroui/og-workspace, @atroui/thumbnail-workspace, @atroui/scope-chat, @atroui/project-planner
 - @atroui/launch-workflow — Scope → Planner → OG room + `app/launch/page.tsx`
+- @atroui/landing-kit — full soft-rect marketing stack + `app/landing/page.tsx`
 
 ### Landing map (Vibrant-shaped)
+- Meta: `npx shadcn add @atroui/landing-kit` · live https://www.atroui.com/landing
 - Collection: https://www.atroui.com/docs/collections/dark-marketing
-- Order: hero → features/bento → logos → stats → testimonials → pricing → FAQ → CTA → auth
+- Order: header → hero → logos → bento → stats → testimonials → pricing → FAQ → CTA → footer
 
 ## Tools (live rooms)
 
+- [Landing kit](https://www.atroui.com/landing): Vibrant soft-rect marketing stack.
 - [Launch room](https://www.atroui.com/launch): Scope → Planner → Social in one path.
 - [OG workspace](https://www.atroui.com/og): Generate social cards in the browser.
 - [Project planner](https://www.atroui.com/planner): Scope a build, hand off to OG.
@@ -92,4 +95,6 @@
 - [@atroui/orbiting-circles](https://www.atroui.com/docs/components): `<OrbitingCircles><Icon /></OrbitingCircles>` — icons orbiting a center node.
 - [@atroui/number-ticker](https://www.atroui.com/docs/components): `<NumberTicker value={4800} prefix="$" />` — count-up on inView.
 - [@atroui/aurora-text](https://www.atroui.com/docs/components): `<AuroraText>Ship in days</AuroraText>` — slow brand gradient sweep on display words.
+- Kit: `npx shadcn add @atroui/landing-kit` — `<LandingPage />` composes owned section files (header → footer). Live: https://www.atroui.com/landing
 - Starter: `npx shadcn add @atroui/saas-starter` — `<SaasStarter />` announcement + hero + logos + features + stats + pricing teaser + CTA + footer note in one file.
+- Optional heroes (not in landing-kit): `@atroui/hero-lamp`, `@atroui/hero-parallax`.

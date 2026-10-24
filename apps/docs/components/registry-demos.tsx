@@ -224,6 +224,7 @@ import { atroMotionDefaults } from "@/lib/motion"
 import { WaitlistStagePreview } from "@/components/registry/waitlist-stage-preview"
 import { HomeHero } from "../registry/default/blocks/home-hero"
 import { LaunchRoom } from "../registry/default/blocks/launch-room"
+import { LandingPage } from "../registry/default/blocks/landing-page"
 import { OgExamples } from "../registry/default/blocks/og-examples"
 import { OgLivePreview } from "../registry/default/blocks/og-live-preview"
 import { OgWorkspace } from "../registry/default/blocks/og-workspace"
@@ -2750,6 +2751,14 @@ export function DemoLaunchWorkflow() {
   return (
     <div className="w-full max-h-[640px] overflow-auto rounded-xl border border-border-subtle">
       <LaunchRoom />
+    </div>
+  )
+}
+
+export function DemoLandingKit() {
+  return (
+    <div className="w-full max-h-[640px] overflow-auto rounded-xl border border-border-subtle">
+      <LandingPage />
     </div>
   )
 }

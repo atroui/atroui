@@ -15,7 +15,7 @@ Rules:
 - Optional MCP: https://www.atroui.com/docs/mcp (@atroui/mcp returns both install commands).
 
 Jobs (pick one unless asked for more):
-1) Landing: follow https://www.atroui.com/docs/collections/dark-marketing — add sections in that order (or @atroui/saas-starter first).
+1) Landing: npx shadcn@latest add @atroui/landing-kit (demo https://www.atroui.com/landing) — or à la carte from https://www.atroui.com/docs/collections/dark-marketing / @atroui/saas-starter.
 2) Launch: add @atroui/launch-workflow; demo path https://www.atroui.com/launch .
 3) Themes: use https://www.atroui.com/themes ; export CSS / companion installs from Theme Studio.
 
@@ -91,10 +91,18 @@ export function ForAgentsGuide() {
         <ul className="list-disc space-y-3 pl-5 leading-relaxed">
           <li>
             <strong className="font-medium text-foreground">Landing</strong> —{" "}
+            <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">
+              npx shadcn@latest add @atroui/landing-kit
+            </code>
+            . Live:{" "}
+            <Link href="/landing" className="bam-link">
+              /landing
+            </Link>
+            . Or{" "}
             <Link href="/docs/collections/dark-marketing" className="bam-link">
-              dark-marketing collection
+              à la carte
             </Link>{" "}
-            order, or start with{" "}
+            /{" "}
             <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">
               @atroui/saas-starter
             </code>

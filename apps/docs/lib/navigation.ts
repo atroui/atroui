@@ -83,9 +83,14 @@ export const navigation: NavSection[] = [
         description: "Brand & SEO config",
       },
       {
+        title: "Landing kit",
+        href: "/docs/components/landing-landing-kit",
+        description: "Full page · try /landing",
+      },
+      {
         title: "Launch workflow",
         href: "/docs/guides/launch-workflow",
-        description: "Scope → OG",
+        description: "Scope → OG · try /launch",
       },
       {
         title: "For agents",
@@ -768,6 +773,12 @@ export const navigation: NavSection[] = [
         href: "/docs/components/saas-starter",
         description: "Starter landing",
         badge: "registry",
+      },
+      {
+        title: "Landing Kit",
+        href: "/docs/components/landing-landing-kit",
+        description: "Full Vibrant soft-rect stack",
+        badge: "registry",
       }
     ],
   },
@@ -864,6 +875,16 @@ export const catalogNavItems = catalogSections.flatMap(
 export const toolApps: { title: string; href: string; description: string }[] =
   [
     {
+      title: "Landing kit",
+      href: "/landing",
+      description: "Vibrant soft-rect marketing stack",
+    },
+    {
+      title: "Launch room",
+      href: "/launch",
+      description: "Scope → Planner → OG in one path",
+    },
+    {
       title: "OG workspace",
       href: "/og",
       description: "Generate social cards in the browser",
@@ -877,11 +898,6 @@ export const toolApps: { title: string; href: string; description: string }[] =
       title: "Theme Studio",
       href: "/themes",
       description: "Live accents, radius, and CSS export",
-    },
-    {
-      title: "Launch room",
-      href: "/launch",
-      description: "Scope → Planner → OG in one path",
     },
   ]
 

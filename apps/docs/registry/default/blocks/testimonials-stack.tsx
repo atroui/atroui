@@ -80,57 +80,60 @@ export function TestimonialsStack() {
             </p>
           </div>
 
-          <div className="relative mx-auto mt-10 max-w-xl">
-            {/* Stacked cards behind */}
-            <div
-              aria-hidden
-              className="absolute inset-x-6 -top-2.5 h-full rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/60"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-x-3 -top-1.5 h-full rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/80"
-            />
-
-            <div
-              aria-live="polite"
-              aria-atomic="true"
-              className="relative min-h-64 overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 @min-[40rem]:min-h-56 @min-[40rem]:p-8"
-            >
-              <Quote
-                className="size-5 text-brand"
+          <div className="mx-auto mt-10 max-w-xl">
+            {/* Stack only — keep controls outside so layered cards don't cover them */}
+            <div className="relative">
+              <div
                 aria-hidden
+                className="absolute inset-x-6 -top-2.5 bottom-0 rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/60"
               />
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.figure
-                  key={index}
-                  initial={reduce ? false : { opacity: 0, x: 24 * direction }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={reduce ? { opacity: 0 } : { opacity: 0, x: -24 * direction }}
-                  transition={
-                    reduce ? { duration: 0 } : { duration: 0.32, ease: EASE_SOFT }
-                  }
-                >
-                  <blockquote className="mt-4 text-lg leading-relaxed font-medium tracking-tight text-foreground @min-[40rem]:text-xl">
-                    “{current.quote}”
-                  </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-3">
-                    <span
-                      aria-hidden
-                      className="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted text-[11px] font-semibold text-foreground"
-                    >
-                      {current.initials}
-                    </span>
-                    <span>
-                      <span className="block text-sm font-medium text-foreground">
-                        {current.name}
+              <div
+                aria-hidden
+                className="absolute inset-x-3 -top-1.5 bottom-0 rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/80"
+              />
+
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                className="relative min-h-64 overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card p-6 @min-[40rem]:min-h-56 @min-[40rem]:p-8"
+              >
+                <Quote className="size-5 text-brand" aria-hidden />
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.figure
+                    key={index}
+                    initial={reduce ? false : { opacity: 0, x: 24 * direction }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={
+                      reduce ? { opacity: 0 } : { opacity: 0, x: -24 * direction }
+                    }
+                    transition={
+                      reduce
+                        ? { duration: 0 }
+                        : { duration: 0.32, ease: EASE_SOFT }
+                    }
+                  >
+                    <blockquote className="mt-4 text-lg leading-relaxed font-medium tracking-tight text-foreground @min-[40rem]:text-xl">
+                      “{current.quote}”
+                    </blockquote>
+                    <figcaption className="mt-6 flex items-center gap-3">
+                      <span
+                        aria-hidden
+                        className="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted text-[11px] font-semibold text-foreground"
+                      >
+                        {current.initials}
                       </span>
-                      <span className="block text-sm text-muted-foreground">
-                        {current.role}
+                      <span>
+                        <span className="block text-sm font-medium text-foreground">
+                          {current.name}
+                        </span>
+                        <span className="block text-sm text-muted-foreground">
+                          {current.role}
+                        </span>
                       </span>
-                    </span>
-                  </figcaption>
-                </motion.figure>
-              </AnimatePresence>
+                    </figcaption>
+                  </motion.figure>
+                </AnimatePresence>
+              </div>
             </div>
 
             <div className="mt-5 flex items-center justify-between">

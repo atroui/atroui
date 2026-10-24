@@ -17,9 +17,9 @@ Register eight orphaned soft-rect blocks, add docs/nav/collection discovery, reb
 
 `feature-bento`, `testimonials-stack`, `stats-band`, `cta-band`, `pricing-tiers`, `logo-marquee`, `auth-split`, `saas-starter`
 
-## Exclude
+## Exclude (remain à la carte — not soft-rect default)
 
-`hero-lamp`, `hero-parallax`, `faq-accordion` (park)
+`hero-lamp`, `hero-parallax`, `faq-accordion` — still installable; not pulled by `@atroui/landing-kit`.
 
 ## Already registered (kit peers)
 

@@ -26,8 +26,11 @@ export function AgentInstallChip({
     : undefined
 
   const text = [
+    `# Prefer shadcn when the project uses it:`,
     `npx shadcn@latest add @atroui/${registryName}`,
-    "# Registry UI only — do not import UI from npm atroui.",
+    `# No shadcn — same registry:`,
+    `npx @atroui/cli@latest add ${registryName}`,
+    `# Never import UI from npm atroui.`,
     absoluteDocs ? `# Docs: ${absoluteDocs}` : null,
   ]
     .filter(Boolean)

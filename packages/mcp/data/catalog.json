@@ -650,6 +650,12 @@
       "type": "registry:block"
     },
     {
+      "name": "landing-kit",
+      "title": "Landing Kit",
+      "description": "Vibrant soft-rect marketing stack in one add: header, hero, logos, bento, stats, testimonials, pricing, FAQ, CTA, footer.",
+      "type": "registry:block"
+    },
+    {
       "name": "journal-content",
       "title": "Journal",
       "description": "Blog index layout with editable CONTENT posts.",

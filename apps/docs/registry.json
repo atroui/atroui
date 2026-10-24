@@ -2062,6 +2062,40 @@
       ]
     },
     {
+      "name": "landing-kit",
+      "type": "registry:block",
+      "title": "Landing Kit",
+      "description": "Vibrant soft-rect marketing stack in one add: header, hero, logos, bento, stats, testimonials, pricing, FAQ, CTA, footer.",
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/site-header",
+        "@atroui/home-hero",
+        "@atroui/logo-marquee",
+        "@atroui/feature-bento",
+        "@atroui/stats-band",
+        "@atroui/testimonials-stack",
+        "@atroui/pricing-tiers",
+        "@atroui/faq",
+        "@atroui/cta-band",
+        "@atroui/site-footer"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/landing-page.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/landing-page.tsx"
+        },
+        {
+          "path": "registry/default/app/landing/page.tsx",
+          "type": "registry:file",
+          "target": "app/landing/page.tsx"
+        }
+      ]
+    },
+    {
       "name": "journal-content",
       "type": "registry:block",
       "title": "Journal",

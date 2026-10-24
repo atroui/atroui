@@ -74,12 +74,25 @@ export function CollectionsIndexPage() {
   )
 }
 
+const LIVE_TITLES: Record<string, { title: string; meta: string }> = {
+  "/landing": {
+    title: "Live landing",
+    meta: "Full-page try-it for @atroui/landing-kit",
+  },
+  "/launch": {
+    title: "Launch room",
+    meta: "Scope → Planner → OG in one path",
+  },
+}
+
 export function CollectionDoc({ slug }: { slug: string }) {
   const collection = getPseoCollection(slug)
   if (!collection) notFound()
 
   const path = `/docs/collections/${collection.slug}`
-  const entries = collection.paths.map(kitEntry)
+  const livePaths = collection.paths.filter((p) => !p.startsWith("/docs"))
+  const docPaths = collection.paths.filter((p) => p.startsWith("/docs"))
+  const entries = docPaths.map(kitEntry)
 
   return (
     <article className="space-y-10">
@@ -96,6 +109,32 @@ export function CollectionDoc({ slug }: { slug: string }) {
         title={collection.title}
         lede={collection.intro}
       />
+
+      {livePaths.length > 0 ? (
+        <section className="space-y-4">
+          <h2 className="docs-section-title" id="try-live">
+            Try live
+          </h2>
+          <ul className="docs-kit-list">
+            {livePaths.map((href) => {
+              const live = LIVE_TITLES[href] ?? {
+                title: href,
+                meta: "Live room",
+              }
+              return (
+                <li key={href}>
+                  <Link href={href} className="docs-kit-row">
+                    <span className="docs-kit-row-head">
+                      <span className="docs-hub-title">{live.title}</span>
+                    </span>
+                    <span className="docs-hub-meta">{live.meta}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      ) : null}
 
       {/* Fundamental first: what is in the kit. */}
       <section className="space-y-4">

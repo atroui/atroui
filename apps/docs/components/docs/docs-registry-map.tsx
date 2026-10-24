@@ -92,7 +92,7 @@ const FAMILIES: { name: string; items: string[] }[] = [
   },
   {
     name: "Home",
-    items: ["home-hero", "home-who", "home-principle", "home-work", "home-lab", "hero-parallax", "hero-lamp", "logo-marquee", "saas-starter"],
+    items: ["landing-kit", "home-hero", "home-who", "home-principle", "home-work", "home-lab", "hero-parallax", "hero-lamp", "logo-marquee", "saas-starter"],
   },
   {
     name: "Convert",

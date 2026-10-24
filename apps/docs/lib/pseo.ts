@@ -282,8 +282,10 @@ export const pseoCollections: PseoCollection[] = [
       "Hero → features/bento → logos → stats → testimonials → pricing → FAQ → CTA → auth. Soft-rect AtroUI registry blocks with CONTENT at the top of each file.",
     intro:
       "shadcn primitives do not assemble a homepage. These blocks are the Vibrant-shaped landing map — owned files, Atro taste, not a themed iframe.",
-    why: "Install by job: @atroui/home-hero, feature-bento, logo-cloud / logo-marquee, stats-band, testimonials-stack, pricing-overview / pricing-tiers, faq, cta-band, auth-split. Or start from @atroui/saas-starter.",
+    why: "Try the live page at `/landing`, then install `@atroui/landing-kit`. Or à la carte: home-hero, feature-bento, logo-marquee, stats-band, testimonials-stack, pricing-tiers, faq, cta-band. One-file alternative: `@atroui/saas-starter`.",
     paths: [
+      "/landing",
+      "/docs/components/landing-landing-kit",
       "/docs/components/home-hero",
       "/docs/components/feature-grid",
       "/docs/components/feature-bento",
@@ -307,7 +309,7 @@ export const pseoCollections: PseoCollection[] = [
       },
       {
         q: "Where do I start?",
-        a: "Try @atroui/saas-starter for a one-file composition, or add sections à la carte in Vibrant order from the collection paths.",
+        a: "Open /landing to try the full soft-rect stack live, then npx shadcn add @atroui/landing-kit. Use @atroui/saas-starter for a single-file composite, or add sections à la carte.",
       },
     ],
   },
