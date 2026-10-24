@@ -6,11 +6,13 @@ import { DocsPager } from "@/components/docs-pager"
 const AGENT_PASTE_PROMPT = `You are installing AtroUI into a Next.js (App Router) + Tailwind v4 app.
 
 Rules:
-- UI: npx shadcn@latest add @atroui/<name> — copied files the user owns.
+- UI (shadcn projects): npx shadcn@latest add @atroui/<name> — copied files the user owns.
+- UI (no shadcn): npx @atroui/cli@latest add <name> — same registry JSON.
 - Never import UI from the npm package atroui (no \`import { Button } from "atroui"\`).
 - Host APIs only: npm i atroui + transpilePackages + app/api stubs; BYOK; 503 without keys.
 - Themes: orthogonal axes + companion SKUs (@atroui/theme-tide, …), not mega-themes.
 - Catalog truth: https://www.atroui.com/llms-full.txt and https://www.atroui.com/r/registry.json
+- Optional MCP: https://www.atroui.com/docs/mcp (@atroui/mcp returns both install commands).
 
 Jobs (pick one unless asked for more):
 1) Landing: follow https://www.atroui.com/docs/collections/dark-marketing — add sections in that order (or @atroui/saas-starter first).
@@ -43,7 +45,15 @@ export function ForAgentsGuide() {
             <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">
               npx shadcn@latest add @atroui/…
             </code>{" "}
-            — the user owns the copied files.
+            or{" "}
+            <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">
+              npx @atroui/cli@latest add …
+            </code>{" "}
+            — same registry; the user owns the copied files.{" "}
+            <Link href="/docs/mcp" className="bam-link">
+              MCP
+            </Link>{" "}
+            returns both.
           </li>
           <li>
             Never teach{" "}

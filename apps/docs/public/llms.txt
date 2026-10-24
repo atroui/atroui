@@ -19,6 +19,7 @@
 
 - [Getting Started](https://www.atroui.com/docs): First-hour Quick Start — init, add a block, essential commands.
 - [Installation](https://www.atroui.com/docs/installation): shadcn path + `@atroui/cli`, what lands in the repo, troubleshooting.
+- [MCP server](https://www.atroui.com/docs/mcp): Agents search the catalog; returns shadcn + `@atroui/cli` install commands.
 - [Coming from…](https://www.atroui.com/docs/migrate): Task paths from plain shadcn/ui, npm atroui, or copy-paste kits.
 - [Collections](https://www.atroui.com/docs/collections): Job hubs — forms, OG, launch — instead of browsing every block.
 

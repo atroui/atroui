@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "atroui": {
+      "command": "npx",
+      "args": ["-y", "@atroui/mcp"]
+    }
+  }
+}

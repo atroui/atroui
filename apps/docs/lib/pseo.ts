@@ -6,14 +6,12 @@
  * Every `path` here must exist as `apps/docs/app/.../page.tsx` on master.
  * Env names must match root `.env.example` on master.
  *
- * Do **not** add hubs or install commands for unmerged work. Parked until
- * those branches merge (see futurechecklist.md):
- * - MCP package `@atroui/mcp` (`new-implementation1`)
- * - First-party CLI `@atroui/cli` (`ni2`)
- * - Extra AI vendors (OpenAI / Anthropic) behind Host APIs
+ * Do **not** add hubs for unmerged work on master. On `feat/atro-room`:
+ * CLI + MCP are extracted and documented; publish/merge still gated.
+ * Still parked: Extra AI vendors (OpenAI / Anthropic) behind Host APIs.
  *
- * When those ship on master, add overlays/hubs here — not before.
- * Shipped: `@atroui/launch-workflow` + live `/launch` room.
+ * Shipped on this branch story: `@atroui/launch-workflow` + live `/launch`,
+ * `@atroui/cli`, `@atroui/mcp` (docs + package; npm when released).
  */
 
 export type PseoFaq = { q: string; a: string }

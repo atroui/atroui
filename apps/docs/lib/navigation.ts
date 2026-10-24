@@ -41,6 +41,11 @@ export const navigation: NavSection[] = [
         description: "Init, add, troubleshoot",
       },
       {
+        title: "MCP server",
+        href: "/docs/mcp",
+        description: "Agents · dual install commands",
+      },
+      {
         title: "Coming from…",
         href: "/docs/migrate",
         description: "shadcn, npm atroui, kits",
