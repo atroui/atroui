@@ -2031,147 +2031,157 @@
       ]
     },
     {
-      "name": "count-up",
-      "type": "registry:block",
-      "title": "Count Up",
-      "description": "In-view count-up number with reduced-motion support.",
+      "name": "ascii-rig",
+      "type": "registry:lib",
+      "title": "ASCII Rig",
+      "description": "Shared ASCII kit \u2014 luminance ramps, offscreen/reduced-motion aware tick loop, canvas character-cell metrics.",
+      "dependencies": [],
       "files": [
         {
-          "path": "registry/default/blocks/count-up.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/count-up.tsx"
+          "path": "registry/default/lib/ascii-rig.ts",
+          "type": "registry:lib",
+          "target": "lib/ascii-rig.ts"
         }
-      ],
+      ]
+    },
+    {
+      "name": "ascii-donut",
+      "type": "registry:ui",
+      "title": "ASCII Donut",
+      "description": "The spinning torus \u2014 3D points z-buffered per character cell, shaded by luminance ramp.",
+      "dependencies": [],
       "registryDependencies": [
-        "@atroui/animate-number"
+        "@atroui/utils",
+        "@atroui/ascii-rig"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/ascii-donut.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-donut.tsx"
+        }
       ]
     },
     {
-      "name": "deadline-countdown",
-      "type": "registry:block",
-      "title": "Deadline Countdown",
-      "description": "Days-to-deadline band with segmented progress and CountUp.",
-      "files": [
-        {
-          "path": "registry/default/blocks/deadline-countdown.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/deadline-countdown.tsx"
-        }
-      ],
+      "name": "ascii-rain",
+      "type": "registry:ui",
+      "title": "ASCII Rain",
+      "description": "Falling streams of glyphs whose color fades along each tail.",
+      "dependencies": [],
       "registryDependencies": [
-        "@atroui/animate-number"
-      ]
-    },
-    {
-      "name": "project-list",
-      "type": "registry:block",
-      "title": "Project List",
-      "description": "Hairline project list with tags and optional view-all link.",
-      "dependencies": [
-        "lucide-react",
-        "next"
+        "@atroui/utils",
+        "@atroui/ascii-rig"
       ],
       "files": [
         {
-          "path": "registry/default/blocks/project-list.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/project-list.tsx"
+          "path": "registry/default/ui/ascii-rain.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-rain.tsx"
         }
       ]
     },
     {
-      "name": "changelog",
-      "type": "registry:block",
-      "title": "Changelog",
-      "description": "Filterable month-grouped changelog list.",
-      "files": [
-        {
-          "path": "registry/default/blocks/changelog.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/changelog.tsx"
-        }
-      ]
-    },
-    {
-      "name": "command-menu",
-      "type": "registry:block",
-      "title": "Command Menu",
-      "description": "\u2318K command palette for nav, posts, connect, and theme.",
-      "dependencies": [
-        "cmdk",
-        "lucide-react",
-        "next",
-        "next-themes"
+      "name": "ascii-wave",
+      "type": "registry:ui",
+      "title": "ASCII Wave",
+      "description": "Function field f(x,y,t) mapped through a luminance ramp \u2014 one text node per frame.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/ascii-rig"
       ],
       "files": [
         {
-          "path": "registry/default/blocks/command-menu.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/command-menu.tsx"
+          "path": "registry/default/ui/ascii-wave.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-wave.tsx"
         }
       ]
     },
     {
-      "name": "personal-hero",
-      "type": "registry:block",
-      "title": "Personal Hero",
-      "description": "Narrow personal intro with status, lede links, and meta.",
-      "files": [
-        {
-          "path": "registry/default/blocks/personal-hero.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/personal-hero.tsx"
-        }
-      ]
-    },
-    {
-      "name": "resume",
-      "type": "registry:block",
-      "title": "Resume",
-      "description": "Printable resume layout with experience, skills, and projects.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "name": "ascii-spark",
+      "type": "registry:ui",
+      "title": "ASCII Spark",
+      "description": "Block-element bars (\u2591\u2013\u2588); a copyable plain-text sparkline.",
+      "dependencies": [],
       "registryDependencies": [
         "@atroui/utils"
       ],
       "files": [
         {
-          "path": "registry/default/blocks/resume.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/resume.tsx"
+          "path": "registry/default/ui/ascii-spark.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-spark.tsx"
         }
       ]
     },
     {
-      "name": "local-clock",
-      "type": "registry:block",
-      "title": "Local Clock",
-      "description": "Timezone-aware local time chip.",
+      "name": "ascii-bar",
+      "type": "registry:ui",
+      "title": "ASCII Bar",
+      "description": "Pseudo-graphics progress (\u25b0\u25b1) filling in plottable steps.",
+      "dependencies": [],
       "registryDependencies": [
         "@atroui/utils"
       ],
       "files": [
         {
-          "path": "registry/default/blocks/local-clock.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/local-clock.tsx"
+          "path": "registry/default/ui/ascii-bar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-bar.tsx"
         }
       ]
     },
     {
-      "name": "weather-chip",
-      "type": "registry:block",
-      "title": "Weather Chip",
-      "description": "Open-Meteo weather chip \u2014 no API key required.",
+      "name": "ascii-boot",
+      "type": "registry:ui",
+      "title": "ASCII Boot",
+      "description": "VT100-style init log typed character by character, cursor pulsing.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/ascii-rig"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/ascii-boot.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-boot.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ascii-wordmark",
+      "type": "registry:ui",
+      "title": "ASCII Wordmark",
+      "description": "FIGlet-style big text from a built-in 3\u00d75 pixel font.",
+      "dependencies": [],
       "registryDependencies": [
         "@atroui/utils"
       ],
       "files": [
         {
-          "path": "registry/default/blocks/weather-chip.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/weather-chip.tsx"
+          "path": "registry/default/ui/ascii-wordmark.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-wordmark.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ascii-decode",
+      "type": "registry:ui",
+      "title": "ASCII Decode",
+      "description": "Cipher glyphs locking into the message left to right.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/ascii-rig"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/ascii-decode.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/ascii-decode.tsx"
         }
       ]
     }

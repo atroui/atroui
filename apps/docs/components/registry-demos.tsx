@@ -42,7 +42,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  Changelog,
+  ColorThemePicker,
   Checkbox,
   CheckboxGroup,
   Collapsible,
@@ -58,15 +58,12 @@ import {
   ComboboxItemIndicator,
   ComboboxList,
   ComboboxTrigger,
-  CommandMenu,
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
   ContextualCTA,
-  CountUp,
-  DeadlineCountdown,
   Dialog,
   DialogClose,
   DialogContent,
@@ -109,7 +106,6 @@ import {
   Input,
   JournalContent,
   LiveDashboard,
-  LocalClock,
   LogoCloud,
   LogoMark,
   LogoWordmark,
@@ -149,7 +145,6 @@ import {
   OTPField,
   OTPFieldInput,
   OTPFieldSeparator,
-  PersonalHero,
   Popover,
   PopoverContent,
   PopoverDescription,
@@ -167,12 +162,10 @@ import {
   ProgressLabel,
   ProgressTrack,
   ProgressValue,
-  ProjectList,
   Prose,
   Radio,
   RadioGroup,
   ResourcesContent,
-  Resume,
   ScopeChat,
   ScrollArea,
   ScrollProgress,
@@ -216,7 +209,6 @@ import {
   TransitionPanel,
   trackEvent,
   useToastManager,
-  WeatherChip,
   WordRevealScroll,
 } from "atroui"
 import { IMAGEORY } from "@/lib/imageory"
@@ -238,12 +230,90 @@ import { PricingOverview } from "../registry/default/blocks/pricing-overview"
 import { ProjectPlanner } from "../registry/default/blocks/project-planner"
 import { SiteFooter } from "../registry/default/blocks/site-footer"
 import { SiteHeader } from "../registry/default/blocks/site-header"
+import { AuthSplit } from "../registry/default/blocks/auth-split"
+import { CtaBand } from "../registry/default/blocks/cta-band"
+import { FaqAccordion } from "../registry/default/blocks/faq-accordion"
+import { FeatureBento } from "../registry/default/blocks/feature-bento"
+import { HeroLamp } from "../registry/default/blocks/hero-lamp"
+import { HeroParallax } from "../registry/default/blocks/hero-parallax"
+import { IntegrationBeam } from "../registry/default/blocks/integration-beam"
+import { LogoMarquee } from "../registry/default/blocks/logo-marquee"
+import { PricingTiers } from "../registry/default/blocks/pricing-tiers"
+import { SaasStarter } from "../registry/default/blocks/saas-starter"
+import { ShowcaseCarousel } from "../registry/default/blocks/showcase-carousel"
+import { StatsBand } from "../registry/default/blocks/stats-band"
+import { TestimonialsStack } from "../registry/default/blocks/testimonials-stack"
+import {
+  AnimatedBeam,
+  AnimatedBeamFan,
+} from "../registry/default/ui/animated-beam"
+import { AuroraText } from "../registry/default/ui/aurora-text"
+import { BentoCard, BentoGrid } from "../registry/default/ui/bento-grid"
+import { BorderBeam } from "../registry/default/ui/border-beam"
+import { Dock, DockItem } from "../registry/default/ui/dock"
+import { MagicCard } from "../registry/default/ui/magic-card"
+import { Marquee } from "../registry/default/ui/marquee"
+import { Meteors } from "../registry/default/ui/meteors"
+import { NumberTicker } from "../registry/default/ui/number-ticker"
+import { OrbitingCircles } from "../registry/default/ui/orbiting-circles"
 
 /** Live canvas demos - one per documented component where a useful preview exists. */
 
 export function DemoHomeHero() {
   // Same `@atroui/home-hero` source users install — not the npm `HomeHero` alias.
   return <HomeHero />
+}
+
+export function DemoHeroParallax() {
+  return <HeroParallax />
+}
+
+export function DemoHeroLamp() {
+  return <HeroLamp />
+}
+
+export function DemoLogoMarquee() {
+  return <LogoMarquee />
+}
+
+export function DemoTestimonialsStack() {
+  return <TestimonialsStack />
+}
+
+export function DemoFeatureBento() {
+  return <FeatureBento />
+}
+
+export function DemoCtaBand() {
+  return <CtaBand />
+}
+
+export function DemoPricingTiers() {
+  return <PricingTiers />
+}
+
+export function DemoFaqAccordion() {
+  return <FaqAccordion />
+}
+
+export function DemoStatsBand() {
+  return <StatsBand />
+}
+
+export function DemoIntegrationBeam() {
+  return <IntegrationBeam />
+}
+
+export function DemoShowcaseCarousel() {
+  return <ShowcaseCarousel />
+}
+
+export function DemoAuthSplit() {
+  return <AuthSplit />
+}
+
+export function DemoSaasStarter() {
+  return <SaasStarter />
 }
 
 export function DemoHomeCrafts() {
@@ -1364,6 +1434,275 @@ function PlaygroundCue({ children }: { children: React.ReactNode }) {
   )
 }
 
+function PlaygroundShell({ children }: { children: React.ReactNode }) {
+  return (
+    <MotionConfig {...atroMotionDefaults}>
+      <div className="flex w-full max-w-xl flex-col gap-3 text-left">{children}</div>
+    </MotionConfig>
+  )
+}
+
+export function DemoPlaygroundOverview() {
+  return (
+    <PlaygroundShell>
+      <div className="space-y-1.5">
+        <p className="text-sm font-medium text-foreground">Motion kit</p>
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          One stage under{" "}
+          <code className="font-mono text-[11px] text-foreground">
+            MotionConfig
+          </code>{" "}
+          +{" "}
+          <code className="font-mono text-[11px] text-foreground">
+            atroMotionDefaults
+          </code>
+          . Tweens only · ease-out settle · hoverLift ≤1px · pressInto · never
+          grow · reduced motion → duration 0.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground">
+        <a href="#hover" className="bam-link">
+          Hover
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#text" className="bam-link">
+          Text
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#media" className="bam-link">
+          Media
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#enter" className="bam-link">
+          Enter
+        </a>
+        <span aria-hidden>·</span>
+        <a href="#presence" className="bam-link">
+          Presence
+        </a>
+      </div>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundHover() {
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>hover · lift ≤1px · never grow</PlaygroundCue>
+      <div className="flex flex-wrap items-center gap-4">
+        <DemoButton />
+        <DemoToggle />
+        <a
+          href="#presence"
+          className="group text-sm font-medium text-foreground"
+        >
+          <LabelRoll secondary="Install AtroUI">Get started</LabelRoll>
+        </a>
+      </div>
+      <p className="text-[11px] text-muted-foreground">
+        Material brightens; geometry barely lifts; ink rolls. Scale-up on hover
+        is out.
+      </p>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundText() {
+  const [morphLabel, setMorphLabel] = React.useState("Idle")
+  const [revealKey, setRevealKey] = React.useState(0)
+  const cycleMorph = () =>
+    setMorphLabel((v) =>
+      v === "Idle" ? "Loading" : v === "Loading" ? "Done" : "Idle"
+    )
+
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>text · morph · roll · line</PlaygroundCue>
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={cycleMorph}
+          className="atro-btn inline-flex min-w-[7rem] justify-center"
+        >
+          <TextMorph className="font-medium">{morphLabel}</TextMorph>
+        </button>
+        <CopyButton value="npx shadcn@latest add @atroui/copy-button" />
+      </div>
+      <LineReveal
+        key={`line-${revealKey}`}
+        preview
+        className="text-base font-medium tracking-tight text-foreground"
+      >
+        Show the fundamental first. Reveal depth when it earns the frame.
+      </LineReveal>
+      <button
+        type="button"
+        onClick={() => setRevealKey((k) => k + 1)}
+        className="atro-btn-ghost self-start text-[11px]"
+      >
+        Replay line + fade
+      </button>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundMedia() {
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>media · Imageory · mild only</PlaygroundCue>
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="flex flex-col gap-1.5">
+          <Magnetic
+            className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
+            intensity={0.28}
+            range={56}
+          >
+            <img
+              src={IMAGEORY.landscape}
+              alt=""
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </Magnetic>
+          <span className="text-[10px] text-muted-foreground">Magnetic</span>
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <Tilt
+            className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card"
+            rotationFactor={6}
+          >
+            <img
+              src={IMAGEORY.sky}
+              alt=""
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </Tilt>
+          <span className="text-[10px] text-muted-foreground">Tilt ≤6°</span>
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <Spotlight className="overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-zinc-950">
+            <img
+              src={IMAGEORY.darkVoid}
+              alt=""
+              className="aspect-[4/3] w-full object-cover opacity-90"
+            />
+          </Spotlight>
+          <span className="text-[10px] text-muted-foreground">Spotlight</span>
+        </div>
+      </div>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundEnter() {
+  const [amount, setAmount] = React.useState(1280)
+  const [revealKey, setRevealKey] = React.useState(0)
+
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>enter · fade + count</PlaygroundCue>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <FadeIn
+          key={`fade-${revealKey}`}
+          preview
+          className="max-w-[14rem] rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-3 text-sm text-foreground"
+        >
+          Opacity + rise. No blur-in.
+        </FadeIn>
+        <div className="flex flex-col items-end gap-2">
+          <p className="text-3xl font-medium tracking-tight text-foreground">
+            <AnimateNumber
+              value={amount}
+              from={0}
+              prefix="$"
+              format={{ style: "decimal", maximumFractionDigits: 0 }}
+            />
+          </p>
+          <div className="flex gap-1.5">
+            {[480, 1280, 9600].map((n) => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setAmount(n)}
+                className="atro-btn-ghost px-2 py-1 text-[11px]"
+              >
+                ${n.toLocaleString()}
+              </button>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => setRevealKey((k) => k + 1)}
+            className="atro-btn-ghost px-2 py-1 text-[11px]"
+          >
+            Replay fade
+          </button>
+        </div>
+      </div>
+    </PlaygroundShell>
+  )
+}
+
+export function DemoPlaygroundPresence() {
+  const [panelKey, setPanelKey] = React.useState("taste")
+  const panels = {
+    taste: (
+      <p className="text-sm text-muted-foreground">
+        Ease-out Soft settle. Exit ≈80% enter. Never grow on hover.
+      </p>
+    ),
+    text: (
+      <p className="text-sm text-muted-foreground">
+        TextMorph / LabelRoll / LineReveal — ink travels; no scramble.
+      </p>
+    ),
+    media: (
+      <p className="text-sm text-muted-foreground">
+        Magnetic · Tilt · Spotlight — media only, never Button chrome.
+      </p>
+    ),
+  } as const
+
+  return (
+    <PlaygroundShell>
+      <PlaygroundCue>presence · panel wait mode</PlaygroundCue>
+      <div className="flex gap-1 rounded-[var(--radius)] border border-border-subtle bg-muted/40 p-1">
+        {(
+          [
+            ["taste", "Taste"],
+            ["text", "Text"],
+            ["media", "Media"],
+          ] as const
+        ).map(([key, label]) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setPanelKey(key)}
+            className={
+              panelKey === key
+                ? "flex-1 rounded-md bg-card px-3 py-1.5 text-xs font-medium text-foreground shadow-sm"
+                : "flex-1 rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
+            }
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      <TransitionPanel
+        activeKey={panelKey}
+        className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-3"
+      >
+        {panels}
+      </TransitionPanel>
+      <p className="text-[11px] text-muted-foreground">
+        Exit finishes before enter. Chrome overlays (Dialog / Drawer / Menu)
+        still use the same Soft tokens — see each primitive doc.
+      </p>
+    </PlaygroundShell>
+  )
+}
+
+/** Full one-stage kit — gallery / embeds that want everything together. */
+
 export function DemoBaseUiPlayground() {
   const [morphLabel, setMorphLabel] = React.useState("Idle")
   const [amount, setAmount] = React.useState(1280)
@@ -1580,6 +1919,10 @@ export { DemoThemeAdapt } from "@/components/theme-adapt-demo"
 
 export function DemoThemeToggle() {
   return <ThemeToggle />
+}
+
+export function DemoColorThemePicker() {
+  return <ColorThemePicker />
 }
 
 export function DemoLogo() {
@@ -2377,155 +2720,205 @@ export function DemoThemeProviderNote() {
   )
 }
 
-/** Indie site kit demos — center the 640px column in the wide docs preview. */
-function IndieKitFrame({ children }: { children: React.ReactNode }) {
+export function DemoMarquee() {
   return (
-    <div className="mx-auto w-full max-w-[640px] px-4 py-6 sm:px-5 sm:py-8">
-      {children}
-    </div>
-  )
-}
-
-export function DemoCountUp() {
-  return (
-    <div className="flex items-baseline justify-center gap-2 font-mono tabular-nums">
-      <CountUp
-        value={128}
-        className="text-5xl font-medium tracking-tight text-foreground"
-        ariaLabel="128"
-      />
-      <span className="text-sm text-muted-foreground">ships</span>
-    </div>
-  )
-}
-
-export function DemoCountUpSlow() {
-  return (
-    <div className="flex items-baseline justify-center gap-2 font-mono tabular-nums">
-      <CountUp
-        value={42}
-        duration={2400}
-        className="text-5xl font-medium tracking-tight text-foreground"
-        ariaLabel="42"
-      />
-      <span className="text-sm text-muted-foreground">blocks</span>
-    </div>
-  )
-}
-
-export function DemoDeadlineCountdown() {
-  return (
-    <IndieKitFrame>
-      <DeadlineCountdown className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoProjectList() {
-  return (
-    <IndieKitFrame>
-      <ProjectList className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoChangelog() {
-  return (
-    <IndieKitFrame>
-      <Changelog className="w-full" />
-    </IndieKitFrame>
-  )
-}
-
-export function DemoCommandMenu() {
-  return (
-    <div className="relative mx-auto w-full max-w-md rounded-xl border border-border-subtle bg-background px-6 py-10 text-center">
-      <p className="text-sm text-muted-foreground">
-        Press{" "}
-        <kbd className="rounded border border-border-subtle bg-muted px-1.5 py-0.5 font-mono text-[11px] text-foreground">
-          ⌘K
-        </kbd>{" "}
-        (or Ctrl+K) to open the command menu.
-      </p>
-      <CommandMenu />
-    </div>
-  )
-}
-
-/** Contained gallery thumb — no portal (⌘K is for the live docs page). */
-export function DemoCommandMenuGallery() {
-  return (
-    <div className="flex h-full items-center justify-center bg-background p-4">
-      <div className="w-full max-w-[14rem] overflow-hidden rounded-lg border border-border-subtle bg-card shadow-sm">
-        <div className="flex items-center gap-2 border-b border-border-subtle px-2.5 py-2">
-          <span className="flex-1 truncate font-mono text-[10px] text-muted-foreground">
-            Search docs…
+    <div className="w-full max-w-md overflow-hidden">
+      <Marquee duration={30} className="text-sm text-muted-foreground">
+        {["Acme", "Globex", "Initech", "Umbrella", "Hooli"].map((name) => (
+          <span key={name} className="mx-6 font-medium whitespace-nowrap">
+            {name}
           </span>
-          <kbd className="rounded border border-border-subtle px-1 font-mono text-[9px] text-muted-foreground">
-            ⌘K
-          </kbd>
+        ))}
+      </Marquee>
+      <p className="mt-3 text-center text-sm text-muted-foreground">
+        Hover pauses the loop. Static row under reduced motion.
+      </p>
+    </div>
+  )
+}
+
+export function DemoBorderBeam() {
+  return (
+    <div className="relative w-full max-w-xs overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-card px-6 py-8 text-center">
+      <p className="text-sm font-medium text-foreground">Nightly build passed</p>
+      <p className="mt-1 text-sm text-muted-foreground">Light laps the edge.</p>
+      <BorderBeam size={80} duration={6} />
+    </div>
+  )
+}
+
+export function DemoMagicCard() {
+  return (
+    <MagicCard className="w-full max-w-xs p-6 text-left">
+      <p className="text-sm font-medium text-foreground">Usage this week</p>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Move over the card — brand wash follows, then settles.
+      </p>
+    </MagicCard>
+  )
+}
+
+type BeamRef = React.RefObject<HTMLElement | null>
+
+export function DemoAnimatedBeam() {
+  const containerRef = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fromRef = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const toRef = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanBox = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanHub = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanA = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanB = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  const fanC = React.useRef<HTMLDivElement>(null) as unknown as BeamRef
+  return (
+    <div className="flex w-full max-w-md flex-col gap-6">
+      <div
+        ref={containerRef as unknown as React.Ref<HTMLDivElement>}
+        className="relative flex w-full items-center justify-between gap-16 px-8 py-10"
+      >
+        <div
+          ref={fromRef as unknown as React.Ref<HTMLDivElement>}
+          className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-2 text-sm font-medium text-foreground"
+        >
+          Source
         </div>
-        <ul className="space-y-0.5 p-1.5 font-mono text-[10px] text-foreground">
-          <li className="rounded-md bg-white/[0.06] px-2 py-1.5">Home</li>
-          <li className="rounded-md px-2 py-1.5 text-muted-foreground">
-            Components
-          </li>
-          <li className="rounded-md px-2 py-1.5 text-muted-foreground">Blog</li>
-        </ul>
+        <div
+          ref={toRef as unknown as React.Ref<HTMLDivElement>}
+          className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-2 text-sm font-medium text-foreground"
+        >
+          Target
+        </div>
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={fromRef}
+          toRef={toRef}
+          curvature={-24}
+        />
       </div>
+      <div
+        ref={fanBox as unknown as React.Ref<HTMLDivElement>}
+        className="relative flex w-full items-center justify-between gap-6 px-8 py-10"
+      >
+        <div
+          ref={fanHub as unknown as React.Ref<HTMLDivElement>}
+          className="rounded-[var(--radius)] border border-brand/40 bg-card px-4 py-2 text-sm font-medium text-foreground"
+        >
+          Hub
+        </div>
+        <div className="flex flex-col gap-3">
+          {[
+            { ref: fanA, label: "OG" },
+            { ref: fanB, label: "Scope" },
+            { ref: fanC, label: "Planner" },
+          ].map((n) => (
+            <div
+              key={n.label}
+              ref={n.ref as unknown as React.Ref<HTMLDivElement>}
+              className="rounded-[var(--radius)] border border-border-subtle bg-card px-4 py-2 text-sm text-muted-foreground"
+            >
+              {n.label}
+            </div>
+          ))}
+        </div>
+        <AnimatedBeamFan
+          containerRef={fanBox}
+          fromRef={fanHub}
+          toRefs={[fanA, fanB, fanC]}
+          curvature={-16}
+        />
+      </div>
+      <p className="text-center text-sm text-muted-foreground">
+        One-to-one above, one hub fanning to three below.
+      </p>
     </div>
   )
 }
 
-export function DemoPersonalHero() {
+export function DemoBentoGrid() {
   return (
-    <IndieKitFrame>
-      <PersonalHero
-        name="Your Name"
-        imageSrc={mediaSrc(MEDIA.founderPortrait)}
-        imageAlt="Portrait"
-        className="w-full px-0 pt-2 sm:pt-4"
-      />
-    </IndieKitFrame>
+    <BentoGrid className="w-full max-w-xl">
+      <BentoCard title="Scope" description="One focused surface at a time." />
+      <BentoCard title="Build" description="Own the source after install." />
+      <BentoCard title="Ship" description="Ease-out settle, never bounce." />
+    </BentoGrid>
   )
 }
 
-export function DemoResume() {
+export function DemoMeteors() {
   return (
-    <div className="mx-auto max-h-[560px] w-full max-w-[720px] overflow-auto">
-      <Resume />
+    <div className="relative w-full max-w-md overflow-hidden rounded-[var(--radius)] border border-border-subtle bg-zinc-950 px-6 py-10 text-center">
+      <Meteors count={12} />
+      <p className="relative text-sm font-medium text-white">Night deploys</p>
+      <p className="relative mt-1 text-sm text-zinc-400">
+        Streaks rest under reduced motion.
+      </p>
     </div>
   )
 }
 
-export function DemoLocalClock() {
+export function DemoDock() {
   return (
-    <div className="flex justify-center py-6">
-      <LocalClock timezone="America/New_York" timezoneLabel="NYC" />
+    <div className="flex w-full flex-col items-center gap-3 py-4">
+      <Dock>
+        <DockItem href="/tools" label="Tools">
+          <Plus className="size-4" />
+        </DockItem>
+        <DockItem href="/work" label="Work">
+          <Settings2 className="size-4" />
+        </DockItem>
+        <DockItem href="/contact" label="Contact">
+          <Trash2 className="size-4" />
+        </DockItem>
+      </Dock>
+      <p className="text-center text-sm text-muted-foreground">
+        Hover — icons swell near the pointer. Tab to focus, Enter to follow.
+      </p>
     </div>
   )
 }
 
-export function DemoLocalClockLondon() {
+export function DemoOrbitingCircles() {
   return (
-    <div className="flex justify-center py-6">
-      <LocalClock timezone="Europe/London" timezoneLabel="LON" />
+    <div className="flex w-full flex-col items-center gap-2 py-4">
+      <div className="relative flex h-56 w-full max-w-xs items-center justify-center">
+        <span className="flex size-10 items-center justify-center rounded-full border border-border-subtle bg-card text-sm font-medium text-foreground">
+          OS
+        </span>
+        <OrbitingCircles radius={80} duration={18}>
+          <span className="text-xs font-medium">A</span>
+          <span className="text-xs font-medium">B</span>
+          <span className="text-xs font-medium">C</span>
+        </OrbitingCircles>
+      </div>
+      <p className="text-center text-sm text-muted-foreground">
+        Static ring under reduced motion.
+      </p>
     </div>
   )
 }
 
-export function DemoWeatherChip() {
+export function DemoNumberTicker() {
   return (
-    <div className="flex justify-center py-6">
-      <WeatherChip lat={40.7128} lon={-74.006} label="NYC" />
+    <div className="flex w-full flex-col items-center gap-2 py-4">
+      <p className="text-4xl font-medium tracking-tight text-foreground">
+        <NumberTicker value={1280} prefix="$" />
+      </p>
+      <p className="text-center text-sm text-muted-foreground">
+        Counts up once in view.
+      </p>
     </div>
   )
 }
 
-export function DemoWeatherChipLondon() {
+export function DemoAuroraText() {
   return (
-    <div className="flex justify-center py-6">
-      <WeatherChip lat={51.5074} lon={-0.1278} label="LON" />
+    <div className="py-4 text-center">
+      <p className="text-2xl font-medium tracking-tight text-foreground">
+        Ship <AuroraText>calm interfaces</AuroraText>
+      </p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Slow sweep; static brand text when motion rests.
+      </p>
     </div>
   )
 }
+

@@ -483,6 +483,64 @@ export const navigation: NavSection[] = [
     ],
   },
   {
+    title: "ASCII",
+    items: [
+      {
+        title: "ASCII",
+        href: "/docs/components/ascii",
+        description: "Section — characters as pixels",
+      },
+      {
+        title: "Donut",
+        href: "/docs/components/ascii-donut",
+        description: "3D torus, z-buffered",
+        badge: "registry",
+      },
+      {
+        title: "Rain",
+        href: "/docs/components/ascii-rain",
+        description: "Falling glyph field",
+        badge: "registry",
+      },
+      {
+        title: "Wave",
+        href: "/docs/components/ascii-wave",
+        description: "Function field f(x,y,t)",
+        badge: "registry",
+      },
+      {
+        title: "Spark",
+        href: "/docs/components/ascii-spark",
+        description: "Block-element bars",
+        badge: "registry",
+      },
+      {
+        title: "Bar",
+        href: "/docs/components/ascii-bar",
+        description: "Pseudo-graphics progress",
+        badge: "registry",
+      },
+      {
+        title: "Boot",
+        href: "/docs/components/ascii-boot",
+        description: "Typewriter init log",
+        badge: "registry",
+      },
+      {
+        title: "Wordmark",
+        href: "/docs/components/ascii-wordmark",
+        description: "Pixel-font big text",
+        badge: "registry",
+      },
+      {
+        title: "Decode",
+        href: "/docs/components/ascii-decode",
+        description: "Scramble decrypt resolve",
+        badge: "registry",
+      }
+    ],
+  },
+  {
     title: "Blocks",
     items: [
       {
@@ -704,65 +762,6 @@ export const navigation: NavSection[] = [
     ],
   },
   {
-    title: "Indie",
-    items: [
-      {
-        title: "Count Up",
-        href: "/docs/components/count-up",
-        description: "In-view number animation",
-        badge: "registry",
-      },
-      {
-        title: "Deadline Countdown",
-        href: "/docs/components/deadline-countdown",
-        description: "Days-to-deadline band",
-        badge: "registry",
-      },
-      {
-        title: "Project List",
-        href: "/docs/components/project-list",
-        description: "Hairline project list",
-        badge: "registry",
-      },
-      {
-        title: "Changelog",
-        href: "/docs/components/changelog",
-        description: "Filterable ship log",
-        badge: "registry",
-      },
-      {
-        title: "Command Menu",
-        href: "/docs/components/command-menu",
-        description: "⌘K command palette",
-        badge: "registry",
-      },
-      {
-        title: "Personal Hero",
-        href: "/docs/components/personal-hero",
-        description: "Indie intro + portrait",
-        badge: "registry",
-      },
-      {
-        title: "Resume",
-        href: "/docs/components/resume",
-        description: "Printable resume block",
-        badge: "registry",
-      },
-      {
-        title: "Local Clock",
-        href: "/docs/components/local-clock",
-        description: "Timezone time chip",
-        badge: "registry",
-      },
-      {
-        title: "Weather Chip",
-        href: "/docs/components/weather-chip",
-        description: "Open-Meteo weather",
-        badge: "registry",
-      }
-    ],
-  },
-  {
     title: "Tools",
     megaLabel: "Tool blocks",
     items: [
@@ -880,8 +879,8 @@ const sectionKind: Record<string, DocKind | undefined> = {
   Reference: undefined,
   More: undefined,
   Primitives: "Primitive",
+  ASCII: "Primitive",
   Blocks: "Block",
-  Indie: "Block",
   Tools: "Tool",
   Headless: "Headless",
 }
