@@ -5,7 +5,7 @@ const PILLARS = [
   },
   {
     label: "Taste",
-    body: "Accent, surface, type, radius — one room that recolors live.",
+    body: "Axes recolor the room. Pin 390 in the workspace — stacking still holds.",
   },
   {
     label: "Ownership",

@@ -1,13 +1,12 @@
 "use client"
 
 /**
- * Theme Studio — one composition in the ToolRoom stage.
- * Family Values: gradual revelation (one axis at a time in the rail, sample on
- * the stage), soft-rect chrome, careful delight (Copy CSS is the one primary action).
+ * Theme Studio — paint strip + live stage + tool tray.
+ * Family Values: accent is architecture (paint wall always on); other axes
+ * reveal in the tray; stage is the proof.
  */
 
 import { useEffect, useMemo, useState } from "react"
-import Link from "next/link"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import {
   CopyButton,
@@ -15,6 +14,7 @@ import {
   ThemeToggle,
   buildShadcnAddCommand,
 } from "atroui"
+import { HomeHeroLead } from "../registry/default/blocks/home-hero"
 import {
   COLOR_THEMES,
   RADIUS_THEMES,
@@ -41,10 +41,9 @@ import { Check } from "lucide-react"
 import { layoutTween, switchLayoutTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
-type AxisId = "accent" | "surface" | "type" | "radius"
+type AxisId = "surface" | "type" | "radius"
 
 const AXES: { id: AxisId; label: string }[] = [
-  { id: "accent", label: "Accent" },
   { id: "surface", label: "Surface" },
   { id: "type", label: "Type" },
   { id: "radius", label: "Radius" },
@@ -57,7 +56,7 @@ export function ThemeStudio() {
   const [typeDisplay, setTypeDisplay] = useState<TypeFaceId>("serif")
   const [typeBody, setTypeBody] = useState<TypeFaceId>("sans")
   const [radius, setRadius] = useState<RadiusThemeId>("mira")
-  const [axis, setAxis] = useState<AxisId>("accent")
+  const [axis, setAxis] = useState<AxisId>("surface")
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -78,7 +77,6 @@ export function ThemeStudio() {
     applyRadiusTheme(nextRadius)
     setMounted(true)
 
-    // RadiusThemePicker is uncontrolled — mirror data-radius for export footer.
     const root = document.documentElement
     const syncRadius = () => setRadius(readStoredRadiusTheme())
     const mo = new MutationObserver(syncRadius)
@@ -98,13 +96,11 @@ export function ThemeStudio() {
   const typeReading = `${displayMeta.label} · ${bodyMeta.label}`
 
   const axisValue =
-    axis === "accent"
-      ? accentMeta.label
-      : axis === "surface"
-        ? surfaceMeta.label
-        : axis === "type"
-          ? typeReading
-          : radiusMeta.label
+    axis === "surface"
+      ? surfaceMeta.label
+      : axis === "type"
+        ? typeReading
+        : radiusMeta.label
 
   const exportCss = useMemo(
     () =>
@@ -138,14 +134,79 @@ export function ThemeStudio() {
     applyTypeBody(id)
   }
 
+  const roomReading = mounted
+    ? `${accentMeta.label} · ${surfaceMeta.label} · ${displayMeta.label}/${bodyMeta.label} · ${radiusMeta.label}`
+    : "…"
+
   return (
-    <div className="flex min-h-[28rem] flex-col md:flex-row">
-      {/* Left rail — one axis at a time; Appearance + Copy always on */}
-      <aside className="flex w-full shrink-0 flex-col border-b border-border-subtle bg-muted/30 md:w-[260px] md:border-b-0 md:border-r">
+    <div className="atro-themes-studio">
+      {/* Paint wall — accent is architecture, always on */}
+      <aside className="atro-themes-paint" aria-label="Accent themes">
+        <p className="atro-themes-paint-label" aria-hidden>
+          Paint
+        </p>
+        <div
+          role="radiogroup"
+          aria-label="Accent theme"
+          className="atro-themes-paint-stack"
+        >
+          {COLOR_THEMES.map((option) => {
+            const active = mounted && accent === option.id
+            return (
+              <button
+                key={option.id}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                aria-label={option.label}
+                title={option.label}
+                onClick={() => selectAccent(option.id)}
+                className={cn(
+                  "atro-themes-paint-chip",
+                  active && "atro-themes-paint-chip--active",
+                )}
+                style={{ background: option.swatch }}
+              >
+                <span className="atro-themes-paint-chip-name">
+                  {option.label}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+      </aside>
+
+      {/* Live stage — film mast + proof */}
+      <div className="atro-themes-stage">
+        <header className="atro-themes-film">
+          <div className="min-w-0">
+            <p className="ds-mono-label text-[10px] tracking-[0.16em] text-muted-foreground/85">
+              The Atro room
+            </p>
+            <h1 className="atro-themes-title">
+              Theme <em>Studio</em>
+            </h1>
+          </div>
+          <p
+            className="atro-themes-reading"
+            aria-live="polite"
+            title={roomReading}
+          >
+            {roomReading}
+          </p>
+        </header>
+
+        <div className="atro-themes-proof @container">
+          <HomeHeroLead />
+        </div>
+      </div>
+
+      {/* Tool tray — secondary axes + ownership */}
+      <aside className="atro-themes-tray">
         <div
           role="tablist"
           aria-label="Theme axis"
-          className="flex gap-0.5 border-b border-border-subtle px-2 py-1.5"
+          className="atro-themes-tray-tabs"
         >
           {AXES.map((item) => {
             const selected = axis === item.id
@@ -185,8 +246,8 @@ export function ThemeStudio() {
           })}
         </div>
 
-        <div className="flex min-h-0 flex-1 flex-col gap-4 p-4">
-          <div className="flex items-baseline justify-between gap-2">
+        <div className="atro-themes-tray-body">
+          <div className="flex items-baseline justify-between gap-2 px-3 pt-2.5">
             <p className="ds-mono-label text-[10px] tracking-[0.14em] text-muted-foreground/80">
               {AXES.find((a) => a.id === axis)?.label}
             </p>
@@ -205,268 +266,219 @@ export function ThemeStudio() {
             </AnimatePresence>
           </div>
 
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={axis}
-              role="tabpanel"
-              id={`theme-studio-panel-${axis}`}
-              aria-labelledby={`theme-studio-tab-${axis}`}
-              className="min-h-0 flex-1"
-              initial={reduce ? false : { opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0, y: -4 }}
-              transition={layoutTween}
-            >
-              {axis === "accent" ? (
-                <div
-                  role="radiogroup"
-                  aria-label="Accent theme"
-                  className="flex flex-col gap-0.5"
-                >
-                  {COLOR_THEMES.map((option) => {
-                    const active = mounted && accent === option.id
-                    return (
-                      <button
-                        key={option.id}
-                        type="button"
-                        role="radio"
-                        aria-checked={active}
-                        onClick={() => selectAccent(option.id)}
-                        className={cn(
-                          "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                          active
-                            ? "bg-background text-foreground ring-1 ring-border-subtle"
-                            : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
-                        )}
-                      >
-                        <span
-                          className="size-4 shrink-0 rounded-[3px] ring-1 ring-border-subtle"
-                          style={{ background: option.swatch }}
-                          aria-hidden
-                        />
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-sm font-medium text-foreground">
-                            {option.label}
-                          </span>
-                          <span className="block text-[11px] text-muted-foreground">
-                            {option.description}
-                          </span>
-                        </span>
-                        {active ? (
-                          <Check
-                            className="size-3.5 shrink-0 text-brand"
-                            strokeWidth={2.25}
-                            aria-hidden
-                          />
-                        ) : (
-                          <span className="size-3.5 shrink-0" aria-hidden />
-                        )}
-                      </button>
-                    )
-                  })}
-                </div>
-              ) : null}
-
-              {axis === "surface" ? (
-                <div
-                  role="radiogroup"
-                  aria-label="Surface theme"
-                  className="flex flex-col gap-0.5"
-                >
-                  {SURFACE_THEMES.map((option) => {
-                    const active = mounted && surface === option.id
-                    return (
-                      <button
-                        key={option.id}
-                        type="button"
-                        role="radio"
-                        aria-checked={active}
-                        onClick={() => selectSurface(option.id)}
-                        className={cn(
-                          "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                          active
-                            ? "bg-background text-foreground ring-1 ring-border-subtle"
-                            : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
-                        )}
-                      >
-                        <span
-                          className="relative size-4 shrink-0 overflow-hidden rounded-[3px] ring-1 ring-border-subtle"
-                          style={
-                            option.layout === "split"
-                              ? {
-                                  backgroundImage: `linear-gradient(to right, ${option.swatch} 50%, ${option.panel} 50%)`,
-                                }
-                              : option.layout === "stack"
+          <div className="min-h-0 flex-1 overflow-y-auto px-2.5 pb-2 pt-1.5">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={axis}
+                role="tabpanel"
+                id={`theme-studio-panel-${axis}`}
+                aria-labelledby={`theme-studio-tab-${axis}`}
+                initial={reduce ? false : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -4 }}
+                transition={layoutTween}
+              >
+                {axis === "surface" ? (
+                  <div
+                    role="radiogroup"
+                    aria-label="Surface theme"
+                    className="flex flex-col gap-0.5"
+                  >
+                    {SURFACE_THEMES.map((option) => {
+                      const active = mounted && surface === option.id
+                      return (
+                        <button
+                          key={option.id}
+                          type="button"
+                          role="radio"
+                          aria-checked={active}
+                          onClick={() => selectSurface(option.id)}
+                          className={cn(
+                            "motion-safe-transition flex w-full items-center gap-2 rounded-[var(--atro-control-radius)] px-2 py-1 text-left",
+                            active
+                              ? "bg-background text-foreground ring-1 ring-border-subtle"
+                              : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                          )}
+                        >
+                          <span
+                            className="relative size-3.5 shrink-0 overflow-hidden rounded-[3px] ring-1 ring-border-subtle"
+                            style={
+                              option.layout === "split"
                                 ? {
-                                    backgroundImage: `linear-gradient(to bottom, ${option.swatch} 55%, ${option.panel} 55%)`,
+                                    backgroundImage: `linear-gradient(to right, ${option.swatch} 50%, ${option.panel} 50%)`,
                                   }
-                                : option.layout === "frame"
+                                : option.layout === "stack"
                                   ? {
-                                      backgroundColor: option.swatch,
-                                      boxShadow: `inset 0 0 0 2px ${option.panel}`,
+                                      backgroundImage: `linear-gradient(to bottom, ${option.swatch} 55%, ${option.panel} 55%)`,
                                     }
-                                  : option.layout === "inset"
+                                  : option.layout === "frame"
                                     ? {
                                         backgroundColor: option.swatch,
-                                        backgroundImage: `linear-gradient(${option.panel}, ${option.panel})`,
-                                        backgroundRepeat: "no-repeat",
-                                        backgroundPosition: "center",
-                                        backgroundSize: "8px 8px",
+                                        boxShadow: `inset 0 0 0 2px ${option.panel}`,
                                       }
-                                    : {
-                                        backgroundColor: option.panel,
-                                        backgroundImage: `linear-gradient(${option.swatch}, ${option.swatch})`,
-                                        backgroundRepeat: "no-repeat",
-                                        backgroundPosition: "center",
-                                        backgroundSize: "8px 8px",
-                                      }
-                          }
-                          aria-hidden
-                        />
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-sm font-medium text-foreground">
-                            {option.label}
-                          </span>
-                          <span className="block text-[11px] text-muted-foreground">
-                            {option.description}
-                          </span>
-                        </span>
-                        {active ? (
-                          <Check
-                            className="size-3.5 shrink-0 text-brand"
-                            strokeWidth={2.25}
+                                    : option.layout === "inset"
+                                      ? {
+                                          backgroundColor: option.swatch,
+                                          backgroundImage: `linear-gradient(${option.panel}, ${option.panel})`,
+                                          backgroundRepeat: "no-repeat",
+                                          backgroundPosition: "center",
+                                          backgroundSize: "8px 8px",
+                                        }
+                                      : {
+                                          backgroundColor: option.panel,
+                                          backgroundImage: `linear-gradient(${option.swatch}, ${option.swatch})`,
+                                          backgroundRepeat: "no-repeat",
+                                          backgroundPosition: "center",
+                                          backgroundSize: "8px 8px",
+                                        }
+                            }
                             aria-hidden
                           />
-                        ) : (
-                          <span className="size-3.5 shrink-0" aria-hidden />
-                        )}
-                      </button>
-                    )
-                  })}
-                </div>
-              ) : null}
-
-              {axis === "type" ? (
-                <div className="flex flex-col gap-5">
-                  <div className="space-y-2">
-                    <p className="text-[10px] font-medium tracking-wide text-muted-foreground">
-                      Display
-                    </p>
-                    <div
-                      role="radiogroup"
-                      aria-label="Display type"
-                      className="flex flex-col gap-0.5"
-                    >
-                      {TYPE_FACES.map((option) => {
-                        const active = mounted && typeDisplay === option.id
-                        return (
-                          <button
-                            key={option.id}
-                            type="button"
-                            role="radio"
-                            aria-checked={active}
-                            onClick={() => selectDisplay(option.id)}
-                            className={cn(
-                              "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                              active
-                                ? "bg-background text-foreground ring-1 ring-border-subtle"
-                                : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
-                            )}
-                          >
-                            <span
-                              className="inline-flex size-8 shrink-0 items-center justify-center rounded-[3px] bg-background text-sm font-medium text-foreground ring-1 ring-border-subtle"
-                              style={{ fontFamily: option.host }}
+                          <span className="min-w-0 flex-1">
+                            <span className="block text-[13px] font-medium text-foreground">
+                              {option.label}
+                            </span>
+                            <span className="block text-[10px] leading-snug text-muted-foreground">
+                              {option.description}
+                            </span>
+                          </span>
+                          {active ? (
+                            <Check
+                              className="size-3.5 shrink-0 text-brand"
+                              strokeWidth={2.25}
                               aria-hidden
+                            />
+                          ) : (
+                            <span className="size-3.5 shrink-0" aria-hidden />
+                          )}
+                        </button>
+                      )
+                    })}
+                  </div>
+                ) : null}
+
+                {axis === "type" ? (
+                  <div className="flex flex-col gap-4">
+                    <div className="space-y-1.5">
+                      <p className="px-1 text-[10px] font-medium tracking-wide text-muted-foreground">
+                        Display
+                      </p>
+                      <div
+                        role="radiogroup"
+                        aria-label="Display type"
+                        className="flex flex-col gap-0.5"
+                      >
+                        {TYPE_FACES.map((option) => {
+                          const active = mounted && typeDisplay === option.id
+                          return (
+                            <button
+                              key={option.id}
+                              type="button"
+                              role="radio"
+                              aria-checked={active}
+                              onClick={() => selectDisplay(option.id)}
+                              className={cn(
+                                "motion-safe-transition flex w-full items-center gap-2 rounded-[var(--atro-control-radius)] px-2 py-1 text-left",
+                                active
+                                  ? "bg-background text-foreground ring-1 ring-border-subtle"
+                                  : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                              )}
                             >
-                              {option.sample}
-                            </span>
-                            <span className="min-w-0 flex-1">
-                              <span className="block text-sm font-medium text-foreground">
-                                {option.label}
-                              </span>
-                              <span className="block text-[11px] text-muted-foreground">
-                                Headlines · {option.description}
-                              </span>
-                            </span>
-                            {active ? (
-                              <Check
-                                className="size-3.5 shrink-0 text-brand"
-                                strokeWidth={2.25}
+                              <span
+                                className="inline-flex size-7 shrink-0 items-center justify-center rounded-[3px] bg-background text-sm font-medium text-foreground ring-1 ring-border-subtle"
+                                style={{ fontFamily: option.host }}
                                 aria-hidden
-                              />
-                            ) : (
-                              <span className="size-3.5 shrink-0" aria-hidden />
-                            )}
-                          </button>
-                        )
-                      })}
+                              >
+                                {option.sample}
+                              </span>
+                              <span className="min-w-0 flex-1">
+                                <span className="block text-[13px] font-medium text-foreground">
+                                  {option.label}
+                                </span>
+                                <span className="block text-[10px] text-muted-foreground">
+                                  Headlines · {option.description}
+                                </span>
+                              </span>
+                              {active ? (
+                                <Check
+                                  className="size-3.5 shrink-0 text-brand"
+                                  strokeWidth={2.25}
+                                  aria-hidden
+                                />
+                              ) : (
+                                <span className="size-3.5 shrink-0" aria-hidden />
+                              )}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <p className="px-1 text-[10px] font-medium tracking-wide text-muted-foreground">
+                        Body
+                      </p>
+                      <div
+                        role="radiogroup"
+                        aria-label="Body type"
+                        className="flex flex-col gap-0.5"
+                      >
+                        {TYPE_FACES.map((option) => {
+                          const active = mounted && typeBody === option.id
+                          return (
+                            <button
+                              key={option.id}
+                              type="button"
+                              role="radio"
+                              aria-checked={active}
+                              onClick={() => selectBody(option.id)}
+                              className={cn(
+                                "motion-safe-transition flex w-full items-center gap-2 rounded-[var(--atro-control-radius)] px-2 py-1 text-left",
+                                active
+                                  ? "bg-background text-foreground ring-1 ring-border-subtle"
+                                  : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                              )}
+                            >
+                              <span
+                                className="inline-flex size-7 shrink-0 items-center justify-center rounded-[3px] bg-background text-[12px] font-medium text-foreground ring-1 ring-border-subtle"
+                                style={{ fontFamily: option.host }}
+                                aria-hidden
+                              >
+                                {option.sample === "Aa" ? "ag" : option.sample}
+                              </span>
+                              <span className="min-w-0 flex-1">
+                                <span className="block text-[13px] font-medium text-foreground">
+                                  {option.label}
+                                </span>
+                                <span className="block text-[10px] text-muted-foreground">
+                                  UI · {option.description}
+                                </span>
+                              </span>
+                              {active ? (
+                                <Check
+                                  className="size-3.5 shrink-0 text-brand"
+                                  strokeWidth={2.25}
+                                  aria-hidden
+                                />
+                              ) : (
+                                <span className="size-3.5 shrink-0" aria-hidden />
+                              )}
+                            </button>
+                          )
+                        })}
+                      </div>
                     </div>
                   </div>
+                ) : null}
 
-                  <div className="space-y-2">
-                    <p className="text-[10px] font-medium tracking-wide text-muted-foreground">
-                      Body
-                    </p>
-                    <div
-                      role="radiogroup"
-                      aria-label="Body type"
-                      className="flex flex-col gap-0.5"
-                    >
-                      {TYPE_FACES.map((option) => {
-                        const active = mounted && typeBody === option.id
-                        return (
-                          <button
-                            key={option.id}
-                            type="button"
-                            role="radio"
-                            aria-checked={active}
-                            onClick={() => selectBody(option.id)}
-                            className={cn(
-                              "motion-safe-transition flex w-full items-center gap-2.5 rounded-[var(--atro-control-radius)] px-2 py-1.5 text-left",
-                              active
-                                ? "bg-background text-foreground ring-1 ring-border-subtle"
-                                : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
-                            )}
-                          >
-                            <span
-                              className="inline-flex size-8 shrink-0 items-center justify-center rounded-[3px] bg-background text-[12px] font-medium text-foreground ring-1 ring-border-subtle"
-                              style={{ fontFamily: option.host }}
-                              aria-hidden
-                            >
-                              {option.sample === "Aa" ? "ag" : option.sample}
-                            </span>
-                            <span className="min-w-0 flex-1">
-                              <span className="block text-sm font-medium text-foreground">
-                                {option.label}
-                              </span>
-                              <span className="block text-[11px] text-muted-foreground">
-                                UI · copy · {option.description}
-                              </span>
-                            </span>
-                            {active ? (
-                              <Check
-                                className="size-3.5 shrink-0 text-brand"
-                                strokeWidth={2.25}
-                                aria-hidden
-                              />
-                            ) : (
-                              <span className="size-3.5 shrink-0" aria-hidden />
-                            )}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-              ) : null}
+                {axis === "radius" ? (
+                  <RadiusThemePicker className="w-full [&_button]:min-w-0 [&_button]:flex-1" />
+                ) : null}
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-              {axis === "radius" ? (
-                <RadiusThemePicker className="w-full [&_button]:min-w-0 [&_button]:flex-1" />
-              ) : null}
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="mt-auto space-y-3 border-t border-border-subtle pt-4">
+          <div className="atro-themes-takeaway space-y-2 border-t border-border-subtle px-3 py-2.5">
             <div className="flex items-center justify-between gap-3">
               <p className="ds-mono-label text-[10px] tracking-[0.14em] text-muted-foreground/80">
                 Appearance
@@ -495,67 +507,9 @@ export function ThemeStudio() {
               className="w-full justify-center"
               variant="outline"
             />
-            <p className="font-mono text-[10px] leading-relaxed text-muted-foreground">
-              {mounted ? (
-                <>
-                  {accentMeta.label} · {surfaceMeta.label} · {displayMeta.label}/
-                  {bodyMeta.label} · {radiusMeta.label}
-                </>
-              ) : (
-                "…"
-              )}
-            </p>
           </div>
         </div>
       </aside>
-
-      {/* Main stage — one live sample composition */}
-      <div className="flex min-w-0 flex-1 flex-col justify-center gap-6 bg-background p-6 sm:p-8 md:p-10">
-        <div className="mx-auto w-full max-w-md space-y-5">
-          <div className="space-y-2">
-            <h2 className="ds-headline text-2xl tracking-tight text-foreground sm:text-[1.75rem]">
-              The Atro room
-            </h2>
-            <p className="text-[15px] leading-relaxed text-muted-foreground">
-              One axis at a time. When it feels right — Copy CSS or Copy install
-              (section + companions for this room).
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
-            <button type="button" className="atro-btn">
-              Primary action
-            </button>
-            <button type="button" className="atro-btn-ghost">
-              Ghost
-            </button>
-          </div>
-
-          <p className="text-[13px] leading-relaxed text-muted-foreground">
-            Muted note — secondary copy tracks{" "}
-            <code className="rounded-[calc(var(--radius)-2px)] bg-muted px-1 py-0.5 font-mono text-[11px] text-foreground">
-              --muted-foreground
-            </code>
-            .
-          </p>
-
-          <label className="block space-y-1.5">
-            <span className="ds-mono-label">Field</span>
-            <input
-              type="text"
-              readOnly
-              defaultValue="soft-rect input"
-              className="flex h-[var(--atro-control-height,2.25rem)] w-full min-w-0 rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-background px-3 text-sm text-foreground outline-none"
-            />
-          </label>
-
-          <p>
-            <Link href="/docs/theming" className="bam-link text-sm">
-              Theming guide
-            </Link>
-          </p>
-        </div>
-      </div>
     </div>
   )
 }

@@ -1,45 +1,30 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { LiveInstall } from "@/components/landing/live-install"
+import { DocsHeader } from "@/components/docs/docs-header"
+import { SiteFooter } from "@/components/site-footer"
 import { ThemeStudio } from "@/components/theme-studio"
 import { ToolExitBand } from "@/components/tool-exit-band"
-import { ToolRoom } from "@/components/tool-room"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Theme Studio — the Atro room",
   description:
-    "Live accent, surface, type, and radius for AtroUI. Flip an axis, watch the room change, copy CSS or install companions with the section you want.",
+    "Live accent, surface, type, and radius for AtroUI. Flip an axis, watch a real section recolor, copy CSS or install companions.",
   path: "/themes",
 })
 
+/**
+ * The Atro room — paint wall + live stage + tool tray.
+ * Accent lives on the paint wall; other axes in the tray; stage is the proof.
+ */
 export default function ThemesPage() {
   return (
-    <ToolRoom
-      title="Theme Studio"
-      lede={
-        <>
-          One room. Four orthogonal axes. Tune until it feels like Atro — then
-          take the CSS or the companion packages into your app.{" "}
-          <Link href="/docs/theming" className="bam-link">
-            Theming guide
-          </Link>
-          .
-        </>
-      }
-      meta={
-        <>
-          <div className="w-full max-w-md sm:max-w-sm">
-            <LiveInstall />
-          </div>
-          <p className="max-w-sm text-[11px] leading-relaxed text-muted-foreground sm:text-right">
-            Install line tracks the room you&rsquo;re browsing (Tide →
-            @atroui/theme-tide). Copy CSS from the studio rail when you want the
-            tokens without a package.
-          </p>
-        </>
-      }
-      exit={
+    <>
+      <DocsHeader showChapterNav={false} />
+      <main className="atro-themes">
+        <div className="atro-themes-frame">
+          <ThemeStudio />
+        </div>
+
         <ToolExitBand
           primaryHref="/docs/components/home-hero"
           primaryLabel="Install Home Hero"
@@ -52,9 +37,8 @@ export default function ThemesPage() {
             },
           ]}
         />
-      }
-    >
-      <ThemeStudio />
-    </ToolRoom>
+      </main>
+      <SiteFooter />
+    </>
   )
 }

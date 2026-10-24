@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import { LandingAxisStrip } from "@/components/landing/landing-axis-strip"
 import { LandingPillars } from "@/components/landing/landing-pillars"
-import { LiveInstall } from "@/components/landing/live-install"
 import { RegistryWorkspaceDemo } from "@/components/landing/registry-workspace-demo"
 import { LandingReveal } from "@/components/landing/landing-reveal"
 import { TransitionLink } from "@/components/view-transitions"
@@ -9,16 +8,19 @@ import { TransitionLink } from "@/components/view-transitions"
 /**
  * First viewport = one Atro room.
  * Brand first · one headline · one lede · CTA group · live product visual.
- * Axes strip + install are the addiction → ownership loop.
+ * Install lives in the workspace foot (not a second terminal under it).
  */
 export function AtroHero() {
   return (
     <section className="atro-hero-canvas relative w-full bg-background text-foreground">
       <div className="atro-shell relative z-10 pb-8 pt-10 sm:pb-10 sm:pt-12 lg:pb-12">
         <LandingReveal className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <p className="atro-hero-brand">AtroUI</p>
+          <p className="atro-hero-brand" aria-label="AtroUI">
+            <span className="atro-hero-brand-name">Atro</span>
+            <span className="atro-hero-brand-ui">UI</span>
+          </p>
 
-          <h1 className="atro-hero-title mt-3">
+          <h1 className="atro-hero-title mt-5">
             Add the section.
             <br />
             Own the room.
@@ -55,9 +57,6 @@ export function AtroHero() {
           className="atro-hero-product mx-auto mt-8 w-full max-w-5xl lg:mt-9"
         >
           <RegistryWorkspaceDemo className="w-full" />
-          <div className="border-t border-border-subtle bg-card/30 px-4 py-4 sm:px-5">
-            <LiveInstall />
-          </div>
           <LandingPillars attached />
         </LandingReveal>
       </div>

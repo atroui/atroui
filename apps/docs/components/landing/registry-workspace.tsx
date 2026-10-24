@@ -227,6 +227,9 @@ export function RegistryWorkspace({
   const [activeId, setActiveId] =
     React.useState<RegistryWorkspaceBlockId>("hero")
   const [expanded, setExpanded] = React.useState(false)
+  /** Room = stage width; 390 = phone measure inside the same chrome (no sparse section). */
+  const [measure, setMeasure] = React.useState<"room" | "phone">("room")
+  const phone = measure === "phone"
   const block = blocks.find((b) => b.id === activeId) ?? blocks[0]!
   const glimpse = extractSourceExcerpt(block.source, GLIMPSE_LINES)
   const fullExcerpt = extractSourceExcerpt(block.source, EXPANDED_LINES)
@@ -280,14 +283,40 @@ export function RegistryWorkspace({
             </button>
           ))}
         </div>
+        <div
+          role="radiogroup"
+          aria-label="Preview measure"
+          className="rw-measure"
+        >
+          <button
+            type="button"
+            role="radio"
+            aria-checked={!phone}
+            className={cn("rw-measure-opt", !phone && "rw-measure-opt--active")}
+            onClick={() => setMeasure("room")}
+          >
+            Room
+          </button>
+          <button
+            type="button"
+            role="radio"
+            aria-checked={phone}
+            className={cn("rw-measure-opt", phone && "rw-measure-opt--active")}
+            onClick={() => setMeasure("phone")}
+          >
+            390
+          </button>
+        </div>
         <Link href={block.docs} className="rw-tab-docs">
           Docs →
         </Link>
       </div>
 
-      <div className="rw-body">
+      <div className={cn("rw-body", phone && "rw-body--phone")}>
         {/* Keep-alive panels — forms stay mounted; no AnimatePresence remount gap. */}
-        <div className="rw-preview-stack">
+        <div
+          className={cn("rw-preview-stack", phone && "rw-preview-stack--phone")}
+        >
           {blocks.map((item) => {
             const node = panelPreview(item.id)
             const active = item.id === activeId
@@ -300,12 +329,18 @@ export function RegistryWorkspace({
                 hidden={!active}
                 className={cn(
                   "rw-preview-pane",
-                  active && "rw-preview-pane--active"
+                  active && "rw-preview-pane--active",
+                  phone && "rw-preview-pane--phone"
                 )}
               >
+                {/*
+                  Phone = fold at 390 so Block @container queries see a real
+                  390px inline size. contain/hug skipped that and looked broken.
+                */}
                 <PreviewCanvas
-                  strategy={item.preview.strategy}
-                  designWidth={item.preview.designWidth}
+                  key={phone ? "phone" : "room"}
+                  strategy={phone ? "fold" : item.preview.strategy}
+                  designWidth={phone ? 390 : item.preview.designWidth}
                   active={active}
                 >
                   <div
