@@ -13,6 +13,7 @@ import {
   CopyButton,
   RadiusThemePicker,
   ThemeToggle,
+  buildShadcnAddCommand,
 } from "atroui"
 import {
   COLOR_THEMES,
@@ -478,6 +479,22 @@ export function ThemeStudio() {
               className="w-full justify-center"
               variant="default"
             />
+            <CopyButton
+              value={
+                mounted
+                  ? buildShadcnAddCommand(["home-hero"], {
+                      accent,
+                      radius,
+                      surface,
+                      typeDisplay,
+                      typeBody,
+                    })
+                  : "npx shadcn@latest add @atroui/home-hero"
+              }
+              idleLabel="Copy install"
+              className="w-full justify-center"
+              variant="outline"
+            />
             <p className="font-mono text-[10px] leading-relaxed text-muted-foreground">
               {mounted ? (
                 <>
@@ -497,11 +514,11 @@ export function ThemeStudio() {
         <div className="mx-auto w-full max-w-md space-y-5">
           <div className="space-y-2">
             <h2 className="ds-headline text-2xl tracking-tight text-foreground sm:text-[1.75rem]">
-              Your product, in this skin
+              The Atro room
             </h2>
             <p className="text-[15px] leading-relaxed text-muted-foreground">
-              Tune one axis at a time. The stage stays live — copy CSS when it
-              feels right.
+              One axis at a time. When it feels right — Copy CSS or Copy install
+              (section + companions for this room).
             </p>
           </div>
 

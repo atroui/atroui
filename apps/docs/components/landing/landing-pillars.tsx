@@ -1,23 +1,25 @@
 const PILLARS = [
   {
-    label: "Own the source",
-    body: "Blocks copy into your repo. Edit CONTENT, not node_modules.",
+    label: "Altitude",
+    body: "Sections, not atoms. Add @atroui/home-hero and edit CONTENT.",
   },
   {
-    label: "Host APIs",
-    body: "Forms, AI tools, and OG routes on your keys — handlers included.",
+    label: "Taste",
+    body: "Accent, surface, type, radius — one room that recolors live.",
   },
   {
-    label: "shadcn native",
-    body: "Official directory entry. Same CLI your team already uses.",
+    label: "Ownership",
+    body: "Registry files in your git. Host APIs with your keys — or a 503.",
   },
 ] as const
 
-/** Three-column value strip — attached to hero demo (Zed Fast / Agentic / Collaborative). */
+/** Three-column value strip — attached to hero demo. */
 export function LandingPillars({ attached = false }: { attached?: boolean }) {
   return (
     <div
-      className={attached ? "atro-pillar-grid atro-pillar-grid--attached" : "atro-pillar-grid"}
+      className={
+        attached ? "atro-pillar-grid atro-pillar-grid--attached" : "atro-pillar-grid"
+      }
       role="list"
     >
       {PILLARS.map((pillar) => (

@@ -3221,13 +3221,37 @@ html:not(.dark) .atro-landing .atro-hero-canvas::after {
   );
 }
 
+.atro-landing .atro-hero-brand {
+  margin: 0;
+  font-family: var(--font-instrument), var(--font-heading), ui-serif, Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--foreground);
+}
+
 .atro-landing .atro-hero-title {
   font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.15rem);
   font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 1.04;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
   text-wrap: balance;
+  color: color-mix(in oklch, var(--foreground) 88%, transparent);
+}
+
+.atro-taste-proof-card {
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--atro-panel-radius);
+  background: var(--background);
+}
+
+.atro-taste-proof-stage {
+  /* Container for Block @container queries — Mobile 390 measure */
+  width: 100%;
+  max-width: 390px;
 }
 
 .atro-landing .atro-hero-lede {
