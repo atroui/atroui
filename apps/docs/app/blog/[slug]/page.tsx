@@ -6,6 +6,7 @@ import { ArticleJsonLd } from "atroui"
 import { BlogReadingProgress } from "@/components/blog-reading-progress"
 import { BlogThemeAdaptPreview } from "@/components/blog-theme-adapt-preview"
 import { CodeBlock } from "@/components/code-block"
+import { Terminal } from "@/components/terminal"
 import { blogPosts, getPost, type BlogPost } from "@/lib/blog"
 import { formatEssayDate } from "@/lib/blog-format"
 import { docsPageMetadata } from "@/lib/docs-metadata"
@@ -21,6 +22,15 @@ function keepReading(slug: string, limit = 3): BlogPost[] {
       return blogPosts.indexOf(a) - blogPosts.indexOf(b)
     })
     .slice(0, limit)
+}
+
+function readingMinutes(post: BlogPost): number {
+  const words = [post.description, ...post.sections.flatMap((s) => [s.heading ?? "", ...s.body])]
+    .join(" ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length
+  return Math.max(1, Math.round(words / 220))
 }
 
 function primaryExit(post: BlogPost): { href: string; label: string } {
@@ -164,11 +174,17 @@ export default async function BlogPostPage({ params }: Props) {
               AtroUI
             </Link>
             <span className="blog-essay-meta-sep" aria-hidden>
-              |
+              ·
             </span>
             <time dateTime={post.date}>{formatEssayDate(post.date)}</time>
+            <span className="blog-essay-meta-sep" aria-hidden>
+              ·
+            </span>
+            <span>{readingMinutes(post)} min read</span>
           </p>
         </header>
+
+        <p className="blog-essay-lede">{post.description}</p>
 
         {post.slug === "adaptive-theme-switch" ? (
           <div className="blog-essay-embed">
@@ -198,14 +214,27 @@ export default async function BlogPostPage({ params }: Props) {
               {section.body.map((para, j) => (
                 <RichParagraph key={j} text={para} />
               ))}
-              {section.codeBlocks?.map((block, k) => (
-                <CodeBlock
-                  key={k}
-                  language={block.language}
-                  code={block.code}
-                  className="blog-essay-codeblock"
-                />
-              ))}
+              {section.codeBlocks?.map((block, k) =>
+                block.language === "bash" || block.language === "sh" ? (
+                  <Terminal
+                    key={k}
+                    title="terminal"
+                    className="blog-essay-figure"
+                  >
+                    {block.code
+                      .split("\n")
+                      .map((line) => (line.startsWith("$") ? line : `$ ${line}`))
+                      .join("\n")}
+                  </Terminal>
+                ) : (
+                  <CodeBlock
+                    key={k}
+                    language={block.language}
+                    code={block.code}
+                    className="blog-essay-codeblock"
+                  />
+                )
+              )}
             </section>
           ))}
         </div>

@@ -1,4 +1,6 @@
 @source "../components";
+
+@custom-variant dark (&:is(.dark *));
 @source "../content";
 @source "./**/*.{ts,tsx,mdx}";
 
@@ -158,10 +160,30 @@ html {
   /* Elevation — cooler ambient than fg-mix; package may deepen these later */
   --elev-ambient: oklch(0.25 0.02 286 / 0.14);
   --elev-key: oklch(0.2 0.02 286 / 0.08);
+  --graph-accent: var(--brand);
+  --graph-accent-2: color-mix(in oklch, var(--brand) 55%, var(--foreground));
+  --graph-accent-3: color-mix(in oklch, var(--brand) 35%, var(--muted-foreground));
+  --graph-frame: oklch(0.205 0 0 / 0.28);
+  --graph-muted: oklch(0.52 0 0);
+  --graph-faint: oklch(0.82 0 0);
+  --contrast-14: oklch(0.88 0 0);
+  --contrast-23: oklch(0.76 0 0);
+  --contrast-45: oklch(0.48 0 0);
+  --contrast-70: oklch(0.28 0 0);
 }
 .dark {
   --elev-ambient: color-mix(in oklch, var(--foreground) 32%, transparent);
   --elev-key: color-mix(in oklch, var(--foreground) 18%, transparent);
+  --graph-accent: var(--brand);
+  --graph-accent-2: color-mix(in oklch, var(--brand) 70%, white);
+  --graph-accent-3: color-mix(in oklch, var(--brand) 45%, var(--foreground));
+  --graph-frame: oklch(0.48 0 0);
+  --graph-muted: oklch(0.52 0 0);
+  --graph-faint: oklch(0.28 0 0);
+  --contrast-14: oklch(0.22 0 0);
+  --contrast-23: oklch(0.34 0 0);
+  --contrast-45: oklch(0.62 0 0);
+  --contrast-70: oklch(0.84 0 0);
 }
 
 /* Product CTAs (.atro-btn / .atro-btn-ghost; .ms-cta / .zed-btn aliases) live
@@ -1962,7 +1984,6 @@ a.docs-changelog-hash:hover {
   color: var(--docs-fg, color-mix(in oklch, var(--foreground) 90%, transparent));
 }
 
-
 /* ==========================================================================
    Blog index — reading-room ledger (Family Values)
    1. Gradual revelation: masthead → one lead → index spine
@@ -1989,7 +2010,7 @@ a.docs-changelog-hash:hover {
 .blog-index-mast {
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
-  text-align: center;
+  text-align: left;
 }
 
 .blog-index-stamp {
@@ -2010,7 +2031,7 @@ a.docs-changelog-hash:hover {
   letter-spacing: -0.04em;
   line-height: 1.08;
   text-wrap: balance;
-  text-align: center;
+  text-align: left;
   color: var(--foreground);
 }
 
@@ -2026,8 +2047,8 @@ a.docs-changelog-hash:hover {
   max-width: 40rem;
   font-size: 0.9375rem;
   line-height: 1.6;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
+  text-wrap: pretty;
   color: color-mix(in oklch, var(--foreground) 72%, transparent);
 }
 
@@ -2036,7 +2057,7 @@ a.docs-changelog-hash:hover {
   margin-top: 0;
   padding: 1.75rem 0 2rem;
   border-bottom: 1px solid var(--border);
-  text-align: center;
+  text-align: left;
 }
 
 .blog-index-lead-meta {
@@ -2083,17 +2104,18 @@ a.docs-changelog-hash:hover {
   letter-spacing: -0.03em;
   line-height: 1.15;
   text-wrap: balance;
-  text-align: center;
+  text-align: left;
   color: var(--foreground);
   transition: color 160ms ease;
 }
 
 .blog-index-lead-desc {
-  margin: 0.75rem auto 0;
+  margin: 0.75rem 0 0;
   max-width: 40rem;
   font-size: 0.9375rem;
   line-height: 1.55;
-  text-align: justify;
+  text-align: left;
+  text-wrap: pretty;
   text-justify: inter-word;
   color: color-mix(in oklch, var(--foreground) 68%, transparent);
 }
@@ -2125,7 +2147,7 @@ a.docs-changelog-hash:hover {
 .blog-index-ledger-head {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-bottom: 0.35rem;
 }
@@ -2165,7 +2187,7 @@ a.docs-changelog-hash:hover {
 .blog-index-row-link {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.35rem;
   padding-block: 1.05rem;
   text-decoration: none;
@@ -2174,7 +2196,7 @@ a.docs-changelog-hash:hover {
   transition: background-color 160ms ease;
   border-radius: 0;
   outline-offset: 2px;
-  text-align: center;
+  text-align: left;
 }
 .blog-index-row-link:focus-visible {
   outline: 2px solid var(--ring);
@@ -2193,7 +2215,7 @@ a.docs-changelog-hash:hover {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   max-width: 40rem;
   min-width: 0;
@@ -2262,40 +2284,39 @@ a.docs-changelog-hash:hover {
 }
 
 /* ==========================================================================
-   Blog essay — rauchg.com/2020/vercel end-to-end, Mira materials
-   max-w-2xl · title first · mono meta · p my-5 · h2 bold my-8 · no dek
-   1. Gradual revelation: title → meta → body (description stays SEO-only)
-   2. Fluidity: #heading anchors like rauchg; body is one flow
-   3. Careful delight: underline links only — no author plate / keep-reading cards
+   Blog essay — long-form reading column
+   1. Gradual revelation: title, then byline, then the piece
+   2. Fluidity: one measure, headings stay in the column
+   3. Careful delight: serif body, quiet byline, links that stay in the sentence
    ========================================================================== */
 
 .blog-essay {
-  margin-inline: auto; /* column centered on the page */
+  margin-inline: auto;
   width: 100%;
-  max-width: 42rem; /* max-w-2xl */
-  padding: 0.75rem 1.5rem 2.5rem;
+  max-width: 40rem;
+  padding: 1.75rem 1.25rem 3.5rem;
 }
 @media (min-width: 768px) {
   .blog-essay {
-    padding-top: 1.5rem;
-    padding-bottom: 3rem;
+    padding-top: 3.25rem;
+    padding-bottom: 5rem;
   }
 }
 
 .blog-essay-mast {
-  margin-bottom: 0;
-  text-align: center;
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 .blog-essay-title {
-  margin: 0 0 0.25rem; /* mb-1 */
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.5rem; /* text-2xl */
-  font-weight: 700;
+  margin: 0 0 0.85rem;
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  font-size: clamp(2.15rem, 5vw, 2.85rem);
+  font-weight: 400;
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1.12;
   text-wrap: balance;
-  text-align: center;
+  text-align: left;
   color: var(--foreground);
 }
 
@@ -2304,10 +2325,10 @@ a.docs-changelog-hash:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 0.15rem 0;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.75rem; /* text-xs */
+  justify-content: flex-start;
+  gap: 0;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.875rem;
   line-height: 1.4;
   color: var(--muted-foreground);
 }
@@ -2325,30 +2346,47 @@ a.docs-changelog-hash:hover {
   color: var(--muted-foreground);
 }
 
+.blog-essay-lede {
+  margin: 1.75rem 0 0;
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: left;
+  text-wrap: pretty;
+  color: color-mix(in oklch, var(--foreground) 82%, transparent);
+}
+
 .blog-essay-embed {
   margin-top: 1.25rem;
   margin-bottom: 0.25rem;
 }
 
 .blog-essay-body {
-  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+  color: var(--foreground);
 }
 
-/* denser than rauchg my-5 — short listicle paras read less sparse */
 .blog-essay-p {
-  margin-block: 0.8rem;
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.625;
-  text-align: justify;
-  text-justify: inter-word;
+  margin: 0;
+  margin-top: 1.35rem;
+  font-family: var(--font-merriweather), ui-serif, Georgia, serif;
+  font-size: 1.1875rem;
+  font-weight: 400;
+  line-height: 1.75;
+  text-align: left;
+  text-wrap: pretty;
+  color: var(--foreground);
+}
+
+.blog-essay-figure {
+  margin-block: 1.5rem;
 }
 
 .blog-index-lede,
 .blog-index-lead-desc,
 .blog-index-row-desc,
-.blog-index-exit p,
-.blog-essay-p {
+.blog-index-exit p {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
@@ -2360,14 +2398,15 @@ a.docs-changelog-hash:hover {
 
 /* rauchg-style link: bottom border that darkens on hover */
 .blog-essay-a {
-  color: color-mix(in oklch, var(--foreground) 72%, transparent);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border);
-  transition: border-color 160ms ease, color 160ms ease;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in oklch, var(--foreground) 35%, transparent);
+  transition: text-decoration-color 160ms ease;
 }
 .blog-essay-a:hover {
-  color: var(--foreground);
-  border-bottom-color: var(--foreground);
+  text-decoration-color: var(--foreground);
 }
 .blog-essay-a:focus-visible {
   outline: 2px solid var(--ring);
@@ -2390,15 +2429,15 @@ a.docs-changelog-hash:hover {
 }
 
 .blog-essay-h2 {
-  margin-block: 1.5rem;
+  margin: 2.75rem 0 0;
   position: relative;
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 400;
   letter-spacing: -0.02em;
-  line-height: 1.3;
+  line-height: 1.25;
   text-wrap: balance;
-  text-align: center;
+  text-align: left;
   color: var(--foreground);
 }
 
@@ -2413,24 +2452,32 @@ a.docs-changelog-hash:hover {
 }
 
 .blog-essay-h2-hash {
-  margin-right: 0.15em;
+  margin-right: 0.2em;
   color: var(--muted-foreground);
-  font-weight: 700;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.7em;
+  font-weight: 500;
+  opacity: 0;
+}
+.blog-essay-h2-anchor:hover .blog-essay-h2-hash,
+.blog-essay-h2-anchor:focus-visible .blog-essay-h2-hash {
+  opacity: 1;
 }
 
 .blog-essay-foot {
-  margin-top: 2.5rem;
-  padding-top: 0;
-  text-align: center;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: left;
 }
 
 .blog-essay-sign {
-  margin: 0 auto;
-  max-width: 40rem;
+  margin: 0;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.9375rem;
   line-height: 1.5;
-  text-align: center;
-  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+  text-align: left;
+  color: var(--muted-foreground);
 }
 
 .blog-essay-more {
@@ -4603,3 +4650,32 @@ html:not(.dark) .atro-landing .rw-body {
   text-decoration: none;
 }
 
+@theme inline {
+  --color-graph-accent: var(--graph-accent);
+  --color-graph-accent-2: var(--graph-accent-2);
+  --color-graph-accent-3: var(--graph-accent-3);
+  --color-graph-frame: var(--graph-frame);
+  --color-graph-muted: var(--graph-muted);
+  --color-graph-faint: var(--graph-faint);
+  --color-contrast-14: var(--contrast-14);
+  --color-contrast-23: var(--contrast-23);
+  --color-contrast-45: var(--contrast-45);
+  --color-contrast-70: var(--contrast-70);
+}
+
+@utility graph-frame {
+    background-image: repeating-linear-gradient(to right, var(--graph-frame) 0 2px, transparent 2px 7px), repeating-linear-gradient(to bottom, var(--graph-frame) 0 2px, transparent 2px 7px), repeating-linear-gradient(to right, var(--graph-frame) 0 2px, transparent 2px 7px), repeating-linear-gradient(to bottom, var(--graph-frame) 0 2px, transparent 2px 7px);
+    background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+    background-position: 0 0, 100% 0, 0 100%, 0 0;
+    background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+}
+
+@utility graph-rule {
+    height: 1px;
+    background-image: repeating-linear-gradient(to right, var(--graph-frame) 0 2px, transparent 2px 7px);
+}
+
+@utility graph-rule-y {
+    width: 1px;
+    background-image: repeating-linear-gradient(to bottom, var(--graph-frame) 0 2px, transparent 2px 7px);
+}
