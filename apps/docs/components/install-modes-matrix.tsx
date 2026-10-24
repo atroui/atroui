@@ -17,10 +17,13 @@ const MODES = [
     id: "registry",
     title: "Registry UI only",
     summary: "Owned source files. No npm package.",
-    lede: "Pure UI stops at the CLI. Source lands in your repo — no atroui package.",
+    lede: "Pure UI stops at add. Source lands in your repo — no atroui package. Prefer shadcn when you use it; @atroui/cli when you do not.",
     language: "bash" as const,
-    code: `npx shadcn@latest add @atroui/home-hero
-npx shadcn@latest add @atroui/site-header`,
+    code: `# shadcn (directory / components.json)
+npx shadcn@latest add @atroui/home-hero
+
+# or AtroUI CLI (no shadcn)
+npx @atroui/cli@latest add home-hero`,
   },
   {
     id: "forms",

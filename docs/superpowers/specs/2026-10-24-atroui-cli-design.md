@@ -44,11 +44,11 @@ Flags: `-y/--yes`, `-f/--overwrite`, `-p/--path`, `-r/--registry`.
 
 ## Success criteria
 
-- [ ] `@atroui/cli` builds on `feat/atro-room`  
-- [ ] `list` shows current catalog from live (or local) registry  
-- [ ] `add button` / `add home-hero` / `add launch-workflow` write files + deps in a scratch app  
-- [ ] Docs Installation mentions both paths (shadcn first, CLI second) without contradiction  
-- [ ] Changeset ready; no master merge until user asks  
+- [x] `@atroui/cli` builds on `feat/atro-room`  
+- [x] `list` shows current catalog from live (or local) registry (125 via local `/r`)  
+- [x] `add button` / `add home-hero` / `add launch-workflow` write files + deps in a scratch app (`findPackageRoot` so `-p` / `src/` install next to `package.json`)  
+- [x] Docs Installation mentions both paths (shadcn first, CLI second) without contradiction  
+- [x] Changeset ready; no master merge until user asks  
 
 ## Open follow-ups after extract
 

@@ -17,8 +17,12 @@ export function InstallationGuide() {
         title="Installation"
         lede={
           <>
-            Init shadcn, add an <code>@atroui/…</code> block, then edit the
-            source in your repo. Built for Next.js and Tailwind CSS v4.
+            Same registry either way: the{" "}
+            <strong className="font-medium text-foreground">shadcn CLI</strong>{" "}
+            (listed in the directory) or{" "}
+            <strong className="font-medium text-foreground">@atroui/cli</strong>{" "}
+            if you are not on shadcn. Source lands in your repo — Next.js +
+            Tailwind CSS v4.
           </>
         }
       />
@@ -38,32 +42,21 @@ export function InstallationGuide() {
             / opacity syntax
           </li>
           <li>
-            A{" "}
+            <strong className="text-foreground">shadcn path only:</strong> a{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
               components.json
             </code>{" "}
-            from shadcn init (next step if missing)
+            from{" "}
+            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+              shadcn init
+            </code>
           </li>
         </ul>
       </section>
 
       <section className="space-y-4">
-        <h2 className="docs-section-title" id="init">
-          Init shadcn
-        </h2>
-        <CodeBlock language="bash" code={`npx shadcn@latest init`} />
-        <p className="leading-relaxed">
-          Dark-first tokens that match the catalog:{" "}
-          <Link href="/docs/theming" className="bam-link">
-            Theming
-          </Link>
-          .
-        </p>
-      </section>
-
-      <section className="space-y-4">
         <h2 className="docs-section-title" id="add">
-          Add a component
+          Add via shadcn (recommended)
         </h2>
         <p className="leading-relaxed">
           <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
@@ -84,13 +77,59 @@ export function InstallationGuide() {
           </code>{" "}
           URL step.
         </p>
+        <CodeBlock language="bash" code={`npx shadcn@latest init`} />
+        <p className="leading-relaxed">
+          Dark-first tokens that match the catalog:{" "}
+          <Link href="/docs/theming" className="bam-link">
+            Theming
+          </Link>
+          .
+        </p>
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest add @atroui/home-hero`}
         />
         <p className="leading-relaxed">
-          Add more when you need them — header, FAQ, footer, and so on — each as
-          its own <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">@atroui/…</code> name.
+          Add more when you need them — each as its own{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/…
+          </code>{" "}
+          name.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="docs-section-title" id="atroui-cli">
+          Without shadcn: AtroUI CLI
+        </h2>
+        <p className="leading-relaxed">
+          Same{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            /r/{"{name}"}.json
+          </code>{" "}
+          registry, no shadcn toolchain. Use bare item names (not the{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            @atroui/
+          </code>{" "}
+          prefix).
+        </p>
+        <CodeBlock
+          language="bash"
+          code={`# Add one or more items (resolves registry deps)
+npx @atroui/cli@latest add home-hero
+
+# Interactive picker
+npx @atroui/cli@latest add
+
+# Browse the catalog
+npx @atroui/cli@latest list`}
+        />
+        <p className="leading-relaxed">
+          Files write under your project (for example{" "}
+          <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground">
+            components/blocks/home-hero.tsx
+          </code>
+          ). You still own the source.
         </p>
       </section>
 

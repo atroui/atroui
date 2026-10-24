@@ -78,6 +78,19 @@ export function resolveWriteRoot(cwd = process.cwd()): string {
   return cwd
 }
 
+/**
+ * Walk up from a write root to the nearest package.json (handles `-p` and `src/`).
+ */
+export function findPackageRoot(startDir: string): string {
+  let dir = path.resolve(startDir)
+  for (;;) {
+    if (existsSync(path.join(dir, "package.json"))) return dir
+    const parent = path.dirname(dir)
+    if (parent === dir) return path.resolve(startDir)
+    dir = parent
+  }
+}
+
 export function readInstalledPackages(
   cwd = process.cwd()
 ): Record<string, string> {

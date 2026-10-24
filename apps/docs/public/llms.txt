@@ -1,7 +1,8 @@
 # AtroUI Docs
 
 > Dark-first React / Next.js catalog on the official shadcn registry. MIT. You own the copied files.
-> Install: `npx shadcn@latest add @atroui/home-hero` (any `@atroui/…` item)
+> Install (shadcn): `npx shadcn@latest add @atroui/home-hero`
+> Install (no shadcn): `npx @atroui/cli@latest add home-hero` — same `/r` registry
 > Public namespace `@atroui` — https://ui.shadcn.com/r/registries.json — no GitHub token.
 > Tailwind CSS v4. Optional Host APIs (`npm i atroui` + BYOK). Site: https://www.atroui.com
 > Full catalog dump: https://www.atroui.com/llms-full.txt
@@ -17,7 +18,7 @@
 ## Getting Started
 
 - [Getting Started](https://www.atroui.com/docs): First-hour Quick Start — init, add a block, essential commands.
-- [Installation](https://www.atroui.com/docs/installation): Prerequisites, init, add, what lands in the repo, troubleshooting.
+- [Installation](https://www.atroui.com/docs/installation): shadcn path + `@atroui/cli`, what lands in the repo, troubleshooting.
 - [Coming from…](https://www.atroui.com/docs/migrate): Task paths from plain shadcn/ui, npm atroui, or copy-paste kits.
 - [Collections](https://www.atroui.com/docs/collections): Job hubs — forms, OG, launch — instead of browsing every block.
 
@@ -79,7 +80,7 @@
 
 ## Wow primitives
 
-- Install pattern: `npx shadcn add @atroui/<name>` (e.g. `npx shadcn add @atroui/marquee`).
+- Install pattern: `npx shadcn add @atroui/<name>` or `npx @atroui/cli add <name>` (same registry).
 - [@atroui/marquee](https://www.atroui.com/docs/components): `<Marquee><LogoRow /></Marquee>` — infinite logo/testimonial strip.
 - [@atroui/border-beam](https://www.atroui.com/docs/components): `<BorderBeam />` inside a relative card — brand light travelling the edge.
 - [@atroui/magic-card](https://www.atroui.com/docs/components): `<MagicCard>` — cursor spotlight + brand border glow on panels.

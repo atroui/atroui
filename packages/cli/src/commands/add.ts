@@ -3,7 +3,7 @@ import * as p from "@clack/prompts"
 import pc from "picocolors"
 import { fetchCatalog } from "../lib/registry.js"
 import { installMissingDeps } from "../lib/install-deps.js"
-import { resolveWriteRoot } from "../lib/project.js"
+import { findPackageRoot, resolveWriteRoot } from "../lib/project.js"
 import {
   collectNpmDependencies,
   resolveTree,
@@ -75,9 +75,11 @@ export async function addCommand(
   const root = options.path
     ? path.resolve(cwd, options.path)
     : resolveWriteRoot(cwd)
+  // Install npm deps next to package.json (not inside src/, not the CLI package).
+  const packageRoot = findPackageRoot(root)
 
   for (const item of items) {
-    const result = await writeItemFiles(item, root, cwd, {
+    const result = await writeItemFiles(item, root, packageRoot, {
       overwrite: options.overwrite,
       yes: options.yes,
     })
@@ -90,7 +92,7 @@ export async function addCommand(
   }
 
   const npmDeps = collectNpmDependencies(items)
-  await installMissingDeps(npmDeps, cwd, { yes: options.yes })
+  await installMissingDeps(npmDeps, packageRoot, { yes: options.yes })
 
   p.outro(
     pc.cyan("Done. Edit CONTENT (or the source) in your repo. You own the files.")

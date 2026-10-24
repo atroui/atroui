@@ -176,11 +176,11 @@ export const pseoPages: Record<string, PseoPage> = {
   },
   "/docs/installation": {
     path: "/docs/installation",
-    title: "Install AtroUI with the shadcn CLI",
+    title: "Install AtroUI (shadcn or @atroui/cli)",
     description:
-      "npx shadcn add @atroui/… copies source into your repo (Tailwind v4). Public @atroui — no GitHub token. Host APIs optional and BYOK.",
+      "Same registry: npx shadcn add @atroui/… or npx @atroui/cli add. Copies source into your repo (Tailwind v4). Host APIs optional and BYOK.",
     job: "Go from zero to an owned section",
-    body: "AtroUI is in the official shadcn directory. init, then add. You own the copied files. Tailwind / monorepo scanning is your project config. transpilePackages is for Host API consumers only.",
+    body: "Prefer the shadcn CLI when you use shadcn (@atroui is in the official directory). Prefer @atroui/cli when you do not. Same /r JSON either way. You own the copied files. transpilePackages is for Host API consumers only.",
     faqs: [
       {
         q: "Why is atroui an npm package at all?",
@@ -189,6 +189,10 @@ export const pseoPages: Record<string, PseoPage> = {
       {
         q: "Do I need a GitHub token to install @atroui?",
         a: "No. @atroui is on the public shadcn directory. Private GitHub registries are a different shadcn feature.",
+      },
+      {
+        q: "shadcn vs @atroui/cli — which should I use?",
+        a: "Same files from the same registry. Use shadcn if you already have components.json / the directory workflow. Use @atroui/cli if you want AtroUI without adopting the shadcn CLI.",
       },
     ],
   },
