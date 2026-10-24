@@ -29,6 +29,7 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "Getting Started", href: "/docs" },
       { label: "Installation", href: "/docs/installation" },
+      { label: "MCP server", href: "/docs/mcp" },
       { label: "Registry", href: "/docs/registry" },
       { label: "Host APIs", href: "/docs/host-api" },
       { label: "Theming", href: "/docs/theming" },

@@ -1,8 +1,9 @@
-import { execSync } from "node:child_process"
+import { spawnSync } from "node:child_process"
 import * as p from "@clack/prompts"
 import pc from "picocolors"
 import {
   detectPackageManager,
+  installArgv,
   installCommand,
   missingPackages,
   readInstalledPackages,
@@ -34,7 +35,20 @@ export async function installMissingDeps(
   }
 
   const pm = detectPackageManager(cwd)
-  const cmd = installCommand(pm, missing)
-  p.log.info(`Running ${pc.dim(cmd)}`)
-  execSync(cmd, { cwd, stdio: "inherit" })
+  const argv = installArgv(pm, missing)
+  p.log.info(`Running ${pc.dim(installCommand(pm, missing))}`)
+  const [bin, ...args] = argv
+  const result = spawnSync(bin!, args, {
+    cwd,
+    stdio: "inherit",
+    shell: false,
+  })
+  if (result.error) {
+    throw result.error
+  }
+  if (result.status !== 0) {
+    throw new Error(
+      `Package install failed with exit code ${result.status ?? "unknown"}`
+    )
+  }
 }

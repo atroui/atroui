@@ -8,14 +8,33 @@ export type WriteResult = {
   skipped: string[]
 }
 
-function resolveTargetPath(
+/**
+ * Resolve a registry file target under writeRoot.
+ * Rejects absolute paths and any target that escapes writeRoot (path traversal).
+ */
+export function resolveTargetPath(
   file: RegistryFile,
-  writeRoot: string,
-  cwd: string
+  writeRoot: string
 ): string {
   const target = file.target || path.basename(file.path)
-  // Absolute-ish targets from registry are relative to writeRoot (src/ or project root)
-  return path.join(writeRoot, target)
+
+  if (path.isAbsolute(target)) {
+    throw new Error(
+      `Refusing absolute registry target "${target}" — targets must be relative to the project write root.`
+    )
+  }
+
+  const root = path.resolve(writeRoot)
+  const dest = path.resolve(root, target)
+  const rel = path.relative(root, dest)
+
+  if (rel.startsWith("..") || path.isAbsolute(rel)) {
+    throw new Error(
+      `Refusing registry target "${target}" — path escapes write root.`
+    )
+  }
+
+  return dest
 }
 
 export async function writeItemFiles(
@@ -33,7 +52,13 @@ export async function writeItemFiles(
       continue
     }
 
-    const dest = resolveTargetPath(file, writeRoot, cwd)
+    let dest: string
+    try {
+      dest = resolveTargetPath(file, writeRoot)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err)
+      throw new Error(`${item.name}: ${message}`)
+    }
     const rel = path.relative(cwd, dest)
 
     if (existsSync(dest) && !opts.overwrite) {

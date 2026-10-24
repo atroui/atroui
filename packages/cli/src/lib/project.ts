@@ -12,21 +12,49 @@ export function detectPackageManager(cwd = process.cwd()): PackageManager {
   return "npm"
 }
 
+/** npm package name (optional scope) with optional @version / @tag suffix. */
+const PACKAGE_SPEC_RE =
+  /^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*(?:@[^\s\\/;|&$<>()]+)?$/i
+
+/**
+ * Validate a registry dependency string before passing to a package manager.
+ * Rejects shell metacharacters and non-package specs.
+ */
+export function assertSafePackageSpec(spec: string): string {
+  const trimmed = spec.trim()
+  if (!trimmed || trimmed !== spec || /\s/.test(trimmed)) {
+    throw new Error(`Invalid package spec: ${JSON.stringify(spec)}`)
+  }
+  if (!PACKAGE_SPEC_RE.test(trimmed)) {
+    throw new Error(`Invalid package spec: ${JSON.stringify(spec)}`)
+  }
+  return trimmed
+}
+
+/** Argv for package install — never pass through a shell. */
+export function installArgv(
+  pm: PackageManager,
+  packages: string[]
+): string[] {
+  const safe = packages.map(assertSafePackageSpec)
+  switch (pm) {
+    case "pnpm":
+      return ["pnpm", "add", ...safe]
+    case "yarn":
+      return ["yarn", "add", ...safe]
+    case "bun":
+      return ["bun", "add", ...safe]
+    default:
+      return ["npm", "install", ...safe]
+  }
+}
+
+/** Human-readable install command (logging only). */
 export function installCommand(
   pm: PackageManager,
   packages: string[]
 ): string {
-  const list = packages.join(" ")
-  switch (pm) {
-    case "pnpm":
-      return `pnpm add ${list}`
-    case "yarn":
-      return `yarn add ${list}`
-    case "bun":
-      return `bun add ${list}`
-    default:
-      return `npm install ${list}`
-  }
+  return installArgv(pm, packages).join(" ")
 }
 
 type TsConfigLike = {
