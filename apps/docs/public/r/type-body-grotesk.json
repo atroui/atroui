@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-body-grotesk",
+  "title": "Grotesk body",
+  "description": "Space Grotesk for body and label.",
+  "cssVars": {
+    "theme": {
+      "font-body": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
+      "font-label": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif"
+    }
+  },
+  "docs": "Body role only. Live axis: data-type-body=\"grotesk\".",
+  "type": "registry:theme"
+}

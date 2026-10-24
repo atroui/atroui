@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "orbiting-circles",
+  "title": "Orbiting Circles",
+  "description": "Icons orbiting a center node for integration art.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/orbiting-circles.tsx",
+      "content": "\"use client\"\n\nimport { Children, type CSSProperties, type ReactNode } from \"react\"\nimport { useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type OrbitingCirclesProps = {\n  className?: string\n  children: ReactNode\n  /** Orbit radius in px. Default 90. */\n  radius?: number\n  /** Loop duration in seconds. Default 20. */\n  duration?: number\n  /** Reverse direction. Default false. */\n  reverse?: boolean\n  /** Start delay in seconds. Default 0. */\n  delay?: number\n}\n\nfunction OrbitTile({ children }: { children: ReactNode }) {\n  return (\n    <div className=\"flex size-9 items-center justify-center rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-card text-foreground shadow-sm\">\n      {children}\n    </div>\n  )\n}\n\n/**\n * Orbiting circles — icons orbit a center node.\n * Stack two with different radius/duration for integration art.\n * Reduced motion → static ring (same geometry, no spin).\n */\nexport function OrbitingCircles({\n  className,\n  children,\n  radius = 90,\n  duration = 20,\n  reverse = false,\n  delay = 0,\n}: OrbitingCirclesProps) {\n  const reduce = useReducedMotion()\n  const kids = Children.toArray(children)\n  const size = radius * 2 + 40\n\n  return (\n    <div\n      className={cn(\"relative flex items-center justify-center\", className)}\n      style={{ width: size, height: size }}\n    >\n      {!reduce && (\n        <style>{`@keyframes atro-orbit { from { transform: rotate(0deg) translateX(var(--atro-orbit-r, 90px)) rotate(0deg); } to { transform: rotate(360deg) translateX(var(--atro-orbit-r, 90px)) rotate(-360deg); } }`}</style>\n      )}\n      <div\n        aria-hidden\n        className=\"absolute rounded-full border border-border-subtle\"\n        style={{ width: radius * 2, height: radius * 2 }}\n      />\n      {kids.map((child, i) => {\n        if (reduce) {\n          const angle = (i / Math.max(kids.length, 1)) * Math.PI * 2 - Math.PI / 2\n          const x = Math.cos(angle) * radius\n          const y = Math.sin(angle) * radius\n          return (\n            <div\n              key={i}\n              className=\"absolute\"\n              style={{ transform: `translate(${x}px, ${y}px)` }}\n            >\n              <OrbitTile>{child}</OrbitTile>\n            </div>\n          )\n        }\n\n        return (\n          <div\n            key={i}\n            className=\"absolute\"\n            style={\n              {\n                \"--atro-orbit-r\": `${radius}px`,\n                animation: `atro-orbit ${duration}s linear infinite ${reverse ? \"reverse\" : \"normal\"}`,\n                animationDelay: `${delay + (i * duration) / Math.max(kids.length, 1)}s`,\n              } as CSSProperties\n            }\n          >\n            <OrbitTile>{child}</OrbitTile>\n          </div>\n        )\n      })}\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/orbiting-circles.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

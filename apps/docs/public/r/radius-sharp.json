@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radius-sharp",
+  "title": "Sharp radius",
+  "description": "Sets --radius to 0.25rem (controls follow via --atro-control-radius).",
+  "cssVars": {
+    "light": {
+      "radius": "0.25rem"
+    },
+    "dark": {
+      "radius": "0.25rem"
+    }
+  },
+  "docs": "Sharp corner scale. Install with a component: npx shadcn@latest add @atroui/button @atroui/radius-sharp",
+  "type": "registry:theme"
+}

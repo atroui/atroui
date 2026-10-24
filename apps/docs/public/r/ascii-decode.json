@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ascii-decode",
+  "title": "ASCII Decode",
+  "description": "Cipher glyphs locking into the message left to right.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/ascii-rig"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ascii-decode.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useAsciiTick } from \"@/lib/ascii-rig\"\n\nexport type AsciiDecodeProps = {\n  /** The message that resolves out of the scramble. */\n  text?: string\n  /** Cipher pool for unresolved characters. */\n  charset?: string\n  /** Total reveal time in ms. Longer = slower decrypt. */\n  duration?: number\n  /** Scramble forever — good for status lines. */\n  loop?: boolean\n  /** Accessible name for the decorative line. */\n  label?: string\n  className?: string\n}\n\nconst DEFAULT_CHARSET = \"!<>-_\\\\/[]{}=+*^?#\"\nconst CHURN_PER_SEC = 18 // glyph churn speed inside the scramble\nconst DWELL = 0.9 // seconds of settled message before a loop restarts\n\nfunction clampInt(v: number, min: number, max: number) {\n  return Math.min(max, Math.max(min, Math.round(v)))\n}\n\n/**\n * ASCII Decode — the decrypt resolve: the whole line starts scrambled in\n * the cipher pool and locks into the message left-to-right, each glyph\n * churning bit-stably per frame so it flickers deliberately, not randomly.\n */\nexport function AsciiDecode({\n  text = \"characters are pixels\",\n  charset = DEFAULT_CHARSET,\n  duration = 1800,\n  loop = false,\n  label = \"Decrypting text\",\n  className,\n}: AsciiDecodeProps) {\n  const message = text\n  const len = message.length\n  const hostRef = React.useRef<HTMLDivElement>(null)\n  const cycleRef = React.useRef(0) // tick-time when the current cycle began\n  const [frame, setFrame] = React.useState(\"\")\n\n  // Staggered lock-in times: most of the budget spread left-to-right,\n  // a small random tail so the resolve edge stays organic.\n  const delays = React.useMemo(() => {\n    const total = Math.max(1, clampInt(duration, 200, 8000))\n    return Array.from({ length: len }, (_, i) => {\n      const p = len <= 1 ? 0 : i / (len - 1)\n      return ((p * 0.86 + Math.random() * 0.14) * total) / 1000\n    })\n  }, [len, duration])\n\n  useAsciiTick(\n    hostRef,\n    (t, dt) => {\n      if (dt === 0) {\n        // Reduced-motion static frame: the message, resolved.\n        cycleRef.current = 0\n        setFrame(message)\n        return\n      }\n      const local = t - cycleRef.current\n      if (local >= duration / 1000) {\n        if (loop && cycleRef.current < t - DWELL) {\n          cycleRef.current = t // next frame scrambles from the top\n        } else {\n          setFrame(message) // settled — state bails on identical value\n        }\n        return\n      }\n      const churn = Math.floor(local * CHURN_PER_SEC)\n      let out = \"\"\n      for (let i = 0; i < len; i++) {\n        if (local >= (delays[i] ?? Infinity)) {\n          out += message[i]\n        } else {\n          const seed = Math.abs(i * 31 + churn * 7 + ((i * (churn + 1)) % 13))\n          out += charset[seed % charset.length]\n        }\n      }\n      setFrame(out)\n    },\n    { fps: 18 }\n  )\n\n  return (\n    <div\n      ref={hostRef}\n      role=\"img\"\n      aria-label={label}\n      className={cn(\"min-w-0\", className)}\n    >\n      <pre\n        aria-hidden=\"true\"\n        className=\"m-0 min-h-[1.35em] select-none whitespace-pre font-mono text-[13px] leading-[1.35] text-foreground/80\"\n      >\n        {frame}\n      </pre>\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-decode.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

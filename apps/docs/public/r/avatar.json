@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "Avatar",
+  "description": "Soft-rect avatar with image fade-in and fallback crossfade on Base UI Avatar.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/avatar.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Avatar as AvatarPrimitive } from \"@base-ui/react/avatar\"\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\"\n\nimport {\n  avatarFallbackMotion,\n  avatarImageMotion,\n} from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Avatar({\n  className,\n  style,\n  ...props\n}: AvatarPrimitive.Root.Props) {\n  return (\n    <AvatarPrimitive.Root\n      data-slot=\"avatar\"\n      className={cn(\n        \"relative inline-flex size-9 shrink-0 overflow-hidden rounded-[var(--radius)] bg-muted align-middle\",\n        \"ring-1 ring-black/5 dark:ring-white/10\",\n        className\n      )}\n      style={{ borderRadius: \"var(--radius)\", ...style }}\n      {...props}\n    />\n  )\n}\n\n/**\n * Soft-rect portrait — opacity + scale fade-in (Zajno fade+transform).\n * Base UI mounts only after load; Motion enter keeps the crossfade calm.\n */\nfunction AvatarImage({\n  className,\n  render,\n  ...props\n}: AvatarPrimitive.Image.Props) {\n  const reduce = useReducedMotion()\n\n  return (\n    <AvatarPrimitive.Image\n      data-slot=\"avatar-image\"\n      className={cn(\"aspect-square size-full object-cover\", className)}\n      render={\n        render ?? <motion.img {...avatarImageMotion(reduce)} />\n      }\n      {...props}\n    />\n  )\n}\n\n/**\n * Initials / icon fallback — crossfades under the image (opacity + scale).\n * Soft-rect Mira (not capsule); reduced motion → instant swap.\n */\nfunction AvatarFallback({\n  className,\n  render,\n  ...props\n}: AvatarPrimitive.Fallback.Props) {\n  const reduce = useReducedMotion()\n\n  return (\n    <AnimatePresence mode=\"popLayout\">\n      <AvatarPrimitive.Fallback\n        data-slot=\"avatar-fallback\"\n        className={cn(\n          \"flex size-full items-center justify-center bg-muted text-xs font-medium tracking-wide text-muted-foreground\",\n          className\n        )}\n        render={\n          render ?? <motion.span {...avatarFallbackMotion(reduce)} />\n        }\n        {...props}\n      />\n    </AnimatePresence>\n  )\n}\n\nexport { Avatar, AvatarFallback, AvatarImage }\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

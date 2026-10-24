@@ -20,8 +20,8 @@ export default function GlobalError({
     <html lang="en">
       <body className="min-h-svh bg-background font-sans text-foreground antialiased">
         <main className="mx-auto flex min-h-svh max-w-lg flex-col items-center justify-center gap-4 px-6 text-center">
-          <p className="ms-stamp">Error</p>
-          <h1 className="ds-display text-3xl">Stroke slipped</h1>
+          <p className="ds-mono-label">Error</p>
+          <h1 className="ds-headline text-3xl tracking-tight">Stroke slipped</h1>
           <p className="max-w-[36ch] text-[15px] leading-relaxed text-muted-foreground">
             The page failed to load. Retry, or head back to docs.
           </p>
@@ -31,10 +31,10 @@ export default function GlobalError({
             </p>
           ) : null}
           <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-            <button type="button" onClick={reset} className="ms-cta text-sm">
+            <button type="button" onClick={reset} className="atro-btn">
               Try again
             </button>
-            <Link href="/docs" className="ms-cta-ghost text-sm">
+            <Link href="/docs" className="atro-btn-ghost">
               Docs
             </Link>
           </div>

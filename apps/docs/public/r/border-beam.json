@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "border-beam",
+  "title": "Border Beam",
+  "description": "Brand light travelling the container edge. Reduced-motion safe.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/border-beam.tsx",
+      "content": "\"use client\"\n\nimport { useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type BorderBeamProps = {\n  className?: string\n  /** Beam length in degrees of the conic wash. Default 80. */\n  size?: number\n  /** Loop duration in seconds. Default 6. */\n  duration?: number\n  /** Start delay in seconds. Default 0. */\n  delay?: number\n  /** Reverse direction. Default false. */\n  reverse?: boolean\n  /** Hairline thickness in px. Default 1. */\n  borderWidth?: number\n}\n\n/**\n * Border beam — light travels along the container edge.\n * Brand-tinted conic wash masked to a rim; parent needs relative +\n * overflow-hidden + panel radius. Reduced motion → static hairline.\n */\nexport function BorderBeam({\n  className,\n  size = 80,\n  duration = 6,\n  delay = 0,\n  reverse = false,\n  borderWidth = 1,\n}: BorderBeamProps) {\n  const reduce = useReducedMotion()\n\n  if (reduce) {\n    return (\n      <div\n        aria-hidden\n        className={cn(\"pointer-events-none absolute inset-0 rounded-[inherit]\", className)}\n        style={{\n          boxShadow: `inset 0 0 0 ${borderWidth}px color-mix(in oklch, var(--brand) 45%, transparent)`,\n        }}\n      />\n    )\n  }\n\n  return (\n    <div\n      aria-hidden\n      className={cn(\n        \"pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]\",\n        className\n      )}\n      style={{\n        padding: borderWidth,\n        // Rim-only mask: paint the padding ring, punch out the content box.\n        mask: \"linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)\",\n        WebkitMask:\n          \"linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)\",\n        maskComposite: \"exclude\",\n        WebkitMaskComposite: \"xor\",\n      }}\n    >\n      <style>{`@keyframes atro-beam-spin { to { transform: rotate(360deg); } }`}</style>\n      <div\n        className=\"absolute inset-0\"\n        style={{\n          animation: `atro-beam-spin ${duration}s linear infinite ${reverse ? \"reverse\" : \"normal\"}`,\n          animationDelay: `${delay}s`,\n          background: `conic-gradient(from 0deg, transparent 0deg, color-mix(in oklch, var(--brand) 70%, transparent) ${size}deg, transparent ${size * 2}deg)`,\n        }}\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/border-beam.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

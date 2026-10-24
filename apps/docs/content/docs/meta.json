@@ -1,0 +1,20 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "index",
+    "installation",
+    "migrate",
+    "host-api",
+    "registry",
+    "theming",
+    "brand",
+    "identity",
+    "components",
+    "collections",
+    "glossary",
+    "guides",
+    "compare",
+    "changelog"
+  ],
+  "root": true
+}

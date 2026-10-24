@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-group",
+  "title": "Checkbox Group",
+  "description": "Soft-rect checkbox group — compose with Checkbox (value / parent).",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/checkbox"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/checkbox-group.tsx",
+      "content": "\"use client\"\n\nimport { CheckboxGroup as CheckboxGroupPrimitive } from \"@base-ui/react/checkbox-group\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Soft-rect checkbox group — compose with `Checkbox` (`value` / `parent`).\n * Gradual revelation: parent + children stay one list surface.\n */\nfunction CheckboxGroup({\n  className,\n  ...props\n}: CheckboxGroupPrimitive.Props) {\n  return (\n    <CheckboxGroupPrimitive\n      data-slot=\"checkbox-group\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { CheckboxGroup }\n",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox-group.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

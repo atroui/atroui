@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ascii-boot",
+  "title": "ASCII Boot",
+  "description": "VT100-style init log typed character by character, cursor pulsing.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/ascii-rig"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ascii-boot.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport type AsciiBootProps = {\n  /** Log lines, typed one character at a time, top to bottom. */\n  lines?: string[]\n  /** Milliseconds per character. */\n  speed?: number\n  /** Pause between lines, the way a real init would breathe. */\n  lineDelay?: number\n  /** Restart the sequence after it completes. */\n  loop?: boolean\n  /** Accessible one-line summary. */\n  label?: string\n  className?: string\n}\n\nconst DEFAULT_LINES = [\n  \"[ OK ] init ascii/family\",\n  \"[ OK ] mount ramps      .,-~:;=!*#$@\",\n  \"[ OK ] load cell grid   1x2 monospace\",\n  \"[ OK ] arm tick loop    16 fps · offscreen pause\",\n  \">> ready — 8 effects armed\",\n]\n\n/**\n * ASCII Boot — an init-log typewriter. Types each line character by\n * character with a pause between lines; cursor pulses at the end.\n * Reduced motion prints the full log immediately.\n */\nexport function AsciiBoot({\n  lines = DEFAULT_LINES,\n  speed = 9,\n  lineDelay = 260,\n  loop = false,\n  label = \"Boot log\",\n  className,\n}: AsciiBootProps) {\n  const text = lines.join(\"\\n\")\n  const reduceRef = React.useRef(false)\n  const posRef = React.useRef(0)\n  const [typed, setTyped] = React.useState(0)\n  const complete = typed >= text.length\n\n  React.useEffect(() => {\n    reduceRef.current = window.matchMedia?.(\n      \"(prefers-reduced-motion: reduce)\"\n    )?.matches\n  })\n\n  React.useEffect(() => {\n    if (reduceRef.current) {\n      posRef.current = text.length\n      setTyped(text.length)\n      return\n    }\n    let timer: ReturnType<typeof setTimeout> | undefined\n    let cancelled = false\n\n    const tick = () => {\n      if (cancelled) return\n      if (posRef.current >= text.length) {\n        if (loop) {\n          timer = setTimeout(() => {\n            if (cancelled) return\n            posRef.current = 0\n            setTyped(0)\n            timer = setTimeout(tick, speed)\n          }, 2200)\n        }\n        return\n      }\n      const next = posRef.current + 1\n      posRef.current = next\n      setTyped(next)\n      const ch = text[next - 1] ?? \"\"\n      timer = setTimeout(tick, ch === \"\\n\" ? lineDelay : speed)\n    }\n\n    timer = setTimeout(tick, speed)\n    return () => {\n      cancelled = true\n      if (timer) clearTimeout(timer)\n    }\n  }, [text, speed, lineDelay, loop])\n\n  return (\n    <div\n      role=\"img\"\n      aria-label={label}\n      className={cn(\"min-w-0\", className)}\n    >\n      <pre\n        aria-hidden=\"true\"\n        className=\"m-0 select-none whitespace-pre font-mono text-[11px] leading-[1.7] text-foreground/70\"\n      >\n        {text.slice(0, typed)}\n        <span\n          className={cn(\n            \"text-primary\",\n            complete && !reduceRef.current && \"animate-pulse\"\n          )}\n        >\n          ▌\n        </span>\n      </pre>\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-boot.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

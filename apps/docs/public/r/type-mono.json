@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-mono",
+  "title": "Mono type",
+  "description": "Legacy pair preset: DM Sans display + Geist Mono body. Prefer Display/Body companions. Literal stacks — load the faces or accept FOUT.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+      "font-display": "\"DM Sans\", ui-sans-serif, system-ui, sans-serif",
+      "font-sans": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+      "font-body": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+      "font-label": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    }
+  },
+  "docs": "Type remap only — does not load fonts. Prefer next/font DM Sans + Geist Mono. Install: npx shadcn@latest add @atroui/button @atroui/type-mono",
+  "type": "registry:theme"
+}

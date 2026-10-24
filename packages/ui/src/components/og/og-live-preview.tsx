@@ -52,7 +52,7 @@ export function OgLivePreview({
             style={{
               color: preset.palette.title,
               fontFamily:
-                'var(--font-outfit), var(--font-fraunces), system-ui, sans-serif',
+                'var(--font-merriweather), var(--font-fraunces), ui-serif, Georgia, serif',
               fontWeight: preset.typography.titleWeight,
               fontSize: titleVW,
               lineHeight: 1.04,
@@ -68,7 +68,7 @@ export function OgLivePreview({
               style={{
                 color: preset.palette.subtitle,
                 fontFamily:
-                  'var(--font-outfit), system-ui, sans-serif',
+                  'var(--font-dm-sans), system-ui, sans-serif',
                 fontWeight: 500,
                 fontSize: subVW,
                 lineHeight: 1.35,

@@ -133,11 +133,11 @@ export function ContextualCTA({ preview = false }: ContextualCTAProps) {
       role="complementary"
       aria-label="Suggested action"
     >
-      <div className="mx-auto max-w-lg px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] sm:max-w-xl sm:px-4">
+      <div className="@container mx-auto max-w-lg px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] @min-[40rem]:max-w-xl @min-[40rem]:px-4">
         <div className="flex items-stretch border border-border-subtle bg-background shadow-[0_16px_48px_-24px_color-mix(in_oklch,var(--foreground)_45%,transparent)]">
           <div aria-hidden className="w-1 shrink-0 bg-brand" />
 
-          <div className="flex min-w-0 flex-1 flex-col gap-3 p-3.5 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
+          <div className="flex min-w-0 flex-1 flex-col gap-3 p-3.5 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:gap-4 @min-[40rem]:p-4">
             <div className="min-w-0 flex-1">
               <p className="ms-stamp mb-1.5">{activeCTA.stamp}</p>
               <p className="text-sm font-medium tracking-tight text-foreground">
@@ -157,7 +157,7 @@ export function ContextualCTA({ preview = false }: ContextualCTAProps) {
                     placement: "scroll",
                   })
                 }
-                className="ms-cta h-9 flex-1 justify-center px-3.5 text-sm sm:flex-none"
+                className="ms-cta h-9 flex-1 justify-center px-3.5 text-sm @min-[40rem]:flex-none"
               >
                 {activeCTA.cta}
                 <ArrowRight className="size-3.5" aria-hidden />

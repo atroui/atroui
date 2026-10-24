@@ -31,12 +31,12 @@ export function OgExamples({
   className?: string
 }) {
   return (
-    <div className={cn("grid gap-4 sm:grid-cols-2", className)}>
+    <div className={cn("grid gap-4 @min-[40rem]:grid-cols-2", className)}>
       {CONTENT.examples.map((ex) => (
         <Link
           key={ex.title}
           href={ex.href}
-          className="group relative aspect-1200/630 overflow-hidden rounded-2xl border border-border-subtle"
+          className="@container group relative aspect-1200/630 overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle"
         >
           <OgLivePreview
             title={ex.title}

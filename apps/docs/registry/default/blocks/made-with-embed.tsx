@@ -62,13 +62,13 @@ export function MadeWithEmbed({
 
   return (
     <div
-      className={`grid gap-6 md:grid-cols-12 md:items-start ${className ?? ""}`}
+      className={`grid gap-6 @min-[48rem]:grid-cols-12 @min-[48rem]:items-start ${className ?? ""}`}
     >
-      <div className="md:col-span-5">
+      <div className="@container @min-[48rem]:col-span-5">
         <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
           {CONTENT.stamp}
         </p>
-        <h2 className="mt-4 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+        <h2 className="mt-4 text-2xl font-medium tracking-tight text-foreground @min-[40rem]:text-3xl">
           {CONTENT.headline}
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -87,7 +87,7 @@ export function MadeWithEmbed({
           />
         </a>
       </div>
-      <div className="md:col-span-7">
+      <div className="@min-[48rem]:col-span-7">
         <p className="mb-3 font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
           {CONTENT.snippetLabel}
         </p>
@@ -97,7 +97,7 @@ export function MadeWithEmbed({
         <button
           type="button"
           onClick={copy}
-          className="mt-4 inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background"
+          className="atro-btn mt-4"
         >
           {copied ? (
             <>

@@ -10,16 +10,16 @@ const CONTENT = {
   presets: {
     paperQuote: {
       previewGradient:
-        "linear-gradient(145deg, #0a0a0a 0%, #111827 45%, #0b7bff22 100%)",
+        "linear-gradient(145deg, var(--background) 0%, var(--card) 45%, color-mix(in oklch, var(--brand) 22%, transparent) 100%)",
       safeZone: "lowerThird" as const,
-      palette: { title: "#fafafa", subtitle: "#a3a3a3" },
+      palette: { title: "var(--foreground)", subtitle: "var(--muted-foreground)" },
       typography: { titleSizeMax: 72, subtitleSizeMax: 28, titleWeight: 700 },
     },
     boldSplit: {
       previewGradient:
-        "linear-gradient(90deg, #0b7bff 0%, #0b7bff 42%, #0a0a0a 42%)",
+        "linear-gradient(90deg, var(--brand) 0%, var(--brand) 42%, var(--background) 42%)",
       safeZone: "center" as const,
-      palette: { title: "#fafafa", subtitle: "#e5e5e5" },
+      palette: { title: "var(--foreground)", subtitle: "var(--muted-foreground)" },
       typography: { titleSizeMax: 64, subtitleSizeMax: 24, titleWeight: 700 },
     },
   },
@@ -72,7 +72,7 @@ export function OgLivePreview({
             style={{
               color: preset.palette.title,
               fontFamily:
-                "var(--font-outfit), var(--font-fraunces), system-ui, sans-serif",
+                "var(--font-merriweather), var(--font-fraunces), ui-serif, Georgia, serif",
               fontWeight: preset.typography.titleWeight,
               fontSize: titleVW,
               lineHeight: 1.04,
@@ -87,7 +87,7 @@ export function OgLivePreview({
             <div
               style={{
                 color: preset.palette.subtitle,
-                fontFamily: "var(--font-outfit), system-ui, sans-serif",
+                fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: subVW,
                 lineHeight: 1.35,

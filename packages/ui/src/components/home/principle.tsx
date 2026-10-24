@@ -39,12 +39,12 @@ const toneDot = {
  */
 export function HomePrinciple() {
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle ms-shell-pad py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle ms-shell-pad py-12 @min-[40rem]:py-16">
           <FadeIn className="max-w-2xl">
             <p className="ms-stamp">How we work</p>
-            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground sm:text-5xl">
+            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground @min-[40rem]:text-5xl">
               You talk to the person who{" "}
               <span className="ds-display-italic text-brand">builds it</span>.
             </h2>
@@ -54,9 +54,9 @@ export function HomePrinciple() {
 
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
-          <ol className="grid grid-cols-1 divide-y divide-border-subtle md:grid-cols-3 md:divide-x md:divide-y-0">
+          <ol className="grid grid-cols-1 divide-y divide-border-subtle @min-[64rem]:grid-cols-3 @min-[64rem]:divide-x @min-[64rem]:divide-y-0">
             {PRINCIPLES.map((item, i) => (
-              <li key={item.title} className="p-6 sm:p-8">
+              <li key={item.title} className="p-6 @min-[40rem]:p-8">
                 <FadeIn delay={0.04 * i}>
                   <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
                     {String(i + 1).padStart(2, "0")}

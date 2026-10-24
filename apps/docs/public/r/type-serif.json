@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-serif",
+  "title": "Serif type",
+  "description": "Legacy pair preset: Merriweather across type roles. Prefer Display/Body companions. Literal stacks — load the face or accept FOUT.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"Merriweather\", ui-serif, Georgia, serif",
+      "font-display": "\"Merriweather\", ui-serif, Georgia, serif",
+      "font-sans": "\"Merriweather\", ui-serif, Georgia, serif",
+      "font-body": "\"Merriweather\", ui-serif, Georgia, serif",
+      "font-label": "\"Merriweather\", ui-serif, Georgia, serif"
+    }
+  },
+  "docs": "Type remap only — does not load fonts. Prefer next/font Merriweather, or system FOUT. Install: npx shadcn@latest add @atroui/button @atroui/type-serif",
+  "type": "registry:theme"
+}

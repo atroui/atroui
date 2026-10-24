@@ -4,9 +4,36 @@ import { useRef } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 
+import { AnimateNumber } from "./motion/animate-number";
 import { TimelineAnimation } from "./ui/timeline-animation";
 import { SERVICES } from "../content/services";
 import { cn } from "../lib/utils";
+
+/** Split a price label so digits can tween (`$4,800`, `from $2,400`, `$8,000+`). */
+function AnimatedPrice({
+  price,
+  className,
+}: {
+  price: string;
+  className?: string;
+}) {
+  const match = price.trim().match(/^(.*?)([\d,]+)(.*)$/);
+  if (!match?.[2]) {
+    return <span className={className}>{price}</span>;
+  }
+  const prefix = match[1] ?? "";
+  const digits = match[2];
+  const suffix = match[3] ?? "";
+  return (
+    <AnimateNumber
+      value={Number(digits.replace(/,/g, ""))}
+      from={0}
+      prefix={prefix}
+      suffix={suffix}
+      className={className}
+    />
+  );
+}
 
 /**
  * Home pricing - editorial package index matching /services.
@@ -19,9 +46,9 @@ export function PricingOverview() {
   const rest = SERVICES.filter((s) => s.id !== featured.id);
 
   return (
-    <section ref={timelineRef} className="border-t border-border-subtle">
+    <section ref={timelineRef} className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle ms-shell-pad py-12 sm:flex-row sm:items-end sm:justify-between sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-x border-border-subtle ms-shell-pad py-12 @min-[40rem]:flex-row @min-[40rem]:items-end @min-[40rem]:justify-between @min-[40rem]:py-16">
           <div className="max-w-2xl">
             <TimelineAnimation
               once
@@ -37,7 +64,7 @@ export function PricingOverview() {
               animationNum={2}
               timelineRef={timelineRef}
               as="h2"
-              className="ds-display mt-4 text-3xl tracking-tight text-foreground sm:text-5xl"
+              className="ds-display mt-4 text-3xl tracking-tight text-foreground @min-[40rem]:text-5xl"
             >
               Fixed packages.{" "}
               <span className="ds-display-italic text-brand">
@@ -75,16 +102,16 @@ export function PricingOverview() {
             once
             animationNum={5}
             timelineRef={timelineRef}
-            className="grid grid-cols-1 lg:grid-cols-12"
+            className="grid grid-cols-1 @min-[64rem]:grid-cols-12"
           >
-            <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 sm:p-8 lg:col-span-7 lg:border-r lg:border-b-0 lg:p-10">
+            <div className="flex flex-col justify-between gap-8 border-b border-border-subtle p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-7 @min-[64rem]:border-r @min-[64rem]:border-b-0 @min-[64rem]:p-10">
               <div>
                 {featured.badge ? (
                   <span className="ms-stamp mb-3 inline-block">
                     {featured.badge}
                   </span>
                 ) : null}
-                <h3 className="ds-headline text-2xl text-foreground sm:text-3xl">
+                <h3 className="ds-headline text-2xl text-foreground @min-[40rem]:text-3xl">
                   {featured.name}
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -108,18 +135,18 @@ export function PricingOverview() {
               </div>
               <Link
                 href={featured.ctaHref}
-                className="ms-cta w-full justify-center sm:w-auto"
+                className="ms-cta w-full justify-center @min-[40rem]:w-auto"
               >
                 {featured.ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
 
-            <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 sm:p-8 lg:col-span-5 lg:p-10">
+            <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-5 @min-[64rem]:p-10">
               <div>
                 <p className="ds-mono-label">Investment</p>
-                <p className="ds-display mt-3 text-4xl tracking-tight text-foreground sm:text-5xl md:text-6xl">
-                  {featured.price}
+                <p className="ds-display mt-3 text-4xl tracking-tight text-foreground @min-[40rem]:text-5xl @min-[48rem]:text-6xl">
+                  <AnimatedPrice price={featured.price} />
                 </p>
                 {featured.priceSuffix ? (
                   <p className="mt-2 text-sm text-muted-foreground">
@@ -149,26 +176,26 @@ export function PricingOverview() {
                 >
                   <div
                     className={cn(
-                      "grid grid-cols-1 gap-3 px-6 py-5 md:grid-cols-12 md:items-center md:gap-4 md:px-8 md:py-6",
+                      "grid grid-cols-1 gap-3 px-6 py-5 @min-[48rem]:grid-cols-12 @min-[48rem]:items-center @min-[48rem]:gap-4 @min-[48rem]:px-8 @min-[48rem]:py-6",
                     )}
                   >
-                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground md:col-span-1">
+                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground @min-[48rem]:col-span-1">
                       {String(i + 2).padStart(2, "0")}
                     </span>
-                    <div className="md:col-span-4">
-                      <p className="ds-headline text-base text-foreground sm:text-lg">
+                    <div className="@min-[48rem]:col-span-4">
+                      <p className="ds-headline text-base text-foreground @min-[40rem]:text-lg">
                         {s.name}
                       </p>
                       <p className="mt-1 text-xs text-muted-foreground">
                         {s.tagline} · {s.timeline}
                       </p>
                     </div>
-                    <p className="hidden text-sm text-muted-foreground md:col-span-3 md:block md:line-clamp-2">
+                    <p className="hidden text-sm text-muted-foreground @min-[48rem]:col-span-3 @min-[48rem]:block @min-[48rem]:line-clamp-2">
                       {s.description}
                     </p>
-                    <div className="flex flex-wrap items-center gap-4 md:col-span-4 md:justify-end">
+                    <div className="flex flex-wrap items-center gap-4 @min-[48rem]:col-span-4 @min-[48rem]:justify-end">
                       <span className="text-lg font-semibold tabular-nums text-foreground">
-                        {s.price}
+                        <AnimatedPrice price={s.price} />
                         {s.priceSuffix ? (
                           <span className="ml-1.5 text-sm font-normal text-muted-foreground">
                             {s.priceSuffix}

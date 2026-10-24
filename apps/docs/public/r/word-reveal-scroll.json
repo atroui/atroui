@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "word-reveal-scroll",
+  "title": "Word Reveal Scroll",
+  "description": "Progress-driven word opacity via scroll — opacity only, no blur. Pull lines.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/word-reveal-scroll.tsx",
+      "content": "\"use client\"\n\nimport {\n  animate,\n  motion,\n  useMotionValue,\n  useReducedMotion,\n  useScroll,\n  useTransform,\n  type MotionValue,\n  type UseScrollOptions,\n} from \"motion/react\"\nimport {\n  Fragment,\n  useEffect,\n  useRef,\n  type ElementType,\n  type RefObject,\n} from \"react\"\n\nimport { easeOutSoft } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\nexport type WordRevealScrollProps = {\n  children: string\n  className?: string\n  /**\n   * Opacity before a word’s scroll slice is reached.\n   * Default `0.15` — readable as dim ink, not invisible.\n   */\n  restingOpacity?: number\n  /**\n   * Progress window each word fades across (0–1).\n   * Motion docs default: last word starts at `1 - wordWindow` (0.8).\n   */\n  wordWindow?: number\n  /** `useScroll` offset. Default in-flow pull-line trigger. */\n  offset?: UseScrollOptions[\"offset\"]\n  /**\n   * External scroll target (sticky stage / tall section).\n   * When omitted, the text element itself is the target.\n   */\n  targetRef?: RefObject<HTMLElement | null>\n  as?: \"p\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"span\" | \"div\" | \"blockquote\"\n  /**\n   * Docs canvases — scrub 0→1 on mount with easeOutSoft\n   * instead of requiring page scroll.\n   */\n  preview?: boolean\n}\n\ntype WordProps = {\n  children: string\n  progress: MotionValue<number>\n  index: number\n  count: number\n  restingOpacity: number\n  wordWindow: number\n}\n\nfunction Word({\n  children,\n  progress,\n  index,\n  count,\n  restingOpacity,\n  wordWindow,\n}: WordProps) {\n  const start =\n    count === 1 ? 0 : (index / (count - 1)) * (1 - wordWindow)\n  const opacity = useTransform(\n    progress,\n    [start, start + wordWindow],\n    [restingOpacity, 1]\n  )\n\n  return (\n    <motion.span className=\"inline\" style={{ opacity }} aria-hidden>\n      {children}\n    </motion.span>\n  )\n}\n\n/**\n * Progress-driven word opacity via `useScroll` + `useTransform`.\n * Opacity only (no blur) — essay / marketing pull lines.\n * Careful delight: one earned scrub, not every paragraph.\n */\nexport function WordRevealScroll({\n  children,\n  className,\n  restingOpacity = 0.15,\n  wordWindow = 0.2,\n  offset = [\"start 0.85\", \"start 0.25\"],\n  targetRef,\n  as: Tag = \"p\",\n  preview = false,\n}: WordRevealScrollProps) {\n  const reduce = useReducedMotion()\n  const localRef = useRef<HTMLElement | null>(null)\n  const previewProgress = useMotionValue(0)\n\n  const { scrollYProgress } = useScroll({\n    target: targetRef ?? localRef,\n    offset,\n  })\n\n  useEffect(() => {\n    if (!preview || reduce) return\n    previewProgress.set(0)\n    const controls = animate(previewProgress, 1, {\n      duration: 1.6,\n      ease: easeOutSoft,\n    })\n    return () => controls.stop()\n  }, [preview, reduce, previewProgress, children])\n\n  const progress = preview ? previewProgress : scrollYProgress\n  const words = children.trim().split(/\\s+/).filter(Boolean)\n\n  if (reduce) {\n    const Comp = Tag as ElementType\n    return <Comp className={className}>{children}</Comp>\n  }\n\n  const Comp = Tag as ElementType\n\n  return (\n    <Comp\n      ref={targetRef ? undefined : localRef}\n      className={cn(className)}\n      aria-label={children}\n    >\n      {words.map((word, i) => (\n        <Fragment key={`${word}-${i}`}>\n          <Word\n            progress={progress}\n            index={i}\n            count={words.length}\n            restingOpacity={restingOpacity}\n            wordWindow={wordWindow}\n          >\n            {word}\n          </Word>\n          {i < words.length - 1 ? \" \" : null}\n        </Fragment>\n      ))}\n    </Comp>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/word-reveal-scroll.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

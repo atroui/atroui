@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magnetic",
+  "title": "Magnetic",
+  "description": "Mild pointer pull for media cards — intensity ≤0.35, range ≤80px. Never chrome.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/magnetic.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  animate,\n  motion,\n  useMotionValue,\n  useReducedMotion,\n} from \"motion/react\"\nimport type { HTMLMotionProps } from \"motion/react\"\n\nimport { easeOutSoft, hoverTween } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\n/** Cap — media cards only; never Button / Menu chrome. */\nexport const MAGNETIC_INTENSITY_MAX = 0.35\nexport const MAGNETIC_RANGE_MAX = 80\n\nconst settle = {\n  type: \"tween\" as const,\n  duration: hoverTween.duration,\n  ease: easeOutSoft,\n}\n\nexport type MagneticProps = HTMLMotionProps<\"div\"> & {\n  /** Pull strength toward pointer. Clamped ≤ {@link MAGNETIC_INTENSITY_MAX}. Default 0.25. */\n  intensity?: number\n  /** Active radius in px. Clamped ≤ {@link MAGNETIC_RANGE_MAX}. Default 48. */\n  range?: number\n}\n\n/**\n * Mild magnetic pull toward the pointer — media / PreviewCard only.\n * Real-time set on move; tween settle (bounce:0) on leave. Reduced motion → static.\n */\nexport function Magnetic({\n  intensity = 0.25,\n  range = 48,\n  className,\n  style,\n  onPointerMove,\n  onPointerLeave,\n  children,\n  ...props\n}: MagneticProps) {\n  const reduce = useReducedMotion()\n  const x = useMotionValue(0)\n  const y = useMotionValue(0)\n  const strength = Math.min(Math.max(intensity, 0), MAGNETIC_INTENSITY_MAX)\n  const maxRange = Math.min(Math.max(range, 0), MAGNETIC_RANGE_MAX)\n\n  const handleMove = React.useCallback(\n    (e: React.PointerEvent<HTMLDivElement>) => {\n      onPointerMove?.(e)\n      if (e.defaultPrevented) return\n      const rect = e.currentTarget.getBoundingClientRect()\n      const dx = e.clientX - (rect.left + rect.width / 2)\n      const dy = e.clientY - (rect.top + rect.height / 2)\n      const dist = Math.hypot(dx, dy)\n      const scale = dist > maxRange && dist > 0 ? maxRange / dist : 1\n      x.set(dx * strength * scale)\n      y.set(dy * strength * scale)\n    },\n    [maxRange, onPointerMove, strength, x, y]\n  )\n\n  const handleLeave = React.useCallback(\n    (e: React.PointerEvent<HTMLDivElement>) => {\n      onPointerLeave?.(e)\n      if (e.defaultPrevented) return\n      animate(x, 0, settle)\n      animate(y, 0, settle)\n    },\n    [onPointerLeave, x, y]\n  )\n\n  if (reduce) {\n    return (\n      <div\n        className={cn(className)}\n        style={style as React.CSSProperties}\n        {...(props as React.HTMLAttributes<HTMLDivElement>)}\n      >\n        {children as React.ReactNode}\n      </div>\n    )\n  }\n\n  return (\n    <motion.div\n      className={cn(className)}\n      style={{ x, y, ...style }}\n      onPointerMove={handleMove}\n      onPointerLeave={handleLeave}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/magnetic.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

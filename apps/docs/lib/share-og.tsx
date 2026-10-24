@@ -57,7 +57,7 @@ function AtroMark({ size = 24 }: { size?: number }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <rect x="17.5" y="24.3" width="13" height="3.6" rx="1.8" fill="#0b7bff" />
+      <rect x="17.5" y="24.3" width="13" height="3.6" rx="1.8" fill="#6d28d9" />
     </svg>
   )
 }
@@ -101,7 +101,7 @@ function ShareOgMarkup({ eyebrow, title, description, path }: ShareOgFields) {
           top: 0,
           bottom: 0,
           width: "6px",
-          background: "#0b7bff",
+          background: "#6d28d9",
         }}
       />
 
@@ -152,7 +152,7 @@ function ShareOgMarkup({ eyebrow, title, description, path }: ShareOgFields) {
               </span>
               <span
                 style={{
-                  color: "#0b7bff",
+                  color: "#6d28d9",
                   fontSize: 22,
                   fontWeight: 600,
                   letterSpacing: "-0.01em",
@@ -169,7 +169,7 @@ function ShareOgMarkup({ eyebrow, title, description, path }: ShareOgFields) {
               borderRadius: 6,
               padding: "5px 12px",
               fontSize: 12,
-              color: "#0b7bff",
+              color: "#6d28d9",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
@@ -231,7 +231,7 @@ function ShareOgMarkup({ eyebrow, title, description, path }: ShareOgFields) {
               padding: "12px 18px",
             }}
           >
-            <span style={{ color: "#0b7bff", fontWeight: 700, fontSize: 15 }}>
+            <span style={{ color: "#6d28d9", fontWeight: 700, fontSize: 15 }}>
               $
             </span>
             <span

@@ -28,9 +28,9 @@ export function SiteFooter() {
   const { name, email } = getBrand()
 
   return (
-    <footer className="border-t border-border-subtle pb-[env(safe-area-inset-bottom)]">
-      <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-14">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+    <footer className="@container border-t border-border-subtle pb-[env(safe-area-inset-bottom)]">
+      <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-14">
+        <div className="flex flex-col gap-10 @min-[48rem]:flex-row @min-[48rem]:items-start @min-[48rem]:justify-between">
           <div className="max-w-sm">
             <p className="text-lg font-medium tracking-tight text-foreground">
               {name}
@@ -46,7 +46,7 @@ export function SiteFooter() {
             </a>
           </div>
 
-          <div className="flex flex-wrap gap-12 sm:gap-16">
+          <div className="flex flex-wrap gap-12 @min-[40rem]:gap-16">
             <nav aria-label="Site" className="flex flex-col gap-2">
               <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                 Site

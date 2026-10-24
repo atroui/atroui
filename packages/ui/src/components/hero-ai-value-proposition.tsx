@@ -71,7 +71,7 @@ function HeroOgCanvas() {
 
   return (
     <>
-      <div className="border-b border-border-subtle p-3 sm:p-4">
+      <div className="@container border-b border-border-subtle p-3 @min-[40rem]:p-4">
         <Link
           href={`/og?style=${styleKey}`}
           className="group relative block overflow-hidden rounded-xl ring-1 ring-border-subtle"
@@ -96,7 +96,7 @@ function HeroOgCanvas() {
             </AnimatePresence>
             <div
               className={cn(
-                "pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-3 sm:p-4",
+                "pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-3 @min-[40rem]:p-4",
                 isLight
                   ? "bg-linear-to-t from-black/20 to-transparent"
                   : "bg-linear-to-t from-black/50 to-transparent",
@@ -114,7 +114,7 @@ function HeroOgCanvas() {
               </span>
               <span
                 className={cn(
-                  "text-[11px] font-medium opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100",
+                  "text-[11px] font-medium opacity-100 transition-opacity @min-[40rem]:opacity-0 @min-[40rem]:group-hover:opacity-100",
                   isLight ? "text-foreground/80" : "text-white/80",
                 )}
               >
@@ -125,7 +125,7 @@ function HeroOgCanvas() {
         </Link>
       </div>
 
-      <div className="flex flex-col gap-3 border-b border-border-subtle p-3 sm:flex-row sm:items-center sm:justify-between sm:p-4 lg:border-b-0">
+      <div className="flex flex-col gap-3 border-b border-border-subtle p-3 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-between @min-[40rem]:p-4 @min-[64rem]:border-b-0">
         <div
           className="flex flex-wrap gap-1.5"
           role="tablist"
@@ -152,8 +152,8 @@ function HeroOgCanvas() {
             );
           })}
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <p className="hidden text-xs text-muted-foreground md:block">
+        <div className="flex flex-col gap-3 @min-[40rem]:flex-row @min-[40rem]:items-center">
+          <p className="hidden text-xs text-muted-foreground @min-[48rem]:block">
             Live CSS preview of the OG tool
           </p>
           <Link
@@ -177,11 +177,11 @@ export function HeroAiValueProposition() {
   return (
     <section
       ref={timelineRef}
-      className="relative flex flex-col overflow-hidden bg-background text-foreground"
+      className="@container relative flex flex-col overflow-hidden bg-background text-foreground"
     >
       <div className="relative z-10">
         <article className="w-full border-y border-border-subtle">
-          <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle ms-shell-pad py-10 text-center sm:py-14">
+          <div className="mx-auto flex max-w-7xl flex-col items-center space-y-5 border-x border-border-subtle ms-shell-pad py-10 text-center @min-[40rem]:py-14">
             <TimelineAnimation
               once
               as="p"
@@ -197,7 +197,7 @@ export function HeroAiValueProposition() {
               as="h1"
               animationNum={2}
               timelineRef={timelineRef}
-              className="ds-display max-w-4xl text-[2.125rem] leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl"
+              className="ds-display max-w-4xl text-[2.125rem] leading-[1.05] tracking-tight text-foreground @min-[40rem]:text-6xl @min-[48rem]:text-7xl"
             >
               Stop losing weeks to{" "}
               <span className="ds-display-italic text-brand">boilerplate</span>.
@@ -217,18 +217,18 @@ export function HeroAiValueProposition() {
         </article>
 
         <div className="border-b border-border-subtle">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-5 border-x border-border-subtle ms-shell-pad py-8 sm:py-10">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-5 border-x border-border-subtle ms-shell-pad py-8 @min-[40rem]:py-10">
             <TimelineAnimation
               once
               animationNum={4}
               timelineRef={timelineRef}
-              className="flex w-full max-w-xl flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center"
+              className="flex w-full max-w-xl flex-col items-stretch gap-3 @min-[40rem]:max-w-none @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-center"
             >
-              <Link href="/contact" className="ms-cta w-full justify-center sm:w-auto">
+              <Link href="/contact" className="ms-cta w-full justify-center @min-[40rem]:w-auto">
                 Start a 7-day MVP sprint
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
-              <Link href="/og" className="ms-cta-ghost w-full justify-center sm:w-auto">
+              <Link href="/og" className="ms-cta-ghost w-full justify-center @min-[40rem]:w-auto">
                 Try the free OG tool
                 <ArrowRight className="size-3.5 opacity-60" aria-hidden />
               </Link>
@@ -238,7 +238,7 @@ export function HeroAiValueProposition() {
               once
               animationNum={5}
               timelineRef={timelineRef}
-              className="flex w-full max-w-xl items-center justify-center gap-3 sm:max-w-none"
+              className="flex w-full max-w-xl items-center justify-center gap-3 @min-[40rem]:max-w-none"
             >
               <FounderAvatar size="sm" />
               <div className="text-left text-sm leading-tight">
@@ -253,35 +253,35 @@ export function HeroAiValueProposition() {
       </div>
 
       <div className="relative z-10 w-full border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle ms-shell-pad py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle ms-shell-pad py-8 @min-[40rem]:py-10">
           <TimelineAnimation
             once
             animationNum={6}
             timelineRef={timelineRef}
-            className="overflow-hidden rounded-2xl border border-border-subtle bg-surface shadow-[0_32px_80px_-40px_rgba(0,0,0,0.45)]"
+            className="overflow-hidden rounded-2xl border border-border-subtle bg-surface shadow-sm"
           >
-            <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/40 px-3 py-2.5 sm:px-4">
+            <div className="flex items-center gap-3 border-b border-border-subtle bg-muted/40 px-3 py-2.5 @min-[40rem]:px-4">
               <div className="flex gap-1.5" aria-hidden>
                 <span className="size-2.5 rounded-full bg-foreground/15" />
                 <span className="size-2.5 rounded-full bg-foreground/15" />
                 <span className="size-2.5 rounded-full bg-foreground/15" />
               </div>
               <div className="flex min-w-0 flex-1 items-center justify-center">
-                <div className="flex max-w-md items-center gap-2 truncate rounded-md border border-border-subtle bg-background px-3 py-1 text-[11px] text-muted-foreground sm:text-xs">
+                <div className="flex max-w-md items-center gap-2 truncate rounded-md border border-border-subtle bg-background px-3 py-1 text-[11px] text-muted-foreground @min-[40rem]:text-xs">
                   <Lock className="size-3 shrink-0 opacity-60" aria-hidden />
                   <span className="truncate">{`${getBrand().domain}/og`}</span>
                 </div>
               </div>
               <Link
                 href="/og"
-                className="hidden items-center gap-1 text-[11px] font-medium text-brand sm:inline-flex"
+                className="hidden items-center gap-1 text-[11px] font-medium text-brand @min-[40rem]:inline-flex"
               >
                 Open live
                 <ArrowUpRight className="size-3" aria-hidden />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px]">
+            <div className="grid grid-cols-1 @min-[64rem]:grid-cols-[1fr_240px]">
               <div className="min-w-0">
                 <TimelineAnimation
                   once
@@ -296,7 +296,7 @@ export function HeroAiValueProposition() {
                 once
                 animationNum={9}
                 timelineRef={timelineRef}
-                className="border-t border-border-subtle lg:border-t-0 lg:border-l"
+                className="border-t border-border-subtle @min-[64rem]:border-t-0 @min-[64rem]:border-l"
               >
                 <div className="flex items-center justify-between border-b border-border-subtle px-4 py-3">
                   <p className="ds-mono-label">7-day sprint</p>
@@ -345,7 +345,7 @@ export function HeroAiValueProposition() {
                         />
                       ) : "active" in row && row.active ? (
                         <span
-                          className="ml-auto size-1.5 animate-pulse rounded-full bg-brand"
+                          className="ml-auto size-1.5 animate-pulse rounded-full bg-brand motion-reduce:animate-none"
                           aria-hidden
                         />
                       ) : null}

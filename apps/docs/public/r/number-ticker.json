@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-ticker",
+  "title": "Number Ticker",
+  "description": "Count-up on inView with tabular nums.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/number-ticker.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { animate, useInView, useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type NumberTickerProps = {\n  className?: string\n  /** Target value. Default 100. */\n  value?: number\n  /** Start value. Default 0. */\n  from?: number\n  /** Duration in seconds. Default 1.6. */\n  duration?: number\n  /** Prefix, e.g. \"$\". */\n  prefix?: string\n  /** Suffix, e.g. \"+\". */\n  suffix?: string\n  /** Locale grouping. Default true. */\n  grouped?: boolean\n}\n\n/**\n * Number ticker — counts up when scrolled into view.\n * Tabular nums; reduced motion → final value instantly.\n */\nexport function NumberTicker({\n  className,\n  value = 100,\n  from = 0,\n  duration = 1.6,\n  prefix = \"\",\n  suffix = \"\",\n  grouped = true,\n}: NumberTickerProps) {\n  const reduce = useReducedMotion()\n  const ref = React.useRef<HTMLSpanElement>(null)\n  const inView = useInView(ref, { once: true, amount: 0.6 })\n  const [display, setDisplay] = React.useState(from)\n\n  React.useEffect(() => {\n    if (!inView) return\n    if (reduce) {\n      setDisplay(value)\n      return\n    }\n    const controls = animate(from, value, {\n      duration,\n      ease: [0.16, 1, 0.3, 1],\n      onUpdate: (v) => setDisplay(v),\n    })\n    return () => controls.stop()\n  }, [inView, reduce, from, value, duration])\n\n  const text = grouped\n    ? Math.round(display).toLocaleString(\"en-US\")\n    : String(Math.round(display))\n\n  return (\n    <span ref={ref} className={cn(\"tabular-nums\", className)}>\n      {prefix}\n      {text}\n      {suffix}\n    </span>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/number-ticker.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

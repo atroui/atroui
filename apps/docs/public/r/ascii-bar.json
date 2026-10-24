@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ascii-bar",
+  "title": "ASCII Bar",
+  "description": "Pseudo-graphics progress (▰▱) filling in plottable steps.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ascii-bar.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport type AsciiBarProps = {\n  /** 0–100. */\n  value?: number\n  /** Bar width in pseudo-graphic cells. */\n  cols?: number\n  /** Show the percentage readout after the bar. */\n  showPercent?: boolean\n  /** Accessible name for the progressbar. */\n  label?: string\n  className?: string\n}\n\nconst FULL = \"▰\"\nconst EMPTY = \"▱\"\n\nfunction tweenCurve(p: number) {\n  // ease-out cubic — winch, then settle.\n  return 1 - Math.pow(1 - p, 3)\n}\n\n/**\n * ASCII Bar — a progress readout in pseudo-graphics (▰▱) that fills in\n * discrete display-steps so it always reads as plottable text. Percent\n * tweens with the bar; reduced motion jumps straight to the target.\n */\nexport function AsciiBar({\n  value: valueProp = 68,\n  cols = 24,\n  showPercent = true,\n  label = \"Progress\",\n  className,\n}: AsciiBarProps) {\n  const value = Math.min(100, Math.max(0, valueProp))\n  const [fill, setFill] = React.useState(value)\n  const fillRef = React.useRef(value)\n  const reduceRef = React.useRef(false)\n\n  React.useEffect(() => {\n    reduceRef.current = window.matchMedia?.(\n      \"(prefers-reduced-motion: reduce)\"\n    )?.matches\n  })\n\n  React.useEffect(() => {\n    if (reduceRef.current) {\n      fillRef.current = value\n      setFill(value)\n      return\n    }\n    const from = fillRef.current\n    if (Math.abs(value - from) < 0.01) return\n    const dur = 360 + Math.abs(value - from) * 5\n    let raf = 0\n    const t0 = performance.now()\n    const anim = (now: number) => {\n      const p = Math.min(1, (now - t0) / dur)\n      const next = from + (value - from) * tweenCurve(p)\n      fillRef.current = next\n      setFill(next)\n      if (p < 1) raf = requestAnimationFrame(anim)\n      else {\n        fillRef.current = value\n        setFill(value)\n      }\n    }\n    raf = requestAnimationFrame(anim)\n    return () => cancelAnimationFrame(raf)\n  }, [value])\n\n  const shown = Math.round((fill / 100) * cols)\n  const bar = FULL.repeat(Math.max(0, Math.min(cols, shown))) +\n    EMPTY.repeat(Math.max(0, cols - shown))\n  const pct = Math.round(value)\n\n  return (\n    <div\n      role=\"progressbar\"\n      aria-label={label}\n      aria-valuemin={0}\n      aria-valuemax={100}\n      aria-valuenow={pct}\n      className={cn(\"inline-flex items-baseline gap-2\", className)}\n    >\n      <pre\n        aria-hidden=\"true\"\n        className=\"m-0 select-none whitespace-pre font-mono text-[13px] leading-none text-primary\"\n      >\n        {`[${bar}]`}\n      </pre>\n      {showPercent ? (\n        <span aria-hidden=\"true\" className=\"font-mono text-xs text-foreground/60 tabular-nums\">\n          {pct}%\n        </span>\n      ) : null}\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-bar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

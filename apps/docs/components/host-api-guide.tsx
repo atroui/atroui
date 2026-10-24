@@ -48,25 +48,12 @@ export async function POST(req: Request) {
         },
         {
           title: "Install modes",
-          summary: "Add UI + route stubs with AtroUI CLI or shadcn",
+          summary: "Add UI + route stubs with shadcn @atroui",
           children: (
             <>
               <InstallModesMatrix />
-              <CodeBlock
-                language="bash"
-                code={`# Forms example
-npm i atroui
-# next.config.ts → transpilePackages: ["atroui"]
-
-npx @atroui/cli@latest add contact-form api-contact
-# or: npx shadcn@latest add @atroui/contact-form @atroui/api-contact
-
-# AI tools example
-npx @atroui/cli@latest add og-workspace api-generate
-# or: npx shadcn@latest add @atroui/og-workspace @atroui/api-generate`}
-              />
-              <p className="text-[15px] leading-relaxed text-muted-foreground">
-                Full CLI setup:{" "}
+              <p className="leading-relaxed">
+                Full setup:{" "}
                 <Link href="/docs/installation" className="bam-link">
                   Installation
                 </Link>
@@ -96,7 +83,7 @@ npx @atroui/cli@latest add og-workspace api-generate
                 .
               </p>
               <CodeBlock
-                language="bash"
+                language="dotenv"
                 code={`CONTACT_EMAIL_TO=hello@acme.test
 CONTACT_EMAIL_FROM=noreply@acme.test
 SMTP_HOST=smtp.gmail.com
@@ -121,7 +108,7 @@ RESEND_AUDIENCE_ID=…   # newsletter audience subscribe`}
                 app. Preview and rule-based paths work without them.
               </p>
               <CodeBlock
-                language="bash"
+                language="dotenv"
                 code={`HUGGINGFACE_API_KEY=…   # OG / thumbnail AI
 GEMINI_API_KEY=…          # optional freeform / Pro image
 XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`}
@@ -162,7 +149,7 @@ XAI_API_KEY=…             # optional scope LLM + thumbnail Pro`}
           children: (
             <div className="overflow-x-auto rounded-xl border border-border-subtle bg-background/40">
               <table className="w-full min-w-[28rem] text-left text-sm">
-                <thead className="border-b border-border-subtle bg-white/[0.03]">
+                <thead className="border-b border-border-subtle bg-muted">
                   <tr>
                     {["Control", "Default"].map((label) => (
                       <th

@@ -90,7 +90,7 @@ export function LaunchBriefDemo() {
         </code>
         <Link
           href={href}
-          className={cn("ms-cta shrink-0 justify-center text-sm")}
+          className={cn("atro-btn shrink-0 justify-center")}
         >
           Open OG workspace
         </Link>

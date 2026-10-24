@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-body-serif",
+  "title": "Serif body",
+  "description": "Merriweather for sans, body, and label. Display stays on the host default.",
+  "cssVars": {
+    "theme": {
+      "font-sans": "\"Merriweather\", ui-serif, Georgia, serif",
+      "font-body": "\"Merriweather\", ui-serif, Georgia, serif",
+      "font-label": "\"Merriweather\", ui-serif, Georgia, serif"
+    }
+  },
+  "docs": "Body role only. Live axis: data-type-body=\"serif\".",
+  "type": "registry:theme"
+}

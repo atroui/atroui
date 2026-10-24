@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { DocsRouteTransition } from "@/components/view-transitions"
 
@@ -10,6 +11,7 @@ export default function UpdatesLayout({
     <>
       <SiteHeader />
       <DocsRouteTransition>{children}</DocsRouteTransition>
+      <SiteFooter />
     </>
   )
 }

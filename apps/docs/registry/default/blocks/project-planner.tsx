@@ -8,6 +8,33 @@ import { useMemo, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { buildOgHref, type ProjectBrief } from "@/lib/project-brief";
+import { AnimateNumber } from "../ui/animate-number";
+
+/** Tween the leading amount; keep range / plus suffix static. */
+function AnimatedPriceRange({
+  priceRange,
+  className,
+}: {
+  priceRange: string;
+  className?: string;
+}) {
+  const match = priceRange.trim().match(/^(.*?)([\d,]+)(.*)$/);
+  if (!match?.[2]) {
+    return <span className={className}>{priceRange}</span>;
+  }
+  const prefix = match[1] ?? "";
+  const digits = match[2];
+  const suffix = match[3] ?? "";
+  return (
+    <AnimateNumber
+      value={Number(digits.replace(/,/g, ""))}
+      from={0}
+      prefix={prefix}
+      suffix={suffix}
+      className={className}
+    />
+  );
+}
 
 type PlannerState = {
   projectType: "mvp" | "full" | "";
@@ -117,7 +144,7 @@ function estimateProject(state: PlannerState): {
 }
 
 const fieldInput = cn(
-  "w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base text-foreground sm:text-sm",
+  "w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base text-foreground @min-[40rem]:text-sm",
   "placeholder:text-muted-foreground/60",
   "transition-[border-color,box-shadow] duration-200",
   "focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20",
@@ -141,6 +168,7 @@ function ChoiceButton({
       aria-pressed={pressed}
       className={cn(
         "border px-4 py-3 text-left transition-colors active:scale-[0.99]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         pressed
           ? "border-brand bg-brand/8 text-foreground"
           : "border-border-subtle bg-background text-muted-foreground hover:border-border hover:text-foreground",
@@ -209,9 +237,9 @@ export function ProjectPlanner() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12">
+    <div className="@container grid grid-cols-1 @min-[64rem]:grid-cols-12">
       {/* Step rail */}
-      <aside className="hidden border-r border-border-subtle p-8 lg:col-span-4 lg:block lg:p-10">
+      <aside className="hidden border-r border-border-subtle p-8 @min-[64rem]:col-span-4 @min-[64rem]:block @min-[64rem]:p-10">
         <p className="ms-stamp">Steps</p>
         <ol className="mt-6 space-y-1">
           {STEPS.map((label, i) => {
@@ -240,13 +268,16 @@ export function ProjectPlanner() {
       </aside>
 
       {/* Wizard */}
-      <div className="flex min-h-0 flex-col lg:col-span-8 lg:min-h-105">
+      <div className="flex min-h-0 flex-col @min-[64rem]:col-span-8 @min-[64rem]:min-h-105">
+        <p aria-live="polite" className="sr-only">
+          Step {step + 1} of {STEPS.length}: {STEPS[step]}
+        </p>
         <div className="border-b border-border-subtle ms-shell-pad py-4">
           <div className="flex items-center justify-between gap-3">
             <p className="ds-mono-label">
               Step {step + 1} / {STEPS.length}
             </p>
-            <p className="text-xs text-muted-foreground lg:hidden">
+            <p className="text-xs text-muted-foreground @min-[64rem]:hidden">
               {STEPS[step]}
             </p>
           </div>
@@ -265,7 +296,7 @@ export function ProjectPlanner() {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col p-6 sm:p-8 lg:p-10">
+        <div className="flex flex-1 flex-col p-6 @min-[40rem]:p-8 @min-[64rem]:p-10">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={step}
@@ -285,7 +316,7 @@ export function ProjectPlanner() {
                   MVP to validate fast, or a fuller product build?
                 </p>
               </div>
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3 @min-[40rem]:grid-cols-2">
                 {(
                   [
                     {
@@ -342,6 +373,11 @@ export function ProjectPlanner() {
                   </ChoiceButton>
                 ))}
               </div>
+              <p aria-live="polite" className="text-xs text-muted-foreground">
+                {state.features.length === 0
+                  ? "No features selected yet — pick at least one to continue."
+                  : `${state.features.length} selected.`}
+              </p>
             </div>
           ) : null}
 
@@ -410,6 +446,7 @@ export function ProjectPlanner() {
                     aria-pressed={state.budget === b.id}
                     className={cn(
                       "flex w-full items-center justify-between px-1 py-4 text-left text-sm transition-colors active:scale-[0.99]",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                       state.budget === b.id
                         ? "font-medium text-foreground"
                         : "text-muted-foreground hover:text-foreground",
@@ -485,7 +522,7 @@ export function ProjectPlanner() {
                   <CheckCircle2 className="size-5" aria-hidden />
                 </div>
                 <p className="ms-stamp">Recommendation</p>
-                <h2 className="ds-headline mt-3 text-2xl text-foreground sm:text-3xl">
+                <h2 className="ds-headline mt-3 text-2xl text-foreground @min-[40rem]:text-3xl">
                   {estimate.service}
                 </h2>
                 <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
@@ -493,18 +530,18 @@ export function ProjectPlanner() {
                 </p>
               </div>
 
-              <dl className="grid grid-cols-1 divide-y divide-border-subtle border-y border-border-subtle sm:grid-cols-2 sm:divide-x sm:divide-y-0">
-                <div className="py-5 sm:pr-6">
+              <dl className="grid grid-cols-1 divide-y divide-border-subtle border-y border-border-subtle @min-[40rem]:grid-cols-2 @min-[40rem]:divide-x @min-[40rem]:divide-y-0">
+                <div className="py-5 @min-[40rem]:pr-6">
                   <dt className="text-xs text-muted-foreground">
                     Estimated price
                   </dt>
-                  <dd className="ds-display mt-2 text-xl break-words text-foreground sm:text-2xl md:text-3xl">
-                    {estimate.priceRange}
+                  <dd className="ds-display mt-2 text-xl break-words text-foreground @min-[40rem]:text-2xl @min-[48rem]:text-3xl">
+                    <AnimatedPriceRange priceRange={estimate.priceRange} />
                   </dd>
                 </div>
-                <div className="py-5 sm:pl-6">
+                <div className="py-5 @min-[40rem]:pl-6">
                   <dt className="text-xs text-muted-foreground">Timeline</dt>
-                  <dd className="ds-display mt-2 text-xl text-foreground sm:text-2xl md:text-3xl">
+                  <dd className="ds-display mt-2 text-xl text-foreground @min-[40rem]:text-2xl @min-[48rem]:text-3xl">
                     {estimate.timeline}
                   </dd>
                 </div>
@@ -515,8 +552,8 @@ export function ProjectPlanner() {
                 call.
               </p>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-                <button type="button" onClick={goToContact} className="ms-cta">
+              <div className="flex flex-col gap-3 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:flex-wrap">
+                <button type="button" onClick={goToContact} className="atro-btn">
                   Continue to contact
                   <ArrowRight className="size-4" aria-hidden />
                 </button>
@@ -534,13 +571,13 @@ export function ProjectPlanner() {
                     ogTitle: estimate.service,
                     ogSubtitle: estimate.summary,
                   } satisfies ProjectBrief)}
-                  className="ms-cta-ghost"
+                  className="atro-btn-ghost"
                 >
                   Preview social card
                 </Link>
                 <Link
                   href={`/services/${estimate.serviceId}`}
-                  className="ms-cta-ghost"
+                  className="atro-btn-ghost"
                 >
                   View service details
                 </Link>
@@ -554,7 +591,7 @@ export function ProjectPlanner() {
                 type="button"
                 onClick={() => setStep((s) => Math.max(0, s - 1))}
                 disabled={step === 0}
-                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground disabled:opacity-40"
+                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <ArrowLeft className="size-3.5" aria-hidden />
                 Back
@@ -563,7 +600,7 @@ export function ProjectPlanner() {
                 type="button"
                 onClick={() => setStep((s) => s + 1)}
                 disabled={!canNext()}
-                className="ms-cta min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50"
+                className="atro-btn min-w-[9.5rem] justify-center disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span

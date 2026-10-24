@@ -142,7 +142,7 @@ npx shadcn@latest add @atroui/home-hero`,
       {
         heading: "How it sits next to Theme Toggle",
         body: [
-          "`@atroui/theme-toggle` is still the right control when you designed both sheets and only need Light / System / Dark. Compact icon variant: `@atroui/theme-toggle-icon`. Wire `next-themes` with `attribute=\"class\"` as in the [ThemeProvider post](/blog/theme-provider-dark-mode-atroui).",
+          "`@atroui/theme-toggle` is still the right control when you designed both sheets and only need Light / System / Dark. Wire `next-themes` with `attribute=\"class\"` as in the [ThemeProvider post](/blog/theme-provider-dark-mode-atroui).",
           "Reach for ThemeAdapt when a naive invert would hide body copy or flatten a light canvas you actually designed. `adapt={false}` is an escape hatch: same radios, class only, no companion. `minContrast` defaults to 4.5; raise it if your legal copy needs a harder floor.",
           "atroui.com chrome still uses the old toggle. That is intentional. The catalog default stays the simple switch. Adaptive Theme Switch is for hosts whose light tokens are the product, not a leftover invert.",
         ],
@@ -373,86 +373,60 @@ npx shadcn@latest add @atroui/site-header @atroui/site-footer`,
     slug: "indie-site-kit-new-components",
     title: "Indie site kit: new AtroUI components for portfolio sites",
     description:
-      "What shipped in the AtroUI indie site kit: narrow chrome, command menu, changelog, countdown, personal hero, and more. Plus Home Crafts, Feature Grid, and Logo Cloud. How to install and where it sits vs studio Blocks.",
+      "What shipped in the AtroUI indie site kit (later removed): narrow chrome, command menu, changelog, countdown, personal hero, and more — plus Home Crafts, Feature Grid, and Logo Cloud.",
     date: "2026-08-07",
     sections: [
       {
         body: [
           "AtroUI started as a dark-first studio catalog: heroes, pricing, Host APIs, marketing sections extracted from shipped work. That remains the [Blocks](/docs/components) story.",
-          "Indie founders also need a different altitude: a narrow column, mono stamps, a ⌘K palette, a ship log, a portrait hero. Not another max-w-7xl marketing band.",
-          "We shipped that as the **indie site kit**. Same registry install model. Same tokens. A second chrome language you can own in your repo.",
-          "This post lists what landed, how to install it, and how it sits next to studio Blocks without replacing them.",
+          "In August 2026 we also shipped a second altitude — the **indie site kit**: ~640px reading width, mono stamps, a personal ⌘K palette, ship log, portrait hero, and related chips. Same registry install model. Same tokens.",
+          "**Update (2026-09):** that kit was removed from the catalog. It did not earn shelf space next to Primitives and Blocks. This post stays as a record of what shipped and why the second chrome language existed.",
+          "Studio Blocks and [Primitives](/docs/components) remain the install path. Prefer composing product and portfolio pages from those surfaces.",
         ],
       },
       {
-        heading: "Why a second kit",
+        heading: "Why a second kit existed",
         body: [
-          "Studio Blocks assume a wide editorial frame: border-x shells, loud CTAs, package pricing. Portfolio sites often want the opposite: ~640px reading width, quiet hairlines, status rows, and tools that feel like a personal homepage.",
-          "Shipping both styles is intentional. [Site Header](/docs/components/site-header) and [Site Header Narrow](/docs/components/site-header-narrow) are different products. Same for footer and theme toggle. Pick the language that matches the site you are shipping.",
-          "In the docs sidebar the kit lives under **Indie**. Component IDs stay stable (`@atroui/personal-hero`, `@atroui/command-menu`, and so on).",
+          "Studio Blocks assume a wide editorial frame: border-x shells, loud CTAs, package pricing. Portfolio sites often want the opposite: narrow reading width, quiet hairlines, status rows, and tools that feel like a personal homepage.",
+          "[Site Header](/docs/components/site-header) and [Site Footer](/docs/components/site-footer) stay the studio chrome language. The indie kit tried a quieter personal desk — then lost the comparison to the Primitive motion language.",
         ],
       },
       {
-        heading: "What shipped in Indie",
+        heading: "What shipped (historical)",
         body: [
-          "**Chrome and motion:** `@atroui/site-header-narrow`, `@atroui/site-footer-narrow`, `@atroui/theme-toggle-icon`, `@atroui/reveal` (CSS IntersectionObserver reveal, no motion dependency).",
-          "**Home surfaces:** `@atroui/personal-hero` (optional circular portrait), `@atroui/currently`, `@atroui/project-list`, `@atroui/reading-shelf`, `@atroui/stack-list`.",
-          "**Ship in public:** `@atroui/log-preview`, `@atroui/changelog` (tag filters, month groups).",
-          "**Tools:** `@atroui/command-menu` (cmdk, ⌘K), `@atroui/social-float`, `@atroui/deadline-countdown` + `@atroui/count-up`, `@atroui/local-clock`, `@atroui/weather-chip` (Open-Meteo, no API key), `@atroui/resume`.",
-          "Browse the full list under [Indie](/docs/components/personal-hero) in the docs nav, or start from any item above.",
+          "**Home surfaces:** personal hero (optional circular portrait), project list.",
+          "**Ship in public:** changelog (tag filters, month groups).",
+          "**Tools:** command menu (cmdk), deadline countdown + count-up, local clock, weather chip (Open-Meteo), resume.",
+          "Those registry IDs are no longer published. Use [Blocks](/docs/components) and [Primitives](/docs/components) instead.",
         ],
       },
       {
-        heading: "Also new in Blocks",
+        heading: "Also new in Blocks (still shipping)",
         body: [
           "Alongside the kit we fixed catalog trust and filled two common landing gaps:",
           "**Home Crafts** (`@atroui/home-crafts`) is a real capabilities band, not a pricing alias. Pair it with [Pricing Overview](/docs/components/pricing-overview) when you need a rate card.",
-          "**Feature Grid** and **Logo Cloud** ship as CONTENT-driven landing blocks. They stay off the atroui.com homepage until you have real social proof worth showing. Install them when your product site needs pillars or partner marks.",
+          "**Feature Grid** and **Logo Cloud** ship as CONTENT-driven landing blocks. They stay off the atroui.com homepage until you have real social proof worth showing.",
           "**Site Footer** is no longer an alias of Bold Footer. Quiet chrome and loud wordmark footer are distinct demos again.",
         ],
       },
       {
-        heading: "Install",
+        heading: "Install (today)",
         body: [
-          "Same CLI as everything else in the catalog. No Host API package required for these UI blocks.",
+          "Indie kit items are gone. Install studio Blocks and Primitives instead:",
         ],
         codeBlocks: [
           {
             language: "bash",
-            code: `# Indie chrome
-npx shadcn@latest add @atroui/site-header-narrow @atroui/site-footer-narrow
-
-# Homepage slice
-npx shadcn@latest add @atroui/personal-hero @atroui/currently @atroui/project-list
-
-# Command palette (needs cmdk)
-npx shadcn@latest add @atroui/command-menu
-
-# Studio landing extras
-npx shadcn@latest add @atroui/home-crafts @atroui/feature-grid`,
+            code: `npx shadcn@latest add @atroui/home-crafts @atroui/feature-grid @atroui/button`,
           },
-        ],
-      },
-      {
-        body: [
-          "Edit the top-level `CONTENT` (and lists) after install. For Personal Hero, set `imageSrc` to your portrait path. For Command Menu, mount once in the root layout; it listens for ⌘K / Ctrl+K.",
-          "If you use Host APIs too, keep the install-mode story straight: [registry UI only](/docs/installation) for these sections; npm `atroui` only when you add forms or AI routes. See [Host APIs](/docs/host-api).",
-        ],
-      },
-      {
-        heading: "What we did not do",
-        body: [
-          "We did not replace studio Blocks. We did not put fake testimonials on atroui.com. We did not ship a personal brand mark as AtroUI identity.",
-          "The kit is for builders who want the portfolio altitude in their git history. Compose it with studio sections when a product page needs both.",
         ],
       },
       {
         heading: "Where to go next",
         body: [
-          "Open the **Indie** section in the docs sidebar and click through previews.",
+          "Browse [Components](/docs/components) for Primitives and Blocks.",
           "Read [Installation](/docs/installation) if you are new to the registry.",
           "Read [Host APIs: own the UI, bring your keys](/blog/host-apis-own-the-ui-bring-your-keys) if forms and AI tools are next.",
-          "Own the UI. Borrow the boring API security when you need it. Bring your own keys.",
         ],
       },
     ],
@@ -491,7 +465,7 @@ npx shadcn@latest add @atroui/home-crafts @atroui/feature-grid`,
       },
       {
         body: [
-          "**UI:** registry items like `@atroui/contact-form` or `@atroui/og-workspace`. The CLI copies source into your repo. You edit `CONTENT`, rebrand, and delete what you do not need.",
+          "**UI:** registry items like `@atroui/waitlist-form` or `@atroui/og-workspace`. The CLI copies source into your repo. You edit `CONTENT`, rebrand, and delete what you do not need. For contact, keep your own form UI and add `@atroui/api-contact` for the POST handler.",
           "**Route stub:** `@atroui/api-contact` (and siblings) drop a thin App Router file that forwards `POST` to the package handler.",
           "**Handler:** `atroui/api/contact|waitlist|newsletter|generate|thumbnail|scope`. Shared validation, honeypot, body caps, rate limits, and mail or AI wiring. You upgrade this with npm instead of re-vendoring native image deps into every app.",
         ],
@@ -536,8 +510,8 @@ npx shadcn@latest add @atroui/home-hero
 # 2) Forms: package + thin route stubs
 npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact
-# same pattern: waitlist, newsletter
+npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
+# same pattern: newsletter; contact uses @atroui/api-contact with your own form UI
 
 # 3) AI tools: same package setup
 npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
@@ -552,7 +526,7 @@ npx shadcn@latest add @atroui/scope-chat @atroui/api-scope`,
         ],
       },
       {
-        heading: "From zero to a live contact form",
+        heading: "From zero to a live waitlist form",
         body: [
           "A concrete path for forms:",
           "1. Register the catalog and add the form plus route (see [Installation](/docs/installation)).",
@@ -652,7 +626,7 @@ KV_REST_API_TOKEN=…`,
         body: [
           "Canonical guide: [Host APIs](/docs/host-api).",
           "CLI setup: [Installation](/docs/installation). Catalog: [Registry](/docs/registry).",
-          "Try a form: [Contact form](/docs/components/contact-contact-form).",
+          "Try a form: [Waitlist form](/docs/components/brand-waitlist-form). Contact POST handler: [Host APIs](/docs/host-api).",
           "How the split happened: [Why we moved to the shadcn registry](/blog/npm-to-shadcn-registry).",
           "Fresh app walkthrough: [Install AtroUI in a Next.js App Router project](/blog/install-atroui-nextjs-app-router).",
         ],
@@ -757,7 +731,7 @@ npx shadcn@latest add @atroui/home-hero
 # Forms - package + thin route stubs
 npm i atroui
 # next.config.ts → transpilePackages: ["atroui"]
-npx shadcn@latest add @atroui/contact-form @atroui/api-contact
+npx shadcn@latest add @atroui/waitlist-form @atroui/api-waitlist
 
 # AI tools - same package setup
 npx shadcn@latest add @atroui/og-workspace @atroui/api-generate`,
@@ -952,7 +926,7 @@ npx shadcn@latest add @atroui/button`,
     slug: "dark-first-design-tokens",
     title: "Dark-first design tokens in AtroUI",
     description:
-      "How AtroUI’s dark-first tokens work: black canvas, brand blue #0b7bff, glass surfaces, Outfit, and how to override them in atroui/globals.css.",
+      "How AtroUI’s dark-first tokens work: charcoal canvas, violet brand #6d28d9, Merriweather + DM Sans, and how to override them in atroui/globals.css.",
     date: "2026-08-05",
     sections: [
       {
@@ -964,8 +938,8 @@ npx shadcn@latest add @atroui/button`,
       {
         heading: "The visual system in one pass",
         body: [
-          "Canvas near black. Brand blue at #0b7bff (and the matching --brand CSS variable). Cyan mist accents. Glass panels via utilities like ms-panel / md-glass. Rounded-full CTAs that match the docs site.",
-          "Display type expects Outfit exposed as --font-outfit. Sans and mono fall through the same token sheet so marketing pages and app chrome share one rhythm.",
+          "Canvas near charcoal. Brand violet at #6d28d9 (and matching --brand / --primary). Soft-rect CTAs. Glass panels via utilities like ms-panel / md-glass.",
+          "Headings use Merriweather (--font-merriweather). UI and body use DM Sans (--font-dm-sans). Mono stays Geist Mono so marketing and app chrome share one rhythm.",
         ],
       },
       {
@@ -984,11 +958,11 @@ npx shadcn@latest add @atroui/button`,
           {
             language: "css",
             code: `.dark {
-  --brand: oklch(0.62 0.2 255);
-  --background: oklch(0 0 0);
-  --primary: oklch(0.99 0 0);
-  --primary-foreground: oklch(0 0 0);
-  --font-sans: var(--font-outfit);
+  --brand: oklch(0.585 0.233 277.117);
+  --background: oklch(0.185 0.006 285.9);
+  --primary: oklch(0.398 0.195 277.366);
+  --primary-foreground: oklch(0.962 0.018 272.314);
+  --font-sans: var(--font-dm-sans);
 }`,
           },
         ],
@@ -1240,7 +1214,7 @@ export default function RootLayout({
       {
         heading: "Fonts and the dark class",
         body: [
-          "Load Outfit with variable: \"--font-outfit\" and put that variable on <html> so display styles match the catalog. You can keep className=\"dark\" on html for first paint while ThemeProvider manages the class afterward.",
+          "Load Merriweather as --font-merriweather and DM Sans as --font-dm-sans (include italic styles) on <html> or <body> so headings and UI match the catalog. You can keep className=\"dark\" on html for first paint while ThemeProvider manages the class afterward.",
           "Full layout snippet: [Install AtroUI in Next.js](/blog/install-atroui-nextjs-app-router).",
         ],
       },
@@ -1375,6 +1349,16 @@ export function getLatestPost(): BlogPost | undefined {
     if (byDate !== 0) return byDate
     return blogPosts.indexOf(a) - blogPosts.indexOf(b)
   })[0]
+}
+
+export function getRecentPosts(limit = 3): BlogPost[] {
+  return [...blogPosts]
+    .sort((a, b) => {
+      const byDate = b.date.localeCompare(a.date)
+      if (byDate !== 0) return byDate
+      return blogPosts.indexOf(a) - blogPosts.indexOf(b)
+    })
+    .slice(0, limit)
 }
 
 export function getOlderPosts(): BlogPost[] {

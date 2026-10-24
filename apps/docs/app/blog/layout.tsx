@@ -1,22 +1,17 @@
-import { Merriweather } from "next/font/google"
+import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { DocsRouteTransition } from "@/components/view-transitions"
 
-/** Screen-optimized serif for long-form posts — paired with Outfit headings. */
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-merriweather",
-  display: "swap",
-})
-
+/**
+ * Blog room — SiteHeader/Footer + route fade.
+ * Index uses `.blog-index`; posts use `.blog-essay` (ledger continuity).
+ */
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <div className={merriweather.variable}>
-        <DocsRouteTransition>{children}</DocsRouteTransition>
-      </div>
+      <DocsRouteTransition>{children}</DocsRouteTransition>
+      <SiteFooter />
     </>
   )
 }

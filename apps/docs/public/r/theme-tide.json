@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-tide",
+  "title": "Tide accent",
+  "description": "Teal accent tokens (primary, sidebar, ring, charts) for light and dark. Merges into your globals.css via the shadcn CLI.",
+  "cssVars": {
+    "light": {
+      "primary": "oklch(0.457 0.12 185)",
+      "primary-foreground": "oklch(0.98 0.01 185)",
+      "sidebar-primary": "oklch(0.511 0.13 185)",
+      "sidebar-primary-foreground": "oklch(0.98 0.01 185)",
+      "ring": "oklch(0.55 0.07 185)",
+      "sidebar-ring": "oklch(0.55 0.07 185)",
+      "chart-1": "oklch(0.785 0.08 185)",
+      "chart-2": "oklch(0.585 0.11 185)",
+      "chart-3": "oklch(0.511 0.13 185)",
+      "chart-4": "oklch(0.457 0.12 185)",
+      "chart-5": "oklch(0.42 0.1 185)"
+    },
+    "dark": {
+      "primary": "oklch(0.42 0.1 185)",
+      "primary-foreground": "oklch(0.98 0.01 185)",
+      "sidebar-primary": "oklch(0.585 0.12 185)",
+      "sidebar-primary-foreground": "oklch(0.98 0.01 185)",
+      "ring": "oklch(0.55 0.04 185)",
+      "sidebar-ring": "oklch(0.55 0.04 185)",
+      "chart-1": "oklch(0.785 0.08 185)",
+      "chart-2": "oklch(0.585 0.12 185)",
+      "chart-3": "oklch(0.511 0.13 185)",
+      "chart-4": "oklch(0.457 0.12 185)",
+      "chart-5": "oklch(0.42 0.1 185)"
+    }
+  },
+  "docs": "Sets accent tokens only. Surfaces stay your sheet. Pair with any @atroui/ui install: npx shadcn@latest add @atroui/button @atroui/theme-tide",
+  "type": "registry:theme"
+}

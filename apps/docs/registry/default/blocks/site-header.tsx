@@ -9,6 +9,7 @@ import { createPortal } from "react-dom"
 
 import { LogoWordmark } from "@/components/brand/logo"
 import { getBrand } from "@/lib/brand"
+import { easeOutSoft, panelTween } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 
@@ -22,8 +23,6 @@ const NAV = [
 ] as const
 
 const CTA = { label: "Hire us", href: "/contact" }
-
-const panelEase = [0.32, 0.72, 0, 1] as const // easeOutSoft — match apps/docs/lib/motion.ts
 
 function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`)
@@ -126,13 +125,13 @@ export function SiteHeader() {
               initial={reduce ? false : { x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.28, ease: panelEase }}
+              transition={reduce ? { duration: 0 } : panelTween}
             >
               <div className="flex items-center justify-between gap-3 border-b border-border-subtle px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
                 <LogoWordmark />
                 <button
                   type="button"
-                  className="inline-flex size-9 items-center justify-center border border-border-subtle text-foreground"
+                  className="inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-foreground"
                   aria-label="Close menu"
                   onClick={() => setOpen(false)}
                 >
@@ -162,7 +161,7 @@ export function SiteHeader() {
                 <Link
                   href={CTA.href}
                   onClick={() => setOpen(false)}
-                  className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground"
+                  className="atro-btn mt-3 w-full justify-center"
                 >
                   {CTA.label}
                   <ArrowRight className="size-3.5" aria-hidden />
@@ -214,11 +213,15 @@ export function SiteHeader() {
                       {active ? (
                         <motion.span
                           layoutId="nav-rule"
-                          className="absolute inset-x-3.5 bottom-0 h-0.5 bg-[var(--color-brand,#0b7bff)]"
+                          className="absolute inset-x-3.5 bottom-0 h-0.5 bg-brand"
                           transition={
                             reduce
                               ? { duration: 0 }
-                              : { type: "spring", bounce: 0, duration: 0.35 }
+                              : {
+                                  type: "tween",
+                                  duration: 0.28,
+                                  ease: easeOutSoft,
+                                }
                           }
                           aria-hidden
                         />
@@ -234,14 +237,14 @@ export function SiteHeader() {
             <ThemeToggle />
             <Link
               href={CTA.href}
-              className="hidden h-9 items-center gap-1.5 rounded-lg bg-primary px-3.5 text-sm font-medium text-primary-foreground md:inline-flex"
+              className="atro-btn hidden h-9 px-3.5 text-sm md:inline-flex"
             >
               {CTA.label}
               <ArrowRight className="size-3.5" aria-hidden />
             </Link>
             <button
               type="button"
-              className="inline-flex size-9 items-center justify-center border border-border-subtle text-foreground transition-colors hover:bg-muted md:hidden active:scale-[0.97]"
+              className="inline-flex size-9 items-center justify-center rounded-[var(--atro-control-radius)] border border-border-subtle text-foreground transition-colors hover:bg-muted md:hidden active:scale-[0.97]"
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label={open ? "Close menu" : "Open menu"}

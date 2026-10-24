@@ -40,11 +40,11 @@ export function HomeWho({
   const mail = email ?? brand.email
 
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 border-x border-border-subtle lg:grid-cols-12">
-          <div className="border-b border-border-subtle p-6 sm:p-8 lg:col-span-7 lg:border-r lg:border-b-0 lg:p-10">
-            <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 border-x border-border-subtle @min-[64rem]:grid-cols-12">
+          <div className="border-b border-border-subtle p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-7 @min-[64rem]:border-r @min-[64rem]:border-b-0 @min-[64rem]:p-10">
+            <div className="flex flex-col gap-6 @min-[40rem]:flex-row @min-[40rem]:gap-8">
               <div
                 aria-hidden
                 className="flex size-16 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-semibold tracking-wide text-foreground"
@@ -55,9 +55,9 @@ export function HomeWho({
                 <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                   {CONTENT.stamp}
                 </p>
-                <h2 className="mt-3 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+                <h2 className="mt-3 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-4xl">
                   {name}{" "}
-                  <span className="italic text-[var(--color-brand,#0b7bff)]">
+                  <span className="italic text-brand">
                     {CONTENT.headlineSuffix}
                   </span>
                 </h2>
@@ -84,12 +84,12 @@ export function HomeWho({
             </div>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 sm:p-8 lg:col-span-5 lg:p-10">
+          <div className="flex flex-col justify-between gap-8 bg-muted/30 p-6 @min-[40rem]:p-8 @min-[64rem]:col-span-5 @min-[64rem]:p-10">
             <div>
               <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                 {CONTENT.ctaStamp}
               </p>
-              <h2 className="mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+              <h2 className="mt-3 text-2xl font-medium tracking-tight text-foreground @min-[40rem]:text-3xl">
                 {CONTENT.ctaHeadline}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -99,7 +99,7 @@ export function HomeWho({
             <div className="flex flex-col gap-3">
               <Link
                 href={CONTENT.ctaHref}
-                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground sm:w-auto sm:justify-start"
+                className="atro-btn w-full justify-center @min-[40rem]:w-auto @min-[40rem]:justify-start"
               >
                 {CONTENT.ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />

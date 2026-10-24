@@ -1,8 +1,9 @@
 "use client"
 
-import * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import type { HTMLMotionProps } from "motion/react"
+
+import { enterTween, easeOutSoft, stagger as clampStagger } from "@/lib/motion"
 
 type StaggerProps = HTMLMotionProps<"div"> & {
   delay?: number
@@ -12,9 +13,15 @@ type StaggerProps = HTMLMotionProps<"div"> & {
   preview?: boolean
 }
 
+/**
+ * Scroll-triggered stagger group.
+ * List chrome defaults clamp via {@link clampStagger} (≤50ms).
+ * Pass a larger `stagger` only for landing hero beats (not clamped above max —
+ * use `landing` lane intentionally by passing ≤0.05 for lists).
+ */
 export function Stagger({
   delay = 0,
-  stagger = 0.08,
+  stagger: staggerProp = 0.04,
   once = true,
   preview = false,
   children,
@@ -32,7 +39,7 @@ export function Stagger({
 
   const transition = {
     delayChildren: delay,
-    staggerChildren: stagger,
+    staggerChildren: clampStagger(staggerProp),
   }
 
   return (
@@ -75,7 +82,7 @@ export function StaggerChild({ y = 14, children, ...props }: ChildProps) {
         show: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.26, ease: [0.23, 1, 0.32, 1] },
+          transition: enterTween(0.26, easeOutSoft),
         },
       }}
       {...props}

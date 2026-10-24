@@ -3,22 +3,55 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { ChevronRight, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LogoMark } from "@/components/logo-mark"
 import { OverlayShell } from "@/components/overlay-shell"
 import { badgeLabel, navigation, type NavItem } from "@/lib/navigation"
-import { revealTween } from "@/lib/motion"
+
+const COLLAPSE_STORAGE_KEY = "docs-sidebar-collapsed"
+
+type CollapsedMap = Record<string, boolean>
+
+/** Section owning the current route — longest matching item href wins over /docs. */
+function activeSectionTitle(pathname: string) {
+  let best: { title: string; length: number } | null = null
+  for (const section of navigation) {
+    for (const item of section.items) {
+      const match =
+        pathname === item.href || pathname.startsWith(`${item.href}/`)
+      if (match && (!best || item.href.length > best.length)) {
+        best = { title: section.title, length: item.href.length }
+      }
+    }
+  }
+  return best?.title ?? navigation[0]!.title
+}
+
+function readCollapsed(): CollapsedMap | null {
+  try {
+    const raw = sessionStorage.getItem(COLLAPSE_STORAGE_KEY)
+    if (!raw) return null
+    const parsed: unknown = JSON.parse(raw)
+    if (!parsed || typeof parsed !== "object") return null
+    const map: CollapsedMap = {}
+    for (const [key, value] of Object.entries(parsed)) {
+      if (typeof value === "boolean") map[key] = value
+    }
+    return map
+  } catch {
+    return null
+  }
+}
 
 function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   return (
     <span
       className={cn(
-        "ds-sketch shrink-0 text-[13px] leading-none",
+        "docs-book-badge",
         badge === "host-api" || badge === "registry"
-          ? "text-brand"
-          : "text-muted-foreground"
+          ? "docs-book-badge-accent"
+          : undefined
       )}
     >
       {badgeLabel[badge]}
@@ -26,70 +59,82 @@ function NavBadge({ badge }: { badge: NonNullable<NavItem["badge"]> }) {
   )
 }
 
+/** Chapter nav — active chapter open, the rest folded away. Zed/mdBook calm. */
 export function DocsSidebar({ className }: { className?: string }) {
   const pathname = usePathname()
-  const [collapsed, setCollapsed] = React.useState<Record<string, boolean>>({})
-  const reduce = useReducedMotion()
+  const activeTitle = activeSectionTitle(pathname)
+  const listIdPrefix = React.useId()
+  const [collapsed, setCollapsed] = React.useState<CollapsedMap>({})
+
+  React.useEffect(() => {
+    const stored = readCollapsed()
+    if (stored) setCollapsed(stored)
+  }, [])
+
+  // The chapter you are reading is never folded shut.
+  React.useEffect(() => {
+    setCollapsed((prev) =>
+      prev[activeTitle] ? { ...prev, [activeTitle]: false } : prev
+    )
+  }, [activeTitle])
+
+  const isOpen = (title: string) =>
+    title in collapsed ? !collapsed[title] : title === activeTitle
+
+  const toggleSection = (title: string) => {
+    const next = { ...collapsed, [title]: isOpen(title) }
+    setCollapsed(next)
+    try {
+      sessionStorage.setItem(COLLAPSE_STORAGE_KEY, JSON.stringify(next))
+    } catch {
+      // Private mode / storage disabled — in-memory state still works.
+    }
+  }
 
   return (
-    <nav className={cn("space-y-6", className)}>
+    <nav className={cn("docs-book-nav", className)}>
       {navigation.map((section) => {
-        const isCollapsed = collapsed[section.title]
-        const panelId = `docs-nav-${section.title.toLowerCase().replace(/\s+/g, "-")}`
+        const open = isOpen(section.title)
+        const listId = `${listIdPrefix}-${section.title.replace(/\s+/g, "-")}`
+
         return (
-          <div key={section.title}>
+          <div key={section.title} className="docs-book-nav-section">
             <button
               type="button"
-              className="ds-nav-section mb-2 flex w-full items-center justify-between px-2 transition-[color,text-shadow] duration-150"
-              aria-expanded={!isCollapsed}
-              aria-controls={panelId}
-              onClick={() =>
-                setCollapsed((prev) => ({
-                  ...prev,
-                  [section.title]: !prev[section.title],
-                }))
-              }
+              onClick={() => toggleSection(section.title)}
+              aria-expanded={open}
+              aria-controls={listId}
+              className="docs-book-nav-heading docs-book-nav-toggle"
             >
-              {section.title}
-              <ChevronDown
+              <span className="truncate">{section.title}</span>
+              <ChevronRight
+                aria-hidden
                 className={cn(
-                  "h-3.5 w-3.5 shrink-0 text-brand/70 transition-transform duration-200",
-                  isCollapsed && "-rotate-90"
+                  "size-3 shrink-0 transition-transform duration-150 motion-reduce:transition-none",
+                  open && "rotate-90"
                 )}
               />
             </button>
-            <AnimatePresence initial={false}>
-              {!isCollapsed ? (
-                <motion.ul
-                  id={panelId}
-                  className="space-y-0.5 overflow-hidden"
-                  initial={reduce ? false : { height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={reduce ? undefined : { height: 0, opacity: 0 }}
-                  transition={revealTween}
-                >
-                  {section.items.map((item) => {
-                    const active = pathname === item.href
-                    return (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className={cn(
-                            "flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors",
-                            active
-                              ? "bg-white/10 text-foreground"
-                              : "text-muted-foreground hover:bg-white/4 hover:text-foreground"
-                          )}
-                        >
-                          <span className="truncate">{item.title}</span>
-                          {item.badge ? <NavBadge badge={item.badge} /> : null}
-                        </Link>
-                      </li>
-                    )
-                  })}
-                </motion.ul>
-              ) : null}
-            </AnimatePresence>
+            <ul id={listId} hidden={!open} className="docs-book-nav-list">
+              {section.items.map((item) => {
+                const active = pathname === item.href
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "docs-book-nav-link",
+                        active && "docs-book-nav-link-active"
+                      )}
+                    >
+                      <span className="truncate">{item.title}</span>
+                      {item.badge ? <NavBadge badge={item.badge} /> : null}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         )
       })}
@@ -109,45 +154,39 @@ export function MobileSidebar() {
     <div className="lg:hidden">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        aria-haspopup="dialog"
-        className="inline-flex size-9 items-center justify-center rounded-lg border border-border-subtle bg-white/5 text-foreground"
+        aria-label="Open documentation menu"
+        onClick={() => setOpen(true)}
+        className="atro-site-icon-btn border border-border-subtle text-foreground"
       >
-        {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+        <Menu className="h-4 w-4" aria-hidden />
       </button>
+
       <OverlayShell
         open={open}
         onClose={() => setOpen(false)}
         side="left"
         label="Documentation menu"
-        trapFocus
-        className="lg:hidden"
-        panelClassName="w-[min(18rem,calc(100vw-2.5rem))] border-border-subtle bg-background p-4 pt-[max(1.25rem,env(safe-area-inset-top))] shadow-[0_0_40px_color-mix(in_oklch,var(--color-brand)_20%,transparent)] sm:p-5"
       >
-        <div className="mb-5 flex items-center justify-between gap-3">
-          <Link
-            href="/"
-            className="flex min-w-0 items-center gap-2"
-            onClick={() => setOpen(false)}
-          >
-            <LogoMark />
-            <span className="truncate text-[15px] font-medium text-foreground">
-              AtroUI
-            </span>
-          </Link>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            aria-label="Close menu"
-            className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-foreground"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
-          <DocsSidebar />
+        <div className="flex h-full flex-col bg-background">
+          <div className="flex h-14 items-center justify-between border-b border-border-subtle px-4">
+            <div className="flex items-center gap-2">
+              <LogoMark className="size-5 text-foreground" />
+              <span id="docs-mobile-nav-title" className="text-sm font-medium">
+                Docs
+              </span>
+            </div>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+              className="inline-flex size-9 items-center justify-center rounded-md border border-border-subtle"
+            >
+              <X className="h-4 w-4" aria-hidden />
+            </button>
+          </div>
+          <div className="docs-scroll-quiet docs-scroll-fade flex-1 overflow-y-auto px-3 py-6">
+            <DocsSidebar />
+          </div>
         </div>
       </OverlayShell>
     </div>

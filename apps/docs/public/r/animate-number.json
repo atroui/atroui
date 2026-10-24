@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animate-number",
+  "title": "Animate Number",
+  "description": "Pricing/stats counter — digits tween as numbers with easeOutSoft. Reduced motion jumps to final.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/motion",
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/animate-number.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  animate,\n  motion,\n  useMotionValue,\n  useReducedMotion,\n  useTransform,\n} from \"motion/react\"\n\nimport { easeOutSoft, enterTween } from \"@/lib/motion\"\nimport { cn } from \"@/lib/utils\"\n\nexport type AnimateNumberFormat =\n  | Intl.NumberFormatOptions\n  | ((value: number) => string)\n\nexport type AnimateNumberProps = {\n  value: number\n  /** Start value on mount / when first set. Defaults to `value` (no enter tween). */\n  from?: number\n  /** Tween duration in seconds. Soft settle — ~0.6–0.8s. */\n  duration?: number\n  /** Intl options or a formatter. Default: rounded `toLocaleString`. */\n  format?: AnimateNumberFormat\n  locale?: string\n  prefix?: string\n  suffix?: string\n  className?: string\n}\n\nfunction resolveFormat(\n  format: AnimateNumberFormat | undefined,\n  locale?: string\n): (n: number) => string {\n  if (typeof format === \"function\") return format\n  if (format) {\n    const nf = new Intl.NumberFormat(locale, format)\n    return (n) => nf.format(n)\n  }\n  return (n) => Math.round(n).toLocaleString(locale)\n}\n\n/**\n * Pricing / stats counter — digits tween as numbers (not split-text scramble).\n * Family Values: easeOutSoft tween, no spring overshoot; reduced motion jumps to final.\n */\nexport function AnimateNumber({\n  value,\n  from,\n  duration = 0.7,\n  format,\n  locale,\n  prefix = \"\",\n  suffix = \"\",\n  className,\n}: AnimateNumberProps) {\n  const reduce = useReducedMotion()\n  const formatFn = React.useMemo(\n    () => resolveFormat(format, locale),\n    [format, locale]\n  )\n\n  const start = from ?? value\n  const count = useMotionValue(start)\n  const display = useTransform(count, (latest) => {\n    return `${prefix}${formatFn(latest)}${suffix}`\n  })\n\n  const label = `${prefix}${formatFn(value)}${suffix}`\n\n  React.useEffect(() => {\n    if (reduce) {\n      count.set(value)\n      return\n    }\n    const controls = animate(count, value, {\n      ...enterTween(duration, easeOutSoft),\n    })\n    return () => controls.stop()\n  }, [count, value, duration, reduce])\n\n  if (reduce) {\n    return (\n      <span className={cn(\"tabular-nums\", className)} aria-label={label}>\n        {label}\n      </span>\n    )\n  }\n\n  return (\n    <motion.span className={cn(\"tabular-nums\", className)} aria-label={label}>\n      {display}\n    </motion.span>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/animate-number.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

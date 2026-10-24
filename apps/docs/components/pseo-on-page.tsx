@@ -52,6 +52,11 @@ function navTitle(href: string) {
   return allNavItems.find((item) => item.href === href)?.title ?? href
 }
 
+/**
+ * Appendix under the real doc. Structured data stays whole; the visible layer
+ * is a footnote — hairline rule, mono labels, FAQ behind one disclosure — so
+ * the page reads finished after the API reference.
+ */
 export function PseoOnPage({
   path,
   title,
@@ -73,7 +78,11 @@ export function PseoOnPage({
   ]
 
   return (
-    <div className="space-y-8">
+    <section
+      aria-label={`More about ${title}`}
+      data-toc-skip
+      className="pseo-appendix"
+    >
       <BreadcrumbJsonLd items={crumbs} />
       {faqs.length > 0 ? (
         <FaqJsonLd items={faqs} pagePath={path} />
@@ -87,36 +96,34 @@ export function PseoOnPage({
       ) : null}
 
       {overlay ? (
-        <section className="space-y-3">
-          <h2 className="ds-headline text-base text-foreground">
+        <div className="pseo-appendix-note">
+          <h3 data-toc-boilerplate className="pseo-appendix-note-title">
             {overlay.job}
-          </h2>
-          <p className="text-[15px] leading-relaxed text-muted-foreground">
-            {overlay.body}
-          </p>
-        </section>
+          </h3>
+          <p className="pseo-appendix-note-body">{overlay.body}</p>
+        </div>
       ) : null}
 
       {faqs.length > 0 ? (
-        <section className="space-y-4">
-          <h2 className="ds-headline text-base text-foreground">FAQ</h2>
-          <dl className="space-y-4">
+        <details className="pseo-appendix-faq">
+          <summary>
+            FAQ
+            <span className="pseo-appendix-faq-count">{faqs.length}</span>
+            <span className="pseo-appendix-faq-chevron" aria-hidden />
+          </summary>
+          <dl className="pseo-appendix-faq-list">
             {faqs.map((faq) => (
               <div key={faq.q}>
-                <dt className="text-[14px] font-medium text-foreground">
-                  {faq.q}
-                </dt>
-                <dd className="mt-1 text-[14px] leading-relaxed text-muted-foreground">
-                  {faq.a}
-                </dd>
+                <dt>{faq.q}</dt>
+                <dd>{faq.a}</dd>
               </div>
             ))}
           </dl>
-        </section>
+        </details>
       ) : null}
 
       {collections.length > 0 ? (
-        <p className="text-[13px] text-muted-foreground">
+        <p className="pseo-appendix-collections">
           Part of{" "}
           {collections.map((c, i) => (
             <span key={c.slug}>
@@ -134,9 +141,9 @@ export function PseoOnPage({
       ) : null}
 
       {related.length > 0 ? (
-        <nav aria-label="Related components" className="space-y-2">
-          <h2 className="ds-headline text-base text-foreground">Related</h2>
-          <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
+        <nav aria-label="Related components" className="pseo-appendix-row">
+          <span className="pseo-appendix-label">Related</span>
+          <ul>
             {related.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="bam-link">
@@ -149,6 +156,6 @@ export function PseoOnPage({
       ) : null}
 
       <p className="sr-only">{navTitle(path)}</p>
-    </div>
+    </section>
   )
 }

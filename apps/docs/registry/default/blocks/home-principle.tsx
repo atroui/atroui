@@ -32,28 +32,28 @@ const PRINCIPLES = [
 
 const toneText = {
   ok: "text-emerald-700 dark:text-emerald-400",
-  brand: "text-[var(--color-brand,#0b7bff)]",
+  brand: "text-brand",
   warm: "text-amber-800 dark:text-amber-400",
 } as const
 
 const toneDot = {
   ok: "bg-emerald-700 dark:bg-emerald-400",
-  brand: "bg-[var(--color-brand,#0b7bff)]",
+  brand: "bg-brand",
   warm: "bg-amber-800 dark:bg-amber-400",
 } as const
 
 export function HomePrinciple() {
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle px-6 py-12 @min-[40rem]:px-10 @min-[40rem]:py-16">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {CONTENT.stamp}
             </p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground @min-[40rem]:text-5xl">
               {CONTENT.headlineBefore}{" "}
-              <span className="italic text-[var(--color-brand,#0b7bff)]">
+              <span className="italic text-brand">
                 {CONTENT.headlineAccent}
               </span>
               {CONTENT.headlineAfter}
@@ -64,9 +64,9 @@ export function HomePrinciple() {
 
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
-          <ol className="grid grid-cols-1 divide-y divide-border-subtle md:grid-cols-3 md:divide-x md:divide-y-0">
+          <ol className="grid grid-cols-1 divide-y divide-border-subtle @min-[64rem]:grid-cols-3 @min-[64rem]:divide-x @min-[64rem]:divide-y-0">
             {PRINCIPLES.map((item, i) => (
-              <li key={item.title} className="p-6 sm:p-8">
+              <li key={item.title} className="p-6 @min-[40rem]:p-8">
                 <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </p>

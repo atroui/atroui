@@ -59,7 +59,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
   return (
     <form
       onSubmit={onSubmit}
-      className={`flex flex-col gap-2 sm:flex-row ${className ?? ""}`}
+      className={`flex flex-col gap-2 @min-[40rem]:flex-row ${className ?? ""}`}
     >
       <div className="relative min-w-0 flex-1">
         <Mail
@@ -80,7 +80,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background disabled:opacity-60"
+        className="atro-btn shrink-0 disabled:opacity-60"
       >
         {status === "loading" ? (
           <Loader2 className="size-4 animate-spin" aria-hidden />
@@ -88,7 +88,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
         {CONTENT.submitLabel}
       </button>
       {status === "error" ? (
-        <p className="text-xs text-red-600 sm:basis-full dark:text-red-400">
+        <p className="text-xs text-red-600 @min-[40rem]:basis-full dark:text-red-400">
           {error}
         </p>
       ) : null}

@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { BlogJsonLd } from "atroui"
-import { getLatestPost, getOlderPosts } from "@/lib/blog"
+import { getLatestPost, getOlderPosts, blogPosts } from "@/lib/blog"
+import { formatLedgerDate } from "@/lib/blog-format"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
@@ -13,7 +14,17 @@ export const metadata: Metadata = docsPageMetadata({
 
 export default function BlogIndexPage() {
   const latest = getLatestPost()
-  const older = getOlderPosts()
+  const older = [...getOlderPosts()].sort((a, b) =>
+    b.date.localeCompare(a.date)
+  )
+  const jsonLdPosts = [...blogPosts]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((post) => ({
+      title: post.title,
+      description: post.description,
+      slug: post.slug,
+      date: post.date,
+    }))
 
   return (
     <div className="bg-background text-foreground">
@@ -21,106 +32,105 @@ export default function BlogIndexPage() {
         path="/blog"
         name="AtroUI Blog"
         description="Guides that take you from search to owning the UI with the shadcn CLI."
+        posts={jsonLdPosts}
       />
-      <div className="mx-auto max-w-prose px-5 py-14 sm:px-6 sm:py-16 lg:py-20">
-        <p className="ms-stamp mb-3">Blog</p>
-        <h1 className="ds-display text-[2rem] tracking-tight text-foreground sm:text-4xl">
-          AtroUI <span className="ds-sketch-accent">blog</span>
-        </h1>
-        <p className="blog-lede mt-4">
-          Guides that take you from search to install: Host APIs and BYOK,
-          App Router setup, tokens, branding, and how AtroUI compares to other
-          kits. Then open the{" "}
-          <Link href="/docs/registry" className="bam-link">
-            registry
-          </Link>{" "}
-          and add components with the shadcn CLI.
-        </p>
+
+      <main className="blog-index">
+        <header className="blog-index-mast">
+          <p className="blog-index-stamp">Blog</p>
+          <h1 className="blog-index-title">
+            Essays for people who{" "}
+            <span className="blog-index-title-accent">install</span>.
+          </h1>
+          <p className="blog-index-lede">
+            Host APIs, registry ownership, tokens, and the boring paths that
+            make Next.js sections ship. One idea per post — then go edit the
+            file.
+          </p>
+        </header>
 
         {latest ? (
-          <section className="mt-14" aria-labelledby="latest-blog-heading">
-            <p className="ms-stamp mb-3">Latest</p>
-            <h2
-              id="latest-blog-heading"
-              className="ds-headline text-lg text-foreground sm:text-xl"
-            >
-              Latest blog
-            </h2>
-            <Link
-              href={`/blog/${latest.slug}`}
-              className="group mt-5 block border-y border-border-subtle py-7 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2"
-            >
-              <time
-                dateTime={latest.date}
-                className="font-mono text-[12px] tracking-wide text-muted-foreground"
-              >
-                {latest.date}
+          <section
+            className="blog-index-lead"
+            aria-labelledby="blog-lead-heading"
+          >
+            <div className="blog-index-lead-meta">
+              <span className="blog-index-now" aria-hidden>
+                Now
+              </span>
+              <time dateTime={latest.date} className="blog-index-date">
+                {formatLedgerDate(latest.date)}
               </time>
-              <h3 className="ds-display mt-2 text-xl tracking-tight text-foreground group-hover:text-brand sm:text-2xl">
-                {latest.title}
-              </h3>
-              <p className="blog-lede mt-3 text-[1.0625rem] sm:text-lg">
-                {latest.description}
-              </p>
-              <span className="mt-5 inline-block text-sm font-medium text-brand">
-                Read post →
+            </div>
+            <h2 id="blog-lead-heading" className="sr-only">
+              Latest essay
+            </h2>
+            <Link href={`/blog/${latest.slug}`} className="blog-index-lead-link">
+              <h3 className="blog-index-lead-title">{latest.title}</h3>
+              <p className="blog-index-lead-desc">{latest.description}</p>
+              <span className="blog-index-lead-cta">
+                Read essay
+                <span aria-hidden> →</span>
               </span>
             </Link>
           </section>
         ) : null}
 
         {older.length > 0 ? (
-          <section className="mt-16" aria-labelledby="all-posts-heading">
-            <h2
-              id="all-posts-heading"
-              className="ds-headline text-lg text-foreground sm:text-xl"
-            >
-              More posts
-            </h2>
-            <ul className="mt-6 divide-y divide-border-subtle border-y border-border-subtle">
+          <section
+            className="blog-index-ledger"
+            aria-labelledby="blog-ledger-heading"
+          >
+            <div className="blog-index-ledger-head">
+              <h2 id="blog-ledger-heading" className="blog-index-ledger-title">
+                Index
+              </h2>
+              <p className="blog-index-ledger-count">
+                {older.length} earlier{" "}
+                {older.length === 1 ? "essay" : "essays"}
+              </p>
+            </div>
+
+            <ol className="blog-index-list">
               {older.map((post) => (
-                <li key={post.slug}>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group flex flex-col gap-1 py-6 transition-[background-color,padding] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/30 hover:pl-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-                  >
-                    <div>
-                      <h3 className="ds-display text-lg tracking-tight text-foreground group-hover:text-brand sm:text-xl">
-                        {post.title}
-                      </h3>
-                      <p className="mt-1.5 max-w-xl font-[family-name:var(--font-merriweather)] text-[15px] leading-[1.55] text-foreground/65 sm:text-base">
-                        {post.description}
-                      </p>
-                    </div>
+                <li key={post.slug} className="blog-index-row">
+                  <Link href={`/blog/${post.slug}`} className="blog-index-row-link">
                     <time
                       dateTime={post.date}
-                      className="shrink-0 font-mono text-[12px] tracking-wide text-muted-foreground"
+                      className="blog-index-row-date"
                     >
-                      {post.date}
+                      {formatLedgerDate(post.date)}
                     </time>
+                    <span className="blog-index-row-body">
+                      <span className="blog-index-row-title">{post.title}</span>
+                      <span className="blog-index-row-desc">
+                        {post.description}
+                      </span>
+                    </span>
                   </Link>
                 </li>
               ))}
-            </ul>
+            </ol>
           </section>
         ) : null}
 
-        <p className="mt-12 text-base text-muted-foreground">
-          Want the next major slice in your inbox?{" "}
-          <Link href="/updates" className="bam-link">
-            AtroUI updates
-          </Link>
-          . Prefer the catalog?{" "}
-          <Link href="/docs" className="bam-link">
-            Read the docs
-          </Link>{" "}
-          or{" "}
-          <Link href="/docs/registry" className="bam-link">
-            own the UI
-          </Link>
-          .
-        </p>
-      </div>
+        <footer className="blog-index-exit">
+          <p>
+            Major releases, not a drip —{" "}
+            <Link href="/updates" className="bam-link">
+              AtroUI updates
+            </Link>
+            . Or skip the essays and{" "}
+            <Link href="/docs/registry" className="bam-link">
+              own the UI
+            </Link>
+            .{" "}
+            <a href="/rss.xml" className="bam-link">
+              RSS
+            </a>
+          </p>
+        </footer>
+      </main>
     </div>
   )
 }

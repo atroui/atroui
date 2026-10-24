@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-body-instrument",
+  "title": "Instrument body",
+  "description": "Instrument Serif for body and label.",
+  "cssVars": {
+    "theme": {
+      "font-body": "\"Instrument Serif\", ui-serif, Georgia, serif",
+      "font-label": "\"Instrument Serif\", ui-serif, Georgia, serif"
+    }
+  },
+  "docs": "Body role only. Live axis: data-type-body=\"instrument\".",
+  "type": "registry:theme"
+}

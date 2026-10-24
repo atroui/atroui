@@ -330,10 +330,10 @@ export function ThumbnailWorkspace() {
   }, [canDownloadPreview, downloadingPreview, style, subtitle, title, format, layout, badge]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12">
+    <div className="@container grid grid-cols-1 @min-[64rem]:grid-cols-12">
       {/* Controls */}
-      <div className="flex flex-col border-b border-border-subtle lg:col-span-5 lg:border-r lg:border-b-0">
-        <div className="border-b border-border-subtle px-6 py-4 sm:px-8">
+      <div className="flex flex-col border-b border-border-subtle @min-[64rem]:col-span-5 @min-[64rem]:border-r @min-[64rem]:border-b-0">
+        <div className="border-b border-border-subtle px-6 py-4 @min-[40rem]:px-8">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="text-sm font-medium text-foreground">
@@ -363,7 +363,7 @@ export function ThumbnailWorkspace() {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col gap-5 p-6 sm:p-8">
+        <div className="flex flex-1 flex-col gap-5 p-6 @min-[40rem]:p-8">
         {/* Format selector */}
         <div>
           <p className="ds-mono-label">Format</p>
@@ -440,7 +440,7 @@ export function ThumbnailWorkspace() {
               placeholder="I BUILT THIS IN 7 DAYS"
               disabled={isLoading}
               className={cn(
-                "mt-2 w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base font-bold uppercase tracking-wide text-foreground sm:text-sm",
+                "mt-2 w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base font-bold uppercase tracking-wide text-foreground @min-[40rem]:text-sm",
                 "placeholder:text-muted-foreground/60 placeholder:normal-case placeholder:font-medium placeholder:tracking-normal",
                 "focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20",
                 "disabled:opacity-60",
@@ -466,7 +466,7 @@ export function ThumbnailWorkspace() {
               placeholder="The story behind the $4K launch weekend."
               disabled={isLoading}
               className={cn(
-                "mt-2 w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base text-foreground sm:text-sm",
+                "mt-2 w-full border border-border-subtle bg-background px-3.5 py-2.5 text-base text-foreground @min-[40rem]:text-sm",
                 "placeholder:text-muted-foreground/60",
                 "focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20",
                 "disabled:opacity-60",
@@ -585,8 +585,8 @@ export function ThumbnailWorkspace() {
       </div>
 
       {/* Preview */}
-      <div className="flex flex-col bg-muted/20 lg:col-span-7">
-        <div className="flex flex-col gap-3 border-b border-border-subtle px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="flex flex-col bg-muted/20 @min-[64rem]:col-span-7">
+        <div className="flex flex-col gap-3 border-b border-border-subtle px-6 py-4 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-between @min-[40rem]:px-8">
           <p className="ds-mono-label">Preview · {activeFormat.dims}</p>
           {status.kind === "idle" || status.kind === "error" ? (
             <button
@@ -622,7 +622,7 @@ export function ThumbnailWorkspace() {
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-1 flex-col p-4 @min-[40rem]:p-6 @min-[64rem]:p-8">
           <div
             className={cn(
               "relative overflow-hidden ring-1 ring-border-subtle",
@@ -691,7 +691,7 @@ export function ThumbnailWorkspace() {
               </details>
 
               <FadeIn y={8} delay={0.15}>
-                <div className="flex flex-col gap-4 border border-border-subtle bg-background p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+                <div className="flex flex-col gap-4 border border-border-subtle bg-background p-4 @min-[40rem]:flex-row @min-[40rem]:items-center @min-[40rem]:justify-between @min-[40rem]:p-5">
                   <div>
                     <p className="text-sm font-medium text-foreground">
                       Need a custom AI tool or MVP?

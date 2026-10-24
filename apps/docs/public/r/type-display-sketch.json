@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-display-sketch",
+  "title": "Sketch display",
+  "description": "Caveat for heading and display only.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive",
+      "font-display": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive"
+    }
+  },
+  "docs": "Display role only. Live axis: data-type-display=\"sketch\".",
+  "type": "registry:theme"
+}

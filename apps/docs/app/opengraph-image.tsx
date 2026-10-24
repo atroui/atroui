@@ -47,7 +47,7 @@ export default async function OpenGraphImage() {
             top: 0,
             bottom: 0,
             width: "6px",
-            background: "#0b7bff",
+            background: "#6d28d9",
           }}
         />
 
@@ -105,7 +105,7 @@ export default async function OpenGraphImage() {
                     width="13"
                     height="3.6"
                     rx="1.8"
-                    fill="#0b7bff"
+                    fill="#6d28d9"
                   />
                 </svg>
               </div>
@@ -144,7 +144,7 @@ export default async function OpenGraphImage() {
                     borderRadius: "6px",
                     padding: "4px 10px",
                     fontSize: 12,
-                    color: "#0b7bff",
+                    color: "#6d28d9",
                     fontWeight: 600,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
@@ -218,7 +218,7 @@ export default async function OpenGraphImage() {
                   width: "480px",
                 }}
               >
-                <span style={{ color: "#0b7bff", fontWeight: 700, fontSize: 16 }}>
+                <span style={{ color: "#6d28d9", fontWeight: 700, fontSize: 16 }}>
                   $
                 </span>
                 <span
@@ -397,7 +397,7 @@ export default async function OpenGraphImage() {
                       fontWeight: 500,
                     }}
                   >
-                    contact-form
+                    waitlist-form
                   </span>
                   <span
                     style={{
@@ -405,12 +405,12 @@ export default async function OpenGraphImage() {
                       fontSize: 10,
                     }}
                   >
-                    With SMTP Host API
+                    With Resend Host API
                   </span>
                 </div>
                 <div
                   style={{
-                    background: "#0b7bff",
+                    background: "#6d28d9",
                     color: "#ffffff",
                     padding: "6px 12px",
                     borderRadius: 8,

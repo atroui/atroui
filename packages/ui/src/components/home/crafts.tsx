@@ -36,12 +36,12 @@ const CRAFTS = [
 
 export function HomeCrafts() {
   return (
-    <section className="border-t border-border-subtle">
+    <section className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
-        <div className="mx-auto max-w-7xl border-x border-border-subtle ms-shell-pad py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl border-x border-border-subtle ms-shell-pad py-12 @min-[40rem]:py-16">
           <FadeIn className="max-w-2xl">
             <p className="ms-stamp">Crafts</p>
-            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground sm:text-5xl">
+            <h2 className="ds-display mt-4 text-3xl tracking-tight text-foreground @min-[40rem]:text-5xl">
               What we{" "}
               <span className="ds-display-italic text-brand">actually ship</span>
               .
@@ -56,13 +56,13 @@ export function HomeCrafts() {
 
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
-          <ul className="grid grid-cols-1 divide-y divide-border-subtle sm:grid-cols-2 sm:divide-x md:grid-cols-4 md:divide-y-0">
+          <ul className="grid grid-cols-1 divide-y divide-border-subtle @min-[40rem]:grid-cols-2 @min-[40rem]:divide-x @min-[64rem]:grid-cols-4 @min-[64rem]:divide-y-0">
             {CRAFTS.map((craft, i) => (
               <li key={craft.title}>
                 <FadeIn delay={0.04 * i}>
                   <Link
                     href={craft.href}
-                    className="group flex h-full flex-col p-6 sm:p-8"
+                    className="group flex h-full flex-col p-6 @min-[40rem]:p-8"
                   >
                     <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
                       {String(i + 1).padStart(2, "0")}

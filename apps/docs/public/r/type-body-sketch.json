@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-body-sketch",
+  "title": "Sketch body",
+  "description": "Caveat for body and label.",
+  "cssVars": {
+    "theme": {
+      "font-body": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive",
+      "font-label": "\"Caveat\", \"Segoe Print\", \"Bradley Hand\", cursive"
+    }
+  },
+  "docs": "Body role only. Live axis: data-type-body=\"sketch\".",
+  "type": "registry:theme"
+}

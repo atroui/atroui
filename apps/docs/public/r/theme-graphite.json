@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-graphite",
+  "title": "Graphite accent",
+  "description": "Cool slate accent tokens (primary, sidebar, ring, charts) for light and dark. Merges into your globals.css via the shadcn CLI.",
+  "cssVars": {
+    "light": {
+      "primary": "oklch(0.42 0.04 265)",
+      "primary-foreground": "oklch(0.98 0 0)",
+      "sidebar-primary": "oklch(0.48 0.045 265)",
+      "sidebar-primary-foreground": "oklch(0.98 0 0)",
+      "ring": "oklch(0.55 0.03 265)",
+      "sidebar-ring": "oklch(0.55 0.03 265)",
+      "chart-1": "oklch(0.78 0.03 265)",
+      "chart-2": "oklch(0.58 0.04 265)",
+      "chart-3": "oklch(0.48 0.045 265)",
+      "chart-4": "oklch(0.42 0.04 265)",
+      "chart-5": "oklch(0.36 0.03 265)"
+    },
+    "dark": {
+      "primary": "oklch(0.48 0.03 265)",
+      "primary-foreground": "oklch(0.98 0 0)",
+      "sidebar-primary": "oklch(0.58 0.04 265)",
+      "sidebar-primary-foreground": "oklch(0.98 0 0)",
+      "ring": "oklch(0.55 0.02 265)",
+      "sidebar-ring": "oklch(0.55 0.02 265)",
+      "chart-1": "oklch(0.78 0.03 265)",
+      "chart-2": "oklch(0.58 0.04 265)",
+      "chart-3": "oklch(0.48 0.045 265)",
+      "chart-4": "oklch(0.42 0.04 265)",
+      "chart-5": "oklch(0.36 0.03 265)"
+    }
+  },
+  "docs": "Sets accent tokens only. Surfaces stay your sheet. Pair with any @atroui/ui install: npx shadcn@latest add @atroui/button @atroui/theme-graphite",
+  "type": "registry:theme"
+}

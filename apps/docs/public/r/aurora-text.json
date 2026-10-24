@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aurora-text",
+  "title": "Aurora Text",
+  "description": "Slow brand gradient sweep for display words.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/aurora-text.tsx",
+      "content": "\"use client\"\n\nimport { useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type AuroraTextProps = {\n  className?: string\n  children: React.ReactNode\n  /** Loop duration in seconds. Default 8. */\n  duration?: number\n}\n\n/**\n * Aurora text — slow brand gradient sweep on display words.\n * Padding guards descender clip; reduced motion → static brand text.\n */\nexport function AuroraText({ className, children, duration = 8 }: AuroraTextProps) {\n  const reduce = useReducedMotion()\n\n  if (reduce) {\n    return <span className={cn(\"text-brand\", className)}>{children}</span>\n  }\n\n  return (\n    <span\n      className={cn(\"inline-block bg-clip-text text-transparent\", className)}\n      style={{\n        paddingBlock: \"0.08em 0.12em\",\n        backgroundImage: `linear-gradient(100deg, var(--foreground) 10%, var(--brand-hover) 40%, var(--brand) 55%, var(--foreground) 75%)`,\n        backgroundSize: \"220% 100%\",\n        animation: `atro-aurora ${duration}s ease-in-out infinite alternate`,\n      }}\n    >\n      <style>{`@keyframes atro-aurora { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }`}</style>\n      {children}\n    </span>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/aurora-text.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

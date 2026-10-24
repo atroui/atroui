@@ -19,10 +19,10 @@ export function FaqInteractivePreview() {
   const [activeItem, setActiveItem] = useState<FaqItem>(FAQ_DATA[0]!);
 
   return (
-    <section ref={timelineRef} className="border-t border-border-subtle">
+    <section ref={timelineRef} className="@container border-t border-border-subtle">
       <div className="border-b border-border-subtle">
         <div className="mx-auto max-w-7xl border-x border-border-subtle">
-          <div className="ms-shell-pad py-12 text-center sm:py-16">
+          <div className="ms-shell-pad py-12 text-center @min-[40rem]:py-16">
             <TimelineAnimation
               once
               timelineRef={timelineRef}
@@ -37,7 +37,7 @@ export function FaqInteractivePreview() {
               timelineRef={timelineRef}
               animationNum={1}
               as="h2"
-              className="ds-display text-3xl text-foreground sm:text-5xl"
+              className="ds-display text-3xl text-foreground @min-[40rem]:text-5xl"
             >
               Questions we get{" "}
               <span className="ds-display-italic text-brand">a lot</span>.
@@ -45,7 +45,7 @@ export function FaqInteractivePreview() {
           </div>
 
           {/* Mobile / tablet accordion */}
-          <div className="divide-y divide-border-subtle border-t border-border-subtle lg:hidden">
+          <div className="divide-y divide-border-subtle border-t border-border-subtle @min-[64rem]:hidden">
             {FAQ_DATA.map((item, i) => {
               const open = activeItem.id === item.id;
               return (
@@ -104,8 +104,8 @@ export function FaqInteractivePreview() {
           </div>
 
           {/* Desktop side preview */}
-          <div className="relative z-10 hidden border-t border-border-subtle lg:grid lg:grid-cols-12">
-            <div className="divide-y divide-border-subtle border-r border-border-subtle lg:col-span-6">
+          <div className="relative z-10 hidden border-t border-border-subtle @min-[64rem]:grid @min-[64rem]:grid-cols-12">
+            <div className="divide-y divide-border-subtle border-r border-border-subtle @min-[64rem]:col-span-6">
               {FAQ_DATA.map((item, i) => (
                 <TimelineAnimation
                   key={item.id}
@@ -119,14 +119,14 @@ export function FaqInteractivePreview() {
                     onFocus={() => setActiveItem(item)}
                     onClick={() => setActiveItem(item)}
                     className={cn(
-                      "group flex min-h-14 w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left transition-colors sm:px-8",
+                      "group flex min-h-14 w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left transition-colors @min-[40rem]:px-8",
                       "active:scale-[0.99]",
                       activeItem.id === item.id
                         ? "bg-muted/40 text-foreground"
                         : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
                     )}
                   >
-                    <span className="ds-headline text-base sm:text-lg">
+                    <span className="ds-headline text-base @min-[40rem]:text-lg">
                       {item.question}
                     </span>
                     <ArrowRight
@@ -143,7 +143,7 @@ export function FaqInteractivePreview() {
               ))}
             </div>
 
-            <div className="relative flex min-h-80 flex-col justify-center bg-muted/20 p-8 lg:col-span-6 lg:p-10">
+            <div className="relative flex min-h-80 flex-col justify-center bg-muted/20 p-8 @min-[64rem]:col-span-6 @min-[64rem]:p-10">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeItem.id}
@@ -154,7 +154,7 @@ export function FaqInteractivePreview() {
                   className="space-y-4"
                 >
                   <span className="ms-stamp">{activeItem.category}</span>
-                  <h3 className="ds-headline text-2xl leading-tight text-foreground sm:text-3xl">
+                  <h3 className="ds-headline text-2xl leading-tight text-foreground @min-[40rem]:text-3xl">
                     {activeItem.question}
                   </h3>
                   <p className="leading-relaxed text-muted-foreground">

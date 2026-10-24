@@ -69,7 +69,7 @@ export function ArPortfolio() {
           ))}
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-2xl border border-border-subtle bg-card/40">
+        <div className="mt-6 overflow-hidden rounded-[var(--atro-panel-radius)] border border-border-subtle bg-card/40">
           {scriptReady ? (
             createElement("model-viewer", {
               src: model.src,

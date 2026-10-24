@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dock",
+  "title": "Dock",
+  "description": "macOS magnification dock. Token chrome, reduced-motion static.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/dock.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { motion, useMotionValue, useReducedMotion, useTransform } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction DockIcon({\n  mouseX,\n  children,\n  className,\n}: {\n  mouseX: ReturnType<typeof useMotionValue<number>>\n  children: React.ReactNode\n  className?: string\n}) {\n  const ref = React.useRef<HTMLDivElement>(null)\n  const distance = useTransform(mouseX, (x) => {\n    const el = ref.current\n    if (!el) return 150\n    const rect = el.getBoundingClientRect()\n    return x - (rect.left + rect.width / 2)\n  })\n  const size = useTransform(distance, [-120, 0, 120], [40, 64, 40])\n  const reduce = useReducedMotion()\n\n  if (reduce) {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"flex size-10 items-center justify-center rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-card\",\n          \"has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ring\",\n          className\n        )}\n      >\n        {children}\n      </div>\n    )\n  }\n\n  return (\n    <motion.div\n      ref={ref}\n      style={{ width: size, height: size }}\n      className={cn(\n        \"flex items-center justify-center rounded-[var(--atro-control-radius,var(--radius))] border border-border-subtle bg-card transition-colors hover:border-[color-mix(in_oklch,var(--brand)_35%,var(--border-subtle))] has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ring\",\n        className\n      )}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\nexport type DockItemProps = {\n  children: React.ReactNode\n  className?: string\n  /** Accessible label for icon-only items. */\n  label?: string\n  /** Renders a link when set. */\n  href?: string\n  /** Renders a button when set (ignored when href is present). */\n  onClick?: (e: React.MouseEvent<HTMLElement>) => void\n}\n\n/**\n * Clickable dock item — link when `href` is set, button when `onClick`\n * is set, plain tile otherwise. Always pass `label` for icon-only items.\n */\nexport function DockItem({\n  children,\n  className,\n  label,\n  href,\n  onClick,\n}: DockItemProps) {\n  const cls = cn(\n    \"flex size-full items-center justify-center rounded-[inherit] text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring\",\n    className\n  )\n  if (href) {\n    return (\n      <a href={href} aria-label={label} className={cls}>\n        {children}\n      </a>\n    )\n  }\n  if (onClick) {\n    return (\n      <button\n        type=\"button\"\n        aria-label={label}\n        onClick={onClick}\n        className={cn(cls, \"cursor-pointer\")}\n      >\n        {children}\n      </button>\n    )\n  }\n  return (\n    <span role=\"img\" aria-label={label} className={cls}>\n      {children}\n    </span>\n  )\n}\n\nexport function Dock({\n  className,\n  children,\n}: {\n  className?: string\n  children: React.ReactNode\n}) {\n  const mouseX = useMotionValue(Infinity)\n  const reduce = useReducedMotion()\n\n  return (\n    <div\n      data-slot=\"dock\"\n      className={cn(\n        \"inline-flex items-end gap-2 rounded-[var(--atro-panel-radius,var(--radius))] border border-border-subtle bg-card/80 px-3 pt-3 pb-2 backdrop-blur-md\",\n        className\n      )}\n      onPointerMove={(e) => {\n        if (!reduce) mouseX.set(e.pageX)\n      }}\n      onPointerLeave={() => mouseX.set(Infinity)}\n    >\n      {React.Children.map(children, (child) => (\n        <DockIcon mouseX={mouseX}>{child}</DockIcon>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/dock.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

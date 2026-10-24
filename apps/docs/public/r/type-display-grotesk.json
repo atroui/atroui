@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-display-grotesk",
+  "title": "Grotesk display",
+  "description": "Space Grotesk for heading and display only.",
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
+      "font-display": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif"
+    }
+  },
+  "docs": "Display role only. Live axis: data-type-display=\"grotesk\".",
+  "type": "registry:theme"
+}

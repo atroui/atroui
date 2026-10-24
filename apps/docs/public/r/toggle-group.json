@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "title": "Toggle Group",
+  "description": "Toggle peers with layoutId highlight morph — Motion.dev Base UI pattern.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/toggle",
+    "@atroui/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/toggle-group.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { ToggleGroup as ToggleGroupPrimitive } from \"@base-ui/react/toggle-group\"\nimport { LayoutGroup } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { ToggleGroupMotionContext } from \"@/components/ui/toggle\"\n\n/**\n * Toggle group — Motion.dev Base UI pattern:\n * LayoutGroup + layoutId highlight morph between pressed peers (single-select).\n * Multiple mode keeps per-toggle pressed morph (no shared pill).\n */\nfunction ToggleGroup({\n  className,\n  orientation = \"horizontal\",\n  multiple = false,\n  ...props\n}: ToggleGroupPrimitive.Props) {\n  const layoutId = React.useId()\n\n  return (\n    <ToggleGroupMotionContext.Provider\n      value={{ layoutId: `${layoutId}-pill`, multiple }}\n    >\n      <LayoutGroup id={layoutId}>\n        <ToggleGroupPrimitive\n          data-slot=\"toggle-group\"\n          data-orientation={orientation}\n          multiple={multiple}\n          orientation={orientation}\n          className={cn(\n            \"group/toggle-group inline-flex w-fit items-center justify-center gap-0.5 rounded-[var(--radius)] bg-muted/50 p-0.5\",\n            \"data-[orientation=vertical]:flex-col\",\n            className\n          )}\n          {...props}\n        />\n      </LayoutGroup>\n    </ToggleGroupMotionContext.Provider>\n  )\n}\n\nexport { ToggleGroup }\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle-group.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
