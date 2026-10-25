@@ -9,7 +9,10 @@ import * as React from "react"
 import { Check, Copy } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
 import { CopyStatusIcon } from "atroui"
-import posthog from "posthog-js"
+import {
+  captureCodeCopied,
+  registryNameFromCommand,
+} from "@/lib/analytics-capture"
 import { easeOutExpo } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
@@ -30,9 +33,12 @@ function claimFirstCopyOfSession() {
 export function InstallCommandChip({
   command,
   className,
+  source = "install_chip",
 }: {
   command: string
   className?: string
+  /** Where the chip lives — homepage strip, docs example, room chrome, … */
+  source?: string
 }) {
   const [copied, setCopied] = React.useState(false)
   const [pulse, setPulse] = React.useState(false)
@@ -53,10 +59,13 @@ export function InstallCommandChip({
   async function copy() {
     try {
       await navigator.clipboard.writeText(command)
-      posthog.capture("documentation_code_copied", {
+      captureCodeCopied({
         language: "bash",
         embedded: true,
         kind: "install",
+        command,
+        registry_name: registryNameFromCommand(command),
+        source,
       })
       setCopied(true)
       later(() => setCopied(false), 1600)

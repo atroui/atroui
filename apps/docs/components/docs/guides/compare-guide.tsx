@@ -16,8 +16,15 @@ export function CompareGuide() {
         }
         lede={
           <>
-            Choose the tool that matches how you ship. Task paths if you already
-            have a stack:{" "}
+            Choose the tool that matches how you ship. Direct peers:{" "}
+            <Link href="/docs/compare/vs-aceternity" className="bam-link">
+              vs Aceternity UI
+            </Link>
+            ,{" "}
+            <Link href="/docs/compare/vs-magic-ui" className="bam-link">
+              vs Magic UI
+            </Link>
+            . Task paths if you already have a stack:{" "}
             <Link href="/docs/migrate" className="bam-link">
               Coming from…
             </Link>
@@ -25,6 +32,26 @@ export function CompareGuide() {
           </>
         }
       />
+
+      <section className="space-y-4">
+        <h2 className="docs-section-title" id="direct-peers">
+          Direct peers
+        </h2>
+        <ul className="list-disc space-y-2 pl-5">
+          <li>
+            <Link href="/docs/compare/vs-aceternity" className="bam-link">
+              AtroUI vs Aceternity UI
+            </Link>{" "}
+            — Pro landing blocks + agents vs MIT sections + Host APIs.
+          </li>
+          <li>
+            <Link href="/docs/compare/vs-magic-ui" className="bam-link">
+              AtroUI vs Magic UI
+            </Link>{" "}
+            — animated free effects + Pro sections vs soft-rect rooms + BYOK.
+          </li>
+        </ul>
+      </section>
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="what-atroui-is">
@@ -125,8 +152,11 @@ export function CompareGuide() {
       </section>
 
       <div className="flex flex-wrap gap-3 pt-2">
-        <Link href="/docs/registry" className="atro-btn">
-          Own the UI
+        <Link href="/docs/compare/vs-aceternity" className="atro-btn">
+          vs Aceternity
+        </Link>
+        <Link href="/docs/compare/vs-magic-ui" className="atro-btn-ghost">
+          vs Magic UI
         </Link>
         <Link href="/docs/installation" className="atro-btn-ghost">
           Installation

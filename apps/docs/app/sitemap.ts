@@ -17,6 +17,8 @@ const staticPaths = [
   "/docs/brand",
   "/docs/identity",
   "/docs/compare",
+  "/docs/compare/vs-aceternity",
+  "/docs/compare/vs-magic-ui",
   "/docs/migrate",
   "/docs/components",
   "/docs/collections",

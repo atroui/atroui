@@ -3,7 +3,7 @@
 import * as React from "react"
 import { CopyButton } from "atroui"
 import { highlight } from "fumadocs-core/highlight"
-import posthog from "posthog-js"
+import { captureCodeCopied } from "@/lib/analytics-capture"
 import { cn } from "@/lib/utils"
 
 export interface CodeBlockFile {
@@ -146,9 +146,11 @@ export function CodeBlock({
           variant="outline"
           timeout={2000}
           onCopied={() => {
-            posthog.capture("documentation_code_copied", {
+            captureCodeCopied({
               language: activeLanguage,
               embedded,
+              kind: "snippet",
+              source: "code_block",
               ...(activeFile ? { file: activeFile.name } : null),
             })
           }}

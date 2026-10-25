@@ -2894,6 +2894,90 @@ html:not(.dark) .atro-hero-product .rw-shell.landing-demo-frame {
 .jw-proof-str {
   color: #86efac;
 }
+.jw-proof-fail {
+  margin-top: 0.35rem;
+  color: color-mix(in oklch, var(--foreground) 55%, #fca5a5);
+}
+
+/* Host API BYOK strip */
+.host-api-beats {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  list-style: none;
+  padding: 0;
+}
+@media (min-width: 640px) {
+  .host-api-beats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+.host-api-beat {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.85rem;
+}
+.host-api-beat-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.host-api-beat-body {
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+}
+.host-api-stage {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .host-api-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 2rem;
+  }
+}
+.host-api-toggle {
+  display: inline-flex;
+  margin-top: 1.15rem;
+  padding: 0.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklch, var(--muted) 55%, transparent);
+  gap: 0.15rem;
+}
+.host-api-toggle-btn {
+  border: 0;
+  border-radius: calc(var(--radius) - 2px);
+  background: transparent;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+.host-api-toggle-btn--active {
+  background: var(--card);
+  color: var(--foreground);
+  outline: 1px solid var(--border-subtle);
+}
+.host-api-code {
+  font-family: var(--font-mono);
+  font-size: 0.8125em;
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--muted);
+  padding: 0.1em 0.35em;
+}
+.host-api-swap {
+  width: 100%;
+}
 
 .atro-section-links--center {
   justify-content: center;

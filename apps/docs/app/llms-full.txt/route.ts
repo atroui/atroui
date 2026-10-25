@@ -62,6 +62,8 @@ export function GET() {
     "> Agent playbook: https://www.atroui.com/docs/guides/for-agents",
     "> Host APIs: https://www.atroui.com/docs/host-api",
     "> Compare: https://www.atroui.com/docs/compare",
+    "> vs Aceternity: https://www.atroui.com/docs/compare/vs-aceternity",
+    "> vs Magic UI: https://www.atroui.com/docs/compare/vs-magic-ui",
     "> Short index: https://www.atroui.com/llms.txt",
     "> https://www.atroui.com",
     "",
