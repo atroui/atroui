@@ -53,7 +53,9 @@ function HostApiProof() {
           <span className="jw-proof-dim">POST</span>{" "}
           <span className="jw-proof-val">/api/waitlist</span>
         </p>
-        <p className="jw-proof-dim mt-2 text-[0.6875rem]">→ 200 · sent via your Resend project</p>
+        <p className="jw-proof-dim mt-2 text-[0.6875rem]">
+          → 200 with keys · 503 if unset (fail closed)
+        </p>
       </div>
     </>
   )

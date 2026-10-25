@@ -41,6 +41,8 @@
 
 - [Glossary](https://www.atroui.com/docs/glossary): Host API, BYOK, registry, and related terms.
 - [Compare](https://www.atroui.com/docs/compare): How AtroUI differs from primitives-only / copy-paste kits.
+- [AtroUI vs Aceternity UI](https://www.atroui.com/docs/compare/vs-aceternity): MIT sections + Host APIs vs Pro landing blocks.
+- [AtroUI vs Magic UI](https://www.atroui.com/docs/compare/vs-magic-ui): Soft-rect rooms + BYOK vs animated free effects / Pro sections.
 - [Changelog](https://www.atroui.com/docs/changelog): Release notes.
 
 ## Catalog

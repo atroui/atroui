@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { CodeBlock } from "@/components/code-block"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
+import { LaunchWorkflowViewTracker } from "@/components/docs/launch-workflow-view-tracker"
 import { DocsPager } from "@/components/docs-pager"
 import { LaunchBriefDemo } from "@/components/launch-brief-demo"
 
@@ -8,6 +9,7 @@ import { LaunchBriefDemo } from "@/components/launch-brief-demo"
 export function LaunchWorkflowGuide() {
   return (
     <article className="space-y-10">
+      <LaunchWorkflowViewTracker />
       <DocsArticleHeader
         eyebrow="Kits"
         title="From scope to social card"

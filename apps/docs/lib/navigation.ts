@@ -110,7 +110,17 @@ export const navigation: NavSection[] = [
       {
         title: "Compare",
         href: "/docs/compare",
-        description: "vs copy-paste kits",
+        description: "vs kits · Aceternity · Magic",
+      },
+      {
+        title: "vs Aceternity UI",
+        href: "/docs/compare/vs-aceternity",
+        description: "MIT sections + Host APIs",
+      },
+      {
+        title: "vs Magic UI",
+        href: "/docs/compare/vs-magic-ui",
+        description: "Soft-rect vs motion Pro",
       },
       { title: "Changelog", href: "/docs/changelog", description: "Releases" }
     ],

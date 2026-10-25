@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
 import { DocsFaq } from "@/components/docs/docs-faq"
+import { HostApiViewTracker } from "@/components/docs/host-api-view-tracker"
 import { DocsPager } from "@/components/docs-pager"
 import { HostApiGuide } from "@/components/host-api-guide"
 
@@ -23,6 +24,7 @@ const HOST_API_FAQS = [
 export function HostApiGuidePage() {
   return (
     <article className="space-y-10">
+      <HostApiViewTracker from="docs_host_api" />
       <DocsArticleHeader
         eyebrow="Getting started"
         title="Host APIs"
