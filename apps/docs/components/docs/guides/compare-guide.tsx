@@ -16,15 +16,19 @@ export function CompareGuide() {
         }
         lede={
           <>
-            Choose the tool that matches how you ship. Direct peers:{" "}
-            <Link href="/docs/compare/vs-aceternity" className="bam-link">
-              vs Aceternity UI
+            Choose the tool that matches how you ship.{" "}
+            <Link href="/docs/compare/alternatives" className="bam-link">
+              Alternatives hub
             </Link>
-            ,{" "}
+            {" · "}
+            <Link href="/docs/compare/vs-aceternity" className="bam-link">
+              vs Aceternity
+            </Link>
+            {" · "}
             <Link href="/docs/compare/vs-magic-ui" className="bam-link">
               vs Magic UI
             </Link>
-            . Task paths if you already have a stack:{" "}
+            . Task paths:{" "}
             <Link href="/docs/migrate" className="bam-link">
               Coming from…
             </Link>
@@ -35,20 +39,44 @@ export function CompareGuide() {
 
       <section className="space-y-4">
         <h2 className="docs-section-title" id="direct-peers">
-          Direct peers
+          Direct peers & alternatives
         </h2>
         <ul className="list-disc space-y-2 pl-5">
+          <li>
+            <Link href="/docs/compare/alternatives" className="bam-link">
+              Alternatives to copy-paste kits
+            </Link>{" "}
+            — criteria + pick-by-job.
+          </li>
           <li>
             <Link href="/docs/compare/vs-aceternity" className="bam-link">
               AtroUI vs Aceternity UI
             </Link>{" "}
-            — Pro landing blocks + agents vs MIT sections + Host APIs.
+            ·{" "}
+            <Link
+              href="/docs/compare/aceternity-alternative"
+              className="bam-link"
+            >
+              Aceternity alternative
+            </Link>
           </li>
           <li>
             <Link href="/docs/compare/vs-magic-ui" className="bam-link">
               AtroUI vs Magic UI
             </Link>{" "}
-            — animated free effects + Pro sections vs soft-rect rooms + BYOK.
+            ·{" "}
+            <Link href="/docs/compare/magic-ui-alternative" className="bam-link">
+              Magic UI alternative
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/docs/compare/tailwind-plus-alternative"
+              className="bam-link"
+            >
+              Tailwind Plus alternative
+            </Link>{" "}
+            — new Plus sales closed.
           </li>
         </ul>
       </section>

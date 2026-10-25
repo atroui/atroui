@@ -69,7 +69,7 @@ Kill: “component library,” npm-first UI, “AI-powered UI kit.”
 
 ### Days 31–60 — Steal their discovery loops
 
-5. **Programmatic compare SEO**: alternatives pages for Aceternity, Magic, “copy-paste kits,” “Tailwind Plus alternative” (closed sales = opportunity).
+5. **[x] Programmatic compare SEO**: `/docs/compare/alternatives` hub + Aceternity / Magic / Tailwind Plus alternative pages (2026-10-25).
 6. **Agent default**: ensure MCP + for-agents is the first thing Cursor/Claude finds (`llms.txt` link in footer, robots, schema).
 7. **3 flagship demos** with “Copy install” above the fold in docs catalog (already started — finish consistency).
 8. **Backlink sprint**: 10 genuine placements (registry roundups, Base UI community, Next.js discords, Cal/coss adjacency posts).

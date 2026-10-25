@@ -1,4 +1,12 @@
 {
   "title": "Compare",
-  "pages": ["index", "vs-aceternity", "vs-magic-ui"]
+  "pages": [
+    "index",
+    "alternatives",
+    "vs-aceternity",
+    "vs-magic-ui",
+    "aceternity-alternative",
+    "magic-ui-alternative",
+    "tailwind-plus-alternative"
+  ]
 }
