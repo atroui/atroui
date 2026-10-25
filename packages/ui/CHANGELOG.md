@@ -1,5 +1,49 @@
 # atroui
 
+## 0.5.0
+
+### Minor Changes
+
+- [#87](https://github.com/atroui/atroui/pull/87) [`61c97e6`](https://github.com/atroui/atroui/commit/61c97e6dcf7a4751b5cfdd163c86d34ae10044be) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Add Adaptive Theme Switch: a light/dark control that lifts muted type to WCAG AA so designed palettes stay readable.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`17af174`](https://github.com/atroui/atroui/commit/17af174ce5194e72b1434df203360346e465fa58) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Full Base UI absorb into `atroui` with Zajno × Motion.dev taste: `@atroui/motion` tokens (asymmetric enter/exit, `stagger` ≤50ms, `layoutTween`/`switchLayoutTween`, dialog/tooltip/menu/drawer/toast/fill/avatar/press, `atroMotionDefaults` for `MotionConfig`) + Mira soft-rect wrappers for Dialog, Alert Dialog, Menu, Context Menu, Navigation Menu, Menubar, Popover, Tooltip, Preview Card, Drawer, Toast; Field/Input/Textarea/Number Field/OTP Field/Form/Fieldset + Switch/Tabs/Checkbox/Checkbox Group/Radio/Toggle/Toggle Group/Toolbar; Accordion/Collapsible/Combobox/Autocomplete; Progress/Slider/Meter/Avatar; Scroll Area/Separator; soft-rect Button + Form Select. Package barrel + shadcn registry mirrors + docs playground (`MotionConfig` + taste cues) cover the full set.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`af8f741`](https://github.com/atroui/atroui/commit/af8f741641f2087e7927eb6b5a91c5de6163d5d0) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Add ColorThemePicker — live accent themes (Mira / Tide / Ember / Bloom / Graphite) that recolor the whole site beside light/dark.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`606d758`](https://github.com/atroui/atroui/commit/606d7589443eb75c4be0d7402ce7b95de48dd627) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Remove the Indie personal-site kit (personal-hero, project-list, changelog, command-menu, resume, clocks, weather, count-up, deadline) from the package and registry.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`0b4e6c9`](https://github.com/atroui/atroui/commit/0b4e6c909dea9ffb9edd207b246cb1ac3cdd6c64) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Motion kit expansion: hover language + InView/text primitives (TextMorph, LabelRoll, LineReveal, WordRevealScroll), AnimateNumber, TransitionPanel, CopyButton recipe, S-tier ScrollProgress, and scroll-hide tokens for marketing chrome.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`0b4e6c9`](https://github.com/atroui/atroui/commit/0b4e6c909dea9ffb9edd207b246cb1ac3cdd6c64) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Opt-in Magnetic, Tilt, and Spotlight for media / PreviewCard — never default on Button or Menu chrome.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`bbd012f`](https://github.com/atroui/atroui/commit/bbd012f6be7d2580229115cb3969a15e8780f6ca) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Premium depth pass: layered elevation stacks (card/pop/overlay) with inset top light, hover deepen helper, scroll-reveal expo beat with opt-in blur, route page-enter settle, film grain, consumer-safe atro-chip, Geist Mono stack fix, and dark focus-ring contrast.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`ced5e2d`](https://github.com/atroui/atroui/commit/ced5e2d1e7139423be559f5b145c438e7b24da56) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Remove catalog components from the package: mockup frame, contact form UI, case-study sliders, personal-kit extras (currently, log-preview, reveal, narrow chrome, social-float, reading-shelf, stack-list), theme-toggle-icon, and testimonial-schema. Keep Host API `api/contact` and SEO JSON-LD helpers used by the docs site.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`03b1b24`](https://github.com/atroui/atroui/commit/03b1b2413ecaf44435f1d304becb6bea235796ac) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Surface (room) + type (font) axes: Theme Studio controls, paste-ready CSS export, and install companions (`surface-*` / `type-*`) alongside accent/radius.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`bbde38b`](https://github.com/atroui/atroui/commit/bbde38bdd2689c786c435579277823c3b2692cea) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Radius axis (Soft / Mira / Sharp) + theme export helpers + richer accent picker previews for Theme Studio.
+
+  Ship installable accent/radius theme packages (`theme-tide`, `theme-ember`, `theme-bloom`, `theme-graphite`, `radius-soft`, `radius-sharp`) that bake tokens into consumer globals via shadcn `cssVars`, plus `themeRegistryCompanions` / `buildShadcnAddCommand` helpers.
+
+### Patch Changes
+
+- [#99](https://github.com/atroui/atroui/pull/99) [`4bd160f`](https://github.com/atroui/atroui/commit/4bd160f161009093acbf3054102dc0993692c7e7) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Bump nodemailer to 10.x and pin transitive Dependabot targets (undici, proxy-addr, MCP SDK, source-map-js, and related) through pnpm overrides.
+
+- [#98](https://github.com/atroui/atroui/pull/98) [`16d5688`](https://github.com/atroui/atroui/commit/16d5688f3139cc5072073745f514547d6ce2913f) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Bump nodemailer, vitest, next, and sharp, and pin transitive fast-uri, hono, qs, and js-yaml through pnpm overrides to clear Dependabot and related advisories.
+
+- [#92](https://github.com/atroui/atroui/pull/92) [`c56efec`](https://github.com/atroui/atroui/commit/c56efec0f93cc4b2027975af92a81f7552cf203b) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Declare `tailwindcss` as a dependency (and peer) so `atroui/globals.css` can resolve `@import "tailwindcss"` in Next/webpack and pnpm workspaces.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`5da9e56`](https://github.com/atroui/atroui/commit/5da9e56aefabd7f2d9e67d5088974de7c290e39b) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - LabelRoll: letter-staggered dual-layer swap (easeOutExpo) instead of a single 100ms stack roll.
+
+- [#96](https://github.com/atroui/atroui/pull/96) [`8ebb73b`](https://github.com/atroui/atroui/commit/8ebb73bded517f3c92f074af8db481f16e9f1fca) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Deepen light Mira as a stepped room (ladder, hairline borders, elev tokens) so light holds next to dark.
+
+- [#86](https://github.com/atroui/atroui/pull/86) [`15e2f4c`](https://github.com/atroui/atroui/commit/15e2f4c17390906770dd16eb8750ea092860f550) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Newsletter subscribe uses Resend global Contacts + Segments (RESEND_SEGMENT_ID or RESEND_AUDIENCE_ID). Form sends honeypot + optional source.
+
+- [#95](https://github.com/atroui/atroui/pull/95) [`edec2df`](https://github.com/atroui/atroui/commit/edec2df6591365b4ad6ac913ed929067e3aaa079) Thanks [@KOUSTAV2409](https://github.com/KOUSTAV2409)! - Clarify the npm package description: public `@atroui` install, Tailwind v4, optional Host APIs with BYOK, not hosted AI.
+
+- Fix OG text preview on Vercel: embed Inter fonts in the package, and serve docs `/api/generate` previewOnly via next/og so live downloads no longer HTML-500 from sharp/satori module init.
+
 ## 0.4.2
 
 ### Patch Changes

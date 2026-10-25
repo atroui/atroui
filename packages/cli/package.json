@@ -1,6 +1,6 @@
 {
   "name": "@atroui/cli",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "AtroUI CLI: add registry components into your repo without the shadcn CLI.",
   "license": "MIT",
   "homepage": "https://www.atroui.com",
