@@ -28,9 +28,10 @@ export function mediaSrc(asset: MediaSrc): string {
 /**
  * Imageory public gallery (https://www.imageory.in/).
  * Hotlink freely for demos / PreviewCard / motion media — not product chrome.
+ * Assets live on Imageory's public R2 bucket (Supabase gallery URL retired).
  */
 export const IMAGEORY_ORIGIN =
-  "https://lyfsmqyastqqkhvmjpcb.supabase.co/storage/v1/object/public/gallery-images"
+  "https://pub-4d1656c9a8f7435f9c38544499f72988.r2.dev"
 
 /** Build a public Imageory URL from a gallery-relative path (`Landscapes/L1.png`). */
 export function imageory(path: string): string {
