@@ -110,7 +110,12 @@ export const navigation: NavSection[] = [
       {
         title: "Compare",
         href: "/docs/compare",
-        description: "vs kits · Aceternity · Magic",
+        description: "vs kits · alternatives",
+      },
+      {
+        title: "Alternatives hub",
+        href: "/docs/compare/alternatives",
+        description: "Pick by job · honesty table",
       },
       {
         title: "vs Aceternity UI",
@@ -121,6 +126,21 @@ export const navigation: NavSection[] = [
         title: "vs Magic UI",
         href: "/docs/compare/vs-magic-ui",
         description: "Soft-rect vs motion Pro",
+      },
+      {
+        title: "Aceternity alternative",
+        href: "/docs/compare/aceternity-alternative",
+        description: "Switch intent SEO",
+      },
+      {
+        title: "Magic UI alternative",
+        href: "/docs/compare/magic-ui-alternative",
+        description: "Switch intent SEO",
+      },
+      {
+        title: "Tailwind Plus alternative",
+        href: "/docs/compare/tailwind-plus-alternative",
+        description: "New Plus sales closed",
       },
       { title: "Changelog", href: "/docs/changelog", description: "Releases" }
     ],

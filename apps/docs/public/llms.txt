@@ -41,8 +41,12 @@
 
 - [Glossary](https://www.atroui.com/docs/glossary): Host API, BYOK, registry, and related terms.
 - [Compare](https://www.atroui.com/docs/compare): How AtroUI differs from primitives-only / copy-paste kits.
+- [Alternatives hub](https://www.atroui.com/docs/compare/alternatives): Criteria + pick-by-job across kits.
 - [AtroUI vs Aceternity UI](https://www.atroui.com/docs/compare/vs-aceternity): MIT sections + Host APIs vs Pro landing blocks.
 - [AtroUI vs Magic UI](https://www.atroui.com/docs/compare/vs-magic-ui): Soft-rect rooms + BYOK vs animated free effects / Pro sections.
+- [Aceternity UI alternative](https://www.atroui.com/docs/compare/aceternity-alternative): Switch intent — when to pick AtroUI.
+- [Magic UI alternative](https://www.atroui.com/docs/compare/magic-ui-alternative): Switch intent — soft-rect vs spectacle.
+- [Tailwind Plus alternative](https://www.atroui.com/docs/compare/tailwind-plus-alternative): New Plus sales closed — registry path forward.
 - [Changelog](https://www.atroui.com/docs/changelog): Release notes.
 
 ## Catalog

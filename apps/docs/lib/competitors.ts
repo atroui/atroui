@@ -109,3 +109,30 @@ export function compareHref(slug: CompetitorSlug): string {
     ? "/docs/compare/vs-aceternity"
     : "/docs/compare/vs-magic-ui"
 }
+
+export function alternativeHref(slug: CompetitorSlug): string {
+  return slug === "aceternity"
+    ? "/docs/compare/aceternity-alternative"
+    : "/docs/compare/magic-ui-alternative"
+}
+
+/** Secondary opportunity — new Tailwind Plus sales closed after Shopify join. */
+export const tailwindPlusFacts = {
+  name: "Tailwind Plus",
+  site: "https://tailwindcss.com/plus",
+  tagline: "Official Tailwind UI components & templates (legacy)",
+  status: "New purchases closed (existing licensees keep access)",
+  paidFrom: "Was $299 personal / $979 teams — no new signups",
+  sectionsModel: "Paid HTML/React examples + templates (account download)",
+  hostApis: "No",
+  bestFor: "Teams who already own a Plus license",
+  switchWhy:
+    "New buyers cannot purchase Plus; registry catalogs (AtroUI, Magic, Aceternity) absorb that demand",
+} as const
+
+export const ALTERNATIVE_PATHS = [
+  "/docs/compare/alternatives",
+  "/docs/compare/aceternity-alternative",
+  "/docs/compare/magic-ui-alternative",
+  "/docs/compare/tailwind-plus-alternative",
+] as const

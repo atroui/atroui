@@ -3,6 +3,7 @@ import { FaqJsonLd } from "atroui"
 import { DocsArticleHeader } from "@/components/docs/docs-article-header"
 import { DocsPager } from "@/components/docs-pager"
 import {
+  alternativeHref,
   atrouiFacts,
   compareHref,
   competitors,
@@ -230,6 +231,14 @@ npx shadcn@latest add @atroui/api-waitlist`}
           <Link href={compareHref(otherSlug)} className="bam-link">
             AtroUI vs {other.name}
           </Link>
+          ,{" "}
+          <Link href={alternativeHref(slug)} className="bam-link">
+            {peer.name} alternative
+          </Link>
+          , and{" "}
+          <Link href="/docs/compare/alternatives" className="bam-link">
+            alternatives hub
+          </Link>
           .
         </p>
       </section>
@@ -237,6 +246,9 @@ npx shadcn@latest add @atroui/api-waitlist`}
       <div className="flex flex-wrap gap-3 pt-2">
         <Link href="/docs/installation" className="atro-btn">
           Installation
+        </Link>
+        <Link href={alternativeHref(slug)} className="atro-btn-ghost">
+          {peer.name} alternative
         </Link>
         <Link href="/launch" className="atro-btn-ghost">
           Open Launch Room
