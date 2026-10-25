@@ -8,8 +8,8 @@ import { LandingReveal } from "@/components/landing/landing-reveal"
 import { SiteFooter } from "@/components/site-footer"
 
 /**
- * Landing — Zed product spine:
- * announce → hero (product visual + attached pillars) → just works → catalog → blog → close → footer
+ * Landing — Atro room spine:
+ * announce → hero (brand + axes + workspace; Room/390 in chrome) → just works → catalog → blog → close
  */
 export function LandingHero() {
   return (

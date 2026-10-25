@@ -12,6 +12,7 @@ export function UiFormSelectDoc() {
       href="/docs/components/ui-form-select"
       title="Form Select"
       description="Soft-rect select on Base UI with caret rotate, popup settle, and list stagger ≤40ms."
+      tip="Open · choose an option"
       preview={<DemoFormSelect />}
       code={`import { FormSelect } from "@/components/ui/form-select"
 

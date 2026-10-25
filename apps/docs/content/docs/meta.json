@@ -3,6 +3,7 @@
   "pages": [
     "index",
     "installation",
+    "mcp",
     "migrate",
     "host-api",
     "registry",

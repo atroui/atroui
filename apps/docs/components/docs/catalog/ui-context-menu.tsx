@@ -8,6 +8,7 @@ export function UiContextMenuDoc() {
       registryName="context-menu"
       title="Context Menu"
       description="Pointer context menu on Base UI with menu settle and row stagger."
+      tip="Right-click the pad · choose"
       preview={<DemoContextMenu />}
       code={`import {
   ContextMenu,

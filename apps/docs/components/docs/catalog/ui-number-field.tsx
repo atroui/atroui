@@ -8,6 +8,7 @@ export function UiNumberFieldDoc() {
       registryName="number-field"
       title="Number Field"
       description="Soft-rect stepper number field with careful scrub feedback on Base UI."
+      tip="Step past the limit"
       preview={<DemoNumberField />}
       code={`import {
   NumberField,

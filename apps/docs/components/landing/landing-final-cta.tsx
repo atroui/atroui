@@ -15,7 +15,7 @@ export function LandingFinalCta() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="ds-eyebrow mx-auto w-fit">Get started</p>
           <h2 className="atro-section-title mt-3">
-            Your next ship starts right now
+            Add your first section
           </h2>
           <p className="ds-lede mt-2 mx-auto max-w-xl !text-[0.9375rem] leading-relaxed">
             Copy a block. Edit CONTENT. Wire Host APIs only when you need them.
@@ -23,7 +23,7 @@ export function LandingFinalCta() {
         </div>
 
         <TransitionLink href="/docs" transitionTypes={[]} className="group atro-btn">
-          <LabelRoll secondary="Open the docs">Get started</LabelRoll>
+          <LabelRoll secondary="Browse the catalog">Open the docs</LabelRoll>
           <ArrowRight className="size-3.5" aria-hidden />
         </TransitionLink>
       </div>

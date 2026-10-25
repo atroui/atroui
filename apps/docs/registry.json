@@ -1236,6 +1236,133 @@
       ]
     },
     {
+      "name": "feature-bento",
+      "type": "registry:block",
+      "title": "Feature Bento",
+      "description": "Bento feature grid with editable CONTENT and FEATURES. Soft-rect panels.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/feature-bento.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/feature-bento.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-stack",
+      "type": "registry:block",
+      "title": "Testimonials Stack",
+      "description": "Layered testimonial cards with prev/next. Editable CONTENT and TESTIMONIALS.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/testimonials-stack.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/testimonials-stack.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-band",
+      "type": "registry:block",
+      "title": "Stats Band",
+      "description": "Metric strip with editable CONTENT and STATS.",
+      "files": [
+        {
+          "path": "registry/default/blocks/stats-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/stats-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cta-band",
+      "type": "registry:block",
+      "title": "CTA Band",
+      "description": "Headline + primary/ghost CTAs over a quiet brand wash. Editable CONTENT.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/cta-band.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/cta-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pricing-tiers",
+      "type": "registry:block",
+      "title": "Pricing Tiers",
+      "description": "Toggleable pricing tiers with editable CONTENT and TIERS.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/pricing-tiers.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/pricing-tiers.tsx"
+        }
+      ]
+    },
+    {
+      "name": "logo-marquee",
+      "type": "registry:block",
+      "title": "Logo Marquee",
+      "description": "CSS logo/name marquee with editable CONTENT and LOGOS. Respects reduced motion.",
+      "files": [
+        {
+          "path": "registry/default/blocks/logo-marquee.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/logo-marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "auth-split",
+      "type": "registry:block",
+      "title": "Auth Split",
+      "description": "Split login/signup shell with editable CONTENT. No auth backend.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/auth-split.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/auth-split.tsx"
+        }
+      ]
+    },
+    {
+      "name": "saas-starter",
+      "type": "registry:block",
+      "title": "SaaS Starter",
+      "description": "One-file SaaS landing composition. Editable CONTENT \u2014 compose sections after install.",
+      "dependencies": [
+        "lucide-react",
+        "next"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/saas-starter.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/saas-starter.tsx"
+        }
+      ]
+    },
+    {
       "name": "contextual-cta",
       "type": "registry:block",
       "title": "Contextual CTA",
@@ -1899,6 +2026,72 @@
           "path": "registry/default/blocks/scope-chat.tsx",
           "type": "registry:component",
           "target": "components/blocks/scope-chat.tsx"
+        }
+      ]
+    },
+    {
+      "name": "launch-workflow",
+      "type": "registry:block",
+      "title": "Launch Workflow",
+      "description": "Scope \u2192 Planner \u2192 OG in one room. Shared ProjectBrief. Preview without keys; AI Host APIs are BYOK.",
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/project-brief",
+        "@atroui/scope-chat",
+        "@atroui/project-planner",
+        "@atroui/og-workspace",
+        "@atroui/api-scope",
+        "@atroui/api-generate"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/launch-room.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/launch-room.tsx"
+        },
+        {
+          "path": "registry/default/app/launch/page.tsx",
+          "type": "registry:file",
+          "target": "app/launch/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "landing-kit",
+      "type": "registry:block",
+      "title": "Landing Kit",
+      "description": "Vibrant soft-rect marketing stack in one add: header, hero, logos, bento, stats, testimonials, pricing, FAQ, CTA, footer.",
+      "dependencies": [
+        "next"
+      ],
+      "registryDependencies": [
+        "@atroui/utils",
+        "@atroui/site-header",
+        "@atroui/home-hero",
+        "@atroui/logo-marquee",
+        "@atroui/feature-bento",
+        "@atroui/stats-band",
+        "@atroui/testimonials-stack",
+        "@atroui/pricing-tiers",
+        "@atroui/faq",
+        "@atroui/cta-band",
+        "@atroui/site-footer"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/landing-page.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/landing-page.tsx"
+        },
+        {
+          "path": "registry/default/app/landing/page.tsx",
+          "type": "registry:file",
+          "target": "app/landing/page.tsx"
         }
       ]
     },

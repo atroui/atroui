@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "logo-marquee",
   "title": "Logo Marquee",
-  "description": "Muted logo strip marquee with edge mask.",
+  "description": "CSS logo/name marquee with editable CONTENT and LOGOS. Respects reduced motion.",
   "files": [
     {
       "path": "registry/default/blocks/logo-marquee.tsx",

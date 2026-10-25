@@ -78,6 +78,7 @@ export type { Oklch, Rgb, ThemeSwatch } from "./lib/adaptive-theme"
 export {
   EMPTY_PROJECT_BRIEF,
   PROJECT_BRIEF_STORAGE_KEY,
+  briefFromPlannerEstimate,
   briefFromScopeMessage,
   briefOgSubtitle,
   briefOgTitle,

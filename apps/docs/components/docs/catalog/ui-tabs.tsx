@@ -9,6 +9,7 @@ export function UiTabsDoc() {
       registryName="tabs"
       title="Tabs"
       description="Tabs with morphing indicator — Family Values continuity signature."
+      tip="Switch tabs · watch the panel"
       preview={<DemoTabs />}
       code={`import {
   Tabs,

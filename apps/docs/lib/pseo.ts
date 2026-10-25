@@ -6,15 +6,12 @@
  * Every `path` here must exist as `apps/docs/app/.../page.tsx` on master.
  * Env names must match root `.env.example` on master.
  *
- * Do **not** add hubs or install commands for unmerged work. Parked until
- * those branches merge (see futurechecklist.md):
- * - MCP package `@atroui/mcp` (`new-implementation1`)
- * - First-party CLI `@atroui/cli` (`ni2`)
- * - Extra AI vendors (OpenAI / Anthropic) behind Host APIs
- * - Meta registry item `@atroui/launch-workflow` (the *guide* is live;
- *   the bundled registry item is not)
+ * Do **not** add hubs for unmerged work on master. On `feat/atro-room`:
+ * CLI + MCP are extracted and documented; publish/merge still gated.
+ * Still parked: Extra AI vendors (OpenAI / Anthropic) behind Host APIs.
  *
- * When those ship on master, add overlays/hubs here — not before.
+ * Shipped on this branch story: `@atroui/launch-workflow` + live `/launch`,
+ * `@atroui/cli`, `@atroui/mcp` (docs + package; npm when released).
  */
 
 export type PseoFaq = { q: string; a: string }
@@ -177,11 +174,11 @@ export const pseoPages: Record<string, PseoPage> = {
   },
   "/docs/installation": {
     path: "/docs/installation",
-    title: "Install AtroUI with the shadcn CLI",
+    title: "Install AtroUI (shadcn or @atroui/cli)",
     description:
-      "npx shadcn add @atroui/… copies source into your repo (Tailwind v4). Public @atroui — no GitHub token. Host APIs optional and BYOK.",
+      "Same registry: npx shadcn add @atroui/… or npx @atroui/cli add. Copies source into your repo (Tailwind v4). Host APIs optional and BYOK.",
     job: "Go from zero to an owned section",
-    body: "AtroUI is in the official shadcn directory. init, then add. You own the copied files. Tailwind / monorepo scanning is your project config. transpilePackages is for Host API consumers only.",
+    body: "Prefer the shadcn CLI when you use shadcn (@atroui is in the official directory). Prefer @atroui/cli when you do not. Same /r JSON either way. You own the copied files. transpilePackages is for Host API consumers only.",
     faqs: [
       {
         q: "Why is atroui an npm package at all?",
@@ -190,6 +187,10 @@ export const pseoPages: Record<string, PseoPage> = {
       {
         q: "Do I need a GitHub token to install @atroui?",
         a: "No. @atroui is on the public shadcn directory. Private GitHub registries are a different shadcn feature.",
+      },
+      {
+        q: "shadcn vs @atroui/cli — which should I use?",
+        a: "Same files from the same registry. Use shadcn if you already have components.json / the directory workflow. Use @atroui/cli if you want AtroUI without adopting the shadcn CLI.",
       },
     ],
   },
@@ -258,9 +259,11 @@ export const pseoCollections: PseoCollection[] = [
       "Scope Chat, project planner, and OG/thumbnail workspaces sharing one ProjectBrief. From idea to social card in the consumer Next.js app.",
     intro:
       "The catalog is easy to read as a grid of widgets. This collection is the product bet: one intake conversation becomes a brief, then a card — still BYOK.",
-    why: "The live catalog already has Scope, planner, OG, and `/docs/guides/launch-workflow`. There is no `@atroui/launch-workflow` meta item on master — do not tell people to install it. Traffic on this job decides if we add one later.",
+    why: "Try the live room at `/launch`, then install `@atroui/launch-workflow` for the same path in your app. Guide: `/docs/guides/launch-workflow`.",
     paths: [
+      "/launch",
       "/docs/guides/launch-workflow",
+      "/docs/components/launch-launch-workflow",
       "/docs/components/scope-scope-chat",
       "/docs/components/planner-project-planner",
       "/docs/components/og-og-workspace",
@@ -276,21 +279,37 @@ export const pseoCollections: PseoCollection[] = [
     slug: "dark-marketing",
     title: "Dark marketing sections for Next.js",
     description:
-      "Hero, header, footer, FAQ, and pricing blocks from the AtroUI shadcn registry. Dark-first, CONTENT at the top of each file.",
+      "Hero → features/bento → logos → stats → testimonials → pricing → FAQ → CTA → auth. Soft-rect AtroUI registry blocks with CONTENT at the top of each file.",
     intro:
-      "shadcn primitives do not assemble a homepage. These blocks are the sections people actually ship — owned files, not a themed iframe.",
-    why: "No fake logo cloud on atroui.com. The same blocks are in the registry for consumers who want a logo row on their site.",
+      "shadcn primitives do not assemble a homepage. These blocks are the Vibrant-shaped landing map — owned files, Atro taste, not a themed iframe.",
+    why: "Try the live page at `/landing`, then install `@atroui/landing-kit`. Or à la carte: home-hero, feature-bento, logo-marquee, stats-band, testimonials-stack, pricing-tiers, faq, cta-band. One-file alternative: `@atroui/saas-starter`.",
     paths: [
+      "/landing",
+      "/docs/components/landing-landing-kit",
       "/docs/components/home-hero",
+      "/docs/components/feature-grid",
+      "/docs/components/feature-bento",
+      "/docs/components/logo-cloud",
+      "/docs/components/logo-marquee",
+      "/docs/components/stats-band",
+      "/docs/components/testimonials-stack",
+      "/docs/components/pricing-overview",
+      "/docs/components/pricing-tiers",
+      "/docs/components/faq-interactive-preview",
+      "/docs/components/cta-band",
+      "/docs/components/auth-split",
+      "/docs/components/saas-starter",
       "/docs/components/site-header",
       "/docs/components/site-footer",
-      "/docs/components/faq-interactive-preview",
-      "/docs/components/pricing-overview",
     ],
     faqs: [
       {
         q: "Do these need Host APIs?",
         a: "No. Registry UI only. Add a form Host API when the page must send mail.",
+      },
+      {
+        q: "Where do I start?",
+        a: "Open /landing to try the full soft-rect stack live, then npx shadcn add @atroui/landing-kit. Use @atroui/saas-starter for a single-file composite, or add sections à la carte.",
       },
     ],
   },

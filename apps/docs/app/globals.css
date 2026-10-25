@@ -3221,19 +3221,369 @@ html:not(.dark) .atro-landing .atro-hero-canvas::after {
   );
 }
 
-.atro-landing .atro-hero-title {
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+/* —— Theme Studio / Atro room (/themes) ——
+   Signature: the frame IS the page. Mast inside. Stage leads on mobile. */
+.atro-themes {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 0.85rem 0.75rem 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .atro-themes {
+    padding: 1rem 1.25rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .atro-themes {
+    padding-inline: 1.5rem;
+  }
+}
+
+.atro-themes-frame {
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--atro-panel-radius);
+  background: var(--background);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 4%, transparent);
+}
+
+/* Live wall atelier: paint | stage / tray */
+.atro-themes-studio {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "stage"
+    "paint"
+    "tray";
+  min-height: min(40rem, 86vh);
+}
+
+.atro-themes-paint {
+  grid-area: paint;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.65rem 0.75rem 0.75rem;
+  border-block: 1px solid var(--border-subtle);
+  background: color-mix(in oklch, var(--foreground) 2.5%, transparent);
+}
+
+.atro-themes-paint-label {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.atro-themes-paint-stack {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: 0.1rem;
+  scrollbar-width: none;
+}
+
+.atro-themes-paint-stack::-webkit-scrollbar {
+  display: none;
+}
+
+.atro-themes-paint-chip {
+  position: relative;
+  flex: 1 0 auto;
+  min-width: 3.35rem;
+  height: 2.65rem;
+  padding: 0;
+  border: none;
+  border-radius: calc(var(--atro-control-radius) - 1px);
+  cursor: pointer;
+  outline: none;
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--foreground) 16%, transparent);
+  transition:
+    flex-grow 180ms ease-out,
+    min-width 180ms ease-out,
+    box-shadow 160ms ease-out,
+    transform 160ms ease-out;
+}
+
+.atro-themes-paint-chip-name {
+  position: absolute;
+  inset: auto 0.35rem 0.3rem;
+  font-family: var(--font-space-grotesk), var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: color-mix(in oklch, white 92%, transparent);
+  text-shadow: 0 1px 2px color-mix(in oklch, black 45%, transparent);
+  pointer-events: none;
+}
+
+.atro-themes-paint-chip:focus-visible {
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+
+.atro-themes-paint-chip--active {
+  flex-grow: 1.55;
+  min-width: 4.5rem;
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1.5px var(--background),
+    0 0 0 3px color-mix(in oklch, var(--foreground) 72%, transparent),
+    0 10px 22px -14px color-mix(in oklch, var(--foreground) 55%, transparent);
+}
+
+.atro-themes-stage {
+  grid-area: stage;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      95% 70% at 58% 28%,
+      color-mix(in oklch, var(--brand) 14%, transparent),
+      transparent 58%
+    ),
+    linear-gradient(
+      165deg,
+      color-mix(in oklch, var(--foreground) 3.5%, var(--background)),
+      var(--background) 55%
+    );
+}
+
+.atro-themes-film {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.55rem 1.25rem;
+  padding: 0.95rem 1rem 0.35rem;
+}
+
+.atro-themes-title {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-space-grotesk), var(--font-dm-sans), ui-sans-serif,
+    system-ui, sans-serif;
+  font-size: clamp(1.55rem, 3.4vw, 2.05rem);
   font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.atro-themes-title em {
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brand);
+}
+
+.atro-themes-reading {
+  margin: 0;
+  max-width: 100%;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: var(--muted-foreground);
+  text-align: right;
+}
+
+.atro-themes-proof {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+  max-height: min(24rem, 52vh);
+  padding: 0.65rem 0.75rem 1.1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.atro-themes-proof > * {
+  width: 100%;
+  background: color-mix(in oklch, var(--background) 88%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--foreground) 7%, transparent),
+    0 28px 56px -36px color-mix(in oklch, var(--foreground) 48%, transparent);
+}
+
+.atro-themes-tray {
+  grid-area: tray;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: color-mix(in oklch, var(--foreground) 2%, transparent);
+}
+
+.atro-themes-tray-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.atro-themes-tray-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 18rem;
+}
+
+.atro-themes .atro-themes-takeaway .atro-btn,
+.atro-themes .atro-themes-takeaway button {
+  font-size: 0.8125rem;
+}
+
+.atro-themes > aside.mt-10 {
+  margin-top: 1.35rem;
+  padding-top: 1.15rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atro-themes-paint-chip {
+    transition: none;
+  }
+
+  .atro-themes-paint-chip--active {
+    transform: none;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .atro-themes-studio {
+    grid-template-columns: 4.75rem minmax(0, 1fr) 17.25rem;
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-areas: "paint stage tray";
+    min-height: min(44rem, 84vh);
+  }
+
+  .atro-themes-paint {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+    padding: 0.85rem 0.55rem;
+    border-block: none;
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .atro-themes-paint-label {
+    text-align: center;
+    writing-mode: horizontal-tb;
+  }
+
+  .atro-themes-paint-stack {
+    flex: 1;
+    flex-direction: column;
+    gap: 0.45rem;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .atro-themes-paint-chip {
+    flex: 1 1 0;
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    min-height: 3.25rem;
+  }
+
+  .atro-themes-paint-chip--active {
+    flex-grow: 1.65;
+    min-width: 0;
+    transform: translateX(1px);
+  }
+
+  .atro-themes-paint-chip-name {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    inset: 0.45rem auto 0.45rem 0.35rem;
+    font-size: 0.6875rem;
+  }
+
+  .atro-themes-film {
+    padding: 1.15rem 1.35rem 0.5rem;
+  }
+
+  .atro-themes-proof {
+    max-height: none;
+    padding: 0.75rem 1.75rem 1.75rem;
+  }
+
+  .atro-themes-proof > * {
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  .atro-themes-tray {
+    border-left: 1px solid var(--border-subtle);
+  }
+
+  .atro-themes-tray-body {
+    flex: 1;
+    max-height: none;
+  }
+
+}
+
+@media (min-width: 1100px) {
+  .atro-themes-studio {
+    grid-template-columns: 5.25rem minmax(0, 1fr) 18rem;
+  }
+}
+
+/* Brand first: Instrument owns the signal; title steps down to sans thesis */
+.atro-landing .atro-hero-brand {
+  margin: 0;
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  font-size: clamp(3.5rem, 10vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  color: var(--foreground);
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.atro-landing .atro-hero-brand-name {
+  font-style: italic;
+}
+
+.atro-landing .atro-hero-brand-ui {
+  font-style: normal;
   letter-spacing: -0.045em;
-  line-height: 1.04;
+  margin-inline-start: 0.01em;
+}
+
+.atro-landing .atro-hero-title {
+  font-family: var(--font-space-grotesk), var(--font-dm-sans), ui-sans-serif,
+    system-ui, sans-serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.625rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
   text-wrap: balance;
+  color: color-mix(in oklch, var(--foreground) 68%, transparent);
 }
 
 .atro-landing .atro-hero-lede {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.9375rem;
+  line-height: 1.65;
   font-weight: 400;
   color: var(--landing-muted);
 }
@@ -4092,6 +4442,65 @@ html:not(.dark) .atro-landing .rw-shell {
   border-bottom: 1px solid var(--landing-border);
   background: color-mix(in oklch, var(--landing-fg) 3%, transparent);
   padding-inline-end: 0.55rem;
+}
+
+/* Room / 390 — taste holds inside the product chrome, not a sparse page section */
+.atro-landing .rw-measure {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0;
+  padding: 0.15rem;
+  border: 1px solid var(--landing-border);
+  border-radius: calc(var(--atro-control-radius) - 1px);
+  background: color-mix(in oklch, var(--landing-fg) 2%, transparent);
+}
+
+.atro-landing .rw-measure-opt {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.28rem 0.55rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--landing-muted);
+  border-radius: calc(var(--atro-control-radius) - 2px);
+  outline: none;
+}
+
+.atro-landing .rw-measure-opt:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ring);
+}
+
+.atro-landing .rw-measure-opt--active {
+  color: var(--landing-fg);
+  background: color-mix(in oklch, var(--landing-fg) 8%, transparent);
+}
+
+.atro-landing .rw-preview-stack--phone {
+  display: flex;
+  justify-content: center;
+  background: color-mix(in oklch, var(--landing-fg) 3.5%, transparent);
+}
+
+.atro-landing .rw-preview-pane--phone {
+  width: 100%;
+  max-width: 390px;
+  border-inline: 1px solid var(--landing-border);
+  background: var(--background);
+}
+
+/* Same stage height as Room — only the measure changes, not the chrome */
+.atro-landing .rw-body--phone .rw-viewport {
+  height: 16rem;
+}
+@media (min-width: 768px) {
+  .atro-landing .rw-body--phone .rw-viewport {
+    height: 20rem;
+  }
 }
 
 .atro-landing .rw-tabs {

@@ -5,17 +5,17 @@ const steps = [
   {
     n: "01",
     title: "Init your project",
-    body: "Point the shadcn CLI at your repo once. Tailwind v4 tokens and aliases are ready to go.",
+    body: "Point the shadcn CLI at your repo once. Tailwind v4 tokens and aliases are ready.",
   },
   {
     n: "02",
     title: "Add any block",
-    body: "npx shadcn add @atroui/… copies the real source — components, not a dependency you can't touch.",
+    body: "npx shadcn add @atroui/… copies TypeScript into your repo so you can review it in PRs.",
   },
   {
     n: "03",
-    title: "Own & edit",
-    body: "Edit CONTENT at the top of the file, wire Host API routes with your own keys, and ship.",
+    title: "Edit and ship",
+    body: "Change CONTENT at the top of the file. Wire Host API routes with your keys when you need forms or AI.",
   },
 ]
 
@@ -28,7 +28,7 @@ export function HowItWorks() {
             <LandingSectionHeader
               variant="product"
               title="Three commands to production"
-              lede="No registration, no private registry, no runtime you don't control."
+              lede="Official @atroui on the public shadcn directory. Source stays in your git."
             />
 
             <ol className="mt-8 space-y-7">

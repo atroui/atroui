@@ -29,6 +29,7 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { label: "Getting Started", href: "/docs" },
       { label: "Installation", href: "/docs/installation" },
+      { label: "MCP server", href: "/docs/mcp" },
       { label: "Registry", href: "/docs/registry" },
       { label: "Host APIs", href: "/docs/host-api" },
       { label: "Theming", href: "/docs/theming" },
@@ -40,7 +41,11 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     heading: "Tools",
     links: [
       ...toolApps.map((tool) => ({ label: tool.title, href: tool.href })),
-      { label: "Launch workflow", href: "/docs/guides/launch-workflow" },
+      {
+        label: "Landing kit docs",
+        href: "/docs/components/landing-landing-kit",
+      },
+      { label: "Launch guide", href: "/docs/guides/launch-workflow" },
       { label: "Collections", href: "/docs/collections" },
     ],
   },

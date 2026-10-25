@@ -21,6 +21,31 @@ export function LaunchWorkflowGuide() {
       />
 
       <section className="space-y-4">
+        <h2 className="docs-section-title" id="try-live">
+          Try live
+        </h2>
+        <p className="leading-relaxed">
+          Run the whole path in one room — Scope → Planner → Social — with a
+          shared brief. Preview without keys.
+        </p>
+        <Link href="/launch" className="atro-btn">
+          Open Launch room
+        </Link>
+        <CodeBlock
+          language="bash"
+          code={`npx shadcn@latest add @atroui/launch-workflow`}
+        />
+        <p className="text-[13px] text-muted-foreground">
+          Meta install pulls Scope, Planner, OG workspace, brief helpers, Host
+          API stubs, and{" "}
+          <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px] text-foreground">
+            app/launch/page.tsx
+          </code>
+          .
+        </p>
+      </section>
+
+      <section className="space-y-4">
         <h2 className="docs-section-title" id="the-path">
           The path
         </h2>
@@ -126,22 +151,16 @@ window.location.href = buildOgHref(brief)`}
         </h2>
         <CodeBlock
           language="bash"
-          code={`# Brief helpers (always)
+          code={`# One command (room + deps)
+npx shadcn@latest add @atroui/launch-workflow
+
+# Or à la carte:
 npx shadcn@latest add @atroui/project-brief
-
-# Scope (UI + optional Host API)
-npx shadcn@latest add @atroui/scope-chat
-npx shadcn@latest add @atroui/api-scope
-
-# Planner
+npx shadcn@latest add @atroui/scope-chat @atroui/api-scope
 npx shadcn@latest add @atroui/project-planner
-
-# Social cards (UI + Host APIs when you want AI)
-npx shadcn@latest add @atroui/og-workspace
-npx shadcn@latest add @atroui/api-generate
+npx shadcn@latest add @atroui/og-workspace @atroui/api-generate
 # optional:
-npx shadcn@latest add @atroui/thumbnail-workspace
-npx shadcn@latest add @atroui/api-thumbnail`}
+npx shadcn@latest add @atroui/thumbnail-workspace @atroui/api-thumbnail`}
         />
         <p className="text-[13px] text-muted-foreground">
           Forms / AI Host APIs need{" "}
@@ -161,11 +180,11 @@ npx shadcn@latest add @atroui/api-thumbnail`}
       </section>
 
       <div className="flex flex-wrap gap-3 border-t border-border-subtle pt-6">
-        <Link href="/docs/host-api" className="atro-btn">
-          Host APIs
+        <Link href="/launch" className="atro-btn">
+          Launch room
         </Link>
-        <Link href="/docs/registry" className="atro-btn-ghost">
-          Registry
+        <Link href="/docs/host-api" className="atro-btn-ghost">
+          Host APIs
         </Link>
         <Link href="/og" className="atro-btn-ghost">
           Open /og

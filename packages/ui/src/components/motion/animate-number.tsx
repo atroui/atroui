@@ -1,15 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  animate,
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useTransform,
-} from "motion/react"
+import { useReducedMotion } from "motion/react"
 
-import { easeOutSoft, enterTween } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 
 export type AnimateNumberFormat =
@@ -42,9 +35,15 @@ function resolveFormat(
   return (n) => Math.round(n).toLocaleString(locale)
 }
 
+/** easeOutSoft-ish cubic (matches Family Values chrome settle). */
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3)
+}
+
 /**
  * Pricing / stats counter — digits tween as numbers (not split-text scramble).
- * Family Values: easeOutSoft tween, no spring overshoot; reduced motion jumps to final.
+ * Family Values: ease-out settle, no spring overshoot; reduced motion jumps to final.
+ * Uses rAF (not MotionValue children) so the digit always paints in React 19.
  */
 export function AnimateNumber({
   value,
@@ -63,35 +62,38 @@ export function AnimateNumber({
   )
 
   const start = from ?? value
-  const count = useMotionValue(start)
-  const display = useTransform(count, (latest) => {
-    return `${prefix}${formatFn(latest)}${suffix}`
-  })
-
   const label = `${prefix}${formatFn(value)}${suffix}`
+  const [text, setText] = React.useState(label)
 
   React.useEffect(() => {
-    if (reduce) {
-      count.set(value)
+    if (reduce || start === value || duration <= 0) {
+      setText(label)
       return
     }
-    const controls = animate(count, value, {
-      ...enterTween(duration, easeOutSoft),
-    })
-    return () => controls.stop()
-  }, [count, value, duration, reduce])
 
-  if (reduce) {
-    return (
-      <span className={cn("tabular-nums", className)} aria-label={label}>
-        {label}
-      </span>
-    )
-  }
+    setText(`${prefix}${formatFn(start)}${suffix}`)
+    let raf = 0
+    const t0 = performance.now()
+    const ms = duration * 1000
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - t0) / ms)
+      const latest = start + (value - start) * easeOutCubic(t)
+      setText(`${prefix}${formatFn(latest)}${suffix}`)
+      if (t < 1) {
+        raf = requestAnimationFrame(tick)
+      } else {
+        setText(label)
+      }
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [start, value, duration, reduce, label, prefix, suffix, formatFn])
 
   return (
-    <motion.span className={cn("tabular-nums", className)} aria-label={label}>
-      {display}
-    </motion.span>
+    <span className={cn("tabular-nums", className)} aria-label={label}>
+      {text}
+    </span>
   )
 }

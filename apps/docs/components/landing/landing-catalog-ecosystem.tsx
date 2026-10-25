@@ -11,17 +11,19 @@ const SECTION_HREF: Record<string, string> = {
   Motion: "/docs/components?category=Motion",
   Theme: "/docs/components?category=Theme",
   Blocks: "/docs/components?category=Blocks",
-  Tools: "/og",
+  Kits: "/docs/collections",
+  Tools: "/launch",
   Headless: "/docs/components?category=Headless",
   More: "/docs/changelog",
 }
 
 const blurbs: Record<string, string> = {
-  Primitives: "Base UI controls — buttons, forms, overlays",
+  Primitives: "Base UI controls: buttons, forms, overlays",
   Motion: "Reveal, morph, numbers, media motion",
   Theme: "Light / dark switch and providers",
   Blocks: "Marketing sections and page chrome",
-  Tools: "OG workspace & project planner — live tools",
+  Kits: "Landing kit · Launch workflow · agents",
+  Tools: "Launch Room · OG · planner: try live",
   Headless: "Analytics and structured-data helpers",
   More: "Compare, changelog, blog, updates",
 }
@@ -32,7 +34,6 @@ export function LandingCatalogEcosystem() {
     (s) =>
       s.title !== "Getting Started" &&
       s.title !== "Setup" &&
-      s.title !== "Kits" &&
       s.title !== "Reference" &&
       s.title !== "More"
   )
@@ -48,7 +49,7 @@ export function LandingCatalogEcosystem() {
           lede={
             <>
               <AnimateNumber value={total} from={0} suffix="+" /> blocks in
-              clear families — browse by intent, not folder depth.
+              clear families. Browse by intent, not folder depth.
             </>
           }
           action={
@@ -78,7 +79,15 @@ export function LandingCatalogEcosystem() {
               </span>
               <span className="atro-eco-count">
                 {section.title === "Tools" ? (
-                  "2 live"
+                  "live rooms"
+                ) : section.title === "Kits" ? (
+                  <>
+                    <AnimateNumber
+                      value={section.items.length}
+                      from={0}
+                    />{" "}
+                    kits
+                  </>
                 ) : (
                   <>
                     <AnimateNumber

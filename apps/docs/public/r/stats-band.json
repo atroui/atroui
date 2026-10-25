@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-band",
   "title": "Stats Band",
-  "description": "Tabular-nums stat band.",
+  "description": "Metric strip with editable CONTENT and STATS.",
   "files": [
     {
       "path": "registry/default/blocks/stats-band.tsx",

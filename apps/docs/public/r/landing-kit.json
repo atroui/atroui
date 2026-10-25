@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "landing-kit",
+  "title": "Landing Kit",
+  "description": "Vibrant soft-rect marketing stack in one add: header, hero, logos, bento, stats, testimonials, pricing, FAQ, CTA, footer.",
+  "dependencies": [
+    "next"
+  ],
+  "registryDependencies": [
+    "@atroui/utils",
+    "@atroui/site-header",
+    "@atroui/home-hero",
+    "@atroui/logo-marquee",
+    "@atroui/feature-bento",
+    "@atroui/stats-band",
+    "@atroui/testimonials-stack",
+    "@atroui/pricing-tiers",
+    "@atroui/faq",
+    "@atroui/cta-band",
+    "@atroui/site-footer"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/landing-page.tsx",
+      "content": "\"use client\"\n\n/**\n * Landing Page — Vibrant soft-rect stack in one frame.\n * Family Values: opinionated section order; each block stays an owned file.\n *\n * Install: npx shadcn@latest add @atroui/landing-kit\n * (or: npx @atroui/cli@latest add landing-kit)\n */\n\nimport { SiteHeader } from \"./site-header\"\nimport { HomeHero } from \"./home-hero\"\nimport { LogoMarquee } from \"./logo-marquee\"\nimport { FeatureBento } from \"./feature-bento\"\nimport { StatsBand } from \"./stats-band\"\nimport { TestimonialsStack } from \"./testimonials-stack\"\nimport { PricingTiers } from \"./pricing-tiers\"\nimport { Faq } from \"./faq\"\nimport { CtaBand } from \"./cta-band\"\nimport { SiteFooter } from \"./site-footer\"\n\nexport function LandingPage() {\n  return (\n    <div className=\"min-h-svh bg-background text-foreground\">\n      <SiteHeader />\n      <HomeHero />\n      <LogoMarquee />\n      <FeatureBento />\n      <StatsBand />\n      <TestimonialsStack />\n      <PricingTiers />\n      <Faq />\n      <CtaBand />\n      <SiteFooter />\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/landing-page.tsx"
+    },
+    {
+      "path": "registry/default/app/landing/page.tsx",
+      "content": "import { LandingPage } from \"@/components/blocks/landing-page\"\n\n/**\n * Consumer landing path — dropped by @atroui/landing-kit.\n * Edit CONTENT in each section file after install.\n */\nexport default function LandingRoutePage() {\n  return <LandingPage />\n}\n",
+      "type": "registry:file",
+      "target": "app/landing/page.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

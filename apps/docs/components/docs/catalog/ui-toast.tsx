@@ -8,6 +8,7 @@ export function UiToastDoc() {
       registryName="toast"
       title="Toast"
       description="Edge toast stack with opacity+y enter/exit on Base UI Toast."
+      tip="Fire a toast · watch the stack"
       preview={<DemoToast />}
       code={`import {
   ToastProvider,

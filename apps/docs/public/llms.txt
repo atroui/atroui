@@ -1,17 +1,25 @@
 # AtroUI Docs
 
 > Dark-first React / Next.js catalog on the official shadcn registry. MIT. You own the copied files.
-> Install: `npx shadcn@latest add @atroui/home-hero` (any `@atroui/…` item)
+> Install (shadcn): `npx shadcn@latest add @atroui/home-hero`
+> Install (no shadcn): `npx @atroui/cli@latest add home-hero` — same `/r` registry
 > Public namespace `@atroui` — https://ui.shadcn.com/r/registries.json — no GitHub token.
 > Tailwind CSS v4. Optional Host APIs (`npm i atroui` + BYOK). Site: https://www.atroui.com
 > Full catalog dump: https://www.atroui.com/llms-full.txt
 > Registry JSON: https://www.atroui.com/r/registry.json
 > Repo: https://github.com/atroui/atroui
 
+## Agents
+
+- Paste prompt + rules: https://www.atroui.com/docs/guides/for-agents
+- Full catalog dump: https://www.atroui.com/llms-full.txt
+- Never import UI from npm `atroui` — registry CLI only.
+
 ## Getting Started
 
 - [Getting Started](https://www.atroui.com/docs): First-hour Quick Start — init, add a block, essential commands.
-- [Installation](https://www.atroui.com/docs/installation): Prerequisites, init, add, what lands in the repo, troubleshooting.
+- [Installation](https://www.atroui.com/docs/installation): shadcn path + `@atroui/cli`, what lands in the repo, troubleshooting.
+- [MCP server](https://www.atroui.com/docs/mcp): Agents search the catalog; returns shadcn + `@atroui/cli` install commands.
 - [Coming from…](https://www.atroui.com/docs/migrate): Task paths from plain shadcn/ui, npm atroui, or copy-paste kits.
 - [Collections](https://www.atroui.com/docs/collections): Job hubs — forms, OG, launch — instead of browsing every block.
 
@@ -26,6 +34,8 @@
 - [Brand kit](https://www.atroui.com/docs/brand): Logo mark, wordmark, and brand voice assets.
 - [Identity kit](https://www.atroui.com/docs/identity): Site name, SEO, and identity config.
 - [Launch workflow](https://www.atroui.com/docs/guides/launch-workflow): Scope a build through OG social cards.
+- [Launch room](https://www.atroui.com/launch): Live Scope → Planner → Social (`npx shadcn add @atroui/launch-workflow`).
+- [For agents](https://www.atroui.com/docs/guides/for-agents): Paste prompt + hard install rules for Cursor / Claude / Codex.
 
 ## Reference
 
@@ -45,11 +55,23 @@
 
 ### Blocks (highlights)
 - @atroui/home-hero, @atroui/site-header, @atroui/site-footer, @atroui/faq
-- @atroui/pricing-overview, @atroui/contact-form, @atroui/waitlist-form
+- @atroui/feature-grid, @atroui/feature-bento, @atroui/logo-cloud, @atroui/logo-marquee
+- @atroui/stats-band, @atroui/testimonials-stack, @atroui/cta-band
+- @atroui/pricing-overview, @atroui/pricing-tiers, @atroui/auth-split, @atroui/saas-starter
+- @atroui/contact-form, @atroui/waitlist-form
 - @atroui/og-workspace, @atroui/thumbnail-workspace, @atroui/scope-chat, @atroui/project-planner
+- @atroui/launch-workflow — Scope → Planner → OG room + `app/launch/page.tsx`
+- @atroui/landing-kit — full soft-rect marketing stack + `app/landing/page.tsx`
+
+### Landing map (Vibrant-shaped)
+- Meta: `npx shadcn add @atroui/landing-kit` · live https://www.atroui.com/landing
+- Collection: https://www.atroui.com/docs/collections/dark-marketing
+- Order: header → hero → logos → bento → stats → testimonials → pricing → FAQ → CTA → footer
 
 ## Tools (live rooms)
 
+- [Landing kit](https://www.atroui.com/landing): Vibrant soft-rect marketing stack.
+- [Launch room](https://www.atroui.com/launch): Scope → Planner → Social in one path.
 - [OG workspace](https://www.atroui.com/og): Generate social cards in the browser.
 - [Project planner](https://www.atroui.com/planner): Scope a build, hand off to OG.
 
@@ -62,7 +84,7 @@
 
 ## Wow primitives
 
-- Install pattern: `npx shadcn add @atroui/<name>` (e.g. `npx shadcn add @atroui/marquee`).
+- Install pattern: `npx shadcn add @atroui/<name>` or `npx @atroui/cli add <name>` (same registry).
 - [@atroui/marquee](https://www.atroui.com/docs/components): `<Marquee><LogoRow /></Marquee>` — infinite logo/testimonial strip.
 - [@atroui/border-beam](https://www.atroui.com/docs/components): `<BorderBeam />` inside a relative card — brand light travelling the edge.
 - [@atroui/magic-card](https://www.atroui.com/docs/components): `<MagicCard>` — cursor spotlight + brand border glow on panels.
@@ -73,4 +95,6 @@
 - [@atroui/orbiting-circles](https://www.atroui.com/docs/components): `<OrbitingCircles><Icon /></OrbitingCircles>` — icons orbiting a center node.
 - [@atroui/number-ticker](https://www.atroui.com/docs/components): `<NumberTicker value={4800} prefix="$" />` — count-up on inView.
 - [@atroui/aurora-text](https://www.atroui.com/docs/components): `<AuroraText>Ship in days</AuroraText>` — slow brand gradient sweep on display words.
+- Kit: `npx shadcn add @atroui/landing-kit` — `<LandingPage />` composes owned section files (header → footer). Live: https://www.atroui.com/landing
 - Starter: `npx shadcn add @atroui/saas-starter` — `<SaasStarter />` announcement + hero + logos + features + stats + pricing teaser + CTA + footer note in one file.
+- Optional heroes (not in landing-kit): `@atroui/hero-lamp`, `@atroui/hero-parallax`.

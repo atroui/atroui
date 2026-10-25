@@ -4,10 +4,14 @@ import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { buildOgHref, type ProjectBrief } from "@/lib/project-brief";
+import {
+  briefFromPlannerEstimate,
+  buildOgHref,
+  type ProjectBrief,
+} from "@/lib/project-brief";
 import { AnimateNumber } from "../ui/animate-number";
 
 /** Tween the leading amount; keep range / plus suffix static. */
@@ -180,7 +184,12 @@ function ChoiceButton({
   );
 }
 
-export function ProjectPlanner() {
+export function ProjectPlanner({
+  onBriefChange,
+}: {
+  /** Fires when the estimate step is ready — Launch Room / host glue. */
+  onBriefChange?: (brief: ProjectBrief) => void;
+} = {}) {
   const router = useRouter();
   const reduce = useReducedMotion();
   const [step, setStep] = useState(0);
@@ -199,6 +208,21 @@ export function ProjectPlanner() {
     () => (step === 5 ? estimateProject(state) : null),
     [step, state],
   );
+
+  const estimateBrief = useMemo(() => {
+    if (!estimate) return null;
+    return briefFromPlannerEstimate({
+      service: estimate.service,
+      summary: estimate.summary,
+      features: state.features,
+      timeline: estimate.timeline,
+      priceRange: estimate.priceRange,
+    });
+  }, [estimate, state.features]);
+
+  useEffect(() => {
+    if (estimateBrief) onBriefChange?.(estimateBrief);
+  }, [estimateBrief, onBriefChange]);
 
   const progress = ((step + 1) / STEPS.length) * 100;
 
@@ -558,19 +582,16 @@ export function ProjectPlanner() {
                   <ArrowRight className="size-4" aria-hidden />
                 </button>
                 <Link
-                  href={buildOgHref({
-                    name: estimate.service,
-                    oneLiner: estimate.summary,
-                    audience: "",
-                    pages: state.features,
-                    tone: "",
-                    constraints: [
-                      estimate.timeline,
-                      estimate.priceRange,
-                    ].filter(Boolean),
-                    ogTitle: estimate.service,
-                    ogSubtitle: estimate.summary,
-                  } satisfies ProjectBrief)}
+                  href={buildOgHref(
+                    estimateBrief ??
+                      briefFromPlannerEstimate({
+                        service: estimate.service,
+                        summary: estimate.summary,
+                        features: state.features,
+                        timeline: estimate.timeline,
+                        priceRange: estimate.priceRange,
+                      }),
+                  )}
                   className="atro-btn-ghost"
                 >
                   Preview social card

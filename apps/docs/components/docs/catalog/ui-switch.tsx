@@ -9,6 +9,7 @@ export function UiSwitchDoc() {
       registryName="switch"
       title="Switch"
       description="Soft-rect switch — layout thumb + flex justify flip (Motion.dev Base UI)."
+      tip="Toggle · read the state"
       preview={<DemoSwitch />}
       code={`import { Switch } from "@/components/ui/switch"
 

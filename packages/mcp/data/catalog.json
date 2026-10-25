@@ -1,0 +1,761 @@
+{
+  "generatedFrom": "apps/docs/registry.json",
+  "items": [
+    {
+      "name": "utils",
+      "title": "Utils",
+      "description": "cn() helper (clsx + tailwind-merge).",
+      "type": "registry:lib"
+    },
+    {
+      "name": "motion",
+      "title": "Motion",
+      "description": "Shared motion tokens — hover language, presence helpers, timeline reveal (Family Values easings, no springs/blur).",
+      "type": "registry:lib"
+    },
+    {
+      "name": "brand",
+      "title": "Brand",
+      "description": "getBrand() and DEFAULT_BRAND - edit or override with NEXT_PUBLIC_SITE_*.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "project-brief",
+      "title": "Project Brief",
+      "description": "Shared ProjectBrief type + OG/thumbnail href helpers for Scope → Planner → social card glue.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Soft-rect AtroUI button — hover lift ≤1px, press into surface, focus parity.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "theme-toggle",
+      "title": "Theme Toggle",
+      "description": "Light / system / dark toggle using next-themes.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "adaptive-theme",
+      "title": "Adaptive Theme",
+      "description": "Contrast helpers that lift muted type to WCAG AA against the canvas.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "theme-adapt",
+      "title": "Adaptive Theme Switch",
+      "description": "Light/dark switch that keeps brand canvases and lifts type that would vanish in the other mode.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "description": "Elevated surface with header, content, and footer slots.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "description": "Soft-rect multi-line control aligned to Atro input tokens.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "description": "Soft-rect checkbox with Motion check path draw on Base UI.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "checkbox-group",
+      "title": "Checkbox Group",
+      "description": "Soft-rect checkbox group — compose with Checkbox (value / parent).",
+      "type": "registry:ui"
+    },
+    {
+      "name": "radio",
+      "title": "Radio",
+      "description": "Radio group with Motion fill-scale indicator on Base UI.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "description": "Disclosure with height:auto, chevron rotate, and optional focus morph.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "collapsible",
+      "title": "Collapsible",
+      "description": "Single disclosure with height:auto settle and chevron rotate.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "combobox",
+      "title": "Combobox",
+      "description": "Filterable select on Base UI with Mira soft-rect, popup settle, and list stagger ≤40ms.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "autocomplete",
+      "title": "Autocomplete",
+      "description": "Suggest-as-you-type with popup settle, layoutId highlight, and list stagger ≤40ms.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "description": "Edge panel with panelTween slide, backdrop fade, and portal presence.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "form-select",
+      "title": "Form Select",
+      "description": "Soft-rect select on Base UI with caret rotate, popup settle, and list stagger ≤40ms.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "dialog",
+      "title": "Dialog",
+      "description": "Modal dialog on Base UI with Mira surfaces and short settle motion.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "alert-dialog",
+      "title": "Alert Dialog",
+      "description": "Confirm destructive or irreversible actions with Base UI Alert Dialog.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "menu",
+      "title": "Menu",
+      "description": "Dropdown menu on Base UI with soft-rect items and settle motion.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "context-menu",
+      "title": "Context Menu",
+      "description": "Pointer context menu on Base UI with menu settle and row stagger.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "navigation-menu",
+      "title": "Navigation Menu",
+      "description": "Site nav panels with peer crossfade and soft-rect Mira popup.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "menubar",
+      "title": "Menubar",
+      "description": "Focus-roving menubar shell with Menu grammar and Motion popups.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "description": "Anchored popover surface for progressive disclosure.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "Fast tooltip with micro appear motion and reduced-motion respect.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "preview-card",
+      "title": "Preview Card",
+      "description": "Hover/focus link preview — soft popover settle; opt-in tilt / magnetic / spotlight for media.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "scroll-area",
+      "title": "Scroll Area",
+      "description": "Bounded scroll region with soft-rect thumb that fades when idle.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "separator",
+      "title": "Separator",
+      "description": "Soft-rect hairline divider — static, no decorative motion.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "field",
+      "title": "Field",
+      "description": "Quiet Field spine — label, description, Motion error reveal, control.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "description": "Single-line input aligned to Atro control height and soft-rect.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "number-field",
+      "title": "Number Field",
+      "description": "Soft-rect stepper number field with careful scrub feedback on Base UI.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "otp-field",
+      "title": "OTP Field",
+      "description": "Soft-rect OTP digit slots with whileFocus settle (~160ms easeOutExpo) on Base UI.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "form",
+      "title": "Form",
+      "description": "Base UI form validation orchestration — pair with Field.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "fieldset",
+      "title": "Fieldset",
+      "description": "Legend + soft-rect group chrome for related controls.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "description": "Soft-rect switch — layout thumb + flex justify flip (Motion.dev Base UI).",
+      "type": "registry:ui"
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "description": "Edge toast stack on Base UI with opacity+y enter/exit and careful CSS-var stacking.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "progress",
+      "title": "Progress",
+      "description": "Task progress bar with soft-rect fill width tween on Base UI Progress.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "slider",
+      "title": "Slider",
+      "description": "Range slider with thumb press micro-motion; track fill stays 1:1 while dragging.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "meter",
+      "title": "Meter",
+      "description": "Read-only meter gauge with soft-rect value fill tween on Base UI Meter.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "Soft-rect avatar with image fade-in and fallback crossfade on Base UI Avatar.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "description": "Tabs with layoutId pill morph + panel layout height (Motion.dev layout).",
+      "type": "registry:ui"
+    },
+    {
+      "name": "toggle",
+      "title": "Toggle",
+      "description": "Soft-rect two-state button with pressed fill morph on Base UI.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "toggle-group",
+      "title": "Toggle Group",
+      "description": "Toggle peers with layoutId highlight morph — Motion.dev Base UI pattern.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "toolbar",
+      "title": "Toolbar",
+      "description": "Dense soft-rect toolbar chrome with Motion press feedback.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "breadcrumbs",
+      "title": "Breadcrumbs",
+      "description": "Path navigation trail for docs and product pages.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "prose",
+      "title": "Prose",
+      "description": "Long-form typography container for articles and MDX.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "fade-in",
+      "title": "Fade In",
+      "description": "The scroll reveal — opacity + rise. One primitive; use fadeInSection for landing triggers.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "stagger",
+      "title": "Stagger",
+      "description": "Stagger children on scroll with StaggerChild (clamped ≤50ms).",
+      "type": "registry:ui"
+    },
+    {
+      "name": "scroll-progress",
+      "title": "Scroll Progress",
+      "description": "Reading-progress bar driven by scroll position.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "logo",
+      "title": "Logo",
+      "description": "Interrupted-A mark and wordmark. Edit the SVG in your repo.",
+      "type": "registry:component"
+    },
+    {
+      "name": "home-hero",
+      "title": "Home Hero",
+      "description": "Docs-matching homepage hero with editable CONTENT (stamp, CTAs, sprint, OG preview panel).",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-who",
+      "title": "Home Who",
+      "description": "Founder / who band with editable CONTENT constants.",
+      "type": "registry:block"
+    },
+    {
+      "name": "site-header",
+      "title": "Site Header",
+      "description": "Sticky site header with editable NAV and CTA.",
+      "type": "registry:block"
+    },
+    {
+      "name": "footer-bold",
+      "title": "Bold Footer",
+      "description": "Bold footer with editable headline, studio links, and socials.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-principle",
+      "title": "Home Principle",
+      "description": "How-we-work principles band with editable CONTENT and PRINCIPLES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-work",
+      "title": "Home Work",
+      "description": "Selected work band with editable PROJECTS list.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-lab",
+      "title": "Home Lab",
+      "description": "Free tools / lab band with editable TOOLS catalog.",
+      "type": "registry:block"
+    },
+    {
+      "name": "home-crafts",
+      "title": "Home Crafts",
+      "description": "Capabilities / crafts band with editable CONTENT and CRAFTS (distinct from pricing).",
+      "type": "registry:block"
+    },
+    {
+      "name": "pricing-overview",
+      "title": "Pricing Overview",
+      "description": "Fixed-package pricing band with editable CONTENT and PACKAGES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "feature-grid",
+      "title": "Feature Grid",
+      "description": "Product feature grid with editable CONTENT and FEATURES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "logo-cloud",
+      "title": "Logo Cloud",
+      "description": "Partner / client name strip with editable CONTENT and NAMES.",
+      "type": "registry:block"
+    },
+    {
+      "name": "feature-bento",
+      "title": "Feature Bento",
+      "description": "Bento feature grid with editable CONTENT and FEATURES. Soft-rect panels.",
+      "type": "registry:block"
+    },
+    {
+      "name": "testimonials-stack",
+      "title": "Testimonials Stack",
+      "description": "Layered testimonial cards with prev/next. Editable CONTENT and TESTIMONIALS.",
+      "type": "registry:block"
+    },
+    {
+      "name": "stats-band",
+      "title": "Stats Band",
+      "description": "Metric strip with editable CONTENT and STATS.",
+      "type": "registry:block"
+    },
+    {
+      "name": "cta-band",
+      "title": "CTA Band",
+      "description": "Headline + primary/ghost CTAs over a quiet brand wash. Editable CONTENT.",
+      "type": "registry:block"
+    },
+    {
+      "name": "pricing-tiers",
+      "title": "Pricing Tiers",
+      "description": "Toggleable pricing tiers with editable CONTENT and TIERS.",
+      "type": "registry:block"
+    },
+    {
+      "name": "logo-marquee",
+      "title": "Logo Marquee",
+      "description": "CSS logo/name marquee with editable CONTENT and LOGOS. Respects reduced motion.",
+      "type": "registry:block"
+    },
+    {
+      "name": "auth-split",
+      "title": "Auth Split",
+      "description": "Split login/signup shell with editable CONTENT. No auth backend.",
+      "type": "registry:block"
+    },
+    {
+      "name": "saas-starter",
+      "title": "SaaS Starter",
+      "description": "One-file SaaS landing composition. Editable CONTENT — compose sections after install.",
+      "type": "registry:block"
+    },
+    {
+      "name": "contextual-cta",
+      "title": "Contextual CTA",
+      "description": "Sticky scroll CTA with editable CONTENT (no analytics wiring).",
+      "type": "registry:block"
+    },
+    {
+      "name": "exit-intent-popup",
+      "title": "Exit Intent Popup",
+      "description": "Exit-intent dialog with editable CONTENT and storage keys.",
+      "type": "registry:block"
+    },
+    {
+      "name": "site-footer",
+      "title": "Site Footer",
+      "description": "Lighter footer with editable CONTENT and link columns.",
+      "type": "registry:block"
+    },
+    {
+      "name": "faq",
+      "title": "FAQ",
+      "description": "Accordion FAQ with editable CONTENT and ITEMS.",
+      "type": "registry:block"
+    },
+    {
+      "name": "waitlist-form",
+      "title": "Waitlist Form",
+      "description": "Email waitlist form with editable CONTENT; posts to your API.",
+      "type": "registry:block"
+    },
+    {
+      "name": "newsletter-form",
+      "title": "Newsletter Form",
+      "description": "Email newsletter form with editable CONTENT; posts to your API.",
+      "type": "registry:block"
+    },
+    {
+      "name": "calendly-embed",
+      "title": "Calendly Embed",
+      "description": "Theme-aware Calendly iframe with editable CONTENT and email fallback.",
+      "type": "registry:block"
+    },
+    {
+      "name": "made-with-embed",
+      "title": "Made With Embed",
+      "description": "Credit badge + copyable HTML snippet with editable CONTENT.",
+      "type": "registry:block"
+    },
+    {
+      "name": "theme-provider",
+      "title": "Theme Provider",
+      "description": "next-themes wrapper for class-based dark mode.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "timeline-animation",
+      "title": "Timeline Animation",
+      "description": "Sequential in-view reveal for heroes — opacity + y only (no blur).",
+      "type": "registry:ui"
+    },
+    {
+      "name": "in-view",
+      "title": "In View",
+      "description": "Deprecated alias of Fade In with landing defaults. Prefer @atroui/fade-in.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "text-morph",
+      "title": "Text Morph",
+      "description": "Shared-letter morph between label strings. Opt-in for state swaps.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "copy-button",
+      "title": "Copy Button",
+      "description": "Copy → check Button recipe with TextMorph + icon swap. Rare-path delight — not default on every Button.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "label-roll",
+      "title": "Label Roll",
+      "description": "Letter-staggered label swap on hover/focus for links and secondary CTAs.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "line-reveal",
+      "title": "Line Reveal",
+      "description": "Word/line stagger enter — opacity + y + clip. Marketing default.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "word-reveal-scroll",
+      "title": "Word Reveal Scroll",
+      "description": "Progress-driven word opacity via scroll — opacity only, no blur. Pull lines.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "magnetic",
+      "title": "Magnetic",
+      "description": "Mild pointer pull for media cards — intensity ≤0.35, range ≤80px. Never chrome.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "tilt",
+      "title": "Tilt",
+      "description": "Mild 3D media tilt toward the pointer — rotationFactor ≤6–8°. Opt-in only.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "spotlight",
+      "title": "Spotlight",
+      "description": "Low-opacity cursor wash for dark Mira media cards. Reduced motion skips.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "animate-number",
+      "title": "Animate Number",
+      "description": "Pricing/stats counter — digits tween as numbers with easeOutSoft. Reduced motion jumps to final.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "transition-panel",
+      "title": "Transition Panel",
+      "description": "Wait-mode content swaps for feature tabs and docs panels — opacity + small y.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "founder-avatar",
+      "title": "Founder Avatar",
+      "description": "Circular founder portrait with editable CONTENT src.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "site-url",
+      "title": "Site URL",
+      "description": "getSiteUrl() for metadata and JSON-LD.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "seo",
+      "title": "SEO helpers",
+      "description": "getSiteDomain() helper for structured data.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "analytics",
+      "title": "Analytics",
+      "description": "trackEvent and experiment helpers.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "social-share",
+      "title": "Social Share",
+      "description": "X / LinkedIn / copy-link share bar.",
+      "type": "registry:block"
+    },
+    {
+      "name": "ar-portfolio",
+      "title": "AR Portfolio",
+      "description": "model-viewer AR portfolio with editable CONTENT models.",
+      "type": "registry:block"
+    },
+    {
+      "name": "live-dashboard",
+      "title": "Live Dashboard",
+      "description": "Studio status board with editable CONTENT projects.",
+      "type": "registry:block"
+    },
+    {
+      "name": "project-planner",
+      "title": "Project Planner",
+      "description": "Multi-step project scoping planner UI.",
+      "type": "registry:block"
+    },
+    {
+      "name": "analytics-provider",
+      "title": "Analytics Provider",
+      "description": "Plausible / GA loader with trackEvent helpers.",
+      "type": "registry:block"
+    },
+    {
+      "name": "og-live-preview",
+      "title": "OG Live Preview",
+      "description": "CSS OG card preview with editable CONTENT presets.",
+      "type": "registry:block"
+    },
+    {
+      "name": "og-examples",
+      "title": "OG Examples",
+      "description": "OG style gallery with editable CONTENT examples.",
+      "type": "registry:block"
+    },
+    {
+      "name": "og-workspace",
+      "title": "OG Workspace",
+      "description": "OG generator UI shell. Wire CONTENT.endpoint (Host API).",
+      "type": "registry:block"
+    },
+    {
+      "name": "thumbnail-live-preview",
+      "title": "Thumbnail Preview",
+      "description": "CSS thumbnail preview with editable CONTENT.",
+      "type": "registry:block"
+    },
+    {
+      "name": "thumbnail-workspace",
+      "title": "Thumbnail Workspace",
+      "description": "Thumbnail generator UI shell. Wire CONTENT.endpoint (Host API).",
+      "type": "registry:block"
+    },
+    {
+      "name": "scope-chat",
+      "title": "Scope Chat",
+      "description": "AI scoping chat UI. Wire CONTENT.endpoint (Host API).",
+      "type": "registry:block"
+    },
+    {
+      "name": "launch-workflow",
+      "title": "Launch Workflow",
+      "description": "Scope → Planner → OG in one room. Shared ProjectBrief. Preview without keys; AI Host APIs are BYOK.",
+      "type": "registry:block"
+    },
+    {
+      "name": "landing-kit",
+      "title": "Landing Kit",
+      "description": "Vibrant soft-rect marketing stack in one add: header, hero, logos, bento, stats, testimonials, pricing, FAQ, CTA, footer.",
+      "type": "registry:block"
+    },
+    {
+      "name": "journal-content",
+      "title": "Journal",
+      "description": "Blog index layout with editable CONTENT posts.",
+      "type": "registry:block"
+    },
+    {
+      "name": "resources-content",
+      "title": "Resources",
+      "description": "Resource library layout with editable CONTENT items.",
+      "type": "registry:block"
+    },
+    {
+      "name": "api-contact",
+      "title": "Contact API",
+      "description": "POST /api/contact - honeypot, rate limit, SMTP via atroui/api/contact.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-waitlist",
+      "title": "Waitlist API",
+      "description": "POST /api/waitlist - Resend audience or SMTP via atroui/api/waitlist.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-newsletter",
+      "title": "Newsletter API",
+      "description": "POST /api/newsletter - Resend audience or SMTP via atroui/api/newsletter.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-generate",
+      "title": "OG Generate API",
+      "description": "POST /api/generate - consumer HF/Google keys via atroui/api/generate. No keys shipped.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-thumbnail",
+      "title": "Thumbnail API",
+      "description": "POST /api/thumbnail - consumer HF/Google/XAI keys via atroui/api/thumbnail. No keys shipped.",
+      "type": "registry:item"
+    },
+    {
+      "name": "api-scope",
+      "title": "Scope Chat API",
+      "description": "POST /api/scope - rule-based by default; optional XAI_API_KEY via atroui/api/scope.",
+      "type": "registry:item"
+    },
+    {
+      "name": "ascii-rig",
+      "title": "ASCII Rig",
+      "description": "Shared ASCII kit — luminance ramps, offscreen/reduced-motion aware tick loop, canvas character-cell metrics.",
+      "type": "registry:lib"
+    },
+    {
+      "name": "ascii-donut",
+      "title": "ASCII Donut",
+      "description": "The spinning torus — 3D points z-buffered per character cell, shaded by luminance ramp.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "ascii-rain",
+      "title": "ASCII Rain",
+      "description": "Falling streams of glyphs whose color fades along each tail.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "ascii-wave",
+      "title": "ASCII Wave",
+      "description": "Function field f(x,y,t) mapped through a luminance ramp — one text node per frame.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "ascii-spark",
+      "title": "ASCII Spark",
+      "description": "Block-element bars (░–█); a copyable plain-text sparkline.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "ascii-bar",
+      "title": "ASCII Bar",
+      "description": "Pseudo-graphics progress (▰▱) filling in plottable steps.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "ascii-boot",
+      "title": "ASCII Boot",
+      "description": "VT100-style init log typed character by character, cursor pulsing.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "ascii-wordmark",
+      "title": "ASCII Wordmark",
+      "description": "FIGlet-style big text from a built-in 3×5 pixel font.",
+      "type": "registry:ui"
+    },
+    {
+      "name": "ascii-decode",
+      "title": "ASCII Decode",
+      "description": "Cipher glyphs locking into the message left to right.",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -41,6 +41,11 @@ export const navigation: NavSection[] = [
         description: "Init, add, troubleshoot",
       },
       {
+        title: "MCP server",
+        href: "/docs/mcp",
+        description: "Agents · dual install commands",
+      },
+      {
         title: "Coming from…",
         href: "/docs/migrate",
         description: "shadcn, npm atroui, kits",
@@ -78,10 +83,20 @@ export const navigation: NavSection[] = [
         description: "Brand & SEO config",
       },
       {
+        title: "Landing kit",
+        href: "/docs/components/landing-landing-kit",
+        description: "Full page · try /landing",
+      },
+      {
         title: "Launch workflow",
         href: "/docs/guides/launch-workflow",
-        description: "Scope → OG",
-      }
+        description: "Scope → OG · try /launch",
+      },
+      {
+        title: "For agents",
+        href: "/docs/guides/for-agents",
+        description: "Paste prompt + install rules",
+      },
     ],
   },
   {
@@ -758,6 +773,12 @@ export const navigation: NavSection[] = [
         href: "/docs/components/saas-starter",
         description: "Starter landing",
         badge: "registry",
+      },
+      {
+        title: "Landing Kit",
+        href: "/docs/components/landing-landing-kit",
+        description: "Full Vibrant soft-rect stack",
+        badge: "registry",
       }
     ],
   },
@@ -808,6 +829,12 @@ export const navigation: NavSection[] = [
         badge: "host-api",
       },
       {
+        title: "Launch Workflow",
+        href: "/docs/components/launch-launch-workflow",
+        description: "Scope → Planner → OG room",
+        badge: "registry",
+      },
+      {
         title: "Live Dashboard",
         href: "/docs/components/studio-live-dashboard",
         description: "Studio status board",
@@ -847,6 +874,16 @@ export const catalogNavItems = catalogSections.flatMap(
  */
 export const toolApps: { title: string; href: string; description: string }[] =
   [
+    {
+      title: "Landing kit",
+      href: "/landing",
+      description: "Vibrant soft-rect marketing stack",
+    },
+    {
+      title: "Launch room",
+      href: "/launch",
+      description: "Scope → Planner → OG in one path",
+    },
     {
       title: "OG workspace",
       href: "/og",

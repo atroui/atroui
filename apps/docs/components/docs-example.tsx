@@ -26,6 +26,11 @@ type DocsExampleProps = {
    * Live theme companions follow the site Themes tray — one source of truth.
    */
   installCommand?: string | React.ReactNode
+  /**
+   * Flagship poke hint inside the preview stage (TRY · …).
+   * Careful delight — only on demos that invite a finger.
+   */
+  tip?: string
 }
 
 /**
@@ -40,6 +45,7 @@ export function DocsExample({
   fullBleed,
   unclip,
   installCommand,
+  tip,
 }: DocsExampleProps) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
   const [replayKey, setReplayKey] = React.useState(0)
@@ -137,6 +143,7 @@ export function DocsExample({
           data-toc-skip
           className={cn(
             "docs-example-stage relative",
+            tip && "pt-8",
             fullBleed
               ? unclip
                 ? "overflow-visible"
@@ -144,6 +151,14 @@ export function DocsExample({
               : "atro-preview-canvas"
           )}
         >
+          {tip ? (
+            <p
+              className="pointer-events-none absolute top-2.5 left-3 z-10 max-w-[calc(100%-1.5rem)] truncate font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase"
+              aria-hidden
+            >
+              Try · {tip}
+            </p>
+          ) : null}
           <ResizablePreview key={replayKey} bleed={Boolean(fullBleed)}>
             {preview}
           </ResizablePreview>

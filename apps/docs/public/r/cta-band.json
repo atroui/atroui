@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "cta-band",
   "title": "CTA Band",
-  "description": "Headline + primary/ghost CTA band with brand wash.",
+  "description": "Headline + primary/ghost CTAs over a quiet brand wash. Editable CONTENT.",
   "dependencies": [
     "lucide-react",
     "next"

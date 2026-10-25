@@ -6,7 +6,7 @@ const TRUST = [
   },
   {
     title: "Source you own",
-    body: "Every block copies into src/components — review it in PRs.",
+    body: "Every block copies into src/components so you can review it in PRs.",
   },
   {
     title: "Keys stay yours",

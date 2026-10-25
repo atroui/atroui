@@ -9,8 +9,8 @@ export function LandingLetter() {
           <div className="atro-letter-body">
             <p>
               AtroUI started from a simple rule: the catalog should feel like
-              one product — blocks, docs, Host APIs, and identity helpers in the
-              same voice.
+              one product. Blocks, docs, Host APIs, and identity helpers share
+              the same voice.
             </p>
             <hr className="my-4 border-border-subtle" />
             <p>

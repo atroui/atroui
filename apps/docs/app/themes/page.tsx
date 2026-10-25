@@ -1,63 +1,44 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { RegistryInstallCommand } from "@/components/registry-install-command"
+import { DocsHeader } from "@/components/docs/docs-header"
+import { SiteFooter } from "@/components/site-footer"
 import { ThemeStudio } from "@/components/theme-studio"
 import { ToolExitBand } from "@/components/tool-exit-band"
-import { ToolRoom } from "@/components/tool-room"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
-  title: "Theme Studio",
+  title: "Theme Studio — the Atro room",
   description:
-    "Live accents and radius for AtroUI. Export CSS for your app — Mira, Tide, Ember, Bloom, Graphite plus Soft / Mira / Sharp corners.",
+    "Live accent, surface, type, and radius for AtroUI. Flip an axis, watch a real section recolor, copy CSS or install companions.",
   path: "/themes",
 })
 
+/**
+ * The Atro room — paint wall + live stage + tool tray.
+ * Accent lives on the paint wall; other axes in the tray; stage is the proof.
+ */
 export default function ThemesPage() {
   return (
-    <ToolRoom
-      title="Theme Studio"
-      lede={
-        <>
-          Live accents and radius. Export CSS for your app. See{" "}
-          <Link href="/docs/theming" className="bam-link">
-            Theming
-          </Link>{" "}
-          and{" "}
-          <Link
-            href="/docs/components/ui-color-theme-picker"
-            className="bam-link"
-          >
-            Color theme picker
-          </Link>
-          .
-        </>
-      }
-      meta={
-        <>
-          <RegistryInstallCommand items={["button"]} />
-          <p className="max-w-sm text-[11px] leading-relaxed text-muted-foreground sm:text-right">
-            Example: button ships with the accent you&rsquo;re browsing (Tide →
-            @atroui/theme-tide). Picker + export CSS live in this room.
-          </p>
-        </>
-      }
-      exit={
+    <>
+      <DocsHeader showChapterNav={false} />
+      <main className="atro-themes">
+        <div className="atro-themes-frame">
+          <ThemeStudio />
+        </div>
+
         <ToolExitBand
-          primaryHref="/docs/theming"
-          primaryLabel="Read the theming guide"
+          primaryHref="/docs/components/home-hero"
+          primaryLabel="Install Home Hero"
           links={[
-            { href: "/planner", label: "Project planner" },
-            { href: "/og", label: "OG workspace" },
+            { href: "/docs/theming", label: "Theming guide" },
+            { href: "/docs/components", label: "All sections" },
             {
               href: "/docs/components/ui-color-theme-picker",
               label: "Color theme picker",
             },
           ]}
         />
-      }
-    >
-      <ThemeStudio />
-    </ToolRoom>
+      </main>
+      <SiteFooter />
+    </>
   )
 }

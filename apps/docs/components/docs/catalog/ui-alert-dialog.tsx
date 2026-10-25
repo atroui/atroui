@@ -9,6 +9,7 @@ export function UiAlertDialogDoc() {
       registryName="alert-dialog"
       title="Alert Dialog"
       description="Confirm destructive or irreversible actions with Base UI Alert Dialog."
+      tip="Delete · confirm in place"
       preview={<DemoAlertDialog />}
       code={`import { Button } from "@/components/ui/button"
 import {

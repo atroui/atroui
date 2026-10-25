@@ -6,9 +6,9 @@ import { DirectionalPage } from "@/components/view-transitions"
 import { docsPageMetadata } from "@/lib/docs-metadata"
 
 export const metadata: Metadata = docsPageMetadata({
-  title: "AtroUI - Own the UI. Borrow the API.",
+  title: "AtroUI — Add the section. Own the room.",
   description:
-    "AtroUI is an MIT-licensed React and Next.js component catalog. Copy dark-first sections into your repo with the shadcn CLI, plus Host APIs for forms and AI tools. Your keys stay in your env. atroui.com",
+    "Opinionated section catalog for Next.js. Install production bands with the shadcn CLI, tune accent/surface/type/radius in Theme Studio, wire Host APIs with your keys. Own every file.",
   path: "/",
 })
 

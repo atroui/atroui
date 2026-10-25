@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "feature-bento",
   "title": "Feature Bento",
-  "description": "Four-up bento feature grid, soft-rect panels.",
+  "description": "Bento feature grid with editable CONTENT and FEATURES. Soft-rect panels.",
   "dependencies": [
     "lucide-react"
   ],

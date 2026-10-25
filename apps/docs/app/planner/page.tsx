@@ -49,15 +49,12 @@ export default function PlannerPage() {
       }
       exit={
         <ToolExitBand
-          primaryHref="/og"
-          primaryLabel="Continue to OG workspace"
+          primaryHref="/launch"
+          primaryLabel="Open Launch room"
           links={[
-            { href: "/docs/guides/launch-workflow", label: "Launch workflow" },
+            { href: "/og", label: "OG workspace" },
+            { href: "/docs/guides/launch-workflow", label: "Launch guide" },
             { href: "/docs/host-api", label: "Host APIs" },
-            {
-              href: "/docs/components/planner-project-planner",
-              label: "Component docs",
-            },
           ]}
         />
       }

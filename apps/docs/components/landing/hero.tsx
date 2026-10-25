@@ -1,54 +1,55 @@
-import { ArrowRight, Github } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { LandingAxisStrip } from "@/components/landing/landing-axis-strip"
 import { LandingPillars } from "@/components/landing/landing-pillars"
 import { RegistryWorkspaceDemo } from "@/components/landing/registry-workspace-demo"
 import { LandingReveal } from "@/components/landing/landing-reveal"
 import { TransitionLink } from "@/components/view-transitions"
 
-const GITHUB_REPO = "https://github.com/atroui/atroui"
-
 /**
- * Hero budget (Zed): H1 + lede + CTAs + ONE product visual — the demo and the
- * pillar strip are a single attached unit, not two bands. No second pitch.
+ * First viewport = one Atro room.
+ * Brand first · one headline · one lede · CTA group · live product visual.
+ * Install lives in the workspace foot (not a second terminal under it).
  */
 export function AtroHero() {
   return (
     <section className="atro-hero-canvas relative w-full bg-background text-foreground">
       <div className="atro-shell relative z-10 pb-8 pt-10 sm:pb-10 sm:pt-12 lg:pb-12">
         <LandingReveal className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <h1 className="atro-hero-title">
-            Own the UI.
+          <p className="atro-hero-brand" aria-label="AtroUI">
+            <span className="atro-hero-brand-name">Atro</span>
+            <span className="atro-hero-brand-ui">UI</span>
+          </p>
+
+          <h1 className="atro-hero-title mt-5">
+            Add the section.
             <br />
-            Borrow the API.
+            Own the room.
           </h1>
 
-          <p className="atro-hero-lede mt-4 max-w-lg">
-            A minimal React catalog for production apps. Copy source with shadcn —
-            wire Host APIs with your keys.
+          <p className="atro-hero-lede mt-4 max-w-md">
+            Production sections via the shadcn CLI. Theme axes that stay
+            orthogonal. Host APIs on your keys. Every file lands in your repo.
           </p>
 
           <div className="mt-6 flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center sm:justify-center">
             <TransitionLink
-              href="/docs/components"
+              href="/themes"
               transitionTypes={[]}
               className="atro-btn"
             >
-              Browse components
+              Enter Theme Studio
               <ArrowRight className="size-4" aria-hidden />
             </TransitionLink>
-            <a
-              href={GITHUB_REPO}
-              target="_blank"
-              rel="noopener noreferrer"
+            <TransitionLink
+              href="/docs/components"
+              transitionTypes={[]}
               className="atro-btn-ghost"
             >
-              <Github className="size-4" aria-hidden />
-              View source
-            </a>
+              Browse sections
+            </TransitionLink>
           </div>
 
-          <p className="atro-platform-note mt-4">
-            Available for React 19, Next.js 15, and Tailwind v4
-          </p>
+          <LandingAxisStrip className="mt-7" />
         </LandingReveal>
 
         <LandingReveal
